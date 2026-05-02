@@ -3,6 +3,10 @@
   "displayName": "エンゼルフィッシュ",
   "realBodyLengthCm": 12,
   "sideImage": "./side.png",
+  "animation": {
+    "framePattern": "./swim/frame-*.png",
+    "framesPerSecond": 6
+  },
   "sourceBodyBounds": {
     "x": 280,
     "y": 40,

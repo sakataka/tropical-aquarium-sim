@@ -33,11 +33,13 @@ http://127.0.0.1:5173/?view=dev
 ## 魚種追加
 
 魚種ごとに `src/content/fish/<species-id>/species.json` と `side.png` を追加します。コード側で魚種別の if 文は追加しません。
+泳ぎのアニメーションを入れる場合は `src/content/fish/<species-id>/swim/frame-01.png` のような連番PNGを追加し、`species.json` の `animation.framePattern` と `animation.framesPerSecond` を設定します。フレームがない場合は `side.png` の静止表示にフォールバックします。
 
 `species.json` の重要項目:
 
 - `realBodyLengthCm`: 実際の体長cm
 - `sideImage`: 通常は `./side.png`
+- `animation`: 任意。泳ぎフレームのパターンと基本FPS
 - `sourceBodyBounds`: 元画像内で魚体が占める範囲。実寸スケール計算に必須
 - `preferredZone`: 水槽内で好む泳層
 - `schooling`: 群れ行動の弱い追従設定

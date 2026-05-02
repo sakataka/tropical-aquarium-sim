@@ -3,6 +3,10 @@
   "displayName": "グッピー",
   "realBodyLengthCm": 5,
   "sideImage": "./side.png",
+  "animation": {
+    "framePattern": "./swim/frame-*.png",
+    "framesPerSecond": 8
+  },
   "sourceBodyBounds": {
     "x": 110,
     "y": 185,

@@ -34,8 +34,8 @@ async function main() {
       "--strictPort",
     ],
     {
-      stdout: "pipe",
-      stderr: "pipe",
+      stdout: "inherit",
+      stderr: "inherit",
     },
   );
 

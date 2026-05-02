@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import {
   Application,
   Assets,
+  AnimatedSprite,
   Container,
   Graphics,
   Sprite,
@@ -16,7 +17,7 @@ import {
   type FishSpeciesDefinition,
   type TankDefinition,
 } from "../core";
-import { environmentAssets, getFishImageUrl } from "./assets";
+import { environmentAssets, getFishAnimationFrameUrls, getFishImageUrl } from "./assets";
 
 type AquariumCanvasProps = {
   fish: FishInstance[];
@@ -27,9 +28,10 @@ type AquariumCanvasProps = {
 };
 
 type FishSpriteRecord = {
-  sprite: Sprite;
+  sprite: AnimatedSprite;
   shadow: Graphics;
   fallback: Graphics;
+  loadedAnimationKey?: string;
   visualX?: number;
   visualY?: number;
   visualScale?: number;
@@ -229,7 +231,12 @@ export function AquariumCanvas({
 
       let record = fishSpritesRef.current.get(fishInstance.id);
       if (!record) {
-        const sprite = new Sprite(Texture.EMPTY);
+        const sprite = new AnimatedSprite({
+          textures: [Texture.EMPTY],
+          autoUpdate: true,
+          autoPlay: false,
+          loop: true,
+        });
         const fallback = new Graphics();
         const shadow = new Graphics().ellipse(0, 0, 28, 5).fill({
           color: 0x062c32,
@@ -251,17 +258,35 @@ export function AquariumCanvas({
       }
 
       const url = getFishImageUrl(definition.id);
-      if (url && record.sprite.texture === Texture.EMPTY) {
+      const frameUrls = getFishAnimationFrameUrls(definition.id);
+      const animationKey = frameUrls.join("|");
+      if (
+        definition.animation &&
+        frameUrls.length >= 2 &&
+        record.loadedAnimationKey !== animationKey
+      ) {
+        record.loadedAnimationKey = animationKey;
+        loadImageTextures(frameUrls).then((textures) => {
+          if (textures.length < 2) {
+            return;
+          }
+          record.sprite.textures = textures;
+          record.sprite.currentFrame = Math.floor(
+            (fishInstance.seed % textures.length + textures.length) % textures.length,
+          );
+          record.sprite.play();
+        });
+      } else if (url && record.sprite.texture === Texture.EMPTY) {
         const cached = textureCache.get(url);
         if (cached) {
-          record.sprite.texture = cached;
+          record.sprite.textures = [cached];
         } else {
           loadImageTexture(url).then((texture) => {
             textureCache.set(url, texture);
             if (!record) {
               return;
             }
-            record.sprite.texture = texture;
+            record.sprite.textures = [texture];
           });
         }
       }
@@ -291,6 +316,12 @@ export function AquariumCanvas({
       const targetRotation = getBodyRotation(fishInstance);
       const positionEase = fishInstance.behaviorMode === "kick" ? 9.5 : 5.2;
       const transformEase = fishInstance.behaviorMode === "kick" ? 11 : 6.4;
+      record.sprite.animationSpeed = getAnimationSpeed(fishInstance, definition);
+      if (fishInstance.behaviorMode === "pause" && record.sprite.playing) {
+        record.sprite.stop();
+      } else if (fishInstance.behaviorMode !== "pause" && !record.sprite.playing) {
+        record.sprite.play();
+      }
 
       record.visualX = smooth(record.visualX ?? x, x, positionEase, deltaSec);
       record.visualY = smooth(
@@ -451,6 +482,20 @@ function getTailPulse(
   };
 }
 
+function getAnimationSpeed(
+  fish: FishInstance,
+  species: FishSpeciesDefinition,
+): number {
+  const fps = species.animation?.framesPerSecond ?? 8;
+  const modeMultiplier =
+    fish.behaviorMode === "feed" ? 1.55
+      : fish.behaviorMode === "kick" ? 1.25
+        : fish.behaviorMode === "coast" ? 0.56
+          : 0.12;
+
+  return (fps / 60) * modeMultiplier;
+}
+
 function getBodyRotation(fish: FishInstance): number {
   const speed = Math.hypot(fish.velocity.x, fish.velocity.y);
   if (speed <= 0.05) {
@@ -486,4 +531,8 @@ function loadImageTexture(url: string): Promise<Texture> {
     image.onerror = () => reject(new Error(`Failed to load image: ${url}`));
     image.src = url;
   });
+}
+
+async function loadImageTextures(urls: string[]): Promise<Texture[]> {
+  return Promise.all(urls.map((url) => loadImageTexture(url)));
 }

@@ -3,6 +3,10 @@
   "displayName": "ネオンテトラ",
   "realBodyLengthCm": 4,
   "sideImage": "./side.png",
+  "animation": {
+    "framePattern": "./swim/frame-*.png",
+    "framesPerSecond": 10
+  },
   "sourceBodyBounds": {
     "x": 205,
     "y": 205,

@@ -41,11 +41,17 @@ export const swimMotionProfileSchema = z.object({
   path: ["kickIntervalSecMin"],
 });
 
+export const fishAnimationProfileSchema = z.object({
+  framePattern: z.string().min(1),
+  framesPerSecond: z.number().finite().positive().max(30),
+});
+
 export const fishSpeciesDefinitionSchema = z.object({
   id: z.string().min(1),
   displayName: z.string().min(1),
   realBodyLengthCm: z.number().finite().positive(),
   sideImage: z.string().min(1),
+  animation: fishAnimationProfileSchema.optional(),
   sourceBodyBounds: bodyBoundsSchema,
   cruisingSpeedCmPerSec: z.number().finite().positive(),
   burstSpeedCmPerSec: z.number().finite().positive(),

@@ -31,11 +31,17 @@ export type SwimMotionProfile = {
   wanderStrength: number;
 };
 
+export type FishAnimationProfile = {
+  framePattern: string;
+  framesPerSecond: number;
+};
+
 export type FishSpeciesDefinition = {
   id: string;
   displayName: string;
   realBodyLengthCm: number;
   sideImage: string;
+  animation?: FishAnimationProfile;
   sourceBodyBounds: BodyBounds;
   cruisingSpeedCmPerSec: number;
   burstSpeedCmPerSec: number;

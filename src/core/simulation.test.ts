@@ -8,6 +8,10 @@ const species: FishSpeciesDefinition = {
   displayName: "Test Fish",
   realBodyLengthCm: 4,
   sideImage: "./side.png",
+  animation: {
+    framePattern: "./swim/frame-*.png",
+    framesPerSecond: 8,
+  },
   sourceBodyBounds: {
     x: 0,
     y: 0,

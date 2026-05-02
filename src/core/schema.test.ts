@@ -6,6 +6,10 @@ const validSpecies = {
   displayName: "Valid Fish",
   realBodyLengthCm: 4,
   sideImage: "./side.png",
+  animation: {
+    framePattern: "./swim/frame-*.png",
+    framesPerSecond: 8,
+  },
   sourceBodyBounds: {
     x: 10,
     y: 12,
