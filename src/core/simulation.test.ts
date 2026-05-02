@@ -1,0 +1,103 @@
+import { describe, expect, it } from "vitest";
+import { stepSimulation } from "./simulation";
+import { TANK_60CM } from "./tank";
+import type { FishInstance, FishSpeciesDefinition } from "./types";
+
+const species: FishSpeciesDefinition = {
+  id: "test-fish",
+  displayName: "Test Fish",
+  realBodyLengthCm: 4,
+  sideImage: "./side.png",
+  sourceBodyBounds: {
+    x: 0,
+    y: 0,
+    width: 100,
+    height: 32,
+  },
+  cruisingSpeedCmPerSec: 4,
+  burstSpeedCmPerSec: 12,
+  turnRateRadPerSec: 12,
+  stopProbabilityPerSec: 0,
+  motion: {
+    kickIntervalSecMin: 0.8,
+    kickIntervalSecMax: 1.6,
+    kickDurationSec: 0.2,
+    coastDragPerSec: 0.35,
+    wanderStrength: 0.25,
+  },
+  preferredZone: {
+    minX: 0.2,
+    maxX: 0.8,
+    minY: 0.2,
+    maxY: 0.8,
+  },
+  schooling: {
+    enabled: true,
+    radiusCm: 12,
+    strength: 0.2,
+  },
+};
+
+function createFish(overrides: Partial<FishInstance> = {}): FishInstance {
+  return {
+    id: "fish-1",
+    speciesId: species.id,
+    position: {
+      x: 30,
+      y: 20,
+    },
+    velocity: {
+      x: 1,
+      y: 0,
+    },
+    facing: 1,
+    depth: 0.5,
+    bodyLengthVariance: 1,
+    behaviorMode: "coast",
+    behaviorTimeRemainingSec: 0,
+    hunger: 0.8,
+    seed: 123,
+    ...overrides,
+  };
+}
+
+describe("stepSimulation", () => {
+  it("keeps fish inside the tank bounds", () => {
+    const result = stepSimulation({
+      tank: TANK_60CM,
+      species: {
+        [species.id]: species,
+      },
+      fish: [
+        createFish({
+          position: {
+            x: 0,
+            y: 0,
+          },
+        }),
+      ],
+      deltaSec: 1,
+    });
+
+    expect(result.fish[0].position.x).toBeGreaterThanOrEqual(TANK_60CM.safeMarginCm);
+    expect(result.fish[0].position.y).toBeGreaterThanOrEqual(TANK_60CM.safeMarginCm);
+  });
+
+  it("switches hungry fish into feed behavior when food is present", () => {
+    const result = stepSimulation({
+      tank: TANK_60CM,
+      species: {
+        [species.id]: species,
+      },
+      fish: [createFish()],
+      deltaSec: 1 / 60,
+      feeding: {
+        position: TANK_60CM.feedPoint,
+        strength: 1,
+      },
+    });
+
+    expect(result.fish[0].behaviorMode).toBe("feed");
+    expect(result.fish[0].hunger).toBeLessThan(0.8);
+  });
+});

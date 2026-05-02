@@ -1,0 +1,34 @@
+{
+  "id": "neon-tetra",
+  "displayName": "ネオンテトラ",
+  "realBodyLengthCm": 4,
+  "sideImage": "./side.png",
+  "sourceBodyBounds": {
+    "x": 205,
+    "y": 205,
+    "width": 1340,
+    "height": 540
+  },
+  "cruisingSpeedCmPerSec": 3.6,
+  "burstSpeedCmPerSec": 15,
+  "turnRateRadPerSec": 3.6,
+  "stopProbabilityPerSec": 0.04,
+  "motion": {
+    "kickIntervalSecMin": 0.9,
+    "kickIntervalSecMax": 2.2,
+    "kickDurationSec": 0.22,
+    "coastDragPerSec": 0.42,
+    "wanderStrength": 0.45
+  },
+  "preferredZone": {
+    "minX": 0.12,
+    "maxX": 0.9,
+    "minY": 0.28,
+    "maxY": 0.72
+  },
+  "schooling": {
+    "enabled": true,
+    "radiusCm": 12,
+    "strength": 0.18
+  }
+}

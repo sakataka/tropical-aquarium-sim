@@ -1,0 +1,34 @@
+{
+  "id": "guppy",
+  "displayName": "グッピー",
+  "realBodyLengthCm": 5,
+  "sideImage": "./side.png",
+  "sourceBodyBounds": {
+    "x": 110,
+    "y": 185,
+    "width": 1260,
+    "height": 650
+  },
+  "cruisingSpeedCmPerSec": 3.0,
+  "burstSpeedCmPerSec": 11,
+  "turnRateRadPerSec": 2.8,
+  "stopProbabilityPerSec": 0.06,
+  "motion": {
+    "kickIntervalSecMin": 1.1,
+    "kickIntervalSecMax": 2.8,
+    "kickDurationSec": 0.2,
+    "coastDragPerSec": 0.48,
+    "wanderStrength": 0.34
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.94,
+    "minY": 0.16,
+    "maxY": 0.62
+  },
+  "schooling": {
+    "enabled": true,
+    "radiusCm": 10,
+    "strength": 0.1
+  }
+}

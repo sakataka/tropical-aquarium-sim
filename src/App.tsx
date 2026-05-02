@@ -1,0 +1,200 @@
+import { useEffect, useMemo, useRef, useState } from "react";
+import {
+  fishCatalog,
+  stepSimulation,
+  TANK_60CM,
+  type FeedingEvent,
+  type FishInstance,
+} from "./core";
+import { AquariumCanvas } from "./render/AquariumCanvas";
+import { AquariumControls } from "./ui/AquariumControls";
+import { SizeDevView } from "./ui/SizeDevView";
+import "./styles.css";
+
+const INITIAL_SPECIES = ["neon-tetra", "guppy", "angelfish"];
+
+export default function App() {
+  const speciesList = useMemo(
+    () => Object.values(fishCatalog).sort((a, b) => a.realBodyLengthCm - b.realBodyLengthCm),
+    [],
+  );
+  const [fish, setFish] = useState<FishInstance[]>(() =>
+    INITIAL_SPECIES.flatMap((speciesId, speciesIndex) =>
+      Array.from({ length: speciesId === "neon-tetra" ? 3 : 1 }, (_, index) =>
+        createFish(speciesId, speciesIndex * 3 + index),
+      ),
+    ),
+  );
+  const [selectedSpeciesId, setSelectedSpeciesId] = useState(
+    speciesList[0]?.id ?? "neon-tetra",
+  );
+  const [paused, setPaused] = useState(false);
+  const [viewMode, setViewMode] = useState<"tank" | "dev">(() =>
+    new URLSearchParams(window.location.search).get("view") === "dev"
+      ? "dev"
+      : "tank",
+  );
+  const [latestFeeding, setLatestFeeding] = useState<FeedingEvent | undefined>(() =>
+    new URLSearchParams(window.location.search).get("feed") === "1"
+      ? createFeedingEvent()
+      : undefined,
+  );
+  const [viewportWidthPx, setViewportWidthPx] = useState(960);
+  const aquariumShellRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const element = aquariumShellRef.current;
+    if (!element) {
+      return;
+    }
+
+    const observer = new ResizeObserver(([entry]) => {
+      setViewportWidthPx(entry.contentRect.width);
+    });
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    let animationFrame = 0;
+    let lastTime = performance.now();
+
+    const tick = (time: number) => {
+      const deltaSec = Math.min(0.05, Math.max(0, (time - lastTime) / 1000));
+      lastTime = time;
+
+      if (!paused && viewMode === "tank") {
+        const feeding = getActiveFeeding(latestFeeding);
+        setFish((current) =>
+          stepSimulation({
+            tank: TANK_60CM,
+            species: fishCatalog,
+            fish: current,
+            deltaSec,
+            feeding,
+          }).fish,
+        );
+      }
+
+      animationFrame = requestAnimationFrame(tick);
+    };
+
+    animationFrame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(animationFrame);
+  }, [latestFeeding, paused, viewMode]);
+
+  useEffect(() => {
+    if (!latestFeeding) {
+      return;
+    }
+
+    const timeout = window.setTimeout(() => setLatestFeeding(undefined), 6200);
+    return () => window.clearTimeout(timeout);
+  }, [latestFeeding]);
+
+  return (
+    <main className="app-shell">
+      <section className="aquarium-stage" ref={aquariumShellRef}>
+        {viewMode === "tank" ? (
+          <AquariumCanvas
+            fish={fish}
+            species={fishCatalog}
+            tank={TANK_60CM}
+            paused={paused}
+            latestFeeding={getActiveFeeding(latestFeeding)}
+          />
+        ) : (
+          <SizeDevView
+            speciesList={speciesList}
+            tank={TANK_60CM}
+            viewportWidthPx={viewportWidthPx}
+          />
+        )}
+      </section>
+      <AquariumControls
+        speciesList={speciesList}
+        fish={fish}
+        tank={TANK_60CM}
+        paused={paused}
+        viewMode={viewMode}
+        selectedSpeciesId={selectedSpeciesId}
+        onSelectedSpeciesChange={setSelectedSpeciesId}
+        onAddFish={() =>
+          setFish((current) => [
+            ...current,
+            createFish(selectedSpeciesId, current.length + 11),
+          ])
+        }
+        onRemoveFish={(fishId) =>
+          setFish((current) => current.filter((item) => item.id !== fishId))
+        }
+        onFeed={() =>
+          setLatestFeeding(createFeedingEvent())
+        }
+        onTogglePaused={() => setPaused((value) => !value)}
+        onViewModeChange={setViewMode}
+      />
+    </main>
+  );
+}
+
+function createFish(speciesId: string, index: number): FishInstance {
+  const x = 10 + ((index * 11) % 43);
+  const y = 8 + ((index * 7) % 22);
+  const depth = 0.12 + ((index * 0.19) % 0.76);
+  const speedAngle = index % 2 === 0 ? 0 : Math.PI;
+
+  return {
+    id: `${speciesId}-${Date.now().toString(36)}-${index}-${Math.random()
+      .toString(36)
+      .slice(2, 7)}`,
+    speciesId,
+    position: { x, y },
+    velocity: {
+      x: Math.cos(speedAngle) * 1.6,
+      y: Math.sin(index) * 0.35,
+    },
+    facing: index % 2 === 0 ? 1 : -1,
+    depth,
+    bodyLengthVariance: 0.94 + Math.random() * 0.12,
+    behaviorMode: "coast",
+    behaviorTimeRemainingSec: 0.4 + Math.random() * 1.2,
+    target: {
+      x: 8 + ((index * 17) % 44),
+      y: 7 + ((index * 5) % 24),
+    },
+    hunger: 0.35 + Math.random() * 0.45,
+    seed: 1000 + index * 7919,
+  };
+}
+
+function createFeedingEvent(): FeedingEvent {
+  return {
+    position: {
+      x: 18 + Math.random() * 24,
+      y: 3,
+    },
+    strength: 1,
+    createdAtMs: performance.now(),
+  };
+}
+
+function getActiveFeeding(feeding?: FeedingEvent): FeedingEvent | undefined {
+  if (!feeding) {
+    return undefined;
+  }
+
+  const ageSec = (performance.now() - (feeding.createdAtMs ?? performance.now())) / 1000;
+  if (ageSec > 6.2) {
+    return undefined;
+  }
+
+  return {
+    ...feeding,
+    position: {
+      x: feeding.position.x,
+      y: Math.min(TANK_60CM.heightCm - 4, feeding.position.y + ageSec * 4.8),
+    },
+    strength: Math.max(0.15, 1 - ageSec / 7),
+  };
+}
