@@ -234,6 +234,7 @@ export function AquariumCanvas({
     glassEffectsLayer.addChild(glass);
 
     drawGlassHighlights(glassEffectsLayer, app.screen.width, app.screen.height);
+    drawCausticOverlay(glassEffectsLayer, app.screen.width, app.screen.height);
 
   }
 
@@ -568,6 +569,73 @@ function animateTankLayers(
   const sheen = glassEffectsLayer.getChildByName("surface-sheen");
   if (sheen) {
     sheen.alpha = 0.72 + Math.sin(nowMs / 1800) * 0.08;
+  }
+
+  const causticsFar = glassEffectsLayer.getChildByName("caustics-far");
+  if (causticsFar) {
+    causticsFar.x = Math.sin(nowMs / 3400) * app.screen.width * 0.018;
+    causticsFar.y = Math.cos(nowMs / 4200) * app.screen.height * 0.006;
+    causticsFar.alpha = 0.28 + Math.sin(nowMs / 2300) * 0.05;
+  }
+
+  const causticsNear = glassEffectsLayer.getChildByName("caustics-near");
+  if (causticsNear) {
+    causticsNear.x = Math.sin(nowMs / 2100 + 1.4) * app.screen.width * 0.024;
+    causticsNear.y = Math.cos(nowMs / 2600) * app.screen.height * 0.008;
+    causticsNear.alpha = 0.22 + Math.sin(nowMs / 1700) * 0.06;
+  }
+
+  const surfaceRipples = glassEffectsLayer.getChildByName("surface-ripples");
+  if (surfaceRipples) {
+    surfaceRipples.x = Math.sin(nowMs / 1300) * app.screen.width * 0.012;
+    surfaceRipples.alpha = 0.42 + Math.sin(nowMs / 900) * 0.08;
+  }
+}
+
+function drawCausticOverlay(layer: Container, width: number, height: number) {
+  const far = new Container();
+  far.name = "caustics-far";
+  far.alpha = 0.28;
+  layer.addChild(far);
+  for (let i = 0; i < 18; i += 1) {
+    const y = height * (0.22 + ((i * 37) % 100) / 150);
+    const line = new Graphics()
+      .moveTo(width * -0.05, y)
+      .bezierCurveTo(
+        width * 0.18,
+        y + Math.sin(i) * 28,
+        width * 0.52,
+        y - Math.cos(i * 0.7) * 34,
+        width * 1.05,
+        y + Math.sin(i * 1.4) * 22,
+      )
+      .stroke({ color: 0xf5fff5, alpha: 0.055 + (i % 4) * 0.012, width: 2 + (i % 3) });
+    far.addChild(line);
+  }
+
+  const near = new Container();
+  near.name = "caustics-near";
+  near.alpha = 0.22;
+  layer.addChild(near);
+  for (let i = 0; i < 11; i += 1) {
+    const y = height * (0.64 + ((i * 23) % 100) / 360);
+    const line = new Graphics()
+      .moveTo(width * 0.04, y)
+      .bezierCurveTo(width * 0.25, y - 16, width * 0.45, y + 12, width * 0.72, y - 10)
+      .bezierCurveTo(width * 0.84, y - 18, width * 0.96, y + 6, width * 1.02, y - 8)
+      .stroke({ color: 0xfff6c8, alpha: 0.04 + (i % 3) * 0.018, width: 3 });
+    near.addChild(line);
+  }
+
+  const ripples = new Container();
+  ripples.name = "surface-ripples";
+  layer.addChild(ripples);
+  for (let i = 0; i < 9; i += 1) {
+    const ripple = new Graphics()
+      .ellipse(width * (0.12 + i * 0.105), height * (0.058 + (i % 3) * 0.018), 62 + i * 8, 4 + (i % 2))
+      .stroke({ color: 0xdfffff, alpha: 0.12, width: 1.2 });
+    ripple.rotation = -0.025 + i * 0.006;
+    ripples.addChild(ripple);
   }
 }
 
