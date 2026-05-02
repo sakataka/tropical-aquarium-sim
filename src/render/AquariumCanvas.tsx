@@ -30,6 +30,11 @@ type FishSpriteRecord = {
   sprite: Sprite;
   shadow: Graphics;
   fallback: Graphics;
+  visualX?: number;
+  visualY?: number;
+  visualScale?: number;
+  visualAlpha?: number;
+  visualRotation?: number;
 };
 
 export function AquariumCanvas({
@@ -106,12 +111,18 @@ export function AquariumCanvas({
       };
 
       drawStaticTank(app, background, midground, foreground);
-      app.ticker.add(() => {
-        updateFishSprites(app, fishLayer, textureCacheRef.current, {
-          fish: fishRef.current,
-          species: speciesRef.current,
-          tank,
-        });
+      app.ticker.add((ticker) => {
+        updateFishSprites(
+          app,
+          fishLayer,
+          textureCacheRef.current,
+          Math.min(0.05, ticker.deltaMS / 1000),
+          {
+            fish: fishRef.current,
+            species: speciesRef.current,
+            tank,
+          },
+        );
         updateFood(app, food, latestFeedingRef.current);
         drawWaterOverlay(app, foreground, paused);
       });
@@ -193,6 +204,7 @@ export function AquariumCanvas({
     app: Application,
     fishLayer: Container,
     textureCache: Map<string, Texture>,
+    deltaSec: number,
     state: {
       fish: FishInstance[];
       species: Record<string, FishSpeciesDefinition>;
@@ -275,21 +287,58 @@ export function AquariumCanvas({
         (1.04 - fishInstance.depth * 0.1);
       const fallbackScale = fallbackBodyLengthPx / 88;
 
-      record.sprite.x = x;
-      record.sprite.y = y + Math.sin(Date.now() / 500 + fishInstance.seed) * 1.8;
-      record.sprite.scale.set(directionScale, scale);
-      record.sprite.alpha = depthAlpha;
+      const tailPulse = getTailPulse(fishInstance, performance.now());
+      const targetRotation = getBodyRotation(fishInstance);
+      const positionEase = fishInstance.behaviorMode === "kick" ? 9.5 : 5.2;
+      const transformEase = fishInstance.behaviorMode === "kick" ? 11 : 6.4;
+
+      record.visualX = smooth(record.visualX ?? x, x, positionEase, deltaSec);
+      record.visualY = smooth(
+        record.visualY ?? y,
+        y + tailPulse.bodyBob,
+        positionEase,
+        deltaSec,
+      );
+      record.visualScale = smooth(
+        record.visualScale ?? scale,
+        scale * tailPulse.lengthPulse,
+        transformEase,
+        deltaSec,
+      );
+      record.visualAlpha = smooth(
+        record.visualAlpha ?? depthAlpha,
+        depthAlpha,
+        4.8,
+        deltaSec,
+      );
+      record.visualRotation = smoothAngle(
+        record.visualRotation ?? targetRotation,
+        targetRotation,
+        transformEase,
+        deltaSec,
+      );
+
+      const smoothedDirectionScale =
+        fishInstance.facing === 1 ? -record.visualScale : record.visualScale;
+
+      record.sprite.x = record.visualX;
+      record.sprite.y = record.visualY;
+      record.sprite.rotation = record.visualRotation;
+      record.sprite.skew.y = tailPulse.skew;
+      record.sprite.scale.set(smoothedDirectionScale, record.visualScale);
+      record.sprite.alpha = record.visualAlpha;
       record.sprite.tint = fishInstance.depth > 0.65 ? 0xb6d9df : 0xffffff;
-      record.fallback.x = record.sprite.x;
-      record.fallback.y = record.sprite.y;
+      record.fallback.x = record.visualX;
+      record.fallback.y = record.visualY;
+      record.fallback.rotation = record.visualRotation;
       record.fallback.scale.set(
         fishInstance.facing === 1 ? -fallbackScale : fallbackScale,
         fallbackScale,
       );
-      record.fallback.alpha = record.sprite.texture === Texture.EMPTY ? depthAlpha : 0;
+      record.fallback.alpha = record.sprite.texture === Texture.EMPTY ? record.visualAlpha : 0;
       record.fallback.tint = record.sprite.tint;
 
-      record.shadow.x = x;
+      record.shadow.x = record.visualX;
       record.shadow.y = app.screen.height * 0.91;
       record.shadow.scale.set(0.7 + (1 - fishInstance.depth) * 0.4, 0.55);
       record.shadow.alpha = 0.05 + (1 - fishInstance.depth) * 0.12;
@@ -382,6 +431,52 @@ function fallbackFishColor(speciesId: string): number {
     return 0xd8d4c8;
   }
   return 0x8bd7d3;
+}
+
+function getTailPulse(
+  fish: FishInstance,
+  nowMs: number,
+): { bodyBob: number; lengthPulse: number; skew: number } {
+  const speed = Math.hypot(fish.velocity.x, fish.velocity.y);
+  const speedAmount = Math.min(1, speed / 12);
+  const modeAmount =
+    fish.behaviorMode === "kick" || fish.behaviorMode === "feed" ? 1 : 0.35;
+  const phase = nowMs / (fish.behaviorMode === "kick" ? 72 : 145) + fish.seed * 0.017;
+  const wave = Math.sin(phase);
+
+  return {
+    bodyBob: wave * speedAmount * modeAmount * 1.4,
+    lengthPulse: 1 + Math.abs(wave) * speedAmount * modeAmount * 0.018,
+    skew: wave * speedAmount * modeAmount * 0.025,
+  };
+}
+
+function getBodyRotation(fish: FishInstance): number {
+  const speed = Math.hypot(fish.velocity.x, fish.velocity.y);
+  if (speed <= 0.05) {
+    return 0;
+  }
+
+  const pitch = Math.asin(Math.max(-1, Math.min(1, fish.velocity.y / speed))) * 0.22;
+  return Math.max(-0.16, Math.min(0.16, pitch));
+}
+
+function smooth(current: number, target: number, responsiveness: number, deltaSec: number): number {
+  const amount = 1 - Math.exp(-responsiveness * deltaSec);
+  return current + (target - current) * amount;
+}
+
+function smoothAngle(
+  current: number,
+  target: number,
+  responsiveness: number,
+  deltaSec: number,
+): number {
+  const amount = 1 - Math.exp(-responsiveness * deltaSec);
+  let delta = target - current;
+  while (delta > Math.PI) delta -= Math.PI * 2;
+  while (delta < -Math.PI) delta += Math.PI * 2;
+  return current + delta * amount;
 }
 
 function loadImageTexture(url: string): Promise<Texture> {
