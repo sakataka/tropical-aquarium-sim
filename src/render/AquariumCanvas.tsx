@@ -50,10 +50,11 @@ export function AquariumCanvas({
   const appRef = useRef<Application | null>(null);
   const layerRef = useRef<{
     root: Container;
-    background: Container;
-    midground: Container;
+    backplate: Container;
+    rearDecor: Container;
     fish: Container;
-    foreground: Container;
+    frontDecor: Container;
+    glassEffects: Container;
     food: Container;
   } | null>(null);
   const fishSpritesRef = useRef<Map<string, FishSpriteRecord>>(new Map());
@@ -95,25 +96,28 @@ export function AquariumCanvas({
 
       hostElement.appendChild(app.canvas);
       const root = new Container();
-      const background = new Container();
-      const midground = new Container();
+      const backplate = new Container();
+      const rearDecor = new Container();
       const fishLayer = new Container();
-      const foreground = new Container();
       const food = new Container();
+      const frontDecor = new Container();
+      const glassEffects = new Container();
 
-      root.addChild(background, midground, fishLayer, foreground, food);
+      root.addChild(backplate, rearDecor, fishLayer, food, frontDecor, glassEffects);
       app.stage.addChild(root);
       layerRef.current = {
         root,
-        background,
-        midground,
+        backplate,
+        rearDecor,
         fish: fishLayer,
-        foreground,
+        frontDecor,
+        glassEffects,
         food,
       };
 
-      drawStaticTank(app, background, midground, foreground);
+      drawStaticTank(app, backplate, rearDecor, frontDecor, glassEffects);
       app.ticker.add((ticker) => {
+        animateTankLayers(app, rearDecor, frontDecor, glassEffects, performance.now());
         updateFishSprites(
           app,
           fishLayer,
@@ -126,7 +130,7 @@ export function AquariumCanvas({
           },
         );
         updateFood(app, food, latestFeedingRef.current);
-        drawWaterOverlay(app, foreground, paused);
+        drawWaterOverlay(app, glassEffects, paused);
       });
     }
 
@@ -148,22 +152,24 @@ export function AquariumCanvas({
 
   function drawStaticTank(
     app: Application,
-    backgroundLayer: Container,
-    midgroundLayer: Container,
-    foregroundLayer: Container,
+    backplateLayer: Container,
+    rearDecorLayer: Container,
+    frontDecorLayer: Container,
+    glassEffectsLayer: Container,
   ) {
-    backgroundLayer.removeChildren();
-    midgroundLayer.removeChildren();
-    foregroundLayer.removeChildren();
+    backplateLayer.removeChildren();
+    rearDecorLayer.removeChildren();
+    frontDecorLayer.removeChildren();
+    glassEffectsLayer.removeChildren();
 
     const waterFill = new Graphics()
       .rect(0, 0, app.screen.width, app.screen.height)
       .fill({ color: 0x0b4a52, alpha: 0.54 });
-    backgroundLayer.addChild(waterFill);
+    backplateLayer.addChild(waterFill);
 
     const bg = new Sprite(Texture.EMPTY);
     bg.anchor.set(0.5);
-    backgroundLayer.addChild(bg);
+    backplateLayer.addChild(bg);
     Assets.load<Texture>(environmentAssets.aquariumBackgroundUrl).then((texture) => {
       bg.texture = texture;
       resize();
@@ -186,10 +192,29 @@ export function AquariumCanvas({
     resize();
     app.renderer.on("resize", resize);
 
+    const rearHaze = new Graphics()
+      .rect(0, 0, app.screen.width, app.screen.height)
+      .fill({ color: 0xbff4ed, alpha: 0.08 });
+    rearDecorLayer.addChild(rearHaze);
+    drawPlantCluster(rearDecorLayer, app.screen.width * 0.16, app.screen.height * 0.88, 0.84, 0.16);
+    drawPlantCluster(rearDecorLayer, app.screen.width * 0.82, app.screen.height * 0.9, 0.72, 0.13);
+
+    drawPlantCluster(frontDecorLayer, app.screen.width * 0.04, app.screen.height * 0.98, 1.24, 0.32);
+    drawPlantCluster(frontDecorLayer, app.screen.width * 0.96, app.screen.height * 1.02, 1.12, 0.28);
+
+    const surfaceSheen = new Graphics()
+      .rect(0, 0, app.screen.width, app.screen.height * 0.22)
+      .fill({ color: 0xe5ffff, alpha: 0.08 });
+    surfaceSheen.name = "surface-sheen";
+    glassEffectsLayer.addChild(surfaceSheen);
+
     const glass = new Graphics()
       .roundRect(10, 10, Math.max(0, app.screen.width - 20), Math.max(0, app.screen.height - 20), 18)
       .stroke({ color: 0xb8f0ff, alpha: 0.28, width: 2 });
-    foregroundLayer.addChild(glass);
+    glass.name = "glass-frame";
+    glassEffectsLayer.addChild(glass);
+
+    drawGlassHighlights(glassEffectsLayer, app.screen.width, app.screen.height);
 
     for (let i = 0; i < 26; i += 1) {
       const bubble = new Graphics()
@@ -198,7 +223,7 @@ export function AquariumCanvas({
       bubble.x = app.screen.width * (0.08 + ((i * 37) % 100) / 125);
       bubble.y = app.screen.height * (0.15 + ((i * 29) % 100) / 120);
       bubble.alpha = 0.35 + (i % 4) * 0.1;
-      midgroundLayer.addChild(bubble);
+      rearDecorLayer.addChild(bubble);
     }
   }
 
@@ -462,6 +487,78 @@ function fallbackFishColor(speciesId: string): number {
     return 0xd8d4c8;
   }
   return 0x8bd7d3;
+}
+
+function drawPlantCluster(
+  layer: Container,
+  originX: number,
+  originY: number,
+  scaleAmount: number,
+  alpha: number,
+) {
+  const cluster = new Container();
+  cluster.name = "plant-cluster";
+  cluster.x = originX;
+  cluster.y = originY;
+  cluster.alpha = alpha;
+  cluster.scale.set(scaleAmount);
+  layer.addChild(cluster);
+
+  for (let stemIndex = 0; stemIndex < 7; stemIndex += 1) {
+    const height = 160 + (stemIndex % 4) * 34;
+    const lean = -42 + stemIndex * 14;
+    const stem = new Graphics()
+      .moveTo(0, 0)
+      .bezierCurveTo(lean * 0.18, -height * 0.36, lean * 0.76, -height * 0.68, lean, -height)
+      .stroke({ color: stemIndex % 2 === 0 ? 0x295f39 : 0x6c7d38, alpha: 0.78, width: 3 });
+    stem.x = -46 + stemIndex * 16;
+    stem.y = 0;
+    cluster.addChild(stem);
+
+    for (let leafIndex = 0; leafIndex < 5; leafIndex += 1) {
+      const side = leafIndex % 2 === 0 ? -1 : 1;
+      const leaf = new Graphics()
+        .ellipse(0, 0, 7 + leafIndex * 1.5, 24 + (stemIndex % 3) * 3)
+        .fill({ color: leafIndex % 3 === 0 ? 0xaedb4c : 0x58b36c, alpha: 0.74 });
+      leaf.x = stem.x + lean * ((leafIndex + 1) / 6) + side * (12 + leafIndex * 2);
+      leaf.y = -height * ((leafIndex + 1) / 6);
+      leaf.rotation = side * 0.82 - lean * 0.006;
+      cluster.addChild(leaf);
+    }
+  }
+}
+
+function drawGlassHighlights(layer: Container, width: number, height: number) {
+  for (let i = 0; i < 5; i += 1) {
+    const highlight = new Graphics()
+      .roundRect(0, 0, width * (0.16 + i * 0.035), 2, 2)
+      .fill({ color: 0xffffff, alpha: 0.1 - i * 0.012 });
+    highlight.name = "glass-highlight";
+    highlight.x = width * (0.08 + i * 0.16);
+    highlight.y = height * (0.06 + i * 0.025);
+    highlight.rotation = -0.04 + i * 0.012;
+    layer.addChild(highlight);
+  }
+}
+
+function animateTankLayers(
+  app: Application,
+  rearDecorLayer: Container,
+  frontDecorLayer: Container,
+  glassEffectsLayer: Container,
+  nowMs: number,
+) {
+  const slowWave = Math.sin(nowMs / 2600);
+  const fastWave = Math.sin(nowMs / 1500);
+  rearDecorLayer.x = slowWave * app.screen.width * 0.002;
+  rearDecorLayer.skew.x = slowWave * 0.004;
+  frontDecorLayer.x = fastWave * app.screen.width * 0.003;
+  frontDecorLayer.skew.x = fastWave * 0.006;
+
+  const sheen = glassEffectsLayer.getChildByName("surface-sheen");
+  if (sheen) {
+    sheen.alpha = 0.72 + Math.sin(nowMs / 1800) * 0.08;
+  }
 }
 
 function getTailPulse(
