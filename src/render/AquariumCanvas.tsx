@@ -39,6 +39,17 @@ type FishSpriteRecord = {
   visualRotation?: number;
 };
 
+type BubbleParticleRecord = {
+  graphic: Graphics;
+  originXRatio: number;
+  yRatio: number;
+  radius: number;
+  speedRatioPerSec: number;
+  driftPx: number;
+  phase: number;
+  depth: number;
+};
+
 export function AquariumCanvas({
   fish,
   species,
@@ -52,12 +63,14 @@ export function AquariumCanvas({
     root: Container;
     backplate: Container;
     rearDecor: Container;
+    bubbles: Container;
     fish: Container;
     frontDecor: Container;
     glassEffects: Container;
     food: Container;
   } | null>(null);
   const fishSpritesRef = useRef<Map<string, FishSpriteRecord>>(new Map());
+  const bubblesRef = useRef<BubbleParticleRecord[]>([]);
   const textureCacheRef = useRef<Map<string, Texture>>(new Map());
   const fishRef = useRef(fish);
   const speciesRef = useRef(species);
@@ -98,17 +111,19 @@ export function AquariumCanvas({
       const root = new Container();
       const backplate = new Container();
       const rearDecor = new Container();
+      const bubbles = new Container();
       const fishLayer = new Container();
       const food = new Container();
       const frontDecor = new Container();
       const glassEffects = new Container();
 
-      root.addChild(backplate, rearDecor, fishLayer, food, frontDecor, glassEffects);
+      root.addChild(backplate, rearDecor, bubbles, fishLayer, food, frontDecor, glassEffects);
       app.stage.addChild(root);
       layerRef.current = {
         root,
         backplate,
         rearDecor,
+        bubbles,
         fish: fishLayer,
         frontDecor,
         glassEffects,
@@ -116,13 +131,16 @@ export function AquariumCanvas({
       };
 
       drawStaticTank(app, backplate, rearDecor, frontDecor, glassEffects);
+      ensureBubbleParticles(app, bubbles, bubblesRef.current);
       app.ticker.add((ticker) => {
+        const deltaSec = Math.min(0.05, ticker.deltaMS / 1000);
         animateTankLayers(app, rearDecor, frontDecor, glassEffects, performance.now());
+        updateBubbleParticles(app, bubbles, bubblesRef.current, deltaSec, performance.now());
         updateFishSprites(
           app,
           fishLayer,
           textureCacheRef.current,
-          Math.min(0.05, ticker.deltaMS / 1000),
+          deltaSec,
           {
             fish: fishRef.current,
             species: speciesRef.current,
@@ -139,6 +157,7 @@ export function AquariumCanvas({
     return () => {
       disposed = true;
       fishSpritesRef.current.clear();
+      bubblesRef.current = [];
       app.destroy(true, {
         children: true,
         texture: false,
@@ -216,15 +235,6 @@ export function AquariumCanvas({
 
     drawGlassHighlights(glassEffectsLayer, app.screen.width, app.screen.height);
 
-    for (let i = 0; i < 26; i += 1) {
-      const bubble = new Graphics()
-        .circle(0, 0, 1.2 + (i % 5) * 0.55)
-        .stroke({ color: 0xd7fbff, alpha: 0.5, width: 1 });
-      bubble.x = app.screen.width * (0.08 + ((i * 37) % 100) / 125);
-      bubble.y = app.screen.height * (0.15 + ((i * 29) % 100) / 120);
-      bubble.alpha = 0.35 + (i % 4) * 0.1;
-      rearDecorLayer.addChild(bubble);
-    }
   }
 
   function updateFishSprites(
@@ -559,6 +569,77 @@ function animateTankLayers(
   if (sheen) {
     sheen.alpha = 0.72 + Math.sin(nowMs / 1800) * 0.08;
   }
+}
+
+function ensureBubbleParticles(
+  app: Application,
+  bubbleLayer: Container,
+  particles: BubbleParticleRecord[],
+) {
+  if (bubblesNeedReset(app, bubbleLayer, particles)) {
+    bubbleLayer.removeChildren();
+    particles.length = 0;
+  }
+
+  if (particles.length > 0) {
+    return;
+  }
+
+  for (let i = 0; i < 44; i += 1) {
+    const source = i % 3;
+    const originXRatio = source === 0 ? 0.08 : source === 1 ? 0.19 : 0.91;
+    const radius = 1.3 + (i % 6) * 0.42;
+    const depth = ((i * 17) % 100) / 100;
+    const graphic = new Graphics()
+      .circle(0, 0, radius)
+      .stroke({ color: 0xe7ffff, alpha: 0.42 + depth * 0.2, width: 1 });
+    bubbleLayer.addChild(graphic);
+    particles.push({
+      graphic,
+      originXRatio,
+      yRatio: ((i * 29) % 100) / 100,
+      radius,
+      speedRatioPerSec: 0.032 + (i % 5) * 0.006,
+      driftPx: 5 + (i % 7) * 2.5,
+      phase: i * 1.73,
+      depth,
+    });
+  }
+}
+
+function updateBubbleParticles(
+  app: Application,
+  bubbleLayer: Container,
+  particles: BubbleParticleRecord[],
+  deltaSec: number,
+  nowMs: number,
+) {
+  if (particles.length === 0) {
+    ensureBubbleParticles(app, bubbleLayer, particles);
+  }
+
+  for (const bubble of particles) {
+    bubble.yRatio -= bubble.speedRatioPerSec * deltaSec * (0.75 + bubble.depth * 0.6);
+    if (bubble.yRatio < -0.06) {
+      bubble.yRatio = 1.02 + bubble.depth * 0.08;
+      bubble.originXRatio += Math.sin(nowMs / 3000 + bubble.phase) * 0.002;
+    }
+
+    const sway = Math.sin(nowMs / (680 + bubble.depth * 420) + bubble.phase);
+    bubble.graphic.x = app.screen.width * bubble.originXRatio + sway * bubble.driftPx;
+    bubble.graphic.y = app.screen.height * bubble.yRatio;
+    bubble.graphic.scale.set(0.72 + bubble.depth * 0.48);
+    bubble.graphic.alpha = Math.max(0, Math.min(0.72, 0.18 + bubble.yRatio * 0.36));
+  }
+}
+
+function bubblesNeedReset(
+  app: Application,
+  bubbleLayer: Container,
+  particles: BubbleParticleRecord[],
+): boolean {
+  const first = particles[0];
+  return Boolean(first && first.graphic.parent !== bubbleLayer && app.screen.width > 0);
 }
 
 function getTailPulse(
