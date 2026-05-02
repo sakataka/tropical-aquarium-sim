@@ -104,4 +104,55 @@ describe("stepSimulation", () => {
     expect(result.fish[0].behaviorMode).toBe("feed");
     expect(result.fish[0].hunger).toBeLessThan(0.8);
   });
+
+  it("separates schooling fish that are too close", () => {
+    const initialFish = [
+      createFish({
+        id: "left",
+        position: { x: 30, y: 18 },
+        velocity: { x: 0.1, y: 0 },
+        target: { x: 42, y: 18 },
+      }),
+      createFish({
+        id: "right",
+        position: { x: 31, y: 18 },
+        velocity: { x: 0.1, y: 0 },
+        target: { x: 42, y: 18 },
+      }),
+    ];
+    const result = runSteps(initialFish, 30);
+    const initialDistance = initialFish[1].position.x - initialFish[0].position.x;
+    const nextDistance = result[1].position.x - result[0].position.x;
+
+    expect(nextDistance).toBeGreaterThan(initialDistance);
+  });
+
+  it("steers away before fish reach the tank glass", () => {
+    const initialX = TANK_60CM.safeMarginCm + 0.5;
+    const result = runSteps([
+      createFish({
+        position: { x: initialX, y: 18 },
+        velocity: { x: -3, y: 0 },
+        target: { x: 1, y: 18 },
+      }),
+    ], 30);
+
+    expect(result[0].position.x).toBeGreaterThan(initialX);
+  });
 });
+
+function runSteps(initialFish: FishInstance[], steps: number): FishInstance[] {
+  let fish = initialFish;
+  for (let i = 0; i < steps; i += 1) {
+    fish = stepSimulation({
+      tank: TANK_60CM,
+      species: {
+        [species.id]: species,
+      },
+      fish,
+      deltaSec: 1 / 30,
+    }).fish;
+  }
+
+  return fish;
+}

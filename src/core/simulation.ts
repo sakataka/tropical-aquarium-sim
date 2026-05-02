@@ -196,11 +196,12 @@ function getDesiredVelocity(params: {
     params.speciesById,
   );
   const boundary = getBoundaryVector(params.fish.position, params.tank);
+  const boundaryPressure = clamp(length(boundary) / 4, 0, 0.85);
 
   const direction = normalize(
     addMany(
-      scale(targetPull, params.behaviorMode === "feed" ? 1.35 : 0.86),
-      scale(wander, params.behaviorMode === "feed" ? 0.1 : 0.55),
+      scale(targetPull, (params.behaviorMode === "feed" ? 1.35 : 0.86) * (1 - boundaryPressure)),
+      scale(wander, (params.behaviorMode === "feed" ? 0.1 : 0.55) * (1 - boundaryPressure)),
       schooling,
       boundary,
     ),
@@ -278,18 +279,48 @@ function getSchoolingVector(
     return { x: 0, y: 0 };
   }
 
-  const center = scale(
-    addMany(...neighbors.map((neighbor) => neighbor.position)),
-    1 / neighbors.length,
-  );
-  const alignment = scale(
-    addMany(...neighbors.map((neighbor) => normalize(neighbor.velocity))),
-    1 / neighbors.length,
-  );
+  const personalSpaceCm = species.realBodyLengthCm * 1.35;
+  const alignmentRadiusCm = species.schooling.radiusCm * 0.55;
+  let separation = { x: 0, y: 0 };
+  let separationWeight = 0;
+  let alignment = { x: 0, y: 0 };
+  let alignmentWeight = 0;
+  let attraction = { x: 0, y: 0 };
+  let attractionWeight = 0;
 
-  return add(
-    scale(normalize(subtract(center, fish.position)), species.schooling.strength * 0.45),
-    scale(alignment, species.schooling.strength * 0.35),
+  for (const neighbor of neighbors) {
+    const offset = subtract(neighbor.position, fish.position);
+    const distance = Math.max(0.001, length(offset));
+    const directionToNeighbor = scale(offset, 1 / distance);
+
+    if (distance < personalSpaceCm) {
+      const weight = 1 - distance / personalSpaceCm;
+      separation = add(separation, scale(directionToNeighbor, -weight));
+      separationWeight += weight;
+      continue;
+    }
+
+    if (distance < alignmentRadiusCm) {
+      const weight = 1 - Math.abs(distance - personalSpaceCm) / alignmentRadiusCm;
+      alignment = add(alignment, scale(normalize(neighbor.velocity), Math.max(0, weight)));
+      alignmentWeight += Math.max(0, weight);
+      continue;
+    }
+
+    const weight = clamp(
+      (distance - alignmentRadiusCm) /
+        Math.max(0.001, species.schooling.radiusCm - alignmentRadiusCm),
+      0,
+      1,
+    );
+    attraction = add(attraction, scale(directionToNeighbor, weight));
+    attractionWeight += weight;
+  }
+
+  return addMany(
+    scale(normalize(separation), species.schooling.strength * 4.2 * Math.min(1, separationWeight)),
+    scale(normalize(alignment), species.schooling.strength * 0.44 * Math.min(1, alignmentWeight)),
+    scale(normalize(attraction), species.schooling.strength * 0.62 * Math.min(1, attractionWeight)),
   );
 }
 
@@ -297,21 +328,16 @@ function getBoundaryVector(position: Vec2, tank: TankDefinition): Vec2 {
   const margin = tank.safeMarginCm;
   const right = tank.widthCm - margin;
   const bottom = tank.heightCm - margin;
+  const softZone = margin * 2.6;
+  const leftPressure = clamp((softZone - (position.x - margin)) / softZone, 0, 1);
+  const rightPressure = clamp((softZone - (right - position.x)) / softZone, 0, 1);
+  const topPressure = clamp((softZone - (position.y - margin)) / softZone, 0, 1);
+  const bottomPressure = clamp((softZone - (bottom - position.y)) / softZone, 0, 1);
 
-  return {
-    x:
-      position.x < margin
-        ? 1
-        : position.x > right
-          ? -1
-          : 0,
-    y:
-      position.y < margin
-        ? 1
-        : position.y > bottom
-          ? -1
-          : 0,
-  };
+  return scale(normalize({
+    x: leftPressure - rightPressure,
+    y: topPressure - bottomPressure,
+  }), 4);
 }
 
 function resolveVelocity(
