@@ -10,6 +10,7 @@ import type {
 
 const TWO_PI = Math.PI * 2;
 const FOOD_ATTRACTION_RADIUS_CM = 28;
+const STRUCTURE_X_RATIOS = [0.14, 0.84];
 
 export function stepSimulation(input: SimulationInput): SimulationOutput {
   const deltaSec = Math.max(0, Math.min(input.deltaSec, 0.25));
@@ -195,7 +196,7 @@ function getDesiredVelocity(params: {
     params.species,
     params.speciesById,
   );
-  const boundary = getBoundaryVector(params.fish.position, params.tank);
+  const boundary = getBoundaryVector(params.fish.position, params.tank, params.species);
   const boundaryPressure = clamp(length(boundary) / 4, 0, 0.85);
 
   const direction = normalize(
@@ -221,6 +222,25 @@ function chooseTarget(
 ): Vec2 {
   const zone = species.preferredZone;
   const currentXRatio = fish.position.x / tank.widthCm;
+  const nearVerticalGlass =
+    fish.position.x < tank.safeMarginCm * 2.8 ||
+    fish.position.x > tank.widthCm - tank.safeMarginCm * 2.8;
+  const nearHorizontalGlass =
+    fish.position.y < tank.safeMarginCm * 2.4 ||
+    fish.position.y > tank.heightCm - tank.safeMarginCm * 2.4;
+  const shouldCruiseEdge =
+    (nearVerticalGlass || nearHorizontalGlass) &&
+    random() < species.behavior.edgeCruiseChance;
+  if (shouldCruiseEdge) {
+    return chooseEdgeCruiseTarget(fish, species, tank, random);
+  }
+
+  const shouldVisitStructure = random() < species.behavior.structureAffinity;
+  const xRatio = shouldVisitStructure
+    ? STRUCTURE_X_RATIOS[random() < 0.5 ? 0 : 1] + lerp(-0.06, 0.06, random())
+    : undefined;
+  const yMin = Math.max(0.03, zone.minY - species.behavior.surfaceAffinity * 0.08);
+  const yMax = Math.min(0.94, zone.maxY - species.behavior.surfaceAffinity * 0.16);
   const preferOppositeSide =
     fish.position.x < tank.safeMarginCm * 2 ||
     fish.position.x > tank.widthCm - tank.safeMarginCm * 2 ||
@@ -228,12 +248,43 @@ function chooseTarget(
 
   return {
     x: tank.widthCm *
-      (preferOppositeSide
+      (xRatio !== undefined
+        ? clamp(xRatio, zone.minX, zone.maxX)
+        : preferOppositeSide
         ? currentXRatio < 0.5
           ? lerp(0.54, zone.maxX, random())
           : lerp(zone.minX, 0.46, random())
         : lerp(zone.minX, zone.maxX, random())),
-    y: tank.heightCm * lerp(zone.minY, zone.maxY, random()),
+    y: tank.heightCm * lerp(yMin, yMax, random()),
+  };
+}
+
+function chooseEdgeCruiseTarget(
+  fish: FishInstance,
+  species: FishSpeciesDefinition,
+  tank: TankDefinition,
+  random: () => number,
+): Vec2 {
+  const zone = species.preferredZone;
+  const xRatio = fish.position.x / tank.widthCm;
+  const yRatio = fish.position.y / tank.heightCm;
+  const followLeftOrRight =
+    xRatio < 0.2 || xRatio > 0.8 || random() < 0.55;
+
+  if (followLeftOrRight) {
+    return {
+      x: tank.widthCm * (xRatio < 0.5 ? lerp(0.1, 0.2, random()) : lerp(0.8, 0.9, random())),
+      y: tank.heightCm * clamp(
+        yRatio + (random() < 0.5 ? -1 : 1) * lerp(0.16, 0.34, random()),
+        zone.minY,
+        zone.maxY,
+      ),
+    };
+  }
+
+  return {
+    x: tank.widthCm * lerp(zone.minX, zone.maxX, random()),
+    y: tank.heightCm * (yRatio < 0.5 ? lerp(0.1, 0.2, random()) : lerp(0.8, 0.9, random())),
   };
 }
 
@@ -279,8 +330,12 @@ function getSchoolingVector(
     return { x: 0, y: 0 };
   }
 
-  const personalSpaceCm = species.realBodyLengthCm * 1.35;
-  const alignmentRadiusCm = species.schooling.radiusCm * 0.55;
+  const personalSpaceCm = species.realBodyLengthCm * species.behavior.separationBodyLengths;
+  const alignmentRadiusCm = species.realBodyLengthCm * species.behavior.alignmentBodyLengths;
+  const attractionRadiusCm = Math.min(
+    species.schooling.radiusCm,
+    species.realBodyLengthCm * species.behavior.attractionBodyLengths,
+  );
   let separation = { x: 0, y: 0 };
   let separationWeight = 0;
   let alignment = { x: 0, y: 0 };
@@ -309,7 +364,7 @@ function getSchoolingVector(
 
     const weight = clamp(
       (distance - alignmentRadiusCm) /
-        Math.max(0.001, species.schooling.radiusCm - alignmentRadiusCm),
+        Math.max(0.001, attractionRadiusCm - alignmentRadiusCm),
       0,
       1,
     );
@@ -318,13 +373,31 @@ function getSchoolingVector(
   }
 
   return addMany(
-    scale(normalize(separation), species.schooling.strength * 4.2 * Math.min(1, separationWeight)),
-    scale(normalize(alignment), species.schooling.strength * 0.44 * Math.min(1, alignmentWeight)),
-    scale(normalize(attraction), species.schooling.strength * 0.62 * Math.min(1, attractionWeight)),
+    scale(
+      normalize(separation),
+      species.schooling.strength *
+        species.behavior.separationStrength *
+        2.8 *
+        Math.min(1, separationWeight),
+    ),
+    scale(
+      normalize(alignment),
+      species.schooling.strength *
+        species.behavior.alignmentStrength *
+        0.55 *
+        Math.min(1, alignmentWeight),
+    ),
+    scale(
+      normalize(attraction),
+      species.schooling.strength *
+        species.behavior.attractionStrength *
+        0.7 *
+        Math.min(1, attractionWeight),
+    ),
   );
 }
 
-function getBoundaryVector(position: Vec2, tank: TankDefinition): Vec2 {
+function getBoundaryVector(position: Vec2, tank: TankDefinition, species?: FishSpeciesDefinition): Vec2 {
   const margin = tank.safeMarginCm;
   const right = tank.widthCm - margin;
   const bottom = tank.heightCm - margin;
@@ -337,7 +410,7 @@ function getBoundaryVector(position: Vec2, tank: TankDefinition): Vec2 {
   return scale(normalize({
     x: leftPressure - rightPressure,
     y: topPressure - bottomPressure,
-  }), 4);
+  }), species?.behavior.wallAvoidanceStrength ?? 4);
 }
 
 function resolveVelocity(

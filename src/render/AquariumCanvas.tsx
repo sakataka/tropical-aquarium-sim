@@ -31,6 +31,7 @@ type FishSpriteRecord = {
   sprite: AnimatedSprite;
   shadow: Graphics;
   fallback: Graphics;
+  pectoralFins: Graphics;
   loadedAnimationKey?: string;
   visualX?: number;
   visualY?: number;
@@ -40,7 +41,7 @@ type FishSpriteRecord = {
 };
 
 type BubbleParticleRecord = {
-  graphic: Graphics;
+  sprite: Sprite;
   originXRatio: number;
   yRatio: number;
   radius: number;
@@ -215,9 +216,11 @@ export function AquariumCanvas({
       .rect(0, 0, app.screen.width, app.screen.height)
       .fill({ color: 0xbff4ed, alpha: 0.08 });
     rearDecorLayer.addChild(rearHaze);
+    addEnvironmentLayerSprite(rearDecorLayer, environmentAssets.rearPlantsUrl, app.screen.width, app.screen.height, "rear-plants");
     drawPlantCluster(rearDecorLayer, app.screen.width * 0.16, app.screen.height * 0.88, 0.84, 0.16);
     drawPlantCluster(rearDecorLayer, app.screen.width * 0.82, app.screen.height * 0.9, 0.72, 0.13);
 
+    addEnvironmentLayerSprite(frontDecorLayer, environmentAssets.foregroundPlantsUrl, app.screen.width, app.screen.height, "foreground-plants");
     drawPlantCluster(frontDecorLayer, app.screen.width * 0.04, app.screen.height * 0.98, 1.24, 0.32);
     drawPlantCluster(frontDecorLayer, app.screen.width * 0.96, app.screen.height * 1.02, 1.12, 0.28);
 
@@ -255,6 +258,8 @@ export function AquariumCanvas({
       if (!liveIds.has(id)) {
         record.sprite.destroy();
         record.shadow.destroy();
+        record.pectoralFins.destroy();
+        record.fallback.destroy();
         fishSpritesRef.current.delete(id);
       }
     }
@@ -278,6 +283,11 @@ export function AquariumCanvas({
           color: 0x062c32,
           alpha: 0.16,
         });
+        const pectoralFins = new Graphics()
+          .ellipse(-7, 8, 6, 15)
+          .fill({ color: 0xe8ffff, alpha: 0.18 })
+          .ellipse(-6, -8, 5, 12)
+          .fill({ color: 0xe8ffff, alpha: 0.12 });
         fallback
           .ellipse(0, 0, 44, 14)
           .fill({ color: fallbackFishColor(definition.id), alpha: 0.82 })
@@ -288,8 +298,8 @@ export function AquariumCanvas({
           .closePath()
           .fill({ color: fallbackFishColor(definition.id), alpha: 0.74 });
         sprite.anchor.set(0.5);
-        fishLayer.addChild(shadow, fallback, sprite);
-        record = { sprite, shadow, fallback };
+        fishLayer.addChild(shadow, fallback, pectoralFins, sprite);
+        record = { sprite, shadow, fallback, pectoralFins };
         fishSpritesRef.current.set(fishInstance.id, record);
       }
 
@@ -392,9 +402,16 @@ export function AquariumCanvas({
       record.sprite.y = record.visualY;
       record.sprite.rotation = record.visualRotation;
       record.sprite.skew.y = tailPulse.skew;
+      record.sprite.skew.x = tailPulse.sideFlex;
       record.sprite.scale.set(smoothedDirectionScale, record.visualScale);
       record.sprite.alpha = record.visualAlpha;
       record.sprite.tint = fishInstance.depth > 0.65 ? 0xb6d9df : 0xffffff;
+      record.pectoralFins.x = record.visualX;
+      record.pectoralFins.y = record.visualY;
+      record.pectoralFins.rotation = record.visualRotation + tailPulse.finFlutter;
+      record.pectoralFins.scale.set(smoothedDirectionScale * 0.78, record.visualScale * 0.78);
+      record.pectoralFins.alpha =
+        record.sprite.texture === Texture.EMPTY ? 0 : record.visualAlpha * tailPulse.finAlpha;
       record.fallback.x = record.visualX;
       record.fallback.y = record.visualY;
       record.fallback.rotation = record.visualRotation;
@@ -412,6 +429,7 @@ export function AquariumCanvas({
 
       const sortKey = fishInstance.depth * 10000 + y;
       record.sprite.zIndex = sortKey + 1;
+      record.pectoralFins.zIndex = sortKey + 0.8;
       record.fallback.zIndex = sortKey + 1;
       record.shadow.zIndex = sortKey;
     }
@@ -539,6 +557,26 @@ function drawPlantCluster(
   }
 }
 
+function addEnvironmentLayerSprite(
+  layer: Container,
+  url: string,
+  width: number,
+  height: number,
+  name: string,
+) {
+  const sprite = new Sprite(Texture.EMPTY);
+  sprite.name = name;
+  sprite.anchor.set(0.5, 0.5);
+  sprite.x = width / 2;
+  sprite.y = height / 2;
+  sprite.alpha = name === "foreground-plants" ? 0.82 : 0.52;
+  layer.addChild(sprite);
+  Assets.load<Texture>(url).then((texture) => {
+    sprite.texture = texture;
+    sprite.scale.set(Math.max(width / texture.width, height / texture.height));
+  });
+}
+
 function drawGlassHighlights(layer: Container, width: number, height: number) {
   for (let i = 0; i < 5; i += 1) {
     const highlight = new Graphics()
@@ -575,27 +613,27 @@ function animateTankLayers(
   if (causticsFar) {
     causticsFar.x = Math.sin(nowMs / 3400) * app.screen.width * 0.018;
     causticsFar.y = Math.cos(nowMs / 4200) * app.screen.height * 0.006;
-    causticsFar.alpha = 0.28 + Math.sin(nowMs / 2300) * 0.05;
+    causticsFar.alpha = 0.38 + Math.sin(nowMs / 2300) * 0.08;
   }
 
   const causticsNear = glassEffectsLayer.getChildByName("caustics-near");
   if (causticsNear) {
     causticsNear.x = Math.sin(nowMs / 2100 + 1.4) * app.screen.width * 0.024;
     causticsNear.y = Math.cos(nowMs / 2600) * app.screen.height * 0.008;
-    causticsNear.alpha = 0.22 + Math.sin(nowMs / 1700) * 0.06;
+    causticsNear.alpha = 0.32 + Math.sin(nowMs / 1700) * 0.08;
   }
 
   const surfaceRipples = glassEffectsLayer.getChildByName("surface-ripples");
   if (surfaceRipples) {
     surfaceRipples.x = Math.sin(nowMs / 1300) * app.screen.width * 0.012;
-    surfaceRipples.alpha = 0.42 + Math.sin(nowMs / 900) * 0.08;
+    surfaceRipples.alpha = 0.58 + Math.sin(nowMs / 900) * 0.1;
   }
 }
 
 function drawCausticOverlay(layer: Container, width: number, height: number) {
   const far = new Container();
   far.name = "caustics-far";
-  far.alpha = 0.28;
+  far.alpha = 0.38;
   layer.addChild(far);
   for (let i = 0; i < 18; i += 1) {
     const y = height * (0.22 + ((i * 37) % 100) / 150);
@@ -609,13 +647,13 @@ function drawCausticOverlay(layer: Container, width: number, height: number) {
         width * 1.05,
         y + Math.sin(i * 1.4) * 22,
       )
-      .stroke({ color: 0xf5fff5, alpha: 0.055 + (i % 4) * 0.012, width: 2 + (i % 3) });
+      .stroke({ color: 0xf5fff5, alpha: 0.085 + (i % 4) * 0.016, width: 2 + (i % 3) });
     far.addChild(line);
   }
 
   const near = new Container();
   near.name = "caustics-near";
-  near.alpha = 0.22;
+  near.alpha = 0.32;
   layer.addChild(near);
   for (let i = 0; i < 11; i += 1) {
     const y = height * (0.64 + ((i * 23) % 100) / 360);
@@ -623,7 +661,7 @@ function drawCausticOverlay(layer: Container, width: number, height: number) {
       .moveTo(width * 0.04, y)
       .bezierCurveTo(width * 0.25, y - 16, width * 0.45, y + 12, width * 0.72, y - 10)
       .bezierCurveTo(width * 0.84, y - 18, width * 0.96, y + 6, width * 1.02, y - 8)
-      .stroke({ color: 0xfff6c8, alpha: 0.04 + (i % 3) * 0.018, width: 3 });
+      .stroke({ color: 0xfff6c8, alpha: 0.07 + (i % 3) * 0.022, width: 3 });
     near.addChild(line);
   }
 
@@ -633,13 +671,13 @@ function drawCausticOverlay(layer: Container, width: number, height: number) {
   for (let i = 0; i < 9; i += 1) {
     const ripple = new Graphics()
       .ellipse(width * (0.12 + i * 0.105), height * (0.058 + (i % 3) * 0.018), 62 + i * 8, 4 + (i % 2))
-      .stroke({ color: 0xdfffff, alpha: 0.12, width: 1.2 });
+      .stroke({ color: 0xdfffff, alpha: 0.2, width: 1.5 });
     ripple.rotation = -0.025 + i * 0.006;
     ripples.addChild(ripple);
   }
 }
 
-function ensureBubbleParticles(
+async function ensureBubbleParticles(
   app: Application,
   bubbleLayer: Container,
   particles: BubbleParticleRecord[],
@@ -653,17 +691,18 @@ function ensureBubbleParticles(
     return;
   }
 
+  const texture = await Assets.load<Texture>(environmentAssets.bubbleParticleUrl);
+
   for (let i = 0; i < 44; i += 1) {
     const source = i % 3;
     const originXRatio = source === 0 ? 0.08 : source === 1 ? 0.19 : 0.91;
     const radius = 1.3 + (i % 6) * 0.42;
     const depth = ((i * 17) % 100) / 100;
-    const graphic = new Graphics()
-      .circle(0, 0, radius)
-      .stroke({ color: 0xe7ffff, alpha: 0.42 + depth * 0.2, width: 1 });
-    bubbleLayer.addChild(graphic);
+    const sprite = new Sprite(texture);
+    sprite.anchor.set(0.5);
+    bubbleLayer.addChild(sprite);
     particles.push({
-      graphic,
+      sprite,
       originXRatio,
       yRatio: ((i * 29) % 100) / 100,
       radius,
@@ -683,7 +722,7 @@ function updateBubbleParticles(
   nowMs: number,
 ) {
   if (particles.length === 0) {
-    ensureBubbleParticles(app, bubbleLayer, particles);
+    void ensureBubbleParticles(app, bubbleLayer, particles);
   }
 
   for (const bubble of particles) {
@@ -694,10 +733,11 @@ function updateBubbleParticles(
     }
 
     const sway = Math.sin(nowMs / (680 + bubble.depth * 420) + bubble.phase);
-    bubble.graphic.x = app.screen.width * bubble.originXRatio + sway * bubble.driftPx;
-    bubble.graphic.y = app.screen.height * bubble.yRatio;
-    bubble.graphic.scale.set(0.72 + bubble.depth * 0.48);
-    bubble.graphic.alpha = Math.max(0, Math.min(0.72, 0.18 + bubble.yRatio * 0.36));
+    bubble.sprite.x = app.screen.width * bubble.originXRatio + sway * bubble.driftPx;
+    bubble.sprite.y = app.screen.height * bubble.yRatio;
+    bubble.sprite.rotation = sway * 0.18;
+    bubble.sprite.scale.set((bubble.radius / 28) * (0.72 + bubble.depth * 0.48));
+    bubble.sprite.alpha = Math.max(0, Math.min(0.76, 0.2 + bubble.yRatio * 0.42));
   }
 }
 
@@ -707,24 +747,35 @@ function bubblesNeedReset(
   particles: BubbleParticleRecord[],
 ): boolean {
   const first = particles[0];
-  return Boolean(first && first.graphic.parent !== bubbleLayer && app.screen.width > 0);
+  return Boolean(first && first.sprite.parent !== bubbleLayer && app.screen.width > 0);
 }
 
 function getTailPulse(
   fish: FishInstance,
   nowMs: number,
-): { bodyBob: number; lengthPulse: number; skew: number } {
+): {
+  bodyBob: number;
+  lengthPulse: number;
+  skew: number;
+  sideFlex: number;
+  finFlutter: number;
+  finAlpha: number;
+} {
   const speed = Math.hypot(fish.velocity.x, fish.velocity.y);
   const speedAmount = Math.min(1, speed / 12);
   const modeAmount =
     fish.behaviorMode === "kick" || fish.behaviorMode === "feed" ? 1 : 0.35;
-  const phase = nowMs / (fish.behaviorMode === "kick" ? 72 : 145) + fish.seed * 0.017;
+  const phase = nowMs / (fish.behaviorMode === "kick" ? 54 : 118) + fish.seed * 0.017;
   const wave = Math.sin(phase);
+  const flutter = Math.sin(phase * 2.6 + 0.7);
 
   return {
-    bodyBob: wave * speedAmount * modeAmount * 1.4,
-    lengthPulse: 1 + Math.abs(wave) * speedAmount * modeAmount * 0.018,
-    skew: wave * speedAmount * modeAmount * 0.025,
+    bodyBob: wave * speedAmount * modeAmount * 2.6,
+    lengthPulse: 1 + Math.abs(wave) * speedAmount * modeAmount * 0.045,
+    skew: wave * speedAmount * modeAmount * 0.09,
+    sideFlex: flutter * speedAmount * modeAmount * 0.018,
+    finFlutter: flutter * speedAmount * 0.18,
+    finAlpha: 0.26 + Math.abs(flutter) * 0.22,
   };
 }
 

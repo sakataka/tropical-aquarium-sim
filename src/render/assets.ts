@@ -1,4 +1,7 @@
 import aquariumBackgroundUrl from "../content/environment/aquarium-background.png";
+import bubbleParticleUrl from "../content/environment/bubble.png";
+import foregroundPlantsUrl from "../content/environment/layers/foreground-plants.png";
+import rearPlantsUrl from "../content/environment/layers/rear-plants.png";
 
 const fishImageModules = import.meta.glob<string>(
   "../content/fish/**/side.png",
@@ -20,6 +23,9 @@ const fishAnimationFrameModules = import.meta.glob<string>(
 
 export const environmentAssets = {
   aquariumBackgroundUrl,
+  bubbleParticleUrl,
+  foregroundPlantsUrl,
+  rearPlantsUrl,
 };
 
 export function getFishImageUrl(speciesId: string): string | undefined {

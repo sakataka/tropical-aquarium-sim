@@ -23,6 +23,19 @@ export type SchoolingProfile = {
   strength: number;
 };
 
+export type SpeciesBehaviorProfile = {
+  separationBodyLengths: number;
+  alignmentBodyLengths: number;
+  attractionBodyLengths: number;
+  separationStrength: number;
+  alignmentStrength: number;
+  attractionStrength: number;
+  wallAvoidanceStrength: number;
+  edgeCruiseChance: number;
+  structureAffinity: number;
+  surfaceAffinity: number;
+};
+
 export type SwimMotionProfile = {
   kickIntervalSecMin: number;
   kickIntervalSecMax: number;
@@ -50,6 +63,7 @@ export type FishSpeciesDefinition = {
   motion: SwimMotionProfile;
   preferredZone: PreferredZone;
   schooling: SchoolingProfile;
+  behavior: SpeciesBehaviorProfile;
 };
 
 export type FishBehaviorMode = "kick" | "coast" | "pause" | "feed";

@@ -40,6 +40,18 @@ const species: FishSpeciesDefinition = {
     radiusCm: 12,
     strength: 0.2,
   },
+  behavior: {
+    separationBodyLengths: 1.4,
+    alignmentBodyLengths: 3,
+    attractionBodyLengths: 6,
+    separationStrength: 1.2,
+    alignmentStrength: 0.8,
+    attractionStrength: 0.7,
+    wallAvoidanceStrength: 4,
+    edgeCruiseChance: 0.12,
+    structureAffinity: 0.25,
+    surfaceAffinity: 0.15,
+  },
 };
 
 function createFish(overrides: Partial<FishInstance> = {}): FishInstance {

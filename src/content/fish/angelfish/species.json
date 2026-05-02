@@ -34,5 +34,17 @@
     "enabled": false,
     "radiusCm": 10,
     "strength": 0
+  },
+  "behavior": {
+    "separationBodyLengths": 1.8,
+    "alignmentBodyLengths": 3.4,
+    "attractionBodyLengths": 5.5,
+    "separationStrength": 1.8,
+    "alignmentStrength": 0.15,
+    "attractionStrength": 0.1,
+    "wallAvoidanceStrength": 4.6,
+    "edgeCruiseChance": 0.14,
+    "structureAffinity": 0.58,
+    "surfaceAffinity": 0.02
   }
 }

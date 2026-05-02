@@ -38,6 +38,18 @@ const validSpecies = {
     radiusCm: 10,
     strength: 0.2,
   },
+  behavior: {
+    separationBodyLengths: 1.4,
+    alignmentBodyLengths: 3,
+    attractionBodyLengths: 6,
+    separationStrength: 1.2,
+    alignmentStrength: 0.8,
+    attractionStrength: 0.7,
+    wallAvoidanceStrength: 3.2,
+    edgeCruiseChance: 0.15,
+    structureAffinity: 0.4,
+    surfaceAffinity: 0.2,
+  },
 };
 
 describe("fish species schema", () => {

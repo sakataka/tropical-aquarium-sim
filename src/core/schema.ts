@@ -30,6 +30,25 @@ export const schoolingProfileSchema = z.object({
   strength: z.number().finite().min(0).max(1),
 });
 
+export const speciesBehaviorProfileSchema = z.object({
+  separationBodyLengths: z.number().finite().positive(),
+  alignmentBodyLengths: z.number().finite().positive(),
+  attractionBodyLengths: z.number().finite().positive(),
+  separationStrength: z.number().finite().min(0).max(4),
+  alignmentStrength: z.number().finite().min(0).max(4),
+  attractionStrength: z.number().finite().min(0).max(4),
+  wallAvoidanceStrength: z.number().finite().min(0).max(6),
+  edgeCruiseChance: z.number().finite().min(0).max(1),
+  structureAffinity: z.number().finite().min(0).max(1),
+  surfaceAffinity: z.number().finite().min(0).max(1),
+}).refine((profile) => profile.separationBodyLengths < profile.alignmentBodyLengths, {
+  message: "behavior.separationBodyLengths must be < behavior.alignmentBodyLengths",
+  path: ["separationBodyLengths"],
+}).refine((profile) => profile.alignmentBodyLengths < profile.attractionBodyLengths, {
+  message: "behavior.alignmentBodyLengths must be < behavior.attractionBodyLengths",
+  path: ["alignmentBodyLengths"],
+});
+
 export const swimMotionProfileSchema = z.object({
   kickIntervalSecMin: z.number().finite().positive(),
   kickIntervalSecMax: z.number().finite().positive(),
@@ -60,6 +79,7 @@ export const fishSpeciesDefinitionSchema = z.object({
   motion: swimMotionProfileSchema,
   preferredZone: preferredZoneSchema,
   schooling: schoolingProfileSchema,
+  behavior: speciesBehaviorProfileSchema,
 }) satisfies z.ZodType<FishSpeciesDefinition>;
 
 export function parseFishSpeciesDefinition(
