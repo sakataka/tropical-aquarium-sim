@@ -29,10 +29,30 @@ http://127.0.0.1:5173/?view=dev
 
 - `src/core`: 魚種定義、schema検証、水槽定義、実寸スケール計算、遊泳シミュレーション
 - `src/render`: PixiJS描画、生成画像アセット参照、魚スプライト表示
-- `src/ui`: 魚追加、餌やり、一時停止、dev画面
+- `src/ui`: 魚追加、水槽カスタマイズ、餌やり、一時停止、dev画面
 - `src/content`: 魚種ごとの `species.json` と画像、水槽背景画像
 
 今後の開発方向性は [docs/development-directions.md](docs/development-directions.md) に整理しています。
+
+## 水槽カスタマイズ
+
+通常画面の「水槽設定」から、魚種ごとの匹数、背景スタイル、後景植物、前景植物、植物量、照明を変更できます。
+初回版では新規画像を増やさず、既存の背景、前景/後景植物、PixiJS の水・光レイヤーを組み合わせて見た目の差を作ります。
+
+カスタマイズは再生成できる構成データとして `localStorage` の `tropical-aquarium.customization.v1` に保存します。
+保存対象は魚の現在座標や PixiJS の描画オブジェクトではなく、魚種ごとの匹数と環境設定だけです。
+魚数は魚種ごとに最大12匹、水槽全体で最大30匹に丸めます。
+壊れた保存データ、未知の魚種、不正な値が入っていた場合は安全なデフォルトへ戻します。
+
+組み込みプリセットは URL からも指定できます。
+
+```text
+http://127.0.0.1:5173/?preset=community
+http://127.0.0.1:5173/?preset=school
+http://127.0.0.1:5173/?preset=calm
+```
+
+`?preset=` がある場合は、ローカル保存よりも URL のプリセットを優先します。
 
 ## 魚種
 
@@ -86,3 +106,16 @@ spriteScale = targetBodyLengthPx / sourceBodyBounds.width
 
 魚画像は左向き横姿勢、背景透過PNGとして扱い、右向きは実行時に反転します。
 水槽背景は画像生成した単一背景に加えて `src/content/environment/layers/` の透明PNGレイヤー、泡用の `bubble.png`、PixiJS 上の水面/光レイヤーを重ねて奥行きと動きを作ります。
+
+## 検証
+
+カスタマイズや表示まわりを変更した場合は、通常の unit/build に加えて WebKit backend の WebView 検証を通します。
+
+```bash
+bun run test
+bun run build
+bun run verify:webview
+```
+
+`bun run verify:webview` はプリセット変更、魚数変更、再読み込み後の復元、Dev画面切替を確認します。
+スクリーンショットなどの一時成果物は `tmp/` 以下に出力し、Git管理しません。

@@ -20,7 +20,8 @@ body {
 }
 
 button,
-select {
+select,
+input {
   font: inherit;
 }
 
@@ -126,7 +127,8 @@ select {
 }
 
 .segmented-control button,
-.button-grid button {
+.button-grid button,
+.secondary-button {
   min-height: 42px;
   border: 0;
   border-radius: 10px;
@@ -136,8 +138,15 @@ select {
 }
 
 .segmented-control button.active,
-.button-grid button:hover {
+.button-grid button:hover,
+.secondary-button:hover {
   background: linear-gradient(180deg, rgba(112, 212, 215, 0.34), rgba(61, 149, 153, 0.22));
+}
+
+.button-grid button:disabled {
+  color: rgba(230, 251, 255, 0.38);
+  background: rgba(255, 255, 255, 0.035);
+  cursor: not-allowed;
 }
 
 .field {
@@ -147,13 +156,87 @@ select {
   font-size: 13px;
 }
 
-.field select {
+.field select,
+.stock-row input {
   min-height: 42px;
   padding: 0 12px;
   border: 1px solid rgba(180, 232, 232, 0.2);
   border-radius: 10px;
   color: #effdff;
   background: #0d282b;
+}
+
+.settings-section {
+  display: grid;
+  gap: 13px;
+  padding: 14px;
+  border: 1px solid rgba(181, 239, 240, 0.14);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.section-heading,
+.stock-editor-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.section-heading h2 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.section-heading span,
+.stock-editor-heading small {
+  color: rgba(224, 248, 250, 0.58);
+  font-size: 12px;
+}
+
+.stock-editor {
+  display: grid;
+  gap: 8px;
+}
+
+.stock-editor-heading {
+  color: rgba(224, 248, 250, 0.76);
+  font-size: 13px;
+}
+
+.stock-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 72px;
+  align-items: center;
+  gap: 10px;
+  color: rgba(235, 252, 255, 0.84);
+  font-size: 13px;
+}
+
+.stock-row span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.stock-row input {
+  width: 72px;
+  text-align: right;
+}
+
+.environment-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.environment-grid .field {
+  min-width: 0;
+}
+
+.secondary-button {
+  border: 1px solid rgba(180, 232, 232, 0.16);
 }
 
 .fish-list {
@@ -269,5 +352,9 @@ select {
 
   .control-panel {
     order: -1;
+  }
+
+  .environment-grid {
+    grid-template-columns: 1fr;
   }
 }

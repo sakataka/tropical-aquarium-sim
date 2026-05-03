@@ -138,3 +138,31 @@ export type SimulationInput = {
 export type SimulationOutput = {
   fish: FishInstance[];
 };
+
+export type FishStockEntry = {
+  speciesId: string;
+  count: number;
+};
+
+export type AquariumBackgroundStyle = "clear" | "deep" | "bright";
+export type AquariumPlantVisibility = "off" | "subtle" | "full";
+export type AquariumPlantDensity = "low" | "medium" | "high";
+export type AquariumLighting = "natural" | "cool" | "evening" | "night";
+
+export type AquariumEnvironmentCustomization = {
+  backgroundStyle: AquariumBackgroundStyle;
+  rearPlants: AquariumPlantVisibility;
+  foregroundPlants: AquariumPlantVisibility;
+  plantDensity: AquariumPlantDensity;
+  lighting: AquariumLighting;
+};
+
+export type AquariumCustomization = {
+  stock: FishStockEntry[];
+  environment: AquariumEnvironmentCustomization;
+};
+
+export type AquariumPreset = AquariumCustomization & {
+  id: string;
+  displayName: string;
+};

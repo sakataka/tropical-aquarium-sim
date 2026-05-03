@@ -11,6 +11,9 @@ type CheckResult = {
   };
   fishRowsBeforeDelete: number;
   fishRowsAfterDelete: number;
+  fishRowsAfterPreset: number;
+  fishRowsAfterReload: number;
+  customizationStatus: string;
   tapLabelSeen: boolean;
   devText: string;
   consoleErrors: string[];
@@ -55,6 +58,8 @@ async function main() {
     });
 
     await view.navigate(BASE_URL);
+    await view.evaluate(`localStorage.removeItem("tropical-aquarium.customization.v1")`);
+    await view.reload();
     await sleep(1200);
     await Bun.write(
       `${SCREENSHOT_DIR}/tank.png`,
@@ -89,13 +94,59 @@ async function main() {
       `document.querySelector(".fish-list")?.textContent?.includes("タップ") ?? false`,
     );
 
-    await view.click("button[aria-label$='を削除']");
+    await view.evaluate(`(() => {
+      const button = document.querySelector("button[aria-label$='を削除']");
+      if (!(button instanceof HTMLButtonElement)) return false;
+      button.click();
+      return true;
+    })()`);
     await sleep(200);
     const fishRowsAfterDelete = await view.evaluate(
       `document.querySelectorAll(".fish-row").length`,
     );
+    await view.evaluate(`(() => {
+      const preset = document.querySelector("section[aria-label='水槽設定'] select");
+      if (!(preset instanceof HTMLSelectElement)) return false;
+      preset.value = "school";
+      preset.dispatchEvent(new Event("change", { bubbles: true }));
+      return true;
+    })()`);
+    await sleep(500);
+    const fishRowsAfterPreset = await view.evaluate(
+      `document.querySelectorAll(".fish-row").length`,
+    );
+    await view.evaluate(`(() => {
+      const inputs = Array.from(document.querySelectorAll(".stock-row input"));
+      const neonInput = inputs.find((input) =>
+        input.closest(".stock-row")?.textContent?.includes("ネオン")
+      );
+      if (!(neonInput instanceof HTMLInputElement)) return false;
+      const setter = Object.getOwnPropertyDescriptor(
+        HTMLInputElement.prototype,
+        "value",
+      )?.set;
+      setter?.call(neonInput, "3");
+      neonInput.dispatchEvent(new Event("input", { bubbles: true }));
+      neonInput.dispatchEvent(new Event("change", { bubbles: true }));
+      return true;
+    })()`);
+    await sleep(500);
+    await view.reload();
+    await sleep(900);
+    const fishRowsAfterReload = await view.evaluate(
+      `document.querySelectorAll(".fish-row").length`,
+    );
+    const customizationStatus = await view.evaluate(
+      `document.querySelector("section[aria-label='水槽設定']")?.textContent ?? ""`,
+    );
 
-    await view.click("button:nth-child(2)");
+    await view.evaluate(`(() => {
+      const buttons = Array.from(document.querySelectorAll(".segmented-control button"));
+      const devButton = buttons.find((button) => button.textContent?.includes("Dev"));
+      if (!(devButton instanceof HTMLButtonElement)) return false;
+      devButton.click();
+      return true;
+    })()`);
     await sleep(500);
     const devText = await view.evaluate(
       `document.querySelector(".dev-view")?.textContent ?? ""`,
@@ -110,20 +161,27 @@ async function main() {
       canvas: canvas as CheckResult["canvas"],
       fishRowsBeforeDelete: Number(fishRowsBeforeDelete),
       fishRowsAfterDelete: Number(fishRowsAfterDelete),
+      fishRowsAfterPreset: Number(fishRowsAfterPreset),
+      fishRowsAfterReload: Number(fishRowsAfterReload),
+      customizationStatus: String(customizationStatus).slice(0, 240),
       tapLabelSeen: Boolean(tapLabelSeen),
       devText: String(devText).slice(0, 240),
       consoleErrors,
     };
 
+    console.log(JSON.stringify(result, null, 2));
+
     assert(result.title.includes("2D熱帯魚水槽"));
     assert(result.canvas.width > 0 && result.canvas.height > 0);
     assert(result.fishRowsBeforeDelete >= 3);
     assert(result.fishRowsAfterDelete === result.fishRowsBeforeDelete - 1);
+    assert(result.fishRowsAfterPreset === 22);
+    assert(result.fishRowsAfterReload === 15);
+    assert(result.customizationStatus.includes("保存済み"));
     assert(result.devText.includes("サイズ確認"));
     assert(result.devText.includes("sourceBodyBounds"));
     assert(result.consoleErrors.length === 0);
 
-    console.log(JSON.stringify(result, null, 2));
     console.log(`Screenshots: ${SCREENSHOT_DIR}/tank.png, ${SCREENSHOT_DIR}/dev.png`);
   } finally {
     server.kill();

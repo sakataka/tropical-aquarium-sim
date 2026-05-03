@@ -1,10 +1,19 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import {
+  CUSTOMIZATION_STORAGE_KEY,
+  DEFAULT_CUSTOMIZATION,
+  aquariumPresets,
   fishCatalog,
+  getPresetById,
+  normalizeAquariumCustomization,
+  setStockCount,
   stepSimulation,
   TANK_60CM,
+  type AquariumCustomization,
+  type AquariumPreset,
   type FeedingEvent,
   type FishInstance,
+  type FishStockEntry,
   type TapEvent,
   type Vec2,
 } from "./core";
@@ -13,30 +22,21 @@ import { AquariumControls } from "./ui/AquariumControls";
 import { SizeDevView } from "./ui/SizeDevView";
 import "./styles.css";
 
-const INITIAL_STOCK: Array<{ speciesId: string; count: number }> = [
-  { speciesId: "neon-tetra", count: 4 },
-  { speciesId: "harlequin-rasbora", count: 4 },
-  { speciesId: "corydoras", count: 3 },
-  { speciesId: "guppy", count: 2 },
-  { speciesId: "dwarf-gourami", count: 1 },
-  { speciesId: "angelfish", count: 1 },
-];
-
 export default function App() {
   const speciesList = useMemo(
     () => Object.values(fishCatalog).sort((a, b) => a.realBodyLengthCm - b.realBodyLengthCm),
     [],
   );
+  const [customization, setCustomization] = useState<AquariumCustomization>(() =>
+    loadInitialCustomization(),
+  );
   const [fish, setFish] = useState<FishInstance[]>(() =>
-    INITIAL_STOCK.flatMap(({ speciesId, count }, speciesIndex) =>
-      Array.from({ length: count }, (_, index) =>
-        createFish(speciesId, speciesIndex * 5 + index),
-      ),
-    ),
+    createFishFromStock(customization.stock),
   );
   const [selectedSpeciesId, setSelectedSpeciesId] = useState(
     speciesList[0]?.id ?? "neon-tetra",
   );
+  const [saveStatus, setSaveStatus] = useState("保存済み");
   const [paused, setPaused] = useState(false);
   const [viewMode, setViewMode] = useState<"tank" | "dev">(() =>
     new URLSearchParams(window.location.search).get("view") === "dev"
@@ -51,6 +51,7 @@ export default function App() {
   const [latestTap, setLatestTap] = useState<TapEvent | undefined>();
   const [viewportWidthPx, setViewportWidthPx] = useState(960);
   const aquariumShellRef = useRef<HTMLDivElement | null>(null);
+  const activePresetId = getMatchingPresetId(customization) ?? "custom";
 
   useEffect(() => {
     const element = aquariumShellRef.current;
@@ -64,6 +65,22 @@ export default function App() {
     observer.observe(element);
     return () => observer.disconnect();
   }, []);
+
+  useEffect(() => {
+    try {
+      window.localStorage.setItem(
+        CUSTOMIZATION_STORAGE_KEY,
+        JSON.stringify(customization),
+      );
+      setSaveStatus("保存済み");
+    } catch {
+      setSaveStatus("保存できません");
+    }
+  }, [customization]);
+
+  useEffect(() => {
+    setFish((current) => reconcileFishStock(current, customization.stock));
+  }, [customization.stock]);
 
   useEffect(() => {
     let animationFrame = 0;
@@ -121,6 +138,7 @@ export default function App() {
             fish={fish}
             species={fishCatalog}
             tank={TANK_60CM}
+            environment={customization.environment}
             paused={paused}
             latestFeeding={getActiveFeeding(latestFeeding)}
             latestTap={getActiveTap(latestTap)}
@@ -138,19 +156,33 @@ export default function App() {
         speciesList={speciesList}
         fish={fish}
         tank={TANK_60CM}
+        customization={customization}
+        presets={aquariumPresets}
+        activePresetId={activePresetId}
+        saveStatus={saveStatus}
         paused={paused}
         viewMode={viewMode}
         selectedSpeciesId={selectedSpeciesId}
         onSelectedSpeciesChange={setSelectedSpeciesId}
-        onAddFish={() =>
-          setFish((current) => [
-            ...current,
-            createFish(selectedSpeciesId, current.length + 11),
-          ])
+        onAddFish={() => updateSpeciesCount(selectedSpeciesId, getStockCount(customization.stock, selectedSpeciesId) + 1)}
+        onRemoveFish={removeFish}
+        onSpeciesCountChange={updateSpeciesCount}
+        onEnvironmentChange={(environment) =>
+          setCustomization((current) =>
+            normalizeAquariumCustomization(
+              {
+                ...current,
+                environment: {
+                  ...current.environment,
+                  ...environment,
+                },
+              },
+              fishCatalog,
+            ),
+          )
         }
-        onRemoveFish={(fishId) =>
-          setFish((current) => current.filter((item) => item.id !== fishId))
-        }
+        onPresetChange={applyPreset}
+        onResetCustomization={() => applyPreset(DEFAULT_CUSTOMIZATION.id)}
         onFeed={() =>
           setLatestFeeding(createFeedingEvent())
         }
@@ -159,6 +191,105 @@ export default function App() {
       />
     </main>
   );
+
+  function updateSpeciesCount(speciesId: string, count: number) {
+    setCustomization((current) =>
+      normalizeAquariumCustomization(
+        {
+          ...current,
+          stock: setStockCount(current.stock, speciesId, count, fishCatalog),
+        },
+        fishCatalog,
+      ),
+    );
+  }
+
+  function applyPreset(presetId: string) {
+    const preset = getPresetById(presetId) ?? DEFAULT_CUSTOMIZATION;
+    setCustomization(normalizeAquariumCustomization(preset, fishCatalog));
+  }
+
+  function removeFish(fishId: string) {
+    const target = fish.find((item) => item.id === fishId);
+    if (!target) {
+      return;
+    }
+
+    updateSpeciesCount(
+      target.speciesId,
+      Math.max(0, getStockCount(customization.stock, target.speciesId) - 1),
+    );
+  }
+}
+
+function loadInitialCustomization(): AquariumCustomization {
+  const params = new URLSearchParams(window.location.search);
+  const preset = getPresetById(params.get("preset"));
+  if (preset) {
+    return normalizeAquariumCustomization(preset, fishCatalog);
+  }
+
+  const stored = window.localStorage.getItem(CUSTOMIZATION_STORAGE_KEY);
+  if (stored) {
+    try {
+      return normalizeAquariumCustomization(JSON.parse(stored), fishCatalog);
+    } catch {
+      return normalizeAquariumCustomization(DEFAULT_CUSTOMIZATION, fishCatalog);
+    }
+  }
+
+  return normalizeAquariumCustomization(DEFAULT_CUSTOMIZATION, fishCatalog);
+}
+
+function createFishFromStock(stock: FishStockEntry[]): FishInstance[] {
+  return stock.flatMap(({ speciesId, count }, speciesIndex) =>
+    Array.from({ length: count }, (_, index) =>
+      createFish(speciesId, speciesIndex * 7 + index),
+    ),
+  );
+}
+
+function reconcileFishStock(
+  current: FishInstance[],
+  stock: FishStockEntry[],
+): FishInstance[] {
+  const next: FishInstance[] = [];
+
+  for (const [speciesIndex, entry] of stock.entries()) {
+    const existing = current.filter((fishInstance) => fishInstance.speciesId === entry.speciesId);
+    next.push(...existing.slice(0, entry.count));
+
+    for (let index = existing.length; index < entry.count; index += 1) {
+      next.push(createFish(entry.speciesId, speciesIndex * 7 + index + current.length));
+    }
+  }
+
+  return next;
+}
+
+function getStockCount(stock: FishStockEntry[], speciesId: string): number {
+  return stock.find((entry) => entry.speciesId === speciesId)?.count ?? 0;
+}
+
+function getMatchingPresetId(customization: AquariumCustomization): string | undefined {
+  return aquariumPresets.find((preset) => customizationsMatch(preset, customization))?.id;
+}
+
+function customizationsMatch(
+  preset: AquariumPreset,
+  customization: AquariumCustomization,
+): boolean {
+  return (
+    stockKey(preset.stock) === stockKey(customization.stock) &&
+    JSON.stringify(preset.environment) === JSON.stringify(customization.environment)
+  );
+}
+
+function stockKey(stock: FishStockEntry[]): string {
+  return stock
+    .map((entry) => `${entry.speciesId}:${entry.count}`)
+    .sort()
+    .join("|");
 }
 
 function createFish(speciesId: string, index: number): FishInstance {

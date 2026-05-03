@@ -12,6 +12,7 @@ import {
 import {
   getFishSpriteScale,
   getTargetBodyLengthPx,
+  type AquariumEnvironmentCustomization,
   type FeedingEvent,
   type FishInstance,
   type FishSpeciesDefinition,
@@ -25,6 +26,7 @@ type AquariumCanvasProps = {
   fish: FishInstance[];
   species: Record<string, FishSpeciesDefinition>;
   tank: TankDefinition;
+  environment: AquariumEnvironmentCustomization;
   paused: boolean;
   latestFeeding?: FeedingEvent;
   latestTap?: TapEvent;
@@ -61,6 +63,7 @@ export function AquariumCanvas({
   fish,
   species,
   tank,
+  environment,
   paused,
   latestFeeding,
   latestTap,
@@ -141,7 +144,7 @@ export function AquariumCanvas({
         food,
       };
 
-      drawStaticTank(app, backplate, rearDecor, frontDecor, glassEffects);
+      drawStaticTank(app, backplate, rearDecor, frontDecor, glassEffects, environment);
       ensureBubbleParticles(app, bubbles, bubblesRef.current);
       app.ticker.add((ticker) => {
         const deltaSec = Math.min(0.05, ticker.deltaMS / 1000);
@@ -177,7 +180,7 @@ export function AquariumCanvas({
       appRef.current = null;
       layerRef.current = null;
     };
-  }, [paused, tank]);
+  }, [environment, paused, tank]);
 
   return (
     <div
@@ -209,15 +212,21 @@ export function AquariumCanvas({
     rearDecorLayer: Container,
     frontDecorLayer: Container,
     glassEffectsLayer: Container,
+    currentEnvironment: AquariumEnvironmentCustomization,
   ) {
     backplateLayer.removeChildren();
     rearDecorLayer.removeChildren();
     frontDecorLayer.removeChildren();
     glassEffectsLayer.removeChildren();
+    const lighting = getLightingProfile(currentEnvironment.lighting);
+    const background = getBackgroundProfile(currentEnvironment.backgroundStyle);
+    const rearPlantsAlpha = getPlantLayerAlpha(currentEnvironment.rearPlants, 0.52);
+    const foregroundPlantsAlpha = getPlantLayerAlpha(currentEnvironment.foregroundPlants, 0.82);
+    const clusterCount = getPlantClusterCount(currentEnvironment.plantDensity);
 
     const waterFill = new Graphics()
       .rect(0, 0, app.screen.width, app.screen.height)
-      .fill({ color: 0x0b4a52, alpha: 0.54 });
+      .fill({ color: background.waterColor, alpha: background.waterAlpha });
     backplateLayer.addChild(waterFill);
 
     const bg = new Sprite(Texture.EMPTY);
@@ -231,9 +240,13 @@ export function AquariumCanvas({
     const resize = () => {
       const width = app.screen.width;
       const height = app.screen.height;
-      waterFill.clear().rect(0, 0, width, height).fill({ color: 0x0b4a52, alpha: 0.54 });
+      waterFill.clear().rect(0, 0, width, height).fill({
+        color: background.waterColor,
+        alpha: background.waterAlpha,
+      });
       bg.x = width / 2;
       bg.y = height / 2;
+      bg.tint = background.tint;
       if (bg.texture === Texture.EMPTY) {
         return;
       }
@@ -247,21 +260,54 @@ export function AquariumCanvas({
 
     const rearHaze = new Graphics()
       .rect(0, 0, app.screen.width, app.screen.height)
-      .fill({ color: 0xbff4ed, alpha: 0.08 });
+      .fill({ color: lighting.hazeColor, alpha: lighting.hazeAlpha });
     rearDecorLayer.addChild(rearHaze);
-    addEnvironmentLayerSprite(rearDecorLayer, environmentAssets.rearPlantsUrl, app.screen.width, app.screen.height, "rear-plants");
-    drawPlantCluster(rearDecorLayer, app.screen.width * 0.16, app.screen.height * 0.88, 0.84, 0.16);
-    drawPlantCluster(rearDecorLayer, app.screen.width * 0.82, app.screen.height * 0.9, 0.72, 0.13);
+    if (rearPlantsAlpha > 0) {
+      addEnvironmentLayerSprite(
+        rearDecorLayer,
+        environmentAssets.rearPlantsUrl,
+        app.screen.width,
+        app.screen.height,
+        "rear-plants",
+        rearPlantsAlpha,
+      );
+      if (clusterCount >= 2) {
+        drawPlantCluster(rearDecorLayer, app.screen.width * 0.16, app.screen.height * 0.88, 0.84, 0.16);
+        drawPlantCluster(rearDecorLayer, app.screen.width * 0.82, app.screen.height * 0.9, 0.72, 0.13);
+      }
+    }
 
-    addEnvironmentLayerSprite(frontDecorLayer, environmentAssets.foregroundPlantsUrl, app.screen.width, app.screen.height, "foreground-plants");
-    drawPlantCluster(frontDecorLayer, app.screen.width * 0.04, app.screen.height * 0.98, 1.24, 0.32);
-    drawPlantCluster(frontDecorLayer, app.screen.width * 0.96, app.screen.height * 1.02, 1.12, 0.28);
+    if (foregroundPlantsAlpha > 0) {
+      addEnvironmentLayerSprite(
+        frontDecorLayer,
+        environmentAssets.foregroundPlantsUrl,
+        app.screen.width,
+        app.screen.height,
+        "foreground-plants",
+        foregroundPlantsAlpha,
+      );
+      if (clusterCount >= 1) {
+        drawPlantCluster(frontDecorLayer, app.screen.width * 0.04, app.screen.height * 0.98, 1.24, 0.32);
+      }
+      if (clusterCount >= 2) {
+        drawPlantCluster(frontDecorLayer, app.screen.width * 0.96, app.screen.height * 1.02, 1.12, 0.28);
+      }
+      if (clusterCount >= 3) {
+        drawPlantCluster(frontDecorLayer, app.screen.width * 0.52, app.screen.height * 1.03, 0.9, 0.18);
+      }
+    }
 
     const surfaceSheen = new Graphics()
       .rect(0, 0, app.screen.width, app.screen.height * 0.22)
-      .fill({ color: 0xe5ffff, alpha: 0.08 });
+      .fill({ color: lighting.sheenColor, alpha: lighting.sheenAlpha });
     surfaceSheen.name = "surface-sheen";
     glassEffectsLayer.addChild(surfaceSheen);
+
+    const lightingOverlay = new Graphics()
+      .rect(0, 0, app.screen.width, app.screen.height)
+      .fill({ color: lighting.overlayColor, alpha: lighting.overlayAlpha });
+    lightingOverlay.name = "lighting-overlay";
+    glassEffectsLayer.addChild(lightingOverlay);
 
     const glass = new Graphics()
       .roundRect(10, 10, Math.max(0, app.screen.width - 20), Math.max(0, app.screen.height - 20), 18)
@@ -652,18 +698,122 @@ function addEnvironmentLayerSprite(
   width: number,
   height: number,
   name: string,
+  alpha: number,
 ) {
   const sprite = new Sprite(Texture.EMPTY);
   sprite.name = name;
   sprite.anchor.set(0.5, 0.5);
   sprite.x = width / 2;
   sprite.y = height / 2;
-  sprite.alpha = name === "foreground-plants" ? 0.82 : 0.52;
+  sprite.alpha = alpha;
   layer.addChild(sprite);
   Assets.load<Texture>(url).then((texture) => {
     sprite.texture = texture;
     sprite.scale.set(Math.max(width / texture.width, height / texture.height));
   });
+}
+
+function getPlantLayerAlpha(
+  visibility: AquariumEnvironmentCustomization["rearPlants"],
+  fullAlpha: number,
+): number {
+  if (visibility === "off") {
+    return 0;
+  }
+  if (visibility === "subtle") {
+    return fullAlpha * 0.48;
+  }
+  return fullAlpha;
+}
+
+function getPlantClusterCount(
+  density: AquariumEnvironmentCustomization["plantDensity"],
+): number {
+  if (density === "low") {
+    return 1;
+  }
+  if (density === "high") {
+    return 3;
+  }
+  return 2;
+}
+
+function getBackgroundProfile(
+  style: AquariumEnvironmentCustomization["backgroundStyle"],
+): {
+  waterColor: number;
+  waterAlpha: number;
+  tint: number;
+} {
+  if (style === "deep") {
+    return {
+      waterColor: 0x062f3a,
+      waterAlpha: 0.68,
+      tint: 0x9bdbe7,
+    };
+  }
+  if (style === "bright") {
+    return {
+      waterColor: 0x1f6570,
+      waterAlpha: 0.38,
+      tint: 0xf0ffef,
+    };
+  }
+  return {
+    waterColor: 0x0b4a52,
+    waterAlpha: 0.54,
+    tint: 0xffffff,
+  };
+}
+
+function getLightingProfile(
+  lighting: AquariumEnvironmentCustomization["lighting"],
+): {
+  hazeColor: number;
+  hazeAlpha: number;
+  sheenColor: number;
+  sheenAlpha: number;
+  overlayColor: number;
+  overlayAlpha: number;
+} {
+  if (lighting === "cool") {
+    return {
+      hazeColor: 0xc7fbff,
+      hazeAlpha: 0.11,
+      sheenColor: 0xd7ffff,
+      sheenAlpha: 0.1,
+      overlayColor: 0x9fe8ff,
+      overlayAlpha: 0.08,
+    };
+  }
+  if (lighting === "evening") {
+    return {
+      hazeColor: 0xffd7aa,
+      hazeAlpha: 0.11,
+      sheenColor: 0xffefcf,
+      sheenAlpha: 0.09,
+      overlayColor: 0x9a4f28,
+      overlayAlpha: 0.16,
+    };
+  }
+  if (lighting === "night") {
+    return {
+      hazeColor: 0x89c7ff,
+      hazeAlpha: 0.08,
+      sheenColor: 0xb9dcff,
+      sheenAlpha: 0.055,
+      overlayColor: 0x020917,
+      overlayAlpha: 0.32,
+    };
+  }
+  return {
+    hazeColor: 0xbff4ed,
+    hazeAlpha: 0.08,
+    sheenColor: 0xe5ffff,
+    sheenAlpha: 0.08,
+    overlayColor: 0xffffff,
+    overlayAlpha: 0,
+  };
 }
 
 function drawGlassHighlights(layer: Container, width: number, height: number) {
