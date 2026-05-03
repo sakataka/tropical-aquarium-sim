@@ -135,6 +135,38 @@ describe("stepSimulation", () => {
     expect(result.fish[0].hunger).toBeLessThan(0.8);
   });
 
+  it("moves hungry fish closer to food across repeated feed steps", () => {
+    const feeding = {
+      position: { x: 38, y: 20 },
+      strength: 1,
+    };
+    const initialFish = createFish({
+      position: { x: 24, y: 20 },
+      velocity: { x: 0, y: 0 },
+      target: { x: 24, y: 20 },
+      hunger: 0.95,
+    });
+    let fish = [initialFish];
+
+    for (let i = 0; i < 24; i += 1) {
+      fish = stepSimulation({
+        tank: TANK_60CM,
+        species: {
+          [species.id]: species,
+        },
+        fish,
+        deltaSec: 1 / 30,
+        feeding,
+      }).fish;
+    }
+
+    expect(distance(fish[0].position, feeding.position)).toBeLessThan(
+      distance(initialFish.position, feeding.position),
+    );
+    expect(fish[0].behaviorMode).toBe("feed");
+    expect(fish[0].hunger).toBeLessThan(initialFish.hunger);
+  });
+
   it("separates schooling fish that are too close", () => {
     const initialFish = [
       createFish({
@@ -177,6 +209,34 @@ describe("stepSimulation", () => {
     const nextDistance = result[1].position.x - result[0].position.x;
 
     expect(nextDistance).toBeLessThan(initialDistance + 4);
+  });
+
+  it("does not apply schooling separation between different species", () => {
+    const guppy = fishCatalog.guppy;
+    const initialFish = [
+      createFish({
+        id: "test-fish",
+        position: { x: 30, y: 18 },
+        velocity: { x: 0, y: 0 },
+        target: { x: 42, y: 18 },
+        behaviorTimeRemainingSec: 2,
+      }),
+      createFish({
+        id: "guppy",
+        speciesId: guppy.id,
+        position: { x: 30.5, y: 18 },
+        velocity: { x: 0, y: 0 },
+        target: { x: 42, y: 18 },
+        behaviorTimeRemainingSec: 2,
+      }),
+    ];
+    const result = runSteps(initialFish, 10, {
+      [species.id]: species,
+      [guppy.id]: guppy,
+    });
+
+    expect(result[0].position.x).toBeGreaterThan(initialFish[0].position.x);
+    expect(result[0].position.x).toBeLessThan(initialFish[0].position.x + 3);
   });
 
   it("steers away before fish reach the tank glass", () => {
@@ -390,6 +450,36 @@ describe("stepSimulation", () => {
     expect(result.fish[1].targetKind).not.toBe("tap");
   });
 
+  it("keeps strongly feeding hungry fish focused on food instead of tap response", () => {
+    const feedingFish = createFish({
+      position: { x: 30, y: 20 },
+      behaviorMode: "feed",
+      behaviorTimeRemainingSec: 0.4,
+      target: { x: 32, y: 20 },
+      targetKind: "feed",
+      hunger: 0.9,
+    });
+    const result = stepSimulation({
+      tank: TANK_60CM,
+      species: {
+        [species.id]: species,
+      },
+      fish: [feedingFish],
+      deltaSec: 1 / 30,
+      feeding: {
+        position: { x: 32, y: 20 },
+        strength: 1,
+      },
+      tapEvent: {
+        position: { x: 30, y: 20 },
+        strength: 1,
+      },
+    });
+
+    expect(result.fish[0].behaviorMode).toBe("feed");
+    expect(result.fish[0].targetKind).toBe("feed");
+  });
+
   it("uses species tap behavior to vary response style and target", () => {
     const freezeSpecies: FishSpeciesDefinition = {
       ...species,
@@ -449,6 +539,13 @@ describe("stepSimulation", () => {
     expect(approachResult.fish[0].target?.x).toBeLessThan(30);
   });
 });
+
+function distance(
+  a: FishInstance["position"],
+  b: FishInstance["position"],
+): number {
+  return Math.hypot(a.x - b.x, a.y - b.y);
+}
 
 function runSteps(
   initialFish: FishInstance[],

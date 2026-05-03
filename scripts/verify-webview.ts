@@ -5,10 +5,18 @@ const SCREENSHOT_DIR = "tmp/webview";
 
 type CheckResult = {
   title: string;
-  canvas: {
+  shellText: string;
+  stage: {
     width: number;
     height: number;
   };
+  canvas: {
+    width: number;
+    height: number;
+    cssWidth: number;
+    cssHeight: number;
+  };
+  fishListText: string;
   fishRowsBeforeDelete: number;
   fishRowsAfterDelete: number;
   fishRowsAfterPreset: number;
@@ -67,13 +75,30 @@ async function main() {
     );
 
     const title = await view.evaluate("document.title");
+    const shellText = await view.evaluate(
+      `document.querySelector(".app-shell")?.textContent ?? ""`,
+    );
+    const stage = await view.evaluate(`(() => {
+      const stage = document.querySelector(".aquarium-stage");
+      const rect = stage?.getBoundingClientRect();
+      return {
+        width: Math.round(rect?.width ?? 0),
+        height: Math.round(rect?.height ?? 0),
+      };
+    })()`);
     const canvas = await view.evaluate(`(() => {
       const canvas = document.querySelector("canvas");
+      const rect = canvas?.getBoundingClientRect();
       return {
         width: canvas?.width ?? 0,
         height: canvas?.height ?? 0,
+        cssWidth: Math.round(rect?.width ?? 0),
+        cssHeight: Math.round(rect?.height ?? 0),
       };
     })()`);
+    const fishListText = await view.evaluate(
+      `document.querySelector(".fish-list")?.textContent ?? ""`,
+    );
     const fishRowsBeforeDelete = await view.evaluate(
       `document.querySelectorAll(".fish-row").length`,
     );
@@ -158,7 +183,10 @@ async function main() {
 
     const result: CheckResult = {
       title: String(title),
+      shellText: String(shellText).slice(0, 320),
+      stage: stage as CheckResult["stage"],
       canvas: canvas as CheckResult["canvas"],
+      fishListText: String(fishListText).slice(0, 320),
       fishRowsBeforeDelete: Number(fishRowsBeforeDelete),
       fishRowsAfterDelete: Number(fishRowsAfterDelete),
       fishRowsAfterPreset: Number(fishRowsAfterPreset),
@@ -172,7 +200,14 @@ async function main() {
     console.log(JSON.stringify(result, null, 2));
 
     assert(result.title.includes("2D熱帯魚水槽"));
+    assert(result.shellText.includes("魚を追加"));
+    assert(result.shellText.includes("水槽設定"));
+    assert(result.stage.width >= 720 && result.stage.height >= 360);
     assert(result.canvas.width > 0 && result.canvas.height > 0);
+    assert(result.canvas.cssWidth >= 720 && result.canvas.cssHeight >= 360);
+    assert(result.fishListText.includes("ネオン"));
+    assert(result.fishListText.includes("遊泳"));
+    assert(result.fishListText.includes("削除"));
     assert(result.fishRowsBeforeDelete >= 3);
     assert(result.fishRowsAfterDelete === result.fishRowsBeforeDelete - 1);
     assert(result.fishRowsAfterPreset === 22);

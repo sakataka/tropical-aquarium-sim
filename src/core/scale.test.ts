@@ -4,6 +4,7 @@ import {
   applyBodyLengthVariance,
   applyDepthScale,
   getBaseSpriteScale,
+  getFishSpriteScale,
   getTargetBodyLengthPx,
 } from "./scale";
 import type { FishSpeciesDefinition } from "./types";
@@ -92,5 +93,17 @@ describe("scale helpers", () => {
   it("keeps variance and depth compensation weak", () => {
     expect(applyBodyLengthVariance(1, 2)).toBe(1.15);
     expect(applyDepthScale(1, 1)).toBeCloseTo(0.94);
+  });
+
+  it("combines body variance and depth while clamping unsafe inputs", () => {
+    expect(
+      getFishSpriteScale({
+        viewportWidthPx: 600,
+        tankWidthCm: TANK_60CM.widthCm,
+        species,
+        bodyLengthVariance: 2,
+        depth: -1,
+      }),
+    ).toBeCloseTo(0.5 * 1.15 * 1.04);
   });
 });

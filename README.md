@@ -109,7 +109,8 @@ spriteScale = targetBodyLengthPx / sourceBodyBounds.width
 
 ## 検証
 
-カスタマイズや表示まわりを変更した場合は、通常の unit/build に加えて WebKit backend の WebView 検証を通します。
+core の挙動は Vitest、画面の成立確認は Bun.WebView で検証します。
+魚種、アセット、行動、カスタマイズ、Dev画面を変更した場合は、通常の unit/build に加えて WebKit backend の WebView 検証を通します。
 
 ```bash
 bun run test
@@ -117,5 +118,7 @@ bun run build
 bun run verify:webview
 ```
 
-`bun run verify:webview` はプリセット変更、魚数変更、再読み込み後の復元、Dev画面切替を確認します。
+`bun run test` はシミュレーションの境界回避、群れ、餌/タップ反応、実寸スケール計算、カスタマイズ正規化を確認します。
+`bun run verify:webview` は Chrome/Chromium headless ではなく Bun.WebView の WebKit backend を使い、主要 UI、canvas の生成、魚リスト、プリセット変更、魚数変更、再読み込み後の復元、Dev画面切替を確認します。
+画面検証は細かいピクセル一致より、主要な UI と canvas が成立していることを優先します。
 スクリーンショットなどの一時成果物は `tmp/` 以下に出力し、Git管理しません。
