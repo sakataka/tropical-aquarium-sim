@@ -19,17 +19,17 @@ bun run build
 http://127.0.0.1:5173/
 ```
 
-サイズ確認用 dev 画面:
+魚図鑑画面:
 
 ```text
-http://127.0.0.1:5173/?view=dev
+http://127.0.0.1:5173/?view=guide
 ```
 
 ## 構成
 
 - `src/core`: 魚種定義、schema検証、水槽定義、実寸スケール計算、遊泳シミュレーション
 - `src/render`: PixiJS描画、生成画像アセット参照、魚スプライト表示
-- `src/ui`: 魚追加、水槽カスタマイズ、餌やり、一時停止、dev画面
+- `src/ui`: 魚追加、水槽カスタマイズ、餌やり、一時停止、魚図鑑
 - `src/content`: 魚種ごとの `species.json` と画像、水槽背景画像
 
 今後の開発方向性は [docs/development-directions.md](docs/development-directions.md) に整理しています。
@@ -113,7 +113,7 @@ spriteScale = targetBodyLengthPx / sourceBodyBounds.width
 ## 検証
 
 core の挙動は Vitest、画面の成立確認は Bun.WebView で検証します。
-魚種、アセット、行動、カスタマイズ、Dev画面を変更した場合は、通常の unit/build に加えて WebKit backend の WebView 検証を通します。
+魚種、アセット、行動、カスタマイズ、魚図鑑を変更した場合は、通常の unit/build に加えて WebKit backend の WebView 検証を通します。
 
 ```bash
 bun run test
@@ -122,6 +122,6 @@ bun run verify:webview
 ```
 
 `bun run test` はシミュレーションの境界回避、群れ、餌/タップ反応、実寸スケール計算、カスタマイズ正規化を確認します。
-`bun run verify:webview` は Chrome/Chromium headless ではなく Bun.WebView の WebKit backend を使い、主要 UI、canvas の生成、魚リスト、プリセット変更、魚数変更、再読み込み後の復元、Dev画面切替を確認します。
+`bun run verify:webview` は Chrome/Chromium headless ではなく Bun.WebView の WebKit backend を使い、主要 UI、canvas の生成、魚リスト、プリセット変更、魚数変更、再読み込み後の復元、魚図鑑切替を確認します。
 画面検証は細かいピクセル一致より、主要な UI と canvas が成立していることを優先します。
 スクリーンショットなどの一時成果物は `tmp/` 以下に出力し、Git管理しません。

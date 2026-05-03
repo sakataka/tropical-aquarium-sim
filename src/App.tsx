@@ -24,7 +24,7 @@ import {
 } from "./core";
 import { AquariumCanvas } from "./render/AquariumCanvas";
 import { AquariumControls } from "./ui/AquariumControls";
-import { SizeDevView } from "./ui/SizeDevView";
+import { FishGuideView } from "./ui/FishGuideView";
 import "./styles.css";
 
 export default function App() {
@@ -43,11 +43,12 @@ export default function App() {
   );
   const [saveStatus, setSaveStatus] = useState("保存済み");
   const [paused, setPaused] = useState(false);
-  const [viewMode, setViewMode] = useState<"tank" | "dev">(() =>
-    new URLSearchParams(window.location.search).get("view") === "dev"
-      ? "dev"
-      : "tank",
-  );
+  const [viewMode, setViewMode] = useState<"tank" | "guide">(() => {
+    const view = new URLSearchParams(window.location.search).get("view");
+    return view === "guide" || view === "dev"
+      ? "guide"
+      : "tank";
+  });
   const [latestFeeding, setLatestFeeding] = useState<FeedingEvent | undefined>(() =>
     new URLSearchParams(window.location.search).get("feed") === "1"
       ? createFeedingEvent()
@@ -150,7 +151,7 @@ export default function App() {
             onDoubleTapTank={(position) => setLatestTap(createTapEvent(position))}
           />
         ) : (
-          <SizeDevView
+          <FishGuideView
             speciesList={speciesList}
             tank={TANK_60CM}
             viewportWidthPx={viewportWidthPx}

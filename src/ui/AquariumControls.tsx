@@ -18,7 +18,7 @@ type AquariumControlsProps = {
   activePresetId: string;
   saveStatus: string;
   paused: boolean;
-  viewMode: "tank" | "dev";
+  viewMode: "tank" | "guide";
   selectedSpeciesId: string;
   onSelectedSpeciesChange: (speciesId: string) => void;
   onAddFish: () => void;
@@ -29,7 +29,7 @@ type AquariumControlsProps = {
   onResetCustomization: () => void;
   onFeed: () => void;
   onTogglePaused: () => void;
-  onViewModeChange: (mode: "tank" | "dev") => void;
+  onViewModeChange: (mode: "tank" | "guide") => void;
 };
 
 export function AquariumControls({
@@ -76,11 +76,11 @@ export function AquariumControls({
           水槽
         </button>
         <button
-          className={viewMode === "dev" ? "active" : ""}
-          onClick={() => onViewModeChange("dev")}
+          className={viewMode === "guide" ? "active" : ""}
+          onClick={() => onViewModeChange("guide")}
           type="button"
         >
-          Dev
+          図鑑
         </button>
       </div>
 

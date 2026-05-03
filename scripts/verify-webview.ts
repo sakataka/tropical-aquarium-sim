@@ -28,7 +28,7 @@ type CheckResult = {
   fishRowsAfterReload: number;
   customizationStatus: string;
   tapLabelSeen: boolean;
-  devText: string;
+  guideText: string;
   consoleErrors: string[];
 };
 
@@ -184,17 +184,17 @@ async function main() {
 
     await view.evaluate(`(() => {
       const buttons = Array.from(document.querySelectorAll(".segmented-control button"));
-      const devButton = buttons.find((button) => button.textContent?.includes("Dev"));
-      if (!(devButton instanceof HTMLButtonElement)) return false;
-      devButton.click();
+      const guideButton = buttons.find((button) => button.textContent?.includes("図鑑"));
+      if (!(guideButton instanceof HTMLButtonElement)) return false;
+      guideButton.click();
       return true;
     })()`);
     await sleep(500);
-    const devText = await view.evaluate(
-      `document.querySelector(".dev-view")?.textContent ?? ""`,
+    const guideText = await view.evaluate(
+      `document.querySelector(".guide-view")?.textContent ?? ""`,
     );
     await Bun.write(
-      `${SCREENSHOT_DIR}/dev.png`,
+      `${SCREENSHOT_DIR}/guide.png`,
       await view.screenshot({ format: "png" }),
     );
 
@@ -211,7 +211,7 @@ async function main() {
       fishRowsAfterReload: Number(fishRowsAfterReload),
       customizationStatus: String(customizationStatus).slice(0, 240),
       tapLabelSeen: Boolean(tapLabelSeen),
-      devText: String(devText).slice(0, 240),
+      guideText: String(guideText).slice(0, 240),
       consoleErrors,
     };
 
@@ -233,11 +233,14 @@ async function main() {
     assert(result.fishRowsAfterPreset === 22);
     assert(result.fishRowsAfterReload === 15);
     assert(result.customizationStatus.includes("保存済み"));
-    assert(result.devText.includes("サイズ確認"));
-    assert(result.devText.includes("sourceBodyBounds"));
+    assert(result.guideText.includes("魚図鑑"));
+    assert(result.guideText.includes("原産"));
+    assert(result.guideText.includes("性格"));
+    assert(result.guideText.includes("動き"));
+    assert(result.guideText.includes("Paracheirodon innesi"));
     assert(result.consoleErrors.length === 0);
 
-    console.log(`Screenshots: ${SCREENSHOT_DIR}/tank.png, ${SCREENSHOT_DIR}/dev.png`);
+    console.log(`Screenshots: ${SCREENSHOT_DIR}/tank.png, ${SCREENSHOT_DIR}/guide.png`);
   } finally {
     server.kill();
     await server.exited.catch(() => undefined);
