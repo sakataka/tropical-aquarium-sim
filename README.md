@@ -34,7 +34,16 @@ http://127.0.0.1:5173/?view=dev
 
 今後の開発方向性は [docs/development-directions.md](docs/development-directions.md) に整理しています。
 
-## 魚種追加
+## 魚種
+
+現在は以下の6種を同じ60cm水槽に入れています。
+
+- `neon-tetra`: 中層の小型群泳魚
+- `harlequin-rasbora`: 中層でまとまりやすい落ち着いた群泳魚
+- `guppy`: 表層寄りに動く小型魚
+- `corydoras`: 底層寄りで構造物付近をゆっくり巡回する魚
+- `dwarf-gourami`: 中層から上層をゆったり泳ぐ単独寄りの魚
+- `angelfish`: 中層で存在感を作る大きめの魚
 
 魚種ごとに `src/content/fish/<species-id>/species.json` と `side.png` を追加します。コード側で魚種別の if 文は追加しません。
 泳ぎのアニメーションを入れる場合は `src/content/fish/<species-id>/swim/frame-01.png` のような連番PNGを追加し、`species.json` の `animation.framePattern` と `animation.framesPerSecond` を設定します。フレームがない場合は `side.png` の静止表示にフォールバックします。
@@ -61,12 +70,15 @@ spriteScale = targetBodyLengthPx / sourceBodyBounds.width
 
 ## 初期アセット
 
-初期版では生成AIで作成した以下の画像を使用しています。
+初期版では生成AIまたは手元生成で作成した以下の画像を使用しています。
 
 - `src/content/environment/aquarium-background.png`
 - `src/content/fish/neon-tetra/side.png`
 - `src/content/fish/guppy/side.png`
 - `src/content/fish/angelfish/side.png`
+- `src/content/fish/corydoras/side.png`
+- `src/content/fish/dwarf-gourami/side.png`
+- `src/content/fish/harlequin-rasbora/side.png`
 
 魚画像は左向き横姿勢、背景透過PNGとして扱い、右向きは実行時に反転します。
-水槽背景は単一背景に加えて `src/content/environment/layers/` の透明PNGレイヤー、泡用の `bubble.png`、PixiJS 上の水面/光レイヤーを重ねて奥行きと動きを作ります。
+水槽背景は単一背景に加えて `src/content/environment/layers/` の透明PNGレイヤー、泡用の `bubble.png`、PixiJS 上の水面/光/底面/流木/小砂利/浮遊粒子レイヤーを重ねて奥行きと動きを作ります。

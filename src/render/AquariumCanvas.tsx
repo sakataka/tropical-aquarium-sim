@@ -219,12 +219,17 @@ export function AquariumCanvas({
       .fill({ color: 0xbff4ed, alpha: 0.08 });
     rearDecorLayer.addChild(rearHaze);
     addEnvironmentLayerSprite(rearDecorLayer, environmentAssets.rearPlantsUrl, app.screen.width, app.screen.height, "rear-plants");
+    drawLightBeams(rearDecorLayer, app.screen.width, app.screen.height);
     drawPlantCluster(rearDecorLayer, app.screen.width * 0.16, app.screen.height * 0.88, 0.84, 0.16);
     drawPlantCluster(rearDecorLayer, app.screen.width * 0.82, app.screen.height * 0.9, 0.72, 0.13);
+    drawMidgroundPlants(rearDecorLayer, app.screen.width, app.screen.height);
+    drawDriftwood(rearDecorLayer, app.screen.width, app.screen.height);
+    drawSubstrate(rearDecorLayer, app.screen.width, app.screen.height);
 
     addEnvironmentLayerSprite(frontDecorLayer, environmentAssets.foregroundPlantsUrl, app.screen.width, app.screen.height, "foreground-plants");
     drawPlantCluster(frontDecorLayer, app.screen.width * 0.04, app.screen.height * 0.98, 1.24, 0.32);
     drawPlantCluster(frontDecorLayer, app.screen.width * 0.96, app.screen.height * 1.02, 1.12, 0.28);
+    drawForegroundPebbles(frontDecorLayer, app.screen.width, app.screen.height);
 
     const surfaceSheen = new Graphics()
       .rect(0, 0, app.screen.width, app.screen.height * 0.22)
@@ -240,6 +245,7 @@ export function AquariumCanvas({
 
     drawGlassHighlights(glassEffectsLayer, app.screen.width, app.screen.height);
     drawCausticOverlay(glassEffectsLayer, app.screen.width, app.screen.height);
+    drawFineParticles(glassEffectsLayer, app.screen.width, app.screen.height);
 
   }
 
@@ -577,6 +583,123 @@ function drawPlantCluster(
   }
 }
 
+function drawMidgroundPlants(layer: Container, width: number, height: number) {
+  const bed = new Container();
+  bed.name = "midground-plants";
+  bed.alpha = 0.34;
+  layer.addChild(bed);
+
+  for (let clusterIndex = 0; clusterIndex < 5; clusterIndex += 1) {
+    const originX = width * (0.22 + clusterIndex * 0.13);
+    const originY = height * (0.9 + (clusterIndex % 2) * 0.035);
+    const bladeCount = 9 + (clusterIndex % 3) * 2;
+    for (let bladeIndex = 0; bladeIndex < bladeCount; bladeIndex += 1) {
+      const bladeHeight = height * (0.13 + ((bladeIndex * 7 + clusterIndex * 3) % 10) / 120);
+      const lean = (-20 + bladeIndex * 4.5 + clusterIndex * 2) * (height / 900);
+      const blade = new Graphics()
+        .moveTo(0, 0)
+        .bezierCurveTo(
+          lean * 0.14,
+          -bladeHeight * 0.34,
+          lean * 0.72,
+          -bladeHeight * 0.72,
+          lean,
+          -bladeHeight,
+        )
+        .stroke({
+          color: bladeIndex % 3 === 0 ? 0x9ec95f : 0x4e9b62,
+          alpha: 0.62,
+          width: 1.4 + (bladeIndex % 2) * 0.8,
+        });
+      blade.x = originX + (bladeIndex - bladeCount / 2) * width * 0.006;
+      blade.y = originY;
+      bed.addChild(blade);
+    }
+  }
+}
+
+function drawSubstrate(layer: Container, width: number, height: number) {
+  const substrate = new Container();
+  substrate.name = "substrate";
+  substrate.alpha = 0.72;
+  layer.addChild(substrate);
+
+  const sand = new Graphics()
+    .moveTo(0, height * 0.9)
+    .bezierCurveTo(width * 0.24, height * 0.875, width * 0.42, height * 0.925, width * 0.62, height * 0.895)
+    .bezierCurveTo(width * 0.8, height * 0.87, width * 0.92, height * 0.91, width, height * 0.885)
+    .lineTo(width, height)
+    .lineTo(0, height)
+    .closePath()
+    .fill({ color: 0x9a8155, alpha: 0.5 });
+  substrate.addChild(sand);
+
+  for (let i = 0; i < 70; i += 1) {
+    const pebble = new Graphics()
+      .ellipse(0, 0, 3 + (i % 6) * 1.7, 1.4 + (i % 4) * 0.8)
+      .fill({
+        color: i % 5 === 0 ? 0x4f594f : i % 3 === 0 ? 0xb59b70 : 0x76664b,
+        alpha: 0.42 + (i % 4) * 0.07,
+      });
+    pebble.x = width * (((i * 37) % 100) / 100);
+    pebble.y = height * (0.905 + ((i * 19) % 100) / 1050);
+    pebble.rotation = -0.2 + (i % 9) * 0.05;
+    substrate.addChild(pebble);
+  }
+}
+
+function drawForegroundPebbles(layer: Container, width: number, height: number) {
+  const pebbles = new Container();
+  pebbles.name = "foreground-pebbles";
+  pebbles.alpha = 0.58;
+  layer.addChild(pebbles);
+
+  for (let i = 0; i < 22; i += 1) {
+    const stone = new Graphics()
+      .ellipse(0, 0, 10 + (i % 5) * 4, 4 + (i % 3) * 2.4)
+      .fill({
+        color: i % 4 === 0 ? 0x39493f : i % 4 === 1 ? 0x8f7b58 : 0x5b604c,
+        alpha: 0.48,
+      });
+    stone.x = width * (((i * 43) % 100) / 100);
+    stone.y = height * (0.94 + ((i * 11) % 100) / 2100);
+    stone.rotation = -0.16 + (i % 7) * 0.05;
+    pebbles.addChild(stone);
+  }
+}
+
+function drawDriftwood(layer: Container, width: number, height: number) {
+  const wood = new Container();
+  wood.name = "driftwood";
+  wood.x = width * 0.67;
+  wood.y = height * 0.84;
+  wood.rotation = -0.12;
+  wood.alpha = 0.45;
+  layer.addChild(wood);
+
+  const trunk = new Graphics()
+    .moveTo(-width * 0.15, 10)
+    .bezierCurveTo(-width * 0.08, -height * 0.06, width * 0.05, -height * 0.045, width * 0.17, 8)
+    .bezierCurveTo(width * 0.08, height * 0.035, -width * 0.06, height * 0.04, -width * 0.15, 10)
+    .fill({ color: 0x533824, alpha: 0.72 });
+  wood.addChild(trunk);
+
+  for (let branchIndex = 0; branchIndex < 4; branchIndex += 1) {
+    const branch = new Graphics()
+      .moveTo(-width * 0.035 + branchIndex * width * 0.032, 0)
+      .bezierCurveTo(
+        width * (0.005 + branchIndex * 0.018),
+        -height * (0.035 + branchIndex * 0.013),
+        width * (0.055 + branchIndex * 0.012),
+        -height * (0.055 + branchIndex * 0.008),
+        width * (0.08 + branchIndex * 0.028),
+        -height * (0.035 + branchIndex * 0.012),
+      )
+      .stroke({ color: branchIndex % 2 === 0 ? 0x6c472b : 0x3e2c20, alpha: 0.62, width: 8 - branchIndex });
+    wood.addChild(branch);
+  }
+}
+
 function addEnvironmentLayerSprite(
   layer: Container,
   url: string,
@@ -648,6 +771,37 @@ function animateTankLayers(
     surfaceRipples.x = Math.sin(nowMs / 1800) * app.screen.width * 0.004;
     surfaceRipples.alpha = 0.32 + fastWave * 0.05;
   }
+
+  const fineParticles = glassEffectsLayer.getChildByName("fine-particles");
+  if (fineParticles) {
+    fineParticles.x = Math.sin(nowMs / 3600) * app.screen.width * 0.006;
+    fineParticles.y = Math.cos(nowMs / 4400) * app.screen.height * 0.004;
+    fineParticles.alpha = 0.28 + Math.sin(nowMs / 2300) * 0.035;
+  }
+
+  const lightBeams = rearDecorLayer.getChildByName("light-beams");
+  if (lightBeams) {
+    lightBeams.x = Math.sin(nowMs / 5200) * app.screen.width * 0.01;
+    lightBeams.alpha = 0.17 + Math.sin(nowMs / 3100) * 0.028;
+  }
+}
+
+function drawLightBeams(layer: Container, width: number, height: number) {
+  const beams = new Container();
+  beams.name = "light-beams";
+  beams.alpha = 0.17;
+  layer.addChild(beams);
+
+  for (let i = 0; i < 5; i += 1) {
+    const beam = new Graphics()
+      .moveTo(width * (0.04 + i * 0.19), 0)
+      .lineTo(width * (0.18 + i * 0.18), 0)
+      .lineTo(width * (0.3 + i * 0.16), height)
+      .lineTo(width * (0.13 + i * 0.17), height)
+      .closePath()
+      .fill({ color: 0xd9fff0, alpha: 0.025 + (i % 2) * 0.012 });
+    beams.addChild(beam);
+  }
 }
 
 function drawCausticOverlay(layer: Container, width: number, height: number) {
@@ -697,6 +851,25 @@ function drawCausticOverlay(layer: Container, width: number, height: number) {
   }
 }
 
+function drawFineParticles(layer: Container, width: number, height: number) {
+  const particles = new Container();
+  particles.name = "fine-particles";
+  particles.alpha = 0.28;
+  layer.addChild(particles);
+
+  for (let i = 0; i < 95; i += 1) {
+    const particle = new Graphics()
+      .circle(0, 0, 0.7 + (i % 4) * 0.22)
+      .fill({
+        color: i % 5 === 0 ? 0xf8fff6 : 0xb9f0e5,
+        alpha: 0.08 + (i % 6) * 0.015,
+      });
+    particle.x = width * (((i * 41) % 100) / 100);
+    particle.y = height * (0.08 + (((i * 67) % 100) / 100) * 0.82);
+    particles.addChild(particle);
+  }
+}
+
 async function ensureBubbleParticles(
   app: Application,
   bubbleLayer: Container,
@@ -713,10 +886,15 @@ async function ensureBubbleParticles(
 
   const texture = await Assets.load<Texture>(environmentAssets.bubbleParticleUrl);
 
-  for (let i = 0; i < 120; i += 1) {
-    const source = i % 3;
-    const originXRatio = source === 0 ? 0.08 : source === 1 ? 0.19 : 0.91;
-    const radius = 1.2 + ((i * 13) % 9) * 0.34 + (source === 1 ? 0.45 : 0);
+  for (let i = 0; i < 165; i += 1) {
+    const source = i % 5;
+    const originXRatio =
+      source === 0 ? 0.07
+        : source === 1 ? 0.18
+          : source === 2 ? 0.49
+            : source === 3 ? 0.78
+              : 0.92;
+    const radius = 0.85 + ((i * 13) % 9) * 0.32 + (source === 1 || source === 4 ? 0.42 : 0);
     const depth = ((i * 17) % 100) / 100;
     const sprite = new Sprite(texture);
     sprite.anchor.set(0.5);
@@ -726,9 +904,9 @@ async function ensureBubbleParticles(
       originXRatio,
       yRatio: ((i * 29) % 100) / 100,
       radius,
-      speedRatioPerSec: 0.04 + (i % 7) * 0.004,
-      driftPx: 1.4 + (i % 6) * 0.65,
-      columnPx: ((i * 31) % 17) - 8,
+      speedRatioPerSec: 0.024 + source * 0.006 + (i % 7) * 0.003,
+      driftPx: 1.2 + source * 0.55 + (i % 6) * 0.5,
+      columnPx: ((i * 31) % 25) - 12,
       phase: i * 1.73,
       depth,
     });

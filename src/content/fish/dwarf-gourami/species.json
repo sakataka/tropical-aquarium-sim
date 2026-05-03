@@ -1,0 +1,46 @@
+{
+  "id": "dwarf-gourami",
+  "displayName": "ドワーフグラミー",
+  "realBodyLengthCm": 7,
+  "sideImage": "./side.png",
+  "sourceBodyBounds": {
+    "x": 270,
+    "y": 286,
+    "width": 1050,
+    "height": 450
+  },
+  "cruisingSpeedCmPerSec": 2.0,
+  "burstSpeedCmPerSec": 7.8,
+  "turnRateRadPerSec": 1.65,
+  "stopProbabilityPerSec": 0.16,
+  "motion": {
+    "kickIntervalSecMin": 1.8,
+    "kickIntervalSecMax": 4.8,
+    "kickDurationSec": 0.28,
+    "coastDragPerSec": 0.34,
+    "wanderStrength": 0.2
+  },
+  "preferredZone": {
+    "minX": 0.1,
+    "maxX": 0.9,
+    "minY": 0.16,
+    "maxY": 0.64
+  },
+  "schooling": {
+    "enabled": false,
+    "radiusCm": 10,
+    "strength": 0
+  },
+  "behavior": {
+    "separationBodyLengths": 1.6,
+    "alignmentBodyLengths": 3.2,
+    "attractionBodyLengths": 5.6,
+    "separationStrength": 1.5,
+    "alignmentStrength": 0.15,
+    "attractionStrength": 0.12,
+    "wallAvoidanceStrength": 4.4,
+    "edgeCruiseChance": 0.16,
+    "structureAffinity": 0.52,
+    "surfaceAffinity": 0.36
+  }
+}

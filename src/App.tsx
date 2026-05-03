@@ -11,7 +11,14 @@ import { AquariumControls } from "./ui/AquariumControls";
 import { SizeDevView } from "./ui/SizeDevView";
 import "./styles.css";
 
-const INITIAL_SPECIES = ["neon-tetra", "guppy", "angelfish"];
+const INITIAL_STOCK: Array<{ speciesId: string; count: number }> = [
+  { speciesId: "neon-tetra", count: 4 },
+  { speciesId: "harlequin-rasbora", count: 4 },
+  { speciesId: "corydoras", count: 3 },
+  { speciesId: "guppy", count: 2 },
+  { speciesId: "dwarf-gourami", count: 1 },
+  { speciesId: "angelfish", count: 1 },
+];
 
 export default function App() {
   const speciesList = useMemo(
@@ -19,9 +26,9 @@ export default function App() {
     [],
   );
   const [fish, setFish] = useState<FishInstance[]>(() =>
-    INITIAL_SPECIES.flatMap((speciesId, speciesIndex) =>
-      Array.from({ length: speciesId === "neon-tetra" ? 3 : 1 }, (_, index) =>
-        createFish(speciesId, speciesIndex * 3 + index),
+    INITIAL_STOCK.flatMap(({ speciesId, count }, speciesIndex) =>
+      Array.from({ length: count }, (_, index) =>
+        createFish(speciesId, speciesIndex * 5 + index),
       ),
     ),
   );
@@ -139,8 +146,17 @@ export default function App() {
 }
 
 function createFish(speciesId: string, index: number): FishInstance {
-  const x = 10 + ((index * 11) % 43);
-  const y = 8 + ((index * 7) % 22);
+  const species = fishCatalog[speciesId];
+  const zone = species?.preferredZone ?? {
+    minX: 0.14,
+    maxX: 0.86,
+    minY: 0.18,
+    maxY: 0.78,
+  };
+  const xRatio = zone.minX + (((index * 37) % 100) / 100) * (zone.maxX - zone.minX);
+  const yRatio = zone.minY + (((index * 29) % 100) / 100) * (zone.maxY - zone.minY);
+  const x = TANK_60CM.widthCm * xRatio;
+  const y = TANK_60CM.heightCm * yRatio;
   const depth = 0.12 + ((index * 0.19) % 0.76);
   const speedAngle = index % 2 === 0 ? 0 : Math.PI;
 
@@ -160,8 +176,10 @@ function createFish(speciesId: string, index: number): FishInstance {
     behaviorMode: "coast",
     behaviorTimeRemainingSec: 0.4 + Math.random() * 1.2,
     target: {
-      x: 8 + ((index * 17) % 44),
-      y: 7 + ((index * 5) % 24),
+      x: TANK_60CM.widthCm *
+        (zone.minX + (((index * 17) % 100) / 100) * (zone.maxX - zone.minX)),
+      y: TANK_60CM.heightCm *
+        (zone.minY + (((index * 13) % 100) / 100) * (zone.maxY - zone.minY)),
     },
     hunger: 0.35 + Math.random() * 0.45,
     seed: 1000 + index * 7919,

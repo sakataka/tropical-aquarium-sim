@@ -1,0 +1,46 @@
+{
+  "id": "corydoras",
+  "displayName": "コリドラス",
+  "realBodyLengthCm": 6,
+  "sideImage": "./side.png",
+  "sourceBodyBounds": {
+    "x": 260,
+    "y": 348,
+    "width": 1070,
+    "height": 330
+  },
+  "cruisingSpeedCmPerSec": 2.1,
+  "burstSpeedCmPerSec": 7.2,
+  "turnRateRadPerSec": 2.0,
+  "stopProbabilityPerSec": 0.12,
+  "motion": {
+    "kickIntervalSecMin": 1.6,
+    "kickIntervalSecMax": 4.4,
+    "kickDurationSec": 0.22,
+    "coastDragPerSec": 0.52,
+    "wanderStrength": 0.24
+  },
+  "preferredZone": {
+    "minX": 0.1,
+    "maxX": 0.92,
+    "minY": 0.7,
+    "maxY": 0.92
+  },
+  "schooling": {
+    "enabled": true,
+    "radiusCm": 9,
+    "strength": 0.07
+  },
+  "behavior": {
+    "separationBodyLengths": 1.2,
+    "alignmentBodyLengths": 2.4,
+    "attractionBodyLengths": 4.8,
+    "separationStrength": 1.3,
+    "alignmentStrength": 0.3,
+    "attractionStrength": 0.26,
+    "wallAvoidanceStrength": 3.8,
+    "edgeCruiseChance": 0.26,
+    "structureAffinity": 0.82,
+    "surfaceAffinity": 0.0
+  }
+}

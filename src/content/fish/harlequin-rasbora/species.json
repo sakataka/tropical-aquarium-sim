@@ -1,0 +1,46 @@
+{
+  "id": "harlequin-rasbora",
+  "displayName": "ラスボラ・ヘテロモルファ",
+  "realBodyLengthCm": 4.5,
+  "sideImage": "./side.png",
+  "sourceBodyBounds": {
+    "x": 270,
+    "y": 356,
+    "width": 1060,
+    "height": 320
+  },
+  "cruisingSpeedCmPerSec": 3.1,
+  "burstSpeedCmPerSec": 12.5,
+  "turnRateRadPerSec": 3.0,
+  "stopProbabilityPerSec": 0.045,
+  "motion": {
+    "kickIntervalSecMin": 1.0,
+    "kickIntervalSecMax": 2.7,
+    "kickDurationSec": 0.23,
+    "coastDragPerSec": 0.38,
+    "wanderStrength": 0.32
+  },
+  "preferredZone": {
+    "minX": 0.12,
+    "maxX": 0.9,
+    "minY": 0.3,
+    "maxY": 0.7
+  },
+  "schooling": {
+    "enabled": true,
+    "radiusCm": 13,
+    "strength": 0.16
+  },
+  "behavior": {
+    "separationBodyLengths": 1.25,
+    "alignmentBodyLengths": 3.0,
+    "attractionBodyLengths": 6.2,
+    "separationStrength": 1.25,
+    "alignmentStrength": 0.95,
+    "attractionStrength": 0.75,
+    "wallAvoidanceStrength": 4.0,
+    "edgeCruiseChance": 0.1,
+    "structureAffinity": 0.28,
+    "surfaceAffinity": 0.08
+  }
+}
