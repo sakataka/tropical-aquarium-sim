@@ -585,16 +585,16 @@ export function AquariumCanvas({
     const ripple = new Graphics();
     ripple.name = rippleName;
     ripple
-      .ellipse(x, y, 22 + progress * 82, 7 + progress * 28)
+      .ellipse(x, y, 12 + progress * 36, 4 + progress * 13)
       .stroke({
         color: 0xd8fbff,
-        alpha: 0.42 * (1 - progress),
+        alpha: 0.34 * (1 - progress),
         width: 2,
       })
-      .ellipse(x, y, 8 + progress * 28, 3 + progress * 10)
+      .ellipse(x, y, 5 + progress * 13, 2 + progress * 5)
       .stroke({
         color: 0xffffff,
-        alpha: 0.28 * (1 - progress),
+        alpha: 0.22 * (1 - progress),
         width: 1,
       });
     foregroundLayer.addChild(ripple);

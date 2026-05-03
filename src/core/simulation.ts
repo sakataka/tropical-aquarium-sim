@@ -11,7 +11,7 @@ import type {
 
 const TWO_PI = Math.PI * 2;
 const FOOD_ATTRACTION_RADIUS_CM = 28;
-const TAP_RESPONSE_RADIUS_CM = 24;
+const TAP_RESPONSE_RADIUS_CM = 6.2;
 const STRUCTURE_X_RATIOS = [0.14, 0.84];
 
 type TargetChoice = {
@@ -431,15 +431,16 @@ function chooseTapResponse(
   }
 
   const distance = length(subtract(tapEvent.position, fish.position));
-  const hungerFactor = lerp(0.82, 1.1, fish.hunger);
+  const hungerFactor = lerp(0.92, 1.04, fish.hunger);
   const responseRadius =
     TAP_RESPONSE_RADIUS_CM *
     tapEvent.strength *
-    lerp(0.65, 1.35, species.behavior.tapResponsiveness) *
+    lerp(0.82, 1.16, species.behavior.tapResponsiveness) *
     hungerFactor;
   if (distance > responseRadius) {
     return undefined;
   }
+  const localImpact = (1 - distance / responseRadius) ** 2;
 
   if (fish.behaviorMode === "feed" && fish.hunger > 0.55) {
     return undefined;
@@ -449,8 +450,9 @@ function chooseTapResponse(
   const target = getTapTarget(fish, species, tank, tapEvent.position, response);
   const durationBase = response === "freeze" ? 0.42 : response === "approach" ? 0.72 : 0.58;
   const duration =
-    durationBase +
-    species.behavior.tapResponsiveness * (response === "flee" ? 0.42 : 0.24);
+    (durationBase +
+      species.behavior.tapResponsiveness * (response === "flee" ? 0.42 : 0.24)) *
+    lerp(0.38, 1, localImpact);
 
   return {
     behaviorMode: response === "flee"

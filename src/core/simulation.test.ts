@@ -432,12 +432,17 @@ describe("stepSimulation", () => {
       position: { x: 56, y: 36 },
       target: { x: 56, y: 36 },
     });
+    const outsideLocalImpactFish = createFish({
+      id: "outside-local-impact",
+      position: { x: 36, y: 20 },
+      target: { x: 36, y: 20 },
+    });
     const result = stepSimulation({
       tank: TANK_60CM,
       species: {
         [species.id]: species,
       },
-      fish: [nearFish, farFish],
+      fish: [nearFish, outsideLocalImpactFish, farFish],
       deltaSec: 1 / 30,
       tapEvent: {
         position: { x: 28, y: 20 },
@@ -448,6 +453,7 @@ describe("stepSimulation", () => {
     expect(result.fish[0].behaviorMode).toBe("tapFlee");
     expect(result.fish[0].targetKind).toBe("tap");
     expect(result.fish[1].targetKind).not.toBe("tap");
+    expect(result.fish[2].targetKind).not.toBe("tap");
   });
 
   it("keeps strongly feeding hungry fish focused on food instead of tap response", () => {
