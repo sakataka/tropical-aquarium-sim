@@ -36,8 +36,8 @@ http://127.0.0.1:5173/?view=dev
 
 ## 水槽カスタマイズ
 
-通常画面の「水槽設定」から、魚種ごとの匹数、背景スタイル、後景植物、前景植物、植物量、照明を変更できます。
-初回版では新規画像を増やさず、既存の背景、前景/後景植物、PixiJS の水・光レイヤーを組み合わせて見た目の差を作ります。
+通常画面の「水槽設定」から、魚種ごとの匹数、背景スタイル、後景水草、前景水草、水草の濃さ、照明を変更できます。
+植物系の見た目は、画像生成した前景/後景水草レイヤーを表示、非表示、透過、スケール調整で組み合わせます。手描き風の簡易図形や PixiJS のコード生成水草は使わず、PixiJS 側は生成画像の合成、水、光、泡の演出に限定します。
 
 カスタマイズは再生成できる構成データとして `localStorage` の `tropical-aquarium.customization.v1` に保存します。
 保存対象は魚の現在座標や PixiJS の描画オブジェクトではなく、魚種ごとの匹数と環境設定だけです。
@@ -97,6 +97,9 @@ spriteScale = targetBodyLengthPx / sourceBodyBounds.width
 初期版では世界観を揃えるため、画像生成で作成した以下の画像を使用しています。
 
 - `src/content/environment/aquarium-background.png`
+- `src/content/environment/layers/rear-plants.png`
+- `src/content/environment/layers/foreground-plants.png`
+- `src/content/environment/bubble.png`
 - `src/content/fish/neon-tetra/side.png`
 - `src/content/fish/guppy/side.png`
 - `src/content/fish/angelfish/side.png`

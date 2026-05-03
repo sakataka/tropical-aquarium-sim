@@ -198,7 +198,7 @@ export function AquariumControls({
           </label>
 
           <label className="field">
-            <span>後景植物</span>
+            <span>後景水草</span>
             <select
               value={customization.environment.rearPlants}
               onChange={(event) =>
@@ -215,7 +215,7 @@ export function AquariumControls({
           </label>
 
           <label className="field">
-            <span>前景植物</span>
+            <span>前景水草</span>
             <select
               value={customization.environment.foregroundPlants}
               onChange={(event) =>
@@ -232,7 +232,7 @@ export function AquariumControls({
           </label>
 
           <label className="field">
-            <span>植物量</span>
+            <span>水草の濃さ</span>
             <select
               value={customization.environment.plantDensity}
               onChange={(event) =>
@@ -242,9 +242,9 @@ export function AquariumControls({
                 })
               }
             >
-              <option value="low">少なめ</option>
+              <option value="low">薄め</option>
               <option value="medium">標準</option>
-              <option value="high">多め</option>
+              <option value="high">濃いめ</option>
             </select>
           </label>
         </div>

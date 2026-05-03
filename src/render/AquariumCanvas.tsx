@@ -220,9 +220,12 @@ export function AquariumCanvas({
     glassEffectsLayer.removeChildren();
     const lighting = getLightingProfile(currentEnvironment.lighting);
     const background = getBackgroundProfile(currentEnvironment.backgroundStyle);
-    const rearPlantsAlpha = getPlantLayerAlpha(currentEnvironment.rearPlants, 0.52);
-    const foregroundPlantsAlpha = getPlantLayerAlpha(currentEnvironment.foregroundPlants, 0.82);
-    const clusterCount = getPlantClusterCount(currentEnvironment.plantDensity);
+    const plantDensity = getPlantDensityProfile(currentEnvironment.plantDensity);
+    const rearPlantsAlpha =
+      getPlantLayerAlpha(currentEnvironment.rearPlants, 0.52) * plantDensity.rearAlpha;
+    const foregroundPlantsAlpha =
+      getPlantLayerAlpha(currentEnvironment.foregroundPlants, 0.82) *
+      plantDensity.foregroundAlpha;
 
     const waterFill = new Graphics()
       .rect(0, 0, app.screen.width, app.screen.height)
@@ -270,11 +273,8 @@ export function AquariumCanvas({
         app.screen.height,
         "rear-plants",
         rearPlantsAlpha,
+        plantDensity.rearScale,
       );
-      if (clusterCount >= 2) {
-        drawPlantCluster(rearDecorLayer, app.screen.width * 0.16, app.screen.height * 0.88, 0.84, 0.16);
-        drawPlantCluster(rearDecorLayer, app.screen.width * 0.82, app.screen.height * 0.9, 0.72, 0.13);
-      }
     }
 
     if (foregroundPlantsAlpha > 0) {
@@ -285,16 +285,8 @@ export function AquariumCanvas({
         app.screen.height,
         "foreground-plants",
         foregroundPlantsAlpha,
+        plantDensity.foregroundScale,
       );
-      if (clusterCount >= 1) {
-        drawPlantCluster(frontDecorLayer, app.screen.width * 0.04, app.screen.height * 0.98, 1.24, 0.32);
-      }
-      if (clusterCount >= 2) {
-        drawPlantCluster(frontDecorLayer, app.screen.width * 0.96, app.screen.height * 1.02, 1.12, 0.28);
-      }
-      if (clusterCount >= 3) {
-        drawPlantCluster(frontDecorLayer, app.screen.width * 0.52, app.screen.height * 1.03, 0.9, 0.18);
-      }
     }
 
     const surfaceSheen = new Graphics()
@@ -653,45 +645,6 @@ function fallbackFishColor(speciesId: string): number {
   return 0x8bd7d3;
 }
 
-function drawPlantCluster(
-  layer: Container,
-  originX: number,
-  originY: number,
-  scaleAmount: number,
-  alpha: number,
-) {
-  const cluster = new Container();
-  cluster.name = "plant-cluster";
-  cluster.x = originX;
-  cluster.y = originY;
-  cluster.alpha = alpha;
-  cluster.scale.set(scaleAmount);
-  layer.addChild(cluster);
-
-  for (let stemIndex = 0; stemIndex < 7; stemIndex += 1) {
-    const height = 160 + (stemIndex % 4) * 34;
-    const lean = -42 + stemIndex * 14;
-    const stem = new Graphics()
-      .moveTo(0, 0)
-      .bezierCurveTo(lean * 0.18, -height * 0.36, lean * 0.76, -height * 0.68, lean, -height)
-      .stroke({ color: stemIndex % 2 === 0 ? 0x295f39 : 0x6c7d38, alpha: 0.78, width: 3 });
-    stem.x = -46 + stemIndex * 16;
-    stem.y = 0;
-    cluster.addChild(stem);
-
-    for (let leafIndex = 0; leafIndex < 5; leafIndex += 1) {
-      const side = leafIndex % 2 === 0 ? -1 : 1;
-      const leaf = new Graphics()
-        .ellipse(0, 0, 7 + leafIndex * 1.5, 24 + (stemIndex % 3) * 3)
-        .fill({ color: leafIndex % 3 === 0 ? 0xaedb4c : 0x58b36c, alpha: 0.74 });
-      leaf.x = stem.x + lean * ((leafIndex + 1) / 6) + side * (12 + leafIndex * 2);
-      leaf.y = -height * ((leafIndex + 1) / 6);
-      leaf.rotation = side * 0.82 - lean * 0.006;
-      cluster.addChild(leaf);
-    }
-  }
-}
-
 function addEnvironmentLayerSprite(
   layer: Container,
   url: string,
@@ -699,6 +652,7 @@ function addEnvironmentLayerSprite(
   height: number,
   name: string,
   alpha: number,
+  scaleMultiplier = 1,
 ) {
   const sprite = new Sprite(Texture.EMPTY);
   sprite.name = name;
@@ -709,7 +663,7 @@ function addEnvironmentLayerSprite(
   layer.addChild(sprite);
   Assets.load<Texture>(url).then((texture) => {
     sprite.texture = texture;
-    sprite.scale.set(Math.max(width / texture.width, height / texture.height));
+    sprite.scale.set(Math.max(width / texture.width, height / texture.height) * scaleMultiplier);
   });
 }
 
@@ -726,16 +680,36 @@ function getPlantLayerAlpha(
   return fullAlpha;
 }
 
-function getPlantClusterCount(
+function getPlantDensityProfile(
   density: AquariumEnvironmentCustomization["plantDensity"],
-): number {
+): {
+  rearAlpha: number;
+  foregroundAlpha: number;
+  rearScale: number;
+  foregroundScale: number;
+} {
   if (density === "low") {
-    return 1;
+    return {
+      rearAlpha: 0.72,
+      foregroundAlpha: 0.68,
+      rearScale: 0.985,
+      foregroundScale: 0.985,
+    };
   }
   if (density === "high") {
-    return 3;
+    return {
+      rearAlpha: 1.16,
+      foregroundAlpha: 1.12,
+      rearScale: 1.015,
+      foregroundScale: 1.02,
+    };
   }
-  return 2;
+  return {
+    rearAlpha: 1,
+    foregroundAlpha: 1,
+    rearScale: 1,
+    foregroundScale: 1,
+  };
 }
 
 function getBackgroundProfile(
