@@ -57,6 +57,10 @@ const validSpecies = {
     zoneHoldStrength: 0.8,
     surfaceVisitChance: 0.05,
     foodResponsiveness: 0.65,
+    tapResponsiveness: 0.7,
+    tapResponse: "flee",
+    tapSurfaceBias: 0.2,
+    tapStructureBias: 0.3,
     structurePatrolStrength: 0.35,
   },
 };

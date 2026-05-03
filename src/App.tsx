@@ -5,6 +5,8 @@ import {
   TANK_60CM,
   type FeedingEvent,
   type FishInstance,
+  type TapEvent,
+  type Vec2,
 } from "./core";
 import { AquariumCanvas } from "./render/AquariumCanvas";
 import { AquariumControls } from "./ui/AquariumControls";
@@ -46,6 +48,7 @@ export default function App() {
       ? createFeedingEvent()
       : undefined,
   );
+  const [latestTap, setLatestTap] = useState<TapEvent | undefined>();
   const [viewportWidthPx, setViewportWidthPx] = useState(960);
   const aquariumShellRef = useRef<HTMLDivElement | null>(null);
 
@@ -72,6 +75,7 @@ export default function App() {
 
       if (!paused && viewMode === "tank") {
         const feeding = getActiveFeeding(latestFeeding);
+        const tapEvent = getActiveTap(latestTap);
         setFish((current) =>
           stepSimulation({
             tank: TANK_60CM,
@@ -79,6 +83,7 @@ export default function App() {
             fish: current,
             deltaSec,
             feeding,
+            tapEvent,
           }).fish,
         );
       }
@@ -88,7 +93,7 @@ export default function App() {
 
     animationFrame = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(animationFrame);
-  }, [latestFeeding, paused, viewMode]);
+  }, [latestFeeding, latestTap, paused, viewMode]);
 
   useEffect(() => {
     if (!latestFeeding) {
@@ -98,6 +103,15 @@ export default function App() {
     const timeout = window.setTimeout(() => setLatestFeeding(undefined), 6200);
     return () => window.clearTimeout(timeout);
   }, [latestFeeding]);
+
+  useEffect(() => {
+    if (!latestTap) {
+      return;
+    }
+
+    const timeout = window.setTimeout(() => setLatestTap(undefined), 1800);
+    return () => window.clearTimeout(timeout);
+  }, [latestTap]);
 
   return (
     <main className="app-shell">
@@ -109,6 +123,8 @@ export default function App() {
             tank={TANK_60CM}
             paused={paused}
             latestFeeding={getActiveFeeding(latestFeeding)}
+            latestTap={getActiveTap(latestTap)}
+            onDoubleTapTank={(position) => setLatestTap(createTapEvent(position))}
           />
         ) : (
           <SizeDevView
@@ -198,6 +214,14 @@ function createFeedingEvent(): FeedingEvent {
   };
 }
 
+function createTapEvent(position: Vec2): TapEvent {
+  return {
+    position,
+    strength: 1,
+    createdAtMs: performance.now(),
+  };
+}
+
 function getActiveFeeding(feeding?: FeedingEvent): FeedingEvent | undefined {
   if (!feeding) {
     return undefined;
@@ -215,5 +239,21 @@ function getActiveFeeding(feeding?: FeedingEvent): FeedingEvent | undefined {
       y: Math.min(TANK_60CM.heightCm - 4, feeding.position.y + ageSec * 4.8),
     },
     strength: Math.max(0.15, 1 - ageSec / 7),
+  };
+}
+
+function getActiveTap(tapEvent?: TapEvent): TapEvent | undefined {
+  if (!tapEvent) {
+    return undefined;
+  }
+
+  const ageSec = (performance.now() - (tapEvent.createdAtMs ?? performance.now())) / 1000;
+  if (ageSec > 1.2) {
+    return undefined;
+  }
+
+  return {
+    ...tapEvent,
+    strength: Math.max(0.12, 1 - ageSec / 1.35),
   };
 }

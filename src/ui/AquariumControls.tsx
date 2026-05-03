@@ -92,7 +92,8 @@ export function AquariumControls({
                 <span>{species?.displayName ?? item.speciesId}</span>
                 <small>
                   {getBehaviorLabel(item.behaviorMode)} /{" "}
-                  {getTargetKindLabel(item.targetKind)} / z {item.depth.toFixed(2)}
+                  {getTargetKindLabel(item.targetKind)} / {getHungerLabel(item.hunger)} / z{" "}
+                  {item.depth.toFixed(2)}
                 </small>
               </div>
               <button
@@ -121,6 +122,15 @@ function getBehaviorLabel(mode: FishInstance["behaviorMode"]): string {
   if (mode === "feed") {
     return "餌へ";
   }
+  if (mode === "tapFlee") {
+    return "退避";
+  }
+  if (mode === "tapFreeze") {
+    return "警戒";
+  }
+  if (mode === "tapApproach") {
+    return "様子見";
+  }
   return "停止";
 }
 
@@ -137,5 +147,18 @@ function getTargetKindLabel(kind: FishInstance["targetKind"]): string {
   if (kind === "feed") {
     return "餌";
   }
+  if (kind === "tap") {
+    return "タップ";
+  }
   return "遊泳";
+}
+
+function getHungerLabel(hunger: number): string {
+  if (hunger >= 0.72) {
+    return "空腹";
+  }
+  if (hunger <= 0.24) {
+    return "満腹";
+  }
+  return "ふつう";
 }

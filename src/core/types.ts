@@ -37,6 +37,10 @@ export type SpeciesBehaviorProfile = {
   zoneHoldStrength: number;
   surfaceVisitChance: number;
   foodResponsiveness: number;
+  tapResponsiveness: number;
+  tapResponse: "flee" | "freeze" | "approach";
+  tapSurfaceBias: number;
+  tapStructureBias: number;
   structurePatrolStrength: number;
 };
 
@@ -75,13 +79,14 @@ export type FishSpeciesDefinition = {
   behavior: SpeciesBehaviorProfile;
 };
 
-export type FishBehaviorMode = "kick" | "coast" | "pause" | "feed";
+export type FishBehaviorMode = "kick" | "coast" | "pause" | "feed" | "tapFlee" | "tapFreeze" | "tapApproach";
 export type FishTargetKind =
   | "openWater"
   | "structure"
   | "edgeCruise"
   | "surfaceVisit"
-  | "feed";
+  | "feed"
+  | "tap";
 
 export type FishInstance = {
   id: string;
@@ -115,12 +120,19 @@ export type FeedingEvent = {
   createdAtMs?: number;
 };
 
+export type TapEvent = {
+  position: Vec2;
+  strength: number;
+  createdAtMs?: number;
+};
+
 export type SimulationInput = {
   tank: TankDefinition;
   species: Record<string, FishSpeciesDefinition>;
   fish: FishInstance[];
   deltaSec: number;
   feeding?: FeedingEvent;
+  tapEvent?: TapEvent;
 };
 
 export type SimulationOutput = {

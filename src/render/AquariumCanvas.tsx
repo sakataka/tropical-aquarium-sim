@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type MouseEvent } from "react";
 import {
   Application,
   Assets,
@@ -16,6 +16,8 @@ import {
   type FishInstance,
   type FishSpeciesDefinition,
   type TankDefinition,
+  type TapEvent,
+  type Vec2,
 } from "../core";
 import { environmentAssets, getFishAnimationFrameUrls, getFishImageUrl } from "./assets";
 
@@ -25,6 +27,8 @@ type AquariumCanvasProps = {
   tank: TankDefinition;
   paused: boolean;
   latestFeeding?: FeedingEvent;
+  latestTap?: TapEvent;
+  onDoubleTapTank?: (position: Vec2) => void;
 };
 
 type FishSpriteRecord = {
@@ -59,6 +63,8 @@ export function AquariumCanvas({
   tank,
   paused,
   latestFeeding,
+  latestTap,
+  onDoubleTapTank,
 }: AquariumCanvasProps) {
   const hostRef = useRef<HTMLDivElement | null>(null);
   const appRef = useRef<Application | null>(null);
@@ -78,10 +84,12 @@ export function AquariumCanvas({
   const fishRef = useRef(fish);
   const speciesRef = useRef(species);
   const latestFeedingRef = useRef(latestFeeding);
+  const latestTapRef = useRef(latestTap);
 
   fishRef.current = fish;
   speciesRef.current = species;
   latestFeedingRef.current = latestFeeding;
+  latestTapRef.current = latestTap;
 
   useEffect(() => {
     let disposed = false;
@@ -151,6 +159,7 @@ export function AquariumCanvas({
           },
         );
         updateFood(app, food, latestFeedingRef.current);
+        updateTapRipple(app, glassEffects, latestTapRef.current);
         drawWaterOverlay(app, glassEffects, paused);
       });
     }
@@ -170,7 +179,29 @@ export function AquariumCanvas({
     };
   }, [paused, tank]);
 
-  return <div className="aquarium-canvas" ref={hostRef} />;
+  return (
+    <div
+      className="aquarium-canvas"
+      onDoubleClick={handleDoubleClick}
+      ref={hostRef}
+    />
+  );
+
+  function handleDoubleClick(event: MouseEvent<HTMLDivElement>) {
+    if (!onDoubleTapTank) {
+      return;
+    }
+
+    const rect = event.currentTarget.getBoundingClientRect();
+    if (rect.width <= 0 || rect.height <= 0) {
+      return;
+    }
+
+    onDoubleTapTank({
+      x: ((event.clientX - rect.left) / rect.width) * tank.widthCm,
+      y: ((event.clientY - rect.top) / rect.height) * tank.heightCm,
+    });
+  }
 
   function drawStaticTank(
     app: Application,
@@ -491,6 +522,44 @@ export function AquariumCanvas({
       .ellipse(x, Math.max(14, app.screen.height * 0.04), 34 + ageSec * 5, 6)
       .stroke({ color: 0xf7e6ae, alpha: Math.max(0.05, 0.44 - ageSec * 0.06), width: 2 });
     foodLayer.addChild(ripple);
+  }
+
+  function updateTapRipple(
+    app: Application,
+    foregroundLayer: Container,
+    tapEvent?: TapEvent,
+  ) {
+    const rippleName = "tap-ripple";
+    foregroundLayer.getChildByName(rippleName)?.destroy();
+    if (!tapEvent) {
+      return;
+    }
+
+    const ageSec =
+      (performance.now() - (tapEvent.createdAtMs ?? performance.now())) / 1000;
+    if (ageSec > 1.2) {
+      return;
+    }
+
+    const progress = Math.min(1, ageSec / 1.2);
+    const x = (tapEvent.position.x / tank.widthCm) * app.screen.width;
+    const y = (tapEvent.position.y / tank.heightCm) * app.screen.height;
+    const ripple = new Graphics();
+    ripple.name = rippleName;
+    ripple
+      .ellipse(x, y, 22 + progress * 82, 7 + progress * 28)
+      .stroke({
+        color: 0xd8fbff,
+        alpha: 0.42 * (1 - progress),
+        width: 2,
+      })
+      .ellipse(x, y, 8 + progress * 28, 3 + progress * 10)
+      .stroke({
+        color: 0xffffff,
+        alpha: 0.28 * (1 - progress),
+        width: 1,
+      });
+    foregroundLayer.addChild(ripple);
   }
 
   function drawWaterOverlay(

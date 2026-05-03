@@ -54,6 +54,10 @@
     "zoneHoldStrength": 0.92,
     "surfaceVisitChance": 0.2,
     "foodResponsiveness": 0.86,
+    "tapResponsiveness": 0.8,
+    "tapResponse": "flee",
+    "tapSurfaceBias": 0.82,
+    "tapStructureBias": 0.08,
     "structurePatrolStrength": 0.12
   }
 }

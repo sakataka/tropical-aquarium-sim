@@ -44,6 +44,10 @@ export const speciesBehaviorProfileSchema = z.object({
   zoneHoldStrength: z.number().finite().min(0).max(2),
   surfaceVisitChance: z.number().finite().min(0).max(1),
   foodResponsiveness: z.number().finite().min(0).max(1),
+  tapResponsiveness: z.number().finite().min(0).max(1),
+  tapResponse: z.enum(["flee", "freeze", "approach"]),
+  tapSurfaceBias: z.number().finite().min(0).max(1),
+  tapStructureBias: z.number().finite().min(0).max(1),
   structurePatrolStrength: z.number().finite().min(0).max(1),
 }).refine((profile) => profile.separationBodyLengths < profile.alignmentBodyLengths, {
   message: "behavior.separationBodyLengths must be < behavior.alignmentBodyLengths",

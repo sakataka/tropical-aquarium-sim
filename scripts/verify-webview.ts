@@ -11,6 +11,7 @@ type CheckResult = {
   };
   fishRowsBeforeDelete: number;
   fishRowsAfterDelete: number;
+  tapLabelSeen: boolean;
   devText: string;
   consoleErrors: string[];
 };
@@ -71,6 +72,22 @@ async function main() {
     const fishRowsBeforeDelete = await view.evaluate(
       `document.querySelectorAll(".fish-row").length`,
     );
+    await view.evaluate(`(() => {
+      const element = document.querySelector(".aquarium-canvas");
+      const rect = element?.getBoundingClientRect();
+      if (!element || !rect) return false;
+      element.dispatchEvent(new MouseEvent("dblclick", {
+        bubbles: true,
+        cancelable: true,
+        clientX: rect.left + rect.width * 0.48,
+        clientY: rect.top + rect.height * 0.44,
+      }));
+      return true;
+    })()`);
+    await sleep(300);
+    const tapLabelSeen = await view.evaluate(
+      `document.querySelector(".fish-list")?.textContent?.includes("タップ") ?? false`,
+    );
 
     await view.click("button[aria-label$='を削除']");
     await sleep(200);
@@ -93,6 +110,7 @@ async function main() {
       canvas: canvas as CheckResult["canvas"],
       fishRowsBeforeDelete: Number(fishRowsBeforeDelete),
       fishRowsAfterDelete: Number(fishRowsAfterDelete),
+      tapLabelSeen: Boolean(tapLabelSeen),
       devText: String(devText).slice(0, 240),
       consoleErrors,
     };

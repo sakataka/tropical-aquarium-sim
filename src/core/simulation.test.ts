@@ -60,6 +60,10 @@ const species: FishSpeciesDefinition = {
     zoneHoldStrength: 0.8,
     surfaceVisitChance: 0.05,
     foodResponsiveness: 0.65,
+    tapResponsiveness: 0.7,
+    tapResponse: "flee",
+    tapSurfaceBias: 0.2,
+    tapStructureBias: 0.3,
     structurePatrolStrength: 0.35,
   },
 };
@@ -317,6 +321,132 @@ describe("stepSimulation", () => {
     expect(lowResult.fish[0].behaviorMode).not.toBe("feed");
     expect(highResult.fish[0].behaviorMode).toBe("feed");
     expect(highResult.fish[0].targetKind).toBe("feed");
+  });
+
+  it("uses fish hunger when deciding whether fish enter feed behavior", () => {
+    const feeding = {
+      position: { x: 30, y: 46 },
+      strength: 1,
+    };
+    const fullFish = createFish({
+      hunger: 0.05,
+      position: { x: 30, y: 20 },
+      target: { x: 30, y: 20 },
+    });
+    const hungryFish = createFish({
+      ...fullFish,
+      hunger: 0.95,
+    });
+
+    const fullResult = stepSimulation({
+      tank: TANK_60CM,
+      species: {
+        [species.id]: species,
+      },
+      fish: [fullFish],
+      deltaSec: 1 / 30,
+      feeding,
+    });
+    const hungryResult = stepSimulation({
+      tank: TANK_60CM,
+      species: {
+        [species.id]: species,
+      },
+      fish: [hungryFish],
+      deltaSec: 1 / 30,
+      feeding,
+    });
+
+    expect(fullResult.fish[0].behaviorMode).not.toBe("feed");
+    expect(hungryResult.fish[0].behaviorMode).toBe("feed");
+  });
+
+  it("reacts to nearby tank taps without pulling distant fish into the interaction", () => {
+    const nearFish = createFish({
+      id: "near",
+      position: { x: 30, y: 20 },
+      target: { x: 30, y: 20 },
+    });
+    const farFish = createFish({
+      id: "far",
+      position: { x: 56, y: 36 },
+      target: { x: 56, y: 36 },
+    });
+    const result = stepSimulation({
+      tank: TANK_60CM,
+      species: {
+        [species.id]: species,
+      },
+      fish: [nearFish, farFish],
+      deltaSec: 1 / 30,
+      tapEvent: {
+        position: { x: 28, y: 20 },
+        strength: 1,
+      },
+    });
+
+    expect(result.fish[0].behaviorMode).toBe("tapFlee");
+    expect(result.fish[0].targetKind).toBe("tap");
+    expect(result.fish[1].targetKind).not.toBe("tap");
+  });
+
+  it("uses species tap behavior to vary response style and target", () => {
+    const freezeSpecies: FishSpeciesDefinition = {
+      ...species,
+      id: "freeze-fish",
+      behavior: {
+        ...species.behavior,
+        tapResponse: "freeze",
+        tapStructureBias: 1,
+        tapSurfaceBias: 0,
+      },
+    };
+    const approachSpecies: FishSpeciesDefinition = {
+      ...species,
+      id: "approach-fish",
+      behavior: {
+        ...species.behavior,
+        tapResponse: "approach",
+      },
+    };
+    const tapEvent = {
+      position: { x: 28, y: 20 },
+      strength: 1,
+    };
+
+    const freezeResult = stepSimulation({
+      tank: TANK_60CM,
+      species: {
+        [freezeSpecies.id]: freezeSpecies,
+      },
+      fish: [
+        createFish({
+          speciesId: freezeSpecies.id,
+          position: { x: 30, y: 20 },
+        }),
+      ],
+      deltaSec: 1 / 30,
+      tapEvent,
+    });
+    const approachResult = stepSimulation({
+      tank: TANK_60CM,
+      species: {
+        [approachSpecies.id]: approachSpecies,
+      },
+      fish: [
+        createFish({
+          speciesId: approachSpecies.id,
+          position: { x: 30, y: 20 },
+        }),
+      ],
+      deltaSec: 1 / 30,
+      tapEvent,
+    });
+
+    expect(freezeResult.fish[0].behaviorMode).toBe("tapFreeze");
+    expect(freezeResult.fish[0].target?.x).toBeGreaterThan(30);
+    expect(approachResult.fish[0].behaviorMode).toBe("tapApproach");
+    expect(approachResult.fish[0].target?.x).toBeLessThan(30);
   });
 });
 
