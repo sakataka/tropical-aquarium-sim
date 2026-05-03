@@ -48,6 +48,7 @@ type BubbleParticleRecord = {
   radius: number;
   speedRatioPerSec: number;
   driftPx: number;
+  columnPx: number;
   phase: number;
   depth: number;
 };
@@ -712,10 +713,10 @@ async function ensureBubbleParticles(
 
   const texture = await Assets.load<Texture>(environmentAssets.bubbleParticleUrl);
 
-  for (let i = 0; i < 44; i += 1) {
+  for (let i = 0; i < 120; i += 1) {
     const source = i % 3;
     const originXRatio = source === 0 ? 0.08 : source === 1 ? 0.19 : 0.91;
-    const radius = 4.5 + (i % 6) * 1.8;
+    const radius = 1.2 + ((i * 13) % 9) * 0.34 + (source === 1 ? 0.45 : 0);
     const depth = ((i * 17) % 100) / 100;
     const sprite = new Sprite(texture);
     sprite.anchor.set(0.5);
@@ -725,8 +726,9 @@ async function ensureBubbleParticles(
       originXRatio,
       yRatio: ((i * 29) % 100) / 100,
       radius,
-      speedRatioPerSec: 0.032 + (i % 5) * 0.006,
-      driftPx: 5 + (i % 7) * 2.5,
+      speedRatioPerSec: 0.04 + (i % 7) * 0.004,
+      driftPx: 1.4 + (i % 6) * 0.65,
+      columnPx: ((i * 31) % 17) - 8,
       phase: i * 1.73,
       depth,
     });
@@ -748,15 +750,23 @@ function updateBubbleParticles(
     bubble.yRatio -= bubble.speedRatioPerSec * deltaSec * (0.75 + bubble.depth * 0.6);
     if (bubble.yRatio < -0.06) {
       bubble.yRatio = 1.02 + bubble.depth * 0.08;
-      bubble.originXRatio += Math.sin(nowMs / 3000 + bubble.phase) * 0.002;
     }
 
-    const sway = Math.sin(nowMs / (680 + bubble.depth * 420) + bubble.phase);
-    bubble.sprite.x = app.screen.width * bubble.originXRatio + sway * bubble.driftPx;
+    const lifeFade = bubble.yRatio < 0.08 ? Math.max(0, bubble.yRatio / 0.08) : 1;
+    const depthScale = 0.74 + bubble.depth * 0.62;
+    const thermalWobble = Math.sin(nowMs / (860 + bubble.depth * 520) + bubble.phase);
+    const fineWobble = Math.sin(nowMs / 240 + bubble.phase * 1.9) * 0.45;
+    bubble.sprite.x =
+      app.screen.width * bubble.originXRatio +
+      bubble.columnPx * depthScale +
+      (thermalWobble + fineWobble) * bubble.driftPx;
     bubble.sprite.y = app.screen.height * bubble.yRatio;
-    bubble.sprite.rotation = sway * 0.18;
-    bubble.sprite.scale.set((bubble.radius / 28) * (0.82 + bubble.depth * 0.56));
-    bubble.sprite.alpha = Math.max(0, Math.min(0.68, 0.18 + bubble.yRatio * 0.36));
+    bubble.sprite.rotation = thermalWobble * 0.08;
+    bubble.sprite.scale.set(((bubble.radius * 2) / 96) * depthScale);
+    bubble.sprite.alpha = Math.max(
+      0,
+      Math.min(0.42, (0.08 + bubble.depth * 0.22 + bubble.yRatio * 0.1) * lifeFade),
+    );
   }
 }
 
