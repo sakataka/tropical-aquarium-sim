@@ -16,6 +16,11 @@ type CheckResult = {
     cssWidth: number;
     cssHeight: number;
   };
+  controlPanelScroll: {
+    clientHeight: number;
+    scrollHeight: number;
+    scrollTopAfterScroll: number;
+  };
   fishListText: string;
   fishRowsBeforeDelete: number;
   fishRowsAfterDelete: number;
@@ -94,6 +99,18 @@ async function main() {
         height: canvas?.height ?? 0,
         cssWidth: Math.round(rect?.width ?? 0),
         cssHeight: Math.round(rect?.height ?? 0),
+      };
+    })()`);
+    const controlPanelScroll = await view.evaluate(`(() => {
+      const panel = document.querySelector(".control-panel");
+      if (!(panel instanceof HTMLElement)) {
+        return { clientHeight: 0, scrollHeight: 0, scrollTopAfterScroll: 0 };
+      }
+      panel.scrollTop = panel.scrollHeight;
+      return {
+        clientHeight: panel.clientHeight,
+        scrollHeight: panel.scrollHeight,
+        scrollTopAfterScroll: panel.scrollTop,
       };
     })()`);
     const fishListText = await view.evaluate(
@@ -186,6 +203,7 @@ async function main() {
       shellText: String(shellText).slice(0, 320),
       stage: stage as CheckResult["stage"],
       canvas: canvas as CheckResult["canvas"],
+      controlPanelScroll: controlPanelScroll as CheckResult["controlPanelScroll"],
       fishListText: String(fishListText).slice(0, 320),
       fishRowsBeforeDelete: Number(fishRowsBeforeDelete),
       fishRowsAfterDelete: Number(fishRowsAfterDelete),
@@ -205,6 +223,8 @@ async function main() {
     assert(result.stage.width >= 720 && result.stage.height >= 360);
     assert(result.canvas.width > 0 && result.canvas.height > 0);
     assert(result.canvas.cssWidth >= 720 && result.canvas.cssHeight >= 360);
+    assert(result.controlPanelScroll.scrollHeight > result.controlPanelScroll.clientHeight);
+    assert(result.controlPanelScroll.scrollTopAfterScroll > 0);
     assert(result.fishListText.includes("ネオン"));
     assert(result.fishListText.includes("遊泳"));
     assert(result.fishListText.includes("削除"));
