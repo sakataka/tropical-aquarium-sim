@@ -618,69 +618,69 @@ function animateTankLayers(
 ) {
   const slowWave = Math.sin(nowMs / 2600);
   const fastWave = Math.sin(nowMs / 1500);
-  rearDecorLayer.x = slowWave * app.screen.width * 0.004;
-  rearDecorLayer.skew.x = slowWave * 0.008;
-  frontDecorLayer.x = fastWave * app.screen.width * 0.008;
-  frontDecorLayer.skew.x = fastWave * 0.014;
+  rearDecorLayer.x = 0;
+  rearDecorLayer.skew.x = 0;
+  frontDecorLayer.x = 0;
+  frontDecorLayer.skew.x = 0;
 
   const sheen = glassEffectsLayer.getChildByName("surface-sheen");
   if (sheen) {
-    sheen.alpha = 0.72 + Math.sin(nowMs / 1800) * 0.08;
+    sheen.alpha = 0.64 + slowWave * 0.045;
   }
 
   const causticsFar = glassEffectsLayer.getChildByName("caustics-far");
   if (causticsFar) {
-    causticsFar.x = Math.sin(nowMs / 3400) * app.screen.width * 0.018;
-    causticsFar.y = Math.cos(nowMs / 4200) * app.screen.height * 0.006;
-    causticsFar.alpha = 0.38 + Math.sin(nowMs / 2300) * 0.08;
+    causticsFar.x = Math.sin(nowMs / 4200) * app.screen.width * 0.006;
+    causticsFar.y = Math.cos(nowMs / 5200) * app.screen.height * 0.0025;
+    causticsFar.alpha = 0.18 + Math.sin(nowMs / 2600) * 0.035;
   }
 
   const causticsNear = glassEffectsLayer.getChildByName("caustics-near");
   if (causticsNear) {
-    causticsNear.x = Math.sin(nowMs / 2100 + 1.4) * app.screen.width * 0.024;
-    causticsNear.y = Math.cos(nowMs / 2600) * app.screen.height * 0.008;
-    causticsNear.alpha = 0.32 + Math.sin(nowMs / 1700) * 0.08;
+    causticsNear.x = Math.sin(nowMs / 3000 + 1.4) * app.screen.width * 0.008;
+    causticsNear.y = Math.cos(nowMs / 3400) * app.screen.height * 0.003;
+    causticsNear.alpha = 0.16 + Math.sin(nowMs / 2100) * 0.03;
   }
 
   const surfaceRipples = glassEffectsLayer.getChildByName("surface-ripples");
   if (surfaceRipples) {
-    surfaceRipples.x = Math.sin(nowMs / 1300) * app.screen.width * 0.012;
-    surfaceRipples.alpha = 0.58 + Math.sin(nowMs / 900) * 0.1;
+    surfaceRipples.x = Math.sin(nowMs / 1800) * app.screen.width * 0.004;
+    surfaceRipples.alpha = 0.32 + fastWave * 0.05;
   }
 }
 
 function drawCausticOverlay(layer: Container, width: number, height: number) {
   const far = new Container();
   far.name = "caustics-far";
-  far.alpha = 0.38;
+  far.alpha = 0.18;
   layer.addChild(far);
-  for (let i = 0; i < 18; i += 1) {
-    const y = height * (0.22 + ((i * 37) % 100) / 150);
+  for (let i = 0; i < 22; i += 1) {
+    const y = height * (0.2 + ((i * 37) % 100) / 145);
     const line = new Graphics()
-      .moveTo(width * -0.05, y)
+      .moveTo(width * -0.02, y)
       .bezierCurveTo(
         width * 0.18,
-        y + Math.sin(i) * 28,
+        y + Math.sin(i) * 7,
         width * 0.52,
-        y - Math.cos(i * 0.7) * 34,
-        width * 1.05,
-        y + Math.sin(i * 1.4) * 22,
+        y - Math.cos(i * 0.7) * 9,
+        width * 1.02,
+        y + Math.sin(i * 1.4) * 6,
       )
-      .stroke({ color: 0xf5fff5, alpha: 0.085 + (i % 4) * 0.016, width: 2 + (i % 3) });
+      .stroke({ color: 0xeafff9, alpha: 0.028 + (i % 4) * 0.006, width: 0.75 + (i % 3) * 0.25 });
     far.addChild(line);
   }
 
   const near = new Container();
   near.name = "caustics-near";
-  near.alpha = 0.32;
+  near.alpha = 0.16;
   layer.addChild(near);
-  for (let i = 0; i < 11; i += 1) {
+  for (let i = 0; i < 15; i += 1) {
     const y = height * (0.64 + ((i * 23) % 100) / 360);
     const line = new Graphics()
       .moveTo(width * 0.04, y)
-      .bezierCurveTo(width * 0.25, y - 16, width * 0.45, y + 12, width * 0.72, y - 10)
-      .bezierCurveTo(width * 0.84, y - 18, width * 0.96, y + 6, width * 1.02, y - 8)
-      .stroke({ color: 0xfff6c8, alpha: 0.07 + (i % 3) * 0.022, width: 3 });
+      .bezierCurveTo(width * 0.25, y - 5, width * 0.45, y + 4, width * 0.72, y - 3)
+      .bezierCurveTo(width * 0.84, y - 6, width * 0.96, y + 3, width * 1.02, y - 4)
+      .stroke({ color: 0xf6fff2, alpha: 0.026 + (i % 3) * 0.007, width: 0.9 });
     near.addChild(line);
   }
 
@@ -689,8 +689,8 @@ function drawCausticOverlay(layer: Container, width: number, height: number) {
   layer.addChild(ripples);
   for (let i = 0; i < 9; i += 1) {
     const ripple = new Graphics()
-      .ellipse(width * (0.12 + i * 0.105), height * (0.058 + (i % 3) * 0.018), 62 + i * 8, 4 + (i % 2))
-      .stroke({ color: 0xdfffff, alpha: 0.2, width: 1.5 });
+      .ellipse(width * (0.12 + i * 0.105), height * (0.058 + (i % 3) * 0.018), 28 + i * 4, 2.2 + (i % 2) * 0.6)
+      .stroke({ color: 0xeaffff, alpha: 0.105, width: 0.75 });
     ripple.rotation = -0.025 + i * 0.006;
     ripples.addChild(ripple);
   }
