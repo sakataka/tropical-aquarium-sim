@@ -15,10 +15,15 @@
   "stopProbabilityPerSec": 0.16,
   "motion": {
     "kickIntervalSecMin": 1.8,
-    "kickIntervalSecMax": 4.8,
+    "kickIntervalSecMax": 5.1,
     "kickDurationSec": 0.28,
+    "pauseDurationSecMin": 1.35,
+    "pauseDurationSecMax": 3.8,
+    "feedDurationSecMin": 0.75,
+    "feedDurationSecMax": 1.55,
+    "feedSpeedMultiplier": 0.7,
     "coastDragPerSec": 0.34,
-    "wanderStrength": 0.2
+    "wanderStrength": 0.18
   },
   "preferredZone": {
     "minX": 0.1,
@@ -40,7 +45,11 @@
     "attractionStrength": 0.12,
     "wallAvoidanceStrength": 4.4,
     "edgeCruiseChance": 0.16,
-    "structureAffinity": 0.52,
-    "surfaceAffinity": 0.36
+    "structureAffinity": 0.62,
+    "surfaceAffinity": 0.42,
+    "zoneHoldStrength": 0.9,
+    "surfaceVisitChance": 0.08,
+    "foodResponsiveness": 0.62,
+    "structurePatrolStrength": 0.54
   }
 }

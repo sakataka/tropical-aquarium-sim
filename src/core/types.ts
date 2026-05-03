@@ -34,12 +34,21 @@ export type SpeciesBehaviorProfile = {
   edgeCruiseChance: number;
   structureAffinity: number;
   surfaceAffinity: number;
+  zoneHoldStrength: number;
+  surfaceVisitChance: number;
+  foodResponsiveness: number;
+  structurePatrolStrength: number;
 };
 
 export type SwimMotionProfile = {
   kickIntervalSecMin: number;
   kickIntervalSecMax: number;
   kickDurationSec: number;
+  pauseDurationSecMin: number;
+  pauseDurationSecMax: number;
+  feedDurationSecMin: number;
+  feedDurationSecMax: number;
+  feedSpeedMultiplier: number;
   coastDragPerSec: number;
   wanderStrength: number;
 };
@@ -67,6 +76,12 @@ export type FishSpeciesDefinition = {
 };
 
 export type FishBehaviorMode = "kick" | "coast" | "pause" | "feed";
+export type FishTargetKind =
+  | "openWater"
+  | "structure"
+  | "edgeCruise"
+  | "surfaceVisit"
+  | "feed";
 
 export type FishInstance = {
   id: string;
@@ -79,6 +94,7 @@ export type FishInstance = {
   behaviorMode: FishBehaviorMode;
   behaviorTimeRemainingSec: number;
   target?: Vec2;
+  targetKind?: FishTargetKind;
   hunger: number;
   seed: number;
 };

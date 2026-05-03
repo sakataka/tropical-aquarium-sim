@@ -181,6 +181,7 @@ function createFish(speciesId: string, index: number): FishInstance {
       y: TANK_60CM.heightCm *
         (zone.minY + (((index * 13) % 100) / 100) * (zone.maxY - zone.minY)),
     },
+    targetKind: "openWater",
     hunger: 0.35 + Math.random() * 0.45,
     seed: 1000 + index * 7919,
   };

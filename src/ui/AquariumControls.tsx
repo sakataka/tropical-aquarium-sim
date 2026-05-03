@@ -91,7 +91,8 @@ export function AquariumControls({
               <div>
                 <span>{species?.displayName ?? item.speciesId}</span>
                 <small>
-                  {getBehaviorLabel(item.behaviorMode)} / z {item.depth.toFixed(2)}
+                  {getBehaviorLabel(item.behaviorMode)} /{" "}
+                  {getTargetKindLabel(item.targetKind)} / z {item.depth.toFixed(2)}
                 </small>
               </div>
               <button
@@ -121,4 +122,20 @@ function getBehaviorLabel(mode: FishInstance["behaviorMode"]): string {
     return "餌へ";
   }
   return "停止";
+}
+
+function getTargetKindLabel(kind: FishInstance["targetKind"]): string {
+  if (kind === "structure") {
+    return "構造物";
+  }
+  if (kind === "edgeCruise") {
+    return "壁沿い";
+  }
+  if (kind === "surfaceVisit") {
+    return "表層";
+  }
+  if (kind === "feed") {
+    return "餌";
+  }
+  return "遊泳";
 }

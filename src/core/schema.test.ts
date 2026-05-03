@@ -24,6 +24,11 @@ const validSpecies = {
     kickIntervalSecMin: 0.8,
     kickIntervalSecMax: 1.8,
     kickDurationSec: 0.22,
+    pauseDurationSecMin: 0.8,
+    pauseDurationSecMax: 1.8,
+    feedDurationSecMin: 0.5,
+    feedDurationSecMax: 1.2,
+    feedSpeedMultiplier: 0.75,
     coastDragPerSec: 0.4,
     wanderStrength: 0.25,
   },
@@ -49,6 +54,10 @@ const validSpecies = {
     edgeCruiseChance: 0.15,
     structureAffinity: 0.4,
     surfaceAffinity: 0.2,
+    zoneHoldStrength: 0.8,
+    surfaceVisitChance: 0.05,
+    foodResponsiveness: 0.65,
+    structurePatrolStrength: 0.35,
   },
 };
 
@@ -62,5 +71,29 @@ describe("fish species schema", () => {
 
     expect(() => parseFishSpeciesDefinition(withoutBounds)).toThrow();
     expect(sourceBodyBounds.width).toBe(80);
+  });
+
+  it("requires behavior controls for target selection", () => {
+    const invalidSpecies = {
+      ...validSpecies,
+      behavior: {
+        ...validSpecies.behavior,
+        zoneHoldStrength: undefined,
+      },
+    };
+
+    expect(() => parseFishSpeciesDefinition(invalidSpecies)).toThrow();
+  });
+
+  it("requires motion durations for species-specific state timing", () => {
+    const invalidSpecies = {
+      ...validSpecies,
+      motion: {
+        ...validSpecies.motion,
+        pauseDurationSecMax: undefined,
+      },
+    };
+
+    expect(() => parseFishSpeciesDefinition(invalidSpecies)).toThrow();
   });
 });

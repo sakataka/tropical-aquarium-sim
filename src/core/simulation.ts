@@ -1,6 +1,7 @@
 import type {
   FeedingEvent,
   FishInstance,
+  FishTargetKind,
   FishSpeciesDefinition,
   SimulationInput,
   SimulationOutput,
@@ -11,6 +12,11 @@ import type {
 const TWO_PI = Math.PI * 2;
 const FOOD_ATTRACTION_RADIUS_CM = 28;
 const STRUCTURE_X_RATIOS = [0.14, 0.84];
+
+type TargetChoice = {
+  position: Vec2;
+  kind: FishTargetKind;
+};
 
 export function stepSimulation(input: SimulationInput): SimulationOutput {
   const deltaSec = Math.max(0, Math.min(input.deltaSec, 0.25));
@@ -71,6 +77,7 @@ function stepFish(params: {
     tank: params.tank,
     behaviorMode: behavior.behaviorMode,
     target: behavior.target,
+    targetKind: behavior.targetKind,
     feeding: params.feeding,
     random,
   });
@@ -97,6 +104,7 @@ function stepFish(params: {
     behaviorMode: behavior.behaviorMode,
     behaviorTimeRemainingSec: behavior.behaviorTimeRemainingSec,
     target: behavior.target,
+    targetKind: behavior.targetKind,
     hunger: clamp(
       params.feeding
         ? params.fish.hunger - params.feeding.strength * params.deltaSec * 0.35
@@ -115,22 +123,43 @@ function chooseBehavior(params: {
   deltaSec: number;
   feeding?: SimulationInput["feeding"];
   random: () => number;
-}): Pick<FishInstance, "behaviorMode" | "behaviorTimeRemainingSec" | "target"> {
-  if (params.feeding && params.fish.hunger > 0.15 && isFoodNearby(params.fish, params.feeding)) {
+}): Pick<FishInstance, "behaviorMode" | "behaviorTimeRemainingSec" | "target" | "targetKind"> {
+  if (
+    params.feeding &&
+    params.fish.hunger > 0.15 &&
+    isFoodNearby(params.fish, params.feeding, params.species)
+  ) {
     return {
       behaviorMode: "feed",
-      behaviorTimeRemainingSec: 0.7 + params.random() * 1.1,
+      behaviorTimeRemainingSec: randomBetween(
+        params.species.motion.feedDurationSecMin,
+        params.species.motion.feedDurationSecMax,
+        params.random,
+      ),
       target: params.feeding.position,
+      targetKind: "feed",
     };
   }
 
   const remaining = params.fish.behaviorTimeRemainingSec - params.deltaSec;
 
   if (remaining > 0) {
+    if (params.fish.behaviorMode === "feed") {
+      const nextTarget = chooseTarget(params.fish, params.species, params.tank, params.random);
+
+      return {
+        behaviorMode: "coast",
+        behaviorTimeRemainingSec: remaining,
+        target: nextTarget.position,
+        targetKind: nextTarget.kind,
+      };
+    }
+
     return {
-      behaviorMode: params.fish.behaviorMode === "feed" ? "coast" : params.fish.behaviorMode,
+      behaviorMode: params.fish.behaviorMode,
       behaviorTimeRemainingSec: remaining,
       target: params.fish.target,
+      targetKind: params.fish.targetKind ?? "openWater",
     };
   }
 
@@ -140,8 +169,13 @@ function chooseBehavior(params: {
   if (shouldPause) {
     return {
       behaviorMode: "pause",
-      behaviorTimeRemainingSec: 0.9 + params.random() * 2.4,
+      behaviorTimeRemainingSec: randomBetween(
+        params.species.motion.pauseDurationSecMin,
+        params.species.motion.pauseDurationSecMax,
+        params.random,
+      ),
       target: params.fish.target,
+      targetKind: params.fish.targetKind ?? "openWater",
     };
   }
 
@@ -154,13 +188,17 @@ function chooseBehavior(params: {
           (params.species.motion.kickIntervalSecMax -
             params.species.motion.kickIntervalSecMin),
       target: params.fish.target,
+      targetKind: params.fish.targetKind ?? "openWater",
     };
   }
+
+  const nextTarget = chooseTarget(params.fish, params.species, params.tank, params.random);
 
   return {
     behaviorMode: "kick",
     behaviorTimeRemainingSec: params.species.motion.kickDurationSec,
-    target: chooseTarget(params.fish, params.species, params.tank, params.random),
+    target: nextTarget.position,
+    targetKind: nextTarget.kind,
   };
 }
 
@@ -172,6 +210,7 @@ function getDesiredVelocity(params: {
   tank: TankDefinition;
   behaviorMode: FishInstance["behaviorMode"];
   target?: Vec2;
+  targetKind?: FishTargetKind;
   feeding?: SimulationInput["feeding"];
   random: () => number;
 }): Vec2 {
@@ -182,7 +221,8 @@ function getDesiredVelocity(params: {
   const target =
     params.behaviorMode === "feed" && params.feeding
       ? params.feeding.position
-      : params.target ?? chooseTarget(params.fish, params.species, params.tank, params.random);
+      : params.target ??
+        chooseTarget(params.fish, params.species, params.tank, params.random).position;
 
   const targetPull = normalize(subtract(target, params.fish.position));
   const sideways = { x: -targetPull.y, y: targetPull.x };
@@ -198,12 +238,25 @@ function getDesiredVelocity(params: {
   );
   const boundary = getBoundaryVector(params.fish.position, params.tank, params.species);
   const boundaryPressure = clamp(length(boundary) / 4, 0, 0.85);
+  const zone = getPreferredZoneVector(params.fish.position, params.tank, params.species);
+  const structurePatrol = getStructurePatrolVector(
+    params.fish.position,
+    params.tank,
+    params.species,
+    params.targetKind ?? params.fish.targetKind ?? "openWater",
+  );
+  const feedPull =
+    params.behaviorMode === "feed"
+      ? 1 + params.species.behavior.foodResponsiveness * 0.8
+      : 0.86;
 
   const direction = normalize(
     addMany(
-      scale(targetPull, (params.behaviorMode === "feed" ? 1.35 : 0.86) * (1 - boundaryPressure)),
+      scale(targetPull, feedPull * (1 - boundaryPressure)),
       scale(wander, (params.behaviorMode === "feed" ? 0.1 : 0.55) * (1 - boundaryPressure)),
       schooling,
+      zone,
+      structurePatrol,
       boundary,
     ),
   );
@@ -219,7 +272,7 @@ function chooseTarget(
   species: FishSpeciesDefinition,
   tank: TankDefinition,
   random: () => number,
-): Vec2 {
+): TargetChoice {
   const zone = species.preferredZone;
   const currentXRatio = fish.position.x / tank.widthCm;
   const nearVerticalGlass =
@@ -235,7 +288,22 @@ function chooseTarget(
     return chooseEdgeCruiseTarget(fish, species, tank, random);
   }
 
-  const shouldVisitStructure = random() < species.behavior.structureAffinity;
+  const shouldVisitSurface = random() < species.behavior.surfaceVisitChance;
+  if (shouldVisitSurface) {
+    return {
+      kind: "surfaceVisit",
+      position: {
+        x: tank.widthCm * lerp(zone.minX, zone.maxX, random()),
+        y: tank.heightCm * lerp(0.04, Math.min(0.16, zone.minY + 0.08), random()),
+      },
+    };
+  }
+
+  const shouldContinuePatrol =
+    fish.targetKind === "structure" &&
+    random() < species.behavior.structurePatrolStrength * 0.35;
+  const shouldVisitStructure =
+    shouldContinuePatrol || random() < species.behavior.structureAffinity;
   const xRatio = shouldVisitStructure
     ? STRUCTURE_X_RATIOS[random() < 0.5 ? 0 : 1] + lerp(-0.06, 0.06, random())
     : undefined;
@@ -247,15 +315,18 @@ function chooseTarget(
     random() < 0.45;
 
   return {
-    x: tank.widthCm *
-      (xRatio !== undefined
-        ? clamp(xRatio, zone.minX, zone.maxX)
-        : preferOppositeSide
-        ? currentXRatio < 0.5
-          ? lerp(0.54, zone.maxX, random())
-          : lerp(zone.minX, 0.46, random())
-        : lerp(zone.minX, zone.maxX, random())),
-    y: tank.heightCm * lerp(yMin, yMax, random()),
+    kind: shouldVisitStructure ? "structure" : "openWater",
+    position: {
+      x: tank.widthCm *
+        (xRatio !== undefined
+          ? clamp(xRatio, zone.minX, zone.maxX)
+          : preferOppositeSide
+          ? currentXRatio < 0.5
+            ? lerp(0.54, zone.maxX, random())
+            : lerp(zone.minX, 0.46, random())
+          : lerp(zone.minX, zone.maxX, random())),
+      y: tank.heightCm * lerp(yMin, yMax, random()),
+    },
   };
 }
 
@@ -264,7 +335,7 @@ function chooseEdgeCruiseTarget(
   species: FishSpeciesDefinition,
   tank: TankDefinition,
   random: () => number,
-): Vec2 {
+): TargetChoice {
   const zone = species.preferredZone;
   const xRatio = fish.position.x / tank.widthCm;
   const yRatio = fish.position.y / tank.heightCm;
@@ -273,18 +344,24 @@ function chooseEdgeCruiseTarget(
 
   if (followLeftOrRight) {
     return {
-      x: tank.widthCm * (xRatio < 0.5 ? lerp(0.1, 0.2, random()) : lerp(0.8, 0.9, random())),
-      y: tank.heightCm * clamp(
-        yRatio + (random() < 0.5 ? -1 : 1) * lerp(0.16, 0.34, random()),
-        zone.minY,
-        zone.maxY,
-      ),
+      kind: "edgeCruise",
+      position: {
+        x: tank.widthCm * (xRatio < 0.5 ? lerp(0.1, 0.2, random()) : lerp(0.8, 0.9, random())),
+        y: tank.heightCm * clamp(
+          yRatio + (random() < 0.5 ? -1 : 1) * lerp(0.16, 0.34, random()),
+          zone.minY,
+          zone.maxY,
+        ),
+      },
     };
   }
 
   return {
-    x: tank.widthCm * lerp(zone.minX, zone.maxX, random()),
-    y: tank.heightCm * (yRatio < 0.5 ? lerp(0.1, 0.2, random()) : lerp(0.8, 0.9, random())),
+    kind: "edgeCruise",
+    position: {
+      x: tank.widthCm * lerp(zone.minX, zone.maxX, random()),
+      y: tank.heightCm * (yRatio < 0.5 ? lerp(0.1, 0.2, random()) : lerp(0.8, 0.9, random())),
+    },
   };
 }
 
@@ -293,7 +370,7 @@ function getModeSpeed(
   species: FishSpeciesDefinition,
 ): number {
   if (behaviorMode === "feed") {
-    return species.burstSpeedCmPerSec * 0.72;
+    return species.burstSpeedCmPerSec * species.motion.feedSpeedMultiplier;
   }
   if (behaviorMode === "kick") {
     return species.burstSpeedCmPerSec;
@@ -301,8 +378,15 @@ function getModeSpeed(
   return species.cruisingSpeedCmPerSec;
 }
 
-function isFoodNearby(fish: FishInstance, feeding: FeedingEvent): boolean {
-  return length(subtract(feeding.position, fish.position)) <= FOOD_ATTRACTION_RADIUS_CM;
+function isFoodNearby(
+  fish: FishInstance,
+  feeding: FeedingEvent,
+  species: FishSpeciesDefinition,
+): boolean {
+  const responseMultiplier = lerp(0.55, 1.35, species.behavior.foodResponsiveness);
+
+  return length(subtract(feeding.position, fish.position)) <=
+    FOOD_ATTRACTION_RADIUS_CM * responseMultiplier;
 }
 
 function getSchoolingVector(
@@ -394,6 +478,61 @@ function getSchoolingVector(
         0.7 *
         Math.min(1, attractionWeight),
     ),
+  );
+}
+
+function getPreferredZoneVector(
+  position: Vec2,
+  tank: TankDefinition,
+  species: FishSpeciesDefinition,
+): Vec2 {
+  const zone = species.preferredZone;
+  const xRatio = position.x / tank.widthCm;
+  const yRatio = position.y / tank.heightCm;
+  const nearest = {
+    x: tank.widthCm * clamp(xRatio, zone.minX, zone.maxX),
+    y: tank.heightCm * clamp(yRatio, zone.minY, zone.maxY),
+  };
+  const distanceFromZone = subtract(nearest, position);
+
+  if (length(distanceFromZone) <= 0.001) {
+    return { x: 0, y: 0 };
+  }
+
+  return scale(
+    normalize(distanceFromZone),
+    species.behavior.zoneHoldStrength * clamp(length(distanceFromZone) / 12, 0, 1),
+  );
+}
+
+function getStructurePatrolVector(
+  position: Vec2,
+  tank: TankDefinition,
+  species: FishSpeciesDefinition,
+  targetKind: FishTargetKind,
+): Vec2 {
+  if (targetKind !== "structure" || species.behavior.structurePatrolStrength <= 0) {
+    return { x: 0, y: 0 };
+  }
+
+  const nearestStructureRatio = STRUCTURE_X_RATIOS.reduce((nearest, current) => {
+    return Math.abs(position.x / tank.widthCm - current) <
+      Math.abs(position.x / tank.widthCm - nearest)
+      ? current
+      : nearest;
+  }, STRUCTURE_X_RATIOS[0]);
+  const structurePosition = {
+    x: tank.widthCm * nearestStructureRatio,
+    y: tank.heightCm * clamp(
+      position.y / tank.heightCm,
+      species.preferredZone.minY,
+      species.preferredZone.maxY,
+    ),
+  };
+
+  return scale(
+    normalize(subtract(structurePosition, position)),
+    species.behavior.structurePatrolStrength * 0.55,
   );
 }
 
@@ -531,4 +670,8 @@ function clampAngle(angle: number, maxAbs: number): number {
 
 function lerp(start: number, end: number, amount: number): number {
   return start + (end - start) * amount;
+}
+
+function randomBetween(min: number, max: number, random: () => number): number {
+  return min + random() * (max - min);
 }

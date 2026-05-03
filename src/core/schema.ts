@@ -41,6 +41,10 @@ export const speciesBehaviorProfileSchema = z.object({
   edgeCruiseChance: z.number().finite().min(0).max(1),
   structureAffinity: z.number().finite().min(0).max(1),
   surfaceAffinity: z.number().finite().min(0).max(1),
+  zoneHoldStrength: z.number().finite().min(0).max(2),
+  surfaceVisitChance: z.number().finite().min(0).max(1),
+  foodResponsiveness: z.number().finite().min(0).max(1),
+  structurePatrolStrength: z.number().finite().min(0).max(1),
 }).refine((profile) => profile.separationBodyLengths < profile.alignmentBodyLengths, {
   message: "behavior.separationBodyLengths must be < behavior.alignmentBodyLengths",
   path: ["separationBodyLengths"],
@@ -53,11 +57,22 @@ export const swimMotionProfileSchema = z.object({
   kickIntervalSecMin: z.number().finite().positive(),
   kickIntervalSecMax: z.number().finite().positive(),
   kickDurationSec: z.number().finite().positive(),
+  pauseDurationSecMin: z.number().finite().positive(),
+  pauseDurationSecMax: z.number().finite().positive(),
+  feedDurationSecMin: z.number().finite().positive(),
+  feedDurationSecMax: z.number().finite().positive(),
+  feedSpeedMultiplier: z.number().finite().positive().max(2),
   coastDragPerSec: z.number().finite().min(0).max(1),
   wanderStrength: z.number().finite().min(0).max(1),
 }).refine((profile) => profile.kickIntervalSecMin <= profile.kickIntervalSecMax, {
   message: "motion.kickIntervalSecMin must be <= motion.kickIntervalSecMax",
   path: ["kickIntervalSecMin"],
+}).refine((profile) => profile.pauseDurationSecMin <= profile.pauseDurationSecMax, {
+  message: "motion.pauseDurationSecMin must be <= motion.pauseDurationSecMax",
+  path: ["pauseDurationSecMin"],
+}).refine((profile) => profile.feedDurationSecMin <= profile.feedDurationSecMax, {
+  message: "motion.feedDurationSecMin must be <= motion.feedDurationSecMax",
+  path: ["feedDurationSecMin"],
 });
 
 export const fishAnimationProfileSchema = z.object({

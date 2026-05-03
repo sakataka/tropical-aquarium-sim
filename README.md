@@ -48,6 +48,7 @@ http://127.0.0.1:5173/?view=dev
 魚種ごとに `src/content/fish/<species-id>/species.json` と `side.png` を追加します。コード側で魚種別の if 文は追加しません。
 泳ぎのアニメーションを入れる場合は `src/content/fish/<species-id>/swim/frame-01.png` のような連番PNGを追加し、`species.json` の `animation.framePattern` と `animation.framesPerSecond` を設定します。フレームがない場合は `side.png` の静止表示にフォールバックします。
 魚種ごとの習性は `species.json` の `behavior` に集約します。群れで近づく/離れる距離、壁際を巡回する頻度、水草寄り、表層寄りなどを魚種ごとに調整できます。
+シミュレーション上では、泳ぎ先の理由を `targetKind` として `openWater` / `structure` / `edgeCruise` / `surfaceVisit` / `feed` に分け、魚一覧にも現在の移動傾向を表示します。
 
 `species.json` の重要項目:
 
@@ -58,6 +59,7 @@ http://127.0.0.1:5173/?view=dev
 - `preferredZone`: 水槽内で好む泳層
 - `schooling`: 群れ行動の弱い追従設定
 - `behavior`: 魚種ごとの距離感、壁回避、構造物/表層の好み
+- `motion`: キック、惰性、停止、餌への移動の時間と速度感
 
 表示サイズは次の式で決まります。
 
