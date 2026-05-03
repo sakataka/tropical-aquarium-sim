@@ -1,5 +1,7 @@
 export * from "./catalog";
+export * from "./aquariumEvents";
 export * from "./customization";
+export * from "./fishPopulation";
 export * from "./scale";
 export * from "./schema";
 export * from "./simulation";
