@@ -32,6 +32,7 @@ type FishSpriteRecord = {
   shadow: Graphics;
   fallback: Graphics;
   pectoralFins: Graphics;
+  tailFlutter: Graphics;
   loadedAnimationKey?: string;
   visualX?: number;
   visualY?: number;
@@ -259,6 +260,7 @@ export function AquariumCanvas({
         record.sprite.destroy();
         record.shadow.destroy();
         record.pectoralFins.destroy();
+        record.tailFlutter.destroy();
         record.fallback.destroy();
         fishSpritesRef.current.delete(id);
       }
@@ -288,6 +290,13 @@ export function AquariumCanvas({
           .fill({ color: 0xe8ffff, alpha: 0.18 })
           .ellipse(-6, -8, 5, 12)
           .fill({ color: 0xe8ffff, alpha: 0.12 });
+        const tailFlutter = new Graphics()
+          .moveTo(-34, 0)
+          .lineTo(-60, -18)
+          .lineTo(-52, 0)
+          .lineTo(-60, 18)
+          .closePath()
+          .fill({ color: 0xd8ffff, alpha: 0.16 });
         fallback
           .ellipse(0, 0, 44, 14)
           .fill({ color: fallbackFishColor(definition.id), alpha: 0.82 })
@@ -298,8 +307,8 @@ export function AquariumCanvas({
           .closePath()
           .fill({ color: fallbackFishColor(definition.id), alpha: 0.74 });
         sprite.anchor.set(0.5);
-        fishLayer.addChild(shadow, fallback, pectoralFins, sprite);
-        record = { sprite, shadow, fallback, pectoralFins };
+        fishLayer.addChild(shadow, fallback, tailFlutter, pectoralFins, sprite);
+        record = { sprite, shadow, fallback, pectoralFins, tailFlutter };
         fishSpritesRef.current.set(fishInstance.id, record);
       }
 
@@ -412,6 +421,15 @@ export function AquariumCanvas({
       record.pectoralFins.scale.set(smoothedDirectionScale * 0.78, record.visualScale * 0.78);
       record.pectoralFins.alpha =
         record.sprite.texture === Texture.EMPTY ? 0 : record.visualAlpha * tailPulse.finAlpha;
+      record.tailFlutter.x = record.visualX;
+      record.tailFlutter.y = record.visualY;
+      record.tailFlutter.rotation = record.visualRotation + tailPulse.tailFlutter;
+      record.tailFlutter.scale.set(
+        smoothedDirectionScale * 0.82,
+        record.visualScale * (0.72 + tailPulse.tailFan),
+      );
+      record.tailFlutter.alpha =
+        record.sprite.texture === Texture.EMPTY ? 0 : record.visualAlpha * tailPulse.tailAlpha;
       record.fallback.x = record.visualX;
       record.fallback.y = record.visualY;
       record.fallback.rotation = record.visualRotation;
@@ -430,6 +448,7 @@ export function AquariumCanvas({
       const sortKey = fishInstance.depth * 10000 + y;
       record.sprite.zIndex = sortKey + 1;
       record.pectoralFins.zIndex = sortKey + 0.8;
+      record.tailFlutter.zIndex = sortKey + 0.7;
       record.fallback.zIndex = sortKey + 1;
       record.shadow.zIndex = sortKey;
     }
@@ -599,10 +618,10 @@ function animateTankLayers(
 ) {
   const slowWave = Math.sin(nowMs / 2600);
   const fastWave = Math.sin(nowMs / 1500);
-  rearDecorLayer.x = slowWave * app.screen.width * 0.002;
-  rearDecorLayer.skew.x = slowWave * 0.004;
-  frontDecorLayer.x = fastWave * app.screen.width * 0.003;
-  frontDecorLayer.skew.x = fastWave * 0.006;
+  rearDecorLayer.x = slowWave * app.screen.width * 0.004;
+  rearDecorLayer.skew.x = slowWave * 0.008;
+  frontDecorLayer.x = fastWave * app.screen.width * 0.008;
+  frontDecorLayer.skew.x = fastWave * 0.014;
 
   const sheen = glassEffectsLayer.getChildByName("surface-sheen");
   if (sheen) {
@@ -696,7 +715,7 @@ async function ensureBubbleParticles(
   for (let i = 0; i < 44; i += 1) {
     const source = i % 3;
     const originXRatio = source === 0 ? 0.08 : source === 1 ? 0.19 : 0.91;
-    const radius = 1.3 + (i % 6) * 0.42;
+    const radius = 4.5 + (i % 6) * 1.8;
     const depth = ((i * 17) % 100) / 100;
     const sprite = new Sprite(texture);
     sprite.anchor.set(0.5);
@@ -736,8 +755,8 @@ function updateBubbleParticles(
     bubble.sprite.x = app.screen.width * bubble.originXRatio + sway * bubble.driftPx;
     bubble.sprite.y = app.screen.height * bubble.yRatio;
     bubble.sprite.rotation = sway * 0.18;
-    bubble.sprite.scale.set((bubble.radius / 28) * (0.72 + bubble.depth * 0.48));
-    bubble.sprite.alpha = Math.max(0, Math.min(0.76, 0.2 + bubble.yRatio * 0.42));
+    bubble.sprite.scale.set((bubble.radius / 28) * (0.82 + bubble.depth * 0.56));
+    bubble.sprite.alpha = Math.max(0, Math.min(0.68, 0.18 + bubble.yRatio * 0.36));
   }
 }
 
@@ -760,6 +779,9 @@ function getTailPulse(
   sideFlex: number;
   finFlutter: number;
   finAlpha: number;
+  tailFlutter: number;
+  tailFan: number;
+  tailAlpha: number;
 } {
   const speed = Math.hypot(fish.velocity.x, fish.velocity.y);
   const speedAmount = Math.min(1, speed / 12);
@@ -776,6 +798,9 @@ function getTailPulse(
     sideFlex: flutter * speedAmount * modeAmount * 0.018,
     finFlutter: flutter * speedAmount * 0.18,
     finAlpha: 0.26 + Math.abs(flutter) * 0.22,
+    tailFlutter: wave * speedAmount * modeAmount * 0.28,
+    tailFan: Math.abs(wave) * speedAmount * modeAmount * 0.45,
+    tailAlpha: 0.13 + Math.abs(wave) * speedAmount * modeAmount * 0.18,
   };
 }
 
