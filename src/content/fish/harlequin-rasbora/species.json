@@ -4,10 +4,10 @@
   "realBodyLengthCm": 4.5,
   "sideImage": "./side.png",
   "sourceBodyBounds": {
-    "x": 270,
-    "y": 356,
-    "width": 1060,
-    "height": 320
+    "x": 220,
+    "y": 185,
+    "width": 1165,
+    "height": 564
   },
   "cruisingSpeedCmPerSec": 3.1,
   "burstSpeedCmPerSec": 12.5,

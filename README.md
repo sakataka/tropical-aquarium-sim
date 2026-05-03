@@ -70,7 +70,7 @@ spriteScale = targetBodyLengthPx / sourceBodyBounds.width
 
 ## 初期アセット
 
-初期版では生成AIまたは手元生成で作成した以下の画像を使用しています。
+初期版では世界観を揃えるため、画像生成で作成した以下の画像を使用しています。
 
 - `src/content/environment/aquarium-background.png`
 - `src/content/fish/neon-tetra/side.png`
@@ -81,4 +81,4 @@ spriteScale = targetBodyLengthPx / sourceBodyBounds.width
 - `src/content/fish/harlequin-rasbora/side.png`
 
 魚画像は左向き横姿勢、背景透過PNGとして扱い、右向きは実行時に反転します。
-水槽背景は単一背景に加えて `src/content/environment/layers/` の透明PNGレイヤー、泡用の `bubble.png`、PixiJS 上の水面/光/底面/流木/小砂利/浮遊粒子レイヤーを重ねて奥行きと動きを作ります。
+水槽背景は画像生成した単一背景に加えて `src/content/environment/layers/` の透明PNGレイヤー、泡用の `bubble.png`、PixiJS 上の水面/光レイヤーを重ねて奥行きと動きを作ります。
