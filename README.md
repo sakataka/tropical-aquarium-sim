@@ -32,6 +32,8 @@ http://127.0.0.1:5173/?view=dev
 - `src/ui`: 魚追加、餌やり、一時停止、dev画面
 - `src/content`: 魚種ごとの `species.json` と画像、水槽背景画像
 
+今後の開発方向性は [docs/development-directions.md](docs/development-directions.md) に整理しています。
+
 ## 魚種追加
 
 魚種ごとに `src/content/fish/<species-id>/species.json` と `side.png` を追加します。コード側で魚種別の if 文は追加しません。
