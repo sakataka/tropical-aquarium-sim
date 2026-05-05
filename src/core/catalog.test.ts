@@ -2,14 +2,16 @@ import { describe, expect, it } from "vitest";
 import { fishCatalog } from "./catalog";
 
 describe("fish catalog", () => {
-  it("loads the viewing-focused six species set", () => {
+  it("loads the viewing-focused species set", () => {
     expect(Object.keys(fishCatalog).sort()).toEqual([
       "angelfish",
       "corydoras",
       "dwarf-gourami",
       "guppy",
       "harlequin-rasbora",
+      "kuhli-loach",
       "neon-tetra",
+      "platy",
     ]);
   });
 
@@ -17,6 +19,7 @@ describe("fish catalog", () => {
     expect(fishCatalog.corydoras.animation).toBeUndefined();
     expect(fishCatalog["dwarf-gourami"].animation).toBeUndefined();
     expect(fishCatalog["harlequin-rasbora"].animation).toBeUndefined();
+    expect(fishCatalog.platy.animation).toBeUndefined();
   });
 
   it("loads species-level behavior differences for real-fish motion profiles", () => {
@@ -31,6 +34,9 @@ describe("fish catalog", () => {
     );
     expect(fishCatalog.angelfish.motion.wanderStrength).toBeLessThan(
       fishCatalog["neon-tetra"].motion.wanderStrength,
+    );
+    expect(fishCatalog["kuhli-loach"].preferredZone.minY).toBeGreaterThan(
+      fishCatalog.platy.preferredZone.minY,
     );
   });
 });

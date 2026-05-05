@@ -1,5 +1,5 @@
 import { z } from "zod";
-import type { FishSpeciesDefinition } from "./types";
+import type { FishGuideEntry, FishSpeciesDefinition } from "./types";
 
 export const bodyBoundsSchema = z.object({
   x: z.number().finite().min(0),
@@ -84,12 +84,17 @@ export const fishAnimationProfileSchema = z.object({
   framesPerSecond: z.number().finite().positive().max(30),
 });
 
+export const fishVisualProfileSchema = z.object({
+  fallbackColor: z.string().regex(/^#[0-9a-fA-F]{6}$/),
+});
+
 export const fishSpeciesDefinitionSchema = z.object({
   id: z.string().min(1),
   displayName: z.string().min(1),
   realBodyLengthCm: z.number().finite().positive(),
   sideImage: z.string().min(1),
   animation: fishAnimationProfileSchema.optional(),
+  visual: fishVisualProfileSchema.optional(),
   sourceBodyBounds: bodyBoundsSchema,
   cruisingSpeedCmPerSec: z.number().finite().positive(),
   burstSpeedCmPerSec: z.number().finite().positive(),
@@ -100,6 +105,17 @@ export const fishSpeciesDefinitionSchema = z.object({
   schooling: schoolingProfileSchema,
   behavior: speciesBehaviorProfileSchema,
 }) satisfies z.ZodType<FishSpeciesDefinition>;
+
+export const fishGuideEntrySchema = z.object({
+  scientificName: z.string().min(1),
+  origin: z.string().min(1),
+  temperament: z.string().min(1),
+  movement: z.string().min(1),
+  habitat: z.string().min(1),
+  note: z.string().min(1),
+}) satisfies z.ZodType<FishGuideEntry>;
+
+export const fishGuideSchema = z.record(fishGuideEntrySchema);
 
 export function parseFishSpeciesDefinition(
   value: unknown,

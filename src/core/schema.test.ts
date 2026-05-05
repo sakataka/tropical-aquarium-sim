@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { parseFishSpeciesDefinition } from "./schema";
+import { fishGuideSchema, parseFishSpeciesDefinition } from "./schema";
 
 const validSpecies = {
   id: "valid-fish",
@@ -99,5 +99,22 @@ describe("fish species schema", () => {
     };
 
     expect(() => parseFishSpeciesDefinition(invalidSpecies)).toThrow();
+  });
+});
+
+describe("fish guide schema", () => {
+  it("accepts data-driven fish guide entries", () => {
+    const guide = fishGuideSchema.parse({
+      "valid-fish": {
+        scientificName: "Validus piscis",
+        origin: "設定ファイル内の原産地説明",
+        temperament: "温和",
+        movement: "中層を泳ぐ",
+        habitat: "水草のある水槽",
+        note: "表示用の補足",
+      },
+    });
+
+    expect(guide["valid-fish"].scientificName).toBe("Validus piscis");
   });
 });

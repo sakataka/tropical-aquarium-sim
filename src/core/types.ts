@@ -62,12 +62,17 @@ export type FishAnimationProfile = {
   framesPerSecond: number;
 };
 
+export type FishVisualProfile = {
+  fallbackColor: string;
+};
+
 export type FishSpeciesDefinition = {
   id: string;
   displayName: string;
   realBodyLengthCm: number;
   sideImage: string;
   animation?: FishAnimationProfile;
+  visual?: FishVisualProfile;
   sourceBodyBounds: BodyBounds;
   cruisingSpeedCmPerSec: number;
   burstSpeedCmPerSec: number;
@@ -77,6 +82,15 @@ export type FishSpeciesDefinition = {
   preferredZone: PreferredZone;
   schooling: SchoolingProfile;
   behavior: SpeciesBehaviorProfile;
+};
+
+export type FishGuideEntry = {
+  scientificName: string;
+  origin: string;
+  temperament: string;
+  movement: string;
+  habitat: string;
+  note: string;
 };
 
 export type FishBehaviorMode = "kick" | "coast" | "pause" | "feed" | "tapFlee" | "tapFreeze" | "tapApproach";
@@ -165,4 +179,12 @@ export type AquariumCustomization = {
 export type AquariumPreset = AquariumCustomization & {
   id: string;
   displayName: string;
+};
+
+export type AquariumConfig = {
+  storageKey: string;
+  maxFishPerSpecies: number;
+  maxTotalFish: number;
+  defaultEnvironment: AquariumEnvironmentCustomization;
+  presets: AquariumPreset[];
 };

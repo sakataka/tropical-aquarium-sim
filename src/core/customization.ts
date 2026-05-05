@@ -1,5 +1,7 @@
 import { z } from "zod";
+import aquariumConfigJson from "../content/aquarium/customization.json";
 import type {
+  AquariumConfig,
   AquariumCustomization,
   AquariumEnvironmentCustomization,
   AquariumPreset,
@@ -7,68 +9,13 @@ import type {
   FishStockEntry,
 } from "./types";
 
-export const CUSTOMIZATION_STORAGE_KEY = "tropical-aquarium.customization.v1";
-export const MAX_FISH_PER_SPECIES = 12;
-export const MAX_TOTAL_FISH = 30;
-
-export const DEFAULT_ENVIRONMENT: AquariumEnvironmentCustomization = {
+const SCHEMA_DEFAULT_ENVIRONMENT: AquariumEnvironmentCustomization = {
   backgroundStyle: "clear",
   rearPlants: "full",
   foregroundPlants: "full",
   plantDensity: "medium",
   lighting: "natural",
 };
-
-export const aquariumPresets: AquariumPreset[] = [
-  {
-    id: "community",
-    displayName: "コミュニティ水槽",
-    stock: [
-      { speciesId: "neon-tetra", count: 4 },
-      { speciesId: "harlequin-rasbora", count: 4 },
-      { speciesId: "corydoras", count: 3 },
-      { speciesId: "guppy", count: 2 },
-      { speciesId: "dwarf-gourami", count: 1 },
-      { speciesId: "angelfish", count: 1 },
-    ],
-    environment: DEFAULT_ENVIRONMENT,
-  },
-  {
-    id: "school",
-    displayName: "群泳メイン",
-    stock: [
-      { speciesId: "neon-tetra", count: 10 },
-      { speciesId: "harlequin-rasbora", count: 8 },
-      { speciesId: "corydoras", count: 4 },
-    ],
-    environment: {
-      backgroundStyle: "bright",
-      rearPlants: "full",
-      foregroundPlants: "subtle",
-      plantDensity: "high",
-      lighting: "cool",
-    },
-  },
-  {
-    id: "calm",
-    displayName: "落ち着いた夜景",
-    stock: [
-      { speciesId: "corydoras", count: 5 },
-      { speciesId: "dwarf-gourami", count: 2 },
-      { speciesId: "angelfish", count: 1 },
-      { speciesId: "guppy", count: 3 },
-    ],
-    environment: {
-      backgroundStyle: "deep",
-      rearPlants: "subtle",
-      foregroundPlants: "full",
-      plantDensity: "low",
-      lighting: "night",
-    },
-  },
-];
-
-export const DEFAULT_CUSTOMIZATION = aquariumPresets[0];
 
 export const aquariumEnvironmentSchema = z.object({
   backgroundStyle: z.enum(["clear", "deep", "bright"]).default("clear"),
@@ -85,8 +32,30 @@ export const aquariumCustomizationSchema = z.object({
       count: z.number().finite().int().min(0),
     }),
   ).default([]),
-  environment: aquariumEnvironmentSchema.default(DEFAULT_ENVIRONMENT),
+  environment: aquariumEnvironmentSchema.default(SCHEMA_DEFAULT_ENVIRONMENT),
 });
+
+const aquariumConfigSchema = z.object({
+  storageKey: z.string().min(1),
+  maxFishPerSpecies: z.number().finite().int().positive(),
+  maxTotalFish: z.number().finite().int().positive(),
+  defaultEnvironment: aquariumEnvironmentSchema,
+  presets: z.array(
+    aquariumCustomizationSchema.extend({
+      id: z.string().min(1),
+      displayName: z.string().min(1),
+    }),
+  ).min(1),
+});
+
+export const aquariumConfig: AquariumConfig = aquariumConfigSchema.parse(aquariumConfigJson);
+export const CUSTOMIZATION_STORAGE_KEY = aquariumConfig.storageKey;
+export const MAX_FISH_PER_SPECIES = aquariumConfig.maxFishPerSpecies;
+export const MAX_TOTAL_FISH = aquariumConfig.maxTotalFish;
+export const DEFAULT_ENVIRONMENT: AquariumEnvironmentCustomization =
+  aquariumConfig.defaultEnvironment;
+export const aquariumPresets: AquariumPreset[] = aquariumConfig.presets;
+export const DEFAULT_CUSTOMIZATION = aquariumPresets[0];
 
 export function getPresetById(presetId: string | null | undefined): AquariumPreset | undefined {
   return aquariumPresets.find((preset) => preset.id === presetId);

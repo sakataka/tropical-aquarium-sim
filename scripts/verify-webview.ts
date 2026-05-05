@@ -204,7 +204,7 @@ async function main() {
       stage: stage as CheckResult["stage"],
       canvas: canvas as CheckResult["canvas"],
       controlPanelScroll: controlPanelScroll as CheckResult["controlPanelScroll"],
-      fishListText: String(fishListText).slice(0, 320),
+      fishListText: String(fishListText).slice(0, 1000),
       fishRowsBeforeDelete: Number(fishRowsBeforeDelete),
       fishRowsAfterDelete: Number(fishRowsAfterDelete),
       fishRowsAfterPreset: Number(fishRowsAfterPreset),
@@ -220,6 +220,8 @@ async function main() {
     assert(result.title.includes("2D熱帯魚水槽"));
     assert(result.shellText.includes("魚を追加"));
     assert(result.shellText.includes("水槽設定"));
+    assert(result.shellText.includes("プラティ"));
+    assert(result.shellText.includes("クーリーローチ"));
     assert(result.stage.width >= 720 && result.stage.height >= 360);
     assert(result.canvas.width > 0 && result.canvas.height > 0);
     assert(result.canvas.cssWidth >= 720 && result.canvas.cssHeight >= 360);
@@ -230,8 +232,8 @@ async function main() {
     assert(result.fishListText.includes("削除"));
     assert(result.fishRowsBeforeDelete >= 3);
     assert(result.fishRowsAfterDelete === result.fishRowsBeforeDelete - 1);
-    assert(result.fishRowsAfterPreset === 22);
-    assert(result.fishRowsAfterReload === 15);
+    assert(result.fishRowsAfterPreset === 26);
+    assert(result.fishRowsAfterReload === 19);
     assert(result.customizationStatus.includes("保存済み"));
     assert(result.guideText.includes("魚図鑑"));
     assert(result.guideText.includes("原産"));

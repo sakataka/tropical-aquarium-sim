@@ -3,6 +3,9 @@
   "displayName": "ラスボラ・ヘテロモルファ",
   "realBodyLengthCm": 4.5,
   "sideImage": "./side.png",
+  "visual": {
+    "fallbackColor": "#d99655"
+  },
   "sourceBodyBounds": {
     "x": 220,
     "y": 185,

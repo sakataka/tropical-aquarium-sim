@@ -369,13 +369,13 @@ export function AquariumCanvas({
           .fill({ color: 0xd8ffff, alpha: 0.16 });
         fallback
           .ellipse(0, 0, 44, 14)
-          .fill({ color: fallbackFishColor(definition.id), alpha: 0.82 })
+          .fill({ color: fallbackFishColor(definition), alpha: 0.82 })
           .moveTo(-40, 0)
           .lineTo(-62, -14)
           .lineTo(-58, 0)
           .lineTo(-62, 14)
           .closePath()
-          .fill({ color: fallbackFishColor(definition.id), alpha: 0.74 });
+          .fill({ color: fallbackFishColor(definition), alpha: 0.74 });
         sprite.anchor.set(0.5);
         fishLayer.addChild(shadow, fallback, tailFlutter, pectoralFins, sprite);
         record = { sprite, shadow, fallback, pectoralFins, tailFlutter };
@@ -632,17 +632,15 @@ export function AquariumCanvas({
   }
 }
 
-function fallbackFishColor(speciesId: string): number {
-  if (speciesId === "neon-tetra") {
-    return 0x35c7e8;
+function fallbackFishColor(species: FishSpeciesDefinition): number {
+  return parseColorHex(species.visual?.fallbackColor) ?? 0x8bd7d3;
+}
+
+function parseColorHex(color: string | undefined): number | undefined {
+  if (!color?.match(/^#[0-9a-fA-F]{6}$/)) {
+    return undefined;
   }
-  if (speciesId === "guppy") {
-    return 0x2b8fe8;
-  }
-  if (speciesId === "angelfish") {
-    return 0xd8d4c8;
-  }
-  return 0x8bd7d3;
+  return Number.parseInt(color.slice(1), 16);
 }
 
 function addEnvironmentLayerSprite(

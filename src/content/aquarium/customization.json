@@ -1,0 +1,70 @@
+{
+  "storageKey": "tropical-aquarium.customization.v1",
+  "maxFishPerSpecies": 12,
+  "maxTotalFish": 30,
+  "defaultEnvironment": {
+    "backgroundStyle": "clear",
+    "rearPlants": "full",
+    "foregroundPlants": "full",
+    "plantDensity": "medium",
+    "lighting": "natural"
+  },
+  "presets": [
+    {
+      "id": "community",
+      "displayName": "コミュニティ水槽",
+      "stock": [
+        { "speciesId": "neon-tetra", "count": 4 },
+        { "speciesId": "harlequin-rasbora", "count": 4 },
+        { "speciesId": "corydoras", "count": 3 },
+        { "speciesId": "guppy", "count": 2 },
+        { "speciesId": "platy", "count": 2 },
+        { "speciesId": "dwarf-gourami", "count": 1 },
+        { "speciesId": "angelfish", "count": 1 },
+        { "speciesId": "kuhli-loach", "count": 1 }
+      ],
+      "environment": {
+        "backgroundStyle": "clear",
+        "rearPlants": "full",
+        "foregroundPlants": "full",
+        "plantDensity": "medium",
+        "lighting": "natural"
+      }
+    },
+    {
+      "id": "school",
+      "displayName": "群泳メイン",
+      "stock": [
+        { "speciesId": "neon-tetra", "count": 10 },
+        { "speciesId": "harlequin-rasbora", "count": 8 },
+        { "speciesId": "platy", "count": 4 },
+        { "speciesId": "corydoras", "count": 4 }
+      ],
+      "environment": {
+        "backgroundStyle": "bright",
+        "rearPlants": "full",
+        "foregroundPlants": "subtle",
+        "plantDensity": "high",
+        "lighting": "cool"
+      }
+    },
+    {
+      "id": "calm",
+      "displayName": "落ち着いた夜景",
+      "stock": [
+        { "speciesId": "corydoras", "count": 5 },
+        { "speciesId": "kuhli-loach", "count": 3 },
+        { "speciesId": "dwarf-gourami", "count": 2 },
+        { "speciesId": "angelfish", "count": 1 },
+        { "speciesId": "guppy", "count": 3 }
+      ],
+      "environment": {
+        "backgroundStyle": "deep",
+        "rearPlants": "subtle",
+        "foregroundPlants": "full",
+        "plantDensity": "low",
+        "lighting": "night"
+      }
+    }
+  ]
+}

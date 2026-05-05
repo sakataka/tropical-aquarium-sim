@@ -7,6 +7,9 @@
     "framePattern": "./swim/frame-*.png",
     "framesPerSecond": 8
   },
+  "visual": {
+    "fallbackColor": "#2b8fe8"
+  },
   "sourceBodyBounds": {
     "x": 110,
     "y": 185,

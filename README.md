@@ -27,10 +27,10 @@ http://127.0.0.1:5173/?view=guide
 
 ## 構成
 
-- `src/core`: 魚種定義、schema検証、水槽定義、実寸スケール計算、遊泳シミュレーション
+- `src/core`: schema検証、水槽定義、実寸スケール計算、遊泳シミュレーション
 - `src/render`: PixiJS描画、生成画像アセット参照、魚スプライト表示
 - `src/ui`: 魚追加、水槽カスタマイズ、餌やり、一時停止、魚図鑑
-- `src/content`: 魚種ごとの `species.json` と画像、水槽背景画像
+- `src/content`: 魚種ごとの `species.json` と画像、水槽背景画像、プリセットや図鑑文の設定JSON
 
 今後の開発方向性は [docs/development-directions.md](docs/development-directions.md) に整理しています。
 
@@ -43,6 +43,7 @@ http://127.0.0.1:5173/?view=guide
 保存対象は魚の現在座標や PixiJS の描画オブジェクトではなく、魚種ごとの匹数と環境設定だけです。
 魚数は魚種ごとに最大12匹、水槽全体で最大30匹に丸めます。
 壊れた保存データ、未知の魚種、不正な値が入っていた場合は安全なデフォルトへ戻します。
+プリセット、保存キー、魚数上限、デフォルト環境は `src/content/aquarium/customization.json` に集約しています。
 
 組み込みプリセットは URL からも指定できます。
 
@@ -56,16 +57,19 @@ http://127.0.0.1:5173/?preset=calm
 
 ## 魚種
 
-現在は以下の6種を同じ60cm水槽に入れています。
+現在は以下の8種を同じ60cm水槽に入れています。
 
 - `neon-tetra`: 中層の小型群泳魚
 - `harlequin-rasbora`: 中層でまとまりやすい落ち着いた群泳魚
 - `guppy`: 表層寄りに動く小型魚
+- `platy`: 表層から中層で明るい色を足す温和な小型魚
 - `corydoras`: 底層寄りで構造物付近をゆっくり巡回する魚
+- `kuhli-loach`: 底層と物陰を細かく巡回する細長い魚
 - `dwarf-gourami`: 中層から上層をゆったり泳ぐ単独寄りの魚
 - `angelfish`: 中層で存在感を作る大きめの魚
 
 魚種ごとに `src/content/fish/<species-id>/species.json` と `side.png` を追加します。コード側で魚種別の if 文は追加しません。
+魚図鑑の説明文は `src/content/fish/guides.json` に集約します。新しい魚種を追加したら、魚種IDをキーにして同じJSONへ説明文を足します。
 泳ぎのアニメーションを入れる場合は `src/content/fish/<species-id>/swim/frame-01.png` のような連番PNGを追加し、`species.json` の `animation.framePattern` と `animation.framesPerSecond` を設定します。フレームがない場合は `side.png` の静止表示にフォールバックします。
 魚種ごとの習性は `species.json` の `behavior` に集約します。群れで近づく/離れる距離、壁際を巡回する頻度、水草寄り、表層寄りなどを魚種ごとに調整できます。
 シミュレーション上では、泳ぎ先の理由を `targetKind` として `openWater` / `structure` / `edgeCruise` / `surfaceVisit` / `feed` / `tap` に分け、魚一覧にも現在の移動傾向を表示します。
@@ -78,6 +82,7 @@ http://127.0.0.1:5173/?preset=calm
 - `sideImage`: 通常は `./side.png`
 - `animation`: 任意。泳ぎフレームのパターンと基本FPS
 - `sourceBodyBounds`: 元画像内で魚体が占める範囲。実寸スケール計算に必須
+- `visual.fallbackColor`: 魚画像の読み込み前や失敗時に表示する簡易スプライト色
 - `preferredZone`: 水槽内で好む泳層
 - `schooling`: 群れ行動の弱い追従設定
 - `behavior`: 魚種ごとの距離感、壁回避、構造物/表層の好み、タップ反応
@@ -102,8 +107,10 @@ spriteScale = targetBodyLengthPx / sourceBodyBounds.width
 - `src/content/environment/bubble.png`
 - `src/content/fish/neon-tetra/side.png`
 - `src/content/fish/guppy/side.png`
+- `src/content/fish/platy/side.png`
 - `src/content/fish/angelfish/side.png`
 - `src/content/fish/corydoras/side.png`
+- `src/content/fish/kuhli-loach/side.png`
 - `src/content/fish/dwarf-gourami/side.png`
 - `src/content/fish/harlequin-rasbora/side.png`
 

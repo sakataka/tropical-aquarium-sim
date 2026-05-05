@@ -1,0 +1,62 @@
+{
+  "id": "kuhli-loach",
+  "displayName": "クーリーローチ",
+  "realBodyLengthCm": 10,
+  "sideImage": "./side.png",
+  "visual": {
+    "fallbackColor": "#a15c2a"
+  },
+  "sourceBodyBounds": {
+    "x": 80,
+    "y": 295,
+    "width": 1640,
+    "height": 245
+  },
+  "cruisingSpeedCmPerSec": 1.8,
+  "burstSpeedCmPerSec": 8.6,
+  "turnRateRadPerSec": 2.1,
+  "stopProbabilityPerSec": 0.15,
+  "motion": {
+    "kickIntervalSecMin": 1.45,
+    "kickIntervalSecMax": 4.2,
+    "kickDurationSec": 0.2,
+    "pauseDurationSecMin": 1.3,
+    "pauseDurationSecMax": 4.5,
+    "feedDurationSecMin": 0.8,
+    "feedDurationSecMax": 1.7,
+    "feedSpeedMultiplier": 0.64,
+    "coastDragPerSec": 0.52,
+    "wanderStrength": 0.22
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.94,
+    "minY": 0.72,
+    "maxY": 0.94
+  },
+  "schooling": {
+    "enabled": true,
+    "radiusCm": 8,
+    "strength": 0.06
+  },
+  "behavior": {
+    "separationBodyLengths": 1.1,
+    "alignmentBodyLengths": 2.2,
+    "attractionBodyLengths": 4.4,
+    "separationStrength": 1.0,
+    "alignmentStrength": 0.25,
+    "attractionStrength": 0.22,
+    "wallAvoidanceStrength": 4.0,
+    "edgeCruiseChance": 0.3,
+    "structureAffinity": 0.94,
+    "surfaceAffinity": 0.0,
+    "zoneHoldStrength": 1.55,
+    "surfaceVisitChance": 0.0,
+    "foodResponsiveness": 0.46,
+    "tapResponsiveness": 0.74,
+    "tapResponse": "flee",
+    "tapSurfaceBias": 0.0,
+    "tapStructureBias": 0.96,
+    "structurePatrolStrength": 0.92
+  }
+}

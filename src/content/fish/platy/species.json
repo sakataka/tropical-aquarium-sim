@@ -1,0 +1,62 @@
+{
+  "id": "platy",
+  "displayName": "プラティ",
+  "realBodyLengthCm": 5.5,
+  "sideImage": "./side.png",
+  "visual": {
+    "fallbackColor": "#f47a22"
+  },
+  "sourceBodyBounds": {
+    "x": 165,
+    "y": 210,
+    "width": 1200,
+    "height": 560
+  },
+  "cruisingSpeedCmPerSec": 2.8,
+  "burstSpeedCmPerSec": 10.5,
+  "turnRateRadPerSec": 2.5,
+  "stopProbabilityPerSec": 0.07,
+  "motion": {
+    "kickIntervalSecMin": 1.2,
+    "kickIntervalSecMax": 2.8,
+    "kickDurationSec": 0.22,
+    "pauseDurationSecMin": 0.85,
+    "pauseDurationSecMax": 1.95,
+    "feedDurationSecMin": 0.55,
+    "feedDurationSecMax": 1.2,
+    "feedSpeedMultiplier": 0.84,
+    "coastDragPerSec": 0.42,
+    "wanderStrength": 0.3
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.18,
+    "maxY": 0.66
+  },
+  "schooling": {
+    "enabled": true,
+    "radiusCm": 11,
+    "strength": 0.12
+  },
+  "behavior": {
+    "separationBodyLengths": 1.2,
+    "alignmentBodyLengths": 2.6,
+    "attractionBodyLengths": 4.9,
+    "separationStrength": 1.2,
+    "alignmentStrength": 0.55,
+    "attractionStrength": 0.5,
+    "wallAvoidanceStrength": 3.6,
+    "edgeCruiseChance": 0.16,
+    "structureAffinity": 0.24,
+    "surfaceAffinity": 0.38,
+    "zoneHoldStrength": 0.9,
+    "surfaceVisitChance": 0.14,
+    "foodResponsiveness": 0.78,
+    "tapResponsiveness": 0.68,
+    "tapResponse": "flee",
+    "tapSurfaceBias": 0.58,
+    "tapStructureBias": 0.12,
+    "structurePatrolStrength": 0.18
+  }
+}

@@ -3,6 +3,9 @@
   "displayName": "コリドラス",
   "realBodyLengthCm": 6,
   "sideImage": "./side.png",
+  "visual": {
+    "fallbackColor": "#b8c3aa"
+  },
   "sourceBodyBounds": {
     "x": 93,
     "y": 134,

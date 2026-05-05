@@ -3,6 +3,9 @@
   "displayName": "ドワーフグラミー",
   "realBodyLengthCm": 7,
   "sideImage": "./side.png",
+  "visual": {
+    "fallbackColor": "#d56d58"
+  },
   "sourceBodyBounds": {
     "x": 231,
     "y": 155,

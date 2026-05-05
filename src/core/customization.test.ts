@@ -19,6 +19,12 @@ describe("aquarium customization", () => {
       "school",
       "calm",
     ]);
+    expect(aquariumPresets[0].stock).toEqual(
+      expect.arrayContaining([
+        { speciesId: "platy", count: 2 },
+        { speciesId: "kuhli-loach", count: 1 },
+      ]),
+    );
   });
 
   it("normalizes missing and invalid saved data to the default preset", () => {
