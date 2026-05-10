@@ -115,7 +115,7 @@ export const fishGuideEntrySchema = z.object({
   note: z.string().min(1),
 }) satisfies z.ZodType<FishGuideEntry>;
 
-export const fishGuideSchema = z.record(fishGuideEntrySchema);
+export const fishGuideSchema = z.record(z.string(), fishGuideEntrySchema);
 
 export function parseFishSpeciesDefinition(
   value: unknown,
