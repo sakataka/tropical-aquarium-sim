@@ -31,6 +31,7 @@ type AquariumCanvasProps = {
   latestFeeding?: FeedingEvent;
   latestTap?: TapEvent;
   onDoubleTapTank?: (position: Vec2) => void;
+  onReady?: () => void;
 };
 
 type FishSpriteRecord = {
@@ -68,6 +69,7 @@ export function AquariumCanvas({
   latestFeeding,
   latestTap,
   onDoubleTapTank,
+  onReady,
 }: AquariumCanvasProps) {
   const hostRef = useRef<HTMLDivElement | null>(null);
   const appRef = useRef<Application | null>(null);
@@ -107,6 +109,8 @@ export function AquariumCanvas({
     appRef.current = app;
 
     async function setup() {
+      await waitForWindowLoad();
+
       await app.init({
         resizeTo: hostElement,
         preference: "webgl",
@@ -121,7 +125,6 @@ export function AquariumCanvas({
         return;
       }
 
-      hostElement.appendChild(app.canvas);
       const root = new Container();
       const backplate = new Container();
       const rearDecor = new Container();
@@ -146,6 +149,25 @@ export function AquariumCanvas({
 
       drawStaticTank(app, backplate, rearDecor, frontDecor, glassEffects, environment);
       ensureBubbleParticles(app, bubbles, bubblesRef.current);
+      hostElement.appendChild(app.canvas);
+      await preloadInitialTankAssets(fishRef.current, speciesRef.current, textureCacheRef.current);
+
+      if (disposed) {
+        app.destroy(true);
+        return;
+      }
+
+      updateFishSprites(
+        app,
+        fishLayer,
+        textureCacheRef.current,
+        0,
+        {
+          fish: fishRef.current,
+          species: speciesRef.current,
+          tank,
+        },
+      );
       app.ticker.add((ticker) => {
         const deltaSec = Math.min(0.05, ticker.deltaMS / 1000);
         animateTankLayers(app, rearDecor, frontDecor, glassEffects, performance.now());
@@ -164,6 +186,11 @@ export function AquariumCanvas({
         updateFood(app, food, latestFeedingRef.current);
         updateTapRipple(app, glassEffects, latestTapRef.current);
         drawWaterOverlay(app, glassEffects, paused);
+      });
+      requestAnimationFrame(() => {
+        if (!disposed) {
+          onReady?.();
+        }
       });
     }
 
@@ -391,7 +418,7 @@ export function AquariumCanvas({
         record.loadedAnimationKey !== animationKey
       ) {
         record.loadedAnimationKey = animationKey;
-        loadImageTextures(frameUrls).then((textures) => {
+        loadImageTextures(frameUrls, textureCache).then((textures) => {
           if (textures.length < 2) {
             return;
           }
@@ -400,19 +427,20 @@ export function AquariumCanvas({
             (fishInstance.seed % textures.length + textures.length) % textures.length,
           );
           record.sprite.play();
+        }).catch(() => {
+          record.loadedAnimationKey = undefined;
         });
       } else if (url && record.sprite.texture === Texture.EMPTY) {
         const cached = textureCache.get(url);
         if (cached) {
           record.sprite.textures = [cached];
         } else {
-          loadImageTexture(url).then((texture) => {
-            textureCache.set(url, texture);
+          loadImageTexture(url, textureCache).then((texture) => {
             if (!record) {
               return;
             }
             record.sprite.textures = [texture];
-          });
+          }).catch(() => undefined);
         }
       }
 
@@ -507,7 +535,7 @@ export function AquariumCanvas({
         fishInstance.facing === 1 ? -fallbackScale : fallbackScale,
         fallbackScale,
       );
-      record.fallback.alpha = record.sprite.texture === Texture.EMPTY ? record.visualAlpha : 0;
+      record.fallback.alpha = 0;
       record.fallback.tint = record.sprite.tint;
 
       record.shadow.x = record.visualX;
@@ -630,6 +658,54 @@ export function AquariumCanvas({
       foregroundLayer.addChild(text);
     }
   }
+}
+
+async function preloadInitialTankAssets(
+  fish: FishInstance[],
+  species: Record<string, FishSpeciesDefinition>,
+  textureCache: Map<string, Texture>,
+) {
+  const visibleFishUrls = new Set<string>();
+
+  for (const fishInstance of fish) {
+    const definition = species[fishInstance.speciesId];
+    if (!definition) {
+      continue;
+    }
+
+    const frameUrls = getFishAnimationFrameUrls(definition.id);
+    if (definition.animation && frameUrls.length >= 2) {
+      for (const url of frameUrls) {
+        visibleFishUrls.add(url);
+      }
+      continue;
+    }
+
+    const sideUrl = getFishImageUrl(definition.id);
+    if (sideUrl) {
+      visibleFishUrls.add(sideUrl);
+    }
+  }
+
+  await Promise.allSettled([
+    withLoadTimeout(Assets.load<Texture>(environmentAssets.aquariumBackgroundUrl)),
+    withLoadTimeout(Assets.load<Texture>(environmentAssets.rearPlantsUrl)),
+    withLoadTimeout(Assets.load<Texture>(environmentAssets.foregroundPlantsUrl)),
+    withLoadTimeout(Assets.load<Texture>(environmentAssets.bubbleParticleUrl)),
+    ...Array.from(visibleFishUrls, async (url) => {
+      await loadImageTexture(url, textureCache);
+    }),
+  ]);
+}
+
+function waitForWindowLoad(): Promise<void> {
+  if (document.readyState === "complete") {
+    return Promise.resolve();
+  }
+
+  return new Promise((resolve) => {
+    window.addEventListener("load", () => resolve(), { once: true });
+  });
 }
 
 function fallbackFishColor(species: FishSpeciesDefinition): number {
@@ -1052,15 +1128,53 @@ function smoothAngle(
   return current + delta * amount;
 }
 
-function loadImageTexture(url: string): Promise<Texture> {
+async function loadImageTexture(url: string, textureCache?: Map<string, Texture>): Promise<Texture> {
+  const cached = textureCache?.get(url);
+  if (cached) {
+    return cached;
+  }
+
   return new Promise((resolve, reject) => {
     const image = new Image();
-    image.onload = () => resolve(Texture.from(image));
-    image.onerror = () => reject(new Error(`Failed to load image: ${url}`));
+    const timeout = window.setTimeout(() => {
+      reject(new Error(`Timed out loading image: ${url}`));
+    }, 3200);
+    image.onload = () => {
+      window.clearTimeout(timeout);
+      const texture = Texture.from(image);
+      textureCache?.set(url, texture);
+      resolve(texture);
+    };
+    image.onerror = () => {
+      window.clearTimeout(timeout);
+      reject(new Error(`Failed to load image: ${url}`));
+    };
     image.src = url;
   });
 }
 
-async function loadImageTextures(urls: string[]): Promise<Texture[]> {
-  return Promise.all(urls.map((url) => loadImageTexture(url)));
+async function loadImageTextures(
+  urls: string[],
+  textureCache?: Map<string, Texture>,
+): Promise<Texture[]> {
+  return Promise.all(urls.map((url) => loadImageTexture(url, textureCache)));
+}
+
+function withLoadTimeout<T>(promise: Promise<T>, timeoutMs = 3200): Promise<T> {
+  return new Promise((resolve, reject) => {
+    const timeout = window.setTimeout(() => {
+      reject(new Error("Timed out loading aquarium asset."));
+    }, timeoutMs);
+
+    promise.then(
+      (value) => {
+        window.clearTimeout(timeout);
+        resolve(value);
+      },
+      (error: unknown) => {
+        window.clearTimeout(timeout);
+        reject(error);
+      },
+    );
+  });
 }

@@ -43,6 +43,7 @@ export default function App() {
   );
   const [saveStatus, setSaveStatus] = useState("保存済み");
   const [paused, setPaused] = useState(false);
+  const [aquariumReady, setAquariumReady] = useState(false);
   const [viewMode, setViewMode] = useState<"tank" | "guide">(() => {
     const view = new URLSearchParams(window.location.search).get("view");
     return view === "guide" || view === "dev"
@@ -140,16 +141,25 @@ export default function App() {
     <main className="app-shell">
       <section className="aquarium-stage" ref={aquariumShellRef}>
         {viewMode === "tank" ? (
-          <AquariumCanvas
-            fish={fish}
-            species={fishCatalog}
-            tank={TANK_60CM}
-            environment={customization.environment}
-            paused={paused}
-            latestFeeding={getActiveFeeding(latestFeeding)}
-            latestTap={getActiveTap(latestTap)}
-            onDoubleTapTank={(position) => setLatestTap(createTapEvent(position))}
-          />
+          <>
+            <AquariumCanvas
+              fish={fish}
+              species={fishCatalog}
+              tank={TANK_60CM}
+              environment={customization.environment}
+              paused={paused}
+              latestFeeding={getActiveFeeding(latestFeeding)}
+              latestTap={getActiveTap(latestTap)}
+              onDoubleTapTank={(position) => setLatestTap(createTapEvent(position))}
+              onReady={() => setAquariumReady(true)}
+            />
+            {!aquariumReady ? (
+              <div className="aquarium-loading" aria-live="polite">
+                <div className="loading-current" aria-hidden="true" />
+                <p>水槽を準備中</p>
+              </div>
+            ) : null}
+          </>
         ) : (
           <FishGuideView
             speciesList={speciesList}
