@@ -21,6 +21,7 @@ type TargetChoice = {
 
 export function stepSimulation(input: SimulationInput): SimulationOutput {
   const deltaSec = Math.max(0, Math.min(input.deltaSec, 0.25));
+  const fishBySpecies = groupFishBySpecies(input.fish);
   const nextFish = input.fish.map((fish) => {
     const species = input.species[fish.speciesId];
 
@@ -30,7 +31,7 @@ export function stepSimulation(input: SimulationInput): SimulationOutput {
 
     return stepFish({
       fish,
-      allFish: input.fish,
+      sameSpeciesFish: fishBySpecies.get(fish.speciesId) ?? [],
       species,
       speciesById: input.species,
       tank: input.tank,
@@ -47,7 +48,7 @@ export function stepSimulation(input: SimulationInput): SimulationOutput {
 
 function stepFish(params: {
   fish: FishInstance;
-  allFish: FishInstance[];
+  sameSpeciesFish: FishInstance[];
   species: FishSpeciesDefinition;
   speciesById: Record<string, FishSpeciesDefinition>;
   tank: TankDefinition;
@@ -76,7 +77,7 @@ function stepFish(params: {
   const desiredVelocity = getDesiredVelocity({
     fish: params.fish,
     species: params.species,
-    allFish: params.allFish,
+    sameSpeciesFish: params.sameSpeciesFish,
     speciesById: params.speciesById,
     tank: params.tank,
     behaviorMode: behavior.behaviorMode,
@@ -215,7 +216,7 @@ function chooseBehavior(params: {
 function getDesiredVelocity(params: {
   fish: FishInstance;
   species: FishSpeciesDefinition;
-  allFish: FishInstance[];
+  sameSpeciesFish: FishInstance[];
   speciesById: Record<string, FishSpeciesDefinition>;
   tank: TankDefinition;
   behaviorMode: FishInstance["behaviorMode"];
@@ -246,7 +247,7 @@ function getDesiredVelocity(params: {
   const wander = scale(sideways, wanderWave * 0.26);
   const schooling = getSchoolingVector(
     params.fish,
-    params.allFish,
+    params.sameSpeciesFish,
     params.species,
     params.speciesById,
   );
@@ -513,7 +514,7 @@ function getTapTarget(
 
 function getSchoolingVector(
   fish: FishInstance,
-  allFish: FishInstance[],
+  sameSpeciesFish: FishInstance[],
   species: FishSpeciesDefinition,
   speciesById: Record<string, FishSpeciesDefinition>,
 ): Vec2 {
@@ -521,16 +522,19 @@ function getSchoolingVector(
     return { x: 0, y: 0 };
   }
 
-  const neighbors = allFish.filter((candidate) => {
-    if (candidate.id === fish.id || candidate.speciesId !== fish.speciesId) {
-      return false;
+  const neighbors: FishInstance[] = [];
+  for (const candidate of sameSpeciesFish) {
+    if (candidate.id === fish.id) {
+      continue;
     }
 
     const candidateSpecies = speciesById[candidate.speciesId];
     const distance = length(subtract(candidate.position, fish.position));
 
-    return Boolean(candidateSpecies) && distance <= species.schooling.radiusCm;
-  });
+    if (candidateSpecies && distance <= species.schooling.radiusCm) {
+      neighbors.push(candidate);
+    }
+  }
 
   if (neighbors.length === 0) {
     return { x: 0, y: 0 };
@@ -725,6 +729,21 @@ function keepInTank(position: Vec2, tank: TankDefinition): Vec2 {
     x: clamp(position.x, tank.safeMarginCm, tank.widthCm - tank.safeMarginCm),
     y: clamp(position.y, tank.safeMarginCm, tank.heightCm - tank.safeMarginCm),
   };
+}
+
+function groupFishBySpecies(fish: FishInstance[]): Map<string, FishInstance[]> {
+  const groups = new Map<string, FishInstance[]>();
+
+  for (const fishInstance of fish) {
+    const group = groups.get(fishInstance.speciesId);
+    if (group) {
+      group.push(fishInstance);
+    } else {
+      groups.set(fishInstance.speciesId, [fishInstance]);
+    }
+  }
+
+  return groups;
 }
 
 function createStepRng(seed: number): () => { value: number; seed: number } {

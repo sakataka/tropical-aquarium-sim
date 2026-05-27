@@ -60,6 +60,12 @@ type BubbleParticleRecord = {
   depth: number;
 };
 
+type FoodGraphicsRecord = {
+  plume: Graphics;
+  pellets: Graphics[];
+  ripple: Graphics;
+};
+
 export function AquariumCanvas({
   fish,
   species,
@@ -90,11 +96,15 @@ export function AquariumCanvas({
   const speciesRef = useRef(species);
   const latestFeedingRef = useRef(latestFeeding);
   const latestTapRef = useRef(latestTap);
+  const pausedRef = useRef(paused);
+  const foodGraphicsRef = useRef<FoodGraphicsRecord | null>(null);
+  const tapRippleRef = useRef<Graphics | null>(null);
 
   fishRef.current = fish;
   speciesRef.current = species;
   latestFeedingRef.current = latestFeeding;
   latestTapRef.current = latestTap;
+  pausedRef.current = paused;
 
   useEffect(() => {
     let disposed = false;
@@ -133,6 +143,7 @@ export function AquariumCanvas({
       const food = new Container();
       const frontDecor = new Container();
       const glassEffects = new Container();
+      fishLayer.sortableChildren = true;
 
       root.addChild(backplate, rearDecor, bubbles, fishLayer, food, frontDecor, glassEffects);
       app.stage.addChild(root);
@@ -185,7 +196,7 @@ export function AquariumCanvas({
         );
         updateFood(app, food, latestFeedingRef.current);
         updateTapRipple(app, glassEffects, latestTapRef.current);
-        drawWaterOverlay(app, glassEffects, paused);
+        drawWaterOverlay(app, glassEffects, pausedRef.current);
       });
       requestAnimationFrame(() => {
         if (!disposed) {
@@ -200,6 +211,8 @@ export function AquariumCanvas({
       disposed = true;
       fishSpritesRef.current.clear();
       bubblesRef.current = [];
+      foodGraphicsRef.current = null;
+      tapRippleRef.current = null;
       app.destroy(true, {
         children: true,
         texture: false,
@@ -207,7 +220,7 @@ export function AquariumCanvas({
       appRef.current = null;
       layerRef.current = null;
     };
-  }, [environment, paused, tank]);
+  }, [environment, tank]);
 
   return (
     <div
@@ -551,7 +564,6 @@ export function AquariumCanvas({
       record.shadow.zIndex = sortKey;
     }
 
-    fishLayer.sortableChildren = true;
     fishLayer.sortChildren();
   }
 
@@ -560,34 +572,38 @@ export function AquariumCanvas({
     foodLayer: Container,
     feeding?: FeedingEvent,
   ) {
-    foodLayer.removeChildren();
     if (!feeding) {
+      foodLayer.visible = false;
       return;
     }
 
+    foodLayer.visible = true;
+    const record = getFoodGraphicsRecord(foodLayer);
     const ageSec =
       (performance.now() - (feeding.createdAtMs ?? performance.now())) / 1000;
     const x = (feeding.position.x / tank.widthCm) * app.screen.width;
     const y = (feeding.position.y / tank.heightCm) * app.screen.height;
-    const plume = new Graphics()
+
+    record.plume
+      .clear()
       .ellipse(x, y + 28, 44, 78)
       .fill({ color: 0xd6bd79, alpha: Math.max(0.04, 0.16 - ageSec * 0.018) });
-    foodLayer.addChild(plume);
 
     for (let i = 0; i < 24; i += 1) {
       const drift = Math.sin(ageSec * 1.6 + i * 1.9) * (6 + (i % 5) * 2);
-      const pellet = new Graphics()
+      const pellet = record.pellets[i];
+      pellet
+        .clear()
         .circle(0, 0, 2.2 + (i % 3) * 0.45)
         .fill({ color: i % 2 === 0 ? 0xe0bd6b : 0xba8140, alpha: 0.92 });
       pellet.x = x + drift + Math.sin(i * 2.4) * 18;
       pellet.y = y - 18 + i * 5.6 + ageSec * (5 + (i % 4));
-      foodLayer.addChild(pellet);
     }
 
-    const ripple = new Graphics()
+    record.ripple
+      .clear()
       .ellipse(x, Math.max(14, app.screen.height * 0.04), 34 + ageSec * 5, 6)
       .stroke({ color: 0xf7e6ae, alpha: Math.max(0.05, 0.44 - ageSec * 0.06), width: 2 });
-    foodLayer.addChild(ripple);
   }
 
   function updateTapRipple(
@@ -595,24 +611,25 @@ export function AquariumCanvas({
     foregroundLayer: Container,
     tapEvent?: TapEvent,
   ) {
-    const rippleName = "tap-ripple";
-    foregroundLayer.getChildByName(rippleName)?.destroy();
+    const ripple = getTapRipple(foregroundLayer);
     if (!tapEvent) {
+      ripple.visible = false;
       return;
     }
 
     const ageSec =
       (performance.now() - (tapEvent.createdAtMs ?? performance.now())) / 1000;
     if (ageSec > 1.2) {
+      ripple.visible = false;
       return;
     }
 
+    ripple.visible = true;
     const progress = Math.min(1, ageSec / 1.2);
     const x = (tapEvent.position.x / tank.widthCm) * app.screen.width;
     const y = (tapEvent.position.y / tank.heightCm) * app.screen.height;
-    const ripple = new Graphics();
-    ripple.name = rippleName;
     ripple
+      .clear()
       .ellipse(x, y, 12 + progress * 36, 4 + progress * 13)
       .stroke({
         color: 0xd8fbff,
@@ -625,7 +642,6 @@ export function AquariumCanvas({
         alpha: 0.22 * (1 - progress),
         width: 1,
       });
-    foregroundLayer.addChild(ripple);
   }
 
   function drawWaterOverlay(
@@ -656,7 +672,42 @@ export function AquariumCanvas({
       text.x = app.screen.width - 96;
       text.y = 24;
       foregroundLayer.addChild(text);
+    } else {
+      existing.x = app.screen.width - 96;
+      existing.y = 24;
     }
+  }
+
+  function getFoodGraphicsRecord(foodLayer: Container): FoodGraphicsRecord {
+    if (foodGraphicsRef.current) {
+      return foodGraphicsRef.current;
+    }
+
+    const plume = new Graphics();
+    const pellets = Array.from({ length: 24 }, () => new Graphics());
+    const ripple = new Graphics();
+    foodLayer.addChild(plume, ...pellets, ripple);
+    foodGraphicsRef.current = {
+      plume,
+      pellets,
+      ripple,
+    };
+
+    return foodGraphicsRef.current;
+  }
+
+  function getTapRipple(foregroundLayer: Container): Graphics {
+    if (tapRippleRef.current) {
+      return tapRippleRef.current;
+    }
+
+    const ripple = new Graphics();
+    ripple.name = "tap-ripple";
+    ripple.visible = false;
+    foregroundLayer.addChild(ripple);
+    tapRippleRef.current = ripple;
+
+    return ripple;
   }
 }
 
