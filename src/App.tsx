@@ -138,7 +138,7 @@ export default function App() {
   }, [latestTap]);
 
   return (
-    <main className="app-shell">
+    <main className="app-shell" data-lighting={customization.environment.lighting}>
       <section className="aquarium-stage" ref={aquariumShellRef}>
         {viewMode === "tank" ? (
           <>
@@ -155,8 +155,12 @@ export default function App() {
             />
             {!aquariumReady ? (
               <div className="aquarium-loading" aria-live="polite">
-                <div className="loading-current" aria-hidden="true" />
-                <p>水槽を準備中</p>
+                <div className="loading-bubbles" aria-hidden="true">
+                  <span />
+                  <span />
+                  <span />
+                </div>
+                <p>注水中...</p>
               </div>
             ) : null}
           </>

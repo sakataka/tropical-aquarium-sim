@@ -8,6 +8,7 @@ import {
   type FishSpeciesDefinition,
   type TankDefinition,
 } from "../core";
+import type { CSSProperties } from "react";
 
 type AquariumControlsProps = {
   speciesList: FishSpeciesDefinition[];
@@ -30,6 +31,10 @@ type AquariumControlsProps = {
   onFeed: () => void;
   onTogglePaused: () => void;
   onViewModeChange: (mode: "tank" | "guide") => void;
+};
+
+type MeterStyle = CSSProperties & {
+  "--hunger": string;
 };
 
 export function AquariumControls({
@@ -56,14 +61,15 @@ export function AquariumControls({
 }: AquariumControlsProps) {
   const totalFish = customization.stock.reduce((sum, entry) => sum + entry.count, 0);
   const selectedCount = getStockCount(customization, selectedSpeciesId);
+  const lightingLabel = getLightingLabel(customization.environment.lighting);
 
   return (
     <aside className="control-panel">
       <div className="panel-heading">
-        <p className="app-label">2D Tropical Aquarium</p>
+        <p className="app-label">Kono-etto Aquarium</p>
         <h1>60cm水槽</h1>
         <p>
-          {tank.widthCm} x {tank.heightCm} x {tank.depthCm}cm / {fish.length}匹
+          {tank.widthCm} x {tank.heightCm} x {tank.depthCm}cm / {fish.length}匹 / {lightingLabel}
         </p>
       </div>
 
@@ -104,12 +110,15 @@ export function AquariumControls({
           onClick={onAddFish}
           type="button"
         >
+          <span className="button-icon" aria-hidden="true">+</span>
           魚を追加
         </button>
         <button onClick={onFeed} type="button">
+          <span className="button-icon food-icon" aria-hidden="true" />
           エサやり
         </button>
         <button onClick={onTogglePaused} type="button">
+          <span className="button-icon" aria-hidden="true">{paused ? ">" : "II"}</span>
           {paused ? "再開" : "一時停止"}
         </button>
       </div>
@@ -117,7 +126,7 @@ export function AquariumControls({
       <section className="settings-section" aria-label="水槽設定">
         <div className="section-heading">
           <h2>水槽設定</h2>
-          <span>{saveStatus}</span>
+          <span className="save-status">{saveStatus}</span>
         </div>
 
         <label className="field">
@@ -126,7 +135,7 @@ export function AquariumControls({
             value={activePresetId}
             onChange={(event) => onPresetChange(event.currentTarget.value)}
           >
-            <option disabled value="custom">カスタム</option>
+            <option disabled value="custom">現在の組み合わせ</option>
             {presets.map((preset) => (
               <option key={preset.id} value={preset.id}>
                 {preset.displayName}
@@ -255,18 +264,30 @@ export function AquariumControls({
       </section>
 
       <div className="fish-list">
-        <h2>魚一覧</h2>
+        <div className="fish-list-heading">
+          <h2>生体カード</h2>
+          <span>{totalFish}匹</span>
+        </div>
         {fish.map((item) => {
           const species = speciesList.find((candidate) => candidate.id === item.speciesId);
+          const hungerPercent = Math.round(item.hunger * 100);
           return (
             <div className="fish-row" key={item.id}>
-              <div>
-                <span>{species?.displayName ?? item.speciesId}</span>
-                <small>
-                  {getBehaviorLabel(item.behaviorMode)} /{" "}
-                  {getTargetKindLabel(item.targetKind)} / {getHungerLabel(item.hunger)} / z{" "}
-                  {item.depth.toFixed(2)}
-                </small>
+              <div className="fish-card-copy">
+                <div className="fish-card-title">
+                  <span>{species?.displayName ?? item.speciesId}</span>
+                  <small>{getHungerLabel(item.hunger)}</small>
+                </div>
+                <p>{getLifeStatus(item, customization.environment.lighting, paused)}</p>
+                <div className="fish-card-meta" aria-label="生体の様子">
+                  <span>{getTargetKindLabel(item.targetKind)}</span>
+                  <span>{getDepthLabel(item.depth)}</span>
+                </div>
+                <div
+                  className="hunger-meter"
+                  aria-label={`空腹度 ${hungerPercent}%`}
+                  style={{ "--hunger": `${hungerPercent}%` } as MeterStyle}
+                />
               </div>
               <button
                 aria-label={`${species?.displayName ?? item.speciesId}を削除`}
@@ -288,31 +309,9 @@ function getStockCount(customization: AquariumCustomization, speciesId: string):
   return customization.stock.find((entry) => entry.speciesId === speciesId)?.count ?? 0;
 }
 
-function getBehaviorLabel(mode: FishInstance["behaviorMode"]): string {
-  if (mode === "kick") {
-    return "キック";
-  }
-  if (mode === "coast") {
-    return "惰性";
-  }
-  if (mode === "feed") {
-    return "餌へ";
-  }
-  if (mode === "tapFlee") {
-    return "退避";
-  }
-  if (mode === "tapFreeze") {
-    return "警戒";
-  }
-  if (mode === "tapApproach") {
-    return "様子見";
-  }
-  return "停止";
-}
-
 function getTargetKindLabel(kind: FishInstance["targetKind"]): string {
   if (kind === "structure") {
-    return "構造物";
+    return "水草の影";
   }
   if (kind === "edgeCruise") {
     return "壁沿い";
@@ -324,17 +323,83 @@ function getTargetKindLabel(kind: FishInstance["targetKind"]): string {
     return "餌";
   }
   if (kind === "tap") {
-    return "タップ";
+    return "タップ反応";
   }
-  return "遊泳";
+  return "遊泳中";
 }
 
 function getHungerLabel(hunger: number): string {
   if (hunger >= 0.72) {
-    return "空腹";
+    return "ごはん待ち";
   }
   if (hunger <= 0.24) {
     return "満腹";
   }
-  return "ふつう";
+  return "ほどよい";
+}
+
+function getLifeStatus(
+  fish: FishInstance,
+  lighting: AquariumEnvironmentCustomization["lighting"],
+  paused: boolean,
+): string {
+  if (paused) {
+    return "静かな水の中で待機中";
+  }
+  if (lighting === "night" && fish.behaviorMode !== "feed") {
+    return fish.targetKind === "structure"
+      ? "水草の影でおやすみ中"
+      : "夜の水槽をゆっくり探索中";
+  }
+  if (fish.behaviorMode === "feed") {
+    return "落ちてくるごはんへ移動中";
+  }
+  if (fish.behaviorMode === "tapFlee") {
+    return "タップの波紋から退避中";
+  }
+  if (fish.behaviorMode === "tapFreeze") {
+    return "タップの波紋を警戒中";
+  }
+  if (fish.behaviorMode === "tapApproach") {
+    return "タップの波紋を観察中";
+  }
+  if (fish.behaviorMode === "pause") {
+    return "水草の近くでひと休み";
+  }
+  if (fish.hunger >= 0.72) {
+    return "水面を見ながらごはん待ち";
+  }
+  if (fish.targetKind === "surfaceVisit") {
+    return "表層をのんびり回遊中";
+  }
+  if (fish.targetKind === "edgeCruise") {
+    return "ガラス沿いを遊泳中";
+  }
+  if (fish.targetKind === "structure") {
+    return "水草の影を巡回中";
+  }
+  return "のんびり遊泳中";
+}
+
+function getDepthLabel(depth: number): string {
+  if (depth >= 0.68) {
+    return "奥の層";
+  }
+  if (depth <= 0.28) {
+    return "手前の層";
+  }
+  return "中層";
+}
+
+function getLightingLabel(lighting: AquariumEnvironmentCustomization["lighting"]): string {
+  if (lighting === "cool") {
+    return "クール照明";
+  }
+  if (lighting === "evening") {
+    return "夕景照明";
+  }
+  if (lighting === "night") {
+    return "夜景照明";
+  }
+  return "自然光";
 }

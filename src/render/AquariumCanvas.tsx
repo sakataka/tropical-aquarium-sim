@@ -40,6 +40,8 @@ type FishSpriteRecord = {
   fallback: Graphics;
   pectoralFins: Graphics;
   tailFlutter: Graphics;
+  arrivalBubbles: Graphics;
+  arrivalStartedAtMs: number;
   loadedAnimationKey?: string;
   visualX?: number;
   visualY?: number;
@@ -371,6 +373,7 @@ export function AquariumCanvas({
         record.shadow.destroy();
         record.pectoralFins.destroy();
         record.tailFlutter.destroy();
+        record.arrivalBubbles.destroy();
         record.fallback.destroy();
         fishSpritesRef.current.delete(id);
       }
@@ -407,6 +410,7 @@ export function AquariumCanvas({
           .lineTo(-60, 18)
           .closePath()
           .fill({ color: 0xd8ffff, alpha: 0.16 });
+        const arrivalBubbles = new Graphics();
         fallback
           .ellipse(0, 0, 44, 14)
           .fill({ color: fallbackFishColor(definition), alpha: 0.82 })
@@ -417,8 +421,16 @@ export function AquariumCanvas({
           .closePath()
           .fill({ color: fallbackFishColor(definition), alpha: 0.74 });
         sprite.anchor.set(0.5);
-        fishLayer.addChild(shadow, fallback, tailFlutter, pectoralFins, sprite);
-        record = { sprite, shadow, fallback, pectoralFins, tailFlutter };
+        fishLayer.addChild(shadow, fallback, arrivalBubbles, tailFlutter, pectoralFins, sprite);
+        record = {
+          sprite,
+          shadow,
+          fallback,
+          pectoralFins,
+          tailFlutter,
+          arrivalBubbles,
+          arrivalStartedAtMs: performance.now(),
+        };
         fishSpritesRef.current.set(fishInstance.id, record);
       }
 
@@ -478,7 +490,8 @@ export function AquariumCanvas({
         (1.04 - fishInstance.depth * 0.1);
       const fallbackScale = fallbackBodyLengthPx / 88;
 
-      const tailPulse = getTailPulse(fishInstance, performance.now());
+      const nowMs = performance.now();
+      const tailPulse = getTailPulse(fishInstance, nowMs);
       const targetRotation = getBodyRotation(fishInstance);
       const positionEase = fishInstance.behaviorMode === "kick" ? 9.5 : 5.2;
       const transformEase = fishInstance.behaviorMode === "kick" ? 11 : 6.4;
@@ -555,11 +568,13 @@ export function AquariumCanvas({
       record.shadow.y = app.screen.height * 0.91;
       record.shadow.scale.set(0.7 + (1 - fishInstance.depth) * 0.4, 0.55);
       record.shadow.alpha = 0.05 + (1 - fishInstance.depth) * 0.12;
+      updateArrivalBubbles(record, nowMs, record.visualX, record.visualY, record.visualScale);
 
       const sortKey = fishInstance.depth * 10000 + y;
       record.sprite.zIndex = sortKey + 1;
       record.pectoralFins.zIndex = sortKey + 0.8;
       record.tailFlutter.zIndex = sortKey + 0.7;
+      record.arrivalBubbles.zIndex = sortKey + 0.6;
       record.fallback.zIndex = sortKey + 1;
       record.shadow.zIndex = sortKey;
     }
@@ -649,32 +664,61 @@ export function AquariumCanvas({
     foregroundLayer: Container,
     isPaused: boolean,
   ) {
+    const scrimName = "pause-scrim";
+    const badgeName = "pause-badge";
     const labelName = "pause-label";
-    const existing = foregroundLayer.getChildByName(labelName);
+    const scrim = foregroundLayer.getChildByName(scrimName);
+    const badge = foregroundLayer.getChildByName(badgeName);
+    const label = foregroundLayer.getChildByName(labelName);
     if (!isPaused) {
-      existing?.destroy();
+      scrim?.destroy();
+      badge?.destroy();
+      label?.destroy();
       return;
     }
 
-    if (!existing) {
+    const activeScrim = scrim instanceof Graphics ? scrim : new Graphics();
+    activeScrim.name = scrimName;
+    activeScrim
+      .clear()
+      .rect(0, 0, app.screen.width, app.screen.height)
+      .fill({ color: 0x06131a, alpha: 0.28 });
+    if (!activeScrim.parent) {
+      foregroundLayer.addChild(activeScrim);
+    }
+
+    const badgeWidth = 142;
+    const badgeX = Math.max(18, app.screen.width - badgeWidth - 24);
+    const activeBadge = badge instanceof Graphics ? badge : new Graphics();
+    activeBadge.name = badgeName;
+    activeBadge
+      .clear()
+      .roundRect(badgeX, 22, badgeWidth, 34, 14)
+      .fill({ color: 0xd8fbff, alpha: 0.13 })
+      .stroke({ color: 0xe7ffff, alpha: 0.28, width: 1 });
+    if (!activeBadge.parent) {
+      foregroundLayer.addChild(activeBadge);
+    }
+
+    if (!label || !(label instanceof Text)) {
       const text = new Text({
-        text: "PAUSED",
+        text: "時間停止中",
         style: {
-          fill: "#d8f8ff",
+          fill: "#e9fdff",
           fontFamily: "system-ui, sans-serif",
-          fontSize: 18,
+          fontSize: 13,
           fontWeight: "700",
           letterSpacing: 0,
         },
       });
       text.name = labelName;
-      text.alpha = 0.72;
-      text.x = app.screen.width - 96;
-      text.y = 24;
+      text.alpha = 0.82;
+      text.x = badgeX + 28;
+      text.y = 30;
       foregroundLayer.addChild(text);
     } else {
-      existing.x = app.screen.width - 96;
-      existing.y = 24;
+      label.x = badgeX + 28;
+      label.y = 30;
     }
   }
 
@@ -708,6 +752,32 @@ export function AquariumCanvas({
     tapRippleRef.current = ripple;
 
     return ripple;
+  }
+}
+
+function updateArrivalBubbles(
+  record: FishSpriteRecord,
+  nowMs: number,
+  x: number,
+  y: number,
+  scale: number,
+) {
+  const ageSec = (nowMs - record.arrivalStartedAtMs) / 1000;
+  record.arrivalBubbles.clear();
+  if (ageSec > 1.6) {
+    return;
+  }
+
+  const progress = Math.min(1, ageSec / 1.6);
+  const alpha = 0.32 * (1 - progress);
+  for (let i = 0; i < 7; i += 1) {
+    const phase = i * 1.74;
+    const rise = progress * (22 + i * 4) * Math.max(0.75, scale);
+    const drift = Math.sin(progress * 5 + phase) * (7 + i * 1.8);
+    const radius = 2.2 + (i % 3) * 1.15 + progress * 2.1;
+    record.arrivalBubbles
+      .circle(x - 18 * scale + drift, y + 14 * scale - rise, radius)
+      .stroke({ color: 0xeaffff, alpha: alpha * (0.72 + (i % 2) * 0.2), width: 1 });
   }
 }
 
