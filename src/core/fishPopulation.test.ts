@@ -67,7 +67,7 @@ describe("fish population helpers", () => {
   });
 
   it("returns zero for missing stock counts", () => {
-    expect(getStockCount(DEFAULT_CUSTOMIZATION.stock, "neon-tetra")).toBe(4);
+    expect(getStockCount(DEFAULT_CUSTOMIZATION.stock, "neon-tetra")).toBe(3);
     expect(getStockCount(DEFAULT_CUSTOMIZATION.stock, "missing")).toBe(0);
   });
 });

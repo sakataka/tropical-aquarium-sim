@@ -23,8 +23,12 @@ describe("aquarium customization", () => {
       expect.arrayContaining([
         { speciesId: "platy", count: 2 },
         { speciesId: "kuhli-loach", count: 1 },
+        { speciesId: "white-cloud-minnow", count: 1 },
+        { speciesId: "cherry-barb", count: 1 },
       ]),
     );
+    expect(aquariumPresets[0].stock.reduce((sum, entry) => sum + entry.count, 0))
+      .toBe(18);
   });
 
   it("normalizes missing and invalid saved data to the default preset", () => {
@@ -42,7 +46,11 @@ describe("aquarium customization", () => {
     );
 
     expect(normalized.stock).toEqual(
-      expect.arrayContaining([{ speciesId: "neon-tetra", count: 4 }]),
+      expect.arrayContaining([
+        { speciesId: "neon-tetra", count: 3 },
+        { speciesId: "white-cloud-minnow", count: 1 },
+        { speciesId: "cherry-barb", count: 1 },
+      ]),
     );
     expect(normalized.environment.lighting).toBe("natural");
   });

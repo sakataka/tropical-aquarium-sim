@@ -5,6 +5,7 @@ describe("fish catalog", () => {
   it("loads the viewing-focused species set", () => {
     expect(Object.keys(fishCatalog).sort()).toEqual([
       "angelfish",
+      "cherry-barb",
       "corydoras",
       "dwarf-gourami",
       "guppy",
@@ -12,14 +13,17 @@ describe("fish catalog", () => {
       "kuhli-loach",
       "neon-tetra",
       "platy",
+      "white-cloud-minnow",
     ]);
   });
 
   it("allows static-image species without swim frames", () => {
     expect(fishCatalog.corydoras.animation).toBeUndefined();
+    expect(fishCatalog["cherry-barb"].animation).toBeUndefined();
     expect(fishCatalog["dwarf-gourami"].animation).toBeUndefined();
     expect(fishCatalog["harlequin-rasbora"].animation).toBeUndefined();
     expect(fishCatalog.platy.animation).toBeUndefined();
+    expect(fishCatalog["white-cloud-minnow"].animation).toBeUndefined();
   });
 
   it("loads species-level behavior differences for real-fish motion profiles", () => {

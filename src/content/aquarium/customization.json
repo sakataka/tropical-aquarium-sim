@@ -14,14 +14,16 @@
       "id": "community",
       "displayName": "コミュニティ水槽",
       "stock": [
-        { "speciesId": "neon-tetra", "count": 4 },
-        { "speciesId": "harlequin-rasbora", "count": 4 },
+        { "speciesId": "neon-tetra", "count": 3 },
+        { "speciesId": "harlequin-rasbora", "count": 3 },
         { "speciesId": "corydoras", "count": 3 },
         { "speciesId": "guppy", "count": 2 },
         { "speciesId": "platy", "count": 2 },
         { "speciesId": "dwarf-gourami", "count": 1 },
         { "speciesId": "angelfish", "count": 1 },
-        { "speciesId": "kuhli-loach", "count": 1 }
+        { "speciesId": "kuhli-loach", "count": 1 },
+        { "speciesId": "white-cloud-minnow", "count": 1 },
+        { "speciesId": "cherry-barb", "count": 1 }
       ],
       "environment": {
         "backgroundStyle": "clear",

@@ -1,0 +1,62 @@
+{
+  "id": "cherry-barb",
+  "displayName": "チェリーバルブ",
+  "realBodyLengthCm": 5,
+  "sideImage": "./side.png",
+  "visual": {
+    "fallbackColor": "#cf2f21"
+  },
+  "sourceBodyBounds": {
+    "x": 143,
+    "y": 211,
+    "width": 1249,
+    "height": 602
+  },
+  "cruisingSpeedCmPerSec": 2.7,
+  "burstSpeedCmPerSec": 10.8,
+  "turnRateRadPerSec": 2.55,
+  "stopProbabilityPerSec": 0.075,
+  "motion": {
+    "kickIntervalSecMin": 1.18,
+    "kickIntervalSecMax": 2.85,
+    "kickDurationSec": 0.22,
+    "pauseDurationSecMin": 0.85,
+    "pauseDurationSecMax": 2.15,
+    "feedDurationSecMin": 0.62,
+    "feedDurationSecMax": 1.32,
+    "feedSpeedMultiplier": 0.78,
+    "coastDragPerSec": 0.4,
+    "wanderStrength": 0.25
+  },
+  "preferredZone": {
+    "minX": 0.1,
+    "maxX": 0.9,
+    "minY": 0.34,
+    "maxY": 0.74
+  },
+  "schooling": {
+    "enabled": true,
+    "radiusCm": 11,
+    "strength": 0.16
+  },
+  "behavior": {
+    "separationBodyLengths": 1.25,
+    "alignmentBodyLengths": 2.7,
+    "attractionBodyLengths": 5.1,
+    "separationStrength": 1.18,
+    "alignmentStrength": 0.68,
+    "attractionStrength": 0.58,
+    "wallAvoidanceStrength": 3.8,
+    "edgeCruiseChance": 0.14,
+    "structureAffinity": 0.34,
+    "surfaceAffinity": 0.16,
+    "zoneHoldStrength": 0.96,
+    "surfaceVisitChance": 0.04,
+    "foodResponsiveness": 0.68,
+    "tapResponsiveness": 0.7,
+    "tapResponse": "flee",
+    "tapSurfaceBias": 0.2,
+    "tapStructureBias": 0.28,
+    "structurePatrolStrength": 0.3
+  }
+}
