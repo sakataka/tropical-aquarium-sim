@@ -2,9 +2,7 @@
   "id": "neon-tetra",
   "displayName": "ネオンテトラ",
   "realBodyLengthCm": 4,
-  "sideImage": "./side.png",
   "animation": {
-    "framePattern": "./swim/frame-*.png",
     "framesPerSecond": 10
   },
   "visual": {

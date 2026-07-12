@@ -2,13 +2,6 @@
   "storageKey": "tropical-aquarium.customization.v1",
   "maxFishPerSpecies": 12,
   "maxTotalFish": 30,
-  "defaultEnvironment": {
-    "backgroundStyle": "clear",
-    "rearPlants": "full",
-    "foregroundPlants": "full",
-    "plantDensity": "medium",
-    "lighting": "natural"
-  },
   "presets": [
     {
       "id": "community",

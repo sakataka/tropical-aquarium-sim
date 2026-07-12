@@ -2,7 +2,6 @@
   "id": "cherry-barb",
   "displayName": "チェリーバルブ",
   "realBodyLengthCm": 5,
-  "sideImage": "./side.png",
   "visual": {
     "fallbackColor": "#cf2f21"
   },

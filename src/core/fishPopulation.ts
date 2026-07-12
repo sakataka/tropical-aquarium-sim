@@ -7,13 +7,6 @@ import type {
   FishStockEntry,
 } from "./types";
 
-const FALLBACK_ZONE = {
-  minX: 0.14,
-  maxX: 0.86,
-  minY: 0.18,
-  maxY: 0.78,
-};
-
 export function createFishFromStock(stock: FishStockEntry[]): FishInstance[] {
   return stock.flatMap(({ speciesId, count }, speciesIndex) =>
     Array.from({ length: count }, (_, index) =>
@@ -72,7 +65,7 @@ function stockKey(stock: FishStockEntry[]): string {
 
 function createFish(speciesId: string, index: number): FishInstance {
   const species = fishCatalog[speciesId];
-  const zone = species?.preferredZone ?? FALLBACK_ZONE;
+  const zone = species.preferredZone;
   const xRatio = zone.minX + (((index * 37) % 100) / 100) * (zone.maxX - zone.minX);
   const yRatio = zone.minY + (((index * 29) % 100) / 100) * (zone.maxY - zone.minY);
   const x = TANK_60CM.widthCm * xRatio;

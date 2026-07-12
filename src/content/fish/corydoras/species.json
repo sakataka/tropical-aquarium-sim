@@ -2,7 +2,6 @@
   "id": "corydoras",
   "displayName": "コリドラス",
   "realBodyLengthCm": 6,
-  "sideImage": "./side.png",
   "visual": {
     "fallbackColor": "#b8c3aa"
   },

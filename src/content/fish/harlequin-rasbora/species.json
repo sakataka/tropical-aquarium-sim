@@ -2,7 +2,6 @@
   "id": "harlequin-rasbora",
   "displayName": "ラスボラ・ヘテロモルファ",
   "realBodyLengthCm": 4.5,
-  "sideImage": "./side.png",
   "visual": {
     "fallbackColor": "#d99655"
   },

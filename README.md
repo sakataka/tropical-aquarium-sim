@@ -70,7 +70,7 @@ http://127.0.0.1:5173/?preset=calm
 
 魚種ごとに `src/content/fish/<species-id>/species.json` と `side.png` を追加します。コード側で魚種別の if 文は追加しません。
 魚図鑑の説明文は `src/content/fish/guides.json` に集約します。新しい魚種を追加したら、魚種IDをキーにして同じJSONへ説明文を足します。
-泳ぎのアニメーションを入れる場合は `src/content/fish/<species-id>/swim/frame-01.png` のような連番PNGを追加し、`species.json` の `animation.framePattern` と `animation.framesPerSecond` を設定します。フレームがない場合は `side.png` の静止表示にフォールバックします。
+泳ぎのアニメーションを入れる場合は `src/content/fish/<species-id>/swim/frame-01.png` のような連番PNGを追加し、`species.json` の `animation.framesPerSecond` を設定します。フレームがない場合は `side.png` の静止表示にフォールバックします。
 魚種ごとの習性は `species.json` の `behavior` に集約します。群れで近づく/離れる距離、壁際を巡回する頻度、水草寄り、表層寄りなどを魚種ごとに調整できます。
 シミュレーション上では、泳ぎ先の理由を `targetKind` として `openWater` / `structure` / `edgeCruise` / `surfaceVisit` / `feed` / `tap` に分け、魚一覧にも現在の移動傾向を表示します。
 通常の水槽画面では水槽内をダブルクリックするとガラスを軽く叩くインタラクションになり、魚種ごとの `tapResponse` と感度に応じて逃げる、警戒して止まる、近づいて様子を見るなどの反応をします。
@@ -79,7 +79,6 @@ http://127.0.0.1:5173/?preset=calm
 `species.json` の重要項目:
 
 - `realBodyLengthCm`: 実際の体長cm
-- `sideImage`: 通常は `./side.png`
 - `animation`: 任意。泳ぎフレームのパターンと基本FPS
 - `sourceBodyBounds`: 元画像内で魚体が占める範囲。実寸スケール計算に必須
 - `visual.fallbackColor`: 魚画像の読み込み前や失敗時に表示する簡易スプライト色

@@ -2,7 +2,6 @@
   "id": "dwarf-gourami",
   "displayName": "ドワーフグラミー",
   "realBodyLengthCm": 7,
-  "sideImage": "./side.png",
   "visual": {
     "fallbackColor": "#d56d58"
   },

@@ -12,7 +12,7 @@ const speciesModules = import.meta.glob<SpeciesJsonModule>(
   },
 );
 
-export function loadFishCatalog(): Record<string, FishSpeciesDefinition> {
+function loadFishCatalog(): Record<string, FishSpeciesDefinition> {
   const catalog: Record<string, FishSpeciesDefinition> = {};
 
   for (const [path, module] of Object.entries(speciesModules)) {

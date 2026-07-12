@@ -2,7 +2,6 @@
   "id": "kuhli-loach",
   "displayName": "クーリーローチ",
   "realBodyLengthCm": 10,
-  "sideImage": "./side.png",
   "visual": {
     "fallbackColor": "#a15c2a"
   },

@@ -1,14 +1,14 @@
 import { z } from "zod";
 import type { FishGuideEntry, FishSpeciesDefinition } from "./types";
 
-export const bodyBoundsSchema = z.object({
+const bodyBoundsSchema = z.object({
   x: z.number().finite().min(0),
   y: z.number().finite().min(0),
   width: z.number().finite().positive(),
   height: z.number().finite().positive(),
 });
 
-export const preferredZoneSchema = z
+const preferredZoneSchema = z
   .object({
     minX: z.number().finite().min(0).max(1),
     maxX: z.number().finite().min(0).max(1),
@@ -24,13 +24,13 @@ export const preferredZoneSchema = z
     path: ["minY"],
   });
 
-export const schoolingProfileSchema = z.object({
+const schoolingProfileSchema = z.object({
   enabled: z.boolean(),
   radiusCm: z.number().finite().positive(),
   strength: z.number().finite().min(0).max(1),
 });
 
-export const speciesBehaviorProfileSchema = z.object({
+const speciesBehaviorProfileSchema = z.object({
   separationBodyLengths: z.number().finite().positive(),
   alignmentBodyLengths: z.number().finite().positive(),
   attractionBodyLengths: z.number().finite().positive(),
@@ -57,7 +57,7 @@ export const speciesBehaviorProfileSchema = z.object({
   path: ["alignmentBodyLengths"],
 });
 
-export const swimMotionProfileSchema = z.object({
+const swimMotionProfileSchema = z.object({
   kickIntervalSecMin: z.number().finite().positive(),
   kickIntervalSecMax: z.number().finite().positive(),
   kickDurationSec: z.number().finite().positive(),
@@ -79,22 +79,20 @@ export const swimMotionProfileSchema = z.object({
   path: ["feedDurationSecMin"],
 });
 
-export const fishAnimationProfileSchema = z.object({
-  framePattern: z.string().min(1),
+const fishAnimationProfileSchema = z.object({
   framesPerSecond: z.number().finite().positive().max(30),
 });
 
-export const fishVisualProfileSchema = z.object({
+const fishVisualProfileSchema = z.object({
   fallbackColor: z.string().regex(/^#[0-9a-fA-F]{6}$/),
 });
 
-export const fishSpeciesDefinitionSchema = z.object({
+const fishSpeciesDefinitionSchema = z.object({
   id: z.string().min(1),
   displayName: z.string().min(1),
   realBodyLengthCm: z.number().finite().positive(),
-  sideImage: z.string().min(1),
   animation: fishAnimationProfileSchema.optional(),
-  visual: fishVisualProfileSchema.optional(),
+  visual: fishVisualProfileSchema,
   sourceBodyBounds: bodyBoundsSchema,
   cruisingSpeedCmPerSec: z.number().finite().positive(),
   burstSpeedCmPerSec: z.number().finite().positive(),
@@ -106,7 +104,7 @@ export const fishSpeciesDefinitionSchema = z.object({
   behavior: speciesBehaviorProfileSchema,
 }) satisfies z.ZodType<FishSpeciesDefinition>;
 
-export const fishGuideEntrySchema = z.object({
+const fishGuideEntrySchema = z.object({
   scientificName: z.string().min(1),
   origin: z.string().min(1),
   temperament: z.string().min(1),

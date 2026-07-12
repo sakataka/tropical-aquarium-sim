@@ -2,7 +2,6 @@
   "id": "platy",
   "displayName": "プラティ",
   "realBodyLengthCm": 5.5,
-  "sideImage": "./side.png",
   "visual": {
     "fallbackColor": "#f47a22"
   },

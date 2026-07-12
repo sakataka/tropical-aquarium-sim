@@ -5,9 +5,8 @@ const validSpecies = {
   id: "valid-fish",
   displayName: "Valid Fish",
   realBodyLengthCm: 4,
-  sideImage: "./side.png",
+  visual: { fallbackColor: "#35c7e8" },
   animation: {
-    framePattern: "./swim/frame-*.png",
     framesPerSecond: 8,
   },
   sourceBodyBounds: {

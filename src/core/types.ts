@@ -3,27 +3,7 @@ export type Vec2 = {
   y: number;
 };
 
-export type BodyBounds = {
-  x: number;
-  y: number;
-  width: number;
-  height: number;
-};
-
-export type PreferredZone = {
-  minX: number;
-  maxX: number;
-  minY: number;
-  maxY: number;
-};
-
-export type SchoolingProfile = {
-  enabled: boolean;
-  radiusCm: number;
-  strength: number;
-};
-
-export type SpeciesBehaviorProfile = {
+type SpeciesBehaviorProfile = {
   separationBodyLengths: number;
   alignmentBodyLengths: number;
   attractionBodyLengths: number;
@@ -44,7 +24,7 @@ export type SpeciesBehaviorProfile = {
   structurePatrolStrength: number;
 };
 
-export type SwimMotionProfile = {
+type SwimMotionProfile = {
   kickIntervalSecMin: number;
   kickIntervalSecMax: number;
   kickDurationSec: number;
@@ -57,30 +37,20 @@ export type SwimMotionProfile = {
   wanderStrength: number;
 };
 
-export type FishAnimationProfile = {
-  framePattern: string;
-  framesPerSecond: number;
-};
-
-export type FishVisualProfile = {
-  fallbackColor: string;
-};
-
 export type FishSpeciesDefinition = {
   id: string;
   displayName: string;
   realBodyLengthCm: number;
-  sideImage: string;
-  animation?: FishAnimationProfile;
-  visual?: FishVisualProfile;
-  sourceBodyBounds: BodyBounds;
+  animation?: { framesPerSecond: number };
+  visual: { fallbackColor: string };
+  sourceBodyBounds: { x: number; y: number; width: number; height: number };
   cruisingSpeedCmPerSec: number;
   burstSpeedCmPerSec: number;
   turnRateRadPerSec: number;
   stopProbabilityPerSec: number;
   motion: SwimMotionProfile;
-  preferredZone: PreferredZone;
-  schooling: SchoolingProfile;
+  preferredZone: { minX: number; maxX: number; minY: number; maxY: number };
+  schooling: { enabled: boolean; radiusCm: number; strength: number };
   behavior: SpeciesBehaviorProfile;
 };
 
@@ -93,7 +63,6 @@ export type FishGuideEntry = {
   note: string;
 };
 
-export type FishBehaviorMode = "kick" | "coast" | "pause" | "feed" | "tapFlee" | "tapFreeze" | "tapApproach";
 export type FishTargetKind =
   | "openWater"
   | "structure"
@@ -110,7 +79,7 @@ export type FishInstance = {
   facing: -1 | 1;
   depth: number;
   bodyLengthVariance: number;
-  behaviorMode: FishBehaviorMode;
+  behaviorMode: "kick" | "coast" | "pause" | "feed" | "tapFlee" | "tapFreeze" | "tapApproach";
   behaviorTimeRemainingSec: number;
   target?: Vec2;
   targetKind?: FishTargetKind;
@@ -158,17 +127,12 @@ export type FishStockEntry = {
   count: number;
 };
 
-export type AquariumBackgroundStyle = "clear" | "deep" | "bright";
-export type AquariumPlantVisibility = "off" | "subtle" | "full";
-export type AquariumPlantDensity = "low" | "medium" | "high";
-export type AquariumLighting = "natural" | "cool" | "evening" | "night";
-
 export type AquariumEnvironmentCustomization = {
-  backgroundStyle: AquariumBackgroundStyle;
-  rearPlants: AquariumPlantVisibility;
-  foregroundPlants: AquariumPlantVisibility;
-  plantDensity: AquariumPlantDensity;
-  lighting: AquariumLighting;
+  backgroundStyle: "clear" | "deep" | "bright";
+  rearPlants: "off" | "subtle" | "full";
+  foregroundPlants: "off" | "subtle" | "full";
+  plantDensity: "low" | "medium" | "high";
+  lighting: "natural" | "cool" | "evening" | "night";
 };
 
 export type AquariumCustomization = {
@@ -185,6 +149,5 @@ export type AquariumConfig = {
   storageKey: string;
   maxFishPerSpecies: number;
   maxTotalFish: number;
-  defaultEnvironment: AquariumEnvironmentCustomization;
   presets: AquariumPreset[];
 };

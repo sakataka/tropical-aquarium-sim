@@ -2,9 +2,7 @@
   "id": "angelfish",
   "displayName": "エンゼルフィッシュ",
   "realBodyLengthCm": 12,
-  "sideImage": "./side.png",
   "animation": {
-    "framePattern": "./swim/frame-*.png",
     "framesPerSecond": 6
   },
   "visual": {

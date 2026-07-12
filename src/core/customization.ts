@@ -9,37 +9,28 @@ import type {
   FishStockEntry,
 } from "./types";
 
-const SCHEMA_DEFAULT_ENVIRONMENT: AquariumEnvironmentCustomization = {
-  backgroundStyle: "clear",
-  rearPlants: "full",
-  foregroundPlants: "full",
-  plantDensity: "medium",
-  lighting: "natural",
-};
-
-export const aquariumEnvironmentSchema = z.object({
-  backgroundStyle: z.enum(["clear", "deep", "bright"]).default("clear"),
-  rearPlants: z.enum(["off", "subtle", "full"]).default("full"),
-  foregroundPlants: z.enum(["off", "subtle", "full"]).default("full"),
-  plantDensity: z.enum(["low", "medium", "high"]).default("medium"),
-  lighting: z.enum(["natural", "cool", "evening", "night"]).default("natural"),
+const aquariumEnvironmentSchema = z.object({
+  backgroundStyle: z.enum(["clear", "deep", "bright"]),
+  rearPlants: z.enum(["off", "subtle", "full"]),
+  foregroundPlants: z.enum(["off", "subtle", "full"]),
+  plantDensity: z.enum(["low", "medium", "high"]),
+  lighting: z.enum(["natural", "cool", "evening", "night"]),
 });
 
-export const aquariumCustomizationSchema = z.object({
+const aquariumCustomizationSchema = z.object({
   stock: z.array(
     z.object({
       speciesId: z.string().min(1),
       count: z.number().finite().int().min(0),
     }),
-  ).default([]),
-  environment: aquariumEnvironmentSchema.default(SCHEMA_DEFAULT_ENVIRONMENT),
+  ),
+  environment: aquariumEnvironmentSchema,
 });
 
 const aquariumConfigSchema = z.object({
   storageKey: z.string().min(1),
   maxFishPerSpecies: z.number().finite().int().positive(),
   maxTotalFish: z.number().finite().int().positive(),
-  defaultEnvironment: aquariumEnvironmentSchema,
   presets: z.array(
     aquariumCustomizationSchema.extend({
       id: z.string().min(1),
@@ -48,14 +39,14 @@ const aquariumConfigSchema = z.object({
   ).min(1),
 });
 
-export const aquariumConfig: AquariumConfig = aquariumConfigSchema.parse(aquariumConfigJson);
+const aquariumConfig: AquariumConfig = aquariumConfigSchema.parse(aquariumConfigJson);
 export const CUSTOMIZATION_STORAGE_KEY = aquariumConfig.storageKey;
 export const MAX_FISH_PER_SPECIES = aquariumConfig.maxFishPerSpecies;
 export const MAX_TOTAL_FISH = aquariumConfig.maxTotalFish;
-export const DEFAULT_ENVIRONMENT: AquariumEnvironmentCustomization =
-  aquariumConfig.defaultEnvironment;
 export const aquariumPresets: AquariumPreset[] = aquariumConfig.presets;
 export const DEFAULT_CUSTOMIZATION = aquariumPresets[0];
+const DEFAULT_ENVIRONMENT: AquariumEnvironmentCustomization =
+  DEFAULT_CUSTOMIZATION.environment;
 
 export function getPresetById(presetId: string | null | undefined): AquariumPreset | undefined {
   return aquariumPresets.find((preset) => preset.id === presetId);
@@ -78,7 +69,7 @@ export function normalizeAquariumCustomization(
   };
 }
 
-export function normalizeStock(
+function normalizeStock(
   stock: FishStockEntry[],
   speciesCatalog: Record<string, FishSpeciesDefinition>,
 ): FishStockEntry[] {

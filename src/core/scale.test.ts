@@ -13,7 +13,7 @@ const species: FishSpeciesDefinition = {
   id: "test-fish",
   displayName: "Test Fish",
   realBodyLengthCm: 6,
-  sideImage: "./side.png",
+  visual: { fallbackColor: "#35c7e8" },
   sourceBodyBounds: {
     x: 0,
     y: 0,

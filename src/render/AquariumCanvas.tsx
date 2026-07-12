@@ -830,13 +830,10 @@ function waitForWindowLoad(): Promise<void> {
 }
 
 function fallbackFishColor(species: FishSpeciesDefinition): number {
-  return parseColorHex(species.visual?.fallbackColor) ?? 0x8bd7d3;
+  return parseColorHex(species.visual.fallbackColor);
 }
 
-function parseColorHex(color: string | undefined): number | undefined {
-  if (!color?.match(/^#[0-9a-fA-F]{6}$/)) {
-    return undefined;
-  }
+function parseColorHex(color: string): number {
   return Number.parseInt(color.slice(1), 16);
 }
 

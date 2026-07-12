@@ -17,15 +17,6 @@ type FishGuideViewProps = {
 
 const fishGuide: Record<string, FishGuideEntry> = fishGuideSchema.parse(fishGuideJson);
 
-const fallbackGuide: FishGuideEntry = {
-  scientificName: "未設定",
-  origin: "魚種データ追加時に原産地を設定してください。",
-  temperament: "魚種データ追加時に性格を設定してください。",
-  movement: "魚種データ追加時に実際の動きとシミュレーション上の動きを設定してください。",
-  habitat: "魚種データ追加時に水槽での見え方を設定してください。",
-  note: "この魚種の図鑑説明は未設定です。",
-};
-
 export function FishGuideView({ speciesList, tank, viewportWidthPx }: FishGuideViewProps) {
   return (
     <section className="guide-view">
@@ -50,7 +41,7 @@ export function FishGuideView({ speciesList, tank, viewportWidthPx }: FishGuideV
             tankWidthCm: tank.widthCm,
             species,
           });
-          const guide = fishGuide[species.id] ?? fallbackGuide;
+          const guide = fishGuide[species.id];
           return (
             <article className="guide-card" key={species.id}>
               <div className="guide-fish-preview">

@@ -1,6 +1,7 @@
 import {
   MAX_FISH_PER_SPECIES,
   MAX_TOTAL_FISH,
+  getStockCount,
   type AquariumCustomization,
   type AquariumEnvironmentCustomization,
   type AquariumPreset,
@@ -60,7 +61,7 @@ export function AquariumControls({
   onViewModeChange,
 }: AquariumControlsProps) {
   const totalFish = customization.stock.reduce((sum, entry) => sum + entry.count, 0);
-  const selectedCount = getStockCount(customization, selectedSpeciesId);
+  const selectedCount = getStockCount(customization.stock, selectedSpeciesId);
   const lightingLabel = getLightingLabel(customization.environment.lighting);
 
   return (
@@ -152,7 +153,7 @@ export function AquariumControls({
             </small>
           </div>
           {speciesList.map((species) => {
-            const count = getStockCount(customization, species.id);
+            const count = getStockCount(customization.stock, species.id);
             return (
               <label className="stock-row" key={species.id}>
                 <span>{species.displayName}</span>
@@ -303,10 +304,6 @@ export function AquariumControls({
       </div>
     </aside>
   );
-}
-
-function getStockCount(customization: AquariumCustomization, speciesId: string): number {
-  return customization.stock.find((entry) => entry.speciesId === speciesId)?.count ?? 0;
 }
 
 function getTargetKindLabel(kind: FishInstance["targetKind"]): string {
