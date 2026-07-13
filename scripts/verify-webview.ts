@@ -26,6 +26,16 @@ type CheckResult = {
   fishRowsAfterDelete: number;
   fishRowsAfterPreset: number;
   fishRowsAfterReload: number;
+  residentIdsPersisted: boolean;
+  tankNameAfterReload: string;
+  ambientModeEntered: boolean;
+  soundToggleWorked: boolean;
+  mobile: {
+    shellWidth: number;
+    stageWidth: number;
+    canvasWidth: number;
+    overflowWidth: number;
+  };
   customizationStatus: string;
   tapLabelSeen: boolean;
   guideText: string;
@@ -72,6 +82,7 @@ async function main() {
 
     await view.navigate(BASE_URL);
     await view.evaluate(`localStorage.removeItem("tropical-aquarium.customization.v1")`);
+    await view.evaluate(`localStorage.removeItem("tropical-aquarium.state.v2")`);
     await view.reload();
     await sleep(1200);
     await Bun.write(
@@ -137,7 +148,7 @@ async function main() {
     );
 
     await view.evaluate(`(() => {
-      const button = document.querySelector("button[aria-label$='を削除']");
+      const button = document.querySelector("button[aria-label$='を水槽から移す']");
       if (!(button instanceof HTMLButtonElement)) return false;
       button.click();
       return true;
@@ -173,6 +184,25 @@ async function main() {
       return true;
     })()`);
     await sleep(500);
+    await view.evaluate(`(() => {
+      const input = document.querySelector("input[aria-label='水槽の名前']");
+      if (!(input instanceof HTMLInputElement)) return false;
+      const setter = Object.getOwnPropertyDescriptor(
+        HTMLInputElement.prototype,
+        "value",
+      )?.set;
+      setter?.call(input, "木漏れ日の書斎");
+      input.dispatchEvent(new Event("input", { bubbles: true }));
+      input.dispatchEvent(new Event("change", { bubbles: true }));
+      input.dispatchEvent(new FocusEvent("blur", { bubbles: true }));
+      return true;
+    })()`);
+    await sleep(300);
+    const residentIdsBeforeReload = await view.evaluate(`(() => {
+      const value = localStorage.getItem("tropical-aquarium.state.v2");
+      if (!value) return [];
+      return JSON.parse(value).residents.map((resident) => resident.id);
+    })()`);
     await view.reload();
     await sleep(900);
     const fishRowsAfterReload = await view.evaluate(
@@ -181,6 +211,51 @@ async function main() {
     const customizationStatus = await view.evaluate(
       `document.querySelector("section[aria-label='水槽設定']")?.textContent ?? ""`,
     );
+    const residentIdsAfterReload = await view.evaluate(`(() => {
+      const value = localStorage.getItem("tropical-aquarium.state.v2");
+      if (!value) return [];
+      return JSON.parse(value).residents.map((resident) => resident.id);
+    })()`);
+    const residentIdsPersisted = JSON.stringify(residentIdsBeforeReload) ===
+      JSON.stringify(residentIdsAfterReload);
+    const tankNameAfterReload = await view.evaluate(
+      `document.querySelector("input[aria-label='水槽の名前']")?.value ?? ""`,
+    );
+    await view.evaluate(`(() => {
+      const button = Array.from(document.querySelectorAll("button"))
+        .find((candidate) => candidate.textContent?.includes("観賞モード"));
+      if (!(button instanceof HTMLButtonElement)) return false;
+      button.click();
+      return true;
+    })()`);
+    await sleep(700);
+    const ambientModeEntered = await view.evaluate(
+      `document.querySelector(".app-shell")?.classList.contains("ambient-active") ?? false`,
+    );
+    await Bun.write(
+      `${SCREENSHOT_DIR}/ambient.png`,
+      await view.screenshot({ format: "png" }),
+    );
+    await view.evaluate(`document.querySelector(".ambient-hud button")?.click()`);
+    await sleep(100);
+    await view.evaluate(`(() => {
+      const button = Array.from(document.querySelectorAll("button"))
+        .find((candidate) => candidate.textContent?.includes("環境音"));
+      if (!(button instanceof HTMLButtonElement)) return false;
+      button.click();
+      return true;
+    })()`);
+    await sleep(100);
+    const soundToggleWorked = await view.evaluate(`(() => {
+      const button = Array.from(document.querySelectorAll("button"))
+        .find((candidate) => candidate.textContent?.includes("環境音"));
+      return button?.getAttribute("aria-pressed") === "true";
+    })()`);
+    await view.evaluate(`(() => {
+      const button = Array.from(document.querySelectorAll("button"))
+        .find((candidate) => candidate.textContent?.includes("環境音"));
+      if (button instanceof HTMLButtonElement) button.click();
+    })()`);
 
     await view.evaluate(`(() => {
       const buttons = Array.from(document.querySelectorAll(".segmented-control button"));
@@ -198,9 +273,37 @@ async function main() {
       await view.screenshot({ format: "png" }),
     );
 
+    await using mobileView = new Bun.WebView({
+      width: 420,
+      height: 912,
+      backend: "webkit",
+      console: (type, ...args) => {
+        if (type === "error") {
+          consoleErrors.push(`mobile: ${args.map(String).join(" ")}`);
+        }
+      },
+    });
+    await mobileView.navigate(BASE_URL);
+    await sleep(900);
+    const mobile = await mobileView.evaluate(`(() => {
+      const shell = document.querySelector(".app-shell")?.getBoundingClientRect();
+      const stage = document.querySelector(".aquarium-stage")?.getBoundingClientRect();
+      const canvas = document.querySelector("canvas")?.getBoundingClientRect();
+      return {
+        shellWidth: Math.round(shell?.width ?? 0),
+        stageWidth: Math.round(stage?.width ?? 0),
+        canvasWidth: Math.round(canvas?.width ?? 0),
+        overflowWidth: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+      };
+    })()`);
+    await Bun.write(
+      `${SCREENSHOT_DIR}/mobile-420x912.png`,
+      await mobileView.screenshot({ format: "png" }),
+    );
+
     const result: CheckResult = {
       title: String(title),
-      shellText: String(shellText).slice(0, 320),
+      shellText: String(shellText).slice(0, 1200),
       stage: stage as CheckResult["stage"],
       canvas: canvas as CheckResult["canvas"],
       controlPanelScroll: controlPanelScroll as CheckResult["controlPanelScroll"],
@@ -209,6 +312,11 @@ async function main() {
       fishRowsAfterDelete: Number(fishRowsAfterDelete),
       fishRowsAfterPreset: Number(fishRowsAfterPreset),
       fishRowsAfterReload: Number(fishRowsAfterReload),
+      residentIdsPersisted,
+      tankNameAfterReload: String(tankNameAfterReload),
+      ambientModeEntered: Boolean(ambientModeEntered),
+      soundToggleWorked: Boolean(soundToggleWorked),
+      mobile: mobile as CheckResult["mobile"],
       customizationStatus: String(customizationStatus).slice(0, 240),
       tapLabelSeen: Boolean(tapLabelSeen),
       guideText: String(guideText).slice(0, 240),
@@ -218,7 +326,7 @@ async function main() {
     console.log(JSON.stringify(result, null, 2));
 
     assert(result.title.includes("2D熱帯魚水槽"));
-    assert(result.shellText.includes("魚を追加"));
+    assert(result.shellText.includes("新しい住人を迎える"));
     assert(result.shellText.includes("水槽設定"));
     assert(result.shellText.includes("プラティ"));
     assert(result.shellText.includes("クーリーローチ"));
@@ -229,12 +337,20 @@ async function main() {
     assert(result.controlPanelScroll.scrollTopAfterScroll > 0);
     assert(result.fishListText.includes("ネオン"));
     assert(result.fishListText.includes("遊泳"));
-    assert(result.fishListText.includes("削除"));
+    assert(result.fishListText.includes("水槽から移す"));
     assert(result.fishRowsBeforeDelete >= 3);
     assert(result.fishRowsAfterDelete === result.fishRowsBeforeDelete - 1);
     assert(result.fishRowsAfterPreset === 26);
     assert(result.fishRowsAfterReload === 19);
-    assert(result.customizationStatus.includes("保存済み"));
+    assert(result.residentIdsPersisted);
+    assert(result.tankNameAfterReload === "木漏れ日の書斎");
+    assert(result.ambientModeEntered);
+    assert(result.soundToggleWorked);
+    assert(result.mobile.shellWidth >= 400 && result.mobile.shellWidth <= 420);
+    assert(result.mobile.stageWidth >= 375);
+    assert(result.mobile.canvasWidth >= 375);
+    assert(result.mobile.overflowWidth === 0);
+    assert(result.customizationStatus.includes("プリセット"));
     assert(result.guideText.includes("魚図鑑"));
     assert(result.guideText.includes("原産"));
     assert(result.guideText.includes("性格"));
@@ -242,7 +358,9 @@ async function main() {
     assert(result.guideText.includes("Paracheirodon innesi"));
     assert(result.consoleErrors.length === 0);
 
-    console.log(`Screenshots: ${SCREENSHOT_DIR}/tank.png, ${SCREENSHOT_DIR}/guide.png`);
+    console.log(
+      `Screenshots: ${SCREENSHOT_DIR}/tank.png, ${SCREENSHOT_DIR}/ambient.png, ${SCREENSHOT_DIR}/guide.png, ${SCREENSHOT_DIR}/mobile-420x912.png`,
+    );
   } finally {
     server.kill();
     await server.exited.catch(() => undefined);

@@ -110,10 +110,14 @@ function stepFish(params: {
     behaviorTimeRemainingSec: behavior.behaviorTimeRemainingSec,
     target: behavior.target,
     targetKind: behavior.targetKind,
+    lastFedAtMs:
+      params.feeding && behavior.behaviorMode === "feed"
+        ? params.feeding.createdAtMs ?? Date.now()
+        : params.fish.lastFedAtMs,
     hunger: clamp(
       params.feeding && behavior.behaviorMode === "feed"
-        ? params.fish.hunger - params.feeding.strength * params.deltaSec * 0.35
-        : params.fish.hunger + params.deltaSec * 0.01,
+        ? params.fish.hunger - params.feeding.strength * params.deltaSec * 0.12
+        : params.fish.hunger + params.deltaSec * (0.015 / 3600),
       0,
       1,
     ),

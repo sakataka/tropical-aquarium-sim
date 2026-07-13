@@ -1,5 +1,6 @@
 {
   "storageKey": "tropical-aquarium.customization.v1",
+  "stateStorageKey": "tropical-aquarium.state.v2",
   "maxFishPerSpecies": 12,
   "maxTotalFish": 30,
   "presets": [

@@ -43,7 +43,7 @@ input {
 
 .app-shell {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 330px;
+  grid-template-columns: minmax(0, 1fr) 360px;
   gap: 18px;
   min-height: 100vh;
   padding: 18px;
@@ -214,7 +214,7 @@ input {
   align-self: start;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 14px;
   max-height: calc(100vh - 36px);
   min-height: 0;
   overflow-y: auto;
@@ -233,6 +233,49 @@ input {
 .panel-heading {
   display: grid;
   gap: 5px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.tank-name-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.tank-name-row label {
+  min-width: 0;
+}
+
+.tank-name-input {
+  width: 100%;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  color: var(--accent);
+  background: transparent;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.tank-name-input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.tank-clock {
+  color: var(--text-dim) !important;
+  font-size: 11px !important;
 }
 
 .app-label {
@@ -340,6 +383,7 @@ input {
 }
 
 .field select,
+.field input,
 .stock-row input {
   min-height: 42px;
   padding: 0 12px;
@@ -349,6 +393,173 @@ input {
   background: var(--field-bg);
 }
 
+.field input:disabled,
+.field select:disabled {
+  opacity: 0.48;
+}
+
+.presence-controls {
+  display: grid;
+  gap: 8px;
+}
+
+.ambient-button,
+.presence-toggle {
+  width: 100%;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 10px 12px;
+  border: 1px solid rgba(181, 239, 240, 0.14);
+  border-radius: 10px;
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.045);
+  cursor: pointer;
+  text-align: left;
+}
+
+.ambient-button:hover,
+.presence-toggle:hover,
+.presence-toggle[aria-pressed="true"] {
+  border-color: rgba(151, 226, 225, 0.3);
+  background: linear-gradient(180deg, rgba(102, 193, 196, 0.2), rgba(46, 118, 122, 0.12));
+}
+
+.ambient-button > span:last-child,
+.presence-toggle > span:first-child {
+  display: grid;
+  flex: 1;
+  gap: 2px;
+}
+
+.ambient-button strong,
+.presence-toggle strong {
+  font-size: 13px;
+}
+
+.ambient-button small,
+.presence-toggle small {
+  color: var(--text-dim);
+  font-size: 11px;
+}
+
+.viewfinder-icon {
+  width: 26px;
+  height: 26px;
+  flex: none;
+  border: 1px solid rgba(209, 248, 248, 0.28);
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 7px rgba(111, 207, 206, 0.08);
+}
+
+.toggle-state {
+  min-width: 34px;
+  color: var(--accent-strong);
+  font-size: 11px;
+  font-weight: 800;
+  text-align: right;
+}
+
+.sound-control {
+  display: grid;
+  gap: 5px;
+}
+
+.volume-field {
+  display: block;
+  padding: 0 10px 4px 46px;
+}
+
+.volume-field input {
+  width: 100%;
+  accent-color: var(--accent);
+}
+
+.observation-card,
+.selected-resident,
+.care-section {
+  display: grid;
+  gap: 11px;
+  padding: 13px;
+  border: 1px solid rgba(181, 239, 240, 0.14);
+  border-radius: 11px;
+  background: linear-gradient(180deg, rgba(111, 207, 206, 0.08), rgba(255, 255, 255, 0.025));
+}
+
+.observation-card > div,
+.selected-resident-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.observation-card h2,
+.selected-resident h2 {
+  margin: 0;
+  font-size: 14px;
+}
+
+.observation-card time {
+  color: var(--text-dim);
+  font-size: 11px;
+}
+
+.observation-card p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.selected-resident-heading button,
+.text-button {
+  padding: 0;
+  border: 0;
+  color: var(--accent);
+  background: transparent;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.resident-portrait {
+  display: grid;
+  grid-template-columns: 66px minmax(0, 1fr);
+  align-items: center;
+  gap: 11px;
+}
+
+.resident-portrait img {
+  width: 66px;
+  height: 50px;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.3));
+}
+
+.resident-portrait > div {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.resident-portrait strong {
+  overflow: hidden;
+  font-size: 13px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.resident-portrait span {
+  color: var(--text-dim);
+  font-size: 11px;
+}
+
+.compact-field {
+  gap: 5px;
+}
+
 .settings-section {
   display: grid;
   gap: 13px;
@@ -356,6 +567,16 @@ input {
   border: 1px solid rgba(181, 239, 240, 0.14);
   border-radius: 12px;
   background: var(--panel-soft);
+}
+
+.settings-content {
+  display: grid;
+  gap: 13px;
+}
+
+.settings-content[hidden],
+.resident-list-content[hidden] {
+  display: none;
 }
 
 .section-heading,
@@ -442,7 +663,12 @@ input {
   display: grid;
   gap: 10px;
   min-height: 0;
-  overflow: auto;
+  overflow: visible;
+}
+
+.resident-list-content {
+  display: grid;
+  gap: 10px;
 }
 
 .fish-list h2 {
@@ -474,6 +700,11 @@ input {
     rgba(2, 15, 18, 0.22);
 }
 
+.fish-row.selected {
+  border-color: rgba(121, 211, 213, 0.34);
+  box-shadow: inset 3px 0 0 rgba(121, 211, 213, 0.62);
+}
+
 .fish-card-copy {
   display: grid;
   flex: 1;
@@ -487,6 +718,13 @@ input {
   justify-content: space-between;
   gap: 8px;
   min-width: 0;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  color: inherit;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
 }
 
 .fish-card-title > span {
@@ -545,7 +783,7 @@ input {
 }
 
 .remove-fish-button {
-  min-width: 48px;
+  min-width: 68px;
   min-height: 30px;
   align-self: center;
   border: 1px solid rgba(220, 245, 245, 0.16);
@@ -553,6 +791,83 @@ input {
   color: rgba(235, 252, 255, 0.82);
   background: rgba(255, 255, 255, 0.06);
   cursor: pointer;
+}
+
+.arrival-notice {
+  position: absolute;
+  left: 50%;
+  bottom: 24px;
+  z-index: 5;
+  margin: 0;
+  padding: 10px 16px;
+  border: 1px solid rgba(211, 251, 246, 0.24);
+  border-radius: 999px;
+  color: #efffff;
+  background: rgba(5, 27, 29, 0.82);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.32);
+  font-size: 12px;
+  transform: translateX(-50%);
+  backdrop-filter: blur(14px);
+}
+
+.ambient-active {
+  display: block;
+  padding: 0;
+}
+
+.ambient-active .aquarium-stage {
+  width: 100vw;
+  height: 100vh;
+  min-height: 100vh;
+  border: 0;
+  border-radius: 0;
+}
+
+.ambient-active .control-panel {
+  display: none;
+}
+
+.ambient-hud {
+  position: absolute;
+  inset: 20px 20px auto 20px;
+  z-index: 4;
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 16px;
+  pointer-events: none;
+}
+
+.ambient-hud > div {
+  display: grid;
+  gap: 3px;
+  padding: 10px 13px;
+  border: 1px solid rgba(220, 255, 252, 0.16);
+  border-radius: 10px;
+  background: rgba(2, 20, 22, 0.32);
+  backdrop-filter: blur(10px);
+}
+
+.ambient-hud strong {
+  font-size: 13px;
+}
+
+.ambient-hud span {
+  color: rgba(231, 253, 253, 0.7);
+  font-size: 11px;
+}
+
+.ambient-hud button {
+  min-height: 38px;
+  padding: 0 13px;
+  border: 1px solid rgba(220, 255, 252, 0.18);
+  border-radius: 9px;
+  color: rgba(240, 255, 255, 0.86);
+  background: rgba(2, 20, 22, 0.42);
+  cursor: pointer;
+  font-size: 12px;
+  pointer-events: auto;
+  backdrop-filter: blur(10px);
 }
 
 .remove-fish-button:hover {

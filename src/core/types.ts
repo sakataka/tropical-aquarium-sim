@@ -74,6 +74,10 @@ export type FishTargetKind =
 export type FishInstance = {
   id: string;
   speciesId: string;
+  arrivedAtMs: number;
+  nickname?: string;
+  favorite: boolean;
+  lastFedAtMs?: number;
   position: Vec2;
   velocity: Vec2;
   facing: -1 | 1;
@@ -140,6 +144,36 @@ export type AquariumCustomization = {
   environment: AquariumEnvironmentCustomization;
 };
 
+export type FishResident = Pick<
+  FishInstance,
+  | "id"
+  | "speciesId"
+  | "arrivedAtMs"
+  | "nickname"
+  | "favorite"
+  | "lastFedAtMs"
+  | "bodyLengthVariance"
+  | "hunger"
+  | "seed"
+>;
+
+export type AquariumPreferences = {
+  tankName: string;
+  createdAtMs: number;
+  lastSeenAtMs: number;
+  lightingMode: "auto" | "manual";
+  soundEnabled: boolean;
+  soundVolume: number;
+};
+
+export type AquariumPersistedState = {
+  version: 2;
+  customization: AquariumCustomization;
+  residents: FishResident[];
+  preferences: AquariumPreferences;
+  selectedFishId?: string;
+};
+
 export type AquariumPreset = AquariumCustomization & {
   id: string;
   displayName: string;
@@ -147,6 +181,7 @@ export type AquariumPreset = AquariumCustomization & {
 
 export type AquariumConfig = {
   storageKey: string;
+  stateStorageKey: string;
   maxFishPerSpecies: number;
   maxTotalFish: number;
   presets: AquariumPreset[];

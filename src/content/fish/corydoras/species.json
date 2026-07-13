@@ -6,10 +6,10 @@
     "fallbackColor": "#b8c3aa"
   },
   "sourceBodyBounds": {
-    "x": 93,
-    "y": 134,
-    "width": 1361,
-    "height": 688
+    "x": 65,
+    "y": 189,
+    "width": 1401,
+    "height": 616
   },
   "cruisingSpeedCmPerSec": 2.1,
   "burstSpeedCmPerSec": 7.2,

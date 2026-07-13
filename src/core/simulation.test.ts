@@ -73,6 +73,8 @@ function createFish(overrides: Partial<FishInstance> = {}): FishInstance {
   return {
     id: "fish-1",
     speciesId: definition.id,
+    arrivedAtMs: 1_700_000_000_000,
+    favorite: false,
     position: {
       x: 30,
       y: 20,

@@ -27,6 +27,7 @@ type AquariumCanvasProps = {
   species: Record<string, FishSpeciesDefinition>;
   tank: TankDefinition;
   environment: AquariumEnvironmentCustomization;
+  worldDay: number;
   paused: boolean;
   latestFeeding?: FeedingEvent;
   latestTap?: TapEvent;
@@ -73,6 +74,7 @@ export function AquariumCanvas({
   species,
   tank,
   environment,
+  worldDay,
   paused,
   latestFeeding,
   latestTap,
@@ -160,7 +162,7 @@ export function AquariumCanvas({
         food,
       };
 
-      drawStaticTank(app, backplate, rearDecor, frontDecor, glassEffects, environment);
+      drawStaticTank(app, backplate, rearDecor, frontDecor, glassEffects, environment, worldDay);
       ensureBubbleParticles(app, bubbles, bubblesRef.current);
       hostElement.appendChild(app.canvas);
       await preloadInitialTankAssets(fishRef.current, speciesRef.current, textureCacheRef.current);
@@ -222,7 +224,7 @@ export function AquariumCanvas({
       appRef.current = null;
       layerRef.current = null;
     };
-  }, [environment, tank]);
+  }, [environment, tank, worldDay]);
 
   return (
     <div
@@ -255,6 +257,7 @@ export function AquariumCanvas({
     frontDecorLayer: Container,
     glassEffectsLayer: Container,
     currentEnvironment: AquariumEnvironmentCustomization,
+    currentWorldDay: number,
   ) {
     backplateLayer.removeChildren();
     rearDecorLayer.removeChildren();
@@ -307,6 +310,12 @@ export function AquariumCanvas({
       .rect(0, 0, app.screen.width, app.screen.height)
       .fill({ color: lighting.hazeColor, alpha: lighting.hazeAlpha });
     rearDecorLayer.addChild(rearHaze);
+    const dayTone = [0x77cfd1, 0x92d5c1, 0x6fb9cf][currentWorldDay % 3];
+    const dailyAtmosphere = new Graphics()
+      .rect(0, 0, app.screen.width, app.screen.height)
+      .fill({ color: dayTone, alpha: 0.018 });
+    dailyAtmosphere.name = "daily-atmosphere";
+    rearDecorLayer.addChild(dailyAtmosphere);
     if (rearPlantsAlpha > 0) {
       addEnvironmentLayerSprite(
         rearDecorLayer,
