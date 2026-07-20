@@ -1,6 +1,7 @@
 :root {
   color: #e6fbff;
   background: #071416;
+  color-scheme: dark;
   --app-bg-a: #061719;
   --app-bg-b: #092124;
   --app-bg-c: #040b0d;
@@ -17,10 +18,14 @@
   --accent: #78ccd0;
   --accent-strong: #bff4ed;
   --warm-accent: #e0bd6b;
+  --focus-ring: #baf7f0;
+  --press-scale: 0.985;
+  --ui-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
   font-family:
     Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
   font-synthesis: none;
+  font-optical-sizing: auto;
   text-rendering: geometricPrecision;
 }
 
@@ -33,12 +38,48 @@ body {
   min-width: 320px;
   min-height: 100vh;
   overflow: hidden;
+  line-height: 1.5;
+}
+
+::selection {
+  color: #f5ffff;
+  background: rgba(87, 184, 188, 0.42);
 }
 
 button,
 select,
 input {
   font: inherit;
+}
+
+button,
+select,
+input {
+  touch-action: manipulation;
+}
+
+button,
+select,
+input,
+.fish-row,
+.guide-card {
+  transition:
+    color 160ms var(--ui-ease),
+    background-color 160ms var(--ui-ease),
+    border-color 160ms var(--ui-ease),
+    box-shadow 200ms var(--ui-ease),
+    opacity 160ms var(--ui-ease),
+    transform 100ms var(--ui-ease);
+}
+
+:where(button, select, input):focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 5px rgba(109, 218, 216, 0.16);
+}
+
+button:not(:disabled):active {
+  transform: scale(var(--press-scale));
 }
 
 .app-shell {
@@ -228,6 +269,21 @@ input {
   backdrop-filter: blur(18px);
   overscroll-behavior: contain;
   scrollbar-gutter: stable;
+  scrollbar-color: rgba(130, 211, 212, 0.42) transparent;
+  scrollbar-width: thin;
+}
+
+.control-panel::-webkit-scrollbar,
+.guide-view::-webkit-scrollbar {
+  width: 8px;
+}
+
+.control-panel::-webkit-scrollbar-thumb,
+.guide-view::-webkit-scrollbar-thumb {
+  border: 2px solid transparent;
+  border-radius: 999px;
+  background: rgba(130, 211, 212, 0.38);
+  background-clip: padding-box;
 }
 
 .panel-heading {
@@ -266,10 +322,12 @@ input {
   background: transparent;
   font-size: 13px;
   font-weight: 800;
+  line-height: 1.35;
+  letter-spacing: 0.01em;
 }
 
 .tank-name-input:focus-visible {
-  outline: 2px solid var(--accent);
+  outline-color: var(--focus-ring);
   outline-offset: 4px;
 }
 
@@ -283,7 +341,7 @@ input {
   color: var(--accent);
   font-size: 12px;
   font-weight: 700;
-  letter-spacing: 0;
+  letter-spacing: 0.045em;
   text-transform: uppercase;
 }
 
@@ -296,6 +354,7 @@ input {
 .panel-heading h1 {
   font-size: 28px;
   line-height: 1.08;
+  letter-spacing: -0.025em;
 }
 
 .panel-heading p:last-child,
@@ -333,12 +392,38 @@ input {
   color: var(--text-main);
   background: rgba(255, 255, 255, 0.08);
   cursor: pointer;
+  font-weight: 700;
 }
 
-.segmented-control button.active,
-.button-grid button:hover,
-.secondary-button:hover {
+.segmented-control button.active {
   background: linear-gradient(180deg, var(--panel-strong), var(--panel-strong-end));
+  box-shadow:
+    inset 0 1px 0 rgba(227, 255, 255, 0.12),
+    0 4px 14px rgba(0, 0, 0, 0.18);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .segmented-control button:not(.active):hover,
+  .button-grid button:hover,
+  .secondary-button:hover,
+  .ambient-button:hover,
+  .presence-toggle:hover,
+  .ambient-hud button:hover {
+    border-color: rgba(171, 236, 235, 0.28);
+    background: linear-gradient(180deg, var(--panel-strong), var(--panel-strong-end));
+  }
+
+  .field select:hover,
+  .field input:hover,
+  .stock-row input:hover {
+    border-color: rgba(169, 232, 232, 0.34);
+  }
+
+  .selected-resident-heading button:hover,
+  .text-button:hover {
+    color: var(--accent-strong);
+    background: rgba(255, 255, 255, 0.055);
+  }
 }
 
 .button-grid button:disabled {
@@ -419,11 +504,10 @@ input {
   text-align: left;
 }
 
-.ambient-button:hover,
-.presence-toggle:hover,
 .presence-toggle[aria-pressed="true"] {
   border-color: rgba(151, 226, 225, 0.3);
   background: linear-gradient(180deg, rgba(102, 193, 196, 0.2), rgba(46, 118, 122, 0.12));
+  box-shadow: inset 3px 0 0 var(--accent);
 }
 
 .ambient-button > span:last-child,
@@ -522,6 +606,14 @@ input {
   font-size: 11px;
   font-weight: 700;
   cursor: pointer;
+}
+
+.selected-resident-heading button,
+.text-button {
+  min-height: 30px;
+  margin: -7px;
+  padding: 7px;
+  border-radius: 7px;
 }
 
 .resident-portrait {
@@ -705,6 +797,11 @@ input {
   box-shadow: inset 3px 0 0 rgba(121, 211, 213, 0.62);
 }
 
+.fish-row:focus-within {
+  border-color: rgba(150, 229, 228, 0.42);
+  box-shadow: 0 0 0 3px rgba(109, 218, 216, 0.1);
+}
+
 .fish-card-copy {
   display: grid;
   flex: 1;
@@ -725,6 +822,11 @@ input {
   background: transparent;
   cursor: pointer;
   text-align: left;
+}
+
+.fish-card-title:focus-visible {
+  border-radius: 4px;
+  outline-offset: 4px;
 }
 
 .fish-card-title > span {
@@ -808,6 +910,19 @@ input {
   font-size: 12px;
   transform: translateX(-50%);
   backdrop-filter: blur(14px);
+  animation: notice-arrive 220ms var(--ui-ease) both;
+}
+
+@keyframes notice-arrive {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
 }
 
 .ambient-active {
@@ -885,6 +1000,8 @@ input {
   background:
     linear-gradient(rgba(13, 58, 61, 0.78), rgba(8, 29, 31, 0.94)),
     url("./content/environment/aquarium-background.png") center / cover;
+  scrollbar-color: rgba(130, 211, 212, 0.42) transparent;
+  scrollbar-width: thin;
 }
 
 .guide-header {
@@ -910,6 +1027,8 @@ input {
 .guide-header h2 {
   margin: 0;
   font-size: 30px;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
 }
 
 .guide-header p {
@@ -980,6 +1099,8 @@ input {
 .guide-title h3 {
   margin: 0;
   font-size: 18px;
+  line-height: 1.25;
+  letter-spacing: -0.012em;
 }
 
 .guide-title p {
@@ -1132,6 +1253,17 @@ input {
     border-radius: 12px;
   }
 
+  .segmented-control button,
+  .button-grid button,
+  .secondary-button {
+    min-height: 46px;
+  }
+
+  .ambient-button,
+  .presence-toggle {
+    min-height: 56px;
+  }
+
   .panel-heading h1 {
     font-size: 24px;
   }
@@ -1167,5 +1299,58 @@ input {
 
   .specimen-code {
     align-self: start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+
+  .arrival-notice {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .control-panel,
+  .aquarium-loading,
+  .ambient-hud > div,
+  .ambient-hud button,
+  .arrival-notice {
+    backdrop-filter: none;
+  }
+
+  .control-panel {
+    background: #07191b;
+  }
+
+  .ambient-hud > div,
+  .ambient-hud button,
+  .arrival-notice {
+    background: rgba(2, 20, 22, 0.94);
+  }
+}
+
+@media (prefers-contrast: more) {
+  :root {
+    --panel-border: rgba(220, 255, 255, 0.52);
+    --text-muted: rgba(239, 255, 255, 0.88);
+    --text-dim: rgba(239, 255, 255, 0.76);
+  }
+
+  .control-panel,
+  .guide-card,
+  .observation-card,
+  .selected-resident,
+  .care-section,
+  .settings-section,
+  .fish-row {
+    border-color: rgba(225, 255, 255, 0.54);
   }
 }

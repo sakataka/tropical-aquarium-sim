@@ -30,6 +30,19 @@ type CheckResult = {
   tankNameAfterReload: string;
   ambientModeEntered: boolean;
   soundToggleWorked: boolean;
+  keyboard: {
+    focusSequence: string[];
+    focusRingVisible: boolean;
+    guideOpenedWithKeyboard: boolean;
+    tankRestoredWithKeyboard: boolean;
+  };
+  appearance: {
+    colorScheme: string;
+    panelBackground: string;
+    reducedMotionStylesPresent: boolean;
+    reducedTransparencyStylesPresent: boolean;
+    contrastStylesPresent: boolean;
+  };
   mobile: {
     shellWidth: number;
     stageWidth: number;
@@ -89,6 +102,56 @@ async function main() {
       `${SCREENSHOT_DIR}/tank.png`,
       await view.screenshot({ format: "png" }),
     );
+
+    await view.click(".tank-name-input");
+    const focusSequence: string[] = [];
+    let focusRingVisible = true;
+    for (let index = 0; index < 3; index += 1) {
+      if (index > 0) {
+        await view.press("Tab", { modifiers: ["Alt"] });
+        await sleep(50);
+      }
+      const focused = await view.evaluate(`(() => {
+        const element = document.activeElement;
+        if (!(element instanceof HTMLElement)) return { label: "", outline: "none" };
+        const style = getComputedStyle(element);
+        return {
+          label: element.getAttribute("aria-label") || element.textContent?.trim() || element.tagName,
+          outline: style.outlineStyle,
+        };
+      })()`);
+      const focusState = focused as { label: string; outline: string };
+      focusSequence.push(focusState.label);
+      if (index > 0) {
+        focusRingVisible = focusRingVisible && focusState.outline !== "none";
+      }
+    }
+    await view.press("Space");
+    await sleep(250);
+    const guideOpenedWithKeyboard = await view.evaluate(
+      `document.querySelector(".guide-view") !== null`,
+    );
+    await view.press("Tab", { modifiers: ["Alt", "Shift"] });
+    await view.press("Space");
+    await sleep(250);
+    const tankRestoredWithKeyboard = await view.evaluate(
+      `document.querySelector(".aquarium-canvas") !== null`,
+    );
+    const appearance = await view.evaluate(`(() => {
+      const rules = Array.from(document.styleSheets).flatMap((sheet) => {
+        try { return Array.from(sheet.cssRules); } catch { return []; }
+      });
+      const cssText = rules.map((rule) => rule.cssText).join("\\n");
+      const rootStyle = getComputedStyle(document.documentElement);
+      const panel = document.querySelector(".control-panel");
+      return {
+        colorScheme: rootStyle.colorScheme,
+        panelBackground: panel ? getComputedStyle(panel).backgroundColor : "",
+        reducedMotionStylesPresent: cssText.includes("prefers-reduced-motion"),
+        reducedTransparencyStylesPresent: cssText.includes("prefers-reduced-transparency"),
+        contrastStylesPresent: cssText.includes("prefers-contrast"),
+      };
+    })()`);
 
     const title = await view.evaluate("document.title");
     const shellText = await view.evaluate(
@@ -316,6 +379,13 @@ async function main() {
       tankNameAfterReload: String(tankNameAfterReload),
       ambientModeEntered: Boolean(ambientModeEntered),
       soundToggleWorked: Boolean(soundToggleWorked),
+      keyboard: {
+        focusSequence,
+        focusRingVisible,
+        guideOpenedWithKeyboard: Boolean(guideOpenedWithKeyboard),
+        tankRestoredWithKeyboard: Boolean(tankRestoredWithKeyboard),
+      },
+      appearance: appearance as CheckResult["appearance"],
       mobile: mobile as CheckResult["mobile"],
       customizationStatus: String(customizationStatus).slice(0, 240),
       tapLabelSeen: Boolean(tapLabelSeen),
@@ -346,6 +416,16 @@ async function main() {
     assert(result.tankNameAfterReload === "木漏れ日の書斎");
     assert(result.ambientModeEntered);
     assert(result.soundToggleWorked);
+    assert(result.keyboard.focusSequence[0]?.includes("水槽の名前"));
+    assert(result.keyboard.focusSequence.some((label) => label.includes("水槽")));
+    assert(result.keyboard.focusRingVisible);
+    assert(result.keyboard.guideOpenedWithKeyboard);
+    assert(result.keyboard.tankRestoredWithKeyboard);
+    assert(result.appearance.colorScheme.includes("dark"));
+    assert(result.appearance.panelBackground.length > 0);
+    assert(result.appearance.reducedMotionStylesPresent);
+    assert(result.appearance.reducedTransparencyStylesPresent);
+    assert(result.appearance.contrastStylesPresent);
     assert(result.mobile.shellWidth >= 400 && result.mobile.shellWidth <= 420);
     assert(result.mobile.stageWidth >= 375);
     assert(result.mobile.canvasWidth >= 375);

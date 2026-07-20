@@ -118,7 +118,7 @@ export function AquariumControls({
               value={preferences.tankName}
             />
           </label>
-          <span className="save-status">{saveStatus}</span>
+          <span aria-live="polite" className="save-status" role="status">{saveStatus}</span>
         </div>
         <h1>60cm水槽</h1>
         <p>
@@ -129,6 +129,7 @@ export function AquariumControls({
 
       <div className="segmented-control" aria-label="表示切替">
         <button
+          aria-pressed={viewMode === "tank"}
           className={viewMode === "tank" ? "active" : ""}
           onClick={() => onViewModeChange("tank")}
           type="button"
@@ -136,6 +137,7 @@ export function AquariumControls({
           水槽
         </button>
         <button
+          aria-pressed={viewMode === "guide"}
           className={viewMode === "guide" ? "active" : ""}
           onClick={() => onViewModeChange("guide")}
           type="button"
@@ -275,6 +277,7 @@ export function AquariumControls({
         <div className="section-heading">
           <h2>水槽設定</h2>
           <button
+            aria-controls="aquarium-settings-content"
             aria-expanded={settingsExpanded}
             className="text-button"
             onClick={() => setSettingsExpanded((current) => !current)}
@@ -283,7 +286,11 @@ export function AquariumControls({
             {settingsExpanded ? "閉じる" : "開く"}
           </button>
         </div>
-        <div className="settings-content" hidden={!settingsExpanded}>
+        <div
+          className="settings-content"
+          hidden={!settingsExpanded}
+          id="aquarium-settings-content"
+        >
           <label className="field">
             <span>プリセット</span>
             <select
@@ -385,6 +392,7 @@ export function AquariumControls({
         <div className="fish-list-heading">
           <h2>住人一覧</h2>
           <button
+            aria-controls="aquarium-resident-list"
             aria-expanded={residentsExpanded}
             className="text-button"
             onClick={() => setResidentsExpanded((current) => !current)}
@@ -393,7 +401,11 @@ export function AquariumControls({
             {residentsExpanded ? "閉じる" : `${totalFish}匹を見る`}
           </button>
         </div>
-        <div className="resident-list-content" hidden={!residentsExpanded}>
+        <div
+          className="resident-list-content"
+          hidden={!residentsExpanded}
+          id="aquarium-resident-list"
+        >
           {fish.map((item) => {
             const species = speciesList.find((candidate) => candidate.id === item.speciesId);
             const hungerPercent = Math.round(item.hunger * 100);
