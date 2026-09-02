@@ -21,9 +21,6 @@
     "kickDurationSec": 0.22,
     "pauseDurationSecMin": 0.85,
     "pauseDurationSecMax": 1.95,
-    "feedDurationSecMin": 0.55,
-    "feedDurationSecMax": 1.2,
-    "feedSpeedMultiplier": 0.84,
     "coastDragPerSec": 0.42,
     "wanderStrength": 0.3
   },
@@ -51,11 +48,19 @@
     "surfaceAffinity": 0.38,
     "zoneHoldStrength": 0.9,
     "surfaceVisitChance": 0.14,
-    "foodResponsiveness": 0.78,
-    "tapResponsiveness": 0.68,
-    "tapResponse": "flee",
-    "tapSurfaceBias": 0.58,
-    "tapStructureBias": 0.12,
     "structurePatrolStrength": 0.18
+  },
+  "catalog": {
+    "scientificName": "Xiphophorus maculatus",
+    "originRegionId": "central-america",
+    "originRegionName": "中央アメリカ",
+    "origin": "中央アメリカ。メキシコ南部からグアテマラ周辺の流れの緩い小川や水草のある浅い水域に由来します。",
+    "temperament": "温和で前に出やすく、混泳水槽の中で明るい色のアクセントになります。単独でも落ち着きますが、数匹いると動きが自然です。",
+    "movement": "中層から上層を丸い軌道で泳ぎ、短く止まってからまた進みます。餌には素早く反応し、表層にもよく出ます。",
+    "habitat": "明るい水槽、水草の隙間、開けた遊泳スペースのどちらにも合います。赤橙色が背景の緑や青い照明でよく目立ちます。",
+    "aliases": [
+      "platy",
+      "Xiphophorus maculatus"
+    ]
   }
 }

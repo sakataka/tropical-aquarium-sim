@@ -1,65 +1,68 @@
 {
-  "storageKey": "tropical-aquarium.customization.v1",
-  "stateStorageKey": "tropical-aquarium.state.v2",
+  "legacyStorageKey": "tropical-aquarium.customization.v1",
+  "legacyStateStorageKey": "tropical-aquarium.state.v2",
+  "stateStorageKey": "tropical-aquarium.state.v3",
   "maxFishPerSpecies": 12,
   "maxTotalFish": 30,
-  "presets": [
+  "themes": [
     {
-      "id": "community",
-      "displayName": "コミュニティ水槽",
-      "stock": [
-        { "speciesId": "neon-tetra", "count": 3 },
-        { "speciesId": "harlequin-rasbora", "count": 3 },
-        { "speciesId": "corydoras", "count": 3 },
-        { "speciesId": "guppy", "count": 2 },
-        { "speciesId": "platy", "count": 2 },
-        { "speciesId": "dwarf-gourami", "count": 1 },
-        { "speciesId": "angelfish", "count": 1 },
-        { "speciesId": "kuhli-loach", "count": 1 },
-        { "speciesId": "white-cloud-minnow", "count": 1 },
-        { "speciesId": "cherry-barb", "count": 1 }
-      ],
-      "environment": {
-        "backgroundStyle": "clear",
-        "rearPlants": "full",
-        "foregroundPlants": "full",
-        "plantDensity": "medium",
-        "lighting": "natural"
+      "id": "planted",
+      "displayName": "明るい水草景",
+      "description": "やわらかな光と緑を重ねた、明るく澄んだ水景",
+      "layout": {
+        "themeId": "planted",
+        "backgroundId": "planted-water",
+        "substrateId": "dark-soil",
+        "lighting": "natural",
+        "slots": {
+          "rear-left": { "assetId": "ribbon-plants", "flipped": false },
+          "rear-right": { "assetId": "sword-plants", "flipped": true },
+          "mid-left": { "assetId": "seiryu-stones", "flipped": false },
+          "mid-right": null,
+          "front-left": { "assetId": "hairgrass", "flipped": false },
+          "front-center": { "assetId": "moss-stones", "flipped": false },
+          "front-right": { "assetId": "crypts", "flipped": true }
+        }
       }
     },
     {
-      "id": "school",
-      "displayName": "群泳メイン",
-      "stock": [
-        { "speciesId": "neon-tetra", "count": 10 },
-        { "speciesId": "harlequin-rasbora", "count": 8 },
-        { "speciesId": "platy", "count": 4 },
-        { "speciesId": "corydoras", "count": 4 }
-      ],
-      "environment": {
-        "backgroundStyle": "bright",
-        "rearPlants": "full",
-        "foregroundPlants": "subtle",
-        "plantDensity": "high",
-        "lighting": "cool"
+      "id": "driftwood",
+      "displayName": "自然な流木景",
+      "description": "深い青緑の水に流木と陰影を効かせた落ち着く水景",
+      "layout": {
+        "themeId": "driftwood",
+        "backgroundId": "driftwood-water",
+        "substrateId": "river-sand",
+        "lighting": "natural",
+        "slots": {
+          "rear-left": { "assetId": "stem-plants", "flipped": false },
+          "rear-right": { "assetId": "ribbon-plants", "flipped": true },
+          "mid-left": { "assetId": "branch-driftwood", "flipped": false },
+          "mid-right": { "assetId": "arch-driftwood", "flipped": true },
+          "front-left": { "assetId": "crypts", "flipped": false },
+          "front-center": null,
+          "front-right": { "assetId": "moss-stones", "flipped": true }
+        }
       }
     },
     {
-      "id": "calm",
-      "displayName": "落ち着いた夜景",
-      "stock": [
-        { "speciesId": "corydoras", "count": 5 },
-        { "speciesId": "kuhli-loach", "count": 3 },
-        { "speciesId": "dwarf-gourami", "count": 2 },
-        { "speciesId": "angelfish", "count": 1 },
-        { "speciesId": "guppy", "count": 3 }
-      ],
-      "environment": {
-        "backgroundStyle": "deep",
-        "rearPlants": "subtle",
-        "foregroundPlants": "full",
-        "plantDensity": "low",
-        "lighting": "night"
+      "id": "iwagumi",
+      "displayName": "開けた岩組景",
+      "description": "低い草と石の輪郭を活かした、余白のある静かな水景",
+      "layout": {
+        "themeId": "iwagumi",
+        "backgroundId": "iwagumi-water",
+        "substrateId": "cool-gravel",
+        "lighting": "cool",
+        "slots": {
+          "rear-left": null,
+          "rear-right": { "assetId": "stem-plants", "flipped": true },
+          "mid-left": { "assetId": "seiryu-stones", "flipped": false },
+          "mid-right": { "assetId": "river-stones", "flipped": true },
+          "front-left": { "assetId": "hairgrass", "flipped": false },
+          "front-center": { "assetId": "moss-stones", "flipped": false },
+          "front-right": { "assetId": "hairgrass", "flipped": true }
+        }
       }
     }
   ]

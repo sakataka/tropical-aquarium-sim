@@ -1,101 +1,112 @@
 import { z } from "zod";
-import aquariumConfigJson from "../content/aquarium/customization.json";
+import configJson from "../content/aquarium/customization.json";
+import { DECOR_SLOT_IDS, decorAssetsById } from "./environmentCatalog";
 import type {
   AquariumConfig,
   AquariumCustomization,
-  AquariumEnvironmentCustomization,
+  AquariumLayout,
   AquariumPersistedState,
-  AquariumPreset,
+  AquariumPreferences,
+  AquariumTheme,
+  DecorPlacement,
+  DecorSlotId,
   FishSpeciesDefinition,
   FishStockEntry,
+  LightingId,
+  Vec2,
 } from "./types";
 
-const aquariumEnvironmentSchema = z.object({
-  backgroundStyle: z.enum(["clear", "deep", "bright"]),
-  rearPlants: z.enum(["off", "subtle", "full"]),
-  foregroundPlants: z.enum(["off", "subtle", "full"]),
-  plantDensity: z.enum(["low", "medium", "high"]),
+const placementSchema = z.object({
+  assetId: z.string().min(1),
+  flipped: z.boolean(),
+});
+
+const slotShape = Object.fromEntries(
+  DECOR_SLOT_IDS.map((slotId) => [slotId, placementSchema.nullable()]),
+) as Record<DecorSlotId, z.ZodNullable<typeof placementSchema>>;
+const slotsSchema = z.object(slotShape);
+
+const layoutSchema = z.object({
+  themeId: z.enum(["planted", "driftwood", "iwagumi"]),
+  backgroundId: z.string().min(1),
+  substrateId: z.string().min(1),
   lighting: z.enum(["natural", "cool", "evening", "night"]),
+  slots: slotsSchema,
 });
 
-const aquariumCustomizationSchema = z.object({
-  stock: z.array(
-    z.object({
-      speciesId: z.string().min(1),
-      count: z.number().finite().int().min(0),
-    }),
-  ),
-  environment: aquariumEnvironmentSchema,
+const themeSchema = z.object({
+  id: z.enum(["planted", "driftwood", "iwagumi"]),
+  displayName: z.string().min(1),
+  description: z.string().min(1),
+  layout: layoutSchema,
 });
 
-const aquariumConfigSchema = z.object({
-  storageKey: z.string().min(1),
+const configSchema = z.object({
+  legacyStorageKey: z.string().min(1),
+  legacyStateStorageKey: z.string().min(1),
   stateStorageKey: z.string().min(1),
-  maxFishPerSpecies: z.number().finite().int().positive(),
-  maxTotalFish: z.number().finite().int().positive(),
-  presets: z.array(
-    aquariumCustomizationSchema.extend({
-      id: z.string().min(1),
-      displayName: z.string().min(1),
-    }),
-  ).min(1),
+  maxFishPerSpecies: z.number().int().positive(),
+  maxTotalFish: z.number().int().positive(),
+  themes: z.array(themeSchema).length(3),
 });
 
-const aquariumConfig: AquariumConfig = aquariumConfigSchema.parse(aquariumConfigJson);
-export const CUSTOMIZATION_STORAGE_KEY = aquariumConfig.storageKey;
-export const AQUARIUM_STATE_STORAGE_KEY = aquariumConfig.stateStorageKey;
-export const MAX_FISH_PER_SPECIES = aquariumConfig.maxFishPerSpecies;
-export const MAX_TOTAL_FISH = aquariumConfig.maxTotalFish;
-export const aquariumPresets: AquariumPreset[] = aquariumConfig.presets;
-export const DEFAULT_CUSTOMIZATION = aquariumPresets[0];
-const DEFAULT_ENVIRONMENT: AquariumEnvironmentCustomization =
-  DEFAULT_CUSTOMIZATION.environment;
+const config = configSchema.parse(configJson) as AquariumConfig;
 
-const fishResidentSchema = z.object({
-  id: z.string().min(1),
-  speciesId: z.string().min(1),
-  arrivedAtMs: z.number().finite().nonnegative(),
-  nickname: z.string().max(24).optional(),
-  favorite: z.boolean(),
-  lastFedAtMs: z.number().finite().nonnegative().optional(),
-  bodyLengthVariance: z.number().finite(),
-  hunger: z.number().finite(),
-  seed: z.number().finite().int(),
-});
+export const CUSTOMIZATION_STORAGE_KEY = config.legacyStorageKey;
+export const LEGACY_AQUARIUM_STATE_STORAGE_KEY = config.legacyStateStorageKey;
+export const AQUARIUM_STATE_STORAGE_KEY = config.stateStorageKey;
+export const MAX_FISH_PER_SPECIES = config.maxFishPerSpecies;
+export const MAX_TOTAL_FISH = config.maxTotalFish;
+export const aquariumThemes = config.themes;
 
-const aquariumPersistedStateSchema = z.object({
-  version: z.literal(2),
-  customization: aquariumCustomizationSchema,
-  residents: z.array(fishResidentSchema),
+const DEFAULT_STOCK: FishStockEntry[] = [
+  { speciesId: "neon-tetra", count: 6 },
+  { speciesId: "harlequin-rasbora", count: 5 },
+  { speciesId: "corydoras", count: 3 },
+  { speciesId: "guppy", count: 2 },
+  { speciesId: "dwarf-gourami", count: 1 },
+  { speciesId: "angelfish", count: 1 },
+];
+
+export const DEFAULT_CUSTOMIZATION: AquariumCustomization = {
+  stock: DEFAULT_STOCK,
+  layout: cloneLayout(aquariumThemes[0].layout),
+};
+
+export const DEFAULT_PREFERENCES: AquariumPreferences = {
+  soundEnabled: false,
+  soundVolume: 0.42,
+};
+
+const persistedStateSchema = z.object({
+  version: z.literal(3),
+  customization: z.object({
+    stock: z.array(z.object({
+      speciesId: z.string().min(1),
+      count: z.number().finite(),
+    })),
+    layout: layoutSchema,
+  }),
   preferences: z.object({
-    tankName: z.string().min(1).max(32),
-    createdAtMs: z.number().finite().nonnegative(),
-    lastSeenAtMs: z.number().finite().nonnegative(),
-    lightingMode: z.enum(["auto", "manual"]),
     soundEnabled: z.boolean(),
     soundVolume: z.number().finite(),
   }),
-  selectedFishId: z.string().min(1).optional(),
 });
 
-export function getPresetById(presetId: string | null | undefined): AquariumPreset | undefined {
-  return aquariumPresets.find((preset) => preset.id === presetId);
+export function getThemeById(themeId: string | null | undefined): AquariumTheme | undefined {
+  return aquariumThemes.find((theme) => theme.id === themeId);
 }
 
 export function normalizeAquariumCustomization(
   value: unknown,
   speciesCatalog: Record<string, FishSpeciesDefinition>,
 ): AquariumCustomization {
-  const parsed = aquariumCustomizationSchema.safeParse(value);
-  const source = parsed.success ? parsed.data : DEFAULT_CUSTOMIZATION;
-  const stock = normalizeStock(source.stock, speciesCatalog);
-
+  const candidate = value && typeof value === "object"
+    ? value as Partial<AquariumCustomization>
+    : {};
   return {
-    stock,
-    environment: {
-      ...DEFAULT_ENVIRONMENT,
-      ...source.environment,
-    },
+    stock: normalizeStock(candidate.stock, speciesCatalog),
+    layout: normalizeLayout(candidate.layout),
   };
 }
 
@@ -103,85 +114,54 @@ export function normalizeAquariumPersistedState(
   value: unknown,
   speciesCatalog: Record<string, FishSpeciesDefinition>,
 ): AquariumPersistedState | undefined {
-  const parsed = aquariumPersistedStateSchema.safeParse(value);
+  const parsed = persistedStateSchema.safeParse(value);
   if (!parsed.success) {
     return undefined;
   }
-
-  const customization = normalizeAquariumCustomization(
-    parsed.data.customization,
-    speciesCatalog,
-  );
-  const allowedCounts = new Map(
-    customization.stock.map((entry) => [entry.speciesId, entry.count]),
-  );
-  const residentCounts = new Map<string, number>();
-  const residents = parsed.data.residents.filter((resident) => {
-    const limit = allowedCounts.get(resident.speciesId) ?? 0;
-    const current = residentCounts.get(resident.speciesId) ?? 0;
-    if (!speciesCatalog[resident.speciesId] || current >= limit) {
-      return false;
-    }
-    residentCounts.set(resident.speciesId, current + 1);
-    return true;
-  }).map((resident) => ({
-    ...resident,
-    hunger: Math.max(0, Math.min(1, resident.hunger)),
-    bodyLengthVariance: Math.max(0.85, Math.min(1.15, resident.bodyLengthVariance)),
-    nickname: resident.nickname?.trim() || undefined,
-  }));
-
   return {
-    version: 2,
-    customization,
-    residents,
-    preferences: {
-      ...parsed.data.preferences,
-      tankName: parsed.data.preferences.tankName.trim(),
-      soundVolume: Math.max(0, Math.min(1, parsed.data.preferences.soundVolume)),
-    },
-    selectedFishId: parsed.data.selectedFishId,
+    version: 3,
+    customization: normalizeAquariumCustomization(parsed.data.customization, speciesCatalog),
+    preferences: normalizePreferences(parsed.data.preferences),
   };
 }
 
-function normalizeStock(
-  stock: FishStockEntry[],
+export function migrateLegacyAquariumState(
+  value: unknown,
   speciesCatalog: Record<string, FishSpeciesDefinition>,
-): FishStockEntry[] {
-  const bySpecies = new Map<string, number>();
-  const orderedSpecies: string[] = [];
-
-  for (const entry of stock) {
-    if (!speciesCatalog[entry.speciesId]) {
-      continue;
-    }
-    if (!bySpecies.has(entry.speciesId)) {
-      orderedSpecies.push(entry.speciesId);
-    }
-    const current = bySpecies.get(entry.speciesId) ?? 0;
-    bySpecies.set(
-      entry.speciesId,
-      Math.min(MAX_FISH_PER_SPECIES, current + clampCount(entry.count)),
-    );
+): AquariumPersistedState | undefined {
+  if (!value || typeof value !== "object") {
+    return undefined;
   }
+  const source = value as {
+    version?: number;
+    customization?: { stock?: FishStockEntry[]; environment?: Record<string, unknown> };
+    stock?: FishStockEntry[];
+    environment?: Record<string, unknown>;
+    preferences?: Record<string, unknown>;
+  };
+  const legacyCustomization = source.customization ?? source;
+  const environment = legacyCustomization.environment ?? {};
+  const themeId = mapLegacyTheme(environment.backgroundStyle);
+  const theme = getThemeById(themeId) ?? aquariumThemes[0];
+  const lighting = isLightingId(environment.lighting)
+    ? environment.lighting
+    : theme.layout.lighting;
+  const preferences = source.preferences ?? {};
 
-  const normalized: FishStockEntry[] = [];
-  let total = 0;
-  for (const speciesId of orderedSpecies) {
-    const count = bySpecies.get(speciesId) ?? 0;
-    const nextCount = Math.min(count, MAX_TOTAL_FISH - total);
-    if (nextCount > 0) {
-      normalized.push({ speciesId, count: nextCount });
-      total += nextCount;
-    }
-    if (total >= MAX_TOTAL_FISH) {
-      break;
-    }
-  }
-
-  return normalized.length > 0
-    ? normalized
-    : DEFAULT_CUSTOMIZATION.stock.filter((entry) => speciesCatalog[entry.speciesId]);
+  return {
+    version: 3,
+    customization: normalizeAquariumCustomization({
+      stock: legacyCustomization.stock,
+      layout: {
+        ...cloneLayout(theme.layout),
+        lighting,
+      },
+    }, speciesCatalog),
+    preferences: normalizePreferences({
+      soundEnabled: preferences.soundEnabled,
+      soundVolume: preferences.soundVolume,
+    }),
+  };
 }
 
 export function setStockCount(
@@ -191,7 +171,7 @@ export function setStockCount(
   speciesCatalog: Record<string, FishSpeciesDefinition>,
 ): FishStockEntry[] {
   const next = new Map(stock.map((entry) => [entry.speciesId, entry.count]));
-  next.set(speciesId, clampCount(count));
+  next.set(speciesId, count);
   return normalizeStock(
     Array.from(next, ([entrySpeciesId, entryCount]) => ({
       speciesId: entrySpeciesId,
@@ -201,6 +181,128 @@ export function setStockCount(
   );
 }
 
+export function setLayoutSlot(
+  layout: AquariumLayout,
+  slotId: DecorSlotId,
+  placement: DecorPlacement | null,
+): AquariumLayout {
+  const asset = placement ? decorAssetsById[placement.assetId] : undefined;
+  const safePlacement = asset?.allowedSlots.includes(slotId) ? placement : null;
+  return {
+    ...layout,
+    slots: {
+      ...layout.slots,
+      [slotId]: safePlacement,
+    },
+  };
+}
+
+export function getMatchingThemeId(layout: AquariumLayout): string | undefined {
+  return aquariumThemes.find((theme) =>
+    JSON.stringify(theme.layout) === JSON.stringify(layout)
+  )?.id;
+}
+
+export function getStructurePoints(layout: AquariumLayout): Vec2[] {
+  const points: Vec2[] = [];
+  if (layout.slots["mid-left"]) points.push({ x: 18, y: 26 });
+  if (layout.slots["mid-right"]) points.push({ x: 42, y: 26 });
+  return points;
+}
+
+function normalizeLayout(value: unknown): AquariumLayout {
+  const parsed = layoutSchema.safeParse(value);
+  if (!parsed.success) {
+    return cloneLayout(aquariumThemes[0].layout);
+  }
+  const background = decorAssetsById[parsed.data.backgroundId];
+  const substrate = decorAssetsById[parsed.data.substrateId];
+  const fallback = getThemeById(parsed.data.themeId)?.layout ?? aquariumThemes[0].layout;
+  const slots = Object.fromEntries(DECOR_SLOT_IDS.map((slotId) => {
+    const placement = parsed.data.slots[slotId];
+    const asset = placement ? decorAssetsById[placement.assetId] : undefined;
+    return [slotId, asset?.allowedSlots.includes(slotId) ? placement : null];
+  })) as AquariumLayout["slots"];
+  return {
+    ...parsed.data,
+    backgroundId: background?.category === "background"
+      ? parsed.data.backgroundId
+      : fallback.backgroundId,
+    substrateId: substrate?.category === "substrate"
+      ? parsed.data.substrateId
+      : fallback.substrateId,
+    slots,
+  };
+}
+
+function normalizeStock(
+  value: unknown,
+  speciesCatalog: Record<string, FishSpeciesDefinition>,
+): FishStockEntry[] {
+  const isExplicitStock = Array.isArray(value);
+  const stock = isExplicitStock ? value : DEFAULT_STOCK;
+  const counts = new Map<string, number>();
+  const order: string[] = [];
+  let knownSpeciesSeen = false;
+  for (const item of stock) {
+    if (!item || typeof item !== "object") continue;
+    const { speciesId, count } = item as FishStockEntry;
+    if (!speciesCatalog[speciesId]) continue;
+    knownSpeciesSeen = true;
+    if (!counts.has(speciesId)) order.push(speciesId);
+    counts.set(
+      speciesId,
+      Math.min(MAX_FISH_PER_SPECIES, (counts.get(speciesId) ?? 0) + clampCount(count)),
+    );
+  }
+  const result: FishStockEntry[] = [];
+  let total = 0;
+  for (const speciesId of order) {
+    const count = Math.min(counts.get(speciesId) ?? 0, MAX_TOTAL_FISH - total);
+    if (count > 0) result.push({ speciesId, count });
+    total += count;
+    if (total >= MAX_TOTAL_FISH) break;
+  }
+  if (result.length > 0 || (isExplicitStock && (stock.length === 0 || knownSpeciesSeen))) {
+    return result;
+  }
+  return DEFAULT_STOCK.filter((entry) => speciesCatalog[entry.speciesId]);
+}
+
+function normalizePreferences(value: unknown): AquariumPreferences {
+  const candidate = value && typeof value === "object"
+    ? value as Partial<AquariumPreferences>
+    : {};
+  return {
+    soundEnabled: candidate.soundEnabled === true,
+    soundVolume: Math.max(0, Math.min(1,
+      typeof candidate.soundVolume === "number"
+        ? candidate.soundVolume
+        : DEFAULT_PREFERENCES.soundVolume,
+    )),
+  };
+}
+
+function mapLegacyTheme(backgroundStyle: unknown): AquariumLayout["themeId"] {
+  if (backgroundStyle === "deep") return "driftwood";
+  if (backgroundStyle === "bright") return "iwagumi";
+  return "planted";
+}
+
+function isLightingId(value: unknown): value is LightingId {
+  return value === "natural" || value === "cool" || value === "evening" || value === "night";
+}
+
 function clampCount(count: number): number {
-  return Math.max(0, Math.min(MAX_FISH_PER_SPECIES, Math.trunc(count)));
+  return Math.max(0, Math.min(MAX_FISH_PER_SPECIES, Math.trunc(Number(count) || 0)));
+}
+
+function cloneLayout(layout: AquariumLayout): AquariumLayout {
+  return {
+    ...layout,
+    slots: Object.fromEntries(DECOR_SLOT_IDS.map((slotId) => [
+      slotId,
+      layout.slots[slotId] ? { ...layout.slots[slotId]! } : null,
+    ])) as AquariumLayout["slots"],
+  };
 }

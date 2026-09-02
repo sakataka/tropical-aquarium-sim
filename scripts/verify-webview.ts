@@ -3,81 +3,31 @@ const HOST = "127.0.0.1";
 const BASE_URL = `http://${HOST}:${PORT}/`;
 const SCREENSHOT_DIR = "tmp/webview";
 
-type CheckResult = {
+type Result = {
   title: string;
-  shellText: string;
-  stage: {
-    width: number;
-    height: number;
-  };
-  canvas: {
-    width: number;
-    height: number;
-    cssWidth: number;
-    cssHeight: number;
-  };
-  controlPanelScroll: {
-    clientHeight: number;
-    scrollHeight: number;
-    scrollTopAfterScroll: number;
-  };
-  fishListText: string;
-  fishRowsBeforeDelete: number;
-  fishRowsAfterDelete: number;
-  fishRowsAfterPreset: number;
-  fishRowsAfterReload: number;
-  residentIdsPersisted: boolean;
-  tankNameAfterReload: string;
+  initialCards: number;
+  searchedCards: number;
+  regionCards: number;
+  bottomCards: number;
+  neonCount: number;
+  themesVisited: string[];
+  editedSlots: number;
   ambientModeEntered: boolean;
-  soundToggleWorked: boolean;
-  keyboard: {
-    focusSequence: string[];
-    focusRingVisible: boolean;
-    guideOpenedWithKeyboard: boolean;
-    tankRestoredWithKeyboard: boolean;
-  };
-  appearance: {
-    colorScheme: string;
-    panelBackground: string;
-    reducedMotionStylesPresent: boolean;
-    reducedTransparencyStylesPresent: boolean;
-    contrastStylesPresent: boolean;
-  };
-  mobile: {
-    shellWidth: number;
-    stageWidth: number;
-    canvasWidth: number;
-    overflowWidth: number;
-  };
-  customizationStatus: string;
-  tapLabelSeen: boolean;
-  guideText: string;
+  ambientStageWidth: number;
+  ambientCanvasWidth: number;
+  restored: { version: number; theme: string; lighting: string; neonCount: number; sound: boolean };
+  desktop: { stageWidth: number; stageHeight: number; canvasWidth: number; canvasHeight: number };
+  mobile: { stageWidth: number; canvasWidth: number; overflowWidth: number };
+  removedCopyAbsent: boolean;
   consoleErrors: string[];
 };
 
 async function main() {
-  if (!Bun.WebView) {
-    throw new Error("Bun.WebView is not available in this Bun runtime.");
-  }
-
+  if (!Bun.WebView) throw new Error("Bun.WebView is not available in this Bun runtime.");
   await Bun.$`mkdir -p ${SCREENSHOT_DIR}`;
-  const server = Bun.spawn(
-    [
-      "bun",
-      "run",
-      "dev",
-      "--",
-      "--host",
-      HOST,
-      "--port",
-      String(PORT),
-      "--strictPort",
-    ],
-    {
-      stdout: "inherit",
-      stderr: "inherit",
-    },
-  );
+  const server = Bun.spawn([
+    "bun", "run", "dev", "--", "--host", HOST, "--port", String(PORT), "--strictPort",
+  ], { stdout: "inherit", stderr: "inherit" });
 
   try {
     await waitForServer(BASE_URL);
@@ -87,380 +37,224 @@ async function main() {
       height: 960,
       backend: "webkit",
       console: (type, ...args) => {
-        if (type === "error") {
-          consoleErrors.push(args.map(String).join(" "));
-        }
+        if (type === "error") consoleErrors.push(args.map(String).join(" "));
       },
     });
 
     await view.navigate(BASE_URL);
-    await view.evaluate(`localStorage.removeItem("tropical-aquarium.customization.v1")`);
-    await view.evaluate(`localStorage.removeItem("tropical-aquarium.state.v2")`);
+    await sleep(2200);
+    await view.evaluate(`[
+      "tropical-aquarium.customization.v1",
+      "tropical-aquarium.state.v2",
+      "tropical-aquarium.state.v3"
+    ].forEach((key) => localStorage.removeItem(key))`);
     await view.reload();
-    await sleep(1200);
-    await Bun.write(
-      `${SCREENSHOT_DIR}/tank.png`,
-      await view.screenshot({ format: "png" }),
-    );
+    await sleep(2200);
 
-    await view.click(".tank-name-input");
-    const focusSequence: string[] = [];
-    let focusRingVisible = true;
-    for (let index = 0; index < 3; index += 1) {
-      if (index > 0) {
-        await view.press("Tab", { modifiers: ["Alt"] });
-        await sleep(50);
-      }
-      const focused = await view.evaluate(`(() => {
-        const element = document.activeElement;
-        if (!(element instanceof HTMLElement)) return { label: "", outline: "none" };
-        const style = getComputedStyle(element);
-        return {
-          label: element.getAttribute("aria-label") || element.textContent?.trim() || element.tagName,
-          outline: style.outlineStyle,
-        };
-      })()`);
-      const focusState = focused as { label: string; outline: string };
-      focusSequence.push(focusState.label);
-      if (index > 0) {
-        focusRingVisible = focusRingVisible && focusState.outline !== "none";
+    const title = String(await view.evaluate("document.title"));
+    const desktop = await view.evaluate(`(() => {
+      const stage = document.querySelector(".aquarium-stage")?.getBoundingClientRect();
+      const canvas = document.querySelector("canvas")?.getBoundingClientRect();
+      return {
+        stageWidth: Math.round(stage?.width ?? 0),
+        stageHeight: Math.round(stage?.height ?? 0),
+        canvasWidth: Math.round(canvas?.width ?? 0),
+        canvasHeight: Math.round(canvas?.height ?? 0),
+      };
+    })()`) as Result["desktop"];
+    const initialCards = Number(await view.evaluate(
+      `document.querySelectorAll(".fish-catalog-card").length`,
+    ));
+    await Bun.write(`${SCREENSHOT_DIR}/planted-1440x960.png`, await view.screenshot({ format: "png" }));
+
+    await setControlValue(view, `input[type="search"]`, "ネオン");
+    await sleep(250);
+    const searchedCards = Number(await view.evaluate(
+      `document.querySelectorAll(".fish-catalog-card").length`,
+    ));
+    await setControlValue(view, `input[type="search"]`, "");
+    await setControlValue(view, `.catalog-filters label:nth-child(2) select`, "south-america");
+    await sleep(250);
+    const regionCards = Number(await view.evaluate(
+      `document.querySelectorAll(".fish-catalog-card").length`,
+    ));
+    await setControlValue(view, `.catalog-filters label:nth-child(2) select`, "all");
+    await setControlValue(view, `.catalog-filters label:nth-child(3) select`, "bottom");
+    await sleep(250);
+    const bottomCards = Number(await view.evaluate(
+      `document.querySelectorAll(".fish-catalog-card").length`,
+    ));
+    await setControlValue(view, `.catalog-filters label:nth-child(3) select`, "all");
+
+    await view.evaluate(`document.querySelector("button[aria-label='ネオンテトラを1匹増やす']")?.click()`);
+    await sleep(350);
+    const neonCount = Number(await view.evaluate(`(() => {
+      const value = localStorage.getItem("tropical-aquarium.state.v3");
+      const stock = value ? JSON.parse(value).customization.stock : [];
+      return stock.find((entry) => entry.speciesId === "neon-tetra")?.count ?? 0;
+    })()`));
+
+    await clickButtonByText(view, "レイアウト");
+    const themesVisited: string[] = [];
+    for (const [label, id] of [
+      ["自然な流木景", "driftwood"],
+      ["開けた岩組景", "iwagumi"],
+      ["明るい水草景", "planted"],
+    ]) {
+      await clickButtonByText(view, label);
+      await sleep(1500);
+      themesVisited.push(String(await view.evaluate(
+        `JSON.parse(localStorage.getItem("tropical-aquarium.state.v3")).customization.layout.themeId`,
+      )));
+      if (id !== "planted") {
+        await Bun.write(`${SCREENSHOT_DIR}/${id}-1440x960.png`, await view.screenshot({ format: "png" }));
       }
     }
-    await view.press("Space");
-    await sleep(250);
-    const guideOpenedWithKeyboard = await view.evaluate(
-      `document.querySelector(".guide-view") !== null`,
-    );
-    await view.press("Tab", { modifiers: ["Alt", "Shift"] });
-    await view.press("Space");
-    await sleep(250);
-    const tankRestoredWithKeyboard = await view.evaluate(
-      `document.querySelector(".aquarium-canvas") !== null`,
-    );
-    const appearance = await view.evaluate(`(() => {
-      const rules = Array.from(document.styleSheets).flatMap((sheet) => {
-        try { return Array.from(sheet.cssRules); } catch { return []; }
-      });
-      const cssText = rules.map((rule) => rule.cssText).join("\\n");
-      const rootStyle = getComputedStyle(document.documentElement);
-      const panel = document.querySelector(".control-panel");
-      return {
-        colorScheme: rootStyle.colorScheme,
-        panelBackground: panel ? getComputedStyle(panel).backgroundColor : "",
-        reducedMotionStylesPresent: cssText.includes("prefers-reduced-motion"),
-        reducedTransparencyStylesPresent: cssText.includes("prefers-reduced-transparency"),
-        contrastStylesPresent: cssText.includes("prefers-contrast"),
-      };
-    })()`);
 
-    const title = await view.evaluate("document.title");
-    const shellText = await view.evaluate(
-      `document.querySelector(".app-shell")?.textContent ?? ""`,
-    );
-    const stage = await view.evaluate(`(() => {
-      const stage = document.querySelector(".aquarium-stage");
-      const rect = stage?.getBoundingClientRect();
-      return {
-        width: Math.round(rect?.width ?? 0),
-        height: Math.round(rect?.height ?? 0),
-      };
-    })()`);
-    const canvas = await view.evaluate(`(() => {
-      const canvas = document.querySelector("canvas");
-      const rect = canvas?.getBoundingClientRect();
-      return {
-        width: canvas?.width ?? 0,
-        height: canvas?.height ?? 0,
-        cssWidth: Math.round(rect?.width ?? 0),
-        cssHeight: Math.round(rect?.height ?? 0),
-      };
-    })()`);
-    const controlPanelScroll = await view.evaluate(`(() => {
-      const panel = document.querySelector(".control-panel");
-      if (!(panel instanceof HTMLElement)) {
-        return { clientHeight: 0, scrollHeight: 0, scrollTopAfterScroll: 0 };
+    const editedSlots = Number(await view.evaluate(`(() => {
+      const selects = Array.from(document.querySelectorAll(".slot-row select"));
+      for (const select of selects) {
+        if (!(select instanceof HTMLSelectElement)) continue;
+        const options = Array.from(select.options).filter((option) => option.value);
+        if (options.length === 0) continue;
+        select.value = options[options.length - 1].value;
+        select.dispatchEvent(new Event("change", { bubbles: true }));
       }
-      panel.scrollTop = panel.scrollHeight;
-      return {
-        clientHeight: panel.clientHeight,
-        scrollHeight: panel.scrollHeight,
-        scrollTopAfterScroll: panel.scrollTop,
-      };
-    })()`);
-    const fishListText = await view.evaluate(
-      `document.querySelector(".fish-list")?.textContent ?? ""`,
-    );
-    const fishRowsBeforeDelete = await view.evaluate(
-      `document.querySelectorAll(".fish-row").length`,
-    );
-    await view.evaluate(`(() => {
-      const element = document.querySelector(".aquarium-canvas");
-      const rect = element?.getBoundingClientRect();
-      if (!element || !rect) return false;
-      element.dispatchEvent(new MouseEvent("dblclick", {
-        bubbles: true,
-        cancelable: true,
-        clientX: rect.left + rect.width * 0.48,
-        clientY: rect.top + rect.height * 0.44,
-      }));
-      return true;
-    })()`);
-    await sleep(300);
-    const tapLabelSeen = await view.evaluate(
-      `document.querySelector(".fish-list")?.textContent?.includes("タップ") ?? false`,
-    );
+      return selects.length;
+    })()`));
+    await sleep(500);
+    await view.evaluate(`Array.from(document.querySelectorAll(".flip-button"))
+      .forEach((button) => button instanceof HTMLButtonElement && !button.disabled && button.click())`);
+    await sleep(1500);
+    await Bun.write(`${SCREENSHOT_DIR}/edited-layout-1440x960.png`, await view.screenshot({ format: "png" }));
 
-    await view.evaluate(`(() => {
-      const button = document.querySelector("button[aria-label$='を水槽から移す']");
-      if (!(button instanceof HTMLButtonElement)) return false;
-      button.click();
-      return true;
-    })()`);
-    await sleep(200);
-    const fishRowsAfterDelete = await view.evaluate(
-      `document.querySelectorAll(".fish-row").length`,
-    );
-    await view.evaluate(`(() => {
-      const preset = document.querySelector("section[aria-label='水槽設定'] select");
-      if (!(preset instanceof HTMLSelectElement)) return false;
-      preset.value = "school";
-      preset.dispatchEvent(new Event("change", { bubbles: true }));
-      return true;
-    })()`);
-    await sleep(500);
-    const fishRowsAfterPreset = await view.evaluate(
-      `document.querySelectorAll(".fish-row").length`,
-    );
-    await view.evaluate(`(() => {
-      const inputs = Array.from(document.querySelectorAll(".stock-row input"));
-      const neonInput = inputs.find((input) =>
-        input.closest(".stock-row")?.textContent?.includes("ネオン")
-      );
-      if (!(neonInput instanceof HTMLInputElement)) return false;
-      const setter = Object.getOwnPropertyDescriptor(
-        HTMLInputElement.prototype,
-        "value",
-      )?.set;
-      setter?.call(neonInput, "3");
-      neonInput.dispatchEvent(new Event("input", { bubbles: true }));
-      neonInput.dispatchEvent(new Event("change", { bubbles: true }));
-      return true;
-    })()`);
-    await sleep(500);
-    await view.evaluate(`(() => {
-      const input = document.querySelector("input[aria-label='水槽の名前']");
-      if (!(input instanceof HTMLInputElement)) return false;
-      const setter = Object.getOwnPropertyDescriptor(
-        HTMLInputElement.prototype,
-        "value",
-      )?.set;
-      setter?.call(input, "木漏れ日の書斎");
-      input.dispatchEvent(new Event("input", { bubbles: true }));
-      input.dispatchEvent(new Event("change", { bubbles: true }));
-      input.dispatchEvent(new FocusEvent("blur", { bubbles: true }));
-      return true;
-    })()`);
-    await sleep(300);
-    const residentIdsBeforeReload = await view.evaluate(`(() => {
-      const value = localStorage.getItem("tropical-aquarium.state.v2");
-      if (!value) return [];
-      return JSON.parse(value).residents.map((resident) => resident.id);
-    })()`);
-    await view.reload();
-    await sleep(900);
-    const fishRowsAfterReload = await view.evaluate(
-      `document.querySelectorAll(".fish-row").length`,
-    );
-    const customizationStatus = await view.evaluate(
-      `document.querySelector("section[aria-label='水槽設定']")?.textContent ?? ""`,
-    );
-    const residentIdsAfterReload = await view.evaluate(`(() => {
-      const value = localStorage.getItem("tropical-aquarium.state.v2");
-      if (!value) return [];
-      return JSON.parse(value).residents.map((resident) => resident.id);
-    })()`);
-    const residentIdsPersisted = JSON.stringify(residentIdsBeforeReload) ===
-      JSON.stringify(residentIdsAfterReload);
-    const tankNameAfterReload = await view.evaluate(
-      `document.querySelector("input[aria-label='水槽の名前']")?.value ?? ""`,
-    );
-    await view.evaluate(`(() => {
-      const button = Array.from(document.querySelectorAll("button"))
-        .find((candidate) => candidate.textContent?.includes("観賞モード"));
-      if (!(button instanceof HTMLButtonElement)) return false;
-      button.click();
-      return true;
-    })()`);
+    await clickButtonByText(view, "自然な流木景");
+    await sleep(1500);
+    await clickButtonByText(view, "鑑賞設定");
+    await clickButtonByText(view, "夜景");
+    await view.evaluate(`document.querySelector(".sound-toggle")?.click()`);
+    await sleep(350);
+    await clickButtonByText(view, "観賞モード");
     await sleep(700);
-    const ambientModeEntered = await view.evaluate(
-      `document.querySelector(".app-shell")?.classList.contains("ambient-active") ?? false`,
-    );
-    await Bun.write(
-      `${SCREENSHOT_DIR}/ambient.png`,
-      await view.screenshot({ format: "png" }),
-    );
+    const ambientModeEntered = Boolean(await view.evaluate(
+      `document.querySelector(".app-shell")?.classList.contains("ambient-active")`,
+    ));
+    const ambientStageWidth = Number(await view.evaluate(
+      `Math.round(document.querySelector(".aquarium-stage")?.getBoundingClientRect().width ?? 0)`,
+    ));
+    const ambientCanvasWidth = Number(await view.evaluate(
+      `Math.round(document.querySelector("canvas")?.getBoundingClientRect().width ?? 0)`,
+    ));
+    await Bun.write(`${SCREENSHOT_DIR}/ambient-1440x960.png`, await view.screenshot({ format: "png" }));
     await view.evaluate(`document.querySelector(".ambient-hud button")?.click()`);
-    await sleep(100);
-    await view.evaluate(`(() => {
-      const button = Array.from(document.querySelectorAll("button"))
-        .find((candidate) => candidate.textContent?.includes("環境音"));
-      if (!(button instanceof HTMLButtonElement)) return false;
-      button.click();
-      return true;
-    })()`);
-    await sleep(100);
-    const soundToggleWorked = await view.evaluate(`(() => {
-      const button = Array.from(document.querySelectorAll("button"))
-        .find((candidate) => candidate.textContent?.includes("環境音"));
-      return button?.getAttribute("aria-pressed") === "true";
-    })()`);
-    await view.evaluate(`(() => {
-      const button = Array.from(document.querySelectorAll("button"))
-        .find((candidate) => candidate.textContent?.includes("環境音"));
-      if (button instanceof HTMLButtonElement) button.click();
-    })()`);
+    await sleep(200);
 
-    await view.evaluate(`(() => {
-      const buttons = Array.from(document.querySelectorAll(".segmented-control button"));
-      const guideButton = buttons.find((button) => button.textContent?.includes("図鑑"));
-      if (!(guideButton instanceof HTMLButtonElement)) return false;
-      guideButton.click();
-      return true;
-    })()`);
-    await sleep(500);
-    const guideText = await view.evaluate(
-      `document.querySelector(".guide-view")?.textContent ?? ""`,
-    );
-    await Bun.write(
-      `${SCREENSHOT_DIR}/guide.png`,
-      await view.screenshot({ format: "png" }),
-    );
+    await view.reload();
+    await sleep(2200);
+    const restored = await view.evaluate(`(() => {
+      const state = JSON.parse(localStorage.getItem("tropical-aquarium.state.v3"));
+      return {
+        version: state.version,
+        theme: state.customization.layout.themeId,
+        lighting: state.customization.layout.lighting,
+        neonCount: state.customization.stock.find((entry) => entry.speciesId === "neon-tetra")?.count ?? 0,
+        sound: state.preferences.soundEnabled,
+      };
+    })()`) as Result["restored"];
+    const shellText = String(await view.evaluate(
+      `document.querySelector(".app-shell")?.textContent ?? ""`,
+    ));
+    const removedCopyAbsent = ["愛称", "空腹", "餌やり", "お気に入り", "今日の観察"]
+      .every((word) => !shellText.includes(word));
 
     await using mobileView = new Bun.WebView({
       width: 420,
       height: 912,
       backend: "webkit",
       console: (type, ...args) => {
-        if (type === "error") {
-          consoleErrors.push(`mobile: ${args.map(String).join(" ")}`);
-        }
+        if (type === "error") consoleErrors.push(`mobile: ${args.map(String).join(" ")}`);
       },
     });
     await mobileView.navigate(BASE_URL);
-    await sleep(900);
+    await sleep(2200);
     const mobile = await mobileView.evaluate(`(() => {
-      const shell = document.querySelector(".app-shell")?.getBoundingClientRect();
       const stage = document.querySelector(".aquarium-stage")?.getBoundingClientRect();
       const canvas = document.querySelector("canvas")?.getBoundingClientRect();
       return {
-        shellWidth: Math.round(shell?.width ?? 0),
         stageWidth: Math.round(stage?.width ?? 0),
         canvasWidth: Math.round(canvas?.width ?? 0),
         overflowWidth: document.documentElement.scrollWidth - document.documentElement.clientWidth,
       };
-    })()`);
-    await Bun.write(
-      `${SCREENSHOT_DIR}/mobile-420x912.png`,
-      await mobileView.screenshot({ format: "png" }),
-    );
+    })()`) as Result["mobile"];
+    await Bun.write(`${SCREENSHOT_DIR}/mobile-420x912.png`, await mobileView.screenshot({ format: "png" }));
 
-    const result: CheckResult = {
-      title: String(title),
-      shellText: String(shellText).slice(0, 1200),
-      stage: stage as CheckResult["stage"],
-      canvas: canvas as CheckResult["canvas"],
-      controlPanelScroll: controlPanelScroll as CheckResult["controlPanelScroll"],
-      fishListText: String(fishListText).slice(0, 1000),
-      fishRowsBeforeDelete: Number(fishRowsBeforeDelete),
-      fishRowsAfterDelete: Number(fishRowsAfterDelete),
-      fishRowsAfterPreset: Number(fishRowsAfterPreset),
-      fishRowsAfterReload: Number(fishRowsAfterReload),
-      residentIdsPersisted,
-      tankNameAfterReload: String(tankNameAfterReload),
-      ambientModeEntered: Boolean(ambientModeEntered),
-      soundToggleWorked: Boolean(soundToggleWorked),
-      keyboard: {
-        focusSequence,
-        focusRingVisible,
-        guideOpenedWithKeyboard: Boolean(guideOpenedWithKeyboard),
-        tankRestoredWithKeyboard: Boolean(tankRestoredWithKeyboard),
-      },
-      appearance: appearance as CheckResult["appearance"],
-      mobile: mobile as CheckResult["mobile"],
-      customizationStatus: String(customizationStatus).slice(0, 240),
-      tapLabelSeen: Boolean(tapLabelSeen),
-      guideText: String(guideText).slice(0, 240),
-      consoleErrors,
+    const result: Result = {
+      title, initialCards, searchedCards, regionCards, bottomCards, neonCount,
+      themesVisited, editedSlots, ambientModeEntered, ambientStageWidth, ambientCanvasWidth,
+      restored, desktop, mobile,
+      removedCopyAbsent, consoleErrors,
     };
-
     console.log(JSON.stringify(result, null, 2));
 
-    assert(result.title.includes("2D熱帯魚水槽"));
-    assert(result.shellText.includes("新しい住人を迎える"));
-    assert(result.shellText.includes("水槽設定"));
-    assert(result.shellText.includes("プラティ"));
-    assert(result.shellText.includes("クーリーローチ"));
-    assert(result.stage.width >= 720 && result.stage.height >= 360);
-    assert(result.canvas.width > 0 && result.canvas.height > 0);
-    assert(result.canvas.cssWidth >= 720 && result.canvas.cssHeight >= 360);
-    assert(result.controlPanelScroll.scrollHeight > result.controlPanelScroll.clientHeight);
-    assert(result.controlPanelScroll.scrollTopAfterScroll > 0);
-    assert(result.fishListText.includes("ネオン"));
-    assert(result.fishListText.includes("遊泳"));
-    assert(result.fishListText.includes("水槽から移す"));
-    assert(result.fishRowsBeforeDelete >= 3);
-    assert(result.fishRowsAfterDelete === result.fishRowsBeforeDelete - 1);
-    assert(result.fishRowsAfterPreset === 26);
-    assert(result.fishRowsAfterReload === 19);
-    assert(result.residentIdsPersisted);
-    assert(result.tankNameAfterReload === "木漏れ日の書斎");
-    assert(result.ambientModeEntered);
-    assert(result.soundToggleWorked);
-    assert(result.keyboard.focusSequence[0]?.includes("水槽の名前"));
-    assert(result.keyboard.focusSequence.some((label) => label.includes("水槽")));
-    assert(result.keyboard.focusRingVisible);
-    assert(result.keyboard.guideOpenedWithKeyboard);
-    assert(result.keyboard.tankRestoredWithKeyboard);
-    assert(result.appearance.colorScheme.includes("dark"));
-    assert(result.appearance.panelBackground.length > 0);
-    assert(result.appearance.reducedMotionStylesPresent);
-    assert(result.appearance.reducedTransparencyStylesPresent);
-    assert(result.appearance.contrastStylesPresent);
-    assert(result.mobile.shellWidth >= 400 && result.mobile.shellWidth <= 420);
-    assert(result.mobile.stageWidth >= 375);
-    assert(result.mobile.canvasWidth >= 375);
-    assert(result.mobile.overflowWidth === 0);
-    assert(result.customizationStatus.includes("プリセット"));
-    assert(result.guideText.includes("魚図鑑"));
-    assert(result.guideText.includes("原産"));
-    assert(result.guideText.includes("性格"));
-    assert(result.guideText.includes("動き"));
-    assert(result.guideText.includes("Paracheirodon innesi"));
-    assert(result.consoleErrors.length === 0);
-
-    console.log(
-      `Screenshots: ${SCREENSHOT_DIR}/tank.png, ${SCREENSHOT_DIR}/ambient.png, ${SCREENSHOT_DIR}/guide.png, ${SCREENSHOT_DIR}/mobile-420x912.png`,
-    );
+    assert(title.includes("熱帯魚"));
+    assert(initialCards === 10 && searchedCards === 1);
+    assert(regionCards === 4 && bottomCards >= 2 && bottomCards < initialCards);
+    assert(neonCount === 7);
+    assert(JSON.stringify(themesVisited) === JSON.stringify(["driftwood", "iwagumi", "planted"]));
+    assert(editedSlots === 7);
+    assert(ambientModeEntered);
+    assert(ambientStageWidth >= 1300);
+    assert(ambientCanvasWidth >= 1300);
+    assert(restored.version === 3 && restored.theme === "driftwood");
+    assert(restored.lighting === "night" && restored.neonCount === 7 && restored.sound);
+    assert(desktop.stageWidth >= 700 && desktop.canvasWidth >= 700 && desktop.stageHeight >= 400);
+    assert(mobile.stageWidth >= 380 && mobile.canvasWidth >= 380 && mobile.overflowWidth === 0);
+    assert(removedCopyAbsent);
+    assert(consoleErrors.length === 0);
+    console.log(`Screenshots: ${SCREENSHOT_DIR}/*.png`);
   } finally {
     server.kill();
     await server.exited.catch(() => undefined);
   }
 }
 
+async function clickButtonByText(view: Bun.WebView, text: string) {
+  const clicked = await view.evaluate(`(() => {
+    const button = Array.from(document.querySelectorAll("button"))
+      .find((item) => item.textContent?.includes(${JSON.stringify(text)}));
+    if (!(button instanceof HTMLButtonElement)) return false;
+    button.click();
+    return true;
+  })()`);
+  assert(clicked);
+  await sleep(100);
+}
+
+async function setControlValue(view: Bun.WebView, selector: string, value: string) {
+  const changed = await view.evaluate(`(() => {
+    const control = document.querySelector(${JSON.stringify(selector)});
+    if (!(control instanceof HTMLInputElement || control instanceof HTMLSelectElement)) return false;
+    const prototype = control instanceof HTMLInputElement
+      ? HTMLInputElement.prototype
+      : HTMLSelectElement.prototype;
+    Object.getOwnPropertyDescriptor(prototype, "value")?.set?.call(control, ${JSON.stringify(value)});
+    control.dispatchEvent(new Event("input", { bubbles: true }));
+    control.dispatchEvent(new Event("change", { bubbles: true }));
+    return true;
+  })()`);
+  assert(changed);
+}
+
 async function waitForServer(url: string) {
   const timeoutAt = Date.now() + 10_000;
   while (Date.now() < timeoutAt) {
     try {
-      const response = await fetch(url);
-      if (response.ok) {
-        return;
-      }
+      if ((await fetch(url)).ok) return;
     } catch {
-      // Server is still starting.
+      // Development server is still starting.
     }
     await sleep(150);
   }
-
   throw new Error(`Timed out waiting for ${url}`);
 }
 
@@ -469,9 +263,7 @@ function sleep(ms: number) {
 }
 
 function assert(condition: unknown): asserts condition {
-  if (!condition) {
-    throw new Error("Bun.WebView verification failed.");
-  }
+  if (!condition) throw new Error("Bun.WebView verification failed.");
 }
 
 await main();

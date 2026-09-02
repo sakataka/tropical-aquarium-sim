@@ -21,9 +21,6 @@
     "kickDurationSec": 0.28,
     "pauseDurationSecMin": 1.35,
     "pauseDurationSecMax": 3.8,
-    "feedDurationSecMin": 0.75,
-    "feedDurationSecMax": 1.55,
-    "feedSpeedMultiplier": 0.7,
     "coastDragPerSec": 0.34,
     "wanderStrength": 0.18
   },
@@ -51,11 +48,19 @@
     "surfaceAffinity": 0.42,
     "zoneHoldStrength": 0.9,
     "surfaceVisitChance": 0.08,
-    "foodResponsiveness": 0.62,
-    "tapResponsiveness": 0.42,
-    "tapResponse": "approach",
-    "tapSurfaceBias": 0.35,
-    "tapStructureBias": 0.3,
     "structurePatrolStrength": 0.54
+  },
+  "catalog": {
+    "scientificName": "Trichogaster lalius",
+    "originRegionId": "south-asia",
+    "originRegionName": "南アジア",
+    "origin": "南アジア。インド、バングラデシュ、ネパール周辺の水草が密な池、湿地、水田、緩やかな水域に由来します。",
+    "temperament": "基本は穏やかですが、成熟した雄は縄張り意識を見せることがあります。周囲を観察するような慎重さもあります。",
+    "movement": "上層から中層をゆっくり巡回し、長い腹びれで周囲を探るように動きます。気になる場所へ近づく反応も出ます。",
+    "habitat": "浮草や背の高い水草、弱い水流と相性が良い魚です。空気呼吸できるラビリンス器官を持つため、水面への導線も重要です。",
+    "aliases": [
+      "dwarf-gourami",
+      "Trichogaster lalius"
+    ]
   }
 }

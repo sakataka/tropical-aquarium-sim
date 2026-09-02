@@ -1,47 +1,39 @@
-import aquariumBackgroundUrl from "../content/environment/aquarium-background.png";
 import bubbleParticleUrl from "../content/environment/bubble.png";
-import foregroundPlantsUrl from "../content/environment/layers/foreground-plants.png";
-import rearPlantsUrl from "../content/environment/layers/rear-plants.png";
 
-const fishImageModules = import.meta.glob<string>(
-  "../content/fish/**/side.png",
-  {
-    eager: true,
-    import: "default",
-    query: "?url",
-  },
-);
+const fishImageModules = import.meta.glob<string>("../content/fish/**/side.png", {
+  eager: true,
+  import: "default",
+  query: "?url",
+});
 
 const fishAnimationFrameModules = import.meta.glob<string>(
   "../content/fish/**/swim/*.png",
-  {
-    eager: true,
-    import: "default",
-    query: "?url",
-  },
+  { eager: true, import: "default", query: "?url" },
 );
 
-export const environmentAssets = {
-  aquariumBackgroundUrl,
-  bubbleParticleUrl,
-  foregroundPlantsUrl,
-  rearPlantsUrl,
-};
+const environmentImageModules = import.meta.glob<string>(
+  "../content/environment/{backgrounds,substrates,decor}/**/*.png",
+  { eager: true, import: "default", query: "?url" },
+);
+
+export const environmentAssets = { bubbleParticleUrl };
 
 export function getFishImageUrl(speciesId: string): string | undefined {
-  const suffix = `/fish/${speciesId}/side.png`;
-  const match = Object.entries(fishImageModules).find(([path]) =>
-    path.endsWith(suffix),
-  );
-
-  return match?.[1];
+  return findBySuffix(fishImageModules, `/fish/${speciesId}/side.png`);
 }
 
 export function getFishAnimationFrameUrls(speciesId: string): string[] {
   const segment = `/fish/${speciesId}/swim/`;
-
   return Object.entries(fishAnimationFrameModules)
     .filter(([path]) => path.includes(segment))
     .sort(([a], [b]) => a.localeCompare(b))
     .map(([, url]) => url);
+}
+
+export function getEnvironmentAssetUrl(assetId: string): string | undefined {
+  return findBySuffix(environmentImageModules, `/${assetId}.png`);
+}
+
+function findBySuffix(modules: Record<string, string>, suffix: string): string | undefined {
+  return Object.entries(modules).find(([path]) => path.endsWith(suffix))?.[1];
 }

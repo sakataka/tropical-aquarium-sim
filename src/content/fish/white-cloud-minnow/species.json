@@ -21,9 +21,6 @@
     "kickDurationSec": 0.2,
     "pauseDurationSecMin": 0.7,
     "pauseDurationSecMax": 1.55,
-    "feedDurationSecMin": 0.52,
-    "feedDurationSecMax": 1.15,
-    "feedSpeedMultiplier": 0.82,
     "coastDragPerSec": 0.42,
     "wanderStrength": 0.34
   },
@@ -51,11 +48,19 @@
     "surfaceAffinity": 0.48,
     "zoneHoldStrength": 1.08,
     "surfaceVisitChance": 0.16,
-    "foodResponsiveness": 0.72,
-    "tapResponsiveness": 0.82,
-    "tapResponse": "flee",
-    "tapSurfaceBias": 0.54,
-    "tapStructureBias": 0.12,
     "structurePatrolStrength": 0.14
+  },
+  "catalog": {
+    "scientificName": "Tanichthys albonubes",
+    "originRegionId": "east-asia",
+    "originRegionName": "東アジア",
+    "origin": "中国南部の渓流や小河川に由来する小型魚です。比較的涼しい水を好み、明るい開けた水面近くでもよく泳ぎます。",
+    "temperament": "温和で混泳向きの群泳魚です。体は小さいですが、赤い尾びれと金色のラインが水槽の上層に細い光を足します。",
+    "movement": "上層から中層を軽快に泳ぎ、短い加速と向き直りを繰り返します。群れへの追従は強めですが、ネオンテトラより少し表層寄りです。",
+    "habitat": "水草の背面や水面の光が入る開けた場所で映えます。派手すぎない銀色の体が、赤い尾びれと細い金線で控えめに目立ちます。",
+    "aliases": [
+      "white-cloud-minnow",
+      "Tanichthys albonubes"
+    ]
   }
 }

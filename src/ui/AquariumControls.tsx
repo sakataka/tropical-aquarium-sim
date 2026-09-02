@@ -1,543 +1,395 @@
-import { useState, type CSSProperties } from "react";
+import { useDeferredValue, useMemo, useState } from "react";
 import {
+  DECOR_SLOT_IDS,
+  DECOR_SLOT_LABELS,
   MAX_FISH_PER_SPECIES,
   MAX_TOTAL_FISH,
+  aquariumThemes,
+  decorAssets,
+  getAssetsForSlot,
   getStockCount,
   type AquariumCustomization,
-  type AquariumEnvironmentCustomization,
   type AquariumPreferences,
-  type AquariumPreset,
-  type FishInstance,
+  type DecorPlacement,
+  type DecorSlotId,
   type FishSpeciesDefinition,
+  type LightingId,
+  type SwimZoneId,
   type TankDefinition,
 } from "../core";
-import { getFishImageUrl } from "../render/assets";
+import { getEnvironmentAssetUrl, getFishImageUrl } from "../render/assets";
+
+type PanelTab = "fish" | "layout" | "viewing";
 
 type AquariumControlsProps = {
   speciesList: FishSpeciesDefinition[];
-  fish: FishInstance[];
   tank: TankDefinition;
   customization: AquariumCustomization;
-  presets: AquariumPreset[];
-  activePresetId: string;
-  saveStatus: string;
-  paused: boolean;
-  viewMode: "tank" | "guide";
-  selectedSpeciesId: string;
-  selectedFishId?: string;
   preferences: AquariumPreferences;
-  effectiveLighting: AquariumEnvironmentCustomization["lighting"];
-  nowMs: number;
-  dayNumber: number;
-  observation: string;
-  onSelectedSpeciesChange: (speciesId: string) => void;
-  onSelectedFishChange: (fishId: string) => void;
-  onAddFish: () => void;
-  onRemoveFish: (fishId: string) => void;
-  onUpdateFish: (
-    fishId: string,
-    update: Pick<Partial<FishInstance>, "nickname" | "favorite">,
-  ) => void;
+  saveStatus: string;
   onSpeciesCountChange: (speciesId: string, count: number) => void;
-  onEnvironmentChange: (environment: Partial<AquariumEnvironmentCustomization>) => void;
-  onPresetChange: (presetId: string) => void;
-  onResetCustomization: () => void;
-  onFeed: () => void;
-  onTogglePaused: () => void;
-  onViewModeChange: (mode: "tank" | "guide") => void;
-  onTankNameChange: (name: string) => void;
-  onLightingModeChange: (mode: AquariumPreferences["lightingMode"]) => void;
-  onSoundEnabledChange: (enabled: boolean) => void;
-  onSoundVolumeChange: (volume: number) => void;
+  onThemeChange: (themeId: AquariumCustomization["layout"]["themeId"]) => void;
+  onBackgroundChange: (assetId: string) => void;
+  onSubstrateChange: (assetId: string) => void;
+  onSlotChange: (slotId: DecorSlotId, placement: DecorPlacement | null) => void;
+  onLightingChange: (lighting: LightingId) => void;
+  onPreferencesChange: (update: Partial<AquariumPreferences>) => void;
   onEnterAmbientMode: () => void;
 };
 
-type MeterStyle = CSSProperties & { "--hunger": string };
-
 export function AquariumControls({
   speciesList,
-  fish,
   tank,
   customization,
-  presets,
-  activePresetId,
-  saveStatus,
-  paused,
-  viewMode,
-  selectedSpeciesId,
-  selectedFishId,
   preferences,
-  effectiveLighting,
-  nowMs,
-  dayNumber,
-  observation,
-  onSelectedSpeciesChange,
-  onSelectedFishChange,
-  onAddFish,
-  onRemoveFish,
-  onUpdateFish,
+  saveStatus,
   onSpeciesCountChange,
-  onEnvironmentChange,
-  onPresetChange,
-  onResetCustomization,
-  onFeed,
-  onTogglePaused,
-  onViewModeChange,
-  onTankNameChange,
-  onLightingModeChange,
-  onSoundEnabledChange,
-  onSoundVolumeChange,
+  onThemeChange,
+  onBackgroundChange,
+  onSubstrateChange,
+  onSlotChange,
+  onLightingChange,
+  onPreferencesChange,
   onEnterAmbientMode,
 }: AquariumControlsProps) {
-  const [settingsExpanded, setSettingsExpanded] = useState(false);
-  const [residentsExpanded, setResidentsExpanded] = useState(false);
+  const [tab, setTab] = useState<PanelTab>("fish");
+  const [search, setSearch] = useState("");
+  const [region, setRegion] = useState("all");
+  const [zone, setZone] = useState<"all" | SwimZoneId>("all");
+  const deferredSearch = useDeferredValue(search.trim().toLocaleLowerCase("ja"));
   const totalFish = customization.stock.reduce((sum, entry) => sum + entry.count, 0);
-  const selectedCount = getStockCount(customization.stock, selectedSpeciesId);
-  const lightingLabel = getLightingLabel(effectiveLighting);
-  const selectedFish = fish.find((item) => item.id === selectedFishId) ?? fish[0];
-  const selectedDefinition = selectedFish
-    ? speciesList.find((item) => item.id === selectedFish.speciesId)
-    : undefined;
+  const regions = useMemo(() =>
+    Array.from(new Map(speciesList.map((species) => [
+      species.catalog.originRegionId,
+      species.catalog.originRegionName,
+    ])).entries()), [speciesList]);
+  const visibleSpecies = useMemo(() => speciesList.filter((species) => {
+    const speciesZone = getSwimZone(species);
+    const searchable = [
+      species.displayName,
+      species.catalog.scientificName,
+      species.catalog.originRegionName,
+      ...(species.catalog.aliases ?? []),
+    ].join(" ").toLocaleLowerCase("ja");
+    return (
+      (region === "all" || species.catalog.originRegionId === region) &&
+      (zone === "all" || speciesZone === zone) &&
+      (!deferredSearch || searchable.includes(deferredSearch))
+    );
+  }), [deferredSearch, region, speciesList, zone]);
 
   return (
     <aside className="control-panel">
       <header className="panel-heading">
-        <div className="tank-name-row">
-          <label>
-            <span className="sr-only">水槽の名前</span>
-            <input
-              aria-label="水槽の名前"
-              className="tank-name-input"
-              maxLength={32}
-              onBlur={(event) => {
-                if (!event.currentTarget.value.trim()) {
-                  onTankNameChange("木漏れ日の水槽");
-                }
-              }}
-              onChange={(event) => onTankNameChange(event.currentTarget.value)}
-              value={preferences.tankName}
-            />
-          </label>
-          <span aria-live="polite" className="save-status" role="status">{saveStatus}</span>
+        <div>
+          <p className="eyebrow">MY AQUARIUM</p>
+          <h1>60cm水槽</h1>
         </div>
-        <h1>60cm水槽</h1>
-        <p>
-          {tank.widthCm} × {tank.heightCm} × {tank.depthCm}cm / {fish.length}匹 / {lightingLabel}
+        <span className="save-status" role="status">{saveStatus}</span>
+        <p className="tank-summary">
+          {tank.widthCm} × {tank.heightCm} × {tank.depthCm}cm
+          <span>{totalFish} / {MAX_TOTAL_FISH}匹</span>
         </p>
-        <p className="tank-clock">{formatClock(nowMs)} · 設置から{dayNumber}日目</p>
       </header>
 
-      <div className="segmented-control" aria-label="表示切替">
-        <button
-          aria-pressed={viewMode === "tank"}
-          className={viewMode === "tank" ? "active" : ""}
-          onClick={() => onViewModeChange("tank")}
-          type="button"
-        >
-          水槽
-        </button>
-        <button
-          aria-pressed={viewMode === "guide"}
-          className={viewMode === "guide" ? "active" : ""}
-          onClick={() => onViewModeChange("guide")}
-          type="button"
-        >
-          図鑑
-        </button>
-      </div>
+      <nav className="panel-tabs" aria-label="水槽の編集">
+        <TabButton active={tab === "fish"} onClick={() => setTab("fish")}>魚</TabButton>
+        <TabButton active={tab === "layout"} onClick={() => setTab("layout")}>レイアウト</TabButton>
+        <TabButton active={tab === "viewing"} onClick={() => setTab("viewing")}>鑑賞設定</TabButton>
+      </nav>
 
-      <section className="presence-controls" aria-label="観賞環境">
-        <button className="ambient-button" onClick={onEnterAmbientMode} type="button">
-          <span aria-hidden="true" className="viewfinder-icon" />
-          <span>
-            <strong>観賞モード</strong>
-            <small>水槽だけを画面に残す</small>
-          </span>
-        </button>
-        <button
-          aria-pressed={preferences.lightingMode === "auto"}
-          className="presence-toggle"
-          onClick={() => onLightingModeChange(
-            preferences.lightingMode === "auto" ? "manual" : "auto",
-          )}
-          type="button"
-        >
-          <span>
-            <strong>自動照明</strong>
-            <small>{preferences.lightingMode === "auto" ? "現在時刻に連動" : "手動設定"}</small>
-          </span>
-          <span className="toggle-state">{preferences.lightingMode === "auto" ? "ON" : "OFF"}</span>
-        </button>
-        <div className="sound-control">
-          <button
-            aria-pressed={preferences.soundEnabled}
-            className="presence-toggle"
-            onClick={() => onSoundEnabledChange(!preferences.soundEnabled)}
-            type="button"
-          >
-            <span>
-              <strong>環境音</strong>
-              <small>水とフィルターの静かな音</small>
-            </span>
-            <span className="toggle-state">{preferences.soundEnabled ? "ON" : "OFF"}</span>
-          </button>
-          <label className="volume-field">
-            <span className="sr-only">環境音の音量</span>
-            <input
-              aria-label="環境音の音量"
-              disabled={!preferences.soundEnabled}
-              max={1}
-              min={0}
-              onChange={(event) => onSoundVolumeChange(Number(event.currentTarget.value))}
-              step={0.05}
-              type="range"
-              value={preferences.soundVolume}
-            />
-          </label>
-        </div>
-      </section>
-
-      <section className="observation-card" aria-label="今日の観察">
-        <div>
-          <h2>今日の観察</h2>
-          <time>{formatClock(nowMs)}</time>
-        </div>
-        <p>{observation}</p>
-      </section>
-
-      {selectedFish && selectedDefinition ? (
-        <section className="selected-resident" aria-label="選択中の住人">
-          <div className="selected-resident-heading">
-            <h2>選択中の住人</h2>
-            <button
-              aria-pressed={selectedFish.favorite}
-              onClick={() => onUpdateFish(selectedFish.id, { favorite: !selectedFish.favorite })}
-              type="button"
-            >
-              {selectedFish.favorite ? "お気に入り済み" : "お気に入り"}
-            </button>
+      {tab === "fish" ? (
+        <section className="panel-content fish-shop" aria-label="魚屋カタログ">
+          <div className="section-intro">
+            <p className="eyebrow">FISH CATALOG</p>
+            <h2>魚屋カタログ</h2>
+            <p>世界の熱帯魚から、眺めたい魚を選んで水槽へ。</p>
           </div>
-          <div className="resident-portrait">
-            <img alt="" src={getFishImageUrl(selectedFish.speciesId)} />
-            <div>
-              <strong>{selectedFish.nickname || selectedDefinition.displayName}</strong>
-              <span>{selectedDefinition.displayName} · {getArrivalLabel(selectedFish.arrivedAtMs, nowMs)}</span>
-            </div>
+          <div className="catalog-filters">
+            <label className="search-field">
+              <span className="sr-only">魚を検索</span>
+              <input
+                onChange={(event) => setSearch(event.currentTarget.value)}
+                placeholder="和名・学名で検索"
+                type="search"
+                value={search}
+              />
+            </label>
+            <label>
+              <span className="sr-only">原産地域</span>
+              <select onChange={(event) => setRegion(event.currentTarget.value)} value={region}>
+                <option value="all">すべての地域</option>
+                {regions.map(([id, name]) => <option key={id} value={id}>{name}</option>)}
+              </select>
+            </label>
+            <label>
+              <span className="sr-only">泳ぐ層</span>
+              <select
+                onChange={(event) => setZone(event.currentTarget.value as "all" | SwimZoneId)}
+                value={zone}
+              >
+                <option value="all">すべての泳層</option>
+                <option value="surface">上層</option>
+                <option value="middle">中層</option>
+                <option value="bottom">底層</option>
+              </select>
+            </label>
           </div>
-          <label className="field compact-field">
-            <span>愛称（任意）</span>
-            <input
-              maxLength={24}
-              onChange={(event) => onUpdateFish(selectedFish.id, {
-                nickname: event.currentTarget.value || undefined,
-              })}
-              placeholder="この子の呼び名"
-              type="text"
-              value={selectedFish.nickname ?? ""}
-            />
-          </label>
-        </section>
-      ) : null}
 
-      <section className="care-section" aria-label="水槽とのふれあい">
-        <label className="field">
-          <span>新しく迎える魚</span>
-          <select
-            value={selectedSpeciesId}
-            onChange={(event) => onSelectedSpeciesChange(event.currentTarget.value)}
-          >
-            {speciesList.map((species) => (
-              <option key={species.id} value={species.id}>
-                {species.displayName} / {species.realBodyLengthCm}cm
-              </option>
-            ))}
-          </select>
-        </label>
-        <div className="button-grid">
-          <button
-            disabled={selectedCount >= MAX_FISH_PER_SPECIES || totalFish >= MAX_TOTAL_FISH}
-            onClick={onAddFish}
-            type="button"
-          >
-            <span className="button-icon" aria-hidden="true">+</span>
-            新しい住人を迎える
-          </button>
-          <button onClick={onFeed} type="button">
-            <span className="button-icon food-icon" aria-hidden="true" />
-            エサやり
-          </button>
-          <button onClick={onTogglePaused} type="button">
-            <span className="button-icon" aria-hidden="true">{paused ? ">" : "II"}</span>
-            {paused ? "再開" : "一時停止"}
-          </button>
-        </div>
-      </section>
-
-      <section className="settings-section" aria-label="水槽設定">
-        <div className="section-heading">
-          <h2>水槽設定</h2>
-          <button
-            aria-controls="aquarium-settings-content"
-            aria-expanded={settingsExpanded}
-            className="text-button"
-            onClick={() => setSettingsExpanded((current) => !current)}
-            type="button"
-          >
-            {settingsExpanded ? "閉じる" : "開く"}
-          </button>
-        </div>
-        <div
-          className="settings-content"
-          hidden={!settingsExpanded}
-          id="aquarium-settings-content"
-        >
-          <label className="field">
-            <span>プリセット</span>
-            <select
-              value={activePresetId}
-              onChange={(event) => onPresetChange(event.currentTarget.value)}
-            >
-              <option disabled value="custom">現在の組み合わせ</option>
-              {presets.map((preset) => (
-                <option key={preset.id} value={preset.id}>{preset.displayName}</option>
-              ))}
-            </select>
-          </label>
-
-          <div className="stock-editor">
-            <div className="stock-editor-heading">
-              <span>魚種構成</span>
-              <small>{totalFish} / {MAX_TOTAL_FISH}匹</small>
-            </div>
-            {speciesList.map((species) => {
+          <div className="fish-catalog-list">
+            {visibleSpecies.map((species) => {
               const count = getStockCount(customization.stock, species.id);
               return (
-                <label className="stock-row" key={species.id}>
-                  <span>{species.displayName}</span>
-                  <input
-                    max={MAX_FISH_PER_SPECIES}
-                    min={0}
-                    onChange={(event) => onSpeciesCountChange(
-                      species.id,
-                      Number(event.currentTarget.value),
-                    )}
-                    type="number"
-                    value={count}
-                  />
-                </label>
+                <article className="fish-catalog-card" key={species.id}>
+                  <div className="fish-portrait">
+                    <img alt={species.displayName} loading="lazy" src={getFishImageUrl(species.id)} />
+                    <span>{getZoneLabel(getSwimZone(species))}</span>
+                  </div>
+                  <div className="fish-catalog-copy">
+                    <div className="fish-card-title">
+                      <div>
+                        <h3>{species.displayName}</h3>
+                        <p>{species.catalog.scientificName}</p>
+                      </div>
+                      <span>{species.realBodyLengthCm}cm</span>
+                    </div>
+                    <p className="origin">{species.catalog.originRegionName} · {species.catalog.origin}</p>
+                    <p>{species.catalog.movement}</p>
+                    <div className="count-control" aria-label={`${species.displayName}の匹数`}>
+                      <button
+                        aria-label={`${species.displayName}を1匹減らす`}
+                        disabled={count === 0}
+                        onClick={() => onSpeciesCountChange(species.id, count - 1)}
+                        type="button"
+                      >−</button>
+                      <strong><span>{count}</span>匹</strong>
+                      <button
+                        aria-label={`${species.displayName}を1匹増やす`}
+                        disabled={count >= MAX_FISH_PER_SPECIES || totalFish >= MAX_TOTAL_FISH}
+                        onClick={() => onSpeciesCountChange(species.id, count + 1)}
+                        type="button"
+                      >＋</button>
+                    </div>
+                  </div>
+                </article>
               );
             })}
           </div>
+          {visibleSpecies.length === 0 ? (
+            <p className="empty-state">条件に合う魚はいません。絞り込みを戻してみてください。</p>
+          ) : null}
+        </section>
+      ) : null}
 
-          <div className="environment-grid">
-            <label className="field">
-              <span>背景</span>
-              <select
-                value={customization.environment.backgroundStyle}
-                onChange={(event) => onEnvironmentChange({
-                  backgroundStyle: event.currentTarget.value as AquariumEnvironmentCustomization["backgroundStyle"],
-                })}
-              >
-                <option value="clear">クリア</option>
-                <option value="deep">深め</option>
-                <option value="bright">明るめ</option>
-              </select>
-            </label>
-            <label className="field">
-              <span>照明</span>
-              <select
-                disabled={preferences.lightingMode === "auto"}
-                value={customization.environment.lighting}
-                onChange={(event) => onEnvironmentChange({
-                  lighting: event.currentTarget.value as AquariumEnvironmentCustomization["lighting"],
-                })}
-              >
-                <option value="natural">自然光</option>
-                <option value="cool">クール</option>
-                <option value="evening">夕景</option>
-                <option value="night">夜景</option>
-              </select>
-            </label>
-            <PlantSelect
-              label="後景水草"
-              value={customization.environment.rearPlants}
-              onChange={(rearPlants) => onEnvironmentChange({ rearPlants })}
-            />
-            <PlantSelect
-              label="前景水草"
-              value={customization.environment.foregroundPlants}
-              onChange={(foregroundPlants) => onEnvironmentChange({ foregroundPlants })}
-            />
-            <label className="field">
-              <span>水草の濃さ</span>
-              <select
-                value={customization.environment.plantDensity}
-                onChange={(event) => onEnvironmentChange({
-                  plantDensity: event.currentTarget.value as AquariumEnvironmentCustomization["plantDensity"],
-                })}
-              >
-                <option value="low">薄め</option>
-                <option value="medium">標準</option>
-                <option value="high">濃いめ</option>
-              </select>
-            </label>
+      {tab === "layout" ? (
+        <section className="panel-content layout-editor" aria-label="水槽レイアウト">
+          <div className="section-intro">
+            <p className="eyebrow">AQUASCAPE</p>
+            <h2>水景を組み立てる</h2>
+            <p>完成テーマから始めて、7つの場所を好みに合わせます。</p>
           </div>
-          <button className="secondary-button" onClick={onResetCustomization} type="button">
-            デフォルトに戻す
-          </button>
-        </div>
-      </section>
 
-      <section className="fish-list">
-        <div className="fish-list-heading">
-          <h2>住人一覧</h2>
-          <button
-            aria-controls="aquarium-resident-list"
-            aria-expanded={residentsExpanded}
-            className="text-button"
-            onClick={() => setResidentsExpanded((current) => !current)}
-            type="button"
-          >
-            {residentsExpanded ? "閉じる" : `${totalFish}匹を見る`}
-          </button>
-        </div>
-        <div
-          className="resident-list-content"
-          hidden={!residentsExpanded}
-          id="aquarium-resident-list"
-        >
-          {fish.map((item) => {
-            const species = speciesList.find((candidate) => candidate.id === item.speciesId);
-            const hungerPercent = Math.round(item.hunger * 100);
-            return (
-              <div
-                className={`fish-row${item.id === selectedFish?.id ? " selected" : ""}`}
-                key={item.id}
+          <div className="theme-grid">
+            {aquariumThemes.map((theme) => (
+              <button
+                aria-pressed={customization.layout.themeId === theme.id}
+                className={customization.layout.themeId === theme.id ? "theme-card active" : "theme-card"}
+                key={theme.id}
+                onClick={() => onThemeChange(theme.id)}
+                type="button"
               >
-                <div className="fish-card-copy">
-                  <button
-                    className="fish-card-title"
-                    onClick={() => onSelectedFishChange(item.id)}
-                    type="button"
-                  >
-                    <span>{item.nickname || species?.displayName || item.speciesId}</span>
-                    <small>{getHungerLabel(item.hunger)}</small>
-                  </button>
-                  <p>{getLifeStatus(item, effectiveLighting, paused)}</p>
-                  <div className="fish-card-meta" aria-label="生体の様子">
-                    <span>{getTargetKindLabel(item.targetKind)}</span>
-                    <span>{getDepthLabel(item.depth)}</span>
-                    {item.favorite ? <span>お気に入り</span> : null}
-                  </div>
-                  <div
-                    className="hunger-meter"
-                    aria-label={`空腹度 ${hungerPercent}%`}
-                    style={{ "--hunger": `${hungerPercent}%` } as MeterStyle}
-                  />
-                </div>
+                <img alt="" src={getEnvironmentAssetUrl(theme.layout.backgroundId)} />
+                <span><strong>{theme.displayName}</strong><small>{theme.description}</small></span>
+              </button>
+            ))}
+          </div>
+
+          <div className="base-selectors">
+            <AssetSelect
+              category="background"
+              label="水の背景"
+              onChange={onBackgroundChange}
+              value={customization.layout.backgroundId}
+            />
+            <AssetSelect
+              category="substrate"
+              label="底床"
+              onChange={onSubstrateChange}
+              value={customization.layout.substrateId}
+            />
+          </div>
+
+          <div className="slot-editor">
+            <div className="slot-editor-heading">
+              <h3>配置スロット</h3>
+              <span>7か所</span>
+            </div>
+            {DECOR_SLOT_IDS.map((slotId) => (
+              <SlotRow
+                key={slotId}
+                onChange={(placement) => onSlotChange(slotId, placement)}
+                placement={customization.layout.slots[slotId]}
+                slotId={slotId}
+              />
+            ))}
+          </div>
+        </section>
+      ) : null}
+
+      {tab === "viewing" ? (
+        <section className="panel-content viewing-settings" aria-label="鑑賞設定">
+          <div className="section-intro">
+            <p className="eyebrow">VIEWING</p>
+            <h2>静かに眺める</h2>
+            <p>光と音だけを整えて、水槽を画面いっぱいに。</p>
+          </div>
+          <button className="ambient-button" onClick={onEnterAmbientMode} type="button">
+            <span className="ambient-icon" aria-hidden="true" />
+            <span><strong>観賞モード</strong><small>操作パネルを隠して水槽だけを表示</small></span>
+          </button>
+          <fieldset className="setting-group">
+            <legend>照明</legend>
+            <div className="lighting-grid">
+              {([
+                ["natural", "自然光"],
+                ["cool", "クール"],
+                ["evening", "夕景"],
+                ["night", "夜景"],
+              ] as const).map(([id, label]) => (
                 <button
-                  aria-label={`${species?.displayName ?? item.speciesId}を水槽から移す`}
-                  className="remove-fish-button"
-                  onClick={() => onRemoveFish(item.id)}
+                  aria-pressed={customization.layout.lighting === id}
+                  className={customization.layout.lighting === id ? "active" : ""}
+                  key={id}
+                  onClick={() => onLightingChange(id)}
                   type="button"
-                >
-                  水槽から移す
-                </button>
-              </div>
-            );
-          })}
-        </div>
-      </section>
+                >{label}</button>
+              ))}
+            </div>
+          </fieldset>
+          <fieldset className="setting-group sound-settings">
+            <legend>環境音</legend>
+            <button
+              aria-pressed={preferences.soundEnabled}
+              className="sound-toggle"
+              onClick={() => onPreferencesChange({ soundEnabled: !preferences.soundEnabled })}
+              type="button"
+            >
+              <span><strong>水とフィルターの音</strong><small>静かな低音を重ねます</small></span>
+              <span>{preferences.soundEnabled ? "ON" : "OFF"}</span>
+            </button>
+            <label>
+              <span>音量</span>
+              <input
+                aria-label="環境音の音量"
+                disabled={!preferences.soundEnabled}
+                max={1}
+                min={0}
+                onChange={(event) => onPreferencesChange({
+                  soundVolume: Number(event.currentTarget.value),
+                })}
+                step={0.05}
+                type="range"
+                value={preferences.soundVolume}
+              />
+            </label>
+          </fieldset>
+        </section>
+      ) : null}
     </aside>
   );
 }
 
-function PlantSelect({
-  label,
-  value,
-  onChange,
+function TabButton({
+  active,
+  children,
+  onClick,
 }: {
+  active: boolean;
+  children: string;
+  onClick: () => void;
+}) {
+  return (
+    <button aria-pressed={active} className={active ? "active" : ""} onClick={onClick} type="button">
+      {children}
+    </button>
+  );
+}
+
+function AssetSelect({
+  category,
+  label,
+  onChange,
+  value,
+}: {
+  category: "background" | "substrate";
   label: string;
-  value: AquariumEnvironmentCustomization["rearPlants"];
-  onChange: (value: AquariumEnvironmentCustomization["rearPlants"]) => void;
+  onChange: (assetId: string) => void;
+  value: string;
 }) {
   return (
     <label className="field">
       <span>{label}</span>
-      <select
-        value={value}
-        onChange={(event) => onChange(
-          event.currentTarget.value as AquariumEnvironmentCustomization["rearPlants"],
-        )}
-      >
-        <option value="off">なし</option>
-        <option value="subtle">控えめ</option>
-        <option value="full">多め</option>
+      <select onChange={(event) => onChange(event.currentTarget.value)} value={value}>
+        {decorAssets.filter((asset) => asset.category === category).map((asset) => (
+          <option key={asset.id} value={asset.id}>{asset.displayName}</option>
+        ))}
       </select>
     </label>
   );
 }
 
-function getTargetKindLabel(kind: FishInstance["targetKind"]): string {
-  if (kind === "structure") return "水草の影";
-  if (kind === "edgeCruise") return "壁沿い";
-  if (kind === "surfaceVisit") return "表層";
-  if (kind === "feed") return "餌";
-  if (kind === "tap") return "タップ反応";
-  return "遊泳中";
+function SlotRow({
+  slotId,
+  placement,
+  onChange,
+}: {
+  slotId: DecorSlotId;
+  placement: DecorPlacement | null;
+  onChange: (placement: DecorPlacement | null) => void;
+}) {
+  const assets = getAssetsForSlot(slotId);
+  return (
+    <div className="slot-row">
+      <div className="slot-label">
+        <span>{DECOR_SLOT_LABELS[slotId]}</span>
+        <small>{slotId.startsWith("rear") ? "魚の奥" : slotId.startsWith("mid") ? "魚の間" : "魚の手前"}</small>
+      </div>
+      <select
+        aria-label={`${DECOR_SLOT_LABELS[slotId]}の部品`}
+        onChange={(event) => onChange(
+          event.currentTarget.value
+            ? { assetId: event.currentTarget.value, flipped: placement?.flipped ?? false }
+            : null,
+        )}
+        value={placement?.assetId ?? ""}
+      >
+        <option value="">何も置かない</option>
+        {assets.map((asset) => (
+          <option key={asset.id} value={asset.id}>{asset.displayName}</option>
+        ))}
+      </select>
+      <button
+        aria-label={`${DECOR_SLOT_LABELS[slotId]}の部品を左右反転`}
+        className="flip-button"
+        disabled={!placement}
+        onClick={() => placement && onChange({ ...placement, flipped: !placement.flipped })}
+        type="button"
+      >
+        {placement?.flipped ? "反転済み" : "左右反転"}
+      </button>
+    </div>
+  );
 }
 
-function getHungerLabel(hunger: number): string {
-  if (hunger >= 0.72) return "ごはん待ち";
-  if (hunger <= 0.24) return "満腹";
-  return "ほどよい";
+function getSwimZone(species: FishSpeciesDefinition): SwimZoneId {
+  const center = (species.preferredZone.minY + species.preferredZone.maxY) / 2;
+  if (center < 0.42) return "surface";
+  if (center > 0.68) return "bottom";
+  return "middle";
 }
 
-function getLifeStatus(
-  fish: FishInstance,
-  lighting: AquariumEnvironmentCustomization["lighting"],
-  paused: boolean,
-): string {
-  if (paused) return "静かな水の中で待機中";
-  if (lighting === "night" && fish.behaviorMode !== "feed") {
-    return fish.targetKind === "structure"
-      ? "水草の影でおやすみ中"
-      : "夜の水槽をゆっくり探索中";
-  }
-  if (fish.behaviorMode === "feed") return "落ちてくるごはんへ移動中";
-  if (fish.behaviorMode === "tapFlee") return "タップの波紋から退避中";
-  if (fish.behaviorMode === "tapFreeze") return "タップの波紋を警戒中";
-  if (fish.behaviorMode === "tapApproach") return "タップの波紋を観察中";
-  if (fish.behaviorMode === "pause") return "水草の近くでひと休み";
-  if (fish.hunger >= 0.72) return "水面を見ながらごはん待ち";
-  if (fish.targetKind === "surfaceVisit") return "表層をのんびり回遊中";
-  if (fish.targetKind === "edgeCruise") return "ガラス沿いを遊泳中";
-  if (fish.targetKind === "structure") return "水草の影を巡回中";
-  return "のんびり遊泳中";
-}
-
-function getDepthLabel(depth: number): string {
-  if (depth <= 0.34) return "手前の層";
-  if (depth >= 0.67) return "奥の層";
+function getZoneLabel(zone: SwimZoneId): string {
+  if (zone === "surface") return "上層";
+  if (zone === "bottom") return "底層";
   return "中層";
-}
-
-function getLightingLabel(lighting: AquariumEnvironmentCustomization["lighting"]): string {
-  if (lighting === "cool") return "クール照明";
-  if (lighting === "evening") return "夕景照明";
-  if (lighting === "night") return "夜景照明";
-  return "自然光";
-}
-
-function getArrivalLabel(arrivedAtMs: number, nowMs: number): string {
-  const days = Math.max(1, Math.floor((nowMs - arrivedAtMs) / 86_400_000) + 1);
-  return days === 1 ? "今日迎えた住人" : `迎えて${days}日目`;
-}
-
-function formatClock(nowMs: number): string {
-  return new Intl.DateTimeFormat("ja-JP", {
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: false,
-  }).format(nowMs);
 }

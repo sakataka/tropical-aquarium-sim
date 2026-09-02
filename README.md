@@ -1,6 +1,6 @@
-# 2D熱帯魚水槽シミュレーション
+# 熱帯魚アクアリウム
 
-リアル寄りの2Dスプライトで熱帯魚が泳ぐ、Web向けのパーソナルアクアリウムです。「見ていて気持ちいい」ことを軸に、水槽と住人が再訪後も続いている所有感、時間帯で変わる光、静かな環境音を組み合わせています。失敗や作業を強いる本格飼育シミュレーションではありません。
+リアル寄りの熱帯魚を魚屋カタログから選び、統一感のある水景を組んで眺める、個人向けのWebアクアリウムです。飼育ゲームではなく、魚種固有の自然な泳ぎ、手動照明、環境音、観賞モードを中心にしています。
 
 Demo: https://sakataka.github.io/tropical-aquarium-sim/
 
@@ -11,137 +11,49 @@ bun install
 bun run dev
 bun run test
 bun run build
-```
-
-通常画面:
-
-```text
-http://127.0.0.1:5173/
-```
-
-魚図鑑画面:
-
-```text
-http://127.0.0.1:5173/?view=guide
-```
-
-## 構成
-
-- `src/core`: schema検証、水槽定義、実寸スケール計算、遊泳シミュレーション
-- `src/render`: PixiJS描画、生成画像アセット参照、魚スプライト表示
-- `src/ui`: 住人追加、愛称・お気に入り、水槽カスタマイズ、観賞モード、餌やり、魚図鑑
-- `src/content`: 魚種ごとの `species.json` と画像、水槽背景画像、プリセットや図鑑文の設定JSON
-
-今後の開発方向性は [docs/development-directions.md](docs/development-directions.md) に整理しています。
-
-## 水槽カスタマイズ
-
-通常画面の「水槽設定」から、魚種ごとの匹数、背景スタイル、後景水草、前景水草、水草の濃さ、照明を変更できます。
-植物系の見た目は、画像生成した前景/後景水草レイヤーを表示、非表示、透過、スケール調整で組み合わせます。手描き風の簡易図形や PixiJS のコード生成水草は使わず、PixiJS 側は生成画像の合成、水、光、泡の演出に限定します。
-
-水槽の状態は `localStorage` の `tropical-aquarium.state.v2` に保存します。
-保存対象は水槽名、環境設定、自動照明・環境音の設定と、住人ごとの固定ID、迎えた日時、愛称、お気に入り、空腹状態です。魚の現在座標や速度、PixiJS の描画オブジェクトは保存せず、再訪時に自然な位置から泳ぎ始めます。
-旧 `tropical-aquarium.customization.v1` がある場合は、初回に住人を作って v2 へ移行します。
-魚数は魚種ごとに最大12匹、水槽全体で最大30匹に丸めます。
-壊れた保存データ、未知の魚種、不正な値が入っていた場合は安全なデフォルトへ戻します。
-プリセット、保存キー、魚数上限、デフォルト環境は `src/content/aquarium/customization.json` に集約しています。
-
-## 所有感と観賞体験
-
-- 水槽名と住人は再読み込み後も維持されます。住人には愛称とお気に入りを設定できます。
-- 「今日の観察」は、時刻・照明・選択中の住人に合わせて短い変化を伝えます。
-- 自動照明は現在時刻に連動して自然光、クール、夕景、夜景を切り替えます。手動照明も選べます。
-- 環境音は水とフィルターの低い音を Web Audio で合成します。初期状態はOFFで、音量を調整できます。
-- 45秒操作がない場合は操作パネルを隠す観賞モードへ入り、手動でも切り替えられます。
-- 空腹は実時間に近い緩やかな速度で進み、最大48時間分の不在時間だけ反映します。放置を罰するゲームにはしません。
-
-組み込みプリセットは URL からも指定できます。
-
-```text
-http://127.0.0.1:5173/?preset=community
-http://127.0.0.1:5173/?preset=school
-http://127.0.0.1:5173/?preset=calm
-```
-
-`?preset=` がある場合は、ローカル保存よりも URL のプリセットを優先します。
-
-## 魚種
-
-現在は以下の10種を同じ60cm水槽に入れられます。
-
-- `neon-tetra`: 中層の小型群泳魚
-- `white-cloud-minnow`: 表層から中層を軽快に巡る小型群泳魚
-- `harlequin-rasbora`: 中層でまとまりやすい落ち着いた群泳魚
-- `cherry-barb`: 中層から下層を巡る赤い小型魚
-- `guppy`: 表層寄りに動く小型魚
-- `platy`: 表層から中層で明るい色を足す温和な小型魚
-- `corydoras`: 底層寄りで構造物付近をゆっくり巡回する魚
-- `kuhli-loach`: 底層と物陰を細かく巡回する細長い魚
-- `dwarf-gourami`: 中層から上層をゆったり泳ぐ単独寄りの魚
-- `angelfish`: 中層で存在感を作る大きめの魚
-
-魚種ごとに `src/content/fish/<species-id>/species.json` と `side.png` を追加します。コード側で魚種別の if 文は追加しません。
-魚図鑑の説明文は `src/content/fish/guides.json` に集約します。新しい魚種を追加したら、魚種IDをキーにして同じJSONへ説明文を足します。
-泳ぎのアニメーションを入れる場合は `src/content/fish/<species-id>/swim/frame-01.png` のような連番PNGを追加し、`species.json` の `animation.framesPerSecond` を設定します。フレームがない場合は `side.png` の静止表示にフォールバックします。
-魚種ごとの習性は `species.json` の `behavior` に集約します。群れで近づく/離れる距離、壁際を巡回する頻度、水草寄り、表層寄りなどを魚種ごとに調整できます。
-シミュレーション上では、泳ぎ先の理由を `targetKind` として `openWater` / `structure` / `edgeCruise` / `surfaceVisit` / `feed` / `tap` に分け、魚一覧にも現在の移動傾向を表示します。
-通常の水槽画面では水槽内をダブルクリックするとガラスを軽く叩くインタラクションになり、魚種ごとの `tapResponse` と感度に応じて逃げる、警戒して止まる、近づいて様子を見るなどの反応をします。
-魚ごとの `hunger` は軽い飼育状態として扱い、空腹時は餌への反応が強く、満腹時は弱くなります。魚一覧では数値ではなく `空腹` / `ふつう` / `満腹` の段階で表示します。
-
-`species.json` の重要項目:
-
-- `realBodyLengthCm`: 実際の体長cm
-- `animation`: 任意。泳ぎフレームのパターンと基本FPS
-- `sourceBodyBounds`: 元画像内で魚体が占める範囲。実寸スケール計算に必須
-- `visual.fallbackColor`: 魚画像の読み込み前や失敗時に表示する簡易スプライト色
-- `preferredZone`: 水槽内で好む泳層
-- `schooling`: 群れ行動の弱い追従設定
-- `behavior`: 魚種ごとの距離感、壁回避、構造物/表層の好み、タップ反応
-- `motion`: キック、惰性、停止、餌への移動の時間と速度感
-
-表示サイズは次の式で決まります。
-
-```text
-targetBodyLengthPx = viewportWidthPx * (realBodyLengthCm / tankWidthCm)
-spriteScale = targetBodyLengthPx / sourceBodyBounds.width
-```
-
-画像キャンバスの大きさではなく、実寸と `sourceBodyBounds` から見た目サイズを決めます。
-
-## 初期アセット
-
-世界観を揃えるため、背景と全10魚種を同じリアル寄りの2D水槽表現として新規に画像生成しています。
-
-- `src/content/environment/aquarium-background.png`
-- `src/content/environment/layers/rear-plants.png`
-- `src/content/environment/layers/foreground-plants.png`
-- `src/content/environment/bubble.png`
-- `src/content/fish/neon-tetra/side.png`
-- `src/content/fish/white-cloud-minnow/side.png`
-- `src/content/fish/harlequin-rasbora/side.png`
-- `src/content/fish/cherry-barb/side.png`
-- `src/content/fish/guppy/side.png`
-- `src/content/fish/platy/side.png`
-- `src/content/fish/angelfish/side.png`
-- `src/content/fish/corydoras/side.png`
-- `src/content/fish/kuhli-loach/side.png`
-- `src/content/fish/dwarf-gourami/side.png`
-
-魚画像は左向き横姿勢、背景透過PNGとして扱い、右向きは実行時に反転します。
-水槽背景は画像生成した単一背景に加えて `src/content/environment/layers/` の透明PNGレイヤー、泡用の `bubble.png`、PixiJS 上の水面/光レイヤーを重ねて奥行きと動きを作ります。
-
-## 検証
-
-core の挙動は Vitest、画面の成立確認は Bun.WebView で検証します。
-魚種、アセット、行動、カスタマイズ、魚図鑑を変更した場合は、通常の unit/build に加えて WebKit backend の WebView 検証を通します。
-
-```bash
-bun run test
-bun run build
 bun run verify:webview
 ```
 
-`bun run test` はシミュレーションの境界回避、群れ、餌/タップ反応、実寸スケール計算、カスタマイズ正規化を確認します。
-`bun run verify:webview` は Chrome/Chromium headless ではなく Bun.WebView の WebKit backend を使い、主要 UI、canvas の生成、魚リスト、プリセット変更、魚数変更、住人ID・水槽名の復元、観賞モード、環境音、魚図鑑切替を確認します。1440 × 960 px と、主なモバイル対象である 420 × 912 px のスクリーンショットも `tmp/webview/` に保存します。
-画面検証は細かいピクセル一致より、主要な UI と canvas が成立していることを優先します。
-スクリーンショットなどの一時成果物は `tmp/` 以下に出力し、Git管理しません。
+## 画面と機能
+
+- 「魚」: 現在の10魚種を、和名・学名の検索、原産地域、泳層で絞り込み、魚種ごとの匹数を変更します。
+- 「レイアウト」: 明るい水草景、自然な流木景、開けた岩組景の3テーマを選ぶか、後景左右・中景左右・前景左右／中央の7スロットを編集します。
+- 「鑑賞設定」: 自然光・クール・夕景・夜景の手動照明、環境音、観賞モードを設定します。
+
+60cm水槽の外形は固定です。魚数は魚種ごと最大12匹、水槽全体で最大30匹です。価格、通貨、餌やり、空腹、愛称、お気に入り、飼育ペナルティ、自由ドラッグ配置は持ちません。
+
+テーマはURLでも指定できます。
+
+```text
+http://127.0.0.1:5173/?theme=planted
+http://127.0.0.1:5173/?theme=driftwood
+http://127.0.0.1:5173/?theme=iwagumi
+```
+
+旧URLの `?preset=community|school|calm` は互換用に内部変換します。
+
+## データとアセット
+
+- `src/content/fish/<species-id>/species.json`: 学名、原産地、体長、泳層、動きと遊泳パラメーター
+- `src/content/fish/<species-id>/side.png`: 画像生成した横向き魚画像
+- `src/content/environment/catalog.json`: 背景・底床・配置部品のカタログ
+- `src/content/environment/backgrounds`、`substrates`、`decor`: 画像生成した環境アセット
+- `src/content/aquarium/customization.json`: 3テーマ、保存キー、魚数上限
+
+魚種はフォルダへ `species.json` と `side.png` を置くだけで自動読込されます。泳ぎフレームを使う場合は `swim/frame-01.png` のように追加し、`animation.framesPerSecond` を指定します。
+
+環境アセットは、背景、後景、奥側の魚、中景、中央・手前の魚、前景、泡・光・ガラスの順で合成します。背景と底床以外は透過PNGです。表示中のレイアウトだけをPixiJSへ読み込みます。
+
+## 保存と移行
+
+`localStorage` の `tropical-aquarium.state.v3` へ、魚種別匹数、レイアウト、手動照明、環境音設定だけを保存します。魚の現在座標や速度は保存せず、再訪時に自然な位置から泳ぎ始めます。
+
+v2からは魚種別匹数、音量、現在の照明、最も近い新テーマを引き継ぎます。v1からの移行も維持しています。旧水槽名、個体ID、愛称、お気に入り、空腹、迎えた日時は破棄します。壊れた保存データや未知の魚種は安全な初期値へ戻します。
+
+## 検証
+
+`bun run test` は魚種カタログ、部品とスロット、魚数上限、v1/v2→v3移行、破損データ、境界・泳層・群泳・中景への接近を確認します。
+
+`bun run verify:webview` はWebKit backendの `Bun.WebView` を使い、検索・絞り込み・魚の追加、3テーマ、7スロット、再読込後の復元、照明、環境音、観賞モードを操作します。1440×960pxと420×912pxのスクリーンショットは `tmp/webview/` に保存します。
+
+今後の方針は [開発方向性](docs/development-directions.md) にまとめています。

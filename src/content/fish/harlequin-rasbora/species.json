@@ -21,9 +21,6 @@
     "kickDurationSec": 0.22,
     "pauseDurationSecMin": 0.85,
     "pauseDurationSecMax": 1.9,
-    "feedDurationSecMin": 0.65,
-    "feedDurationSecMax": 1.35,
-    "feedSpeedMultiplier": 0.72,
     "coastDragPerSec": 0.38,
     "wanderStrength": 0.24
   },
@@ -51,11 +48,19 @@
     "surfaceAffinity": 0.05,
     "zoneHoldStrength": 1.0,
     "surfaceVisitChance": 0.01,
-    "foodResponsiveness": 0.58,
-    "tapResponsiveness": 0.72,
-    "tapResponse": "flee",
-    "tapSurfaceBias": 0.08,
-    "tapStructureBias": 0.24,
     "structurePatrolStrength": 0.22
+  },
+  "catalog": {
+    "scientificName": "Trigonostigma heteromorpha",
+    "originRegionId": "southeast-asia",
+    "originRegionName": "東南アジア",
+    "origin": "東南アジア。マレー半島南部、タイ南部、スマトラ周辺の緩やかな流れや湿地性の水域に分布します。",
+    "temperament": "温和で協調性が高い魚です。ネオンテトラより少し落ち着いた群れを作り、混泳水槽でも前に出やすい性格です。",
+    "movement": "中層を滑るように泳ぎ、群れの間隔を保ちながら方向を合わせます。急な刺激にはまとまって逃げます。",
+    "habitat": "水草が多く、流れが強すぎない水槽で見栄えします。体側の黒い三角斑が背景の緑に映えます。",
+    "aliases": [
+      "harlequin-rasbora",
+      "Trigonostigma heteromorpha"
+    ]
   }
 }

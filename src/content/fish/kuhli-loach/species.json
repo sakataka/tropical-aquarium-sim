@@ -21,9 +21,6 @@
     "kickDurationSec": 0.2,
     "pauseDurationSecMin": 1.3,
     "pauseDurationSecMax": 4.5,
-    "feedDurationSecMin": 0.8,
-    "feedDurationSecMax": 1.7,
-    "feedSpeedMultiplier": 0.64,
     "coastDragPerSec": 0.52,
     "wanderStrength": 0.22
   },
@@ -51,11 +48,19 @@
     "surfaceAffinity": 0.0,
     "zoneHoldStrength": 1.55,
     "surfaceVisitChance": 0.0,
-    "foodResponsiveness": 0.46,
-    "tapResponsiveness": 0.74,
-    "tapResponse": "flee",
-    "tapSurfaceBias": 0.0,
-    "tapStructureBias": 0.96,
     "structurePatrolStrength": 0.92
+  },
+  "catalog": {
+    "scientificName": "Pangio kuhlii",
+    "originRegionId": "southeast-asia",
+    "originRegionName": "東南アジア",
+    "origin": "東南アジア。インドネシア、マレー半島、タイ周辺の落ち葉や流木が多い細流、湿地性水域に由来します。",
+    "temperament": "非常に温和で、底面や物陰を好みます。昼間は控えめですが、安心できる隠れ場所があると水槽内を細かく巡回します。",
+    "movement": "底層を細長い体でくねるように進み、流木や水草の根元をなぞる動きが目立ちます。刺激には物陰へ逃げ込みます。",
+    "habitat": "砂底、落ち葉、流木、密な水草と相性が良い魚です。派手な泳ぎより、水槽の下層に生活感を足す役割が強いです。",
+    "aliases": [
+      "kuhli-loach",
+      "Pangio kuhlii"
+    ]
   }
 }

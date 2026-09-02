@@ -24,9 +24,6 @@
     "kickDurationSec": 0.32,
     "pauseDurationSecMin": 1.15,
     "pauseDurationSecMax": 3.1,
-    "feedDurationSecMin": 0.75,
-    "feedDurationSecMax": 1.45,
-    "feedSpeedMultiplier": 0.68,
     "coastDragPerSec": 0.26,
     "wanderStrength": 0.12
   },
@@ -54,11 +51,19 @@
     "surfaceAffinity": 0.02,
     "zoneHoldStrength": 0.82,
     "surfaceVisitChance": 0.0,
-    "foodResponsiveness": 0.54,
-    "tapResponsiveness": 0.34,
-    "tapResponse": "freeze",
-    "tapSurfaceBias": 0.04,
-    "tapStructureBias": 0.34,
     "structurePatrolStrength": 0.44
+  },
+  "catalog": {
+    "scientificName": "Pterophyllum scalare",
+    "originRegionId": "south-america",
+    "originRegionName": "南米",
+    "origin": "南米アマゾン水系。ペルー、コロンビア、ブラジル周辺の流れの穏やかな支流や水草・流木の多い水域に由来します。",
+    "temperament": "幼魚は比較的穏やかですが、成長すると存在感が強くなり、ペア形成や産卵期には縄張りを主張します。",
+    "movement": "高い体と長いひれを保ちながら、中層をゆっくり滑るように泳ぎます。急旋回より、余裕のある方向転換が特徴です。",
+    "habitat": "背の高い水槽、縦に伸びる水草、流木の陰がよく合います。小さすぎる魚は捕食対象になり得ます。",
+    "aliases": [
+      "angelfish",
+      "Pterophyllum scalare"
+    ]
   }
 }

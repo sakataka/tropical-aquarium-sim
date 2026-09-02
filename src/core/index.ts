@@ -1,45 +1,52 @@
 export { fishCatalog } from "./catalog";
 export {
-  createFeedingEvent,
-  createTapEvent,
-  getActiveFeeding,
-  getActiveTap,
-} from "./aquariumEvents";
+  DECOR_SLOT_IDS,
+  DECOR_SLOT_LABELS,
+  decorAssets,
+  decorAssetsById,
+  getAssetsForSlot,
+} from "./environmentCatalog";
 export {
   AQUARIUM_STATE_STORAGE_KEY,
   CUSTOMIZATION_STORAGE_KEY,
   DEFAULT_CUSTOMIZATION,
+  DEFAULT_PREFERENCES,
+  LEGACY_AQUARIUM_STATE_STORAGE_KEY,
   MAX_FISH_PER_SPECIES,
   MAX_TOTAL_FISH,
-  aquariumPresets,
-  getPresetById,
-  normalizeAquariumPersistedState,
+  aquariumThemes,
+  getMatchingThemeId,
+  getStructurePoints,
+  getThemeById,
+  migrateLegacyAquariumState,
   normalizeAquariumCustomization,
+  normalizeAquariumPersistedState,
+  setLayoutSlot,
   setStockCount,
 } from "./customization";
 export {
   createFishFromStock,
-  getMatchingPresetId,
   getStockCount,
-  hydrateFishResidents,
   reconcileFishStock,
-  toFishResidents,
 } from "./fishPopulation";
 export { getBaseSpriteScale, getFishSpriteScale, getTargetBodyLengthPx } from "./scale";
-export { fishGuideSchema } from "./schema";
 export { stepSimulation } from "./simulation";
 export { TANK_60CM } from "./tank";
 export type {
   AquariumCustomization,
-  AquariumEnvironmentCustomization,
+  AquariumLayout,
   AquariumPersistedState,
   AquariumPreferences,
-  AquariumPreset,
-  FeedingEvent,
-  FishGuideEntry,
+  AquariumTheme,
+  DecorAssetDefinition,
+  DecorPlacement,
+  DecorSlotId,
+  FishCatalogInfo,
   FishInstance,
   FishSpeciesDefinition,
+  FishStockEntry,
+  LightingId,
+  SwimZoneId,
   TankDefinition,
-  TapEvent,
   Vec2,
 } from "./types";

@@ -21,9 +21,6 @@
     "kickDurationSec": 0.18,
     "pauseDurationSecMin": 1.4,
     "pauseDurationSecMax": 4.2,
-    "feedDurationSecMin": 0.85,
-    "feedDurationSecMax": 1.8,
-    "feedSpeedMultiplier": 0.66,
     "coastDragPerSec": 0.54,
     "wanderStrength": 0.18
   },
@@ -51,11 +48,19 @@
     "surfaceAffinity": 0.0,
     "zoneHoldStrength": 1.45,
     "surfaceVisitChance": 0.03,
-    "foodResponsiveness": 0.5,
-    "tapResponsiveness": 0.58,
-    "tapResponse": "freeze",
-    "tapSurfaceBias": 0.0,
-    "tapStructureBias": 0.92,
     "structurePatrolStrength": 0.85
+  },
+  "catalog": {
+    "scientificName": "Corydoras sp.",
+    "originRegionId": "south-america",
+    "originRegionName": "南米",
+    "origin": "南米の河川や支流に広く見られる小型ナマズの仲間です。砂底、落ち葉、流木の周辺で底を探る生活をします。",
+    "temperament": "非常に温和な底ものです。同種や近い仲間と一緒にいると落ち着き、他魚を追い回すことはほとんどありません。",
+    "movement": "底面を短く進んでは止まり、口ひげで砂や石の周辺を探ります。時々水面へ空気を吸いに上がる行動もあります。",
+    "habitat": "角のない砂底、流木、石陰、水草の根元が似合います。派手さより、底で生活感を作る役割が強い魚です。",
+    "aliases": [
+      "corydoras",
+      "Corydoras sp."
+    ]
   }
 }

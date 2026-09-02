@@ -1,0 +1,20 @@
+{
+  "assets": [
+    { "id": "planted-water", "displayName": "明るい水", "category": "background", "allowedSlots": [], "scale": 1, "anchorY": 0.5 },
+    { "id": "driftwood-water", "displayName": "深い水", "category": "background", "allowedSlots": [], "scale": 1, "anchorY": 0.5 },
+    { "id": "iwagumi-water", "displayName": "澄んだ水", "category": "background", "allowedSlots": [], "scale": 1, "anchorY": 0.5 },
+    { "id": "dark-soil", "displayName": "ダークソイル", "category": "substrate", "allowedSlots": [], "scale": 1, "anchorY": 1 },
+    { "id": "river-sand", "displayName": "川砂", "category": "substrate", "allowedSlots": [], "scale": 1, "anchorY": 1 },
+    { "id": "cool-gravel", "displayName": "青灰の砂利", "category": "substrate", "allowedSlots": [], "scale": 1, "anchorY": 1 },
+    { "id": "ribbon-plants", "displayName": "リボン水草", "category": "rear", "allowedSlots": ["rear-left", "rear-right"], "scale": 0.54, "anchorY": 1 },
+    { "id": "sword-plants", "displayName": "ソードプランツ", "category": "rear", "allowedSlots": ["rear-left", "rear-right"], "scale": 0.5, "anchorY": 1 },
+    { "id": "stem-plants", "displayName": "有茎草", "category": "rear", "allowedSlots": ["rear-left", "rear-right"], "scale": 0.52, "anchorY": 1 },
+    { "id": "branch-driftwood", "displayName": "枝流木", "category": "mid", "allowedSlots": ["mid-left", "mid-right"], "scale": 0.45, "anchorY": 1 },
+    { "id": "arch-driftwood", "displayName": "アーチ流木", "category": "mid", "allowedSlots": ["mid-left", "mid-right"], "scale": 0.44, "anchorY": 1 },
+    { "id": "seiryu-stones", "displayName": "青龍石", "category": "mid", "allowedSlots": ["mid-left", "mid-right"], "scale": 0.4, "anchorY": 1 },
+    { "id": "river-stones", "displayName": "川石", "category": "mid", "allowedSlots": ["mid-left", "mid-right"], "scale": 0.4, "anchorY": 1 },
+    { "id": "moss-stones", "displayName": "苔石", "category": "front", "allowedSlots": ["front-left", "front-center", "front-right"], "scale": 0.34, "anchorY": 1 },
+    { "id": "hairgrass", "displayName": "ショートグラス", "category": "front", "allowedSlots": ["front-left", "front-center", "front-right"], "scale": 0.35, "anchorY": 1 },
+    { "id": "crypts", "displayName": "クリプトコリネ", "category": "front", "allowedSlots": ["front-left", "front-center", "front-right"], "scale": 0.35, "anchorY": 1 }
+  ]
+}

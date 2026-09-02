@@ -24,9 +24,6 @@
     "kickDurationSec": 0.2,
     "pauseDurationSecMin": 0.75,
     "pauseDurationSecMax": 1.75,
-    "feedDurationSecMin": 0.55,
-    "feedDurationSecMax": 1.2,
-    "feedSpeedMultiplier": 0.88,
     "coastDragPerSec": 0.46,
     "wanderStrength": 0.38
   },
@@ -54,11 +51,19 @@
     "surfaceAffinity": 0.56,
     "zoneHoldStrength": 0.92,
     "surfaceVisitChance": 0.2,
-    "foodResponsiveness": 0.86,
-    "tapResponsiveness": 0.8,
-    "tapResponse": "flee",
-    "tapSurfaceBias": 0.82,
-    "tapStructureBias": 0.08,
     "structurePatrolStrength": 0.12
+  },
+  "catalog": {
+    "scientificName": "Poecilia reticulata",
+    "originRegionId": "south-america",
+    "originRegionName": "南米",
+    "origin": "南米北部からカリブ海周辺。トリニダード、ベネズエラ、バルバドスなどの小川や浅い水域に由来します。",
+    "temperament": "温和で好奇心が強く、餌への反応も速い魚です。繁殖力が高く、改良品種では色や尾びれの差が大きく出ます。",
+    "movement": "表層から中層を活発に泳ぎ、尾びれを振りながら細かく向きを変えます。群れますが、密な隊列より散らばった動きが目立ちます。",
+    "habitat": "明るめの水槽や水草のある開けた空間でよく映えます。水面近くに出ることが多く、餌やり時の動きが派手です。",
+    "aliases": [
+      "guppy",
+      "Poecilia reticulata"
+    ]
   }
 }

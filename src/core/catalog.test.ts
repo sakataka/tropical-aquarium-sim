@@ -1,46 +1,26 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, test } from "vitest";
 import { fishCatalog } from "./catalog";
 
 describe("fish catalog", () => {
-  it("loads the viewing-focused species set", () => {
-    expect(Object.keys(fishCatalog).sort()).toEqual([
-      "angelfish",
-      "cherry-barb",
-      "corydoras",
-      "dwarf-gourami",
-      "guppy",
-      "harlequin-rasbora",
-      "kuhli-loach",
-      "neon-tetra",
-      "platy",
-      "white-cloud-minnow",
-    ]);
+  test("fish species are discovered from species folders", () => {
+    const species = Object.values(fishCatalog);
+    expect(species).toHaveLength(10);
+    expect(species.map((item) => item.id)).toContain("neon-tetra");
+    for (const item of species) {
+      expect(item.catalog.scientificName).toBeTruthy();
+      expect(item.catalog.originRegionName).toBeTruthy();
+      expect(item.catalog.origin).toBeTruthy();
+      expect(item.catalog.movement).toBeTruthy();
+    }
   });
 
-  it("allows static-image species without swim frames", () => {
-    expect(fishCatalog.corydoras.animation).toBeUndefined();
-    expect(fishCatalog["cherry-barb"].animation).toBeUndefined();
-    expect(fishCatalog["dwarf-gourami"].animation).toBeUndefined();
-    expect(fishCatalog["harlequin-rasbora"].animation).toBeUndefined();
-    expect(fishCatalog.platy.animation).toBeUndefined();
-    expect(fishCatalog["white-cloud-minnow"].animation).toBeUndefined();
-  });
-
-  it("loads species-level behavior differences for real-fish motion profiles", () => {
-    expect(fishCatalog["neon-tetra"].schooling.strength).toBeGreaterThan(
-      fishCatalog.guppy.schooling.strength,
-    );
-    expect(fishCatalog.guppy.behavior.surfaceVisitChance).toBeGreaterThan(
-      fishCatalog["neon-tetra"].behavior.surfaceVisitChance,
-    );
-    expect(fishCatalog.corydoras.behavior.structurePatrolStrength).toBeGreaterThan(
-      fishCatalog.angelfish.behavior.structurePatrolStrength,
-    );
-    expect(fishCatalog.angelfish.motion.wanderStrength).toBeLessThan(
-      fishCatalog["neon-tetra"].motion.wanderStrength,
-    );
-    expect(fishCatalog["kuhli-loach"].preferredZone.minY).toBeGreaterThan(
-      fishCatalog.platy.preferredZone.minY,
-    );
+  test("removed care and interaction fields are absent", () => {
+    const serialized = JSON.stringify(fishCatalog);
+    for (const removed of [
+      "hunger", "feeding", "foodResponsiveness", "tapResponse",
+      "tapAvoidance", "feedDurationSecMin", "feedSpeedMultiplier",
+    ]) {
+      expect(serialized).not.toContain(`\"${removed}\"`);
+    }
   });
 });

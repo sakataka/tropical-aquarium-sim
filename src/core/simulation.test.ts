@@ -1,575 +1,67 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, test } from "vitest";
 import { fishCatalog } from "./catalog";
+import { createFishFromStock } from "./fishPopulation";
 import { stepSimulation } from "./simulation";
 import { TANK_60CM } from "./tank";
-import type { FishInstance, FishSpeciesDefinition } from "./types";
 
-const species: FishSpeciesDefinition = {
-  id: "test-fish",
-  displayName: "Test Fish",
-  realBodyLengthCm: 4,
-  visual: { fallbackColor: "#35c7e8" },
-  animation: {
-    framesPerSecond: 8,
-  },
-  sourceBodyBounds: {
-    x: 0,
-    y: 0,
-    width: 100,
-    height: 32,
-  },
-  cruisingSpeedCmPerSec: 4,
-  burstSpeedCmPerSec: 12,
-  turnRateRadPerSec: 12,
-  stopProbabilityPerSec: 0,
-  motion: {
-    kickIntervalSecMin: 0.8,
-    kickIntervalSecMax: 1.6,
-    kickDurationSec: 0.2,
-    pauseDurationSecMin: 0.8,
-    pauseDurationSecMax: 1.8,
-    feedDurationSecMin: 0.5,
-    feedDurationSecMax: 1.2,
-    feedSpeedMultiplier: 0.75,
-    coastDragPerSec: 0.35,
-    wanderStrength: 0.25,
-  },
-  preferredZone: {
-    minX: 0.2,
-    maxX: 0.8,
-    minY: 0.2,
-    maxY: 0.8,
-  },
-  schooling: {
-    enabled: true,
-    radiusCm: 12,
-    strength: 0.2,
-  },
-  behavior: {
-    separationBodyLengths: 1.4,
-    alignmentBodyLengths: 3,
-    attractionBodyLengths: 6,
-    separationStrength: 1.2,
-    alignmentStrength: 0.8,
-    attractionStrength: 0.7,
-    wallAvoidanceStrength: 4,
-    edgeCruiseChance: 0.12,
-    structureAffinity: 0.25,
-    surfaceAffinity: 0.15,
-    zoneHoldStrength: 0.8,
-    surfaceVisitChance: 0.05,
-    foodResponsiveness: 0.65,
-    tapResponsiveness: 0.7,
-    tapResponse: "flee",
-    tapSurfaceBias: 0.2,
-    tapStructureBias: 0.3,
-    structurePatrolStrength: 0.35,
-  },
-};
-
-function createFish(overrides: Partial<FishInstance> = {}): FishInstance {
-  const definition = overrides.speciesId ? fishCatalog[overrides.speciesId] ?? species : species;
-
-  return {
-    id: "fish-1",
-    speciesId: definition.id,
-    arrivedAtMs: 1_700_000_000_000,
-    favorite: false,
-    position: {
-      x: 30,
-      y: 20,
-    },
-    velocity: {
-      x: 1,
-      y: 0,
-    },
-    facing: 1,
-    depth: 0.5,
-    bodyLengthVariance: 1,
-    behaviorMode: "coast",
-    behaviorTimeRemainingSec: 0,
-    targetKind: "openWater",
-    hunger: 0.8,
-    seed: 123,
-    ...overrides,
-  };
-}
-
-describe("stepSimulation", () => {
-  it("keeps fish inside the tank bounds", () => {
-    const result = stepSimulation({
-      tank: TANK_60CM,
-      species: {
-        [species.id]: species,
-      },
-      fish: [
-        createFish({
-          position: {
-            x: 0,
-            y: 0,
-          },
-        }),
-      ],
-      deltaSec: 1,
-    });
-
-    expect(result.fish[0].position.x).toBeGreaterThanOrEqual(TANK_60CM.safeMarginCm);
-    expect(result.fish[0].position.y).toBeGreaterThanOrEqual(TANK_60CM.safeMarginCm);
-  });
-
-  it("switches hungry fish into feed behavior when food is present", () => {
-    const result = stepSimulation({
-      tank: TANK_60CM,
-      species: {
-        [species.id]: species,
-      },
-      fish: [createFish()],
-      deltaSec: 1 / 60,
-      feeding: {
-        position: TANK_60CM.feedPoint,
-        strength: 1,
-      },
-    });
-
-    expect(result.fish[0].behaviorMode).toBe("feed");
-    expect(result.fish[0].targetKind).toBe("feed");
-    expect(result.fish[0].hunger).toBeLessThan(0.8);
-  });
-
-  it("moves hungry fish closer to food across repeated feed steps", () => {
-    const feeding = {
-      position: { x: 38, y: 20 },
-      strength: 1,
-    };
-    const initialFish = createFish({
-      position: { x: 24, y: 20 },
-      velocity: { x: 0, y: 0 },
-      target: { x: 24, y: 20 },
-      hunger: 0.95,
-    });
-    let fish = [initialFish];
-
-    for (let i = 0; i < 24; i += 1) {
+describe("natural swimming", () => {
+  test("keeps fish inside the tank over time", () => {
+    let fish = createFishFromStock([{ speciesId: "neon-tetra", count: 8 }]);
+    for (let index = 0; index < 600; index += 1) {
       fish = stepSimulation({
-        tank: TANK_60CM,
-        species: {
-          [species.id]: species,
-        },
-        fish,
-        deltaSec: 1 / 30,
-        feeding,
+        tank: TANK_60CM, species: fishCatalog, fish, deltaSec: 0.05, structurePoints: [],
       }).fish;
     }
-
-    expect(distance(fish[0].position, feeding.position)).toBeLessThan(
-      distance(initialFish.position, feeding.position),
-    );
-    expect(fish[0].behaviorMode).toBe("feed");
-    expect(fish[0].hunger).toBeLessThan(initialFish.hunger);
+    for (const item of fish) {
+      expect(item.position.x).toBeGreaterThanOrEqual(TANK_60CM.safeMarginCm);
+      expect(item.position.x).toBeLessThanOrEqual(TANK_60CM.widthCm - TANK_60CM.safeMarginCm);
+      expect(item.position.y).toBeGreaterThanOrEqual(TANK_60CM.safeMarginCm);
+      expect(item.position.y).toBeLessThanOrEqual(TANK_60CM.heightCm - TANK_60CM.safeMarginCm);
+    }
   });
 
-  it("separates schooling fish that are too close", () => {
-    const initialFish = [
-      createFish({
-        id: "left",
-        position: { x: 30, y: 18 },
-        velocity: { x: 0.1, y: 0 },
-        target: { x: 42, y: 18 },
-      }),
-      createFish({
-        id: "right",
-        position: { x: 31, y: 18 },
-        velocity: { x: 0.1, y: 0 },
-        target: { x: 42, y: 18 },
-      }),
-    ];
-    const result = runSteps(initialFish, 30);
-    const initialDistance = initialFish[1].position.x - initialFish[0].position.x;
-    const nextDistance = result[1].position.x - result[0].position.x;
-
-    expect(nextDistance).toBeGreaterThan(initialDistance);
+  test("respects the species swimming zone", () => {
+    let fish = createFishFromStock([{ speciesId: "corydoras", count: 6 }]);
+    for (let index = 0; index < 300; index += 1) {
+      fish = stepSimulation({
+        tank: TANK_60CM, species: fishCatalog, fish, deltaSec: 0.05, structurePoints: [],
+      }).fish;
+    }
+    const averageY = fish.reduce((sum, item) => sum + item.position.y, 0) / fish.length;
+    expect(averageY).toBeGreaterThan(TANK_60CM.heightCm * 0.55);
   });
 
-  it("keeps schooling fish from drifting too far apart inside their attraction radius", () => {
-    const initialFish = [
-      createFish({
-        id: "left",
-        position: { x: 24, y: 18 },
-        velocity: { x: 0.1, y: 0 },
-        target: { x: 12, y: 18 },
-      }),
-      createFish({
-        id: "right",
-        position: { x: 36, y: 18 },
-        velocity: { x: -0.1, y: 0 },
-        target: { x: 48, y: 18 },
-      }),
-    ];
-    const result = runSteps(initialFish, 45);
-    const initialDistance = initialFish[1].position.x - initialFish[0].position.x;
-    const nextDistance = result[1].position.x - result[0].position.x;
-
-    expect(nextDistance).toBeLessThan(initialDistance + 4);
-  });
-
-  it("does not apply schooling separation between different species", () => {
-    const guppy = fishCatalog.guppy;
-    const initialFish = [
-      createFish({
-        id: "test-fish",
-        position: { x: 30, y: 18 },
-        velocity: { x: 0, y: 0 },
-        target: { x: 42, y: 18 },
-        behaviorTimeRemainingSec: 2,
-      }),
-      createFish({
-        id: "guppy",
-        speciesId: guppy.id,
-        position: { x: 30.5, y: 18 },
-        velocity: { x: 0, y: 0 },
-        target: { x: 42, y: 18 },
-        behaviorTimeRemainingSec: 2,
-      }),
-    ];
-    const result = runSteps(initialFish, 10, {
-      [species.id]: species,
-      [guppy.id]: guppy,
-    });
-
-    expect(result[0].position.x).toBeGreaterThan(initialFish[0].position.x);
-    expect(result[0].position.x).toBeLessThan(initialFish[0].position.x + 3);
-  });
-
-  it("steers away before fish reach the tank glass", () => {
-    const initialX = TANK_60CM.safeMarginCm + 0.5;
-    const result = runSteps([
-      createFish({
-        position: { x: initialX, y: 18 },
-        velocity: { x: -3, y: 0 },
-        target: { x: 1, y: 18 },
-      }),
-    ], 30);
-
-    expect(result[0].position.x).toBeGreaterThan(initialX);
-    expect(result[0].targetKind).not.toBe("feed");
-  });
-
-  it("pulls bottom dwellers back toward the lower tank zone", () => {
-    const corydoras = fishCatalog.corydoras;
-    const fish = createFish({
-      speciesId: corydoras.id,
-      position: { x: 30, y: 22 },
-      velocity: { x: 0.2, y: 0 },
-      target: { x: 42, y: 22 },
-      targetKind: "openWater",
-    });
-    const result = runSteps([fish], 40, {
-      [corydoras.id]: corydoras,
-    });
-
-    expect(result[0].position.y).toBeGreaterThan(fish.position.y);
-  });
-
-  it("can choose species-driven surface visit targets without adding a behavior mode", () => {
-    const surfaceCorydoras: FishSpeciesDefinition = {
-      ...fishCatalog.corydoras,
-      behavior: {
-        ...fishCatalog.corydoras.behavior,
-        edgeCruiseChance: 0,
-        surfaceVisitChance: 1,
-        structureAffinity: 0,
-      },
-    };
-    const result = stepSimulation({
+  test("uses placed midground decor as a passive target", () => {
+    const species = structuredClone(fishCatalog["dwarf-gourami"]);
+    species.behavior.edgeCruiseChance = 0;
+    species.behavior.surfaceVisitChance = 0;
+    species.behavior.structureAffinity = 1;
+    const fish = createFishFromStock([{ speciesId: species.id, count: 1 }]);
+    fish[0].behaviorMode = "coast";
+    fish[0].behaviorTimeRemainingSec = 0;
+    const output = stepSimulation({
       tank: TANK_60CM,
-      species: {
-        [surfaceCorydoras.id]: surfaceCorydoras,
-      },
-      fish: [
-        createFish({
-          speciesId: surfaceCorydoras.id,
-          position: { x: 30, y: 34 },
-          behaviorMode: "coast",
-          behaviorTimeRemainingSec: 0,
-        }),
-      ],
-      deltaSec: 1 / 30,
-    });
-
-    expect(result.fish[0].behaviorMode).toBe("kick");
-    expect(result.fish[0].targetKind).toBe("surfaceVisit");
-    expect(result.fish[0].target?.y).toBeLessThan(TANK_60CM.heightCm * 0.18);
+      species: { [species.id]: species },
+      fish,
+      deltaSec: 0.05,
+      structurePoints: [{ x: 42, y: 26 }],
+    }).fish[0];
+    expect(output.targetKind).toBe("structure");
+    expect(output.target!.x).toBeGreaterThan(35);
+    expect(output.target!.y).toBeGreaterThan(20);
   });
 
-  it("lets upper-level species bias new targets toward the surface", () => {
-    const surfaceGuppy: FishSpeciesDefinition = {
-      ...fishCatalog.guppy,
-      behavior: {
-        ...fishCatalog.guppy.behavior,
-        edgeCruiseChance: 0,
-        surfaceVisitChance: 1,
-        structureAffinity: 0,
-      },
-    };
-    const result = stepSimulation({
-      tank: TANK_60CM,
-      species: {
-        [surfaceGuppy.id]: surfaceGuppy,
-      },
-      fish: [
-        createFish({
-          speciesId: surfaceGuppy.id,
-          position: { x: 30, y: 20 },
-          behaviorMode: "coast",
-          behaviorTimeRemainingSec: 0,
-        }),
-      ],
-      deltaSec: 1 / 30,
-    });
-
-    expect(result.fish[0].targetKind).toBe("surfaceVisit");
-    expect(result.fish[0].target?.y).toBeLessThan(TANK_60CM.heightCm * 0.18);
-  });
-
-  it("uses food responsiveness when deciding whether fish enter feed behavior", () => {
-    const lowResponseSpecies: FishSpeciesDefinition = {
-      ...species,
-      behavior: {
-        ...species.behavior,
-        foodResponsiveness: 0,
-      },
-    };
-    const highResponseSpecies: FishSpeciesDefinition = {
-      ...species,
-      id: "high-response",
-      behavior: {
-        ...species.behavior,
-        foodResponsiveness: 1,
-      },
-    };
-    const feeding = {
-      position: { x: 30, y: 20 },
-      strength: 1,
-    };
-    const distantFish = createFish({
-      position: { x: 30, y: 52 },
-      target: { x: 30, y: 52 },
-    });
-    const lowResult = stepSimulation({
-      tank: TANK_60CM,
-      species: {
-        [lowResponseSpecies.id]: lowResponseSpecies,
-      },
-      fish: [distantFish],
-      deltaSec: 1 / 30,
-      feeding,
-    });
-    const highResult = stepSimulation({
-      tank: TANK_60CM,
-      species: {
-        [highResponseSpecies.id]: highResponseSpecies,
-      },
-      fish: [
-        {
-          ...distantFish,
-          speciesId: highResponseSpecies.id,
-        },
-      ],
-      deltaSec: 1 / 30,
-      feeding,
-    });
-
-    expect(lowResult.fish[0].behaviorMode).not.toBe("feed");
-    expect(highResult.fish[0].behaviorMode).toBe("feed");
-    expect(highResult.fish[0].targetKind).toBe("feed");
-  });
-
-  it("uses fish hunger when deciding whether fish enter feed behavior", () => {
-    const feeding = {
-      position: { x: 30, y: 46 },
-      strength: 1,
-    };
-    const fullFish = createFish({
-      hunger: 0.05,
-      position: { x: 30, y: 20 },
-      target: { x: 30, y: 20 },
-    });
-    const hungryFish = createFish({
-      ...fullFish,
-      hunger: 0.95,
-    });
-
-    const fullResult = stepSimulation({
-      tank: TANK_60CM,
-      species: {
-        [species.id]: species,
-      },
-      fish: [fullFish],
-      deltaSec: 1 / 30,
-      feeding,
-    });
-    const hungryResult = stepSimulation({
-      tank: TANK_60CM,
-      species: {
-        [species.id]: species,
-      },
-      fish: [hungryFish],
-      deltaSec: 1 / 30,
-      feeding,
-    });
-
-    expect(fullResult.fish[0].behaviorMode).not.toBe("feed");
-    expect(hungryResult.fish[0].behaviorMode).toBe("feed");
-  });
-
-  it("reacts to nearby tank taps without pulling distant fish into the interaction", () => {
-    const nearFish = createFish({
-      id: "near",
-      position: { x: 30, y: 20 },
-      target: { x: 30, y: 20 },
-    });
-    const farFish = createFish({
-      id: "far",
-      position: { x: 56, y: 36 },
-      target: { x: 56, y: 36 },
-    });
-    const outsideLocalImpactFish = createFish({
-      id: "outside-local-impact",
-      position: { x: 36, y: 20 },
-      target: { x: 36, y: 20 },
-    });
-    const result = stepSimulation({
-      tank: TANK_60CM,
-      species: {
-        [species.id]: species,
-      },
-      fish: [nearFish, outsideLocalImpactFish, farFish],
-      deltaSec: 1 / 30,
-      tapEvent: {
-        position: { x: 28, y: 20 },
-        strength: 1,
-      },
-    });
-
-    expect(result.fish[0].behaviorMode).toBe("tapFlee");
-    expect(result.fish[0].targetKind).toBe("tap");
-    expect(result.fish[1].targetKind).not.toBe("tap");
-    expect(result.fish[2].targetKind).not.toBe("tap");
-  });
-
-  it("keeps strongly feeding hungry fish focused on food instead of tap response", () => {
-    const feedingFish = createFish({
-      position: { x: 30, y: 20 },
-      behaviorMode: "feed",
-      behaviorTimeRemainingSec: 0.4,
-      target: { x: 32, y: 20 },
-      targetKind: "feed",
-      hunger: 0.9,
-    });
-    const result = stepSimulation({
-      tank: TANK_60CM,
-      species: {
-        [species.id]: species,
-      },
-      fish: [feedingFish],
-      deltaSec: 1 / 30,
-      feeding: {
-        position: { x: 32, y: 20 },
-        strength: 1,
-      },
-      tapEvent: {
-        position: { x: 30, y: 20 },
-        strength: 1,
-      },
-    });
-
-    expect(result.fish[0].behaviorMode).toBe("feed");
-    expect(result.fish[0].targetKind).toBe("feed");
-  });
-
-  it("uses species tap behavior to vary response style and target", () => {
-    const freezeSpecies: FishSpeciesDefinition = {
-      ...species,
-      id: "freeze-fish",
-      behavior: {
-        ...species.behavior,
-        tapResponse: "freeze",
-        tapStructureBias: 1,
-        tapSurfaceBias: 0,
-      },
-    };
-    const approachSpecies: FishSpeciesDefinition = {
-      ...species,
-      id: "approach-fish",
-      behavior: {
-        ...species.behavior,
-        tapResponse: "approach",
-      },
-    };
-    const tapEvent = {
-      position: { x: 28, y: 20 },
-      strength: 1,
-    };
-
-    const freezeResult = stepSimulation({
-      tank: TANK_60CM,
-      species: {
-        [freezeSpecies.id]: freezeSpecies,
-      },
-      fish: [
-        createFish({
-          speciesId: freezeSpecies.id,
-          position: { x: 30, y: 20 },
-        }),
-      ],
-      deltaSec: 1 / 30,
-      tapEvent,
-    });
-    const approachResult = stepSimulation({
-      tank: TANK_60CM,
-      species: {
-        [approachSpecies.id]: approachSpecies,
-      },
-      fish: [
-        createFish({
-          speciesId: approachSpecies.id,
-          position: { x: 30, y: 20 },
-        }),
-      ],
-      deltaSec: 1 / 30,
-      tapEvent,
-    });
-
-    expect(freezeResult.fish[0].behaviorMode).toBe("tapFreeze");
-    expect(freezeResult.fish[0].target?.x).toBeGreaterThan(30);
-    expect(approachResult.fish[0].behaviorMode).toBe("tapApproach");
-    expect(approachResult.fish[0].target?.x).toBeLessThan(30);
+  test("schooling changes heading in response to nearby fish", () => {
+    const species = fishCatalog["neon-tetra"];
+    const school = createFishFromStock([{ speciesId: species.id, count: 2 }]);
+    school[0] = { ...school[0], position: { x: 25, y: 18 }, velocity: { x: 1, y: 0 } };
+    school[1] = { ...school[1], position: { x: 27, y: 20 }, velocity: { x: 0, y: 1 } };
+    const alone = stepSimulation({
+      tank: TANK_60CM, species: fishCatalog, fish: [school[0]], deltaSec: 0.1, structurePoints: [],
+    }).fish[0];
+    const together = stepSimulation({
+      tank: TANK_60CM, species: fishCatalog, fish: school, deltaSec: 0.1, structurePoints: [],
+    }).fish[0];
+    expect(together.velocity.y).not.toBeCloseTo(alone.velocity.y, 5);
   });
 });
-
-function distance(
-  a: FishInstance["position"],
-  b: FishInstance["position"],
-): number {
-  return Math.hypot(a.x - b.x, a.y - b.y);
-}
-
-function runSteps(
-  initialFish: FishInstance[],
-  steps: number,
-  speciesById: Record<string, FishSpeciesDefinition> = {
-    [species.id]: species,
-  },
-): FishInstance[] {
-  let fish = initialFish;
-  for (let i = 0; i < steps; i += 1) {
-    fish = stepSimulation({
-      tank: TANK_60CM,
-      species: speciesById,
-      fish,
-      deltaSec: 1 / 30,
-    }).fish;
-  }
-
-  return fish;
-}

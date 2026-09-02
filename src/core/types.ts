@@ -1,6 +1,17 @@
-export type Vec2 = {
-  x: number;
-  y: number;
+export type Vec2 = { x: number; y: number };
+
+export type LightingId = "natural" | "cool" | "evening" | "night";
+export type SwimZoneId = "surface" | "middle" | "bottom";
+
+export type FishCatalogInfo = {
+  scientificName: string;
+  originRegionId: string;
+  originRegionName: string;
+  origin: string;
+  temperament: string;
+  movement: string;
+  habitat: string;
+  aliases?: string[];
 };
 
 type SpeciesBehaviorProfile = {
@@ -16,11 +27,6 @@ type SpeciesBehaviorProfile = {
   surfaceAffinity: number;
   zoneHoldStrength: number;
   surfaceVisitChance: number;
-  foodResponsiveness: number;
-  tapResponsiveness: number;
-  tapResponse: "flee" | "freeze" | "approach";
-  tapSurfaceBias: number;
-  tapStructureBias: number;
   structurePatrolStrength: number;
 };
 
@@ -30,9 +36,6 @@ type SwimMotionProfile = {
   kickDurationSec: number;
   pauseDurationSecMin: number;
   pauseDurationSecMax: number;
-  feedDurationSecMin: number;
-  feedDurationSecMax: number;
-  feedSpeedMultiplier: number;
   coastDragPerSec: number;
   wanderStrength: number;
 };
@@ -41,6 +44,7 @@ export type FishSpeciesDefinition = {
   id: string;
   displayName: string;
   realBodyLengthCm: number;
+  catalog: FishCatalogInfo;
   animation?: { framesPerSecond: number };
   visual: { fallbackColor: string };
   sourceBodyBounds: { x: number; y: number; width: number; height: number };
@@ -54,40 +58,20 @@ export type FishSpeciesDefinition = {
   behavior: SpeciesBehaviorProfile;
 };
 
-export type FishGuideEntry = {
-  scientificName: string;
-  origin: string;
-  temperament: string;
-  movement: string;
-  habitat: string;
-  note: string;
-};
-
-export type FishTargetKind =
-  | "openWater"
-  | "structure"
-  | "edgeCruise"
-  | "surfaceVisit"
-  | "feed"
-  | "tap";
+export type FishTargetKind = "openWater" | "structure" | "edgeCruise" | "surfaceVisit";
 
 export type FishInstance = {
   id: string;
   speciesId: string;
-  arrivedAtMs: number;
-  nickname?: string;
-  favorite: boolean;
-  lastFedAtMs?: number;
   position: Vec2;
   velocity: Vec2;
   facing: -1 | 1;
   depth: number;
   bodyLengthVariance: number;
-  behaviorMode: "kick" | "coast" | "pause" | "feed" | "tapFlee" | "tapFreeze" | "tapApproach";
+  behaviorMode: "kick" | "coast" | "pause";
   behaviorTimeRemainingSec: number;
   target?: Vec2;
   targetKind?: FishTargetKind;
-  hunger: number;
   seed: number;
 };
 
@@ -98,19 +82,6 @@ export type TankDefinition = {
   heightCm: number;
   depthCm: number;
   safeMarginCm: number;
-  feedPoint: Vec2;
-};
-
-export type FeedingEvent = {
-  position: Vec2;
-  strength: number;
-  createdAtMs?: number;
-};
-
-export type TapEvent = {
-  position: Vec2;
-  strength: number;
-  createdAtMs?: number;
 };
 
 export type SimulationInput = {
@@ -118,71 +89,62 @@ export type SimulationInput = {
   species: Record<string, FishSpeciesDefinition>;
   fish: FishInstance[];
   deltaSec: number;
-  feeding?: FeedingEvent;
-  tapEvent?: TapEvent;
+  structurePoints: Vec2[];
 };
 
-export type SimulationOutput = {
-  fish: FishInstance[];
+export type SimulationOutput = { fish: FishInstance[] };
+export type FishStockEntry = { speciesId: string; count: number };
+
+export type DecorSlotId =
+  | "rear-left"
+  | "rear-right"
+  | "mid-left"
+  | "mid-right"
+  | "front-left"
+  | "front-center"
+  | "front-right";
+
+export type DecorCategory = "background" | "substrate" | "rear" | "mid" | "front";
+export type DecorPlacement = { assetId: string; flipped: boolean };
+
+export type AquariumLayout = {
+  themeId: "planted" | "driftwood" | "iwagumi";
+  backgroundId: string;
+  substrateId: string;
+  lighting: LightingId;
+  slots: Record<DecorSlotId, DecorPlacement | null>;
 };
 
-export type FishStockEntry = {
-  speciesId: string;
-  count: number;
-};
-
-export type AquariumEnvironmentCustomization = {
-  backgroundStyle: "clear" | "deep" | "bright";
-  rearPlants: "off" | "subtle" | "full";
-  foregroundPlants: "off" | "subtle" | "full";
-  plantDensity: "low" | "medium" | "high";
-  lighting: "natural" | "cool" | "evening" | "night";
-};
-
-export type AquariumCustomization = {
-  stock: FishStockEntry[];
-  environment: AquariumEnvironmentCustomization;
-};
-
-export type FishResident = Pick<
-  FishInstance,
-  | "id"
-  | "speciesId"
-  | "arrivedAtMs"
-  | "nickname"
-  | "favorite"
-  | "lastFedAtMs"
-  | "bodyLengthVariance"
-  | "hunger"
-  | "seed"
->;
-
-export type AquariumPreferences = {
-  tankName: string;
-  createdAtMs: number;
-  lastSeenAtMs: number;
-  lightingMode: "auto" | "manual";
-  soundEnabled: boolean;
-  soundVolume: number;
-};
-
-export type AquariumPersistedState = {
-  version: 2;
-  customization: AquariumCustomization;
-  residents: FishResident[];
-  preferences: AquariumPreferences;
-  selectedFishId?: string;
-};
-
-export type AquariumPreset = AquariumCustomization & {
+export type DecorAssetDefinition = {
   id: string;
   displayName: string;
+  category: DecorCategory;
+  allowedSlots: DecorSlotId[];
+  scale: number;
+  anchorY: number;
+};
+
+export type AquariumTheme = {
+  id: AquariumLayout["themeId"];
+  displayName: string;
+  description: string;
+  layout: AquariumLayout;
+};
+
+export type AquariumCustomization = { stock: FishStockEntry[]; layout: AquariumLayout };
+export type AquariumPreferences = { soundEnabled: boolean; soundVolume: number };
+
+export type AquariumPersistedState = {
+  version: 3;
+  customization: AquariumCustomization;
+  preferences: AquariumPreferences;
 };
 
 export type AquariumConfig = {
-  storageKey: string;
+  legacyStorageKey: string;
+  legacyStateStorageKey: string;
   stateStorageKey: string;
   maxFishPerSpecies: number;
   maxTotalFish: number;
-  presets: AquariumPreset[];
+  themes: AquariumTheme[];
 };

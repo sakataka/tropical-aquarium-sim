@@ -24,9 +24,6 @@
     "kickDurationSec": 0.2,
     "pauseDurationSecMin": 0.7,
     "pauseDurationSecMax": 1.6,
-    "feedDurationSecMin": 0.55,
-    "feedDurationSecMax": 1.25,
-    "feedSpeedMultiplier": 0.78,
     "coastDragPerSec": 0.44,
     "wanderStrength": 0.36
   },
@@ -54,11 +51,19 @@
     "surfaceAffinity": 0.02,
     "zoneHoldStrength": 1.15,
     "surfaceVisitChance": 0.0,
-    "foodResponsiveness": 0.62,
-    "tapResponsiveness": 0.88,
-    "tapResponse": "flee",
-    "tapSurfaceBias": 0.12,
-    "tapStructureBias": 0.18,
     "structurePatrolStrength": 0.18
+  },
+  "catalog": {
+    "scientificName": "Paracheirodon innesi",
+    "originRegionId": "south-america",
+    "originRegionName": "南米",
+    "origin": "南米アマゾン上流域。ペルー周辺の小川や浸水林、水草や落ち葉の多い暗めの水域に由来します。",
+    "temperament": "非常に温和な群泳魚です。単独では落ち着きにくく、同種が多いほど自然なまとまりと発色が出ます。",
+    "movement": "中層を小刻みに進み、短い加速と停止を繰り返します。群れの中心へ戻る力が強く、驚くと素早く距離を取ります。",
+    "habitat": "水草、流木、やや暗い背景と相性が良い魚です。明るすぎる水槽より、陰影がある環境で青赤のラインが目立ちます。",
+    "aliases": [
+      "neon-tetra",
+      "Paracheirodon innesi"
+    ]
   }
 }

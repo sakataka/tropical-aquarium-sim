@@ -21,9 +21,6 @@
     "kickDurationSec": 0.22,
     "pauseDurationSecMin": 0.85,
     "pauseDurationSecMax": 2.15,
-    "feedDurationSecMin": 0.62,
-    "feedDurationSecMax": 1.32,
-    "feedSpeedMultiplier": 0.78,
     "coastDragPerSec": 0.4,
     "wanderStrength": 0.25
   },
@@ -51,11 +48,19 @@
     "surfaceAffinity": 0.16,
     "zoneHoldStrength": 0.96,
     "surfaceVisitChance": 0.04,
-    "foodResponsiveness": 0.68,
-    "tapResponsiveness": 0.7,
-    "tapResponse": "flee",
-    "tapSurfaceBias": 0.2,
-    "tapStructureBias": 0.28,
     "structurePatrolStrength": 0.3
+  },
+  "catalog": {
+    "scientificName": "Puntius titteya",
+    "originRegionId": "south-asia",
+    "originRegionName": "南アジア",
+    "origin": "スリランカの小川や森林に近い水域に由来します。植物や落ち葉、陰影のある流れの穏やかな場所と関わりが深い魚です。",
+    "temperament": "温和で、赤い体色が混泳水槽の差し色になります。強い縄張り魚ではなく、同種や他の小型魚と距離を取りながら過ごします。",
+    "movement": "中層をゆるく巡回し、短い停止を挟みながら水草の手前へ出たり戻ったりします。群れますが、密な隊列より散らばった動きが目立ちます。",
+    "habitat": "水草や流木の陰がある落ち着いた水槽で色がよく映えます。赤い体と黒いラインが、緑の背景の中で視線を拾いやすい魚です。",
+    "aliases": [
+      "cherry-barb",
+      "Puntius titteya"
+    ]
   }
 }
