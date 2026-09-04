@@ -36,6 +36,7 @@ describe("natural swimming", () => {
     species.behavior.edgeCruiseChance = 0;
     species.behavior.surfaceVisitChance = 0;
     species.behavior.structureAffinity = 1;
+    species.stopProbabilityPerSec = 0;
     const fish = createFishFromStock([{ speciesId: species.id, count: 1 }]);
     fish[0].behaviorMode = "coast";
     fish[0].behaviorTimeRemainingSec = 0;
