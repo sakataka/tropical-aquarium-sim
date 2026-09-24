@@ -43,13 +43,15 @@ void main() {
     cos(uv.x * 13.0 + uTime * 0.71) + 0.5 * cos(uv.x * 29.0 + uTime * 1.09)
   ) * uRipple;
   vec2 coord = vTextureCoord + wobble * uOutputFrame.zw * uInputSize.zw;
-  vec3 color = texture(uTexture, clamp(coord, uInputClamp.xy, uInputClamp.zw)).rgb;
+  // 入力は乗算済みアルファ。ガラスの外（透明な余白）は透明のまま残す。
+  vec4 source = texture(uTexture, clamp(coord, uInputClamp.xy, uInputClamp.zw));
+  vec3 color = source.rgb;
   float luminance = dot(color, vec3(0.299, 0.587, 0.114));
 
   vec2 causticUv = vec2(uv.x * aspect, uv.y * 1.35) * 5.5 + vec2(0.0, uTime * 0.012);
   float caustic = causticPattern(causticUv - 250.0, uTime * 0.32);
   float causticMask = smoothstep(1.05, 0.05, uv.y) * (0.35 + luminance * 1.6);
-  color += color * caustic * uCaustics * causticMask + vec3(0.55, 0.85, 0.8) * caustic * uCaustics * 0.035;
+  color += color * caustic * uCaustics * causticMask + vec3(0.55, 0.85, 0.8) * caustic * uCaustics * 0.035 * source.a;
 
   float slant = uv.x * 1.0 + uv.y * 0.62;
   float shafts =
@@ -58,7 +60,7 @@ void main() {
     pow(0.5 + 0.5 * sin(slant * 11.0 + uTime * 0.07 + 4.1), 5.0) * 0.4;
   float rayFade = smoothstep(0.95, 0.0, uv.y) * smoothstep(1.25, 0.05, uv.x) *
     (0.75 + 0.25 * sin(uTime * 0.23));
-  color += vec3(0.62, 0.92, 0.86) * shafts * rayFade * uRays;
+  color += vec3(0.62, 0.92, 0.86) * shafts * rayFade * uRays * source.a;
 
   color *= uGrade * uExposure;
   float gradedLuminance = dot(color, vec3(0.299, 0.587, 0.114));
@@ -67,7 +69,7 @@ void main() {
   vec2 centered = (uv - 0.5) * vec2(aspect / 1.6, 1.0);
   color *= 1.0 - uVignette * smoothstep(0.32, 0.9, length(centered));
 
-  finalColor = vec4(color, 1.0);
+  finalColor = vec4(min(color, vec3(source.a)), source.a);
 }
 `;
 
@@ -134,12 +136,13 @@ export class UnderwaterFilter extends Filter {
       resolution: "inherit",
     });
     this.uniforms = uniforms;
-    this.target = LOOKS[lighting];
+    this.target = look;
     this.current = structuredClone(look);
   }
 
-  setLighting(lighting: LightingId) {
-    this.target = LOOKS[lighting];
+  /** null のときは効果なし（部屋で見ていた絵のまま）へ向かう。 */
+  setLighting(lighting: LightingId | null) {
+    this.target = lighting ? LOOKS[lighting] : NEUTRAL_LOOK;
   }
 
   update(timeSec: number, deltaSec: number) {

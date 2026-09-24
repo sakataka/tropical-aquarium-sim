@@ -34,6 +34,8 @@ export class FishLayer {
     tank: TankDefinition,
     rect: ViewRect,
     deltaSec: number,
+    /** false のときは描くだけで、尾の振りなどの状態は進めない（もう一方の画面が進める）。 */
+    advance = true,
   ) {
     const activeIds = new Set(fish.map((item) => item.id));
     for (const [id, record] of this.records) {
@@ -78,7 +80,7 @@ export class FishLayer {
       mesh.tint = mixColor(0xffffff, this.waterTint, 0.06 + item.depth * 0.26);
       mesh.alpha = 1 - item.depth * 0.08;
       mesh.zIndex = -item.depth;
-      record.body.update(item, deltaSec);
+      record.body.update(item, advance ? deltaSec : 0);
     }
   }
 

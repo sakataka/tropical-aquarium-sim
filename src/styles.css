@@ -153,10 +153,14 @@ button:focus-visible, input:focus-visible, select:focus-visible {
   inset: 0;
   z-index: 5;
   pointer-events: none;
+  opacity: 0;
   transition: opacity 0.6s ease;
 }
+/* 操作ボタンは画面の切り替えが終わってから静かに出す。 */
+.tank-screen.revealed .tank-hud { opacity: 1; transition: opacity 0.8s ease 0.3s; }
 .tank-screen.hud-idle { cursor: none; }
-.tank-screen.hud-idle .tank-hud { opacity: 0; }
+.tank-screen.hud-idle .tank-hud { opacity: 0; transition: opacity 0.6s ease; }
+.tank-screen.revealed:not(.hud-idle) .tank-hud button { pointer-events: auto; }
 .hud-bar {
   position: absolute;
   top: 16px;
@@ -174,7 +178,7 @@ button:focus-visible, input:focus-visible, select:focus-visible {
   color: #e9fbfb;
   backdrop-filter: blur(16px);
 }
-.hud-bar button { pointer-events: auto; padding: 10px 14px; font-size: 13px; }
+.hud-bar button { padding: 10px 14px; font-size: 13px; }
 .hud-caption {
   position: absolute;
   left: 16px;
@@ -186,6 +190,24 @@ button:focus-visible, input:focus-visible, select:focus-visible {
 .hud-caption strong { font-size: 13px; }
 .hud-caption span { color: #a8c4c3; font-size: 11px; }
 .tank-screen.editing .hud-caption { opacity: 0; }
+.hud-zoom {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  display: flex;
+  gap: 6px;
+}
+.hud-zoom button {
+  min-width: 40px;
+  padding: 8px 12px;
+  border: 1px solid rgba(199, 244, 242, 0.22);
+  border-radius: 12px;
+  background: rgba(2, 21, 23, 0.62);
+  color: #e9fbfb;
+  font-size: 13px;
+  backdrop-filter: blur(16px);
+}
+.tank-screen.editing .hud-zoom { right: calc(var(--panel-width) + 16px); }
 
 .room-scroll {
   position: fixed;
@@ -489,6 +511,7 @@ input::placeholder { color: #6f898a; }
     transform: translateY(100%);
   }
   .tank-screen.editing .hud-bar { right: 16px; }
+  .tank-screen.editing .hud-zoom { right: 16px; bottom: calc(var(--sheet-height) + 12px); }
 }
 
 @media (max-width: 520px) {

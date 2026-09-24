@@ -26,7 +26,8 @@ import {
   type LightingId,
   type TankDefinition,
 } from "./core";
-import { AquariumCanvas } from "./render/AquariumCanvas";
+import { AquariumCanvas, type ViewControl } from "./render/AquariumCanvas";
+import { forgetMotionState } from "./render/fishBody";
 import { FishRoom } from "./render/FishRoom";
 import { AquariumControls } from "./ui/AquariumControls";
 import "./styles.css";
@@ -77,7 +78,10 @@ export default function App() {
   useEffect(() => {
     for (const item of aquariumTanks) {
       const ref = fishRefs[item.id]!;
-      ref.current = reconcileFishStock(ref.current, state.tanks[item.id]!.stock, item);
+      const next = reconcileFishStock(ref.current, state.tanks[item.id]!.stock, item);
+      const kept = new Set(next.map((fish) => fish.id));
+      for (const fish of ref.current) if (!kept.has(fish.id)) forgetMotionState(fish.id);
+      ref.current = next;
     }
   }, [fishRefs, state.tanks]);
 
@@ -144,6 +148,7 @@ export default function App() {
           customization={customization}
           fishRef={fishRefs[tank.id]!}
           hidden={phase.kind === "toRoom" && phase.roomReady}
+          revealed={phase.kind === "tank"}
           key={`tank-${tank.id}`}
           onBackToRoom={() => setPhase((current) => current.kind === "toRoom"
             ? current
@@ -174,6 +179,7 @@ function TankScreen({
   saveStatus,
   active,
   hidden,
+  revealed,
   onReady,
   onCustomizationChange,
   onPreferencesChange,
@@ -186,6 +192,7 @@ function TankScreen({
   saveStatus: string;
   active: boolean;
   hidden: boolean;
+  revealed: boolean;
   onReady: () => void;
   onCustomizationChange: (update: (current: AquariumCustomization) => AquariumCustomization) => void;
   onPreferencesChange: (update: Partial<AquariumPersistedState["preferences"]>) => void;
@@ -195,6 +202,7 @@ function TankScreen({
   // 水槽に入ったら、まず水槽だけを眺める鑑賞モード。設定は必要なときだけ開く。
   const [editing, setEditing] = useState(false);
   const [hudIdle, setHudIdle] = useState(false);
+  const viewControlRef = useRef<ViewControl | null>(null);
   const editingRef = useRef(editing);
   const onBackToRoomRef = useRef(onBackToRoom);
   editingRef.current = editing;
@@ -245,6 +253,7 @@ function TankScreen({
   const className = [
     "tank-screen",
     ready && !hidden ? "visible" : "",
+    revealed ? "revealed" : "",
     editing ? "editing" : "",
     hudIdle && !editing ? "hud-idle" : "",
   ].filter(Boolean).join(" ");
@@ -261,8 +270,10 @@ function TankScreen({
             fishRef={fishRef}
             layout={customization.layout}
             onReady={handleReady}
+            revealed={revealed}
             species={fishCatalog}
             tank={tank}
+            viewControlRef={viewControlRef}
           />
         </section>
       </div>
@@ -282,6 +293,11 @@ function TankScreen({
         <div className="hud-caption">
           <strong>{tank.displayName}</strong>
           <span>{activeScene?.displayName} · {totalFish}匹</span>
+        </div>
+        <div className="hud-zoom" role="group" aria-label="水槽の拡大と縮小">
+          <button aria-label="離れる" onClick={() => viewControlRef.current?.zoomBy(1 / 1.4)} type="button">−</button>
+          <button onClick={() => viewControlRef.current?.resetZoom()} type="button">全体</button>
+          <button aria-label="近づく" onClick={() => viewControlRef.current?.zoomBy(1.4)} type="button">＋</button>
         </div>
       </div>
 

@@ -45,6 +45,9 @@ type ZoomAnimation = {
 };
 
 const ZOOM_SEC = 0.95;
+const ZOOM_OUT_SEC = 1.3;
+/** 戻るときは水槽画面が消えきるのを待ってから引き始める。 */
+const ZOOM_OUT_HOLD_SEC = 0.4;
 const CURTAIN_COLOR = 0x031416;
 
 export function FishRoom({
@@ -149,7 +152,7 @@ export function FishRoom({
           to: getVisibleCamera(),
           direction: "out",
           glass: returning.glass,
-          elapsedSec: 0,
+          elapsedSec: -ZOOM_OUT_HOLD_SEC,
         };
       }
 
@@ -195,7 +198,7 @@ export function FishRoom({
         structurePoints: getStructurePoints(tank, customization.layout),
         lighting: customization.layout.lighting,
       }).fish;
-      view.fish.update(fishRef.current, fishCatalog, tank, glassRect, deltaSec);
+      view.fish.update(fishRef.current, fishCatalog, tank, glassRect, deltaSec, activeRef.current);
     }
 
     async function loadPlate(view: TankView, sceneId: string | undefined) {
@@ -217,11 +220,12 @@ export function FishRoom({
         return;
       }
       zoom.elapsedSec += deltaSec;
-      const progress = Math.min(1, zoom.elapsedSec / ZOOM_SEC);
+      const duration = zoom.direction === "in" ? ZOOM_SEC : ZOOM_OUT_SEC;
+      const progress = clamp01(zoom.elapsedSec / duration);
       const t = easeInOutCubic(progress);
       drawCurtain(zoom.glass, zoom.direction === "in"
         ? smoothstep(0.45, 1, progress)
-        : 1 - smoothstep(0, 0.5, progress));
+        : 1 - smoothstep(0.05, 0.85, progress));
       const camera: Camera = {
         centerX: lerp(zoom.from.centerX, zoom.to.centerX, t),
         centerY: lerp(zoom.from.centerY, zoom.to.centerY, t),
@@ -229,7 +233,7 @@ export function FishRoom({
         height: zoom.from.height * (zoom.to.height / zoom.from.height) ** t,
       };
       applyCamera(camera);
-      if (zoom.elapsedSec >= ZOOM_SEC) {
+      if (progress >= 1) {
         // 寄り終えたら最後の構図のまま止め、水槽画面への切り替えは1回だけ伝える。
         const done = zoom.onDone;
         if (done) zoom.onDone = undefined;
@@ -364,6 +368,10 @@ function toPixels(rect: RoomRect, width: number, height: number): ViewRect {
     width: rect.width * width,
     height: rect.height * height,
   };
+}
+
+function clamp01(value: number): number {
+  return Math.max(0, Math.min(1, value));
 }
 
 function smoothstep(edge0: number, edge1: number, value: number): number {

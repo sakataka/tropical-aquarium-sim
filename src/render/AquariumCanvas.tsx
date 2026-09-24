@@ -3,6 +3,7 @@ import {
   Application,
   Assets,
   Container,
+  Graphics,
   Sprite,
   Texture,
 } from "pixi.js";
@@ -12,7 +13,6 @@ import {
   type AquariumLayout,
   type FishInstance,
   type FishSpeciesDefinition,
-  type LightingId,
   type TankDefinition,
   type Vec2,
 } from "../core";
@@ -23,7 +23,7 @@ import {
 } from "./assets";
 import { BubbleColumns, FloatingMotes } from "./bubbles";
 import { FishLayer, getWaterTint } from "./fishLayer";
-import { frameGlass, getGlassAspect } from "./tankFraming";
+import { frameGlass, getGlassAspect, getMaxZoom } from "./tankFraming";
 import { UnderwaterFilter } from "./underwaterFilter";
 
 type AquariumCanvasProps = {
@@ -33,16 +33,23 @@ type AquariumCanvasProps = {
   layout: AquariumLayout;
   /** false の間は描画だけ続け、魚の動きは進めない（画面を重ねて切り替えている間）。 */
   active?: boolean;
+  /**
+   * 前の画面との重ね合わせが終わり、この画面だけが見えている状態。
+   * 水中の効果・泡・浮遊物・カメラの漂いは、ここから少しずつ出す。
+   */
+  revealed?: boolean;
+  /** 画面上のボタンからズームを操作するための口。 */
+  viewControlRef?: MutableRefObject<ViewControl | null>;
   onReady?: () => void;
 };
 
-type CanvasHandle = {
-  setScene: (sceneId: string) => void;
-  setLighting: (lighting: LightingId) => void;
-};
+export type ViewControl = { zoomBy: (factor: number) => void; resetZoom: () => void };
+
+type CanvasHandle = { setScene: (sceneId: string) => void };
 
 const SCENE_FADE_SEC = 0.9;
 const KEY_PAN_PX = 90;
+const EFFECTS_FADE_IN_SEC = 2.5;
 
 export function AquariumCanvas({
   fishRef,
@@ -50,6 +57,8 @@ export function AquariumCanvas({
   tank,
   layout,
   active = true,
+  revealed = true,
+  viewControlRef,
   onReady,
 }: AquariumCanvasProps) {
   const hostRef = useRef<HTMLDivElement | null>(null);
@@ -58,7 +67,9 @@ export function AquariumCanvas({
   const speciesRef = useRef(species);
   const onReadyRef = useRef(onReady);
   const activeRef = useRef(active);
+  const revealedRef = useRef(revealed);
   activeRef.current = active;
+  revealedRef.current = revealed;
   layoutRef.current = layout;
   speciesRef.current = species;
   onReadyRef.current = onReady;
@@ -80,6 +91,8 @@ export function AquariumCanvas({
     const fishFrontLayer = new Container();
     const moteLayer = new Container();
     const fishLayer = new FishLayer(fishBackLayer, fishFrontLayer);
+    // 水景・魚・泡はすべて部屋のガラスと同じ形で切り抜く。
+    const glassMask = new Graphics();
     world.addChild(
       plateLayer,
       bubbleLayer,
@@ -87,20 +100,24 @@ export function AquariumCanvas({
       foregroundLayer,
       fishFrontLayer,
       moteLayer,
+      glassMask,
     );
+    world.mask = glassMask;
     // 部屋から入った直後は部屋で見えていた絵のままにし、水中の効果は少しずつ効かせる。
     const underwater = new UnderwaterFilter(layoutRef.current.lighting, { startNeutral: true });
     const glassAspect = getGlassAspect(tank);
-    // 画面からはみ出したガラスの範囲は、ドラッグ・ホイール・矢印キーで見回す。
-    const pan = { x: 0, y: 0, targetX: 0, targetY: 0 };
-    let dragPointer: number | undefined;
+    // 最初は水槽の全体が入る大きさ。ホイール・ピンチ・キーで近づき、ドラッグで見回す。
+    const view = { x: 0, y: 0, targetX: 0, targetY: 0, zoom: 1, targetZoom: 1 };
+    const pointers = new Map<number, { x: number; y: number }>();
+    let pinchDistance: number | undefined;
+    let revealedAtSec: number | undefined;
+    let renderedFrames = 0;
 
     let bubbles: BubbleColumns | undefined;
     let motes: FloatingMotes | undefined;
     let currentSceneId: string | undefined;
     let sceneToken = 0;
     let structurePoints: Vec2[] = [];
-    let readyNotified = false;
     let elapsedSec = 0;
     let resizeObserver: ResizeObserver | undefined;
 
@@ -135,6 +152,7 @@ export function AquariumCanvas({
       targetHost.addEventListener("pointerup", onPointerUp);
       targetHost.addEventListener("pointercancel", onPointerUp);
       targetHost.addEventListener("wheel", onWheel, { passive: false });
+      targetHost.addEventListener("dblclick", onDoubleClick);
       window.addEventListener("keydown", onKeyDown);
 
       const bubbleTexture = await Assets.load<Texture>(environmentAssets.bubbleParticleUrl);
@@ -144,13 +162,15 @@ export function AquariumCanvas({
       bubbleLayer.addChild(bubbles.container);
       moteLayer.addChild(motes.container);
 
-      handleRef.current = {
-        setScene: (sceneId) => void showScene(sceneId),
-        setLighting: (lighting) => underwater.setLighting(lighting),
-      };
+      handleRef.current = { setScene: (sceneId) => void showScene(sceneId) };
+      if (viewControlRef) {
+        viewControlRef.current = {
+          zoomBy: (factor) => zoomAt(view.targetZoom * factor, app.screen.width / 2, app.screen.height / 2),
+          resetZoom: () => zoomAt(1, app.screen.width / 2, app.screen.height / 2),
+        };
+      }
       await showScene(layoutRef.current.sceneId);
       if (disposed) return;
-      underwater.setLighting(layoutRef.current.lighting);
 
       app.ticker.add((ticker) => {
         const deltaSec = Math.min(0.05, ticker.deltaMS / 1000);
@@ -163,8 +183,12 @@ export function AquariumCanvas({
           structurePoints,
           lighting: layoutRef.current.lighting,
         }).fish;
+        if (revealedRef.current && revealedAtSec === undefined) revealedAtSec = elapsedSec;
+        const effects = revealedAtSec === undefined
+          ? 0
+          : smoothstep(0, EFFECTS_FADE_IN_SEC, elapsedSec - revealedAtSec);
         const glass = getGlassSize();
-        driftCamera(glass.width, glass.height, deltaSec);
+        driftCamera(glass.width, glass.height, deltaSec, effects);
         fadeScenes(deltaSec);
         fishLayer.update(
           fishRef.current,
@@ -172,10 +196,15 @@ export function AquariumCanvas({
           tank,
           { x: 0, y: 0, width: glass.width, height: glass.height },
           deltaSec,
+          activeRef.current,
         );
-        bubbles?.update(glass.width, glass.height, deltaSec);
-        motes?.update(glass.width, glass.height, elapsedSec, deltaSec);
+        bubbles?.update(glass.width, glass.height, deltaSec, revealedAtSec !== undefined);
+        motes?.update(glass.width, glass.height, elapsedSec, deltaSec, effects);
+        underwater.setLighting(revealedAtSec === undefined ? null : layoutRef.current.lighting);
         underwater.update(elapsedSec % 3600, deltaSec);
+        // 魚まで描き終えた2フレーム目から見せる。
+        renderedFrames += 1;
+        if (renderedFrames === 2) onReadyRef.current?.();
       });
     }
 
@@ -208,10 +237,6 @@ export function AquariumCanvas({
       fishLayer.waterTint = getWaterTint(scene.waterColor);
       bubbles?.setSources(scene.bubbleSources);
 
-      if (!readyNotified) {
-        readyNotified = true;
-        requestAnimationFrame(() => !disposed && onReadyRef.current?.());
-      }
     }
 
     function getGlassSize() {
@@ -220,6 +245,7 @@ export function AquariumCanvas({
 
     function layoutSceneSprites() {
       const { width, height } = getGlassSize();
+      glassMask.clear().rect(0, 0, width, height).fill(0xffffff);
       for (const layer of [plateLayer, foregroundLayer]) {
         for (const child of layer.children) {
           if (!(child instanceof Sprite)) continue;
@@ -241,56 +267,99 @@ export function AquariumCanvas({
       }
     }
 
-    // 観賞中に気づかないほどゆっくりカメラを漂わせる。入った直後は漂いなしから始める。
-    function driftCamera(width: number, height: number, deltaSec: number) {
-      const ramp = smoothstep(0, 6, elapsedSec);
-      const zoom = 1 + (0.03 + Math.sin(elapsedSec / 41) * 0.006) * ramp;
-      const maxX = Math.max(0, (width * zoom - app.screen.width) / 2);
-      const maxY = Math.max(0, (height * zoom - app.screen.height) / 2);
-      pan.targetX = clamp(pan.targetX, -maxX, maxX);
-      pan.targetY = clamp(pan.targetY, -maxY, maxY);
-      const follow = dragPointer === undefined ? 1 - Math.exp(-10 * deltaSec) : 1;
-      pan.x += (pan.targetX - pan.x) * follow;
-      pan.y += (pan.targetY - pan.y) * follow;
-      world.scale.set(zoom);
+    // 観賞中に気づかないほどゆっくりカメラを漂わせる。切り替えが終わってから効かせる。
+    function driftCamera(width: number, height: number, deltaSec: number, effects: number) {
+      const maxZoom = getMaxZoom({ width, height }, app.screen.width, app.screen.height);
+      view.targetZoom = clamp(view.targetZoom, 1, maxZoom);
+      const follow = pointers.size > 0 ? 1 : 1 - Math.exp(-10 * deltaSec);
+      view.zoom += (view.targetZoom - view.zoom) * follow;
+      const scale = view.zoom * (1 + (0.02 + Math.sin(elapsedSec / 41) * 0.005) * effects);
+      const maxX = Math.max(0, (width * scale - app.screen.width) / 2);
+      const maxY = Math.max(0, (height * scale - app.screen.height) / 2);
+      view.targetX = clamp(view.targetX, -maxX, maxX);
+      view.targetY = clamp(view.targetY, -maxY, maxY);
+      view.x += (view.targetX - view.x) * follow;
+      view.y += (view.targetY - view.y) * follow;
+      world.scale.set(scale);
       world.pivot.set(
-        width / 2 + Math.sin(elapsedSec / 67) * width * 0.006 * ramp,
-        height / 2 + Math.sin(elapsedSec / 53) * height * 0.005 * ramp,
+        width / 2 + Math.sin(elapsedSec / 67) * width * 0.005 * effects,
+        height / 2 + Math.sin(elapsedSec / 53) * height * 0.004 * effects,
       );
-      world.position.set(app.screen.width / 2 + pan.x, app.screen.height / 2 + pan.y);
+      world.position.set(app.screen.width / 2 + view.x, app.screen.height / 2 + view.y);
+    }
+
+    // 指定した画面上の点を動かさずに拡大・縮小する。
+    function zoomAt(nextZoom: number, anchorX: number, anchorY: number) {
+      const glass = getGlassSize();
+      const zoom = clamp(nextZoom, 1, getMaxZoom(glass, app.screen.width, app.screen.height));
+      const offsetX = anchorX - app.screen.width / 2;
+      const offsetY = anchorY - app.screen.height / 2;
+      const ratio = zoom / view.targetZoom;
+      view.targetX = offsetX - (offsetX - view.targetX) * ratio;
+      view.targetY = offsetY - (offsetY - view.targetY) * ratio;
+      view.targetZoom = zoom;
+    }
+
+    function localPoint(event: { clientX: number; clientY: number }) {
+      const rect = targetHost.getBoundingClientRect();
+      return { x: event.clientX - rect.left, y: event.clientY - rect.top };
     }
 
     function onPointerDown(event: PointerEvent) {
-      if (event.button !== 0) return;
-      dragPointer = event.pointerId;
+      if (event.pointerType === "mouse" && event.button !== 0) return;
+      pointers.set(event.pointerId, localPoint(event));
       targetHost.setPointerCapture(event.pointerId);
+      pinchDistance = undefined;
     }
 
     function onPointerMove(event: PointerEvent) {
-      if (event.pointerId !== dragPointer) return;
-      pan.targetX += event.movementX;
-      pan.targetY += event.movementY;
+      const previous = pointers.get(event.pointerId);
+      if (!previous) return;
+      const point = localPoint(event);
+      pointers.set(event.pointerId, point);
+      if (pointers.size >= 2) {
+        const [a, b] = [...pointers.values()];
+        const distance = Math.hypot(a!.x - b!.x, a!.y - b!.y);
+        if (pinchDistance) zoomAt(view.targetZoom * (distance / pinchDistance), (a!.x + b!.x) / 2, (a!.y + b!.y) / 2);
+        pinchDistance = distance;
+        return;
+      }
+      view.targetX += point.x - previous.x;
+      view.targetY += point.y - previous.y;
     }
 
     function onPointerUp(event: PointerEvent) {
-      if (event.pointerId !== dragPointer) return;
-      dragPointer = undefined;
+      pointers.delete(event.pointerId);
+      pinchDistance = undefined;
+    }
+
+    function onDoubleClick(event: MouseEvent) {
+      const point = localPoint(event);
+      zoomAt(view.targetZoom > 1.2 ? 1 : 2.2, point.x, point.y);
     }
 
     function onWheel(event: WheelEvent) {
       event.preventDefault();
-      pan.targetX -= event.deltaX;
-      pan.targetY -= event.deltaY;
+      const point = localPoint(event);
+      const delta = event.deltaMode === 1 ? event.deltaY * 16 : event.deltaY;
+      zoomAt(view.targetZoom * Math.exp(-delta * (event.ctrlKey ? 0.01 : 0.0015)), point.x, point.y);
+      view.targetX -= event.deltaX;
     }
 
     function onKeyDown(event: KeyboardEvent) {
       const target = event.target;
       if (target instanceof Element && target.closest("input, select, textarea, .control-panel")) return;
-      const step = { ArrowLeft: [1, 0], ArrowRight: [-1, 0], ArrowUp: [0, 1], ArrowDown: [0, -1] }[event.key];
-      if (!step) return;
+      const center = [app.screen.width / 2, app.screen.height / 2] as const;
+      if (event.key === "+" || event.key === "=") zoomAt(view.targetZoom * 1.25, ...center);
+      else if (event.key === "-") zoomAt(view.targetZoom / 1.25, ...center);
+      else if (event.key === "0") zoomAt(1, ...center);
+      else {
+        const step = { ArrowLeft: [1, 0], ArrowRight: [-1, 0], ArrowUp: [0, 1], ArrowDown: [0, -1] }[event.key];
+        if (!step) return;
+        view.targetX += step[0]! * KEY_PAN_PX;
+        view.targetY += step[1]! * KEY_PAN_PX;
+      }
       event.preventDefault();
-      pan.targetX += step[0]! * KEY_PAN_PX;
-      pan.targetY += step[1]! * KEY_PAN_PX;
     }
 
     void setup().catch((error: unknown) => {
@@ -305,6 +374,8 @@ export function AquariumCanvas({
       targetHost.removeEventListener("pointerup", onPointerUp);
       targetHost.removeEventListener("pointercancel", onPointerUp);
       targetHost.removeEventListener("wheel", onWheel);
+      targetHost.removeEventListener("dblclick", onDoubleClick);
+      if (viewControlRef) viewControlRef.current = null;
       window.removeEventListener("keydown", onKeyDown);
       fishLayer.destroy();
       if (initialized) destroyApp();
@@ -326,9 +397,6 @@ export function AquariumCanvas({
     handleRef.current?.setScene(layout.sceneId);
   }, [layout.sceneId]);
 
-  useEffect(() => {
-    handleRef.current?.setLighting(layout.lighting);
-  }, [layout.lighting]);
 
   return <div className="aquarium-canvas" ref={hostRef} />;
 }

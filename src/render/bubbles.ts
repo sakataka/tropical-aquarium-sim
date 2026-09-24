@@ -34,8 +34,9 @@ export class BubbleColumns {
     this.spawnTimers = sources.map((_, index) => index * 0.3);
   }
 
-  update(width: number, height: number, deltaSec: number) {
-    for (const [index, source] of this.sources.entries()) {
+  /** spawning が false の間は新しい泡を出さない（画面の切り替えが終わるまで）。 */
+  update(width: number, height: number, deltaSec: number, spawning = true) {
+    for (const [index, source] of spawning ? this.sources.entries() : []) {
       this.spawnTimers[index]! -= deltaSec;
       if (this.spawnTimers[index]! <= 0 && this.bubbles.length < MAX_BUBBLES) {
         this.spawn(source);
@@ -105,14 +106,15 @@ export class FloatingMotes {
     }
   }
 
-  update(width: number, height: number, timeSec: number, deltaSec: number) {
+  /** opacity は全体の濃さ（0〜1）。切り替え直後は0から少しずつ出す。 */
+  update(width: number, height: number, timeSec: number, deltaSec: number, opacity = 1) {
     for (const mote of this.motes) {
       mote.x = wrap(mote.x + (mote.vx + Math.sin(timeSec * 0.2 + mote.seed) * 0.002) * deltaSec);
       mote.y = 0.08 + wrap((mote.y - 0.08 + mote.vy * deltaSec) / 0.86) * 0.86;
       const size = 0.0012 + (mote.seed % 1) * 0.0014;
       mote.sprite.position.set(mote.x * width, mote.y * height);
       mote.sprite.scale.set((width * size) / mote.sprite.texture.width);
-      mote.sprite.alpha = 0.1 + 0.08 * Math.sin(timeSec * 0.5 + mote.seed * 3);
+      mote.sprite.alpha = (0.1 + 0.08 * Math.sin(timeSec * 0.5 + mote.seed * 3)) * opacity;
     }
   }
 }
