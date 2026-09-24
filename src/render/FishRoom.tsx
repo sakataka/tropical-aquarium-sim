@@ -12,6 +12,7 @@ import {
 import { fishRoom, type RoomRect } from "../core/room";
 import { getScenePlateUrl, roomImageUrl } from "./assets";
 import { FishLayer, getWaterTint, type ViewRect } from "./fishLayer";
+import { frameGlass } from "./tankFraming";
 
 type FishRoomProps = {
   tanks: Record<string, AquariumCustomization>;
@@ -134,7 +135,7 @@ export function FishRoom({
         if (!placement) return;
         zoom = {
           from: getVisibleCamera(),
-          to: getGlassCamera(tankId, placement.glass),
+          to: getGlassCamera(placement.glass),
           direction: "in",
           glass: placement.glass,
           elapsedSec: 0,
@@ -144,7 +145,7 @@ export function FishRoom({
       const returning = fishRoom.tanks.find((item) => item.tankId === returningFrom);
       if (returning) {
         zoom = {
-          from: getGlassCamera(returning.tankId, returning.glass),
+          from: getGlassCamera(returning.glass),
           to: getVisibleCamera(),
           direction: "out",
           glass: returning.glass,
@@ -275,25 +276,18 @@ export function FishRoom({
       };
     }
 
-    // 水槽画面の鑑賞モードと同じ枠（水槽の実寸の縦横比）がちょうど画面に収まるカメラ。
-    function getGlassCamera(tankId: string, glass: RoomRect): Camera {
-      const tank = getTankById(tankId);
+    // 寄り終えた構図が水槽画面の鑑賞モードと一致するよう、同じ切り取り方で決める。
+    function getGlassCamera(glass: RoomRect): Camera {
       const visible = getVisibleCamera();
       const rect = toPixels(glass, app.screen.width, app.screen.height);
-      const tankAspect = tank ? tank.widthCm / tank.heightCm : rect.width / rect.height;
-      let regionWidth = rect.width;
-      let regionHeight = regionWidth / tankAspect;
-      if (regionHeight < rect.height) {
-        regionHeight = rect.height;
-        regionWidth = regionHeight * tankAspect;
-      }
-      const aspect = visible.width / visible.height;
-      const width = Math.max(regionWidth, regionHeight * aspect);
+      const framed = frameGlass(rect.width / rect.height, window.innerWidth, window.innerHeight);
+      const scale = framed.width / rect.width;
+      const width = window.innerWidth / scale;
       return {
         centerX: rect.x + rect.width / 2,
         centerY: rect.y + rect.height / 2,
         width,
-        height: width / aspect,
+        height: width * (visible.height / visible.width),
       };
     }
 

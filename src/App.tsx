@@ -4,7 +4,6 @@ import {
   useMemo,
   useRef,
   useState,
-  type CSSProperties,
   type MutableRefObject,
 } from "react";
 import {
@@ -146,7 +145,9 @@ export default function App() {
           fishRef={fishRefs[tank.id]!}
           hidden={phase.kind === "toRoom" && phase.roomReady}
           key={`tank-${tank.id}`}
-          onBackToRoom={() => setPhase({ kind: "toRoom", returningFrom: tank.id, roomReady: false })}
+          onBackToRoom={() => setPhase((current) => current.kind === "toRoom"
+            ? current
+            : { kind: "toRoom", returningFrom: tank.id, roomReady: false })}
           onCustomizationChange={(update) => setState((current) => ({
             ...current,
             tanks: { ...current.tanks, [tank.id]: update(current.tanks[tank.id]!) },
@@ -194,6 +195,10 @@ function TankScreen({
   // 水槽に入ったら、まず水槽だけを眺める鑑賞モード。設定は必要なときだけ開く。
   const [editing, setEditing] = useState(false);
   const [hudIdle, setHudIdle] = useState(false);
+  const editingRef = useRef(editing);
+  const onBackToRoomRef = useRef(onBackToRoom);
+  editingRef.current = editing;
+  onBackToRoomRef.current = onBackToRoom;
   const activeScene = getSceneById(customization.layout.sceneId);
   const totalFish = customization.stock.reduce((sum, entry) => sum + entry.count, 0);
   const speciesList = useRef(tank.species
@@ -211,8 +216,12 @@ function TankScreen({
       hudTimer = window.setTimeout(() => setHudIdle(true), HUD_IDLE_MS);
       editTimer = window.setTimeout(() => setEditing(false), EDIT_IDLE_MS);
     };
+    // Esc で一段戻る。設定を開いていれば閉じ、鑑賞中なら部屋へ戻る。
     const onKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setEditing(false);
+      if (event.key === "Escape") {
+        if (editingRef.current) setEditing(false);
+        else onBackToRoomRef.current();
+      }
       wake();
     };
     wake();
@@ -244,7 +253,6 @@ function TankScreen({
     <main
       className={className}
       data-lighting={customization.layout.lighting}
-      style={{ "--tank-ratio": tank.widthCm / tank.heightCm } as CSSProperties}
     >
       <div className="tank-view">
         <section aria-label={`${tank.displayName}の水槽`} className="aquarium-stage">

@@ -23,6 +23,7 @@ import {
 } from "./assets";
 import { BubbleColumns, FloatingMotes } from "./bubbles";
 import { FishLayer, getWaterTint } from "./fishLayer";
+import { frameGlass, getGlassAspect } from "./tankFraming";
 import { UnderwaterFilter } from "./underwaterFilter";
 
 type AquariumCanvasProps = {
@@ -41,6 +42,7 @@ type CanvasHandle = {
 };
 
 const SCENE_FADE_SEC = 0.9;
+const KEY_PAN_PX = 90;
 
 export function AquariumCanvas({
   fishRef,
@@ -86,7 +88,12 @@ export function AquariumCanvas({
       fishFrontLayer,
       moteLayer,
     );
-    const underwater = new UnderwaterFilter(layoutRef.current.lighting);
+    // 部屋から入った直後は部屋で見えていた絵のままにし、水中の効果は少しずつ効かせる。
+    const underwater = new UnderwaterFilter(layoutRef.current.lighting, { startNeutral: true });
+    const glassAspect = getGlassAspect(tank);
+    // 画面からはみ出したガラスの範囲は、ドラッグ・ホイール・矢印キーで見回す。
+    const pan = { x: 0, y: 0, targetX: 0, targetY: 0 };
+    let dragPointer: number | undefined;
 
     let bubbles: BubbleColumns | undefined;
     let motes: FloatingMotes | undefined;
@@ -123,6 +130,12 @@ export function AquariumCanvas({
       });
       resizeObserver.observe(targetHost);
       app.renderer.on("resize", layoutSceneSprites);
+      targetHost.addEventListener("pointerdown", onPointerDown);
+      targetHost.addEventListener("pointermove", onPointerMove);
+      targetHost.addEventListener("pointerup", onPointerUp);
+      targetHost.addEventListener("pointercancel", onPointerUp);
+      targetHost.addEventListener("wheel", onWheel, { passive: false });
+      window.addEventListener("keydown", onKeyDown);
 
       const bubbleTexture = await Assets.load<Texture>(environmentAssets.bubbleParticleUrl);
       if (disposed) return;
@@ -150,12 +163,18 @@ export function AquariumCanvas({
           structurePoints,
           lighting: layoutRef.current.lighting,
         }).fish;
-        const { width, height } = app.screen;
-        driftCamera(width, height);
+        const glass = getGlassSize();
+        driftCamera(glass.width, glass.height, deltaSec);
         fadeScenes(deltaSec);
-        fishLayer.update(fishRef.current, speciesRef.current, tank, { x: 0, y: 0, width, height }, deltaSec);
-        bubbles?.update(width, height, deltaSec);
-        motes?.update(width, height, elapsedSec, deltaSec);
+        fishLayer.update(
+          fishRef.current,
+          speciesRef.current,
+          tank,
+          { x: 0, y: 0, width: glass.width, height: glass.height },
+          deltaSec,
+        );
+        bubbles?.update(glass.width, glass.height, deltaSec);
+        motes?.update(glass.width, glass.height, elapsedSec, deltaSec);
         underwater.update(elapsedSec % 3600, deltaSec);
       });
     }
@@ -195,8 +214,12 @@ export function AquariumCanvas({
       }
     }
 
+    function getGlassSize() {
+      return frameGlass(glassAspect, app.screen.width, app.screen.height);
+    }
+
     function layoutSceneSprites() {
-      const { width, height } = app.screen;
+      const { width, height } = getGlassSize();
       for (const layer of [plateLayer, foregroundLayer]) {
         for (const child of layer.children) {
           if (!(child instanceof Sprite)) continue;
@@ -218,15 +241,56 @@ export function AquariumCanvas({
       }
     }
 
-    // 観賞中に気づかないほどゆっくりカメラを漂わせる。
-    function driftCamera(width: number, height: number) {
-      const zoom = 1.03 + Math.sin(elapsedSec / 41) * 0.006;
+    // 観賞中に気づかないほどゆっくりカメラを漂わせる。入った直後は漂いなしから始める。
+    function driftCamera(width: number, height: number, deltaSec: number) {
+      const ramp = smoothstep(0, 6, elapsedSec);
+      const zoom = 1 + (0.03 + Math.sin(elapsedSec / 41) * 0.006) * ramp;
+      const maxX = Math.max(0, (width * zoom - app.screen.width) / 2);
+      const maxY = Math.max(0, (height * zoom - app.screen.height) / 2);
+      pan.targetX = clamp(pan.targetX, -maxX, maxX);
+      pan.targetY = clamp(pan.targetY, -maxY, maxY);
+      const follow = dragPointer === undefined ? 1 - Math.exp(-10 * deltaSec) : 1;
+      pan.x += (pan.targetX - pan.x) * follow;
+      pan.y += (pan.targetY - pan.y) * follow;
       world.scale.set(zoom);
       world.pivot.set(
-        width / 2 + Math.sin(elapsedSec / 67) * width * 0.006,
-        height / 2 + Math.sin(elapsedSec / 53) * height * 0.005,
+        width / 2 + Math.sin(elapsedSec / 67) * width * 0.006 * ramp,
+        height / 2 + Math.sin(elapsedSec / 53) * height * 0.005 * ramp,
       );
-      world.position.set(width / 2, height / 2);
+      world.position.set(app.screen.width / 2 + pan.x, app.screen.height / 2 + pan.y);
+    }
+
+    function onPointerDown(event: PointerEvent) {
+      if (event.button !== 0) return;
+      dragPointer = event.pointerId;
+      targetHost.setPointerCapture(event.pointerId);
+    }
+
+    function onPointerMove(event: PointerEvent) {
+      if (event.pointerId !== dragPointer) return;
+      pan.targetX += event.movementX;
+      pan.targetY += event.movementY;
+    }
+
+    function onPointerUp(event: PointerEvent) {
+      if (event.pointerId !== dragPointer) return;
+      dragPointer = undefined;
+    }
+
+    function onWheel(event: WheelEvent) {
+      event.preventDefault();
+      pan.targetX -= event.deltaX;
+      pan.targetY -= event.deltaY;
+    }
+
+    function onKeyDown(event: KeyboardEvent) {
+      const target = event.target;
+      if (target instanceof Element && target.closest("input, select, textarea, .control-panel")) return;
+      const step = { ArrowLeft: [1, 0], ArrowRight: [-1, 0], ArrowUp: [0, 1], ArrowDown: [0, -1] }[event.key];
+      if (!step) return;
+      event.preventDefault();
+      pan.targetX += step[0]! * KEY_PAN_PX;
+      pan.targetY += step[1]! * KEY_PAN_PX;
     }
 
     void setup().catch((error: unknown) => {
@@ -236,6 +300,12 @@ export function AquariumCanvas({
       disposed = true;
       handleRef.current = null;
       resizeObserver?.disconnect();
+      targetHost.removeEventListener("pointerdown", onPointerDown);
+      targetHost.removeEventListener("pointermove", onPointerMove);
+      targetHost.removeEventListener("pointerup", onPointerUp);
+      targetHost.removeEventListener("pointercancel", onPointerUp);
+      targetHost.removeEventListener("wheel", onWheel);
+      window.removeEventListener("keydown", onKeyDown);
       fishLayer.destroy();
       if (initialized) destroyApp();
     };
@@ -261,6 +331,15 @@ export function AquariumCanvas({
   }, [layout.lighting]);
 
   return <div className="aquarium-canvas" ref={hostRef} />;
+}
+
+function smoothstep(edge0: number, edge1: number, value: number): number {
+  const t = clamp((value - edge0) / (edge1 - edge0), 0, 1);
+  return t * t * (3 - 2 * t);
+}
+
+function clamp(value: number, min: number, max: number): number {
+  return Math.max(min, Math.min(max, value));
 }
 
 // PixiJS 8.21 の FilterSystem は、最後にフィルターへ渡した入力テクスチャ（共有の

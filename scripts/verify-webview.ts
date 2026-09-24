@@ -128,8 +128,8 @@ async function main() {
     ));
     await Bun.write(`${SCREENSHOT_DIR}/night-1440x960.png`, await view.screenshot({ format: "png" }));
 
-    // 部屋に戻り、別の水槽へ
-    await clickButtonByText(view, "部屋に戻る");
+    // Esc で部屋に戻り、別の水槽へ
+    await view.evaluate(`window.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape" }))`);
     await sleep(1800);
     const backToRoom = Number(await view.evaluate(`document.querySelectorAll(".room-tank").length`)) === roomTanks;
     await clickByLabel(view, "小型魚のキューブ水槽を眺める");
@@ -234,7 +234,7 @@ async function main() {
     assert(editingOpened && editingStageWidth < viewingStageWidth && editingStageWidth >= 700);
     assert(closedToViewing);
     assert(backToRoom);
-    assert(cubeCards === 3 && Math.abs(cubeStageRatio - 1) < 0.05);
+    assert(cubeCards === 3 && cubeStageRatio > 1.4);
     assert(amazonCards === 3);
     assert(restored.version === 5 && restored.scene === "driftwood");
     assert(restored.lighting === "night" && restored.harlequinCount === 11 && restored.sound);

@@ -81,6 +81,12 @@ type LightingLook = {
   vignette: number;
 };
 
+// 効果なし。部屋で見ていた絵と同じ見た目から水中の見え方へ移るときの始点。
+const NEUTRAL_LOOK: LightingLook = {
+  ripple: 0, caustics: 0, rays: 0,
+  grade: [1, 1, 1], exposure: 1, saturation: 1, vignette: 0,
+};
+
 const LOOKS: Record<LightingId, LightingLook> = {
   natural: {
     ripple: 0.0009, caustics: 0.42, rays: 0.075,
@@ -105,8 +111,8 @@ export class UnderwaterFilter extends Filter {
   private target: LightingLook;
   private readonly current: LightingLook;
 
-  constructor(lighting: LightingId) {
-    const look = LOOKS[lighting];
+  constructor(lighting: LightingId, options: { startNeutral?: boolean } = {}) {
+    const look = options.startNeutral ? NEUTRAL_LOOK : LOOKS[lighting];
     const uniforms = new UniformGroup({
       uTime: { value: 0, type: "f32" },
       uRipple: { value: look.ripple, type: "f32" },
@@ -128,7 +134,7 @@ export class UnderwaterFilter extends Filter {
       resolution: "inherit",
     });
     this.uniforms = uniforms;
-    this.target = look;
+    this.target = LOOKS[lighting];
     this.current = structuredClone(look);
   }
 
