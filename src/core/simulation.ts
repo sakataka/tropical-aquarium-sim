@@ -7,6 +7,10 @@ import type {
   Vec2,
 } from "./types";
 
+const FORWARD_TARGET_CHANCE = 0.86;
+const FACING_THRESHOLD_CM_PER_SEC = 0.3;
+const KICK_SPEED_RATIO = 0.5;
+
 export function stepSimulation(input: SimulationInput): SimulationOutput {
   const deltaSec = clamp(input.deltaSec, 0, 0.25);
   const groups = groupBySpecies(input.fish);
@@ -45,6 +49,15 @@ function stepFish(
   let remaining = fish.behaviorTimeRemainingSec - deltaSec;
   let target = fish.target;
   let targetKind: NonNullable<FishInstance["targetKind"]> = fish.targetKind ?? "openWater";
+  let legTimeSec = (fish.legTimeSec ?? 0) + deltaSec;
+
+  // 目的地に着いたら、通り過ぎて引き返す前に次の目的地へ切り替える。
+  if (target && hasReachedTarget(fish, target, species)) {
+    const choice = chooseTarget(fish, species, school, tank, structurePoints, random);
+    target = choice.position;
+    targetKind = choice.kind;
+    legTimeSec = 0;
+  }
 
   if (remaining <= 0) {
     if (mode === "kick") {
@@ -64,9 +77,13 @@ function stepFish(
     } else {
       mode = "kick";
       remaining = species.motion.kickDurationSec;
-      const choice = chooseTarget(fish, species, tank, structurePoints, random);
-      target = choice.position;
-      targetKind = choice.kind;
+      // 目的地はキックごとに選び直さず、着いたか長く向かい続けたときだけ変える。
+      if (!target || hasReachedTarget(fish, target, species) || legTimeSec > getLegLimitSec(fish, random)) {
+        const choice = chooseTarget(fish, species, school, tank, structurePoints, random);
+        target = choice.position;
+        targetKind = choice.kind;
+        legTimeSec = 0;
+      }
     }
   }
 
@@ -93,11 +110,14 @@ function stepFish(
     ...fish,
     position,
     velocity,
-    facing: velocity.x < -0.01 ? -1 : velocity.x > 0.01 ? 1 : fish.facing,
+    facing: velocity.x < -FACING_THRESHOLD_CM_PER_SEC
+      ? -1
+      : velocity.x > FACING_THRESHOLD_CM_PER_SEC ? 1 : fish.facing,
     behaviorMode: mode,
     behaviorTimeRemainingSec: remaining,
     target,
     targetKind,
+    legTimeSec,
     seed,
   };
 }
@@ -105,6 +125,7 @@ function stepFish(
 function chooseTarget(
   fish: FishInstance,
   species: FishSpeciesDefinition,
+  school: FishInstance[],
   tank: TankDefinition,
   structurePoints: Vec2[],
   random: () => number,
@@ -133,11 +154,15 @@ function chooseTarget(
       },
     };
   }
+  const point = structurePoints.length > 0
+    ? structurePoints[Math.floor(random() * structurePoints.length)]!
+    : undefined;
+  // 背後の構造物へは、わざわざ引き返してまでは寄りにくい。
+  const behind = point !== undefined && (point.x - fish.position.x) * fish.facing < -3;
   if (
-    structurePoints.length > 0 &&
-    random() < species.behavior.structureAffinity
+    point &&
+    random() < species.behavior.structureAffinity * (behind ? 0.3 : 1)
   ) {
-    const point = structurePoints[Math.floor(random() * structurePoints.length)]!;
     return {
       kind: "structure",
       position: {
@@ -146,13 +171,64 @@ function chooseTarget(
       },
     };
   }
+  const heading = getSchoolHeading(fish, species, school);
   return {
     kind: "openWater",
-    position: {
-      x: tank.widthCm * lerp(zone.minX, zone.maxX, random()),
-      y: tank.heightCm * lerp(zone.minY, zone.maxY, random()),
-    },
+    position: chooseOpenWaterTarget(fish, heading, species, tank, random),
   };
+}
+
+// 水槽の魚は同じ向きへしばらく泳ぎ、前が詰まったところで折り返す。
+function chooseOpenWaterTarget(
+  fish: FishInstance,
+  heading: -1 | 1,
+  species: FishSpeciesDefinition,
+  tank: TankDefinition,
+  random: () => number,
+): Vec2 {
+  const zone = species.preferredZone;
+  const minX = tank.widthCm * zone.minX;
+  const maxX = tank.widthCm * zone.maxX;
+  const minY = tank.heightCm * zone.minY;
+  const maxY = tank.heightCm * zone.maxY;
+  const room = heading === 1 ? maxX - fish.position.x : fish.position.x - minX;
+  const minLeg = Math.max(species.realBodyLengthCm * 2, tank.widthCm * 0.15);
+  const keepGoing = room > minLeg && random() < FORWARD_TARGET_CHANCE;
+  const direction = keepGoing ? heading : -heading;
+  const available = keepGoing
+    ? room
+    : heading === 1 ? fish.position.x - minX : maxX - fish.position.x;
+  const distance = Math.min(available, lerp(minLeg, tank.widthCm * 0.6, random()));
+  return {
+    x: clamp(fish.position.x + direction * distance, minX, maxX),
+    y: clamp(fish.position.y + lerp(-0.16, 0.16, random()) * tank.heightCm, minY, maxY),
+  };
+}
+
+// 群れの魚は、近くの仲間がそろって向かう方向を自分の進行方向として扱う。
+function getSchoolHeading(
+  fish: FishInstance,
+  species: FishSpeciesDefinition,
+  school: FishInstance[],
+): -1 | 1 {
+  if (!species.schooling.enabled) return fish.facing;
+  let sumX = 0;
+  for (const other of school) {
+    if (other.id === fish.id) continue;
+    if (length(subtract(other.position, fish.position)) > species.schooling.radiusCm) continue;
+    sumX += other.velocity.x;
+  }
+  if (Math.abs(sumX) < FACING_THRESHOLD_CM_PER_SEC) return fish.facing;
+  return sumX > 0 ? 1 : -1;
+}
+
+function hasReachedTarget(fish: FishInstance, target: Vec2, species: FishSpeciesDefinition): boolean {
+  return length(subtract(target, fish.position)) < Math.max(2.5, species.realBodyLengthCm * 0.8);
+}
+
+function getLegLimitSec(fish: FishInstance, random: () => number): number {
+  // 群れに引っ張られて目的地に届かない場合でも、いずれは選び直す。
+  return fish.targetKind === "structure" ? lerp(10, 22, random()) : lerp(14, 28, random());
 }
 
 function getDesiredVelocity(
@@ -168,7 +244,11 @@ function getDesiredVelocity(
   const targetDirection = normalize(subtract(target ?? tankCenter(tank), fish.position));
   const boundary = boundaryVector(fish.position, tank, species.behavior.wallAvoidanceStrength);
   const zone = zoneVector(fish.position, tank, species);
-  const flock = schoolingVector(fish, school, species);
+  const rawFlock = schoolingVector(fish, school, species);
+  // 群れの引力で後ろ向きに引き戻されると、頻繁に向きが入れ替わってしまう。
+  const flock = rawFlock.x * fish.facing < 0
+    ? { x: rawFlock.x * 0.2, y: rawFlock.y }
+    : rawFlock;
   const structureBias = targetKind === "structure"
     ? species.behavior.structurePatrolStrength
     : 0;
@@ -179,7 +259,7 @@ function getDesiredVelocity(
     flock,
   ));
   const speed = mode === "kick"
-    ? species.burstSpeedCmPerSec * 0.68
+    ? species.burstSpeedCmPerSec * KICK_SPEED_RATIO
     : species.cruisingSpeedCmPerSec;
   return scale(direction, speed * (1 - fish.depth * 0.14));
 }

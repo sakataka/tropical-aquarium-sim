@@ -2,7 +2,6 @@ import { useEffect, useRef, type MutableRefObject } from "react";
 import {
   Application,
   Assets,
-  BlurFilter,
   Container,
   Sprite,
   Texture,
@@ -90,8 +89,6 @@ export function AquariumCanvas({
       fishFrontLayer,
       moteLayer,
     );
-    // 奥の魚は水の厚みでわずかにぼける。
-    fishBackLayer.filters = [new BlurFilter({ strength: 0.6, quality: 2, resolution: "inherit" })];
     const underwater = new UnderwaterFilter(layoutRef.current.lighting);
 
     let bubbles: BubbleColumns | undefined;
@@ -270,8 +267,9 @@ export function AquariumCanvas({
           (item.position.y / tank.heightCm) * height,
         );
         mesh.scale.set(record.visualScale);
-        mesh.tint = mixColor(0xffffff, waterTint, 0.08 + item.depth * 0.3);
-        mesh.alpha = 1 - item.depth * 0.1;
+        // 奥の魚はぼかさず、水の色と透明度だけで距離を出す。
+        mesh.tint = mixColor(0xffffff, waterTint, 0.06 + item.depth * 0.26);
+        mesh.alpha = 1 - item.depth * 0.08;
         mesh.zIndex = -item.depth;
         record.body.update(item, deltaSec);
       }

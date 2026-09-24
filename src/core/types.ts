@@ -81,6 +81,8 @@ export type FishInstance = {
   behaviorTimeRemainingSec: number;
   target?: Vec2;
   targetKind?: FishTargetKind;
+  /** 今の目的地へ向かい始めてからの秒数。描画・保存には使わない。 */
+  legTimeSec?: number;
   seed: number;
 };
 

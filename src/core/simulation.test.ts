@@ -40,6 +40,7 @@ describe("natural swimming", () => {
     const fish = createFishFromStock([{ speciesId: species.id, count: 1 }]);
     fish[0].behaviorMode = "coast";
     fish[0].behaviorTimeRemainingSec = 0;
+    fish[0].target = undefined;
     const output = stepSimulation({
       tank: TANK_60CM,
       species: { [species.id]: species },
@@ -64,5 +65,26 @@ describe("natural swimming", () => {
       tank: TANK_60CM, species: fishCatalog, fish: school, deltaSec: 0.1, structurePoints: [],
     }).fish[0];
     expect(together.velocity.y).not.toBeCloseTo(alone.velocity.y, 5);
+  });
+
+  test("keeps swimming in one direction instead of reversing every kick", () => {
+    let fish = createFishFromStock([{ speciesId: "neon-tetra", count: 6 }]);
+    let previous = fish.map((item) => item.facing);
+    let reversals = 0;
+    for (let index = 0; index < 1200; index += 1) {
+      fish = stepSimulation({
+        tank: TANK_60CM,
+        species: fishCatalog,
+        fish,
+        deltaSec: 0.05,
+        structurePoints: [{ x: 14, y: 22 }, { x: 46, y: 20 }],
+      }).fish;
+      fish.forEach((item, fishIndex) => {
+        if (item.facing !== previous[fishIndex]) reversals += 1;
+      });
+      previous = fish.map((item) => item.facing);
+    }
+    // 60秒間で1匹あたり10回未満（以前は30回前後）。
+    expect(reversals / fish.length).toBeLessThan(10);
   });
 });
