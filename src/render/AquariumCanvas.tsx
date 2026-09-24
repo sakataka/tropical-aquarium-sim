@@ -30,6 +30,8 @@ type AquariumCanvasProps = {
   species: Record<string, FishSpeciesDefinition>;
   tank: TankDefinition;
   layout: AquariumLayout;
+  /** false の間は描画だけ続け、魚の動きは進めない（画面を重ねて切り替えている間）。 */
+  active?: boolean;
   onReady?: () => void;
 };
 
@@ -45,6 +47,7 @@ export function AquariumCanvas({
   species,
   tank,
   layout,
+  active = true,
   onReady,
 }: AquariumCanvasProps) {
   const hostRef = useRef<HTMLDivElement | null>(null);
@@ -52,6 +55,8 @@ export function AquariumCanvas({
   const layoutRef = useRef(layout);
   const speciesRef = useRef(species);
   const onReadyRef = useRef(onReady);
+  const activeRef = useRef(active);
+  activeRef.current = active;
   layoutRef.current = layout;
   speciesRef.current = species;
   onReadyRef.current = onReady;
@@ -90,10 +95,12 @@ export function AquariumCanvas({
     let structurePoints: Vec2[] = [];
     let readyNotified = false;
     let elapsedSec = 0;
+    let resizeObserver: ResizeObserver | undefined;
 
     async function setup() {
       await app.init({
-        resizeTo: targetHost,
+        width: Math.max(1, targetHost.clientWidth),
+        height: Math.max(1, targetHost.clientHeight),
         preference: "webgl",
         backgroundAlpha: 0,
         antialias: true,
@@ -109,6 +116,12 @@ export function AquariumCanvas({
       app.stage.filters = [underwater];
       app.stage.filterArea = app.screen;
       targetHost.appendChild(app.canvas);
+      // パネルの開閉など、ウィンドウ以外の理由で枠の大きさが変わっても追従する。
+      resizeObserver = new ResizeObserver(() => {
+        detachFilterInput(app);
+        app.renderer.resize(Math.max(1, targetHost.clientWidth), Math.max(1, targetHost.clientHeight));
+      });
+      resizeObserver.observe(targetHost);
       app.renderer.on("resize", layoutSceneSprites);
 
       const bubbleTexture = await Assets.load<Texture>(environmentAssets.bubbleParticleUrl);
@@ -129,7 +142,7 @@ export function AquariumCanvas({
       app.ticker.add((ticker) => {
         const deltaSec = Math.min(0.05, ticker.deltaMS / 1000);
         elapsedSec += deltaSec;
-        fishRef.current = stepSimulation({
+        if (activeRef.current) fishRef.current = stepSimulation({
           tank,
           species: speciesRef.current,
           fish: fishRef.current,
@@ -222,6 +235,7 @@ export function AquariumCanvas({
     return () => {
       disposed = true;
       handleRef.current = null;
+      resizeObserver?.disconnect();
       fishLayer.destroy();
       if (initialized) destroyApp();
     };
@@ -229,7 +243,12 @@ export function AquariumCanvas({
     function destroyApp() {
       if (destroyed) return;
       destroyed = true;
-      app.destroy(true, { children: true, texture: false });
+      // フィルターは子要素と一緒には破棄されないため、自分で外して破棄する。
+      app.stage.filters = null;
+      underwater.destroy();
+      detachFilterInput(app);
+      // true を渡すと全レンダラー共有の資源まで解放され、同時に動く別画面が壊れる。
+      app.destroy({ removeView: true }, { children: true, texture: false });
     }
   }, [fishRef, tank]);
 
@@ -242,4 +261,18 @@ export function AquariumCanvas({
   }, [layout.lighting]);
 
   return <div className="aquarium-canvas" ref={hostRef} />;
+}
+
+// PixiJS 8.21 の FilterSystem は、最後にフィルターへ渡した入力テクスチャ（共有の
+// 作業用テクスチャ）を内部の BindGroup に持ち続ける。リサイズやレンダラー破棄で
+// そのテクスチャが破棄されると「破棄済みテクスチャを参照している」警告が出るため、
+// 先に破棄されない空テクスチャへ付け替えておく。
+function detachFilterInput(app: Application) {
+  const filterSystem = app.renderer?.filter as unknown as
+    | { _globalFilterBindGroup?: { resources: unknown; setResource: (resource: unknown, index: number) => void } }
+    | undefined;
+  const group = filterSystem?._globalFilterBindGroup;
+  if (!group?.resources) return;
+  group.setResource(Texture.EMPTY.source, 1);
+  group.setResource(Texture.EMPTY.source.style, 2);
 }

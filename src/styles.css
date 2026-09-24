@@ -43,29 +43,42 @@ button:focus-visible, input:focus-visible, select:focus-visible {
   border: 0;
 }
 
-.app-shell {
-  min-height: 100dvh;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(390px, 470px);
-  gap: 18px;
-  padding: 18px;
-  align-items: center;
+/* 水槽画面: 鑑賞モードは水槽を画面いっぱいに、設定モードは横（狭い画面では下）にパネルを出す。 */
+.tank-screen {
+  --panel-width: min(440px, 38vw);
+  --sheet-height: 58dvh;
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  overflow: hidden;
+  background: #031416;
+  opacity: 0;
+  transition: opacity 0.35s ease;
 }
+.tank-screen.visible { opacity: 1; }
+.tank-view {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  container-type: size;
+  transition: right 0.4s cubic-bezier(0.2, 0.7, 0.2, 1), bottom 0.4s cubic-bezier(0.2, 0.7, 0.2, 1),
+    padding 0.4s ease;
+}
+.tank-screen.editing .tank-view { right: var(--panel-width); padding: 18px; }
 
 .aquarium-stage {
   position: relative;
-  /* 水槽の前面（幅:高さ）に合わせ、画面の高さにも収める。 */
-  width: min(100%, calc((100dvh - 36px) * var(--tank-ratio, 1.667)));
-  justify-self: center;
+  /* 水槽の前面（幅:高さ）を保ったまま、使える範囲いっぱいに収める。 */
+  width: min(100cqw, calc(100cqh * var(--tank-ratio, 1.667)));
   aspect-ratio: var(--tank-ratio, 1.667);
-  max-height: calc(100dvh - 36px);
   overflow: hidden;
-  border: 1px solid rgba(172, 234, 232, 0.28);
-  border-radius: 24px;
   background: #082e34;
-  box-shadow:
-    0 30px 80px rgba(0, 0, 0, 0.42),
-    inset 0 0 52px rgba(126, 216, 216, 0.1);
+  transition: border-radius 0.4s ease, box-shadow 0.4s ease;
+}
+.tank-screen.editing .aquarium-stage {
+  border-radius: 18px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.42);
 }
 .aquarium-canvas, .aquarium-canvas canvas {
   display: block;
@@ -76,38 +89,27 @@ button:focus-visible, input:focus-visible, select:focus-visible {
   width: 100% !important;
   height: 100% !important;
 }
-.aquarium-loading {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-content: center;
-  justify-items: center;
-  gap: 12px;
-  background: rgba(3, 19, 21, 0.66);
-  backdrop-filter: blur(8px);
-  z-index: 4;
-}
-.aquarium-loading span {
-  width: 22px;
-  height: 22px;
-  border: 2px solid rgba(229, 255, 255, 0.2);
-  border-top-color: var(--accent);
-  border-radius: 50%;
-  animation: spin 0.9s linear infinite;
-}
-.aquarium-loading p { margin: 0; color: #c7e5e5; font-size: 14px; }
-@keyframes spin { to { transform: rotate(360deg); } }
-
 .control-panel {
-  align-self: stretch;
-  max-height: calc(100dvh - 36px);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 6;
+  width: var(--panel-width);
   overflow-y: auto;
-  border: 1px solid var(--line);
-  border-radius: 24px;
+  border-left: 1px solid var(--line);
   background: var(--panel);
-  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+  box-shadow: -24px 0 70px rgba(0, 0, 0, 0.28);
+  transform: translateX(100%);
+  visibility: hidden;
+  transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1), visibility 0s linear 0.4s;
   scrollbar-width: thin;
   scrollbar-color: rgba(139, 206, 205, 0.34) transparent;
+}
+.tank-screen.editing .control-panel {
+  transform: none;
+  visibility: visible;
+  transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 .panel-heading {
   position: sticky;
@@ -133,24 +135,58 @@ button:focus-visible, input:focus-visible, select:focus-visible {
   font-size: clamp(24px, 2.4vw, 32px);
   letter-spacing: -0.03em;
 }
-.back-to-room {
+.close-panel {
   display: inline-flex;
   align-items: center;
   gap: 6px;
   margin: 0 0 14px;
-  padding: 6px 12px 6px 9px;
+  padding: 6px 12px;
   border: 1px solid var(--line);
   border-radius: 999px;
   background: rgba(120, 201, 200, 0.08);
   color: #cde7e6;
   font-size: 12px;
 }
-.back-to-room span { font-size: 16px; line-height: 1; }
-.tank-enter { animation: tank-enter 0.45s ease-out both; }
-@keyframes tank-enter {
-  from { opacity: 0; }
-  to { opacity: 1; }
+
+/* 鑑賞モードの操作。しばらく操作しないと消える。 */
+.tank-hud {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
 }
+.tank-screen.hud-idle { cursor: none; }
+.tank-screen.hud-idle .tank-hud { opacity: 0; }
+.hud-bar {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  right: 16px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+.tank-screen.editing .hud-bar { right: calc(var(--panel-width) + 16px); }
+.hud-bar button, .hud-caption {
+  border: 1px solid rgba(199, 244, 242, 0.22);
+  border-radius: 13px;
+  background: rgba(2, 21, 23, 0.62);
+  color: #e9fbfb;
+  backdrop-filter: blur(16px);
+}
+.hud-bar button { pointer-events: auto; padding: 10px 14px; font-size: 13px; }
+.hud-caption {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  display: grid;
+  gap: 3px;
+  padding: 11px 14px;
+}
+.hud-caption strong { font-size: 13px; }
+.hud-caption span { color: #a8c4c3; font-size: 11px; }
+.tank-screen.editing .hud-caption { opacity: 0; }
 
 .room-scroll {
   position: fixed;
@@ -409,7 +445,7 @@ input::placeholder { color: #6f898a; }
 .theme-card span { display: grid; gap: 4px; padding: 0 4px 4px; }
 .theme-card strong { font-size: 14px; }
 .theme-card small { color: var(--muted); line-height: 1.45; }
-.ambient-button, .sound-toggle {
+.sound-toggle {
   display: flex;
   align-items: center;
   gap: 14px;
@@ -420,15 +456,8 @@ input::placeholder { color: #6f898a; }
   border-radius: 15px;
   background: linear-gradient(145deg, rgba(41, 104, 106, 0.48), rgba(16, 53, 55, 0.62));
 }
-.ambient-button > span:last-child, .sound-toggle > span:first-child { display: grid; gap: 4px; flex: 1; }
-.ambient-button small, .sound-toggle small { color: #91afaf; }
-.ambient-icon {
-  width: 36px;
-  height: 36px;
-  border: 1px solid rgba(194, 244, 242, 0.38);
-  border-radius: 50%;
-  box-shadow: inset 0 0 0 10px rgba(112, 211, 211, 0.08);
-}
+.sound-toggle > span:first-child { display: grid; gap: 4px; flex: 1; }
+.sound-toggle small { color: #91afaf; }
 .setting-group {
   margin: 16px 0 0;
   padding: 15px;
@@ -448,74 +477,22 @@ input::placeholder { color: #6f898a; }
 .sound-toggle > span:last-child { color: var(--accent); font-size: 12px; font-weight: 900; }
 .sound-settings label { display: grid; grid-template-columns: 48px 1fr; gap: 10px; align-items: center; margin-top: 14px; color: var(--muted); font-size: 11px; }
 
-.app-shell.ambient-active {
-  position: fixed;
-  inset: 0;
-  z-index: 20;
-  display: block;
-  padding: 0;
-  overflow: hidden;
-  background: #031416;
-}
-.app-shell.ambient-active .aquarium-stage {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: min(100vw, calc(100vh * var(--tank-ratio, 1.667)));
-  height: min(100vh, calc(100vw / var(--tank-ratio, 1.667)));
-  max-height: 100vh;
-  aspect-ratio: auto;
-  border-radius: 0;
-  border: 0;
-}
-.ambient-active .control-panel { display: none; }
-.ambient-hud {
-  position: absolute;
-  inset: auto 18px 18px 18px;
-  z-index: 5;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  pointer-events: none;
-}
-.ambient-hud > div, .ambient-hud button {
-  border: 1px solid rgba(199, 244, 242, 0.22);
-  border-radius: 13px;
-  background: rgba(2, 21, 23, 0.68);
-  backdrop-filter: blur(16px);
-}
-.ambient-hud > div { display: grid; gap: 3px; padding: 11px 14px; }
-.ambient-hud span { color: #a8c4c3; font-size: 10px; }
-.ambient-hud button { pointer-events: auto; padding: 11px 14px; }
-
 @media (max-width: 920px) {
-  .app-shell {
-    display: block;
-    min-height: 100dvh;
-    padding: 12px;
-  }
-  .aquarium-stage {
-    width: 100%;
-    max-height: none;
-    border-radius: 20px;
-  }
+  .tank-screen.editing .tank-view { right: 0; bottom: var(--sheet-height); padding: 10px; }
   .control-panel {
-    max-height: none;
-    margin-top: 12px;
-    border-radius: 20px;
-    overflow: visible;
+    top: auto;
+    left: 0;
+    width: auto;
+    height: var(--sheet-height);
+    border-left: 0;
+    border-top: 1px solid var(--line);
+    border-radius: 20px 20px 0 0;
+    transform: translateY(100%);
   }
-  .panel-heading { position: static; }
-  .panel-tabs { top: 0; }
-  .app-shell.ambient-active { display: block; padding: 0; }
+  .tank-screen.editing .hud-bar { right: 16px; }
 }
 
 @media (max-width: 520px) {
-  .app-shell { padding: 8px; }
-  .aquarium-stage { border-radius: 16px; }
-  .control-panel { margin-top: 8px; border-radius: 16px; }
   .panel-heading { padding: 20px 18px 14px; }
   .panel-heading h1 { font-size: 30px; }
   .panel-tabs { padding: 8px 12px; }
@@ -523,8 +500,8 @@ input::placeholder { color: #6f898a; }
   .fish-catalog-card { grid-template-columns: 102px minmax(0, 1fr); }
   .fish-portrait img { height: 88px; }
   .fish-catalog-copy { padding: 13px; }
-  .ambient-hud { inset: auto 10px 10px; }
-  .ambient-hud > div { display: none; }
+  .hud-bar { top: 10px; left: 10px; right: 10px; }
+  .hud-caption { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -537,7 +514,7 @@ input::placeholder { color: #6f898a; }
 }
 
 @media (prefers-reduced-transparency: reduce) {
-  .control-panel, .panel-heading, .panel-tabs, .ambient-hud > div, .ambient-hud button {
+  .control-panel, .panel-heading, .panel-tabs, .hud-bar button, .hud-caption {
     background: #082426;
     backdrop-filter: none;
   }

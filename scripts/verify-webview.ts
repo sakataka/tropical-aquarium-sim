@@ -12,8 +12,11 @@ type Result = {
   harlequinCount: number;
   rejectedSpecies: boolean;
   scenesVisited: string[];
-  ambientModeEntered: boolean;
-  ambientStageWidth: number;
+  viewingOnEntry: boolean;
+  viewingStageWidth: number;
+  editingOpened: boolean;
+  editingStageWidth: number;
+  closedToViewing: boolean;
   backToRoom: boolean;
   cubeCards: number;
   cubeStageRatio: number;
@@ -61,7 +64,20 @@ async function main() {
     await sleep(700);
     await Bun.write(`${SCREENSHOT_DIR}/zooming-1440x960.png`, await view.screenshot({ format: "png" }));
     await sleep(1800);
+    // 水槽に入ったら、まず鑑賞モード（パネルなし、水槽が画面いっぱい）。
+    const viewingOnEntry = Boolean(await view.evaluate(
+      `(() => { const s = document.querySelector(".tank-screen"); return s?.classList.contains("visible") && !s.classList.contains("editing"); })()`,
+    ));
+    const viewingStageWidth = await stageWidth(view);
+    await Bun.write(`${SCREENSHOT_DIR}/viewing-1440x960.png`, await view.screenshot({ format: "png" }));
+    await clickButtonByText(view, "設定");
+    await sleep(700);
+    const editingOpened = Boolean(await view.evaluate(
+      `document.querySelector(".tank-screen")?.classList.contains("editing")`,
+    ));
+    const editingStageWidth = await stageWidth(view);
     const enteredTank = String(await view.evaluate(`document.querySelector(".panel-heading h1")?.textContent ?? ""`));
+    await Bun.write(`${SCREENSHOT_DIR}/editing-1440x960.png`, await view.screenshot({ format: "png" }));
     const desktop = await view.evaluate(`(() => {
       const stage = document.querySelector(".aquarium-stage")?.getBoundingClientRect();
       const canvas = document.querySelector(".aquarium-canvas canvas")?.getBoundingClientRect();
@@ -105,17 +121,12 @@ async function main() {
     await clickButtonByText(view, "夜景");
     await view.evaluate(`document.querySelector(".sound-toggle")?.click()`);
     await sleep(350);
-    await clickButtonByText(view, "観賞モード");
-    await sleep(900);
-    const ambientModeEntered = Boolean(await view.evaluate(
-      `document.querySelector(".app-shell")?.classList.contains("ambient-active")`,
+    await clickButtonByText(view, "閉じて眺める");
+    await sleep(700);
+    const closedToViewing = Boolean(await view.evaluate(
+      `!document.querySelector(".tank-screen")?.classList.contains("editing")`,
     ));
-    const ambientStageWidth = Number(await view.evaluate(
-      `Math.round(document.querySelector(".aquarium-stage")?.getBoundingClientRect().width ?? 0)`,
-    ));
-    await Bun.write(`${SCREENSHOT_DIR}/ambient-1440x960.png`, await view.screenshot({ format: "png" }));
-    await view.evaluate(`document.querySelector(".ambient-hud button")?.click()`);
-    await sleep(200);
+    await Bun.write(`${SCREENSHOT_DIR}/night-1440x960.png`, await view.screenshot({ format: "png" }));
 
     // 部屋に戻り、別の水槽へ
     await clickButtonByText(view, "部屋に戻る");
@@ -208,7 +219,7 @@ async function main() {
 
     const result: Result = {
       title, roomTanks, enteredTank, asiaCards, harlequinCount, rejectedSpecies, scenesVisited,
-      ambientModeEntered, ambientStageWidth, backToRoom, cubeCards, cubeStageRatio, amazonCards,
+      viewingOnEntry, viewingStageWidth, editingOpened, editingStageWidth, closedToViewing, backToRoom, cubeCards, cubeStageRatio, amazonCards,
       restored, migrated, desktop, mobile, removedCopyAbsent, consoleErrors,
     };
     console.log(JSON.stringify(result, null, 2));
@@ -219,7 +230,9 @@ async function main() {
     assert(asiaCards === 4 && harlequinCount === 11 && rejectedSpecies);
     assert(JSON.stringify(scenesVisited) ===
       JSON.stringify(["driftwood", "root-driftwood", "iwagumi", "planted"]));
-    assert(ambientModeEntered && ambientStageWidth >= 1300);
+    assert(viewingOnEntry && viewingStageWidth >= 1400);
+    assert(editingOpened && editingStageWidth < viewingStageWidth && editingStageWidth >= 700);
+    assert(closedToViewing);
     assert(backToRoom);
     assert(cubeCards === 3 && Math.abs(cubeStageRatio - 1) < 0.05);
     assert(amazonCards === 3);
@@ -243,6 +256,12 @@ function stockCount(tankId: string, speciesId: string) {
     const stock = value ? JSON.parse(value).tanks["${tankId}"].stock : [];
     return stock.find((entry) => entry.speciesId === "${speciesId}")?.count ?? 0;
   })()`;
+}
+
+async function stageWidth(view: Bun.WebView) {
+  return Number(await view.evaluate(
+    `Math.round(document.querySelector(".aquarium-stage")?.getBoundingClientRect().width ?? 0)`,
+  ));
 }
 
 async function countCards(view: Bun.WebView) {

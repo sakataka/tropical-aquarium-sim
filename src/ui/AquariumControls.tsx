@@ -24,8 +24,7 @@ type AquariumControlsProps = {
   onSceneChange: (sceneId: string) => void;
   onLightingChange: (lighting: LightingId) => void;
   onPreferencesChange: (update: Partial<AquariumPreferences>) => void;
-  onEnterAmbientMode: () => void;
-  onBackToRoom: () => void;
+  onClose: () => void;
 };
 
 export function AquariumControls({
@@ -38,19 +37,18 @@ export function AquariumControls({
   onSceneChange,
   onLightingChange,
   onPreferencesChange,
-  onEnterAmbientMode,
-  onBackToRoom,
+  onClose,
 }: AquariumControlsProps) {
   const [tab, setTab] = useState<PanelTab>("fish");
   const totalFish = customization.stock.reduce((sum, entry) => sum + entry.count, 0);
   const scenes = tank.sceneIds.map((sceneId) => getSceneById(sceneId)).filter((scene) => scene !== undefined);
 
   return (
-    <aside className="control-panel">
+    <aside aria-label="水槽の設定" className="control-panel" id="tank-settings">
       <header className="panel-heading">
         <div>
-          <button className="back-to-room" onClick={onBackToRoom} type="button">
-            <span aria-hidden="true">‹</span> 部屋に戻る
+          <button className="close-panel" onClick={onClose} type="button">
+            閉じて眺める
           </button>
           <p className="eyebrow">{tank.category}</p>
           <h1>{tank.displayName}</h1>
@@ -154,12 +152,8 @@ export function AquariumControls({
           <div className="section-intro">
             <p className="eyebrow">VIEWING</p>
             <h2>静かに眺める</h2>
-            <p>光と音だけを整えて、水槽を画面いっぱいに。</p>
+            <p>照明と環境音を整えます。</p>
           </div>
-          <button className="ambient-button" onClick={onEnterAmbientMode} type="button">
-            <span className="ambient-icon" aria-hidden="true" />
-            <span><strong>観賞モード</strong><small>操作パネルを隠して水槽だけを表示</small></span>
-          </button>
           <fieldset className="setting-group">
             <legend>照明</legend>
             <div className="lighting-grid">

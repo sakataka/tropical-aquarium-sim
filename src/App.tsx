@@ -32,15 +32,23 @@ import { FishRoom } from "./render/FishRoom";
 import { AquariumControls } from "./ui/AquariumControls";
 import "./styles.css";
 
-const IDLE_AMBIENT_DELAY_MS = 45_000;
 
 type FishRefs = Record<string, MutableRefObject<FishInstance[]>>;
-type View = { kind: "room"; returningFrom?: string } | { kind: "tank" };
+// 画面を切り替える間は、次の画面の準備ができるまで前の画面を重ねて残す。
+type Phase =
+  | { kind: "room"; returningFrom?: string }
+  | { kind: "toTank"; tankReady: boolean }
+  | { kind: "tank" }
+  | { kind: "toRoom"; returningFrom: string; roomReady: boolean };
+
+const CROSSFADE_MS = 400;
+const HUD_IDLE_MS = 3500;
+const EDIT_IDLE_MS = 45_000;
 
 export default function App() {
   const [initial] = useState(loadInitialState);
   const [state, setState] = useState(initial.state);
-  const [view, setView] = useState<View>(initial.view);
+  const [phase, setPhase] = useState<Phase>(initial.phase);
   // 魚の位置は毎フレーム描画側で進めるため、React の state には載せない。
   // 部屋の画面と水槽画面で同じ魚を泳がせ続ける。
   const fishRefs = useMemo<FishRefs>(() => Object.fromEntries(aquariumTanks.map((tank) => [
@@ -88,42 +96,72 @@ export default function App() {
     return () => window.clearTimeout(timeout);
   }, [state]);
 
+  // 重ねた画面の準備ができたら、フェードが終わるのを待って前の画面を外す。
+  useEffect(() => {
+    const done = (phase.kind === "toTank" && phase.tankReady) ||
+      (phase.kind === "toRoom" && phase.roomReady);
+    if (!done) return;
+    const timeout = window.setTimeout(() => setPhase((current) => {
+      if (current.kind === "toTank") return { kind: "tank" };
+      if (current.kind === "toRoom") return { kind: "room", returningFrom: current.returningFrom };
+      return current;
+    }), CROSSFADE_MS);
+    return () => window.clearTimeout(timeout);
+  }, [phase]);
+
   const enterTank = useCallback((tankId: string) => {
     setState((current) => ({ ...current, activeTankId: tankId }));
-    setView({ kind: "tank" });
+    setPhase({ kind: "toTank", tankReady: false });
   }, []);
+  const handleRoomReady = useCallback(() => setPhase((current) =>
+    current.kind === "toRoom" ? { ...current, roomReady: true } : current
+  ), []);
+  const handleTankReady = useCallback(() => setPhase((current) =>
+    current.kind === "toTank" ? { ...current, tankReady: true } : current
+  ), []);
 
-  if (view.kind === "room") {
-    return (
-      <main className="room-shell">
-        <FishRoom
-          fishRefs={fishRefs}
-          onEnterTank={enterTank}
-          returningFrom={view.returningFrom}
-          tanks={state.tanks}
-        />
-      </main>
-    );
-  }
+  const showRoom = phase.kind !== "tank";
+  const showTank = phase.kind !== "room";
+  const returningFrom = phase.kind === "room" || phase.kind === "toRoom"
+    ? phase.returningFrom
+    : undefined;
 
   return (
-    <TankScreen
-      customization={customization}
-      fishRef={fishRefs[tank.id]!}
-      key={tank.id}
-      onBackToRoom={() => setView({ kind: "room", returningFrom: tank.id })}
-      onCustomizationChange={(update) => setState((current) => ({
-        ...current,
-        tanks: { ...current.tanks, [tank.id]: update(current.tanks[tank.id]!) },
-      }))}
-      onPreferencesChange={(update) => setState((current) => ({
-        ...current,
-        preferences: { ...current.preferences, ...update },
-      }))}
-      preferences={state.preferences}
-      saveStatus={saveStatus}
-      tank={tank}
-    />
+    <>
+      {showRoom ? (
+        <FishRoom
+          active={phase.kind === "room" || phase.kind === "toRoom"}
+          fishRefs={fishRefs}
+          key="room"
+          onEnterTank={enterTank}
+          onReady={handleRoomReady}
+          returningFrom={returningFrom}
+          tanks={state.tanks}
+        />
+      ) : null}
+      {showTank ? (
+        <TankScreen
+          active={phase.kind === "tank" || phase.kind === "toTank"}
+          customization={customization}
+          fishRef={fishRefs[tank.id]!}
+          hidden={phase.kind === "toRoom" && phase.roomReady}
+          key={`tank-${tank.id}`}
+          onBackToRoom={() => setPhase({ kind: "toRoom", returningFrom: tank.id, roomReady: false })}
+          onCustomizationChange={(update) => setState((current) => ({
+            ...current,
+            tanks: { ...current.tanks, [tank.id]: update(current.tanks[tank.id]!) },
+          }))}
+          onPreferencesChange={(update) => setState((current) => ({
+            ...current,
+            preferences: { ...current.preferences, ...update },
+          }))}
+          onReady={handleTankReady}
+          preferences={state.preferences}
+          saveStatus={saveStatus}
+          tank={tank}
+        />
+      ) : null}
+    </>
   );
 }
 
@@ -133,6 +171,9 @@ function TankScreen({
   fishRef,
   preferences,
   saveStatus,
+  active,
+  hidden,
+  onReady,
   onCustomizationChange,
   onPreferencesChange,
   onBackToRoom,
@@ -142,77 +183,103 @@ function TankScreen({
   fishRef: MutableRefObject<FishInstance[]>;
   preferences: AquariumPersistedState["preferences"];
   saveStatus: string;
+  active: boolean;
+  hidden: boolean;
+  onReady: () => void;
   onCustomizationChange: (update: (current: AquariumCustomization) => AquariumCustomization) => void;
   onPreferencesChange: (update: Partial<AquariumPersistedState["preferences"]>) => void;
   onBackToRoom: () => void;
 }) {
   const [ready, setReady] = useState(false);
-  const [ambientMode, setAmbientMode] = useState<"off" | "manual" | "idle">("off");
-  const isAmbient = ambientMode !== "off";
+  // 水槽に入ったら、まず水槽だけを眺める鑑賞モード。設定は必要なときだけ開く。
+  const [editing, setEditing] = useState(false);
+  const [hudIdle, setHudIdle] = useState(false);
   const activeScene = getSceneById(customization.layout.sceneId);
   const totalFish = customization.stock.reduce((sum, entry) => sum + entry.count, 0);
   const speciesList = useRef(tank.species
     .map((slot) => fishCatalog[slot.speciesId])
     .filter((species) => species !== undefined)).current;
 
+  // 操作がしばらくないと、鑑賞モードの操作ボタンを消し、設定パネルも閉じる。
   useEffect(() => {
-    if (ambientMode === "manual") return;
-    let timer = window.setTimeout(() => setAmbientMode("idle"), IDLE_AMBIENT_DELAY_MS);
+    let hudTimer = 0;
+    let editTimer = 0;
     const wake = () => {
-      setAmbientMode((current) => current === "idle" ? "off" : current);
-      window.clearTimeout(timer);
-      timer = window.setTimeout(() => setAmbientMode("idle"), IDLE_AMBIENT_DELAY_MS);
+      setHudIdle(false);
+      window.clearTimeout(hudTimer);
+      window.clearTimeout(editTimer);
+      hudTimer = window.setTimeout(() => setHudIdle(true), HUD_IDLE_MS);
+      editTimer = window.setTimeout(() => setEditing(false), EDIT_IDLE_MS);
     };
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setEditing(false);
+      wake();
+    };
+    wake();
     window.addEventListener("pointermove", wake, { passive: true });
     window.addEventListener("pointerdown", wake, { passive: true });
-    window.addEventListener("keydown", wake);
+    window.addEventListener("keydown", onKey);
     return () => {
-      window.clearTimeout(timer);
+      window.clearTimeout(hudTimer);
+      window.clearTimeout(editTimer);
       window.removeEventListener("pointermove", wake);
       window.removeEventListener("pointerdown", wake);
-      window.removeEventListener("keydown", wake);
+      window.removeEventListener("keydown", onKey);
     };
-  }, [ambientMode]);
+  }, []);
 
-  const handleReady = useCallback(() => setReady(true), []);
+  const handleReady = useCallback(() => {
+    setReady(true);
+    onReady();
+  }, [onReady]);
+
+  const className = [
+    "tank-screen",
+    ready && !hidden ? "visible" : "",
+    editing ? "editing" : "",
+    hudIdle && !editing ? "hud-idle" : "",
+  ].filter(Boolean).join(" ");
 
   return (
     <main
-      className={`app-shell tank-enter${isAmbient ? " ambient-active" : ""}`}
+      className={className}
       data-lighting={customization.layout.lighting}
       style={{ "--tank-ratio": tank.widthCm / tank.heightCm } as CSSProperties}
     >
-      <section className="aquarium-stage">
-        <AquariumCanvas
-          fishRef={fishRef}
-          layout={customization.layout}
-          onReady={handleReady}
-          species={fishCatalog}
-          tank={tank}
-        />
-        {!ready ? (
-          <div className="aquarium-loading" aria-live="polite">
-            <span />
-            <p>水景を整えています</p>
-          </div>
-        ) : null}
-        {isAmbient ? (
-          <div className="ambient-hud">
-            <div>
-              <strong>{tank.displayName}</strong>
-              <span>{activeScene?.displayName} · {totalFish}匹</span>
-            </div>
-            <button onClick={() => setAmbientMode("off")} type="button">
-              編集画面に戻る
-            </button>
-          </div>
-        ) : null}
-      </section>
+      <div className="tank-view">
+        <section aria-label={`${tank.displayName}の水槽`} className="aquarium-stage">
+          <AquariumCanvas
+            active={active}
+            fishRef={fishRef}
+            layout={customization.layout}
+            onReady={handleReady}
+            species={fishCatalog}
+            tank={tank}
+          />
+        </section>
+      </div>
+
+      <div className="tank-hud">
+        <div className="hud-bar">
+          <button onClick={onBackToRoom} type="button">‹ 部屋に戻る</button>
+          {editing ? null : (
+            <button
+              aria-controls="tank-settings"
+              aria-expanded={editing}
+              onClick={() => setEditing(true)}
+              type="button"
+            >設定</button>
+          )}
+        </div>
+        <div className="hud-caption">
+          <strong>{tank.displayName}</strong>
+          <span>{activeScene?.displayName} · {totalFish}匹</span>
+        </div>
+      </div>
 
       <AquariumControls
         customization={customization}
-        onBackToRoom={onBackToRoom}
-        onEnterAmbientMode={() => setAmbientMode("manual")}
+        onClose={() => setEditing(false)}
         onLightingChange={(lighting: LightingId) => onCustomizationChange((current) => ({
           ...current,
           layout: { ...current.layout, lighting },
@@ -235,7 +302,7 @@ function TankScreen({
   );
 }
 
-function loadInitialState(): { state: AquariumPersistedState; view: View } {
+function loadInitialState(): { state: AquariumPersistedState; phase: Phase } {
   const params = new URLSearchParams(window.location.search);
   let state = createDefaultState(fishCatalog);
   try {
@@ -255,7 +322,7 @@ function loadInitialState(): { state: AquariumPersistedState; view: View } {
   const sceneId = params.get("theme");
   const sceneTank = aquariumTanks.find((item) => sceneId && item.sceneIds.includes(sceneId));
   const requestedTank = getTankById(params.get("tank")) ?? sceneTank;
-  if (!requestedTank) return { state, view: { kind: "room" } };
+  if (!requestedTank) return { state, phase: { kind: "room" } };
   const tanks = { ...state.tanks };
   if (sceneTank && sceneId) {
     tanks[sceneTank.id] = {
@@ -265,7 +332,7 @@ function loadInitialState(): { state: AquariumPersistedState; view: View } {
   }
   return {
     state: { ...state, tanks, activeTankId: requestedTank.id },
-    view: { kind: "tank" },
+    phase: { kind: "tank" },
   };
 }
 

@@ -18,6 +18,9 @@ type FishRoomProps = {
   fishRefs: Record<string, MutableRefObject<FishInstance[]>>;
   /** 水槽画面から戻ったときは、その水槽に寄った状態から引いて始める。 */
   returningFrom?: string;
+  /** false の間は描画だけ続け、魚の動きは進めない（画面を重ねて切り替えている間）。 */
+  active?: boolean;
+  onReady?: () => void;
   onEnterTank: (tankId: string) => void;
 };
 
@@ -31,14 +34,33 @@ type TankView = {
 };
 
 type Camera = { centerX: number; centerY: number; width: number; height: number };
-type ZoomAnimation = { from: Camera; to: Camera; elapsedSec: number; onDone?: () => void };
+type ZoomAnimation = {
+  from: Camera;
+  to: Camera;
+  direction: "in" | "out";
+  glass: RoomRect;
+  elapsedSec: number;
+  onDone?: () => void;
+};
 
 const ZOOM_SEC = 0.95;
+const CURTAIN_COLOR = 0x031416;
 
-export function FishRoom({ tanks, fishRefs, returningFrom, onEnterTank }: FishRoomProps) {
+export function FishRoom({
+  tanks,
+  fishRefs,
+  returningFrom,
+  active = true,
+  onReady,
+  onEnterTank,
+}: FishRoomProps) {
   const shellRef = useRef<HTMLDivElement | null>(null);
   const stageRef = useRef<HTMLDivElement | null>(null);
   const tanksRef = useRef(tanks);
+  const activeRef = useRef(active);
+  const onReadyRef = useRef(onReady);
+  activeRef.current = active;
+  onReadyRef.current = onReady;
   const zoomRef = useRef<((tankId: string, onDone: () => void) => void) | null>(null);
   const [zoomingTo, setZoomingTo] = useState<string | null>(null);
   tanksRef.current = tanks;
@@ -61,6 +83,9 @@ export function FishRoom({ tanks, fishRefs, returningFrom, onEnterTank }: FishRo
     const views: TankView[] = [];
     let zoom: ZoomAnimation | undefined;
     let roomSprite: Sprite | undefined;
+    // 寄るときはガラスの外側を暗くし、水槽画面の鑑賞モードと同じ見た目で終える。
+    const curtain = new Graphics();
+    curtain.alpha = 0;
 
     async function setup() {
       await app.init({
@@ -96,19 +121,35 @@ export function FishRoom({ tanks, fishRefs, returningFrom, onEnterTank }: FishRo
           fish: new FishLayer(fishContainer, fishContainer),
         });
       }
-      const roomTexture = await Assets.load<Texture>(roomImageUrl);
+      const [roomTexture] = await Promise.all([
+        Assets.load<Texture>(roomImageUrl),
+        ...views.map((view) => loadPlate(view, tanksRef.current[view.tankId]?.layout.sceneId)),
+      ]);
       if (disposed) return;
       roomSprite = new Sprite(roomTexture);
-      world.addChild(roomSprite);
+      world.addChild(roomSprite, curtain);
 
       zoomRef.current = (tankId, onDone) => {
         const placement = fishRoom.tanks.find((item) => item.tankId === tankId);
         if (!placement) return;
-        zoom = { from: getVisibleCamera(), to: getGlassCamera(placement.glass), elapsedSec: 0, onDone };
+        zoom = {
+          from: getVisibleCamera(),
+          to: getGlassCamera(tankId, placement.glass),
+          direction: "in",
+          glass: placement.glass,
+          elapsedSec: 0,
+          onDone,
+        };
       };
       const returning = fishRoom.tanks.find((item) => item.tankId === returningFrom);
       if (returning) {
-        zoom = { from: getGlassCamera(returning.glass), to: getVisibleCamera(), elapsedSec: 0 };
+        zoom = {
+          from: getGlassCamera(returning.tankId, returning.glass),
+          to: getVisibleCamera(),
+          direction: "out",
+          glass: returning.glass,
+          elapsedSec: 0,
+        };
       }
 
       app.ticker.add((ticker) => {
@@ -121,6 +162,9 @@ export function FishRoom({ tanks, fishRefs, returningFrom, onEnterTank }: FishRo
         for (const view of views) updateTank(view, width, height, deltaSec);
         updateCamera(deltaSec);
       });
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        if (!disposed) onReadyRef.current?.();
+      }));
     }
 
     function updateTank(view: TankView, width: number, height: number, deltaSec: number) {
@@ -129,7 +173,7 @@ export function FishRoom({ tanks, fishRefs, returningFrom, onEnterTank }: FishRo
       const customization = tanksRef.current[view.tankId];
       const fishRef = fishRefs[view.tankId];
       if (!tank || !placement || !customization || !fishRef) return;
-      if (customization.layout.sceneId !== view.sceneId) loadPlate(view, customization.layout.sceneId);
+      if (customization.layout.sceneId !== view.sceneId) void loadPlate(view, customization.layout.sceneId);
 
       const windowRect = toPixels(placement.window, width, height);
       const glassRect = toPixels(placement.glass, width, height);
@@ -142,7 +186,7 @@ export function FishRoom({ tanks, fishRefs, returningFrom, onEnterTank }: FishRo
           windowRect.height / view.plate.texture.height,
         ));
       }
-      fishRef.current = stepSimulation({
+      if (activeRef.current) fishRef.current = stepSimulation({
         tank,
         species: fishCatalog,
         fish: fishRef.current,
@@ -153,15 +197,15 @@ export function FishRoom({ tanks, fishRefs, returningFrom, onEnterTank }: FishRo
       view.fish.update(fishRef.current, fishCatalog, tank, glassRect, deltaSec);
     }
 
-    function loadPlate(view: TankView, sceneId: string) {
+    async function loadPlate(view: TankView, sceneId: string | undefined) {
+      if (!sceneId) return;
       view.sceneId = sceneId;
       const scene = getSceneById(sceneId);
       const url = getScenePlateUrl(sceneId);
       if (scene) view.fish.waterTint = getWaterTint(scene.waterColor);
       if (!url) return;
-      void Assets.load<Texture>(url).then((texture) => {
-        if (!disposed && view.sceneId === sceneId) view.plate.texture = texture;
-      });
+      const texture = await Assets.load<Texture>(url);
+      if (!disposed && view.sceneId === sceneId) view.plate.texture = texture;
     }
 
     // カメラは「部屋のどこを画面いっぱいに映すか」で表し、寄る・引くを補間する。
@@ -172,7 +216,11 @@ export function FishRoom({ tanks, fishRefs, returningFrom, onEnterTank }: FishRo
         return;
       }
       zoom.elapsedSec += deltaSec;
-      const t = easeInOutCubic(Math.min(1, zoom.elapsedSec / ZOOM_SEC));
+      const progress = Math.min(1, zoom.elapsedSec / ZOOM_SEC);
+      const t = easeInOutCubic(progress);
+      drawCurtain(zoom.glass, zoom.direction === "in"
+        ? smoothstep(0.45, 1, progress)
+        : 1 - smoothstep(0, 0.5, progress));
       const camera: Camera = {
         centerX: lerp(zoom.from.centerX, zoom.to.centerX, t),
         centerY: lerp(zoom.from.centerY, zoom.to.centerY, t),
@@ -181,8 +229,10 @@ export function FishRoom({ tanks, fishRefs, returningFrom, onEnterTank }: FishRo
       };
       applyCamera(camera);
       if (zoom.elapsedSec >= ZOOM_SEC) {
+        // 寄り終えたら最後の構図のまま止め、水槽画面への切り替えは1回だけ伝える。
         const done = zoom.onDone;
-        if (!done) zoom = undefined;
+        if (done) zoom.onDone = undefined;
+        else if (zoom.direction === "out") zoom = undefined;
         done?.();
       }
     }
@@ -195,6 +245,19 @@ export function FishRoom({ tanks, fishRefs, returningFrom, onEnterTank }: FishRo
         visible.centerX - camera.centerX * scale,
         visible.centerY - camera.centerY * scale,
       );
+    }
+
+    function drawCurtain(glass: RoomRect, alpha: number) {
+      const rect = toPixels(glass, app.screen.width, app.screen.height);
+      const far = Math.max(app.screen.width, app.screen.height) * 4;
+      curtain.alpha = alpha;
+      curtain.visible = alpha > 0.001;
+      curtain.clear()
+        .rect(rect.x - far, rect.y - far, far * 2 + rect.width, far)
+        .rect(rect.x - far, rect.y + rect.height, far * 2 + rect.width, far)
+        .rect(rect.x - far, rect.y, far, rect.height)
+        .rect(rect.x + rect.width, rect.y, far, rect.height)
+        .fill(CURTAIN_COLOR);
     }
 
     // 部屋の絵のうち、いま画面に見えている範囲（スクロールや上下のはみ出しを除く）。
@@ -212,12 +275,20 @@ export function FishRoom({ tanks, fishRefs, returningFrom, onEnterTank }: FishRo
       };
     }
 
-    // 前面ガラスが画面いっぱいに収まるカメラ。画面の縦横比に合わせて広げる。
-    function getGlassCamera(glass: RoomRect): Camera {
+    // 水槽画面の鑑賞モードと同じ枠（水槽の実寸の縦横比）がちょうど画面に収まるカメラ。
+    function getGlassCamera(tankId: string, glass: RoomRect): Camera {
+      const tank = getTankById(tankId);
       const visible = getVisibleCamera();
       const rect = toPixels(glass, app.screen.width, app.screen.height);
+      const tankAspect = tank ? tank.widthCm / tank.heightCm : rect.width / rect.height;
+      let regionWidth = rect.width;
+      let regionHeight = regionWidth / tankAspect;
+      if (regionHeight < rect.height) {
+        regionHeight = rect.height;
+        regionWidth = regionHeight * tankAspect;
+      }
       const aspect = visible.width / visible.height;
-      const width = Math.min(rect.width, rect.height * aspect);
+      const width = Math.max(regionWidth, regionHeight * aspect);
       return {
         centerX: rect.x + rect.width / 2,
         centerY: rect.y + rect.height / 2,
@@ -239,7 +310,8 @@ export function FishRoom({ tanks, fishRefs, returningFrom, onEnterTank }: FishRo
     function destroyApp() {
       if (destroyed) return;
       destroyed = true;
-      app.destroy(true, { children: true, texture: false });
+      // true を渡すと全レンダラー共有の資源まで解放され、同時に動く別画面が壊れる。
+      app.destroy({ removeView: true }, { children: true, texture: false });
     }
   }, [fishRefs, returningFrom]);
 
@@ -298,6 +370,11 @@ function toPixels(rect: RoomRect, width: number, height: number): ViewRect {
     width: rect.width * width,
     height: rect.height * height,
   };
+}
+
+function smoothstep(edge0: number, edge1: number, value: number): number {
+  const t = Math.max(0, Math.min(1, (value - edge0) / (edge1 - edge0)));
+  return t * t * (3 - 2 * t);
 }
 
 function easeInOutCubic(t: number): number {
