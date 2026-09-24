@@ -1,0 +1,20 @@
+{
+  "aspectRatio": 1.7768,
+  "tanks": [
+    {
+      "tankId": "asia-60",
+      "glass": { "x": 0.1053, "y": 0.3124, "width": 0.1848, "height": 0.1541 },
+      "window": { "x": 0.1053, "y": 0.3124, "width": 0.1848, "height": 0.1541 }
+    },
+    {
+      "tankId": "amazon-90",
+      "glass": { "x": 0.3331, "y": 0.238, "width": 0.3624, "height": 0.2232 },
+      "window": { "x": 0.3331, "y": 0.238, "width": 0.3624, "height": 0.2232 }
+    },
+    {
+      "tankId": "cube-30",
+      "glass": { "x": 0.7656, "y": 0.3252, "width": 0.1011, "height": 0.1605 },
+      "window": { "x": 0.7656, "y": 0.3252, "width": 0.1011, "height": 0.1605 }
+    }
+  ]
+}

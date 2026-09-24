@@ -1,0 +1,15 @@
+{
+  "id": "cube-stones",
+  "order": 2,
+  "displayName": "川石の浅瀬",
+  "description": "丸い川石とモスで組んだ、渓流の浅瀬のような小さな水景",
+  "defaultLighting": "cool",
+  "waterColor": "#115a72",
+  "structurePoints": [
+    { "x": 0.3, "y": 0.68 },
+    { "x": 0.7, "y": 0.66 }
+  ],
+  "bubbleSources": [
+    { "x": 0.15, "y": 0.8 }
+  ]
+}

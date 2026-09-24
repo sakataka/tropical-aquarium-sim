@@ -6,8 +6,8 @@
   "defaultLighting": "natural",
   "waterColor": "#154353",
   "structurePoints": [
-    { "x": 14, "y": 21 },
-    { "x": 47, "y": 19 }
+    { "x": 0.233, "y": 0.583 },
+    { "x": 0.783, "y": 0.528 }
   ],
   "bubbleSources": [
     { "x": 0.88, "y": 0.8 }

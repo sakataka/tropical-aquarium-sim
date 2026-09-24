@@ -54,8 +54,10 @@ button:focus-visible, input:focus-visible, select:focus-visible {
 
 .aquarium-stage {
   position: relative;
-  width: 100%;
-  aspect-ratio: 5 / 3;
+  /* 水槽の前面（幅:高さ）に合わせ、画面の高さにも収める。 */
+  width: min(100%, calc((100dvh - 36px) * var(--tank-ratio, 1.667)));
+  justify-self: center;
+  aspect-ratio: var(--tank-ratio, 1.667);
   max-height: calc(100dvh - 36px);
   overflow: hidden;
   border: 1px solid rgba(172, 234, 232, 0.28);
@@ -128,8 +130,95 @@ button:focus-visible, input:focus-visible, select:focus-visible {
 }
 .panel-heading h1 {
   margin: 0;
-  font-size: clamp(28px, 3vw, 38px);
-  letter-spacing: -0.04em;
+  font-size: clamp(24px, 2.4vw, 32px);
+  letter-spacing: -0.03em;
+}
+.back-to-room {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 14px;
+  padding: 6px 12px 6px 9px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(120, 201, 200, 0.08);
+  color: #cde7e6;
+  font-size: 12px;
+}
+.back-to-room span { font-size: 16px; line-height: 1; }
+.tank-enter { animation: tank-enter 0.45s ease-out both; }
+@keyframes tank-enter {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.room-scroll {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+  overflow-y: hidden;
+  background: #efe9df;
+  scrollbar-width: none;
+}
+.room-scroll::-webkit-scrollbar { display: none; }
+.room-stage {
+  position: relative;
+  flex: none;
+  /* 部屋の絵は常に画面を覆い、狭い画面では横にスクロールして眺める。 */
+  width: max(100vw, calc(100dvh * 1.777));
+  margin: 0 auto;
+}
+.room-stage canvas { display: block; width: 100% !important; height: 100% !important; }
+.room-tank {
+  position: absolute;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+.room-tank-label {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 10px);
+  display: grid;
+  gap: 2px;
+  padding: 7px 12px;
+  border-radius: 10px;
+  background: rgba(24, 32, 30, 0.72);
+  color: #f5f1ea;
+  text-align: center;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translate(-50%, 4px);
+  transition: opacity 0.2s, transform 0.2s;
+  pointer-events: none;
+  backdrop-filter: blur(8px);
+}
+.room-tank-label strong { font-size: 13px; }
+.room-tank-label small { color: #d6d0c4; font-size: 11px; }
+.room-tank:hover .room-tank-label,
+.room-tank:focus-visible .room-tank-label {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+.room-heading {
+  position: fixed;
+  top: 20px;
+  left: 24px;
+  padding: 10px 16px;
+  border-radius: 12px;
+  background: rgba(250, 247, 241, 0.72);
+  color: #2b3431;
+  backdrop-filter: blur(10px);
+  pointer-events: none;
+}
+.room-heading p { margin: 0 0 2px; color: #5f7a73; font-size: 10px; font-weight: 800; letter-spacing: 0.16em; }
+.room-heading h1 { margin: 0; font-size: 18px; }
+.room-scroll.zooming .room-heading,
+.room-scroll.zooming .room-tank-label { opacity: 0; transition: opacity 0.25s; }
+@media (hover: none) {
+  .room-tank-label { opacity: 1; transform: translate(-50%, 0); }
 }
 .save-status {
   align-self: start;
@@ -290,6 +379,7 @@ input::placeholder { color: #6f898a; }
 }
 .count-control strong { text-align: center; font-size: 12px; }
 .count-control strong span { font-size: 18px; margin-right: 3px; }
+.count-control strong small { color: var(--muted); font-size: 11px; font-weight: 600; }
 .empty-state {
   margin: 20px 0;
   padding: 28px;
@@ -372,8 +462,8 @@ input::placeholder { color: #6f898a; }
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: min(100vw, calc(100vh * 5 / 3));
-  height: min(100vh, calc(100vw * 3 / 5));
+  width: min(100vw, calc(100vh * var(--tank-ratio, 1.667)));
+  height: min(100vh, calc(100vw / var(--tank-ratio, 1.667)));
   max-height: 100vh;
   aspect-ratio: auto;
   border-radius: 0;

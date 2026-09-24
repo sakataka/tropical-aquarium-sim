@@ -1,11 +1,10 @@
 import { fishCatalog } from "./catalog";
-import { TANK_60CM } from "./tank";
-import type { FishInstance, FishStockEntry } from "./types";
+import type { FishInstance, FishStockEntry, TankDefinition } from "./types";
 
-export function createFishFromStock(stock: FishStockEntry[]): FishInstance[] {
+export function createFishFromStock(stock: FishStockEntry[], tank: TankDefinition): FishInstance[] {
   return stock.flatMap(({ speciesId, count }, speciesIndex) =>
     Array.from({ length: count }, (_, index) =>
-      createFish(speciesId, speciesIndex * 17 + index),
+      createFish(speciesId, speciesIndex * 17 + index, tank),
     ),
   );
 }
@@ -13,13 +12,14 @@ export function createFishFromStock(stock: FishStockEntry[]): FishInstance[] {
 export function reconcileFishStock(
   current: FishInstance[],
   stock: FishStockEntry[],
+  tank: TankDefinition,
 ): FishInstance[] {
   const next: FishInstance[] = [];
   for (const [speciesIndex, entry] of stock.entries()) {
     const existing = current.filter((fish) => fish.speciesId === entry.speciesId);
     next.push(...existing.slice(0, entry.count));
     for (let index = existing.length; index < entry.count; index += 1) {
-      next.push(createFish(entry.speciesId, speciesIndex * 17 + index + current.length));
+      next.push(createFish(entry.speciesId, speciesIndex * 17 + index + current.length, tank));
     }
   }
   return next;
@@ -29,7 +29,7 @@ export function getStockCount(stock: FishStockEntry[], speciesId: string): numbe
   return stock.find((entry) => entry.speciesId === speciesId)?.count ?? 0;
 }
 
-function createFish(speciesId: string, index: number): FishInstance {
+function createFish(speciesId: string, index: number, tank: TankDefinition): FishInstance {
   const species = fishCatalog[speciesId];
   const zone = species.preferredZone;
   const xRatio = zone.minX + (((index * 37) % 100) / 100) * (zone.maxX - zone.minX);
@@ -40,8 +40,8 @@ function createFish(speciesId: string, index: number): FishInstance {
     id: `${speciesId}-${seed.toString(36)}-${index}`,
     speciesId,
     position: {
-      x: TANK_60CM.widthCm * xRatio,
-      y: TANK_60CM.heightCm * yRatio,
+      x: tank.widthCm * xRatio,
+      y: tank.heightCm * yRatio,
     },
     velocity: {
       x: index % 2 === 0 ? 1.6 : -1.6,
@@ -53,9 +53,9 @@ function createFish(speciesId: string, index: number): FishInstance {
     behaviorMode: "coast",
     behaviorTimeRemainingSec: 0.4 + Math.random() * 1.2,
     target: {
-      x: TANK_60CM.widthCm *
+      x: tank.widthCm *
         (zone.minX + (((index * 17) % 100) / 100) * (zone.maxX - zone.minX)),
-      y: TANK_60CM.heightCm *
+      y: tank.heightCm *
         (zone.minY + (((index * 13) % 100) / 100) * (zone.maxY - zone.minY)),
     },
     targetKind: "openWater",

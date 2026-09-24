@@ -2,11 +2,13 @@ import { describe, expect, test } from "vitest";
 import { fishCatalog } from "./catalog";
 import { createFishFromStock } from "./fishPopulation";
 import { stepSimulation } from "./simulation";
-import { TANK_60CM } from "./tank";
+import { getTankById } from "./tankCatalog";
+
+const TANK_60CM = getTankById("asia-60")!;
 
 describe("natural swimming", () => {
   test("keeps fish inside the tank over time", () => {
-    let fish = createFishFromStock([{ speciesId: "neon-tetra", count: 8 }]);
+    let fish = createFishFromStock([{ speciesId: "neon-tetra", count: 8 }], TANK_60CM);
     for (let index = 0; index < 600; index += 1) {
       fish = stepSimulation({
         tank: TANK_60CM, species: fishCatalog, fish, deltaSec: 0.05, structurePoints: [],
@@ -21,7 +23,7 @@ describe("natural swimming", () => {
   });
 
   test("respects the species swimming zone", () => {
-    let fish = createFishFromStock([{ speciesId: "corydoras", count: 6 }]);
+    let fish = createFishFromStock([{ speciesId: "corydoras", count: 6 }], TANK_60CM);
     for (let index = 0; index < 300; index += 1) {
       fish = stepSimulation({
         tank: TANK_60CM, species: fishCatalog, fish, deltaSec: 0.05, structurePoints: [],
@@ -36,7 +38,7 @@ describe("natural swimming", () => {
     species.ecology.structureAffinity = 1;
     species.ecology.restFraction = 0;
     species.ecology.habits = [];
-    const fish = createFishFromStock([{ speciesId: species.id, count: 1 }]);
+    const fish = createFishFromStock([{ speciesId: species.id, count: 1 }], TANK_60CM);
     fish[0].behaviorMode = "coast";
     fish[0].behaviorTimeRemainingSec = 0;
     fish[0].target = undefined;
@@ -54,7 +56,7 @@ describe("natural swimming", () => {
 
   test("schooling changes heading in response to nearby fish", () => {
     const species = fishCatalog["neon-tetra"];
-    const school = createFishFromStock([{ speciesId: species.id, count: 2 }]);
+    const school = createFishFromStock([{ speciesId: species.id, count: 2 }], TANK_60CM);
     school[0] = { ...school[0], position: { x: 25, y: 18 }, velocity: { x: 1, y: 0 } };
     school[1] = { ...school[1], position: { x: 27, y: 20 }, velocity: { x: 0, y: 1 } };
     const alone = stepSimulation({
@@ -67,7 +69,7 @@ describe("natural swimming", () => {
   });
 
   test("keeps swimming in one direction instead of reversing every kick", () => {
-    let fish = createFishFromStock([{ speciesId: "neon-tetra", count: 6 }]);
+    let fish = createFishFromStock([{ speciesId: "neon-tetra", count: 6 }], TANK_60CM);
     let previous = fish.map((item) => item.facing);
     let reversals = 0;
     for (let index = 0; index < 1200; index += 1) {
@@ -89,7 +91,7 @@ describe("natural swimming", () => {
 
   test("nocturnal kuhli loaches hide by day and roam at night", () => {
     const restShare = (lighting: "natural" | "night") => {
-      let fish = createFishFromStock([{ speciesId: "kuhli-loach", count: 4 }]);
+      let fish = createFishFromStock([{ speciesId: "kuhli-loach", count: 4 }], TANK_60CM);
       let resting = 0;
       for (let index = 0; index < 2400; index += 1) {
         fish = stepSimulation({
@@ -107,7 +109,7 @@ describe("natural swimming", () => {
   test("air-breathing corydoras dash to the surface and return", () => {
     const species = structuredClone(fishCatalog.corydoras);
     species.ecology.habits = [{ type: "airBreathing", breathsPerHour: [600, 600], style: "dash" }];
-    let fish = createFishFromStock([{ speciesId: species.id, count: 1 }]);
+    let fish = createFishFromStock([{ speciesId: species.id, count: 1 }], TANK_60CM);
     let minY = Infinity;
     let returned = false;
     for (let index = 0; index < 600; index += 1) {
@@ -123,7 +125,7 @@ describe("natural swimming", () => {
 
   test("diurnal fish slow down under night lighting", () => {
     const averageSpeed = (lighting: "natural" | "night") => {
-      let fish = createFishFromStock([{ speciesId: "neon-tetra", count: 6 }]);
+      let fish = createFishFromStock([{ speciesId: "neon-tetra", count: 6 }], TANK_60CM);
       let total = 0;
       for (let index = 0; index < 1200; index += 1) {
         fish = stepSimulation({

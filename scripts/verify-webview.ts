@@ -2,21 +2,26 @@ const PORT = 5183;
 const HOST = "127.0.0.1";
 const BASE_URL = `http://${HOST}:${PORT}/`;
 const SCREENSHOT_DIR = "tmp/webview";
+const STATE_KEY = "tropical-aquarium.state.v5";
 
 type Result = {
   title: string;
-  initialCards: number;
-  searchedCards: number;
-  regionCards: number;
-  bottomCards: number;
-  neonCount: number;
+  roomTanks: number;
+  enteredTank: string;
+  asiaCards: number;
+  harlequinCount: number;
+  rejectedSpecies: boolean;
   scenesVisited: string[];
   ambientModeEntered: boolean;
   ambientStageWidth: number;
-  ambientCanvasWidth: number;
-  restored: { version: number; scene: string; lighting: string; neonCount: number; sound: boolean };
-  desktop: { stageWidth: number; stageHeight: number; canvasWidth: number; canvasHeight: number };
-  mobile: { stageWidth: number; canvasWidth: number; overflowWidth: number };
+  backToRoom: boolean;
+  cubeCards: number;
+  cubeStageRatio: number;
+  amazonCards: number;
+  restored: { version: number; scene: string; lighting: string; harlequinCount: number; sound: boolean };
+  migrated: { version: number; asiaScene: string; amazonNeon: number };
+  desktop: { stageWidth: number; stageHeight: number; canvasWidth: number };
+  mobile: { roomTanks: number; overflowWidth: number; tankStageWidth: number };
   removedCopyAbsent: boolean;
   consoleErrors: string[];
 };
@@ -41,58 +46,40 @@ async function main() {
     });
 
     await view.navigate(BASE_URL);
-    await sleep(2200);
-    await view.evaluate(`[
-      "tropical-aquarium.customization.v1",
-      "tropical-aquarium.state.v2",
-      "tropical-aquarium.state.v3",
-      "tropical-aquarium.state.v4"
-    ].forEach((key) => localStorage.removeItem(key))`);
+    await sleep(1500);
+    await view.evaluate(`localStorage.clear()`);
     await view.reload();
-    await sleep(2200);
+    await sleep(2500);
 
+    // フィッシュルーム
     const title = String(await view.evaluate("document.title"));
+    const roomTanks = Number(await view.evaluate(`document.querySelectorAll(".room-tank").length`));
+    await Bun.write(`${SCREENSHOT_DIR}/room-1440x960.png`, await view.screenshot({ format: "png" }));
+
+    // 水槽に寄って入る
+    await clickByLabel(view, "東南アジアの水草水槽を眺める");
+    await sleep(700);
+    await Bun.write(`${SCREENSHOT_DIR}/zooming-1440x960.png`, await view.screenshot({ format: "png" }));
+    await sleep(1800);
+    const enteredTank = String(await view.evaluate(`document.querySelector(".panel-heading h1")?.textContent ?? ""`));
     const desktop = await view.evaluate(`(() => {
       const stage = document.querySelector(".aquarium-stage")?.getBoundingClientRect();
-      const canvas = document.querySelector("canvas")?.getBoundingClientRect();
+      const canvas = document.querySelector(".aquarium-canvas canvas")?.getBoundingClientRect();
       return {
         stageWidth: Math.round(stage?.width ?? 0),
         stageHeight: Math.round(stage?.height ?? 0),
         canvasWidth: Math.round(canvas?.width ?? 0),
-        canvasHeight: Math.round(canvas?.height ?? 0),
       };
     })()`) as Result["desktop"];
-    const initialCards = Number(await view.evaluate(
-      `document.querySelectorAll(".fish-catalog-card").length`,
-    ));
-    await Bun.write(`${SCREENSHOT_DIR}/planted-1440x960.png`, await view.screenshot({ format: "png" }));
+    const asiaCards = await countCards(view);
+    await Bun.write(`${SCREENSHOT_DIR}/asia-1440x960.png`, await view.screenshot({ format: "png" }));
 
-    await setControlValue(view, `input[type="search"]`, "ネオン");
-    await sleep(250);
-    const searchedCards = Number(await view.evaluate(
-      `document.querySelectorAll(".fish-catalog-card").length`,
-    ));
-    await setControlValue(view, `input[type="search"]`, "");
-    await setControlValue(view, `.catalog-filters label:nth-child(2) select`, "south-america");
-    await sleep(250);
-    const regionCards = Number(await view.evaluate(
-      `document.querySelectorAll(".fish-catalog-card").length`,
-    ));
-    await setControlValue(view, `.catalog-filters label:nth-child(2) select`, "all");
-    await setControlValue(view, `.catalog-filters label:nth-child(3) select`, "bottom");
-    await sleep(250);
-    const bottomCards = Number(await view.evaluate(
-      `document.querySelectorAll(".fish-catalog-card").length`,
-    ));
-    await setControlValue(view, `.catalog-filters label:nth-child(3) select`, "all");
-
-    await view.evaluate(`document.querySelector("button[aria-label='ネオンテトラを1匹増やす']")?.click()`);
+    await clickByLabel(view, "ラスボラ・ヘテロモルファを1匹増やす");
     await sleep(350);
-    const neonCount = Number(await view.evaluate(`(() => {
-      const value = localStorage.getItem("tropical-aquarium.state.v4");
-      const stock = value ? JSON.parse(value).customization.stock : [];
-      return stock.find((entry) => entry.speciesId === "neon-tetra")?.count ?? 0;
-    })()`));
+    const harlequinCount = Number(await view.evaluate(stockCount("asia-60", "harlequin-rasbora")));
+    const rejectedSpecies = Boolean(await view.evaluate(
+      `!document.querySelector("button[aria-label='ネオンテトラを1匹増やす']")`,
+    ));
 
     await clickButtonByText(view, "レイアウト");
     const scenesVisited: string[] = [];
@@ -103,53 +90,91 @@ async function main() {
       ["明るい水草景", "planted"],
     ]) {
       await clickButtonByText(view, label);
-      await sleep(1600);
+      await sleep(1400);
       scenesVisited.push(String(await view.evaluate(
-        `JSON.parse(localStorage.getItem("tropical-aquarium.state.v4")).customization.layout.sceneId`,
+        `JSON.parse(localStorage.getItem("${STATE_KEY}")).tanks["asia-60"].layout.sceneId`,
       )));
-      if (id !== "planted") {
+      if (id === "iwagumi") {
         await Bun.write(`${SCREENSHOT_DIR}/${id}-1440x960.png`, await view.screenshot({ format: "png" }));
       }
     }
 
     await clickButtonByText(view, "自然な流木景");
-    await sleep(1500);
+    await sleep(1400);
     await clickButtonByText(view, "鑑賞設定");
     await clickButtonByText(view, "夜景");
     await view.evaluate(`document.querySelector(".sound-toggle")?.click()`);
     await sleep(350);
     await clickButtonByText(view, "観賞モード");
-    await sleep(700);
+    await sleep(900);
     const ambientModeEntered = Boolean(await view.evaluate(
       `document.querySelector(".app-shell")?.classList.contains("ambient-active")`,
     ));
     const ambientStageWidth = Number(await view.evaluate(
       `Math.round(document.querySelector(".aquarium-stage")?.getBoundingClientRect().width ?? 0)`,
     ));
-    const ambientCanvasWidth = Number(await view.evaluate(
-      `Math.round(document.querySelector("canvas")?.getBoundingClientRect().width ?? 0)`,
-    ));
     await Bun.write(`${SCREENSHOT_DIR}/ambient-1440x960.png`, await view.screenshot({ format: "png" }));
     await view.evaluate(`document.querySelector(".ambient-hud button")?.click()`);
     await sleep(200);
 
+    // 部屋に戻り、別の水槽へ
+    await clickButtonByText(view, "部屋に戻る");
+    await sleep(1800);
+    const backToRoom = Number(await view.evaluate(`document.querySelectorAll(".room-tank").length`)) === roomTanks;
+    await clickByLabel(view, "小型魚のキューブ水槽を眺める");
+    await sleep(2400);
+    const cubeCards = await countCards(view);
+    const cubeStageRatio = Number(await view.evaluate(`(() => {
+      const stage = document.querySelector(".aquarium-stage")?.getBoundingClientRect();
+      return stage ? stage.width / stage.height : 0;
+    })()`));
+    await Bun.write(`${SCREENSHOT_DIR}/cube-1440x960.png`, await view.screenshot({ format: "png" }));
+    await clickButtonByText(view, "部屋に戻る");
+    await sleep(1800);
+    await clickByLabel(view, "アマゾンの大型水槽を眺める");
+    await sleep(2400);
+    const amazonCards = await countCards(view);
+    await Bun.write(`${SCREENSHOT_DIR}/amazon-1440x960.png`, await view.screenshot({ format: "png" }));
+
     await view.reload();
     await sleep(2200);
     const restored = await view.evaluate(`(() => {
-      const state = JSON.parse(localStorage.getItem("tropical-aquarium.state.v4"));
+      const state = JSON.parse(localStorage.getItem("${STATE_KEY}"));
+      const asia = state.tanks["asia-60"];
       return {
         version: state.version,
-        scene: state.customization.layout.sceneId,
-        lighting: state.customization.layout.lighting,
-        neonCount: state.customization.stock.find((entry) => entry.speciesId === "neon-tetra")?.count ?? 0,
+        scene: asia.layout.sceneId,
+        lighting: asia.layout.lighting,
+        harlequinCount: asia.stock.find((entry) => entry.speciesId === "harlequin-rasbora")?.count ?? 0,
         sound: state.preferences.soundEnabled,
       };
     })()`) as Result["restored"];
-    const shellText = String(await view.evaluate(
-      `document.querySelector(".app-shell")?.textContent ?? ""`,
-    ));
+    const shellText = String(await view.evaluate(`document.body.textContent ?? ""`));
     const removedCopyAbsent = ["愛称", "空腹", "餌やり", "お気に入り", "今日の観察"]
       .every((word) => !shellText.includes(word));
+
+    // v4 の保存データからの移行
+    await view.evaluate(`(() => {
+      localStorage.clear();
+      localStorage.setItem("tropical-aquarium.state.v4", JSON.stringify({
+        version: 4,
+        customization: {
+          stock: [{ speciesId: "neon-tetra", count: 9 }, { speciesId: "cherry-barb", count: 4 }],
+          layout: { sceneId: "iwagumi", lighting: "cool" },
+        },
+        preferences: { soundEnabled: false, soundVolume: 0.4 },
+      }));
+    })()`);
+    await view.reload();
+    await sleep(2200);
+    const migrated = await view.evaluate(`(() => {
+      const state = JSON.parse(localStorage.getItem("${STATE_KEY}"));
+      return {
+        version: state.version,
+        asiaScene: state.tanks["asia-60"].layout.sceneId,
+        amazonNeon: state.tanks["amazon-90"].stock.find((entry) => entry.speciesId === "neon-tetra")?.count ?? 0,
+      };
+    })()`) as Result["migrated"];
 
     await using mobileView = new Bun.WebView({
       width: 420,
@@ -160,39 +185,49 @@ async function main() {
       },
     });
     await mobileView.navigate(BASE_URL);
-    await sleep(2200);
-    const mobile = await mobileView.evaluate(`(() => {
-      const stage = document.querySelector(".aquarium-stage")?.getBoundingClientRect();
-      const canvas = document.querySelector("canvas")?.getBoundingClientRect();
-      return {
-        stageWidth: Math.round(stage?.width ?? 0),
-        canvasWidth: Math.round(canvas?.width ?? 0),
-        overflowWidth: document.documentElement.scrollWidth - document.documentElement.clientWidth,
-      };
-    })()`) as Result["mobile"];
+    await sleep(2500);
+    const mobileRoom = await mobileView.evaluate(`({
+      roomTanks: document.querySelectorAll(".room-tank").length,
+      overflowWidth: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+    })`) as { roomTanks: number; overflowWidth: number };
+    await Bun.write(`${SCREENSHOT_DIR}/room-mobile-420x912.png`, await mobileView.screenshot({ format: "png" }));
+    await mobileView.navigate(`${BASE_URL}?tank=asia-60`);
+    await sleep(2500);
+    const tankStageWidth = Number(await mobileView.evaluate(
+      `Math.round(document.querySelector(".aquarium-stage")?.getBoundingClientRect().width ?? 0)`,
+    ));
+    const tankOverflow = Number(await mobileView.evaluate(
+      `document.documentElement.scrollWidth - document.documentElement.clientWidth`,
+    ));
     await Bun.write(`${SCREENSHOT_DIR}/mobile-420x912.png`, await mobileView.screenshot({ format: "png" }));
+    const mobile = {
+      roomTanks: mobileRoom.roomTanks,
+      overflowWidth: Math.max(mobileRoom.overflowWidth, tankOverflow),
+      tankStageWidth,
+    };
 
     const result: Result = {
-      title, initialCards, searchedCards, regionCards, bottomCards, neonCount,
-      scenesVisited, ambientModeEntered, ambientStageWidth, ambientCanvasWidth,
-      restored, desktop, mobile,
-      removedCopyAbsent, consoleErrors,
+      title, roomTanks, enteredTank, asiaCards, harlequinCount, rejectedSpecies, scenesVisited,
+      ambientModeEntered, ambientStageWidth, backToRoom, cubeCards, cubeStageRatio, amazonCards,
+      restored, migrated, desktop, mobile, removedCopyAbsent, consoleErrors,
     };
     console.log(JSON.stringify(result, null, 2));
 
     assert(title.includes("熱帯魚"));
-    assert(initialCards === 10 && searchedCards === 1);
-    assert(regionCards === 4 && bottomCards >= 2 && bottomCards < initialCards);
-    assert(neonCount === 7);
+    assert(roomTanks === 3);
+    assert(enteredTank === "東南アジアの水草水槽");
+    assert(asiaCards === 4 && harlequinCount === 11 && rejectedSpecies);
     assert(JSON.stringify(scenesVisited) ===
       JSON.stringify(["driftwood", "root-driftwood", "iwagumi", "planted"]));
-    assert(ambientModeEntered);
-    assert(ambientStageWidth >= 1300);
-    assert(ambientCanvasWidth >= 1300);
-    assert(restored.version === 4 && restored.scene === "driftwood");
-    assert(restored.lighting === "night" && restored.neonCount === 7 && restored.sound);
+    assert(ambientModeEntered && ambientStageWidth >= 1300);
+    assert(backToRoom);
+    assert(cubeCards === 3 && Math.abs(cubeStageRatio - 1) < 0.05);
+    assert(amazonCards === 3);
+    assert(restored.version === 5 && restored.scene === "driftwood");
+    assert(restored.lighting === "night" && restored.harlequinCount === 11 && restored.sound);
+    assert(migrated.version === 5 && migrated.asiaScene === "iwagumi" && migrated.amazonNeon === 9);
     assert(desktop.stageWidth >= 700 && desktop.canvasWidth >= 700 && desktop.stageHeight >= 400);
-    assert(mobile.stageWidth >= 380 && mobile.canvasWidth >= 380 && mobile.overflowWidth === 0);
+    assert(mobile.roomTanks === 3 && mobile.tankStageWidth >= 380 && mobile.overflowWidth === 0);
     assert(removedCopyAbsent);
     assert(consoleErrors.length === 0);
     console.log(`Screenshots: ${SCREENSHOT_DIR}/*.png`);
@@ -200,6 +235,29 @@ async function main() {
     server.kill();
     await server.exited.catch(() => undefined);
   }
+}
+
+function stockCount(tankId: string, speciesId: string) {
+  return `(() => {
+    const value = localStorage.getItem("${STATE_KEY}");
+    const stock = value ? JSON.parse(value).tanks["${tankId}"].stock : [];
+    return stock.find((entry) => entry.speciesId === "${speciesId}")?.count ?? 0;
+  })()`;
+}
+
+async function countCards(view: Bun.WebView) {
+  return Number(await view.evaluate(`document.querySelectorAll(".fish-catalog-card").length`));
+}
+
+async function clickByLabel(view: Bun.WebView, label: string) {
+  const clicked = await view.evaluate(`(() => {
+    const button = document.querySelector(${JSON.stringify(`button[aria-label='${label}']`)});
+    if (!(button instanceof HTMLButtonElement)) return false;
+    button.click();
+    return true;
+  })()`);
+  assert(clicked);
+  await sleep(100);
 }
 
 async function clickButtonByText(view: Bun.WebView, text: string) {
@@ -212,21 +270,6 @@ async function clickButtonByText(view: Bun.WebView, text: string) {
   })()`);
   assert(clicked);
   await sleep(100);
-}
-
-async function setControlValue(view: Bun.WebView, selector: string, value: string) {
-  const changed = await view.evaluate(`(() => {
-    const control = document.querySelector(${JSON.stringify(selector)});
-    if (!(control instanceof HTMLInputElement || control instanceof HTMLSelectElement)) return false;
-    const prototype = control instanceof HTMLInputElement
-      ? HTMLInputElement.prototype
-      : HTMLSelectElement.prototype;
-    Object.getOwnPropertyDescriptor(prototype, "value")?.set?.call(control, ${JSON.stringify(value)});
-    control.dispatchEvent(new Event("input", { bubbles: true }));
-    control.dispatchEvent(new Event("change", { bubbles: true }));
-    return true;
-  })()`);
-  assert(changed);
 }
 
 async function waitForServer(url: string) {

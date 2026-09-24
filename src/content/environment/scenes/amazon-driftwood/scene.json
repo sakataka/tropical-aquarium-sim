@@ -1,0 +1,15 @@
+{
+  "id": "amazon-driftwood",
+  "order": 1,
+  "displayName": "流木と落ち葉",
+  "description": "太い流木と落ち葉が沈む、紅茶色がかったアマゾンの支流",
+  "defaultLighting": "natural",
+  "waterColor": "#1a4647",
+  "structurePoints": [
+    { "x": 0.2, "y": 0.62 },
+    { "x": 0.78, "y": 0.6 }
+  ],
+  "bubbleSources": [
+    { "x": 0.9, "y": 0.82 }
+  ]
+}

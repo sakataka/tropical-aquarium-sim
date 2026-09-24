@@ -1,18 +1,15 @@
 export { fishCatalog } from "./catalog";
 export {
   AQUARIUM_STATE_STORAGE_KEY,
-  CUSTOMIZATION_STORAGE_KEY,
-  DEFAULT_CUSTOMIZATION,
   DEFAULT_PREFERENCES,
-  LEGACY_AQUARIUM_STATE_STORAGE_KEY,
-  MAX_FISH_PER_SPECIES,
-  MAX_TOTAL_FISH,
-  PREVIOUS_AQUARIUM_STATE_STORAGE_KEY,
+  LEGACY_STORAGE_KEYS,
+  createDefaultState,
+  getDefaultCustomization,
   getDefaultLayout,
   getStructurePoints,
   migrateLegacyAquariumState,
-  normalizeAquariumCustomization,
   normalizeAquariumPersistedState,
+  normalizeTankCustomization,
   setStockCount,
 } from "./customization";
 export {
@@ -22,8 +19,8 @@ export {
 } from "./fishPopulation";
 export { aquariumScenes, getSceneById } from "./sceneCatalog";
 export { getBaseSpriteScale, getFishSpriteScale, getTargetBodyLengthPx } from "./scale";
-export { stepSimulation } from "./simulation";
-export { TANK_60CM } from "./tank";
+export { getActivityLevel, stepSimulation } from "./simulation";
+export { aquariumTanks, getSpeciesLimit, getTankById } from "./tankCatalog";
 export type {
   AquariumCustomization,
   AquariumLayout,
@@ -31,6 +28,8 @@ export type {
   AquariumPreferences,
   AquariumScene,
   FishCatalogInfo,
+  FishEcology,
+  FishHabit,
   FishInstance,
   FishSpeciesDefinition,
   FishStockEntry,

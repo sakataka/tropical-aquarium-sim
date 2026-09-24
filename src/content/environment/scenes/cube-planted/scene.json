@@ -1,0 +1,15 @@
+{
+  "id": "cube-planted",
+  "order": 1,
+  "displayName": "明るい水草キューブ",
+  "description": "前景草と明るい有茎草で仕上げた、光の多い小さな水景",
+  "defaultLighting": "natural",
+  "waterColor": "#0b5770",
+  "structurePoints": [
+    { "x": 0.3, "y": 0.62 },
+    { "x": 0.72, "y": 0.6 }
+  ],
+  "bubbleSources": [
+    { "x": 0.85, "y": 0.8 }
+  ]
+}

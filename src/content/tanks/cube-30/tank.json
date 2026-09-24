@@ -1,0 +1,25 @@
+{
+  "id": "cube-30",
+  "order": 3,
+  "displayName": "小型魚のキューブ水槽",
+  "category": "丈夫な小型魚の混泳",
+  "description": "30cmキューブに、丈夫で色鮮やかな小型魚を集めた明るい水槽。上層を泳ぐグッピーやアカヒレを間近に眺めます。",
+  "widthCm": 30,
+  "heightCm": 30,
+  "depthCm": 30,
+  "maxTotalFish": 15,
+  "sceneIds": [
+    "cube-planted",
+    "cube-stones"
+  ],
+  "species": [
+    { "speciesId": "guppy", "maxCount": 6 },
+    { "speciesId": "platy", "maxCount": 4 },
+    { "speciesId": "white-cloud-minnow", "maxCount": 10 }
+  ],
+  "defaultStock": [
+    { "speciesId": "white-cloud-minnow", "count": 6 },
+    { "speciesId": "guppy", "count": 3 },
+    { "speciesId": "platy", "count": 2 }
+  ]
+}

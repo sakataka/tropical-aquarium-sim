@@ -1,4 +1,5 @@
 import bubbleParticleUrl from "../content/environment/bubble.png";
+import roomUrl from "../content/room/room.webp";
 
 const fishImageModules = import.meta.glob<string>("../content/fish/**/side.png", {
   eager: true,
@@ -12,6 +13,7 @@ const sceneImageModules = import.meta.glob<string>(
 );
 
 export const environmentAssets = { bubbleParticleUrl };
+export const roomImageUrl = roomUrl;
 
 export function getFishImageUrl(speciesId: string): string | undefined {
   return findBySuffix(fishImageModules, `/fish/${speciesId}/side.png`);

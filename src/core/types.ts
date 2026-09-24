@@ -103,13 +103,23 @@ export type FishInstance = {
   seed: number;
 };
 
+export type TankSpeciesSlot = { speciesId: string; maxCount: number };
+
+// 水景・サイズ・入れられる魚種があらかじめ決まった水槽の型。
 export type TankDefinition = {
   id: string;
+  order: number;
   displayName: string;
+  category: string;
+  description: string;
   widthCm: number;
   heightCm: number;
   depthCm: number;
   safeMarginCm: number;
+  maxTotalFish: number;
+  sceneIds: string[];
+  species: TankSpeciesSlot[];
+  defaultStock: FishStockEntry[];
 };
 
 export type SimulationInput = {
@@ -145,16 +155,13 @@ export type AquariumCustomization = { stock: FishStockEntry[]; layout: AquariumL
 export type AquariumPreferences = { soundEnabled: boolean; soundVolume: number };
 
 export type AquariumPersistedState = {
-  version: 4;
-  customization: AquariumCustomization;
+  version: 5;
+  activeTankId: string;
+  tanks: Record<string, AquariumCustomization>;
   preferences: AquariumPreferences;
 };
 
 export type AquariumConfig = {
-  legacyStorageKey: string;
-  legacyStateStorageKey: string;
-  previousStateStorageKey: string;
   stateStorageKey: string;
-  maxFishPerSpecies: number;
-  maxTotalFish: number;
+  legacyStorageKeys: string[];
 };

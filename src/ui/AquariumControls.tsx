@@ -1,8 +1,7 @@
-import { useDeferredValue, useMemo, useState } from "react";
+import { useState } from "react";
 import {
-  MAX_FISH_PER_SPECIES,
-  MAX_TOTAL_FISH,
-  aquariumScenes,
+  getSceneById,
+  getSpeciesLimit,
   getStockCount,
   type AquariumCustomization,
   type AquariumPreferences,
@@ -26,6 +25,7 @@ type AquariumControlsProps = {
   onLightingChange: (lighting: LightingId) => void;
   onPreferencesChange: (update: Partial<AquariumPreferences>) => void;
   onEnterAmbientMode: () => void;
+  onBackToRoom: () => void;
 };
 
 export function AquariumControls({
@@ -39,44 +39,26 @@ export function AquariumControls({
   onLightingChange,
   onPreferencesChange,
   onEnterAmbientMode,
+  onBackToRoom,
 }: AquariumControlsProps) {
   const [tab, setTab] = useState<PanelTab>("fish");
-  const [search, setSearch] = useState("");
-  const [region, setRegion] = useState("all");
-  const [zone, setZone] = useState<"all" | SwimZoneId>("all");
-  const deferredSearch = useDeferredValue(search.trim().toLocaleLowerCase("ja"));
   const totalFish = customization.stock.reduce((sum, entry) => sum + entry.count, 0);
-  const regions = useMemo(() =>
-    Array.from(new Map(speciesList.map((species) => [
-      species.catalog.originRegionId,
-      species.catalog.originRegionName,
-    ])).entries()), [speciesList]);
-  const visibleSpecies = useMemo(() => speciesList.filter((species) => {
-    const speciesZone = getSwimZone(species);
-    const searchable = [
-      species.displayName,
-      species.catalog.scientificName,
-      species.catalog.originRegionName,
-      ...(species.catalog.aliases ?? []),
-    ].join(" ").toLocaleLowerCase("ja");
-    return (
-      (region === "all" || species.catalog.originRegionId === region) &&
-      (zone === "all" || speciesZone === zone) &&
-      (!deferredSearch || searchable.includes(deferredSearch))
-    );
-  }), [deferredSearch, region, speciesList, zone]);
+  const scenes = tank.sceneIds.map((sceneId) => getSceneById(sceneId)).filter((scene) => scene !== undefined);
 
   return (
     <aside className="control-panel">
       <header className="panel-heading">
         <div>
-          <p className="eyebrow">MY AQUARIUM</p>
-          <h1>60cm水槽</h1>
+          <button className="back-to-room" onClick={onBackToRoom} type="button">
+            <span aria-hidden="true">‹</span> 部屋に戻る
+          </button>
+          <p className="eyebrow">{tank.category}</p>
+          <h1>{tank.displayName}</h1>
         </div>
         <span className="save-status" role="status">{saveStatus}</span>
         <p className="tank-summary">
           {tank.widthCm} × {tank.heightCm} × {tank.depthCm}cm
-          <span>{totalFish} / {MAX_TOTAL_FISH}匹</span>
+          <span>{totalFish} / {tank.maxTotalFish}匹</span>
         </p>
       </header>
 
@@ -91,42 +73,12 @@ export function AquariumControls({
           <div className="section-intro">
             <p className="eyebrow">FISH CATALOG</p>
             <h2>魚屋カタログ</h2>
-            <p>世界の熱帯魚から、眺めたい魚を選んで水槽へ。</p>
+            <p>{tank.description}</p>
           </div>
-          <div className="catalog-filters">
-            <label className="search-field">
-              <span className="sr-only">魚を検索</span>
-              <input
-                onChange={(event) => setSearch(event.currentTarget.value)}
-                placeholder="和名・学名で検索"
-                type="search"
-                value={search}
-              />
-            </label>
-            <label>
-              <span className="sr-only">原産地域</span>
-              <select onChange={(event) => setRegion(event.currentTarget.value)} value={region}>
-                <option value="all">すべての地域</option>
-                {regions.map(([id, name]) => <option key={id} value={id}>{name}</option>)}
-              </select>
-            </label>
-            <label>
-              <span className="sr-only">泳ぐ層</span>
-              <select
-                onChange={(event) => setZone(event.currentTarget.value as "all" | SwimZoneId)}
-                value={zone}
-              >
-                <option value="all">すべての泳層</option>
-                <option value="surface">上層</option>
-                <option value="middle">中層</option>
-                <option value="bottom">底層</option>
-              </select>
-            </label>
-          </div>
-
           <div className="fish-catalog-list">
-            {visibleSpecies.map((species) => {
+            {speciesList.map((species) => {
               const count = getStockCount(customization.stock, species.id);
+              const limit = getSpeciesLimit(tank, species.id);
               return (
                 <article className="fish-catalog-card" key={species.id}>
                   <div className="fish-portrait">
@@ -153,10 +105,10 @@ export function AquariumControls({
                         onClick={() => onSpeciesCountChange(species.id, count - 1)}
                         type="button"
                       >−</button>
-                      <strong><span>{count}</span>匹</strong>
+                      <strong><span>{count}</span>匹<small> / {limit}</small></strong>
                       <button
                         aria-label={`${species.displayName}を1匹増やす`}
-                        disabled={count >= MAX_FISH_PER_SPECIES || totalFish >= MAX_TOTAL_FISH}
+                        disabled={count >= limit || totalFish >= tank.maxTotalFish}
                         onClick={() => onSpeciesCountChange(species.id, count + 1)}
                         type="button"
                       >＋</button>
@@ -166,9 +118,6 @@ export function AquariumControls({
               );
             })}
           </div>
-          {visibleSpecies.length === 0 ? (
-            <p className="empty-state">条件に合う魚はいません。絞り込みを戻してみてください。</p>
-          ) : null}
         </section>
       ) : null}
 
@@ -181,7 +130,7 @@ export function AquariumControls({
           </div>
 
           <div className="theme-grid">
-            {aquariumScenes.map((scene) => {
+            {scenes.map((scene) => {
               const active = customization.layout.sceneId === scene.id;
               return (
                 <button

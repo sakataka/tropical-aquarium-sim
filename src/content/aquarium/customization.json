@@ -1,8 +1,9 @@
 {
-  "legacyStorageKey": "tropical-aquarium.customization.v1",
-  "legacyStateStorageKey": "tropical-aquarium.state.v2",
-  "previousStateStorageKey": "tropical-aquarium.state.v3",
-  "stateStorageKey": "tropical-aquarium.state.v4",
-  "maxFishPerSpecies": 12,
-  "maxTotalFish": 30
+  "stateStorageKey": "tropical-aquarium.state.v5",
+  "legacyStorageKeys": [
+    "tropical-aquarium.state.v4",
+    "tropical-aquarium.state.v3",
+    "tropical-aquarium.state.v2",
+    "tropical-aquarium.customization.v1"
+  ]
 }

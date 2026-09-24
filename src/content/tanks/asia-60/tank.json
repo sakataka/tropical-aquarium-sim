@@ -1,0 +1,29 @@
+{
+  "id": "asia-60",
+  "order": 1,
+  "displayName": "東南アジアの水草水槽",
+  "category": "地域ビオトープ",
+  "description": "東南アジアから南アジアの、水草の茂る穏やかな流れを再現した60cm水槽。群れで泳ぐ小型魚と、底に潜む魚を組み合わせます。",
+  "widthCm": 60,
+  "heightCm": 36,
+  "depthCm": 30,
+  "maxTotalFish": 30,
+  "sceneIds": [
+    "planted",
+    "root-driftwood",
+    "driftwood",
+    "iwagumi"
+  ],
+  "species": [
+    { "speciesId": "harlequin-rasbora", "maxCount": 12 },
+    { "speciesId": "cherry-barb", "maxCount": 10 },
+    { "speciesId": "kuhli-loach", "maxCount": 6 },
+    { "speciesId": "dwarf-gourami", "maxCount": 2 }
+  ],
+  "defaultStock": [
+    { "speciesId": "harlequin-rasbora", "count": 10 },
+    { "speciesId": "cherry-barb", "count": 5 },
+    { "speciesId": "kuhli-loach", "count": 3 },
+    { "speciesId": "dwarf-gourami", "count": 1 }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "id": "amazon-planted",
+  "order": 2,
+  "displayName": "アマゾンソードの茂み",
+  "description": "背の高いアマゾンソードとヴァリスネリアが立ち上がる水草景",
+  "defaultLighting": "natural",
+  "waterColor": "#074555",
+  "structurePoints": [
+    { "x": 0.18, "y": 0.55 },
+    { "x": 0.8, "y": 0.55 }
+  ],
+  "bubbleSources": [
+    { "x": 0.1, "y": 0.82 }
+  ]
+}

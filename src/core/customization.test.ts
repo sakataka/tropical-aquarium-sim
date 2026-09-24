@@ -2,86 +2,128 @@ import { describe, expect, test } from "vitest";
 import { fishCatalog } from "./catalog";
 import {
   AQUARIUM_STATE_STORAGE_KEY,
-  MAX_FISH_PER_SPECIES,
-  MAX_TOTAL_FISH,
+  createDefaultState,
+  getStructurePoints,
   migrateLegacyAquariumState,
   normalizeAquariumPersistedState,
   setStockCount,
 } from "./customization";
-import { aquariumScenes } from "./sceneCatalog";
+import { fishRoom } from "./room";
+import { aquariumScenes, getSceneById } from "./sceneCatalog";
+import { aquariumTanks, getTankById } from "./tankCatalog";
 
-describe("aquarium customization", () => {
-  test("discovers one-plate scenes from scene folders", () => {
-    expect(AQUARIUM_STATE_STORAGE_KEY).toContain(".v4");
-    expect(aquariumScenes.map((scene) => scene.id))
-      .toEqual(["planted", "driftwood", "root-driftwood", "iwagumi"]);
-    for (const scene of aquariumScenes) {
-      expect(scene.structurePoints.length).toBeGreaterThan(0);
-      expect(scene.bubbleSources.length).toBeGreaterThan(0);
+const asia = getTankById("asia-60")!;
+const cube = getTankById("cube-30")!;
+
+describe("tanks", () => {
+  test("define three tanks whose scenes and species exist", () => {
+    expect(AQUARIUM_STATE_STORAGE_KEY).toContain(".v5");
+    expect(aquariumTanks.map((tank) => tank.id)).toEqual(["asia-60", "amazon-90", "cube-30"]);
+    const assignedScenes = aquariumTanks.flatMap((tank) => tank.sceneIds);
+    expect(new Set(assignedScenes).size).toBe(assignedScenes.length);
+    expect([...assignedScenes].sort()).toEqual(aquariumScenes.map((scene) => scene.id).sort());
+    for (const tank of aquariumTanks) {
+      for (const slot of tank.species) expect(fishCatalog[slot.speciesId]).toBeDefined();
+      for (const entry of tank.defaultStock) {
+        expect(tank.species.map((slot) => slot.speciesId)).toContain(entry.speciesId);
+      }
+    }
+    // 今の魚種は、どれかひとつの水槽に入れられる。
+    const placeable = new Set(aquariumTanks.flatMap((tank) => tank.species.map((slot) => slot.speciesId)));
+    expect([...placeable].sort()).toEqual(Object.keys(fishCatalog).sort());
+  });
+
+  test("place every tank once in the fish room", () => {
+    expect(fishRoom.tanks.map((item) => item.tankId).sort())
+      .toEqual(aquariumTanks.map((tank) => tank.id).sort());
+    for (const { glass } of fishRoom.tanks) {
+      expect(glass.x + glass.width).toBeLessThanOrEqual(1);
+      expect(glass.y + glass.height).toBeLessThanOrEqual(1);
     }
   });
 
-  test("enforces per-species and whole-tank limits", () => {
-    let stock = setStockCount([], "neon-tetra", 99, fishCatalog);
-    expect(stock).toEqual([{ speciesId: "neon-tetra", count: MAX_FISH_PER_SPECIES }]);
-    stock = setStockCount(stock, "guppy", 12, fishCatalog);
-    stock = setStockCount(stock, "platy", 12, fishCatalog);
-    expect(stock.reduce((sum, item) => sum + item.count, 0)).toBeLessThanOrEqual(MAX_TOTAL_FISH);
-    expect(setStockCount([{ speciesId: "neon-tetra", count: 1 }], "neon-tetra", 0, fishCatalog))
-      .toEqual([]);
+  test("only accept species the tank allows, up to its limits", () => {
+    expect(setStockCount([], "guppy", 3, asia, fishCatalog)).toEqual([]);
+    expect(setStockCount([], "guppy", 99, cube, fishCatalog))
+      .toEqual([{ speciesId: "guppy", count: 6 }]);
+    let stock = setStockCount([], "white-cloud-minnow", 10, cube, fishCatalog);
+    stock = setStockCount(stock, "guppy", 6, cube, fishCatalog);
+    stock = setStockCount(stock, "platy", 4, cube, fishCatalog);
+    expect(stock.reduce((sum, entry) => sum + entry.count, 0)).toBe(cube.maxTotalFish);
   });
 
-  test("migrates v2 counts, sound, lighting and legacy background to v4", () => {
+  test("scales scene structure points to the tank size", () => {
+    const scene = getSceneById("driftwood")!;
+    const points = getStructurePoints(asia, { sceneId: scene.id, lighting: "natural" });
+    expect(points[0]!.x).toBeCloseTo(scene.structurePoints[0]!.x * asia.widthCm);
+    expect(points[0]!.y).toBeCloseTo(scene.structurePoints[0]!.y * asia.heightCm);
+  });
+});
+
+describe("saved state", () => {
+  test("moves a v4 single tank into the tanks that allow each species", () => {
     const migrated = migrateLegacyAquariumState({
-      version: 2,
+      version: 4,
       customization: {
-        stock: [{ speciesId: "neon-tetra", count: 8 }],
-        environment: { backgroundStyle: "deep", lighting: "evening" },
+        stock: [
+          { speciesId: "neon-tetra", count: 8 },
+          { speciesId: "harlequin-rasbora", count: 5 },
+          { speciesId: "guppy", count: 2 },
+        ],
+        layout: { sceneId: "iwagumi", lighting: "night" },
       },
-      preferences: { soundEnabled: true, soundVolume: 0.7, tankName: "old" },
-      residents: [{ id: "old-id", nickname: "Blue", hunger: 0.2, favorite: true }],
+      preferences: { soundEnabled: true, soundVolume: 0.7 },
     }, fishCatalog)!;
-    expect(migrated.version).toBe(4);
-    expect(migrated.customization.stock).toEqual([{ speciesId: "neon-tetra", count: 8 }]);
-    expect(migrated.customization.layout.sceneId).toBe("driftwood");
-    expect(migrated.customization.layout.lighting).toBe("evening");
+    expect(migrated.version).toBe(5);
+    expect(migrated.activeTankId).toBe("asia-60");
+    expect(migrated.tanks["asia-60"]).toEqual({
+      stock: [{ speciesId: "harlequin-rasbora", count: 5 }],
+      layout: { sceneId: "iwagumi", lighting: "night" },
+    });
+    expect(migrated.tanks["amazon-90"]!.stock).toEqual([{ speciesId: "neon-tetra", count: 8 }]);
+    expect(migrated.tanks["cube-30"]!.stock).toEqual([{ speciesId: "guppy", count: 2 }]);
     expect(migrated.preferences).toEqual({ soundEnabled: true, soundVolume: 0.7 });
-    expect(JSON.stringify(migrated)).not.toMatch(/nickname|hunger|favorite|tankName|old-id/);
   });
 
-  test("migrates a v3 slot layout to the matching scene", () => {
-    const migrated = migrateLegacyAquariumState({
+  test("keeps v1-v3 migration paths", () => {
+    const v3 = migrateLegacyAquariumState({
       version: 3,
       customization: {
         stock: [{ speciesId: "corydoras", count: 3 }],
-        layout: {
-          themeId: "iwagumi",
-          backgroundId: "iwagumi-water",
-          substrateId: "cool-gravel",
-          lighting: "evening",
-          slots: { "mid-left": { assetId: "seiryu-stones", flipped: false } },
-        },
+        layout: { themeId: "driftwood", lighting: "evening", slots: {} },
       },
-      preferences: { soundEnabled: false, soundVolume: 0.3 },
     }, fishCatalog)!;
-    expect(migrated.customization.layout).toEqual({ sceneId: "iwagumi", lighting: "evening" });
-    expect(JSON.stringify(migrated)).not.toMatch(/slots|backgroundId|substrateId/);
-  });
+    expect(v3.tanks["asia-60"]!.layout).toEqual({ sceneId: "driftwood", lighting: "evening" });
+    expect(v3.tanks["amazon-90"]!.stock).toEqual([{ speciesId: "corydoras", count: 3 }]);
+    expect(JSON.stringify(v3)).not.toMatch(/slots|themeId/);
 
-  test("keeps the v1 migration path and recovers malformed v4 data", () => {
     const v1 = migrateLegacyAquariumState({
       stock: [{ speciesId: "guppy", count: 4 }],
       environment: { backgroundStyle: "bright", lighting: "night" },
     }, fishCatalog)!;
-    expect(v1.customization.layout.sceneId).toBe("iwagumi");
-    expect(v1.customization.layout.lighting).toBe("night");
-    expect(v1.customization.stock).toEqual([{ speciesId: "guppy", count: 4 }]);
-    expect(normalizeAquariumPersistedState({ version: 4, nope: true }, fishCatalog))
-      .toBeUndefined();
-    expect(normalizeAquariumPersistedState({
-      version: 4,
-      customization: { stock: [], layout: { sceneId: "missing", lighting: "night" } },
-      preferences: { soundEnabled: false, soundVolume: 0.4 },
-    }, fishCatalog)?.customization.layout.sceneId).toBe("planted");
+    expect(v1.tanks["asia-60"]!.layout).toEqual({ sceneId: "iwagumi", lighting: "night" });
+    expect(v1.tanks["cube-30"]!.stock).toEqual([{ speciesId: "guppy", count: 4 }]);
+  });
+
+  test("recovers malformed v5 data per tank", () => {
+    expect(normalizeAquariumPersistedState({ version: 5 }, fishCatalog)).toBeUndefined();
+    const state = normalizeAquariumPersistedState({
+      version: 5,
+      activeTankId: "missing",
+      tanks: {
+        "asia-60": {
+          stock: [{ speciesId: "angelfish", count: 2 }, { speciesId: "cherry-barb", count: 99 }],
+          layout: { sceneId: "amazon-planted", lighting: "night" },
+        },
+      },
+      preferences: { soundEnabled: "yes" },
+    }, fishCatalog)!;
+    expect(state.activeTankId).toBe("asia-60");
+    expect(state.tanks["asia-60"]).toEqual({
+      stock: [{ speciesId: "cherry-barb", count: 10 }],
+      layout: { sceneId: "planted", lighting: "night" },
+    });
+    expect(state.tanks["cube-30"]).toEqual(createDefaultState(fishCatalog).tanks["cube-30"]);
+    expect(state.preferences.soundEnabled).toBe(false);
   });
 });

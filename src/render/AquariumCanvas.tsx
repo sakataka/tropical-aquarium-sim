@@ -7,7 +7,6 @@ import {
   Texture,
 } from "pixi.js";
 import {
-  getFishSpriteScale,
   getSceneById,
   stepSimulation,
   type AquariumLayout,
@@ -19,12 +18,11 @@ import {
 } from "../core";
 import {
   environmentAssets,
-  getFishImageUrl,
   getSceneForegroundUrl,
   getScenePlateUrl,
 } from "./assets";
 import { BubbleColumns, FloatingMotes } from "./bubbles";
-import { FishBody, getBodyTexture } from "./fishBody";
+import { FishLayer, getWaterTint } from "./fishLayer";
 import { UnderwaterFilter } from "./underwaterFilter";
 
 type AquariumCanvasProps = {
@@ -40,9 +38,6 @@ type CanvasHandle = {
   setLighting: (lighting: LightingId) => void;
 };
 
-type FishRecord = { body: FishBody; visualScale: number };
-
-const BACK_DEPTH = 0.56;
 const SCENE_FADE_SEC = 0.9;
 
 export function AquariumCanvas({
@@ -69,8 +64,6 @@ export function AquariumCanvas({
     let initialized = false;
     let destroyed = false;
     const app = new Application();
-    const records = new Map<string, FishRecord>();
-    const fishTextures = new Map<string, Texture | Promise<void>>();
 
     const world = new Container();
     const plateLayer = new Container();
@@ -79,8 +72,7 @@ export function AquariumCanvas({
     const foregroundLayer = new Container();
     const fishFrontLayer = new Container();
     const moteLayer = new Container();
-    fishBackLayer.sortableChildren = true;
-    fishFrontLayer.sortableChildren = true;
+    const fishLayer = new FishLayer(fishBackLayer, fishFrontLayer);
     world.addChild(
       plateLayer,
       bubbleLayer,
@@ -96,7 +88,6 @@ export function AquariumCanvas({
     let currentSceneId: string | undefined;
     let sceneToken = 0;
     let structurePoints: Vec2[] = [];
-    let waterTint = 0xffffff;
     let readyNotified = false;
     let elapsedSec = 0;
 
@@ -149,7 +140,7 @@ export function AquariumCanvas({
         const { width, height } = app.screen;
         driftCamera(width, height);
         fadeScenes(deltaSec);
-        updateFish(deltaSec);
+        fishLayer.update(fishRef.current, speciesRef.current, tank, { x: 0, y: 0, width, height }, deltaSec);
         bubbles?.update(width, height, deltaSec);
         motes?.update(width, height, elapsedSec, deltaSec);
         underwater.update(elapsedSec % 3600, deltaSec);
@@ -182,7 +173,7 @@ export function AquariumCanvas({
       }
       layoutSceneSprites();
       structurePoints = scene.structurePoints;
-      waterTint = getWaterTint(scene.waterColor);
+      fishLayer.waterTint = getWaterTint(scene.waterColor);
       bubbles?.setSources(scene.bubbleSources);
 
       if (!readyNotified) {
@@ -225,83 +216,13 @@ export function AquariumCanvas({
       world.position.set(width / 2, height / 2);
     }
 
-    function updateFish(deltaSec: number) {
-      const fish = fishRef.current;
-      const catalog = speciesRef.current;
-      const activeIds = new Set(fish.map((item) => item.id));
-      for (const [id, record] of records) {
-        if (!activeIds.has(id)) {
-          record.body.destroy();
-          records.delete(id);
-        }
-      }
-      const { width, height } = app.screen;
-      for (const item of fish) {
-        const definition = catalog[item.speciesId];
-        if (!definition) continue;
-        let record = records.get(item.id);
-        if (!record) {
-          const texture = getFishTexture(definition);
-          if (!texture) continue;
-          record = {
-            body: new FishBody(getBodyTexture(texture, definition), definition, item),
-            visualScale: 0,
-          };
-          records.set(item.id, record);
-        }
-        const mesh = record.body.mesh;
-        const targetLayer = item.depth > BACK_DEPTH ? fishBackLayer : fishFrontLayer;
-        if (mesh.parent !== targetLayer) targetLayer.addChild(mesh);
-
-        const scale = getFishSpriteScale({
-          viewportWidthPx: width,
-          tankWidthCm: tank.widthCm,
-          species: definition,
-          bodyLengthVariance: item.bodyLengthVariance,
-          depth: item.depth,
-        });
-        record.visualScale = record.visualScale === 0
-          ? scale
-          : record.visualScale + (scale - record.visualScale) * (1 - Math.exp(-4 * deltaSec));
-        mesh.position.set(
-          (item.position.x / tank.widthCm) * width,
-          (item.position.y / tank.heightCm) * height,
-        );
-        mesh.scale.set(record.visualScale);
-        // 奥の魚はぼかさず、水の色と透明度だけで距離を出す。
-        mesh.tint = mixColor(0xffffff, waterTint, 0.06 + item.depth * 0.26);
-        mesh.alpha = 1 - item.depth * 0.08;
-        mesh.zIndex = -item.depth;
-        record.body.update(item, deltaSec);
-      }
-    }
-
-    function getFishTexture(definition: FishSpeciesDefinition): Texture | undefined {
-      const cached = fishTextures.get(definition.id);
-      if (cached instanceof Texture) return cached;
-      if (cached) return undefined;
-      const url = getFishImageUrl(definition.id);
-      if (!url) return undefined;
-      // 大きな原画を小さく表示するため、ミップマップでちらつきを抑える。
-      fishTextures.set(definition.id, Assets.load<Texture>({
-        src: url,
-        data: { autoGenerateMipmaps: true },
-      }).then((texture) => {
-        fishTextures.set(definition.id, texture);
-      }).catch((error: unknown) => {
-        console.error(`Fish texture failed: ${definition.id}`, error);
-      }));
-      return undefined;
-    }
-
     void setup().catch((error: unknown) => {
       if (!disposed) console.error("Aquarium rendering failed", error);
     });
     return () => {
       disposed = true;
       handleRef.current = null;
-      for (const record of records.values()) record.body.destroy();
-      records.clear();
+      fishLayer.destroy();
       if (initialized) destroyApp();
     };
 
@@ -321,23 +242,4 @@ export function AquariumCanvas({
   }, [layout.lighting]);
 
   return <div className="aquarium-canvas" ref={hostRef} />;
-}
-
-// 水の色を明るく正規化し、魚にかける乗算色にする。
-function getWaterTint(hex: string): number {
-  const value = Number.parseInt(hex.slice(1), 16);
-  const channels = [(value >> 16) & 0xff, (value >> 8) & 0xff, value & 0xff];
-  const max = Math.max(...channels, 1);
-  const [r, g, b] = channels.map((channel) => Math.round((channel / max) * 255));
-  return (r! << 16) | (g! << 8) | b!;
-}
-
-function mixColor(from: number, to: number, amount: number): number {
-  const t = Math.max(0, Math.min(1, amount));
-  const channel = (shift: number) => {
-    const a = (from >> shift) & 0xff;
-    const b = (to >> shift) & 0xff;
-    return Math.round(a + (b - a) * t) << shift;
-  };
-  return channel(16) | channel(8) | channel(0);
 }

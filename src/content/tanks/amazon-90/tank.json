@@ -1,0 +1,25 @@
+{
+  "id": "amazon-90",
+  "order": 2,
+  "displayName": "アマゾンの大型水槽",
+  "category": "地域ビオトープ",
+  "description": "南米アマゾン川の支流を思わせる90cmの大型水槽。流木と落ち葉の間を、エンゼルフィッシュとネオンテトラの群れが泳ぎます。",
+  "widthCm": 90,
+  "heightCm": 45,
+  "depthCm": 45,
+  "maxTotalFish": 30,
+  "sceneIds": [
+    "amazon-driftwood",
+    "amazon-planted"
+  ],
+  "species": [
+    { "speciesId": "angelfish", "maxCount": 4 },
+    { "speciesId": "neon-tetra", "maxCount": 20 },
+    { "speciesId": "corydoras", "maxCount": 8 }
+  ],
+  "defaultStock": [
+    { "speciesId": "neon-tetra", "count": 14 },
+    { "speciesId": "corydoras", "count": 5 },
+    { "speciesId": "angelfish", "count": 2 }
+  ]
+}
