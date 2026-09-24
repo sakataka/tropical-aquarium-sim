@@ -14,30 +14,39 @@ export type FishCatalogInfo = {
   aliases?: string[];
 };
 
-type SpeciesBehaviorProfile = {
-  separationBodyLengths: number;
-  alignmentBodyLengths: number;
-  attractionBodyLengths: number;
-  separationStrength: number;
-  alignmentStrength: number;
-  attractionStrength: number;
-  wallAvoidanceStrength: number;
-  edgeCruiseChance: number;
-  structureAffinity: number;
-  surfaceAffinity: number;
-  zoneHoldStrength: number;
-  surfaceVisitChance: number;
-  structurePatrolStrength: number;
-};
+export type ActivityPeriod = "diurnal" | "crepuscular" | "nocturnal";
+export type SwimGait = "burstCoast" | "steady" | "glide" | "undulate";
+export type SocialGrouping = "school" | "shoal" | "group" | "solitary";
 
-type SwimMotionProfile = {
-  kickIntervalSecMin: number;
-  kickIntervalSecMax: number;
-  kickDurationSec: number;
-  pauseDurationSecMin: number;
-  pauseDurationSecMax: number;
-  coastDragPerSec: number;
-  wanderStrength: number;
+export type FishHabit =
+  | { type: "airBreathing"; breathsPerHour: [number, number]; style: "dash" | "rise" }
+  | { type: "bottomRest"; chancePerMin: number; durationSec: [number, number] }
+  | { type: "bottomForage" }
+  | { type: "grazing"; chancePerMin: number; durationSec: [number, number] }
+  | { type: "hideByDay"; durationSec: [number, number] }
+  | { type: "follow"; chancePerMin: number; durationSec: [number, number] };
+
+export type FishHabitType = FishHabit["type"];
+
+// 公開情報から調べた生態を、体長あたりの速度など実在の単位で持つ。
+export type FishEcology = {
+  activityPeriod: ActivityPeriod;
+  gait: SwimGait;
+  speedBodyLengthsPerSec: { cruise: number; burst: number };
+  turnRateRadPerSec: number;
+  /** 昼間に止まって漂ったり休んだりする時間の割合。 */
+  restFraction: number;
+  /** 前後方向の居場所（0 = ガラス側、1 = 奥）。 */
+  depthRange: [number, number];
+  social: {
+    grouping: SocialGrouping;
+    spacingBodyLengths: number;
+    cohesion: number;
+    polarization: number;
+  };
+  structureAffinity: number;
+  habits: FishHabit[];
+  sources: { title: string; url: string }[];
 };
 
 // 画像メッシュの尾の振り方。未指定の項目は描画側の標準値を使う。
@@ -57,17 +66,19 @@ export type FishSpeciesDefinition = {
   swim?: Partial<FishSwimStyle>;
   visual: { fallbackColor: string };
   sourceBodyBounds: { x: number; y: number; width: number; height: number };
-  cruisingSpeedCmPerSec: number;
-  burstSpeedCmPerSec: number;
-  turnRateRadPerSec: number;
-  stopProbabilityPerSec: number;
-  motion: SwimMotionProfile;
   preferredZone: { minX: number; maxX: number; minY: number; maxY: number };
-  schooling: { enabled: boolean; radiusCm: number; strength: number };
-  behavior: SpeciesBehaviorProfile;
+  ecology: FishEcology;
 };
 
-export type FishTargetKind = "openWater" | "structure" | "edgeCruise" | "surfaceVisit";
+export type FishTargetKind =
+  | "openWater"
+  | "structure"
+  | "surfaceVisit"
+  | "descend"
+  | "rest"
+  | "hide"
+  | "forage"
+  | "follow";
 
 export type FishInstance = {
   id: string;
@@ -77,12 +88,18 @@ export type FishInstance = {
   facing: -1 | 1;
   depth: number;
   bodyLengthVariance: number;
-  behaviorMode: "kick" | "coast" | "pause";
+  behaviorMode: "kick" | "coast" | "pause" | "rest" | "forage";
   behaviorTimeRemainingSec: number;
   target?: Vec2;
   targetKind?: FishTargetKind;
   /** 今の目的地へ向かい始めてからの秒数。描画・保存には使わない。 */
   legTimeSec?: number;
+  /** 休む・ついばむ・追いかけるなど、今の習性行動の残り秒数。 */
+  habitTimeSec?: number;
+  followId?: string;
+  nextBreathSec?: number;
+  /** 描画用の姿勢。底を探るときは頭を下げる。 */
+  posture?: "level" | "noseDown";
   seed: number;
 };
 
@@ -97,6 +114,7 @@ export type TankDefinition = {
 
 export type SimulationInput = {
   tank: TankDefinition;
+  lighting?: LightingId;
   species: Record<string, FishSpeciesDefinition>;
   fish: FishInstance[];
   deltaSec: number;

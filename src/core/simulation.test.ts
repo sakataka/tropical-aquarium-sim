@@ -33,10 +33,9 @@ describe("natural swimming", () => {
 
   test("uses placed midground decor as a passive target", () => {
     const species = structuredClone(fishCatalog["dwarf-gourami"]);
-    species.behavior.edgeCruiseChance = 0;
-    species.behavior.surfaceVisitChance = 0;
-    species.behavior.structureAffinity = 1;
-    species.stopProbabilityPerSec = 0;
+    species.ecology.structureAffinity = 1;
+    species.ecology.restFraction = 0;
+    species.ecology.habits = [];
     const fish = createFishFromStock([{ speciesId: species.id, count: 1 }]);
     fish[0].behaviorMode = "coast";
     fish[0].behaviorTimeRemainingSec = 0;
@@ -86,5 +85,54 @@ describe("natural swimming", () => {
     }
     // 60秒間で1匹あたり10回未満（以前は30回前後）。
     expect(reversals / fish.length).toBeLessThan(10);
+  });
+
+  test("nocturnal kuhli loaches hide by day and roam at night", () => {
+    const restShare = (lighting: "natural" | "night") => {
+      let fish = createFishFromStock([{ speciesId: "kuhli-loach", count: 4 }]);
+      let resting = 0;
+      for (let index = 0; index < 2400; index += 1) {
+        fish = stepSimulation({
+          tank: TANK_60CM, species: fishCatalog, fish, deltaSec: 0.05, lighting,
+          structurePoints: [{ x: 14, y: 22 }, { x: 46, y: 20 }],
+        }).fish;
+        resting += fish.filter((item) => item.behaviorMode === "rest").length;
+      }
+      return resting / (2400 * fish.length);
+    };
+    expect(restShare("natural")).toBeGreaterThan(0.3);
+    expect(restShare("night")).toBeLessThan(0.1);
+  });
+
+  test("air-breathing corydoras dash to the surface and return", () => {
+    const species = structuredClone(fishCatalog.corydoras);
+    species.ecology.habits = [{ type: "airBreathing", breathsPerHour: [600, 600], style: "dash" }];
+    let fish = createFishFromStock([{ speciesId: species.id, count: 1 }]);
+    let minY = Infinity;
+    let returned = false;
+    for (let index = 0; index < 600; index += 1) {
+      fish = stepSimulation({
+        tank: TANK_60CM, species: { [species.id]: species }, fish, deltaSec: 0.05, structurePoints: [],
+      }).fish;
+      minY = Math.min(minY, fish[0].position.y);
+      if (minY < 4 && fish[0].position.y > TANK_60CM.heightCm * 0.6) returned = true;
+    }
+    expect(minY).toBeLessThan(4);
+    expect(returned).toBe(true);
+  });
+
+  test("diurnal fish slow down under night lighting", () => {
+    const averageSpeed = (lighting: "natural" | "night") => {
+      let fish = createFishFromStock([{ speciesId: "neon-tetra", count: 6 }]);
+      let total = 0;
+      for (let index = 0; index < 1200; index += 1) {
+        fish = stepSimulation({
+          tank: TANK_60CM, species: fishCatalog, fish, deltaSec: 0.05, lighting, structurePoints: [],
+        }).fish;
+        total += fish.reduce((sum, item) => sum + Math.hypot(item.velocity.x, item.velocity.y), 0);
+      }
+      return total / (1200 * fish.length);
+    };
+    expect(averageSpeed("night")).toBeLessThan(averageSpeed("natural") * 0.6);
   });
 });

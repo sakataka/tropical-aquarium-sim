@@ -17,38 +17,59 @@ const preferredZoneSchema = z.object({
   message: "preferredZone minimums must be below maximums",
 });
 
-const behaviorSchema = z.object({
-  separationBodyLengths: z.number().finite().positive(),
-  alignmentBodyLengths: z.number().finite().positive(),
-  attractionBodyLengths: z.number().finite().positive(),
-  separationStrength: z.number().finite().min(0).max(4),
-  alignmentStrength: z.number().finite().min(0).max(4),
-  attractionStrength: z.number().finite().min(0).max(4),
-  wallAvoidanceStrength: z.number().finite().min(0).max(6),
-  edgeCruiseChance: z.number().finite().min(0).max(1),
-  structureAffinity: z.number().finite().min(0).max(1),
-  surfaceAffinity: z.number().finite().min(0).max(1),
-  zoneHoldStrength: z.number().finite().min(0).max(2),
-  surfaceVisitChance: z.number().finite().min(0).max(1),
-  structurePatrolStrength: z.number().finite().min(0).max(1),
-}).refine((profile) =>
-  profile.separationBodyLengths < profile.alignmentBodyLengths &&
-  profile.alignmentBodyLengths < profile.attractionBodyLengths, {
-  message: "behavior distances must be ordered separation < alignment < attraction",
-});
+const rangeSchema = z.tuple([z.number().finite().nonnegative(), z.number().finite().nonnegative()])
+  .refine(([min, max]) => min <= max, { message: "range minimum must be below maximum" });
 
-const motionSchema = z.object({
-  kickIntervalSecMin: z.number().finite().positive(),
-  kickIntervalSecMax: z.number().finite().positive(),
-  kickDurationSec: z.number().finite().positive(),
-  pauseDurationSecMin: z.number().finite().positive(),
-  pauseDurationSecMax: z.number().finite().positive(),
-  coastDragPerSec: z.number().finite().min(0).max(1),
-  wanderStrength: z.number().finite().min(0).max(1),
-}).refine((profile) =>
-  profile.kickIntervalSecMin <= profile.kickIntervalSecMax &&
-  profile.pauseDurationSecMin <= profile.pauseDurationSecMax, {
-  message: "motion minimums must be below maximums",
+const habitSchema = z.discriminatedUnion("type", [
+  z.object({
+    type: z.literal("airBreathing"),
+    breathsPerHour: rangeSchema,
+    style: z.enum(["dash", "rise"]),
+  }),
+  z.object({
+    type: z.literal("bottomRest"),
+    chancePerMin: z.number().finite().min(0).max(10),
+    durationSec: rangeSchema,
+  }),
+  z.object({ type: z.literal("bottomForage") }),
+  z.object({
+    type: z.literal("grazing"),
+    chancePerMin: z.number().finite().min(0).max(10),
+    durationSec: rangeSchema,
+  }),
+  z.object({ type: z.literal("hideByDay"), durationSec: rangeSchema }),
+  z.object({
+    type: z.literal("follow"),
+    chancePerMin: z.number().finite().min(0).max(10),
+    durationSec: rangeSchema,
+  }),
+]);
+
+const unit = z.number().finite().min(0).max(1);
+
+const ecologySchema = z.object({
+  activityPeriod: z.enum(["diurnal", "crepuscular", "nocturnal"]),
+  gait: z.enum(["burstCoast", "steady", "glide", "undulate"]),
+  speedBodyLengthsPerSec: z.object({
+    cruise: z.number().finite().positive().max(5),
+    burst: z.number().finite().positive().max(15),
+  }).refine((speed) => speed.cruise <= speed.burst, {
+    message: "cruise speed must not exceed burst speed",
+  }),
+  turnRateRadPerSec: z.number().finite().positive().max(8),
+  restFraction: unit,
+  depthRange: z.tuple([unit, unit]).refine(([min, max]) => min <= max, {
+    message: "depthRange minimum must be below maximum",
+  }),
+  social: z.object({
+    grouping: z.enum(["school", "shoal", "group", "solitary"]),
+    spacingBodyLengths: z.number().finite().positive().max(10),
+    cohesion: unit,
+    polarization: unit,
+  }),
+  structureAffinity: unit,
+  habits: z.array(habitSchema),
+  sources: z.array(z.object({ title: z.string().min(1), url: z.url() })).min(1),
 });
 
 const fishSpeciesDefinitionSchema = z.object({
@@ -74,18 +95,8 @@ const fishSpeciesDefinitionSchema = z.object({
   }).partial().optional(),
   visual: z.object({ fallbackColor: z.string().regex(/^#[0-9a-fA-F]{6}$/) }),
   sourceBodyBounds: bodyBoundsSchema,
-  cruisingSpeedCmPerSec: z.number().finite().positive(),
-  burstSpeedCmPerSec: z.number().finite().positive(),
-  turnRateRadPerSec: z.number().finite().positive(),
-  stopProbabilityPerSec: z.number().finite().min(0).max(1),
-  motion: motionSchema,
   preferredZone: preferredZoneSchema,
-  schooling: z.object({
-    enabled: z.boolean(),
-    radiusCm: z.number().finite().positive(),
-    strength: z.number().finite().min(0).max(1),
-  }),
-  behavior: behaviorSchema,
+  ecology: ecologySchema,
 }) satisfies z.ZodType<FishSpeciesDefinition>;
 
 export function parseFishSpeciesDefinition(value: unknown): FishSpeciesDefinition {

@@ -16,44 +16,46 @@
     "width": 1362,
     "height": 718
   },
-  "cruisingSpeedCmPerSec": 3.0,
-  "burstSpeedCmPerSec": 11,
-  "turnRateRadPerSec": 2.8,
-  "stopProbabilityPerSec": 0.06,
-  "motion": {
-    "kickIntervalSecMin": 1.1,
-    "kickIntervalSecMax": 2.55,
-    "kickDurationSec": 0.2,
-    "pauseDurationSecMin": 0.75,
-    "pauseDurationSecMax": 1.75,
-    "coastDragPerSec": 0.46,
-    "wanderStrength": 0.38
-  },
   "preferredZone": {
     "minX": 0.08,
     "maxX": 0.94,
-    "minY": 0.16,
-    "maxY": 0.62
+    "minY": 0.12,
+    "maxY": 0.55
   },
-  "schooling": {
-    "enabled": true,
-    "radiusCm": 10,
-    "strength": 0.1
-  },
-  "behavior": {
-    "separationBodyLengths": 1.15,
-    "alignmentBodyLengths": 2.4,
-    "attractionBodyLengths": 4.5,
-    "separationStrength": 1.1,
-    "alignmentStrength": 0.55,
-    "attractionStrength": 0.45,
-    "wallAvoidanceStrength": 3.4,
-    "edgeCruiseChance": 0.18,
-    "structureAffinity": 0.16,
-    "surfaceAffinity": 0.56,
-    "zoneHoldStrength": 0.92,
-    "surfaceVisitChance": 0.2,
-    "structurePatrolStrength": 0.12
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "steady",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.8,
+      "burst": 3.0
+    },
+    "turnRateRadPerSec": 2.9,
+    "restFraction": 0.05,
+    "depthRange": [0.1, 0.8],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0.3,
+      "polarization": 0.2
+    },
+    "structureAffinity": 0.12,
+    "habits": [
+      {
+        "type": "follow",
+        "chancePerMin": 1.5,
+        "durationSec": [3, 7]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Seriously Fish: Poecilia reticulata",
+        "url": "https://www.seriouslyfish.com/species/poecilia-reticulata/"
+      },
+      {
+        "title": "Plasticity in male courtship behaviour as a function of light intensity in guppies (Behav Ecol Sociobiol)",
+        "url": "https://link.springer.com/article/10.1007/s00265-009-0796-4"
+      }
+    ]
   },
   "catalog": {
     "scientificName": "Poecilia reticulata",

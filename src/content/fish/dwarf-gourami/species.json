@@ -15,44 +15,46 @@
     "width": 1150,
     "height": 783
   },
-  "cruisingSpeedCmPerSec": 2.0,
-  "burstSpeedCmPerSec": 7.8,
-  "turnRateRadPerSec": 1.65,
-  "stopProbabilityPerSec": 0.16,
-  "motion": {
-    "kickIntervalSecMin": 1.8,
-    "kickIntervalSecMax": 5.1,
-    "kickDurationSec": 0.28,
-    "pauseDurationSecMin": 1.35,
-    "pauseDurationSecMax": 3.8,
-    "coastDragPerSec": 0.34,
-    "wanderStrength": 0.18
-  },
   "preferredZone": {
     "minX": 0.1,
     "maxX": 0.9,
     "minY": 0.16,
     "maxY": 0.64
   },
-  "schooling": {
-    "enabled": false,
-    "radiusCm": 10,
-    "strength": 0
-  },
-  "behavior": {
-    "separationBodyLengths": 1.6,
-    "alignmentBodyLengths": 3.2,
-    "attractionBodyLengths": 5.6,
-    "separationStrength": 1.5,
-    "alignmentStrength": 0.15,
-    "attractionStrength": 0.12,
-    "wallAvoidanceStrength": 4.4,
-    "edgeCruiseChance": 0.16,
-    "structureAffinity": 0.62,
-    "surfaceAffinity": 0.42,
-    "zoneHoldStrength": 0.9,
-    "surfaceVisitChance": 0.08,
-    "structurePatrolStrength": 0.54
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.25,
+      "burst": 1.5
+    },
+    "turnRateRadPerSec": 1.6,
+    "restFraction": 0.35,
+    "depthRange": [0.15, 0.8],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 4,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.6,
+    "habits": [
+      {
+        "type": "airBreathing",
+        "breathsPerHour": [4, 12],
+        "style": "rise"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Seriously Fish: Trichogaster lalius",
+        "url": "https://www.seriouslyfish.com/species/trichogaster-lalius/"
+      },
+      {
+        "title": "Wikipedia: Dwarf gourami",
+        "url": "https://en.wikipedia.org/wiki/Dwarf_gourami"
+      }
+    ]
   },
   "catalog": {
     "scientificName": "Trichogaster lalius",

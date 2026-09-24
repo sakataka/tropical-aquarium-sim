@@ -15,44 +15,58 @@
     "width": 1401,
     "height": 616
   },
-  "cruisingSpeedCmPerSec": 2.1,
-  "burstSpeedCmPerSec": 7.2,
-  "turnRateRadPerSec": 2.0,
-  "stopProbabilityPerSec": 0.12,
-  "motion": {
-    "kickIntervalSecMin": 1.6,
-    "kickIntervalSecMax": 4.8,
-    "kickDurationSec": 0.18,
-    "pauseDurationSecMin": 1.4,
-    "pauseDurationSecMax": 4.2,
-    "coastDragPerSec": 0.54,
-    "wanderStrength": 0.18
-  },
   "preferredZone": {
     "minX": 0.1,
     "maxX": 0.92,
     "minY": 0.7,
     "maxY": 0.92
   },
-  "schooling": {
-    "enabled": true,
-    "radiusCm": 9,
-    "strength": 0.07
-  },
-  "behavior": {
-    "separationBodyLengths": 1.2,
-    "alignmentBodyLengths": 2.4,
-    "attractionBodyLengths": 4.8,
-    "separationStrength": 1.3,
-    "alignmentStrength": 0.3,
-    "attractionStrength": 0.26,
-    "wallAvoidanceStrength": 3.8,
-    "edgeCruiseChance": 0.22,
-    "structureAffinity": 0.88,
-    "surfaceAffinity": 0.0,
-    "zoneHoldStrength": 1.45,
-    "surfaceVisitChance": 0.03,
-    "structurePatrolStrength": 0.85
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.4,
+      "burst": 2.2
+    },
+    "turnRateRadPerSec": 2.2,
+    "restFraction": 0.2,
+    "depthRange": [0.15, 0.85],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0.6,
+      "polarization": 0.3
+    },
+    "structureAffinity": 0.45,
+    "habits": [
+      {
+        "type": "bottomForage"
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.5,
+        "durationSec": [8, 30]
+      },
+      {
+        "type": "airBreathing",
+        "breathsPerHour": [3, 8],
+        "style": "dash"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Kramer & McClure (1980) Aerial respiration in the catfish, Corydoras aeneus",
+        "url": "https://cdnsciencepub.com/doi/10.1139/z80-273"
+      },
+      {
+        "title": "Social dynamics obscure the effect of temperature on air breathing in Corydoras catfish (J Exp Biol 2020)",
+        "url": "https://journals.biologists.com/jeb/article/223/21/jeb222133/226145/Social-dynamics-obscure-the-effect-of-temperature"
+      },
+      {
+        "title": "Wikipedia: Corydoras",
+        "url": "https://en.wikipedia.org/wiki/Corydoras"
+      }
+    ]
   },
   "catalog": {
     "scientificName": "Corydoras sp.",

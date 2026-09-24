@@ -11,44 +11,51 @@
     "width": 1341,
     "height": 613
   },
-  "cruisingSpeedCmPerSec": 2.8,
-  "burstSpeedCmPerSec": 10.5,
-  "turnRateRadPerSec": 2.5,
-  "stopProbabilityPerSec": 0.07,
-  "motion": {
-    "kickIntervalSecMin": 1.2,
-    "kickIntervalSecMax": 2.8,
-    "kickDurationSec": 0.22,
-    "pauseDurationSecMin": 0.85,
-    "pauseDurationSecMax": 1.95,
-    "coastDragPerSec": 0.42,
-    "wanderStrength": 0.3
-  },
   "preferredZone": {
     "minX": 0.08,
     "maxX": 0.92,
-    "minY": 0.18,
-    "maxY": 0.66
+    "minY": 0.15,
+    "maxY": 0.85
   },
-  "schooling": {
-    "enabled": true,
-    "radiusCm": 11,
-    "strength": 0.12
-  },
-  "behavior": {
-    "separationBodyLengths": 1.2,
-    "alignmentBodyLengths": 2.6,
-    "attractionBodyLengths": 4.9,
-    "separationStrength": 1.2,
-    "alignmentStrength": 0.55,
-    "attractionStrength": 0.5,
-    "wallAvoidanceStrength": 3.6,
-    "edgeCruiseChance": 0.16,
-    "structureAffinity": 0.24,
-    "surfaceAffinity": 0.38,
-    "zoneHoldStrength": 0.9,
-    "surfaceVisitChance": 0.14,
-    "structurePatrolStrength": 0.18
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "steady",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.6,
+      "burst": 2.5
+    },
+    "turnRateRadPerSec": 2.5,
+    "restFraction": 0.1,
+    "depthRange": [0.1, 0.85],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0.3,
+      "polarization": 0.2
+    },
+    "structureAffinity": 0.35,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 2.0,
+        "durationSec": [1.5, 4]
+      },
+      {
+        "type": "follow",
+        "chancePerMin": 0.4,
+        "durationSec": [2, 5]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Seriously Fish: Xiphophorus maculatus",
+        "url": "https://www.seriouslyfish.com/species/xiphophorus-maculatus/"
+      },
+      {
+        "title": "The Aquarium Wiki: Platy",
+        "url": "https://www.theaquariumwiki.com/wiki/Platy"
+      }
+    ]
   },
   "catalog": {
     "scientificName": "Xiphophorus maculatus",

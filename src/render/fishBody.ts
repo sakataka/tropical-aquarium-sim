@@ -9,6 +9,8 @@ const TURN_HYSTERESIS_CM_PER_SEC = 0.35;
 const MIN_TURN_INTERVAL_SEC = 0.7;
 const MIN_PROFILE_WIDTH = 0.1;
 const MAX_PITCH_RAD = 0.42;
+const MAX_TRIP_PITCH_RAD = 1.05;
+const NOSE_DOWN_PITCH_RAD = 0.32;
 
 const DEFAULT_SWIM = {
   tailBeatHz: 2.6,
@@ -19,6 +21,23 @@ const DEFAULT_SWIM = {
 };
 
 type SwimStyle = typeof DEFAULT_SWIM;
+type BehaviorMode = FishInstance["behaviorMode"];
+
+const MODE_AMPLITUDE: Record<BehaviorMode, number> = {
+  kick: 1,
+  coast: 0.34,
+  pause: 0.14,
+  forage: 0.2,
+  rest: 0.06,
+};
+
+const MODE_BEAT: Record<BehaviorMode, number> = {
+  kick: 1.25,
+  coast: 0.62,
+  pause: 0.4,
+  forage: 0.5,
+  rest: 0.25,
+};
 
 // 横向き写真1枚をメッシュとして変形し、尾の振りと反転を立体的に見せる。
 // 画像は頭が左を向いている前提（yaw 0 = 左向き、yaw π = 右向き）。
@@ -55,19 +74,23 @@ export class FishBody {
     this.updateYaw(fish, deltaSec);
     const speed = Math.hypot(fish.velocity.x, fish.velocity.y);
     const turning = Math.abs(Math.sin(this.yaw));
-    const modeAmplitude = fish.behaviorMode === "kick"
-      ? 1
-      : fish.behaviorMode === "coast" ? 0.34 : 0.14;
+    const modeAmplitude = MODE_AMPLITUDE[fish.behaviorMode];
     const targetAmplitude = this.swim.tailSweepRad * Math.min(1.25, modeAmplitude + turning * 0.7);
     this.amplitude += (targetAmplitude - this.amplitude) * (1 - Math.exp(-5 * deltaSec));
-    const beatHz = this.swim.tailBeatHz *
-      (fish.behaviorMode === "kick" ? 1.25 : fish.behaviorMode === "coast" ? 0.62 : 0.4) *
+    const beatHz = this.swim.tailBeatHz * MODE_BEAT[fish.behaviorMode] *
       (1 + Math.min(0.5, speed * 0.04));
     this.phase = (this.phase + deltaSec * beatHz * Math.PI * 2) % (Math.PI * 200);
 
-    const targetPitch = speed > 0.08
-      ? clamp(Math.atan2(fish.velocity.y, Math.abs(fish.velocity.x)) * 0.8, -MAX_PITCH_RAD, MAX_PITCH_RAD)
-      : this.pitch * 0.9;
+    // 水面へ息継ぎに行くときは大きく頭を上げ、底を探るときは頭を下げる。
+    const maxPitch = fish.targetKind === "surfaceVisit" || fish.targetKind === "descend"
+      ? MAX_TRIP_PITCH_RAD
+      : MAX_PITCH_RAD;
+    const headingPitch = speed > 0.08
+      ? clamp(Math.atan2(fish.velocity.y, Math.abs(fish.velocity.x)) * 0.8, -maxPitch, maxPitch)
+      : 0;
+    const targetPitch = fish.posture === "noseDown"
+      ? Math.max(headingPitch, NOSE_DOWN_PITCH_RAD)
+      : headingPitch;
     this.pitch += (targetPitch - this.pitch) * (1 - Math.exp(-4 * deltaSec));
     // 頭が向いている側へ傾ける。反転中は自然に0へ近づく。
     this.mesh.rotation = -this.pitch * Math.cos(this.yaw);

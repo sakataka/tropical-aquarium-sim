@@ -14,44 +14,36 @@
     "width": 1334,
     "height": 601
   },
-  "cruisingSpeedCmPerSec": 3.1,
-  "burstSpeedCmPerSec": 12.5,
-  "turnRateRadPerSec": 3.0,
-  "stopProbabilityPerSec": 0.045,
-  "motion": {
-    "kickIntervalSecMin": 1.05,
-    "kickIntervalSecMax": 2.45,
-    "kickDurationSec": 0.22,
-    "pauseDurationSecMin": 0.85,
-    "pauseDurationSecMax": 1.9,
-    "coastDragPerSec": 0.38,
-    "wanderStrength": 0.24
-  },
   "preferredZone": {
     "minX": 0.12,
     "maxX": 0.9,
     "minY": 0.3,
     "maxY": 0.7
   },
-  "schooling": {
-    "enabled": true,
-    "radiusCm": 14,
-    "strength": 0.23
-  },
-  "behavior": {
-    "separationBodyLengths": 1.25,
-    "alignmentBodyLengths": 3.0,
-    "attractionBodyLengths": 6.2,
-    "separationStrength": 1.25,
-    "alignmentStrength": 0.95,
-    "attractionStrength": 0.75,
-    "wallAvoidanceStrength": 4.0,
-    "edgeCruiseChance": 0.08,
-    "structureAffinity": 0.2,
-    "surfaceAffinity": 0.05,
-    "zoneHoldStrength": 1.0,
-    "surfaceVisitChance": 0.01,
-    "structurePatrolStrength": 0.22
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.8,
+      "burst": 3.2
+    },
+    "turnRateRadPerSec": 3.0,
+    "restFraction": 0.06,
+    "depthRange": [0.2, 0.85],
+    "social": {
+      "grouping": "school",
+      "spacingBodyLengths": 1.2,
+      "cohesion": 0.9,
+      "polarization": 0.85
+    },
+    "structureAffinity": 0.25,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Seriously Fish: Trigonostigma heteromorpha",
+        "url": "https://www.seriouslyfish.com/species/trigonostigma-heteromorpha/"
+      }
+    ]
   },
   "catalog": {
     "scientificName": "Trigonostigma heteromorpha",

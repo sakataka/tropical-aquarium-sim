@@ -262,6 +262,16 @@ input::placeholder { color: #6f898a; }
   overflow: hidden;
 }
 .fish-catalog-copy > p.origin { color: #86aaa9; -webkit-line-clamp: 1; }
+.trait-list { display: flex; flex-wrap: wrap; gap: 5px; margin: 0; padding: 0; list-style: none; }
+.trait-list li {
+  padding: 3px 8px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(120, 201, 200, 0.08);
+  color: #add0cf;
+  font-size: 10px;
+  line-height: 1.4;
+}
 .count-control {
   display: grid;
   grid-template-columns: 40px 1fr 40px;

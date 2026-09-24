@@ -142,6 +142,9 @@ export function AquariumControls({
                       <span>{species.realBodyLengthCm}cm</span>
                     </div>
                     <p className="origin">{species.catalog.originRegionName} · {species.catalog.origin}</p>
+                    <ul className="trait-list" aria-label={`${species.displayName}の習性`}>
+                      {getTraitLabels(species).map((label) => <li key={label}>{label}</li>)}
+                    </ul>
                     <p>{species.catalog.movement}</p>
                     <div className="count-control" aria-label={`${species.displayName}の匹数`}>
                       <button
@@ -274,6 +277,31 @@ function TabButton({
       {children}
     </button>
   );
+}
+
+const ACTIVITY_LABELS = { diurnal: "昼行性", crepuscular: "朝夕に活発", nocturnal: "夜行性" } as const;
+const GROUPING_LABELS = {
+  school: "群泳",
+  shoal: "ゆるい群れ",
+  group: "仲間と過ごす",
+  solitary: "単独で泳ぐ",
+} as const;
+const HABIT_LABELS = {
+  airBreathing: "空気呼吸",
+  bottomRest: "底で休む",
+  bottomForage: "底を探る",
+  grazing: "ついばむ",
+  hideByDay: "昼は隠れる",
+  follow: "追いかける",
+} as const;
+
+function getTraitLabels(species: FishSpeciesDefinition): string[] {
+  const { activityPeriod, social, habits } = species.ecology;
+  return [
+    ACTIVITY_LABELS[activityPeriod],
+    GROUPING_LABELS[social.grouping],
+    ...habits.map((habit) => HABIT_LABELS[habit.type]),
+  ];
 }
 
 function getSwimZone(species: FishSpeciesDefinition): SwimZoneId {

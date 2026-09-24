@@ -48,7 +48,7 @@ function createFish(speciesId: string, index: number): FishInstance {
       y: Math.sin(index) * 0.35,
     },
     facing: index % 2 === 0 ? 1 : -1,
-    depth: 0.12 + ((index * 0.19) % 0.76),
+    depth: lerp(species.ecology.depthRange[0], species.ecology.depthRange[1], (index * 0.37) % 1),
     bodyLengthVariance: 0.94 + Math.random() * 0.12,
     behaviorMode: "coast",
     behaviorTimeRemainingSec: 0.4 + Math.random() * 1.2,
@@ -61,4 +61,8 @@ function createFish(speciesId: string, index: number): FishInstance {
     targetKind: "openWater",
     seed,
   };
+}
+
+function lerp(from: number, to: number, amount: number): number {
+  return from + (to - from) * amount;
 }

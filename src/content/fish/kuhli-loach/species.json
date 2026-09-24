@@ -18,44 +18,48 @@
     "width": 1677,
     "height": 286
   },
-  "cruisingSpeedCmPerSec": 1.8,
-  "burstSpeedCmPerSec": 8.6,
-  "turnRateRadPerSec": 2.1,
-  "stopProbabilityPerSec": 0.15,
-  "motion": {
-    "kickIntervalSecMin": 1.45,
-    "kickIntervalSecMax": 4.2,
-    "kickDurationSec": 0.2,
-    "pauseDurationSecMin": 1.3,
-    "pauseDurationSecMax": 4.5,
-    "coastDragPerSec": 0.52,
-    "wanderStrength": 0.22
-  },
   "preferredZone": {
     "minX": 0.08,
     "maxX": 0.94,
     "minY": 0.72,
     "maxY": 0.94
   },
-  "schooling": {
-    "enabled": true,
-    "radiusCm": 8,
-    "strength": 0.06
-  },
-  "behavior": {
-    "separationBodyLengths": 1.1,
-    "alignmentBodyLengths": 2.2,
-    "attractionBodyLengths": 4.4,
-    "separationStrength": 1.0,
-    "alignmentStrength": 0.25,
-    "attractionStrength": 0.22,
-    "wallAvoidanceStrength": 4.0,
-    "edgeCruiseChance": 0.3,
-    "structureAffinity": 0.94,
-    "surfaceAffinity": 0.0,
-    "zoneHoldStrength": 1.55,
-    "surfaceVisitChance": 0.0,
-    "structurePatrolStrength": 0.92
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "undulate",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.3,
+      "burst": 1.5
+    },
+    "turnRateRadPerSec": 2.2,
+    "restFraction": 0.2,
+    "depthRange": [0.55, 0.95],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 0.8,
+      "cohesion": 0.5,
+      "polarization": 0.1
+    },
+    "structureAffinity": 0.7,
+    "habits": [
+      {
+        "type": "hideByDay",
+        "durationSec": [40, 120]
+      },
+      {
+        "type": "bottomForage"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Wikipedia: Kuhli loach",
+        "url": "https://en.wikipedia.org/wiki/Kuhli_loach"
+      },
+      {
+        "title": "Shrimp and Snail Breeder: Kuhli Loach detailed guide",
+        "url": "https://aquariumbreeder.com/the-kuhli-loach-detailed-guide-care-diet-and-breeding/"
+      }
+    ]
   },
   "catalog": {
     "scientificName": "Pangio kuhlii",

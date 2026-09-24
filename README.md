@@ -35,14 +35,29 @@ http://127.0.0.1:5173/?theme=iwagumi
 
 ## データとアセット
 
-- `src/content/fish/<species-id>/species.json`: 学名、原産地、体長、泳層、動きと遊泳パラメーター
+- `src/content/fish/<species-id>/species.json`: 学名、原産地、体長、泳層、生態プロファイル（`ecology`）と出典
 - `src/content/fish/<species-id>/side.png`: 画像生成した横向き魚画像
 - `src/content/environment/scenes/<scene-id>/scene.json`: 水景名、標準照明、水の色、魚が寄る構造物の位置、泡の出る位置
 - `src/content/environment/scenes/<scene-id>/plate.webp`: 画像生成した一枚絵の水景
 - `src/content/environment/scenes/<scene-id>/foreground.webp`: 同じ一枚絵から最前面の水草・石だけを切り抜いた透過レイヤー
 - `src/content/aquarium/customization.json`: 保存キー、魚数上限
 
-魚種はフォルダへ `species.json` と `side.png` を置くだけで自動読込されます。泳ぎは `side.png` 1枚をメッシュとして変形し、尾の振りと方向転換を描きます。尾の振り方は `species.json` の `swim` で魚種ごとに調整できます。
+魚種はフォルダへ `species.json` と `side.png` を置くだけで自動読込されます。
+
+`ecology` には公開情報から調べた生態を、体長あたりの速度など実在の単位で書きます。シミュレーションはこの値だけから動きを決めます。
+
+| 項目 | 内容 |
+|---|---|
+| `activityPeriod` | `diurnal`（昼行性）/ `crepuscular`（朝夕）/ `nocturnal`（夜行性）。照明に応じて活動量が変わる |
+| `gait` | `burstCoast`（ひと漕ぎして滑る）/ `steady`（絶えず泳ぐ）/ `glide`（ゆったり漂う）/ `undulate`（体をくねらせる） |
+| `speedBodyLengthsPerSec` | 巡航と瞬発の速度（体長/秒） |
+| `restFraction` | 昼間に止まって漂う時間の割合 |
+| `depthRange` | 前後方向の居場所（0 = ガラス側、1 = 奥） |
+| `social` | 群れ方（`school` / `shoal` / `group` / `solitary`）、仲間との間隔、まとまり、向きのそろい方 |
+| `structureAffinity` | 流木や水草に寄る傾向 |
+| `habits` | `airBreathing`（水面で息継ぎ）、`bottomRest`、`bottomForage`、`grazing`、`hideByDay`、`follow` の組み合わせ |
+| `sources` | 根拠にした資料（1件以上必須） |
+泳ぎは `side.png` 1枚をメッシュとして変形し、尾の振りと方向転換を描きます。尾の振り方は `species.json` の `swim` で魚種ごとに調整できます。
 
 水景は、背景、泡、奥の魚、前景切り抜き、手前の魚、浮遊物の順で合成し、最後に水の揺らぎ・コースティクス・光の筋・照明の色調を1パスのフィルターでかけます。水景を別々の部品から組み立てず、同じ一枚絵から前景を切り抜くことで、光や影の統一感を保ちます。
 
@@ -54,7 +69,7 @@ v3からは魚種別匹数、照明、音設定と同名の水景を引き継ぎ
 
 ## 検証
 
-`bun run test` は魚種カタログ、水景カタログ、魚数上限、v1/v2/v3→v4移行、破損データ、境界・泳層・群泳・構造物への接近を確認します。
+`bun run test` は魚種カタログ、水景カタログ、魚数上限、v1/v2/v3→v4移行、破損データ、境界・泳層・群泳・構造物への接近、方向転換の頻度、夜行性・空気呼吸・照明による活動量の違いを確認します。
 
 `bun run verify:webview` はWebKit backendの `Bun.WebView` を使い、検索・絞り込み・魚の追加、4水景の切り替え、再読込後の復元、照明、環境音、観賞モードを操作します。1440×960pxと420×912pxのスクリーンショットは `tmp/webview/` に保存します。
 

@@ -16,44 +16,40 @@
     "width": 789,
     "height": 935
   },
-  "cruisingSpeedCmPerSec": 2.2,
-  "burstSpeedCmPerSec": 7.5,
-  "turnRateRadPerSec": 1.5,
-  "stopProbabilityPerSec": 0.08,
-  "motion": {
-    "kickIntervalSecMin": 1.8,
-    "kickIntervalSecMax": 4.9,
-    "kickDurationSec": 0.32,
-    "pauseDurationSecMin": 1.15,
-    "pauseDurationSecMax": 3.1,
-    "coastDragPerSec": 0.26,
-    "wanderStrength": 0.12
-  },
   "preferredZone": {
     "minX": 0.12,
     "maxX": 0.88,
     "minY": 0.2,
     "maxY": 0.78
   },
-  "schooling": {
-    "enabled": false,
-    "radiusCm": 10,
-    "strength": 0
-  },
-  "behavior": {
-    "separationBodyLengths": 1.8,
-    "alignmentBodyLengths": 3.4,
-    "attractionBodyLengths": 5.5,
-    "separationStrength": 1.8,
-    "alignmentStrength": 0.15,
-    "attractionStrength": 0.1,
-    "wallAvoidanceStrength": 4.6,
-    "edgeCruiseChance": 0.1,
-    "structureAffinity": 0.5,
-    "surfaceAffinity": 0.02,
-    "zoneHoldStrength": 0.82,
-    "surfaceVisitChance": 0.0,
-    "structurePatrolStrength": 0.44
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.18,
+      "burst": 0.9
+    },
+    "turnRateRadPerSec": 1.4,
+    "restFraction": 0.3,
+    "depthRange": [0.2, 0.8],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 3,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.7,
+    "habits": [],
+    "sources": [
+      {
+        "title": "AquaInfo: Pterophyllum scalare",
+        "url": "https://aquainfo.nl/en/article/pterophyllum-scalare-angelfish/"
+      },
+      {
+        "title": "Wikipedia: Pterophyllum",
+        "url": "https://en.wikipedia.org/wiki/Pterophyllum"
+      }
+    ]
   },
   "catalog": {
     "scientificName": "Pterophyllum scalare",

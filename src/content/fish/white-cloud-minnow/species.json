@@ -14,44 +14,42 @@
     "width": 1469,
     "height": 555
   },
-  "cruisingSpeedCmPerSec": 3.3,
-  "burstSpeedCmPerSec": 13.2,
-  "turnRateRadPerSec": 3.25,
-  "stopProbabilityPerSec": 0.05,
-  "motion": {
-    "kickIntervalSecMin": 0.95,
-    "kickIntervalSecMax": 2.15,
-    "kickDurationSec": 0.2,
-    "pauseDurationSecMin": 0.7,
-    "pauseDurationSecMax": 1.55,
-    "coastDragPerSec": 0.42,
-    "wanderStrength": 0.34
-  },
   "preferredZone": {
     "minX": 0.1,
     "maxX": 0.92,
     "minY": 0.14,
     "maxY": 0.54
   },
-  "schooling": {
-    "enabled": true,
-    "radiusCm": 13,
-    "strength": 0.22
-  },
-  "behavior": {
-    "separationBodyLengths": 1.2,
-    "alignmentBodyLengths": 2.9,
-    "attractionBodyLengths": 5.9,
-    "separationStrength": 1.22,
-    "alignmentStrength": 1.0,
-    "attractionStrength": 0.78,
-    "wallAvoidanceStrength": 3.9,
-    "edgeCruiseChance": 0.12,
-    "structureAffinity": 0.16,
-    "surfaceAffinity": 0.48,
-    "zoneHoldStrength": 1.08,
-    "surfaceVisitChance": 0.16,
-    "structurePatrolStrength": 0.14
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "steady",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.9,
+      "burst": 3.5
+    },
+    "turnRateRadPerSec": 3.2,
+    "restFraction": 0.06,
+    "depthRange": [0.1, 0.8],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.8,
+      "cohesion": 0.55,
+      "polarization": 0.5
+    },
+    "structureAffinity": 0.15,
+    "habits": [
+      {
+        "type": "follow",
+        "chancePerMin": 0.8,
+        "durationSec": [1.2, 2.8]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Seriously Fish: Tanichthys albonubes",
+        "url": "https://www.seriouslyfish.com/species/tanichthys-albonubes/"
+      }
+    ]
   },
   "catalog": {
     "scientificName": "Tanichthys albonubes",

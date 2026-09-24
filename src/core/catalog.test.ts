@@ -11,6 +11,7 @@ describe("fish catalog", () => {
       expect(item.catalog.originRegionName).toBeTruthy();
       expect(item.catalog.origin).toBeTruthy();
       expect(item.catalog.movement).toBeTruthy();
+      expect(item.ecology.sources.length).toBeGreaterThan(0);
     }
   });
 
@@ -22,5 +23,15 @@ describe("fish catalog", () => {
     ]) {
       expect(serialized).not.toContain(`\"${removed}\"`);
     }
+  });
+
+  test("species behave differently according to their ecology", () => {
+    const signatures = new Set(Object.values(fishCatalog).map((item) => JSON.stringify([
+      item.ecology.activityPeriod,
+      item.ecology.gait,
+      item.ecology.social.grouping,
+      item.ecology.habits.map((habit) => habit.type).sort(),
+    ])));
+    expect(signatures.size).toBeGreaterThanOrEqual(7);
   });
 });

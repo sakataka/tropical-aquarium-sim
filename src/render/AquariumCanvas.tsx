@@ -144,6 +144,7 @@ export function AquariumCanvas({
           fish: fishRef.current,
           deltaSec,
           structurePoints,
+          lighting: layoutRef.current.lighting,
         }).fish;
         const { width, height } = app.screen;
         driftCamera(width, height);
