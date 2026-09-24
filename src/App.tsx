@@ -5,25 +5,21 @@ import {
   DEFAULT_CUSTOMIZATION,
   DEFAULT_PREFERENCES,
   LEGACY_AQUARIUM_STATE_STORAGE_KEY,
-  aquariumThemes,
+  PREVIOUS_AQUARIUM_STATE_STORAGE_KEY,
+  aquariumScenes,
   createFishFromStock,
   fishCatalog,
-  getStructurePoints,
-  getThemeById,
+  getDefaultLayout,
+  getSceneById,
   migrateLegacyAquariumState,
   normalizeAquariumCustomization,
   normalizeAquariumPersistedState,
   reconcileFishStock,
-  setLayoutSlot,
   setStockCount,
-  stepSimulation,
   TANK_60CM,
   type AquariumCustomization,
-  type AquariumLayout,
   type AquariumPersistedState,
   type AquariumPreferences,
-  type DecorPlacement,
-  type DecorSlotId,
   type FishInstance,
   type LightingId,
 } from "./core";
@@ -48,21 +44,17 @@ export default function App() {
   const [initialState] = useState<InitialState>(loadInitialState);
   const [customization, setCustomization] = useState(initialState.customization);
   const [preferences, setPreferences] = useState(initialState.preferences);
-  const [fish, setFish] = useState<FishInstance[]>(() =>
-    createFishFromStock(initialState.customization.stock)
+  // 魚の位置は毎フレーム描画側で進めるため、React の state には載せない。
+  const fishRef = useRef<FishInstance[]>(
+    createFishFromStock(initialState.customization.stock),
   );
   const [saveStatus, setSaveStatus] = useState("保存済み");
   const [ready, setReady] = useState(false);
   const [ambientMode, setAmbientMode] = useState<"off" | "manual" | "idle">("off");
   const [audioUnlocked, setAudioUnlocked] = useState(false);
-  const fishRef = useRef(fish);
-  fishRef.current = fish;
-  const structurePoints = useMemo(
-    () => getStructurePoints(customization.layout),
-    [customization.layout],
-  );
   const isAmbient = ambientMode !== "off";
-  const activeTheme = getThemeById(customization.layout.themeId) ?? aquariumThemes[0];
+  const activeScene = getSceneById(customization.layout.sceneId) ?? aquariumScenes[0];
+  const totalFish = customization.stock.reduce((sum, entry) => sum + entry.count, 0);
 
   useAmbientSound(
     preferences.soundEnabled && audioUnlocked,
@@ -99,41 +91,14 @@ export default function App() {
   }, [ambientMode]);
 
   useEffect(() => {
-    setFish((current) => {
-      const next = reconcileFishStock(current, customization.stock);
-      fishRef.current = next;
-      return next;
-    });
+    fishRef.current = reconcileFishStock(fishRef.current, customization.stock);
   }, [customization.stock]);
-
-  useEffect(() => {
-    let frame = 0;
-    let lastTime = performance.now();
-    const tick = (time: number) => {
-      const deltaSec = Math.min(0.05, Math.max(0, (time - lastTime) / 1000));
-      lastTime = time;
-      setFish((current) => {
-        const next = stepSimulation({
-          tank: TANK_60CM,
-          species: fishCatalog,
-          fish: current,
-          deltaSec,
-          structurePoints,
-        }).fish;
-        fishRef.current = next;
-        return next;
-      });
-      frame = requestAnimationFrame(tick);
-    };
-    frame = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(frame);
-  }, [structurePoints]);
 
   useEffect(() => {
     setSaveStatus("保存中…");
     const timeout = window.setTimeout(() => {
       const state: AquariumPersistedState = {
-        version: 3,
+        version: 4,
         customization,
         preferences,
       };
@@ -141,6 +106,7 @@ export default function App() {
         window.localStorage.setItem(AQUARIUM_STATE_STORAGE_KEY, JSON.stringify(state));
         window.localStorage.removeItem(CUSTOMIZATION_STORAGE_KEY);
         window.localStorage.removeItem(LEGACY_AQUARIUM_STATE_STORAGE_KEY);
+        window.localStorage.removeItem(PREVIOUS_AQUARIUM_STATE_STORAGE_KEY);
         setSaveStatus("保存済み");
       } catch {
         setSaveStatus("保存できません");
@@ -158,7 +124,7 @@ export default function App() {
     >
       <section className="aquarium-stage">
         <AquariumCanvas
-          fish={fish}
+          fishRef={fishRef}
           layout={customization.layout}
           onReady={handleReady}
           species={fishCatalog}
@@ -174,7 +140,7 @@ export default function App() {
           <div className="ambient-hud">
             <div>
               <strong>60cm水槽</strong>
-              <span>{activeTheme.displayName} · {fish.length}匹</span>
+              <span>{activeScene.displayName} · {totalFish}匹</span>
             </div>
             <button onClick={() => setAmbientMode("off")} type="button">
               編集画面に戻る
@@ -185,16 +151,13 @@ export default function App() {
 
       <AquariumControls
         customization={customization}
-        onBackgroundChange={(backgroundId) => updateBaseAsset("backgroundId", backgroundId)}
         onEnterAmbientMode={() => setAmbientMode("manual")}
         onLightingChange={updateLighting}
         onPreferencesChange={(update) =>
           setPreferences((current) => ({ ...current, ...update }))
         }
-        onSlotChange={updateSlot}
+        onSceneChange={applyScene}
         onSpeciesCountChange={updateSpeciesCount}
-        onSubstrateChange={(substrateId) => updateBaseAsset("substrateId", substrateId)}
-        onThemeChange={applyTheme}
         preferences={preferences}
         saveStatus={saveStatus}
         speciesList={speciesList}
@@ -210,51 +173,33 @@ export default function App() {
     }));
   }
 
-  function applyTheme(themeId: AquariumLayout["themeId"]) {
-    const theme = getThemeById(themeId);
-    if (!theme) return;
-    setReady(false);
+  function applyScene(sceneId: string) {
+    if (!getSceneById(sceneId)) return;
     setCustomization((current) => ({
-      stock: current.stock,
-      layout: structuredClone(theme.layout),
+      ...current,
+      layout: getDefaultLayout(sceneId),
     }));
   }
 
   function updateLighting(lighting: LightingId) {
-    setReady(false);
     setCustomization((current) => ({
       ...current,
       layout: { ...current.layout, lighting },
-    }));
-  }
-
-  function updateBaseAsset(
-    key: "backgroundId" | "substrateId",
-    assetId: string,
-  ) {
-    setReady(false);
-    setCustomization((current) => normalizeAquariumCustomization({
-      ...current,
-      layout: { ...current.layout, [key]: assetId },
-    }, fishCatalog));
-  }
-
-  function updateSlot(slotId: DecorSlotId, placement: DecorPlacement | null) {
-    setReady(false);
-    setCustomization((current) => ({
-      ...current,
-      layout: setLayoutSlot(current.layout, slotId, placement),
     }));
   }
 }
 
 function loadInitialState(): InitialState {
   const params = new URLSearchParams(window.location.search);
-  const requestedThemeId = mapUrlTheme(params.get("theme"), params.get("preset"));
+  const requestedSceneId = mapUrlScene(params.get("theme"), params.get("preset"));
   try {
     const currentValue = window.localStorage.getItem(AQUARIUM_STATE_STORAGE_KEY);
     const current = currentValue
       ? normalizeAquariumPersistedState(JSON.parse(currentValue), fishCatalog)
+      : undefined;
+    const previousStateValue = window.localStorage.getItem(PREVIOUS_AQUARIUM_STATE_STORAGE_KEY);
+    const previousState = previousStateValue
+      ? migrateLegacyAquariumState(JSON.parse(previousStateValue), fishCatalog)
       : undefined;
     const legacyStateValue = window.localStorage.getItem(LEGACY_AQUARIUM_STATE_STORAGE_KEY);
     const legacyState = legacyStateValue
@@ -264,15 +209,14 @@ function loadInitialState(): InitialState {
     const legacyCustomization = legacyCustomizationValue
       ? migrateLegacyAquariumState(JSON.parse(legacyCustomizationValue), fishCatalog)
       : undefined;
-    const state = current ?? legacyState ?? legacyCustomization;
+    const state = current ?? previousState ?? legacyState ?? legacyCustomization;
     const customization = state?.customization ?? DEFAULT_CUSTOMIZATION;
     const preferences = state?.preferences ?? DEFAULT_PREFERENCES;
-    if (!requestedThemeId) return { customization, preferences };
-    const theme = getThemeById(requestedThemeId) ?? aquariumThemes[0];
+    if (!requestedSceneId) return { customization, preferences };
     return {
       customization: normalizeAquariumCustomization({
         stock: customization.stock,
-        layout: theme.layout,
+        layout: getDefaultLayout(requestedSceneId),
       }, fishCatalog),
       preferences,
     };
@@ -284,13 +228,11 @@ function loadInitialState(): InitialState {
   }
 }
 
-function mapUrlTheme(
-  theme: string | null,
+function mapUrlScene(
+  scene: string | null,
   legacyPreset: string | null,
-): AquariumLayout["themeId"] | undefined {
-  if (theme === "planted" || theme === "driftwood" || theme === "iwagumi") {
-    return theme;
-  }
+): string | undefined {
+  if (getSceneById(scene)) return scene!;
   if (legacyPreset === "community") return "planted";
   if (legacyPreset === "school") return "iwagumi";
   if (legacyPreset === "calm") return "driftwood";

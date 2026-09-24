@@ -2,8 +2,10 @@
   "id": "angelfish",
   "displayName": "エンゼルフィッシュ",
   "realBodyLengthCm": 12,
-  "animation": {
-    "framesPerSecond": 6
+  "swim": {
+    "tailBeatHz": 1.5,
+    "tailSweepRad": 0.36,
+    "bodyWaveStart": 0.5
   },
   "visual": {
     "fallbackColor": "#d8d4c8"

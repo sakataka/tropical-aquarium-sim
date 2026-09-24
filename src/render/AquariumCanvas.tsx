@@ -1,69 +1,66 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type MutableRefObject } from "react";
 import {
-  AnimatedSprite,
   Application,
   Assets,
+  BlurFilter,
   Container,
-  Graphics,
   Sprite,
   Texture,
 } from "pixi.js";
 import {
-  DECOR_SLOT_IDS,
-  decorAssetsById,
   getFishSpriteScale,
+  getSceneById,
+  stepSimulation,
   type AquariumLayout,
-  type DecorSlotId,
   type FishInstance,
   type FishSpeciesDefinition,
+  type LightingId,
   type TankDefinition,
+  type Vec2,
 } from "../core";
 import {
   environmentAssets,
-  getEnvironmentAssetUrl,
-  getFishAnimationFrameUrls,
   getFishImageUrl,
+  getSceneForegroundUrl,
+  getScenePlateUrl,
 } from "./assets";
+import { BubbleColumns, FloatingMotes } from "./bubbles";
+import { FishBody, getBodyTexture } from "./fishBody";
+import { UnderwaterFilter } from "./underwaterFilter";
 
 type AquariumCanvasProps = {
-  fish: FishInstance[];
+  fishRef: MutableRefObject<FishInstance[]>;
   species: Record<string, FishSpeciesDefinition>;
   tank: TankDefinition;
   layout: AquariumLayout;
   onReady?: () => void;
 };
 
-type FishSpriteRecord = {
-  sprite: AnimatedSprite;
-  loadedKey?: string;
-  visualX?: number;
-  visualY?: number;
-  visualScale?: number;
-  visualRotation?: number;
+type CanvasHandle = {
+  setScene: (sceneId: string) => void;
+  setLighting: (lighting: LightingId) => void;
 };
 
-const SLOT_POSITIONS: Record<DecorSlotId, { x: number; y: number }> = {
-  "rear-left": { x: 0.18, y: 0.94 },
-  "rear-right": { x: 0.82, y: 0.94 },
-  "mid-left": { x: 0.29, y: 0.94 },
-  "mid-right": { x: 0.71, y: 0.94 },
-  "front-left": { x: 0.16, y: 1 },
-  "front-center": { x: 0.5, y: 1 },
-  "front-right": { x: 0.84, y: 1 },
-};
+type FishRecord = { body: FishBody; visualScale: number };
+
+const BACK_DEPTH = 0.56;
+const SCENE_FADE_SEC = 0.9;
 
 export function AquariumCanvas({
-  fish,
+  fishRef,
   species,
   tank,
   layout,
   onReady,
 }: AquariumCanvasProps) {
   const hostRef = useRef<HTMLDivElement | null>(null);
-  const fishRef = useRef(fish);
+  const handleRef = useRef<CanvasHandle | null>(null);
+  const layoutRef = useRef(layout);
   const speciesRef = useRef(species);
-  fishRef.current = fish;
+  const onReadyRef = useRef(onReady);
+  layoutRef.current = layout;
   speciesRef.current = species;
+  onReadyRef.current = onReady;
 
   useEffect(() => {
     const host = hostRef.current;
@@ -71,32 +68,40 @@ export function AquariumCanvas({
     const targetHost = host;
     let disposed = false;
     let initialized = false;
-    let setupComplete = false;
     let destroyed = false;
     const app = new Application();
-    const records = new Map<string, FishSpriteRecord>();
+    const records = new Map<string, FishRecord>();
+    const fishTextures = new Map<string, Texture | Promise<void>>();
 
-    const root = new Container();
-    const backgroundLayer = new Container();
-    const rearLayer = new Container();
-    const fishBackLayer = new Container();
-    const midLayer = new Container();
-    const fishFrontLayer = new Container();
-    const frontLayer = new Container();
+    const world = new Container();
+    const plateLayer = new Container();
     const bubbleLayer = new Container();
-    const glassLayer = new Container();
+    const fishBackLayer = new Container();
+    const foregroundLayer = new Container();
+    const fishFrontLayer = new Container();
+    const moteLayer = new Container();
     fishBackLayer.sortableChildren = true;
     fishFrontLayer.sortableChildren = true;
-    root.addChild(
-      backgroundLayer,
-      rearLayer,
-      fishBackLayer,
-      midLayer,
-      fishFrontLayer,
-      frontLayer,
+    world.addChild(
+      plateLayer,
       bubbleLayer,
-      glassLayer,
+      fishBackLayer,
+      foregroundLayer,
+      fishFrontLayer,
+      moteLayer,
     );
+    // 奥の魚は水の厚みでわずかにぼける。
+    fishBackLayer.filters = [new BlurFilter({ strength: 0.6, quality: 2, resolution: "inherit" })];
+    const underwater = new UnderwaterFilter(layoutRef.current.lighting);
+
+    let bubbles: BubbleColumns | undefined;
+    let motes: FloatingMotes | undefined;
+    let currentSceneId: string | undefined;
+    let sceneToken = 0;
+    let structurePoints: Vec2[] = [];
+    let waterTint = 0xffffff;
+    let readyNotified = false;
+    let elapsedSec = 0;
 
     async function setup() {
       await app.init({
@@ -112,49 +117,182 @@ export function AquariumCanvas({
         destroyApp();
         return;
       }
-      app.stage.addChild(root);
+      app.stage.addChild(world);
+      app.stage.filters = [underwater];
+      app.stage.filterArea = app.screen;
       targetHost.appendChild(app.canvas);
-      await drawEnvironment(
-        app,
-        layout,
-        backgroundLayer,
-        rearLayer,
-        midLayer,
-        frontLayer,
-        bubbleLayer,
-        glassLayer,
-      );
-      setupComplete = true;
-      if (disposed) {
-        destroyApp();
-        return;
-      }
+      app.renderer.on("resize", layoutSceneSprites);
+
+      const bubbleTexture = await Assets.load<Texture>(environmentAssets.bubbleParticleUrl);
+      if (disposed) return;
+      bubbles = new BubbleColumns(bubbleTexture);
+      motes = new FloatingMotes(bubbleTexture);
+      bubbleLayer.addChild(bubbles.container);
+      moteLayer.addChild(motes.container);
+
+      handleRef.current = {
+        setScene: (sceneId) => void showScene(sceneId),
+        setLighting: (lighting) => underwater.setLighting(lighting),
+      };
+      await showScene(layoutRef.current.sceneId);
+      if (disposed) return;
+      underwater.setLighting(layoutRef.current.lighting);
 
       app.ticker.add((ticker) => {
         const deltaSec = Math.min(0.05, ticker.deltaMS / 1000);
-        updateFishSprites(
-          app,
-          records,
-          fishBackLayer,
-          fishFrontLayer,
-          fishRef.current,
-          speciesRef.current,
+        elapsedSec += deltaSec;
+        fishRef.current = stepSimulation({
           tank,
+          species: speciesRef.current,
+          fish: fishRef.current,
           deltaSec,
-        );
-        animateWater(app, bubbleLayer, glassLayer, performance.now(), deltaSec);
+          structurePoints,
+        }).fish;
+        const { width, height } = app.screen;
+        driftCamera(width, height);
+        fadeScenes(deltaSec);
+        updateFish(deltaSec);
+        bubbles?.update(width, height, deltaSec);
+        motes?.update(width, height, elapsedSec, deltaSec);
+        underwater.update(elapsedSec % 3600, deltaSec);
       });
-      updateFishSprites(
-        app,
-        records,
-        fishBackLayer,
-        fishFrontLayer,
-        fishRef.current,
-        speciesRef.current,
-        tank,
-        0,
+    }
+
+    async function showScene(sceneId: string) {
+      const scene = getSceneById(sceneId);
+      const plateUrl = getScenePlateUrl(sceneId);
+      if (!scene || !plateUrl || sceneId === currentSceneId) return;
+      currentSceneId = sceneId;
+      const token = ++sceneToken;
+      const foregroundUrl = getSceneForegroundUrl(sceneId);
+      const [plateTexture, foregroundTexture] = await Promise.all([
+        Assets.load<Texture>(plateUrl),
+        foregroundUrl ? Assets.load<Texture>(foregroundUrl) : Promise.resolve(undefined),
+      ]);
+      if (disposed || token !== sceneToken) return;
+
+      const immediate = plateLayer.children.length === 0;
+      for (const [layer, texture] of [
+        [plateLayer, plateTexture],
+        [foregroundLayer, foregroundTexture],
+      ] as const) {
+        if (!texture) continue;
+        const sprite = new Sprite(texture);
+        sprite.anchor.set(0.5);
+        sprite.alpha = immediate ? 1 : 0;
+        layer.addChild(sprite);
+      }
+      layoutSceneSprites();
+      structurePoints = scene.structurePoints;
+      waterTint = getWaterTint(scene.waterColor);
+      bubbles?.setSources(scene.bubbleSources);
+
+      if (!readyNotified) {
+        readyNotified = true;
+        requestAnimationFrame(() => !disposed && onReadyRef.current?.());
+      }
+    }
+
+    function layoutSceneSprites() {
+      const { width, height } = app.screen;
+      for (const layer of [plateLayer, foregroundLayer]) {
+        for (const child of layer.children) {
+          if (!(child instanceof Sprite)) continue;
+          child.position.set(width / 2, height / 2);
+          child.scale.set(Math.max(width / child.texture.width, height / child.texture.height));
+        }
+      }
+    }
+
+    // 新しい水景をフェードインし、重なりきったら古い水景を外す。
+    function fadeScenes(deltaSec: number) {
+      for (const layer of [plateLayer, foregroundLayer]) {
+        const newest = layer.children[layer.children.length - 1];
+        if (!newest || layer.children.length < 2) continue;
+        newest.alpha = Math.min(1, newest.alpha + deltaSec / SCENE_FADE_SEC);
+        if (newest.alpha >= 1) {
+          for (const old of layer.children.slice(0, -1)) old.destroy();
+        }
+      }
+    }
+
+    // 観賞中に気づかないほどゆっくりカメラを漂わせる。
+    function driftCamera(width: number, height: number) {
+      const zoom = 1.03 + Math.sin(elapsedSec / 41) * 0.006;
+      world.scale.set(zoom);
+      world.pivot.set(
+        width / 2 + Math.sin(elapsedSec / 67) * width * 0.006,
+        height / 2 + Math.sin(elapsedSec / 53) * height * 0.005,
       );
-      requestAnimationFrame(() => !disposed && onReady?.());
+      world.position.set(width / 2, height / 2);
+    }
+
+    function updateFish(deltaSec: number) {
+      const fish = fishRef.current;
+      const catalog = speciesRef.current;
+      const activeIds = new Set(fish.map((item) => item.id));
+      for (const [id, record] of records) {
+        if (!activeIds.has(id)) {
+          record.body.destroy();
+          records.delete(id);
+        }
+      }
+      const { width, height } = app.screen;
+      for (const item of fish) {
+        const definition = catalog[item.speciesId];
+        if (!definition) continue;
+        let record = records.get(item.id);
+        if (!record) {
+          const texture = getFishTexture(definition);
+          if (!texture) continue;
+          record = {
+            body: new FishBody(getBodyTexture(texture, definition), definition, item),
+            visualScale: 0,
+          };
+          records.set(item.id, record);
+        }
+        const mesh = record.body.mesh;
+        const targetLayer = item.depth > BACK_DEPTH ? fishBackLayer : fishFrontLayer;
+        if (mesh.parent !== targetLayer) targetLayer.addChild(mesh);
+
+        const scale = getFishSpriteScale({
+          viewportWidthPx: width,
+          tankWidthCm: tank.widthCm,
+          species: definition,
+          bodyLengthVariance: item.bodyLengthVariance,
+          depth: item.depth,
+        });
+        record.visualScale = record.visualScale === 0
+          ? scale
+          : record.visualScale + (scale - record.visualScale) * (1 - Math.exp(-4 * deltaSec));
+        mesh.position.set(
+          (item.position.x / tank.widthCm) * width,
+          (item.position.y / tank.heightCm) * height,
+        );
+        mesh.scale.set(record.visualScale);
+        mesh.tint = mixColor(0xffffff, waterTint, 0.08 + item.depth * 0.3);
+        mesh.alpha = 1 - item.depth * 0.1;
+        mesh.zIndex = -item.depth;
+        record.body.update(item, deltaSec);
+      }
+    }
+
+    function getFishTexture(definition: FishSpeciesDefinition): Texture | undefined {
+      const cached = fishTextures.get(definition.id);
+      if (cached instanceof Texture) return cached;
+      if (cached) return undefined;
+      const url = getFishImageUrl(definition.id);
+      if (!url) return undefined;
+      // 大きな原画を小さく表示するため、ミップマップでちらつきを抑える。
+      fishTextures.set(definition.id, Assets.load<Texture>({
+        src: url,
+        data: { autoGenerateMipmaps: true },
+      }).then((texture) => {
+        fishTextures.set(definition.id, texture);
+      }).catch((error: unknown) => {
+        console.error(`Fish texture failed: ${definition.id}`, error);
+      }));
+      return undefined;
     }
 
     void setup().catch((error: unknown) => {
@@ -162,8 +300,10 @@ export function AquariumCanvas({
     });
     return () => {
       disposed = true;
+      handleRef.current = null;
+      for (const record of records.values()) record.body.destroy();
       records.clear();
-      if (initialized && setupComplete) destroyApp();
+      if (initialized) destroyApp();
     };
 
     function destroyApp() {
@@ -171,265 +311,34 @@ export function AquariumCanvas({
       destroyed = true;
       app.destroy(true, { children: true, texture: false });
     }
-  }, [layout, onReady, tank]);
+  }, [fishRef, tank]);
+
+  useEffect(() => {
+    handleRef.current?.setScene(layout.sceneId);
+  }, [layout.sceneId]);
+
+  useEffect(() => {
+    handleRef.current?.setLighting(layout.lighting);
+  }, [layout.lighting]);
 
   return <div className="aquarium-canvas" ref={hostRef} />;
 }
 
-async function drawEnvironment(
-  app: Application,
-  layout: AquariumLayout,
-  backgroundLayer: Container,
-  rearLayer: Container,
-  midLayer: Container,
-  frontLayer: Container,
-  bubbleLayer: Container,
-  glassLayer: Container,
-) {
-  const backgroundUrl = getEnvironmentAssetUrl(layout.backgroundId);
-  const substrateUrl = getEnvironmentAssetUrl(layout.substrateId);
-  const promises: Promise<unknown>[] = [];
-  if (backgroundUrl) {
-    promises.push(addFullFrameSprite(backgroundLayer, backgroundUrl, app.screen.width, app.screen.height));
-  }
-  if (substrateUrl) {
-    promises.push(addFullFrameSprite(backgroundLayer, substrateUrl, app.screen.width, app.screen.height));
-  }
-
-  for (const slotId of DECOR_SLOT_IDS) {
-    const placement = layout.slots[slotId];
-    if (!placement) continue;
-    const asset = decorAssetsById[placement.assetId];
-    const url = getEnvironmentAssetUrl(placement.assetId);
-    if (!asset || !url) continue;
-    const layer = asset.category === "rear"
-      ? rearLayer
-      : asset.category === "mid"
-        ? midLayer
-        : frontLayer;
-    promises.push(addDecorSprite(
-      layer,
-      url,
-      app.screen.width,
-      app.screen.height,
-      slotId,
-      asset.scale,
-      asset.anchorY,
-      placement.flipped,
-    ));
-  }
-
-  promises.push(createBubbles(app, bubbleLayer));
-  drawGlass(app, glassLayer, layout.lighting);
-  await Promise.allSettled(promises);
+// 水の色を明るく正規化し、魚にかける乗算色にする。
+function getWaterTint(hex: string): number {
+  const value = Number.parseInt(hex.slice(1), 16);
+  const channels = [(value >> 16) & 0xff, (value >> 8) & 0xff, value & 0xff];
+  const max = Math.max(...channels, 1);
+  const [r, g, b] = channels.map((channel) => Math.round((channel / max) * 255));
+  return (r! << 16) | (g! << 8) | b!;
 }
 
-async function addFullFrameSprite(
-  layer: Container,
-  url: string,
-  width: number,
-  height: number,
-) {
-  const texture = await Assets.load<Texture>(url);
-  const sprite = new Sprite(texture);
-  sprite.anchor.set(0.5);
-  sprite.position.set(width / 2, height / 2);
-  sprite.scale.set(Math.max(width / texture.width, height / texture.height));
-  layer.addChild(sprite);
-}
-
-async function addDecorSprite(
-  layer: Container,
-  url: string,
-  width: number,
-  height: number,
-  slotId: DecorSlotId,
-  widthRatio: number,
-  anchorY: number,
-  flipped: boolean,
-) {
-  const texture = await Assets.load<Texture>(url);
-  const sprite = new Sprite(texture);
-  const slot = SLOT_POSITIONS[slotId];
-  const targetScale = (width * widthRatio) / texture.width;
-  sprite.anchor.set(0.5, anchorY);
-  sprite.position.set(width * slot.x, height * slot.y);
-  sprite.scale.set(flipped ? -targetScale : targetScale, targetScale);
-  layer.addChild(sprite);
-}
-
-function updateFishSprites(
-  app: Application,
-  records: Map<string, FishSpriteRecord>,
-  backLayer: Container,
-  frontLayer: Container,
-  fish: FishInstance[],
-  species: Record<string, FishSpeciesDefinition>,
-  tank: TankDefinition,
-  deltaSec: number,
-) {
-  const activeIds = new Set(fish.map((item) => item.id));
-  for (const [id, record] of records) {
-    if (!activeIds.has(id)) {
-      record.sprite.destroy();
-      records.delete(id);
-    }
-  }
-  for (const item of fish) {
-    const definition = species[item.speciesId];
-    if (!definition) continue;
-    const targetLayer = item.depth > 0.56 ? backLayer : frontLayer;
-    let record = records.get(item.id);
-    if (!record) {
-      const sprite = new AnimatedSprite({
-        textures: [Texture.EMPTY],
-        autoPlay: false,
-        loop: true,
-      });
-      sprite.anchor.set(0.5);
-      targetLayer.addChild(sprite);
-      record = { sprite };
-      records.set(item.id, record);
-      void loadFishTextures(record, definition, item.seed).catch(() => {
-        if (!record?.sprite.destroyed) record!.loadedKey = undefined;
-      });
-    } else if (record.sprite.parent !== targetLayer) {
-      targetLayer.addChild(record.sprite);
-    }
-
-    const x = (item.position.x / tank.widthCm) * app.screen.width;
-    const y = (item.position.y / tank.heightCm) * app.screen.height;
-    const scale = getFishSpriteScale({
-      viewportWidthPx: app.screen.width,
-      tankWidthCm: tank.widthCm,
-      species: definition,
-      bodyLengthVariance: item.bodyLengthVariance,
-      depth: item.depth,
-    });
-    const ease = deltaSec === 0 ? 1 : 1 - Math.exp(-7 * deltaSec);
-    record.visualX = lerp(record.visualX ?? x, x, ease);
-    record.visualY = lerp(record.visualY ?? y, y, ease);
-    record.visualScale = lerp(record.visualScale ?? scale, scale, ease);
-    const speed = Math.hypot(item.velocity.x, item.velocity.y);
-    const rotation = speed > 0.05
-      ? Math.max(-0.14, Math.min(0.14, Math.asin(item.velocity.y / speed) * 0.2))
-      : 0;
-    record.visualRotation = lerp(record.visualRotation ?? rotation, rotation, ease);
-
-    record.sprite.position.set(record.visualX, record.visualY);
-    record.sprite.rotation = record.visualRotation;
-    record.sprite.scale.set(
-      item.facing === 1 ? -record.visualScale : record.visualScale,
-      record.visualScale,
-    );
-    record.sprite.alpha = 1 - item.depth * 0.18;
-    record.sprite.tint = item.depth > 0.65 ? 0xbcdde1 : 0xffffff;
-    record.sprite.zIndex = y;
-    const fps = definition.animation?.framesPerSecond ?? 8;
-    const modeMultiplier = item.behaviorMode === "kick"
-      ? 1.25
-      : item.behaviorMode === "coast"
-        ? 0.58
-        : 0.1;
-    record.sprite.animationSpeed = (fps / 60) * modeMultiplier;
-    if (item.behaviorMode === "pause") record.sprite.stop();
-    else if (!record.sprite.playing) record.sprite.play();
-  }
-  backLayer.sortChildren();
-  frontLayer.sortChildren();
-}
-
-async function loadFishTextures(
-  record: FishSpriteRecord,
-  species: FishSpeciesDefinition,
-  seed: number,
-) {
-  const frameUrls = getFishAnimationFrameUrls(species.id);
-  const urls = species.animation && frameUrls.length >= 2
-    ? frameUrls
-    : [getFishImageUrl(species.id)].filter((url): url is string => Boolean(url));
-  const key = urls.join("|");
-  if (!key || record.loadedKey === key) return;
-  record.loadedKey = key;
-  const textures = await Promise.all(urls.map((url) => Assets.load<Texture>(url)));
-  if (textures.length === 0 || record.sprite.destroyed) return;
-  record.sprite.textures = textures;
-  record.sprite.currentFrame = Math.abs(seed) % textures.length;
-  if (textures.length > 1) record.sprite.play();
-}
-
-async function createBubbles(app: Application, layer: Container) {
-  const texture = await Assets.load<Texture>(environmentAssets.bubbleParticleUrl);
-  for (let index = 0; index < 56; index += 1) {
-    const sprite = new Sprite(texture);
-    sprite.anchor.set(0.5);
-    sprite.name = `bubble-${index}`;
-    sprite.x = app.screen.width * (0.07 + ((index * 29) % 88) / 100);
-    sprite.y = app.screen.height * (((index * 37) % 100) / 100);
-    const size = 0.014 + (index % 6) * 0.004;
-    sprite.scale.set((app.screen.width * size) / texture.width);
-    sprite.alpha = 0.08 + (index % 5) * 0.035;
-    layer.addChild(sprite);
-  }
-}
-
-function drawGlass(app: Application, layer: Container, lighting: AquariumLayout["lighting"]) {
-  const tint = lighting === "night"
-    ? { color: 0x061323, alpha: 0.32 }
-    : lighting === "evening"
-      ? { color: 0x9a4f28, alpha: 0.14 }
-      : lighting === "cool"
-        ? { color: 0x9fe8ff, alpha: 0.07 }
-        : { color: 0xffffff, alpha: 0 };
-  layer.addChild(
-    new Graphics()
-      .rect(0, 0, app.screen.width, app.screen.height)
-      .fill(tint),
-    new Graphics()
-      .rect(0, 0, app.screen.width, app.screen.height * 0.18)
-      .fill({ color: 0xe6ffff, alpha: 0.07 }),
-    new Graphics()
-      .roundRect(10, 10, app.screen.width - 20, app.screen.height - 20, 18)
-      .stroke({ color: 0xc5f3ff, alpha: 0.28, width: 2 }),
-  );
-  const caustics = new Graphics();
-  caustics.name = "caustics";
-  for (let index = 0; index < 18; index += 1) {
-    const y = app.screen.height * (0.2 + ((index * 31) % 65) / 100);
-    caustics
-      .moveTo(0, y)
-      .bezierCurveTo(
-        app.screen.width * 0.3,
-        y + Math.sin(index) * 7,
-        app.screen.width * 0.7,
-        y - Math.cos(index) * 8,
-        app.screen.width,
-        y + Math.sin(index * 1.4) * 5,
-      )
-      .stroke({ color: 0xeafff9, alpha: 0.026, width: 1 });
-  }
-  layer.addChild(caustics);
-}
-
-function animateWater(
-  app: Application,
-  bubbles: Container,
-  glass: Container,
-  nowMs: number,
-  deltaSec: number,
-) {
-  for (const [index, child] of bubbles.children.entries()) {
-    child.y -= app.screen.height * (0.012 + (index % 5) * 0.002) * deltaSec;
-    child.x += Math.sin(nowMs / 700 + index) * 0.05;
-    if (child.y < -10) child.y = app.screen.height + 10;
-  }
-  const caustics = glass.getChildByName("caustics");
-  if (caustics) {
-    caustics.x = Math.sin(nowMs / 3500) * app.screen.width * 0.004;
-    caustics.alpha = 0.8 + Math.sin(nowMs / 2200) * 0.12;
-  }
-}
-
-function lerp(from: number, to: number, amount: number): number {
-  return from + (to - from) * amount;
+function mixColor(from: number, to: number, amount: number): number {
+  const t = Math.max(0, Math.min(1, amount));
+  const channel = (shift: number) => {
+    const a = (from >> shift) & 0xff;
+    const b = (to >> shift) & 0xff;
+    return Math.round(a + (b - a) * t) << shift;
+  };
+  return channel(16) | channel(8) | channel(0);
 }

@@ -2,6 +2,10 @@
   "id": "corydoras",
   "displayName": "コリドラス",
   "realBodyLengthCm": 6,
+  "swim": {
+    "tailBeatHz": 2.8,
+    "tailSweepRad": 0.45
+  },
   "visual": {
     "fallbackColor": "#b8c3aa"
   },

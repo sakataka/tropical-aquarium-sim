@@ -2,8 +2,8 @@
   "id": "neon-tetra",
   "displayName": "ネオンテトラ",
   "realBodyLengthCm": 4,
-  "animation": {
-    "framesPerSecond": 10
+  "swim": {
+    "tailBeatHz": 3.0
   },
   "visual": {
     "fallbackColor": "#35c7e8"

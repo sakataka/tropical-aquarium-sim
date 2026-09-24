@@ -10,12 +10,11 @@ type Result = {
   regionCards: number;
   bottomCards: number;
   neonCount: number;
-  themesVisited: string[];
-  editedSlots: number;
+  scenesVisited: string[];
   ambientModeEntered: boolean;
   ambientStageWidth: number;
   ambientCanvasWidth: number;
-  restored: { version: number; theme: string; lighting: string; neonCount: number; sound: boolean };
+  restored: { version: number; scene: string; lighting: string; neonCount: number; sound: boolean };
   desktop: { stageWidth: number; stageHeight: number; canvasWidth: number; canvasHeight: number };
   mobile: { stageWidth: number; canvasWidth: number; overflowWidth: number };
   removedCopyAbsent: boolean;
@@ -46,7 +45,8 @@ async function main() {
     await view.evaluate(`[
       "tropical-aquarium.customization.v1",
       "tropical-aquarium.state.v2",
-      "tropical-aquarium.state.v3"
+      "tropical-aquarium.state.v3",
+      "tropical-aquarium.state.v4"
     ].forEach((key) => localStorage.removeItem(key))`);
     await view.reload();
     await sleep(2200);
@@ -89,44 +89,28 @@ async function main() {
     await view.evaluate(`document.querySelector("button[aria-label='ネオンテトラを1匹増やす']")?.click()`);
     await sleep(350);
     const neonCount = Number(await view.evaluate(`(() => {
-      const value = localStorage.getItem("tropical-aquarium.state.v3");
+      const value = localStorage.getItem("tropical-aquarium.state.v4");
       const stock = value ? JSON.parse(value).customization.stock : [];
       return stock.find((entry) => entry.speciesId === "neon-tetra")?.count ?? 0;
     })()`));
 
     await clickButtonByText(view, "レイアウト");
-    const themesVisited: string[] = [];
+    const scenesVisited: string[] = [];
     for (const [label, id] of [
       ["自然な流木景", "driftwood"],
+      ["根張り流木景", "root-driftwood"],
       ["開けた岩組景", "iwagumi"],
       ["明るい水草景", "planted"],
     ]) {
       await clickButtonByText(view, label);
-      await sleep(1500);
-      themesVisited.push(String(await view.evaluate(
-        `JSON.parse(localStorage.getItem("tropical-aquarium.state.v3")).customization.layout.themeId`,
+      await sleep(1600);
+      scenesVisited.push(String(await view.evaluate(
+        `JSON.parse(localStorage.getItem("tropical-aquarium.state.v4")).customization.layout.sceneId`,
       )));
       if (id !== "planted") {
         await Bun.write(`${SCREENSHOT_DIR}/${id}-1440x960.png`, await view.screenshot({ format: "png" }));
       }
     }
-
-    const editedSlots = Number(await view.evaluate(`(() => {
-      const selects = Array.from(document.querySelectorAll(".slot-row select"));
-      for (const select of selects) {
-        if (!(select instanceof HTMLSelectElement)) continue;
-        const options = Array.from(select.options).filter((option) => option.value);
-        if (options.length === 0) continue;
-        select.value = options[options.length - 1].value;
-        select.dispatchEvent(new Event("change", { bubbles: true }));
-      }
-      return selects.length;
-    })()`));
-    await sleep(500);
-    await view.evaluate(`Array.from(document.querySelectorAll(".flip-button"))
-      .forEach((button) => button instanceof HTMLButtonElement && !button.disabled && button.click())`);
-    await sleep(1500);
-    await Bun.write(`${SCREENSHOT_DIR}/edited-layout-1440x960.png`, await view.screenshot({ format: "png" }));
 
     await clickButtonByText(view, "自然な流木景");
     await sleep(1500);
@@ -152,10 +136,10 @@ async function main() {
     await view.reload();
     await sleep(2200);
     const restored = await view.evaluate(`(() => {
-      const state = JSON.parse(localStorage.getItem("tropical-aquarium.state.v3"));
+      const state = JSON.parse(localStorage.getItem("tropical-aquarium.state.v4"));
       return {
         version: state.version,
-        theme: state.customization.layout.themeId,
+        scene: state.customization.layout.sceneId,
         lighting: state.customization.layout.lighting,
         neonCount: state.customization.stock.find((entry) => entry.speciesId === "neon-tetra")?.count ?? 0,
         sound: state.preferences.soundEnabled,
@@ -190,7 +174,7 @@ async function main() {
 
     const result: Result = {
       title, initialCards, searchedCards, regionCards, bottomCards, neonCount,
-      themesVisited, editedSlots, ambientModeEntered, ambientStageWidth, ambientCanvasWidth,
+      scenesVisited, ambientModeEntered, ambientStageWidth, ambientCanvasWidth,
       restored, desktop, mobile,
       removedCopyAbsent, consoleErrors,
     };
@@ -200,12 +184,12 @@ async function main() {
     assert(initialCards === 10 && searchedCards === 1);
     assert(regionCards === 4 && bottomCards >= 2 && bottomCards < initialCards);
     assert(neonCount === 7);
-    assert(JSON.stringify(themesVisited) === JSON.stringify(["driftwood", "iwagumi", "planted"]));
-    assert(editedSlots === 7);
+    assert(JSON.stringify(scenesVisited) ===
+      JSON.stringify(["driftwood", "root-driftwood", "iwagumi", "planted"]));
     assert(ambientModeEntered);
     assert(ambientStageWidth >= 1300);
     assert(ambientCanvasWidth >= 1300);
-    assert(restored.version === 3 && restored.theme === "driftwood");
+    assert(restored.version === 4 && restored.scene === "driftwood");
     assert(restored.lighting === "night" && restored.neonCount === 7 && restored.sound);
     assert(desktop.stageWidth >= 700 && desktop.canvasWidth >= 700 && desktop.stageHeight >= 400);
     assert(mobile.stageWidth >= 380 && mobile.canvasWidth >= 380 && mobile.overflowWidth === 0);

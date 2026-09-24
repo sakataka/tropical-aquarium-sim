@@ -2,6 +2,13 @@
   "id": "kuhli-loach",
   "displayName": "クーリーローチ",
   "realBodyLengthCm": 10,
+  "swim": {
+    "tailBeatHz": 1.8,
+    "bodyWaveStart": 0.05,
+    "waveCount": 1.4,
+    "tailSweepRad": 0.35,
+    "verticalFlex": 0.09
+  },
   "visual": {
     "fallbackColor": "#a15c2a"
   },

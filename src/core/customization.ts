@@ -1,63 +1,42 @@
 import { z } from "zod";
 import configJson from "../content/aquarium/customization.json";
-import { DECOR_SLOT_IDS, decorAssetsById } from "./environmentCatalog";
+import { aquariumScenes, getSceneById } from "./sceneCatalog";
 import type {
   AquariumConfig,
   AquariumCustomization,
   AquariumLayout,
   AquariumPersistedState,
   AquariumPreferences,
-  AquariumTheme,
-  DecorPlacement,
-  DecorSlotId,
   FishSpeciesDefinition,
   FishStockEntry,
   LightingId,
   Vec2,
 } from "./types";
 
-const placementSchema = z.object({
-  assetId: z.string().min(1),
-  flipped: z.boolean(),
-});
-
-const slotShape = Object.fromEntries(
-  DECOR_SLOT_IDS.map((slotId) => [slotId, placementSchema.nullable()]),
-) as Record<DecorSlotId, z.ZodNullable<typeof placementSchema>>;
-const slotsSchema = z.object(slotShape);
+const lightingSchema = z.enum(["natural", "cool", "evening", "night"]);
 
 const layoutSchema = z.object({
-  themeId: z.enum(["planted", "driftwood", "iwagumi"]),
-  backgroundId: z.string().min(1),
-  substrateId: z.string().min(1),
-  lighting: z.enum(["natural", "cool", "evening", "night"]),
-  slots: slotsSchema,
-});
-
-const themeSchema = z.object({
-  id: z.enum(["planted", "driftwood", "iwagumi"]),
-  displayName: z.string().min(1),
-  description: z.string().min(1),
-  layout: layoutSchema,
+  sceneId: z.string().min(1),
+  lighting: lightingSchema,
 });
 
 const configSchema = z.object({
   legacyStorageKey: z.string().min(1),
   legacyStateStorageKey: z.string().min(1),
+  previousStateStorageKey: z.string().min(1),
   stateStorageKey: z.string().min(1),
   maxFishPerSpecies: z.number().int().positive(),
   maxTotalFish: z.number().int().positive(),
-  themes: z.array(themeSchema).length(3),
 });
 
 const config = configSchema.parse(configJson) as AquariumConfig;
 
 export const CUSTOMIZATION_STORAGE_KEY = config.legacyStorageKey;
 export const LEGACY_AQUARIUM_STATE_STORAGE_KEY = config.legacyStateStorageKey;
+export const PREVIOUS_AQUARIUM_STATE_STORAGE_KEY = config.previousStateStorageKey;
 export const AQUARIUM_STATE_STORAGE_KEY = config.stateStorageKey;
 export const MAX_FISH_PER_SPECIES = config.maxFishPerSpecies;
 export const MAX_TOTAL_FISH = config.maxTotalFish;
-export const aquariumThemes = config.themes;
 
 const DEFAULT_STOCK: FishStockEntry[] = [
   { speciesId: "neon-tetra", count: 6 },
@@ -70,7 +49,7 @@ const DEFAULT_STOCK: FishStockEntry[] = [
 
 export const DEFAULT_CUSTOMIZATION: AquariumCustomization = {
   stock: DEFAULT_STOCK,
-  layout: cloneLayout(aquariumThemes[0].layout),
+  layout: getDefaultLayout(aquariumScenes[0].id),
 };
 
 export const DEFAULT_PREFERENCES: AquariumPreferences = {
@@ -79,7 +58,7 @@ export const DEFAULT_PREFERENCES: AquariumPreferences = {
 };
 
 const persistedStateSchema = z.object({
-  version: z.literal(3),
+  version: z.literal(4),
   customization: z.object({
     stock: z.array(z.object({
       speciesId: z.string().min(1),
@@ -93,8 +72,9 @@ const persistedStateSchema = z.object({
   }),
 });
 
-export function getThemeById(themeId: string | null | undefined): AquariumTheme | undefined {
-  return aquariumThemes.find((theme) => theme.id === themeId);
+export function getDefaultLayout(sceneId: string): AquariumLayout {
+  const scene = getSceneById(sceneId) ?? aquariumScenes[0];
+  return { sceneId: scene.id, lighting: scene.defaultLighting };
 }
 
 export function normalizeAquariumCustomization(
@@ -119,12 +99,13 @@ export function normalizeAquariumPersistedState(
     return undefined;
   }
   return {
-    version: 3,
+    version: 4,
     customization: normalizeAquariumCustomization(parsed.data.customization, speciesCatalog),
     preferences: normalizePreferences(parsed.data.preferences),
   };
 }
 
+// v1〜v3 の保存データから、魚種別匹数・照明・音設定と最も近い水景を引き継ぐ。
 export function migrateLegacyAquariumState(
   value: unknown,
   speciesCatalog: Record<string, FishSpeciesDefinition>,
@@ -134,27 +115,32 @@ export function migrateLegacyAquariumState(
   }
   const source = value as {
     version?: number;
-    customization?: { stock?: FishStockEntry[]; environment?: Record<string, unknown> };
+    customization?: {
+      stock?: FishStockEntry[];
+      environment?: Record<string, unknown>;
+      layout?: Record<string, unknown>;
+    };
     stock?: FishStockEntry[];
     environment?: Record<string, unknown>;
     preferences?: Record<string, unknown>;
   };
   const legacyCustomization = source.customization ?? source;
+  const legacyLayout = source.customization?.layout;
   const environment = legacyCustomization.environment ?? {};
-  const themeId = mapLegacyTheme(environment.backgroundStyle);
-  const theme = getThemeById(themeId) ?? aquariumThemes[0];
-  const lighting = isLightingId(environment.lighting)
-    ? environment.lighting
-    : theme.layout.lighting;
+  const sceneId = legacyLayout
+    ? mapLegacyTheme(legacyLayout.themeId)
+    : mapLegacyBackground(environment.backgroundStyle);
+  const layout = getDefaultLayout(sceneId);
+  const legacyLighting = legacyLayout?.lighting ?? environment.lighting;
   const preferences = source.preferences ?? {};
 
   return {
-    version: 3,
+    version: 4,
     customization: normalizeAquariumCustomization({
       stock: legacyCustomization.stock,
       layout: {
-        ...cloneLayout(theme.layout),
-        lighting,
+        ...layout,
+        lighting: isLightingId(legacyLighting) ? legacyLighting : layout.lighting,
       },
     }, speciesCatalog),
     preferences: normalizePreferences({
@@ -181,58 +167,16 @@ export function setStockCount(
   );
 }
 
-export function setLayoutSlot(
-  layout: AquariumLayout,
-  slotId: DecorSlotId,
-  placement: DecorPlacement | null,
-): AquariumLayout {
-  const asset = placement ? decorAssetsById[placement.assetId] : undefined;
-  const safePlacement = asset?.allowedSlots.includes(slotId) ? placement : null;
-  return {
-    ...layout,
-    slots: {
-      ...layout.slots,
-      [slotId]: safePlacement,
-    },
-  };
-}
-
-export function getMatchingThemeId(layout: AquariumLayout): string | undefined {
-  return aquariumThemes.find((theme) =>
-    JSON.stringify(theme.layout) === JSON.stringify(layout)
-  )?.id;
-}
-
 export function getStructurePoints(layout: AquariumLayout): Vec2[] {
-  const points: Vec2[] = [];
-  if (layout.slots["mid-left"]) points.push({ x: 18, y: 26 });
-  if (layout.slots["mid-right"]) points.push({ x: 42, y: 26 });
-  return points;
+  return getSceneById(layout.sceneId)?.structurePoints ?? [];
 }
 
 function normalizeLayout(value: unknown): AquariumLayout {
   const parsed = layoutSchema.safeParse(value);
-  if (!parsed.success) {
-    return cloneLayout(aquariumThemes[0].layout);
+  if (!parsed.success || !getSceneById(parsed.data.sceneId)) {
+    return getDefaultLayout(aquariumScenes[0].id);
   }
-  const background = decorAssetsById[parsed.data.backgroundId];
-  const substrate = decorAssetsById[parsed.data.substrateId];
-  const fallback = getThemeById(parsed.data.themeId)?.layout ?? aquariumThemes[0].layout;
-  const slots = Object.fromEntries(DECOR_SLOT_IDS.map((slotId) => {
-    const placement = parsed.data.slots[slotId];
-    const asset = placement ? decorAssetsById[placement.assetId] : undefined;
-    return [slotId, asset?.allowedSlots.includes(slotId) ? placement : null];
-  })) as AquariumLayout["slots"];
-  return {
-    ...parsed.data,
-    backgroundId: background?.category === "background"
-      ? parsed.data.backgroundId
-      : fallback.backgroundId,
-    substrateId: substrate?.category === "substrate"
-      ? parsed.data.substrateId
-      : fallback.substrateId,
-    slots,
-  };
+  return { sceneId: parsed.data.sceneId, lighting: parsed.data.lighting };
 }
 
 function normalizeStock(
@@ -283,10 +227,14 @@ function normalizePreferences(value: unknown): AquariumPreferences {
   };
 }
 
-function mapLegacyTheme(backgroundStyle: unknown): AquariumLayout["themeId"] {
+function mapLegacyBackground(backgroundStyle: unknown): string {
   if (backgroundStyle === "deep") return "driftwood";
   if (backgroundStyle === "bright") return "iwagumi";
   return "planted";
+}
+
+function mapLegacyTheme(themeId: unknown): string {
+  return typeof themeId === "string" && getSceneById(themeId) ? themeId : "planted";
 }
 
 function isLightingId(value: unknown): value is LightingId {
@@ -295,14 +243,4 @@ function isLightingId(value: unknown): value is LightingId {
 
 function clampCount(count: number): number {
   return Math.max(0, Math.min(MAX_FISH_PER_SPECIES, Math.trunc(Number(count) || 0)));
-}
-
-function cloneLayout(layout: AquariumLayout): AquariumLayout {
-  return {
-    ...layout,
-    slots: Object.fromEntries(DECOR_SLOT_IDS.map((slotId) => [
-      slotId,
-      layout.slots[slotId] ? { ...layout.slots[slotId]! } : null,
-    ])) as AquariumLayout["slots"],
-  };
 }

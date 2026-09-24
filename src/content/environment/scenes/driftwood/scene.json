@@ -1,0 +1,15 @@
+{
+  "id": "driftwood",
+  "order": 2,
+  "displayName": "自然な流木景",
+  "description": "深い青緑の水に流木が張り出す、落ち着いた水景",
+  "defaultLighting": "natural",
+  "waterColor": "#1c4657",
+  "structurePoints": [
+    { "x": 13, "y": 22 },
+    { "x": 46, "y": 20 }
+  ],
+  "bubbleSources": [
+    { "x": 0.12, "y": 0.84 }
+  ]
+}

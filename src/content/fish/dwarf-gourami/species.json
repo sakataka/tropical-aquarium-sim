@@ -2,6 +2,10 @@
   "id": "dwarf-gourami",
   "displayName": "ドワーフグラミー",
   "realBodyLengthCm": 7,
+  "swim": {
+    "tailBeatHz": 1.9,
+    "tailSweepRad": 0.4
+  },
   "visual": {
     "fallbackColor": "#d56d58"
   },

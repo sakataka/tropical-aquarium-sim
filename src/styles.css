@@ -292,9 +292,7 @@ input::placeholder { color: #6f898a; }
 .theme-grid { display: grid; gap: 10px; }
 .theme-card {
   display: grid;
-  grid-template-columns: 92px 1fr;
-  align-items: center;
-  gap: 13px;
+  gap: 10px;
   width: 100%;
   padding: 8px;
   text-align: left;
@@ -307,54 +305,10 @@ input::placeholder { color: #6f898a; }
   background: rgba(38, 96, 98, 0.56);
   box-shadow: inset 3px 0 0 var(--accent);
 }
-.theme-card img { width: 92px; height: 58px; object-fit: cover; border-radius: 9px; }
-.theme-card span { display: grid; gap: 4px; }
+.theme-card img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 9px; }
+.theme-card span { display: grid; gap: 4px; padding: 0 4px 4px; }
 .theme-card strong { font-size: 14px; }
 .theme-card small { color: var(--muted); line-height: 1.45; }
-.base-selectors {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin: 18px 0;
-}
-.field { display: grid; gap: 7px; }
-.field > span { color: #b8cecd; font-size: 11px; font-weight: 700; }
-.slot-editor {
-  padding: 15px;
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  background: rgba(4, 23, 25, 0.56);
-}
-.slot-editor-heading {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-}
-.slot-editor-heading h3 { margin: 0; font-size: 15px; }
-.slot-editor-heading span { color: var(--muted); font-size: 11px; }
-.slot-row {
-  display: grid;
-  grid-template-columns: 84px minmax(0, 1fr) 68px;
-  gap: 8px;
-  align-items: center;
-  padding: 10px 0;
-  border-top: 1px solid rgba(158, 224, 222, 0.1);
-}
-.slot-label { display: grid; gap: 3px; }
-.slot-label span { font-size: 11px; font-weight: 700; }
-.slot-label small { color: #708d8d; font-size: 9px; }
-.slot-row select { min-width: 0; min-height: 38px; font-size: 11px; }
-.flip-button {
-  min-height: 38px;
-  padding: 4px;
-  border: 1px solid var(--line);
-  border-radius: 9px;
-  background: rgba(120, 201, 200, 0.08);
-  color: #add0cf;
-  font-size: 9px;
-}
-
 .ambient-button, .sound-toggle {
   display: flex;
   align-items: center;
@@ -469,8 +423,6 @@ input::placeholder { color: #6f898a; }
   .fish-catalog-card { grid-template-columns: 102px minmax(0, 1fr); }
   .fish-portrait img { height: 88px; }
   .fish-catalog-copy { padding: 13px; }
-  .base-selectors { grid-template-columns: 1fr; }
-  .slot-row { grid-template-columns: 74px minmax(0, 1fr) 62px; }
   .ambient-hud { inset: auto 10px 10px; }
   .ambient-hud > div { display: none; }
 }

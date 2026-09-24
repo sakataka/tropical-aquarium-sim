@@ -1,23 +1,17 @@
 import { useDeferredValue, useMemo, useState } from "react";
 import {
-  DECOR_SLOT_IDS,
-  DECOR_SLOT_LABELS,
   MAX_FISH_PER_SPECIES,
   MAX_TOTAL_FISH,
-  aquariumThemes,
-  decorAssets,
-  getAssetsForSlot,
+  aquariumScenes,
   getStockCount,
   type AquariumCustomization,
   type AquariumPreferences,
-  type DecorPlacement,
-  type DecorSlotId,
   type FishSpeciesDefinition,
   type LightingId,
   type SwimZoneId,
   type TankDefinition,
 } from "../core";
-import { getEnvironmentAssetUrl, getFishImageUrl } from "../render/assets";
+import { getFishImageUrl, getScenePlateUrl } from "../render/assets";
 
 type PanelTab = "fish" | "layout" | "viewing";
 
@@ -28,10 +22,7 @@ type AquariumControlsProps = {
   preferences: AquariumPreferences;
   saveStatus: string;
   onSpeciesCountChange: (speciesId: string, count: number) => void;
-  onThemeChange: (themeId: AquariumCustomization["layout"]["themeId"]) => void;
-  onBackgroundChange: (assetId: string) => void;
-  onSubstrateChange: (assetId: string) => void;
-  onSlotChange: (slotId: DecorSlotId, placement: DecorPlacement | null) => void;
+  onSceneChange: (sceneId: string) => void;
   onLightingChange: (lighting: LightingId) => void;
   onPreferencesChange: (update: Partial<AquariumPreferences>) => void;
   onEnterAmbientMode: () => void;
@@ -44,10 +35,7 @@ export function AquariumControls({
   preferences,
   saveStatus,
   onSpeciesCountChange,
-  onThemeChange,
-  onBackgroundChange,
-  onSubstrateChange,
-  onSlotChange,
+  onSceneChange,
   onLightingChange,
   onPreferencesChange,
   onEnterAmbientMode,
@@ -182,56 +170,29 @@ export function AquariumControls({
       ) : null}
 
       {tab === "layout" ? (
-        <section className="panel-content layout-editor" aria-label="水槽レイアウト">
+        <section className="panel-content layout-editor" aria-label="水景">
           <div className="section-intro">
             <p className="eyebrow">AQUASCAPE</p>
-            <h2>水景を組み立てる</h2>
-            <p>完成テーマから始めて、7つの場所を好みに合わせます。</p>
+            <h2>水景を選ぶ</h2>
+            <p>ひとつの景色として仕上げた水景から、今日眺めたいものを。</p>
           </div>
 
           <div className="theme-grid">
-            {aquariumThemes.map((theme) => (
-              <button
-                aria-pressed={customization.layout.themeId === theme.id}
-                className={customization.layout.themeId === theme.id ? "theme-card active" : "theme-card"}
-                key={theme.id}
-                onClick={() => onThemeChange(theme.id)}
-                type="button"
-              >
-                <img alt="" src={getEnvironmentAssetUrl(theme.layout.backgroundId)} />
-                <span><strong>{theme.displayName}</strong><small>{theme.description}</small></span>
-              </button>
-            ))}
-          </div>
-
-          <div className="base-selectors">
-            <AssetSelect
-              category="background"
-              label="水の背景"
-              onChange={onBackgroundChange}
-              value={customization.layout.backgroundId}
-            />
-            <AssetSelect
-              category="substrate"
-              label="底床"
-              onChange={onSubstrateChange}
-              value={customization.layout.substrateId}
-            />
-          </div>
-
-          <div className="slot-editor">
-            <div className="slot-editor-heading">
-              <h3>配置スロット</h3>
-              <span>7か所</span>
-            </div>
-            {DECOR_SLOT_IDS.map((slotId) => (
-              <SlotRow
-                key={slotId}
-                onChange={(placement) => onSlotChange(slotId, placement)}
-                placement={customization.layout.slots[slotId]}
-                slotId={slotId}
-              />
-            ))}
+            {aquariumScenes.map((scene) => {
+              const active = customization.layout.sceneId === scene.id;
+              return (
+                <button
+                  aria-pressed={active}
+                  className={active ? "theme-card active" : "theme-card"}
+                  key={scene.id}
+                  onClick={() => onSceneChange(scene.id)}
+                  type="button"
+                >
+                  <img alt="" loading="lazy" src={getScenePlateUrl(scene.id)} />
+                  <span><strong>{scene.displayName}</strong><small>{scene.description}</small></span>
+                </button>
+              );
+            })}
           </div>
         </section>
       ) : null}
@@ -312,72 +273,6 @@ function TabButton({
     <button aria-pressed={active} className={active ? "active" : ""} onClick={onClick} type="button">
       {children}
     </button>
-  );
-}
-
-function AssetSelect({
-  category,
-  label,
-  onChange,
-  value,
-}: {
-  category: "background" | "substrate";
-  label: string;
-  onChange: (assetId: string) => void;
-  value: string;
-}) {
-  return (
-    <label className="field">
-      <span>{label}</span>
-      <select onChange={(event) => onChange(event.currentTarget.value)} value={value}>
-        {decorAssets.filter((asset) => asset.category === category).map((asset) => (
-          <option key={asset.id} value={asset.id}>{asset.displayName}</option>
-        ))}
-      </select>
-    </label>
-  );
-}
-
-function SlotRow({
-  slotId,
-  placement,
-  onChange,
-}: {
-  slotId: DecorSlotId;
-  placement: DecorPlacement | null;
-  onChange: (placement: DecorPlacement | null) => void;
-}) {
-  const assets = getAssetsForSlot(slotId);
-  return (
-    <div className="slot-row">
-      <div className="slot-label">
-        <span>{DECOR_SLOT_LABELS[slotId]}</span>
-        <small>{slotId.startsWith("rear") ? "魚の奥" : slotId.startsWith("mid") ? "魚の間" : "魚の手前"}</small>
-      </div>
-      <select
-        aria-label={`${DECOR_SLOT_LABELS[slotId]}の部品`}
-        onChange={(event) => onChange(
-          event.currentTarget.value
-            ? { assetId: event.currentTarget.value, flipped: placement?.flipped ?? false }
-            : null,
-        )}
-        value={placement?.assetId ?? ""}
-      >
-        <option value="">何も置かない</option>
-        {assets.map((asset) => (
-          <option key={asset.id} value={asset.id}>{asset.displayName}</option>
-        ))}
-      </select>
-      <button
-        aria-label={`${DECOR_SLOT_LABELS[slotId]}の部品を左右反転`}
-        className="flip-button"
-        disabled={!placement}
-        onClick={() => placement && onChange({ ...placement, flipped: !placement.flipped })}
-        type="button"
-      >
-        {placement?.flipped ? "反転済み" : "左右反転"}
-      </button>
-    </div>
   );
 }
 

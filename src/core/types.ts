@@ -40,12 +40,21 @@ type SwimMotionProfile = {
   wanderStrength: number;
 };
 
+// 画像メッシュの尾の振り方。未指定の項目は描画側の標準値を使う。
+export type FishSwimStyle = {
+  tailBeatHz: number;
+  bodyWaveStart: number;
+  waveCount: number;
+  tailSweepRad: number;
+  verticalFlex: number;
+};
+
 export type FishSpeciesDefinition = {
   id: string;
   displayName: string;
   realBodyLengthCm: number;
   catalog: FishCatalogInfo;
-  animation?: { framesPerSecond: number };
+  swim?: Partial<FishSwimStyle>;
   visual: { fallbackColor: string };
   sourceBodyBounds: { x: number; y: number; width: number; height: number };
   cruisingSpeedCmPerSec: number;
@@ -95,47 +104,28 @@ export type SimulationInput = {
 export type SimulationOutput = { fish: FishInstance[] };
 export type FishStockEntry = { speciesId: string; count: number };
 
-export type DecorSlotId =
-  | "rear-left"
-  | "rear-right"
-  | "mid-left"
-  | "mid-right"
-  | "front-left"
-  | "front-center"
-  | "front-right";
-
-export type DecorCategory = "background" | "substrate" | "rear" | "mid" | "front";
-export type DecorPlacement = { assetId: string; flipped: boolean };
-
-export type AquariumLayout = {
-  themeId: "planted" | "driftwood" | "iwagumi";
-  backgroundId: string;
-  substrateId: string;
-  lighting: LightingId;
-  slots: Record<DecorSlotId, DecorPlacement | null>;
-};
-
-export type DecorAssetDefinition = {
+// 一枚絵の水景。背景と前景切り抜きは scenes/<id>/ に同じ構図で置く。
+export type AquariumScene = {
   id: string;
-  displayName: string;
-  category: DecorCategory;
-  allowedSlots: DecorSlotId[];
-  scale: number;
-  anchorY: number;
-};
-
-export type AquariumTheme = {
-  id: AquariumLayout["themeId"];
+  order: number;
   displayName: string;
   description: string;
-  layout: AquariumLayout;
+  defaultLighting: LightingId;
+  waterColor: string;
+  structurePoints: Vec2[];
+  bubbleSources: Vec2[];
+};
+
+export type AquariumLayout = {
+  sceneId: string;
+  lighting: LightingId;
 };
 
 export type AquariumCustomization = { stock: FishStockEntry[]; layout: AquariumLayout };
 export type AquariumPreferences = { soundEnabled: boolean; soundVolume: number };
 
 export type AquariumPersistedState = {
-  version: 3;
+  version: 4;
   customization: AquariumCustomization;
   preferences: AquariumPreferences;
 };
@@ -143,8 +133,8 @@ export type AquariumPersistedState = {
 export type AquariumConfig = {
   legacyStorageKey: string;
   legacyStateStorageKey: string;
+  previousStateStorageKey: string;
   stateStorageKey: string;
   maxFishPerSpecies: number;
   maxTotalFish: number;
-  themes: AquariumTheme[];
 };

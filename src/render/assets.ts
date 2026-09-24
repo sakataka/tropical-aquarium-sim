@@ -6,13 +6,8 @@ const fishImageModules = import.meta.glob<string>("../content/fish/**/side.png",
   query: "?url",
 });
 
-const fishAnimationFrameModules = import.meta.glob<string>(
-  "../content/fish/**/swim/*.png",
-  { eager: true, import: "default", query: "?url" },
-);
-
-const environmentImageModules = import.meta.glob<string>(
-  "../content/environment/{backgrounds,substrates,decor}/**/*.png",
+const sceneImageModules = import.meta.glob<string>(
+  "../content/environment/scenes/*/{plate,foreground}.webp",
   { eager: true, import: "default", query: "?url" },
 );
 
@@ -22,16 +17,12 @@ export function getFishImageUrl(speciesId: string): string | undefined {
   return findBySuffix(fishImageModules, `/fish/${speciesId}/side.png`);
 }
 
-export function getFishAnimationFrameUrls(speciesId: string): string[] {
-  const segment = `/fish/${speciesId}/swim/`;
-  return Object.entries(fishAnimationFrameModules)
-    .filter(([path]) => path.includes(segment))
-    .sort(([a], [b]) => a.localeCompare(b))
-    .map(([, url]) => url);
+export function getScenePlateUrl(sceneId: string): string | undefined {
+  return findBySuffix(sceneImageModules, `/scenes/${sceneId}/plate.webp`);
 }
 
-export function getEnvironmentAssetUrl(assetId: string): string | undefined {
-  return findBySuffix(environmentImageModules, `/${assetId}.png`);
+export function getSceneForegroundUrl(sceneId: string): string | undefined {
+  return findBySuffix(sceneImageModules, `/scenes/${sceneId}/foreground.webp`);
 }
 
 function findBySuffix(modules: Record<string, string>, suffix: string): string | undefined {

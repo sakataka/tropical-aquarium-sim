@@ -2,8 +2,10 @@
   "id": "guppy",
   "displayName": "グッピー",
   "realBodyLengthCm": 5,
-  "animation": {
-    "framesPerSecond": 8
+  "swim": {
+    "tailBeatHz": 2.6,
+    "tailSweepRad": 0.6,
+    "verticalFlex": 0.02
   },
   "visual": {
     "fallbackColor": "#2b8fe8"

@@ -2,6 +2,9 @@
   "id": "white-cloud-minnow",
   "displayName": "アカヒレ",
   "realBodyLengthCm": 4,
+  "swim": {
+    "tailBeatHz": 3.0
+  },
   "visual": {
     "fallbackColor": "#d8c96a"
   },

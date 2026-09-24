@@ -1,0 +1,15 @@
+{
+  "id": "planted",
+  "order": 1,
+  "displayName": "明るい水草景",
+  "description": "赤と緑の有茎草が茂る、光のやわらかな水景",
+  "defaultLighting": "natural",
+  "waterColor": "#104d5f",
+  "structurePoints": [
+    { "x": 14, "y": 22 },
+    { "x": 48, "y": 20 }
+  ],
+  "bubbleSources": [
+    { "x": 0.9, "y": 0.82 }
+  ]
+}
