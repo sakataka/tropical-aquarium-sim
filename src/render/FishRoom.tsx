@@ -63,6 +63,9 @@ export function FishRoom({
   const shellRef = useRef<HTMLDivElement | null>(null);
   const stageRef = useRef<HTMLDivElement | null>(null);
   const tanksRef = useRef(tanks);
+  // 戻ってきた水槽は、部屋を開いた時点の値だけを使う。後で変わっても描画を作り直さない
+  // （作り直すと、寄り終えた瞬間に寄る前の明るい部屋が一瞬映ってしまう）。
+  const returningFromRef = useRef(returningFrom);
   const activeRef = useRef(active);
   const onReadyRef = useRef(onReady);
   activeRef.current = active;
@@ -157,7 +160,7 @@ export function FishRoom({
           onDone,
         };
       };
-      const returning = fishRoom.tanks.find((item) => item.tankId === returningFrom);
+      const returning = fishRoom.tanks.find((item) => item.tankId === returningFromRef.current);
       if (returning) {
         zoom = {
           from: getGlassCamera(returning.glass),
@@ -336,7 +339,7 @@ export function FishRoom({
       // true を渡すと全レンダラー共有の資源まで解放され、同時に動く別画面が壊れる。
       app.destroy({ removeView: true }, { children: true, texture: false });
     }
-  }, [fishRefs, returningFrom]);
+  }, [fishRefs]);
 
   function enter(tankId: string) {
     if (zoomingTo) return;
