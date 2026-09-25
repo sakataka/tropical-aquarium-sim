@@ -1,0 +1,66 @@
+{
+  "id": "rummy-nose-tetra",
+  "displayName": "ラミーノーズテトラ",
+  "realBodyLengthCm": 4.5,
+  "swim": {
+    "tailBeatHz": 3.2
+  },
+  "visual": {
+    "fallbackColor": "#d9dfe0"
+  },
+  "sourceBodyBounds": {
+    "x": 93,
+    "y": 200,
+    "width": 1356,
+    "height": 574
+  },
+  "preferredZone": {
+    "minX": 0.1,
+    "maxX": 0.9,
+    "minY": 0.3,
+    "maxY": 0.7
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "steady",
+    "speedBodyLengthsPerSec": {
+      "cruise": 1.1,
+      "burst": 3.8
+    },
+    "turnRateRadPerSec": 3,
+    "restFraction": 0.04,
+    "depthRange": [0.2, 0.8],
+    "social": {
+      "grouping": "school",
+      "spacingBodyLengths": 1.1,
+      "cohesion": 0.9,
+      "polarization": 0.9
+    },
+    "structureAffinity": 0.1,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Seriously Fish: Hemigrammus bleheri",
+        "url": "https://www.seriouslyfish.com/species/hemigrammus-bleheri/"
+      },
+      {
+        "title": "Wikipedia: Rummy-nose tetra",
+        "url": "https://en.wikipedia.org/wiki/Rummy-nose_tetra"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Hemigrammus bleheri",
+    "originRegionId": "south-america",
+    "originRegionName": "南米",
+    "origin": "南米アマゾン中流域。ネグロ川やメタ川の支流など、弱酸性で茶色く澄んだ流れに由来します。",
+    "temperament": "温和で臆病な群泳魚です。仲間が多いほど落ち着き、赤い頭の発色も濃くなります。",
+    "movement": "テトラの中でも群れのまとまりが強く、全員が同じ向きにそろって中層を行き来します。方向を変えるときも群れごと一斉に曲がります。",
+    "habitat": "開けた中層の遊泳スペースと、流木や水草の陰がある水槽が似合います。尾の白黒の縞が群れの動きを際立たせます。",
+    "aliases": [
+      "rummy-nose-tetra",
+      "Hemigrammus bleheri",
+      "ラミーノーズ"
+    ]
+  }
+}

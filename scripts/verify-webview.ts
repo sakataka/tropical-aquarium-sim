@@ -262,15 +262,15 @@ async function main() {
     assert(title.includes("熱帯魚"));
     assert(roomTanks === 3);
     assert(enteredTank === "東南アジアの水草水槽");
-    assert(asiaCards === 4 && harlequinCount === 11 && rejectedSpecies);
+    assert(asiaCards === 6 && harlequinCount === 11 && rejectedSpecies);
     assert(JSON.stringify(scenesVisited) ===
       JSON.stringify(["driftwood", "root-driftwood", "iwagumi", "planted"]));
     assert(viewingOnEntry && viewingStageWidth >= 1400);
     assert(editingOpened && editingStageWidth < viewingStageWidth && editingStageWidth >= 700);
     assert(closedToViewing);
     assert(backToRoom);
-    assert(cubeCards === 3 && cubeStageRatio > 1.4);
-    assert(amazonCards === 3);
+    assert(cubeCards === 5 && cubeStageRatio > 1.4);
+    assert(amazonCards === 5);
     assert(restored.version === 5 && restored.scene === "driftwood");
     assert(restored.lighting === "night" && restored.harlequinCount === 11 && !restored.sound);
     assert(migrated.version === 5 && migrated.asiaScene === "iwagumi" && migrated.amazonNeon === 9);

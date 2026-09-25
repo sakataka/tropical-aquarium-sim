@@ -1,0 +1,79 @@
+{
+  "id": "siamese-algae-eater",
+  "displayName": "サイアミーズ・フライングフォックス",
+  "realBodyLengthCm": 10,
+  "swim": {
+    "tailBeatHz": 2.4,
+    "tailSweepRad": 0.4
+  },
+  "visual": {
+    "fallbackColor": "#8f8a70"
+  },
+  "sourceBodyBounds": {
+    "x": 51,
+    "y": 217,
+    "width": 1450,
+    "height": 547
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.45,
+    "maxY": 0.9
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.45,
+      "burst": 3
+    },
+    "turnRateRadPerSec": 2.6,
+    "restFraction": 0.25,
+    "depthRange": [0.3, 0.95],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 3,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.7,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 3,
+        "durationSec": [3, 8]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 0.8,
+        "durationSec": [5, 15]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Seriously Fish: Crossocheilus oblongus",
+        "url": "https://www.seriouslyfish.com/species/crossocheilus-oblongus/"
+      },
+      {
+        "title": "Wikipedia: Siamese algae-eater",
+        "url": "https://en.wikipedia.org/wiki/Siamese_algae-eater"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Crossocheilus oblongus",
+    "originRegionId": "southeast-asia",
+    "originRegionName": "東南アジア",
+    "origin": "東南アジア。タイ、マレー半島、インドネシアの澄んだ流れのある河川や、雨季に浸水する森に由来します。",
+    "temperament": "他魚には温和ですが、同種や似た体形の魚とは場所を巡って追い合うことがあります。1匹だけでも落ち着いて暮らせます。",
+    "movement": "流木や石、葉の上で体を休めては、下向きの口で表面のコケをこそげ取ります。移動は素早い短距離の泳ぎが中心です。",
+    "habitat": "流木や大きな葉の水草、石組みがある水槽が似合います。黒い縦帯が目立ち、水景の手入れ役として存在感があります。",
+    "aliases": [
+      "siamese-algae-eater",
+      "Crossocheilus oblongus",
+      "Crossocheilus siamensis",
+      "SAE"
+    ]
+  }
+}

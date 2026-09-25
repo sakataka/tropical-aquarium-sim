@@ -1,0 +1,68 @@
+{
+  "id": "marbled-hatchetfish",
+  "displayName": "マーブルハチェット",
+  "realBodyLengthCm": 3.5,
+  "swim": {
+    "tailBeatHz": 2.6,
+    "tailSweepRad": 0.3,
+    "verticalFlex": 0.02
+  },
+  "visual": {
+    "fallbackColor": "#b9a88a"
+  },
+  "sourceBodyBounds": {
+    "x": 66,
+    "y": 178,
+    "width": 1439,
+    "height": 661
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.04,
+    "maxY": 0.22
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.5,
+      "burst": 6
+    },
+    "turnRateRadPerSec": 2.4,
+    "restFraction": 0.3,
+    "depthRange": [0, 0.2],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.8,
+      "cohesion": 0.6,
+      "polarization": 0.4
+    },
+    "structureAffinity": 0.05,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Seriously Fish: Carnegiella strigata",
+        "url": "https://www.seriouslyfish.com/species/carnegiella-strigata/"
+      },
+      {
+        "title": "Wikipedia: Marbled hatchetfish",
+        "url": "https://en.wikipedia.org/wiki/Marbled_hatchetfish"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Carnegiella strigata",
+    "originRegionId": "south-america",
+    "originRegionName": "南米",
+    "origin": "南米アマゾン流域。浸水林や流れの緩い支流の、落ち葉と木陰に覆われた水面近くに由来します。",
+    "temperament": "とても温和で臆病です。数匹以上でいると落ち着き、驚くと水面から跳び出すほどの瞬発力を見せます。",
+    "movement": "水面のすぐ下にほぼ静止して浮かび、落ちてくる虫を待ちます。大きな胸びれで一瞬だけ素早く移動し、また漂います。",
+    "habitat": "水面近くに空間があり、浮草や張り出した枝の影がある水槽が似合います。上層を埋めて、水槽全体に奥行きを出す役割です。",
+    "aliases": [
+      "marbled-hatchetfish",
+      "Carnegiella strigata",
+      "ハチェット"
+    ]
+  }
+}

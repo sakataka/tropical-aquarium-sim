@@ -1,0 +1,78 @@
+{
+  "id": "otocinclus",
+  "displayName": "オトシンクルス",
+  "realBodyLengthCm": 4,
+  "swim": {
+    "tailBeatHz": 2.8,
+    "tailSweepRad": 0.4
+  },
+  "visual": {
+    "fallbackColor": "#a39a72"
+  },
+  "sourceBodyBounds": {
+    "x": 58,
+    "y": 199,
+    "width": 1441,
+    "height": 566
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.35,
+    "maxY": 0.9
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.3,
+      "burst": 2.5
+    },
+    "turnRateRadPerSec": 2.2,
+    "restFraction": 0.45,
+    "depthRange": [0.25, 0.95],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0.45,
+      "polarization": 0.1
+    },
+    "structureAffinity": 0.75,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 3.5,
+        "durationSec": [6, 18]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1,
+        "durationSec": [8, 25]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Seriously Fish: Otocinclus affinis",
+        "url": "https://www.seriouslyfish.com/species/otocinclus-affinis/"
+      },
+      {
+        "title": "Wikipedia: Otocinclus",
+        "url": "https://en.wikipedia.org/wiki/Otocinclus"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Otocinclus affinis",
+    "originRegionId": "south-america",
+    "originRegionName": "南米",
+    "origin": "南米ブラジル南東部。水草や岸辺の植物が茂る、流れの緩い小川や支流に由来します。",
+    "temperament": "非常に温和な小型のナマズの仲間です。数匹で寄り添うように暮らし、他魚にはまったく干渉しません。",
+    "movement": "吸盤状の口で水草の葉や石、ガラス面に張り付き、少しずつ移動しながらコケを食べます。泳ぐのは短い距離だけです。",
+    "habitat": "水草の多い、落ち着いた小型水槽が似合います。葉の上でじっとコケを食む姿が、水景に静かな生活感を加えます。",
+    "aliases": [
+      "otocinclus",
+      "Otocinclus affinis",
+      "オトシン"
+    ]
+  }
+}

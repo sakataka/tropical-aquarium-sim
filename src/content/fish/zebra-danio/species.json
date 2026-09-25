@@ -1,0 +1,72 @@
+{
+  "id": "zebra-danio",
+  "displayName": "ゼブラダニオ",
+  "realBodyLengthCm": 4.5,
+  "swim": {
+    "tailBeatHz": 3.6
+  },
+  "visual": {
+    "fallbackColor": "#6f86b4"
+  },
+  "sourceBodyBounds": {
+    "x": 71,
+    "y": 227,
+    "width": 1411,
+    "height": 503
+  },
+  "preferredZone": {
+    "minX": 0.06,
+    "maxX": 0.94,
+    "minY": 0.08,
+    "maxY": 0.5
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "steady",
+    "speedBodyLengthsPerSec": {
+      "cruise": 1.3,
+      "burst": 5
+    },
+    "turnRateRadPerSec": 3.6,
+    "restFraction": 0.03,
+    "depthRange": [0.05, 0.6],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.6,
+      "cohesion": 0.6,
+      "polarization": 0.55
+    },
+    "structureAffinity": 0.05,
+    "habits": [
+      {
+        "type": "follow",
+        "chancePerMin": 1.2,
+        "durationSec": [1, 2.5]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Seriously Fish: Danio rerio",
+        "url": "https://www.seriouslyfish.com/species/danio-rerio/"
+      },
+      {
+        "title": "Wikipedia: Zebrafish",
+        "url": "https://en.wikipedia.org/wiki/Zebrafish"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Danio rerio",
+    "originRegionId": "south-asia",
+    "originRegionName": "南アジア",
+    "origin": "南アジア。インド、バングラデシュ、ネパールの水田、用水路、流れの緩い小川に由来します。研究用のモデル生物としても広く知られています。",
+    "temperament": "丈夫で活発な群れの魚です。仲間どうしで追いかけっこをよくしますが、他魚を傷つけることはほとんどありません。",
+    "movement": "上層から中層を休まず泳ぎ回り、急加速と急旋回を繰り返します。水槽の中で最も動きの多い魚のひとつです。",
+    "habitat": "上層に開けた遊泳スペースがある明るい水槽が似合います。青と金の縞が、光の中を横切るたびにきらめきます。",
+    "aliases": [
+      "zebra-danio",
+      "Danio rerio",
+      "ゼブラフィッシュ"
+    ]
+  }
+}

@@ -3,11 +3,11 @@
   "order": 2,
   "displayName": "アマゾンの大型水槽",
   "category": "地域ビオトープ",
-  "description": "南米アマゾン川の支流を思わせる90cmの大型水槽。流木と落ち葉の間を、エンゼルフィッシュとネオンテトラの群れが泳ぎます。",
+  "description": "南米アマゾン川の支流を思わせる90cmの大型水槽。流木と落ち葉の間をエンゼルフィッシュとテトラの群れが泳ぎ、水面直下にはハチェットが漂います。",
   "widthCm": 90,
   "heightCm": 45,
   "depthCm": 45,
-  "maxTotalFish": 30,
+  "maxTotalFish": 40,
   "sceneIds": [
     "amazon-driftwood",
     "amazon-planted"
@@ -15,10 +15,14 @@
   "species": [
     { "speciesId": "angelfish", "maxCount": 4 },
     { "speciesId": "neon-tetra", "maxCount": 20 },
-    { "speciesId": "corydoras", "maxCount": 8 }
+    { "speciesId": "corydoras", "maxCount": 8 },
+    { "speciesId": "rummy-nose-tetra", "maxCount": 16 },
+    { "speciesId": "marbled-hatchetfish", "maxCount": 8 }
   ],
   "defaultStock": [
-    { "speciesId": "neon-tetra", "count": 14 },
+    { "speciesId": "neon-tetra", "count": 12 },
+    { "speciesId": "rummy-nose-tetra", "count": 8 },
+    { "speciesId": "marbled-hatchetfish", "count": 5 },
     { "speciesId": "corydoras", "count": 5 },
     { "speciesId": "angelfish", "count": 2 }
   ]

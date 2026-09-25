@@ -4,7 +4,7 @@ import { fishCatalog } from "./catalog";
 describe("fish catalog", () => {
   test("fish species are discovered from species folders", () => {
     const species = Object.values(fishCatalog);
-    expect(species).toHaveLength(10);
+    expect(species).toHaveLength(16);
     expect(species.map((item) => item.id)).toContain("neon-tetra");
     for (const item of species) {
       expect(item.catalog.scientificName).toBeTruthy();

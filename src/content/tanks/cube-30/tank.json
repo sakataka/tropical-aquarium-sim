@@ -15,11 +15,15 @@
   "species": [
     { "speciesId": "guppy", "maxCount": 6 },
     { "speciesId": "platy", "maxCount": 4 },
-    { "speciesId": "white-cloud-minnow", "maxCount": 10 }
+    { "speciesId": "white-cloud-minnow", "maxCount": 10 },
+    { "speciesId": "zebra-danio", "maxCount": 6 },
+    { "speciesId": "otocinclus", "maxCount": 4 }
   ],
   "defaultStock": [
-    { "speciesId": "white-cloud-minnow", "count": 6 },
+    { "speciesId": "white-cloud-minnow", "count": 5 },
+    { "speciesId": "zebra-danio", "count": 3 },
     { "speciesId": "guppy", "count": 3 },
-    { "speciesId": "platy", "count": 2 }
+    { "speciesId": "platy", "count": 2 },
+    { "speciesId": "otocinclus", "count": 2 }
   ]
 }

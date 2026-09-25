@@ -1,0 +1,73 @@
+{
+  "id": "celestial-pearl-danio",
+  "displayName": "ミクロラスボラ・ハナビ",
+  "realBodyLengthCm": 2.2,
+  "swim": {
+    "tailBeatHz": 3.4
+  },
+  "visual": {
+    "fallbackColor": "#3d5a78"
+  },
+  "sourceBodyBounds": {
+    "x": 88,
+    "y": 178,
+    "width": 1373,
+    "height": 599
+  },
+  "preferredZone": {
+    "minX": 0.1,
+    "maxX": 0.9,
+    "minY": 0.4,
+    "maxY": 0.85
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.8,
+      "burst": 3.8
+    },
+    "turnRateRadPerSec": 3.2,
+    "restFraction": 0.15,
+    "depthRange": [0.35, 0.9],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 2.2,
+      "cohesion": 0.45,
+      "polarization": 0.25
+    },
+    "structureAffinity": 0.55,
+    "habits": [
+      {
+        "type": "follow",
+        "chancePerMin": 0.6,
+        "durationSec": [1, 2.5]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Seriously Fish: Danio margaritatus",
+        "url": "https://www.seriouslyfish.com/species/danio-margaritatus/"
+      },
+      {
+        "title": "Wikipedia: Celestial pearl danio",
+        "url": "https://en.wikipedia.org/wiki/Celestial_pearl_danio"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Danio margaritatus",
+    "originRegionId": "southeast-asia",
+    "originRegionName": "東南アジア",
+    "origin": "東南アジア。ミャンマー東部シャン高原の、湧き水と水草に満ちた浅い池や湿地に由来します。2006年に知られるようになった比較的新しい魚です。",
+    "temperament": "とても温和で臆病です。雄どうしはひれを広げて小競り合いを見せますが、傷つけ合うことはほとんどありません。",
+    "movement": "中層から下層の水草の間を、短く進んでは止まる動きを繰り返します。群れというより、近くに散らばってゆるくまとまります。",
+    "habitat": "密な水草と落ち着いた照明が似合います。紺色の体に散る真珠色の斑点と、赤橙のひれが緑の中で花火のように見えます。",
+    "aliases": [
+      "celestial-pearl-danio",
+      "Danio margaritatus",
+      "ハナビ",
+      "セレスティアルパールダニオ"
+    ]
+  }
+}

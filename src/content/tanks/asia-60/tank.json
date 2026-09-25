@@ -18,12 +18,16 @@
     { "speciesId": "harlequin-rasbora", "maxCount": 12 },
     { "speciesId": "cherry-barb", "maxCount": 10 },
     { "speciesId": "kuhli-loach", "maxCount": 6 },
-    { "speciesId": "dwarf-gourami", "maxCount": 2 }
+    { "speciesId": "dwarf-gourami", "maxCount": 2 },
+    { "speciesId": "celestial-pearl-danio", "maxCount": 12 },
+    { "speciesId": "siamese-algae-eater", "maxCount": 2 }
   ],
   "defaultStock": [
     { "speciesId": "harlequin-rasbora", "count": 10 },
+    { "speciesId": "celestial-pearl-danio", "count": 6 },
     { "speciesId": "cherry-barb", "count": 5 },
     { "speciesId": "kuhli-loach", "count": 3 },
+    { "speciesId": "siamese-algae-eater", "count": 1 },
     { "speciesId": "dwarf-gourami", "count": 1 }
   ]
 }
