@@ -8,6 +8,7 @@ import {
 } from "react";
 import {
   AQUARIUM_STATE_STORAGE_KEY,
+  DISCARDED_STORAGE_KEYS,
   LEGACY_STORAGE_KEYS,
   aquariumTanks,
   createDefaultState,
@@ -112,7 +113,7 @@ export default function App() {
     const timeout = window.setTimeout(() => {
       try {
         window.localStorage.setItem(AQUARIUM_STATE_STORAGE_KEY, JSON.stringify(state));
-        for (const key of LEGACY_STORAGE_KEYS) window.localStorage.removeItem(key);
+        for (const key of [...LEGACY_STORAGE_KEYS, ...DISCARDED_STORAGE_KEYS]) window.localStorage.removeItem(key);
         setSaveStatus("保存済み");
       } catch {
         setSaveStatus("保存できません");

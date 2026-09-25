@@ -18,6 +18,7 @@ import type {
 const configSchema = z.object({
   stateStorageKey: z.string().min(1),
   legacyStorageKeys: z.array(z.string().min(1)),
+  discardedStorageKeys: z.array(z.string().min(1)),
 });
 
 const config = configSchema.parse(configJson) as AquariumConfig;
@@ -25,6 +26,8 @@ const config = configSchema.parse(configJson) as AquariumConfig;
 export const AQUARIUM_STATE_STORAGE_KEY = config.stateStorageKey;
 /** 新しい順。読み込み時は最初に見つかったものだけを移行する。 */
 export const LEGACY_STORAGE_KEYS = config.legacyStorageKeys;
+/** 読まずに消す古い保存。魚種を追加したら保存キーの末尾を上げ、前のキーをここへ移して初期状態から始め直す。 */
+export const DISCARDED_STORAGE_KEYS = config.discardedStorageKeys;
 
 export const DEFAULT_PREFERENCES: AquariumPreferences = {
   soundEnabled: false,

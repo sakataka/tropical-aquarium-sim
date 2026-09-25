@@ -1,9 +1,9 @@
 {
   "title": "Tropical Aquarium ambience",
   "style": "cinematic",
-  "world": "quiet home aquarium in a calm room, realistic field recording, close microphone, no music, no voices",
+  "world": "quiet home aquarium in a calm living room at night, realistic close field recording, soft and relaxing, no music, no voices",
   "sounds": [
-    { "key": "filter_trickle", "name": "フィルターの水音", "prompt": "aquarium hang-on-back filter water gently trickling and splashing into the tank surface, steady continuous flow, soft", "engine": "ai", "maxSec": 5, "variants": 4, "tier": "light" },
-    { "key": "air_bubbles", "name": "エアストーンの泡", "prompt": "aquarium air stone bubbles rising and softly popping at the water surface, continuous gentle bubbling", "engine": "ai", "maxSec": 5, "variants": 4, "tier": "light" }
+    { "key": "water_flow", "name": "水の流れ", "prompt": "gentle continuous water flow in a home aquarium, filter outflow softly rippling just below the water surface, smooth low murmur, no splashing, no dripping", "engine": "ai", "maxSec": 5, "variants": 8, "tier": "light" },
+    { "key": "air_bubbles", "name": "エアストーンの泡", "prompt": "small aquarium air stone releasing fine tiny bubbles that rise and softly pop at the water surface, quiet steady fizzing bubbling", "engine": "ai", "maxSec": 5, "variants": 6, "tier": "light" }
   ]
 }

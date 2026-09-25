@@ -2,7 +2,7 @@ const PORT = 5183;
 const HOST = "127.0.0.1";
 const BASE_URL = `http://${HOST}:${PORT}/`;
 const SCREENSHOT_DIR = "tmp/webview";
-const STATE_KEY = "tropical-aquarium.state.v5";
+const STATE_KEY = "tropical-aquarium.state.v5.r2";
 
 type Result = {
   title: string;

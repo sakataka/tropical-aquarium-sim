@@ -1,9 +1,12 @@
 {
-  "stateStorageKey": "tropical-aquarium.state.v5",
+  "stateStorageKey": "tropical-aquarium.state.v5.r2",
   "legacyStorageKeys": [
     "tropical-aquarium.state.v4",
     "tropical-aquarium.state.v3",
     "tropical-aquarium.state.v2",
     "tropical-aquarium.customization.v1"
+  ],
+  "discardedStorageKeys": [
+    "tropical-aquarium.state.v5"
   ]
 }

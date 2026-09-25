@@ -164,4 +164,5 @@ export type AquariumPersistedState = {
 export type AquariumConfig = {
   stateStorageKey: string;
   legacyStorageKeys: string[];
+  discardedStorageKeys: string[];
 };
