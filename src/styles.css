@@ -288,6 +288,31 @@ button:focus-visible, input:focus-visible, select:focus-visible {
   overflow-wrap: anywhere;
 }
 .render-problem small { color: #e9c9c3; font-size: 10px; }
+.room-loading {
+  position: fixed;
+  inset: 0;
+  z-index: 3;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 14px;
+  color: #5f7a73;
+  font-size: 14px;
+  pointer-events: none;
+}
+.room-loading p { margin: 0; }
+.room-loading span {
+  width: 26px;
+  height: 26px;
+  border: 2px solid rgba(95, 122, 115, 0.25);
+  border-top-color: #5f7a73;
+  border-radius: 50%;
+  animation: room-spin 0.9s linear infinite;
+}
+@keyframes room-spin { to { transform: rotate(360deg); } }
+/* 準備ができるまでは、部屋の絵のないラベルやボタンを出さない。 */
+.room-scroll:not(.ready) .room-tank,
+.room-scroll:not(.ready) .room-tank-list { visibility: hidden; }
 .room-tank-list { display: none; }
 @media (max-width: 920px) {
   .room-tank-list {

@@ -69,6 +69,7 @@ export function FishRoom({
   onReadyRef.current = onReady;
   const zoomRef = useRef<((tankId: string, onDone: () => void) => void) | null>(null);
   const [zoomingTo, setZoomingTo] = useState<string | null>(null);
+  const [roomReady, setRoomReady] = useState(false);
   tanksRef.current = tanks;
 
   // 横長の部屋を狭い画面で見るときは、中央の水槽から見えるようにする。
@@ -180,7 +181,9 @@ export function FishRoom({
       progress.mark("最初の描画");
       requestAnimationFrame(() => requestAnimationFrame(() => {
         progress.done();
-        if (!disposed) onReadyRef.current?.();
+        if (disposed) return;
+        setRoomReady(true);
+        onReadyRef.current?.();
       }));
     }
 
@@ -343,7 +346,14 @@ export function FishRoom({
   }
 
   return (
-    <div className={`room-scroll${zoomingTo ? " zooming" : ""}`} ref={shellRef}>
+    <div className={`room-scroll${zoomingTo ? " zooming" : ""}${roomReady ? " ready" : ""}`} ref={shellRef}>
+      {/* 回線やGPUが遅い端末では準備に数秒かかるため、待っていることが分かるようにする。 */}
+      {roomReady ? null : (
+        <div className="room-loading" aria-live="polite">
+          <span aria-hidden="true" />
+          <p>フィッシュルームを準備しています</p>
+        </div>
+      )}
       <div
         className="room-stage"
         ref={stageRef}
