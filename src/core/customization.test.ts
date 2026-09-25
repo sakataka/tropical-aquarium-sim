@@ -82,7 +82,7 @@ describe("saved state", () => {
     });
     expect(migrated.tanks["amazon-90"]!.stock).toEqual([{ speciesId: "neon-tetra", count: 8 }]);
     expect(migrated.tanks["cube-30"]!.stock).toEqual([{ speciesId: "guppy", count: 2 }]);
-    expect(migrated.preferences).toEqual({ soundEnabled: true, soundVolume: 0.7 });
+    expect(migrated.preferences).toEqual({ soundEnabled: false, soundVolume: 0.7 });
   });
 
   test("keeps v1-v3 migration paths", () => {
@@ -116,7 +116,7 @@ describe("saved state", () => {
           layout: { sceneId: "amazon-planted", lighting: "night" },
         },
       },
-      preferences: { soundEnabled: "yes" },
+      preferences: { soundEnabled: true, soundVolume: 0.3 },
     }, fishCatalog)!;
     expect(state.activeTankId).toBe("asia-60");
     expect(state.tanks["asia-60"]).toEqual({
@@ -124,6 +124,6 @@ describe("saved state", () => {
       layout: { sceneId: "planted", lighting: "night" },
     });
     expect(state.tanks["cube-30"]).toEqual(createDefaultState(fishCatalog).tanks["cube-30"]);
-    expect(state.preferences.soundEnabled).toBe(false);
+    expect(state.preferences).toEqual({ soundEnabled: false, soundVolume: 0.3 });
   });
 });

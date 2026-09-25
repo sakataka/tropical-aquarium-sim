@@ -153,10 +153,7 @@ export function migrateLegacyAquariumState(
     if (ownsScene) state.activeTankId = tank.id;
   }
   const preferences = source.preferences ?? {};
-  state.preferences = normalizePreferences({
-    soundEnabled: preferences.soundEnabled,
-    soundVolume: preferences.soundVolume,
-  });
+  state.preferences = normalizePreferences({ soundVolume: preferences.soundVolume });
   return state;
 }
 
@@ -224,12 +221,13 @@ function normalizeStock(
   return result;
 }
 
+// 環境音は保存値に関係なく毎回OFFで始める。ONにするのはその場で選んだときだけ。
 function normalizePreferences(value: unknown): AquariumPreferences {
   const candidate = value && typeof value === "object"
     ? value as Partial<AquariumPreferences>
     : {};
   return {
-    soundEnabled: candidate.soundEnabled === true,
+    soundEnabled: false,
     soundVolume: Math.max(0, Math.min(1,
       typeof candidate.soundVolume === "number"
         ? candidate.soundVolume
