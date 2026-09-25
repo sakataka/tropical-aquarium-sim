@@ -28,6 +28,7 @@ import {
 } from "./core";
 import { AquariumCanvas, type ViewControl } from "./render/AquariumCanvas";
 import { forgetMotionState } from "./render/fishBody";
+import { RENDER_PROBLEM_EVENT } from "./render/renderProblems";
 import { FishRoom } from "./render/FishRoom";
 import { AquariumControls } from "./ui/AquariumControls";
 import "./styles.css";
@@ -57,6 +58,25 @@ export default function App() {
   ])), [initial]);
   const [saveStatus, setSaveStatus] = useState("保存済み");
   const [audioUnlocked, setAudioUnlocked] = useState(false);
+  const [renderProblem, setRenderProblem] = useState<string | null>(null);
+
+  useEffect(() => {
+    const onProblem = (event: Event) => setRenderProblem((current) =>
+      current ?? String((event as CustomEvent<string>).detail)
+    );
+    const onError = (event: ErrorEvent) => setRenderProblem((current) => current ?? `script: ${event.message}`);
+    const onRejection = (event: PromiseRejectionEvent) => setRenderProblem((current) =>
+      current ?? `promise: ${event.reason instanceof Error ? event.reason.message : String(event.reason)}`
+    );
+    window.addEventListener(RENDER_PROBLEM_EVENT, onProblem);
+    window.addEventListener("error", onError);
+    window.addEventListener("unhandledrejection", onRejection);
+    return () => {
+      window.removeEventListener(RENDER_PROBLEM_EVENT, onProblem);
+      window.removeEventListener("error", onError);
+      window.removeEventListener("unhandledrejection", onRejection);
+    };
+  }, []);
   const tank = getTankById(state.activeTankId) ?? aquariumTanks[0]!;
   const customization = state.tanks[tank.id]!;
 
@@ -131,6 +151,13 @@ export default function App() {
 
   return (
     <>
+      {renderProblem ? (
+        <div className="render-problem" role="alert">
+          <strong>水槽を表示できませんでした</strong>
+          <span>{renderProblem}</span>
+          <small>{navigator.userAgent}</small>
+        </div>
+      ) : null}
       {showRoom ? (
         <FishRoom
           active={phase.kind === "room" || phase.kind === "toRoom"}

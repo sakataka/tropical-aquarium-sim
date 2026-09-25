@@ -10,7 +10,8 @@ import {
   type FishInstance,
 } from "../core";
 import { fishRoom, type RoomRect } from "../core/room";
-import { getScenePlateUrl, roomImageUrl } from "./assets";
+import { reportRenderProblem, watchContextLoss, watchSetup } from "./renderProblems";
+import { getSceneForegroundUrl, getScenePlateUrl, roomImageUrl } from "./assets";
 import { FishLayer, getWaterTint, type ViewRect } from "./fishLayer";
 import { frameGlass, getInitialZoom, getRenderOptions } from "./tankFraming";
 
@@ -29,6 +30,7 @@ type TankView = {
   tankId: string;
   container: Container;
   plate: Sprite;
+  foreground: Sprite;
   mask: Graphics;
   fish: FishLayer;
   sceneId?: string;
@@ -91,13 +93,16 @@ export function FishRoom({
     const curtain = new Graphics();
     curtain.alpha = 0;
 
+    const progress = watchSetup("部屋");
+
     async function setup() {
+      progress.mark("WebGLの初期化");
       await app.init({
         resizeTo: host,
         preference: "webgl",
         backgroundAlpha: 0,
         autoDensity: true,
-        ...getRenderOptions(host.clientWidth, host.clientHeight),
+        ...getRenderOptions(),
       });
       initialized = true;
       if (disposed) {
@@ -105,25 +110,32 @@ export function FishRoom({
         return;
       }
       host.prepend(app.canvas);
+      watchContextLoss(app.canvas, "部屋", () => disposed);
       app.stage.addChild(world);
 
       for (const placement of fishRoom.tanks) {
         const container = new Container();
         const plate = new Sprite(Texture.EMPTY);
+        const foreground = new Sprite(Texture.EMPTY);
         plate.anchor.set(0.5);
-        const fishContainer = new Container();
+        foreground.anchor.set(0.5);
+        // 水槽画面と同じ重なり順（奥の魚は手前の水草の後ろ）にして、寄り終えた絵をそろえる。
+        const fishBack = new Container();
+        const fishFront = new Container();
         const mask = new Graphics();
-        container.addChild(plate, fishContainer, mask);
+        container.addChild(plate, fishBack, foreground, fishFront, mask);
         container.mask = mask;
         world.addChild(container);
         views.push({
           tankId: placement.tankId,
           container,
           plate,
+          foreground,
           mask,
-          fish: new FishLayer(fishContainer, fishContainer),
+          fish: new FishLayer(fishBack, fishFront),
         });
       }
+      progress.mark("部屋と水景の画像の読み込み");
       const [roomTexture] = await Promise.all([
         Assets.load<Texture>(roomImageUrl),
         ...views.map((view) => loadPlate(view, tanksRef.current[view.tankId]?.layout.sceneId)),
@@ -165,7 +177,9 @@ export function FishRoom({
         for (const view of views) updateTank(view, width, height, deltaSec);
         updateCamera(deltaSec);
       });
+      progress.mark("最初の描画");
       requestAnimationFrame(() => requestAnimationFrame(() => {
+        progress.done();
         if (!disposed) onReadyRef.current?.();
       }));
     }
@@ -181,12 +195,13 @@ export function FishRoom({
       const windowRect = toPixels(placement.window, width, height);
       const glassRect = toPixels(placement.glass, width, height);
       view.mask.clear().rect(windowRect.x, windowRect.y, windowRect.width, windowRect.height).fill(0xffffff);
-      if (view.plate.texture !== Texture.EMPTY) {
-        view.plate.position.set(glassRect.x + glassRect.width / 2, glassRect.y + glassRect.height / 2);
+      for (const sprite of [view.plate, view.foreground]) {
+        if (sprite.texture === Texture.EMPTY) continue;
+        sprite.position.set(glassRect.x + glassRect.width / 2, glassRect.y + glassRect.height / 2);
         // 前面ガラスを基準に、側面ガラスから見える部分まで水景を広げる。
-        view.plate.scale.set(Math.max(
-          windowRect.width / view.plate.texture.width,
-          windowRect.height / view.plate.texture.height,
+        sprite.scale.set(Math.max(
+          windowRect.width / sprite.texture.width,
+          windowRect.height / sprite.texture.height,
         ));
       }
       if (activeRef.current) fishRef.current = stepSimulation({
@@ -205,10 +220,16 @@ export function FishRoom({
       view.sceneId = sceneId;
       const scene = getSceneById(sceneId);
       const url = getScenePlateUrl(sceneId);
+      const foregroundUrl = getSceneForegroundUrl(sceneId);
       if (scene) view.fish.waterTint = getWaterTint(scene.waterColor);
       if (!url) return;
-      const texture = await Assets.load<Texture>(url);
-      if (!disposed && view.sceneId === sceneId) view.plate.texture = texture;
+      const [texture, foregroundTexture] = await Promise.all([
+        Assets.load<Texture>(url),
+        foregroundUrl ? Assets.load<Texture>(foregroundUrl) : Promise.resolve(Texture.EMPTY),
+      ]);
+      if (disposed || view.sceneId !== sceneId) return;
+      view.plate.texture = texture;
+      view.foreground.texture = foregroundTexture;
     }
 
     // カメラは「部屋のどこを画面いっぱいに映すか」で表し、寄る・引くを補間する。
@@ -296,10 +317,11 @@ export function FishRoom({
     }
 
     void setup().catch((error: unknown) => {
-      if (!disposed) console.error("Fish room rendering failed", error);
+      if (!disposed) reportRenderProblem("部屋", error);
     });
     return () => {
       disposed = true;
+      progress.done();
       zoomRef.current = null;
       for (const view of views) view.fish.destroy();
       if (initialized) destroyApp();

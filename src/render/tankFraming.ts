@@ -40,11 +40,12 @@ export function getInitialZoom(glass: { width: number; height: number }, viewWid
 }
 
 /** 画素数の多いスマホでGPUメモリを使いすぎないよう、描画解像度に上限を設ける。 */
-const MAX_CANVAS_PIXELS = 4_000_000;
+const MAX_CANVAS_PIXELS = 6_000_000;
 
-export function getRenderOptions(width: number, height: number) {
+// 部屋と水槽画面で同じシャープさになるよう、キャンバスではなくウィンドウの大きさで決める。
+export function getRenderOptions() {
   const devicePixelRatio = window.devicePixelRatio || 1;
-  const pixelLimit = Math.sqrt(MAX_CANVAS_PIXELS / Math.max(1, width * height));
+  const pixelLimit = Math.sqrt(MAX_CANVAS_PIXELS / Math.max(1, window.innerWidth * window.innerHeight));
   return {
     resolution: Math.max(1, Math.min(devicePixelRatio, 2, pixelLimit)),
     // 高精細な画面ではアンチエイリアスがなくても縁は十分なめらかで、メモリを大きく節約できる。

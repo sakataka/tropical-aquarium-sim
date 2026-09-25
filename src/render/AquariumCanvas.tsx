@@ -21,6 +21,7 @@ import {
   getSceneForegroundUrl,
   getScenePlateUrl,
 } from "./assets";
+import { reportRenderProblem, watchContextLoss, watchSetup } from "./renderProblems";
 import { BubbleColumns, FloatingMotes } from "./bubbles";
 import { FishLayer, getWaterTint } from "./fishLayer";
 import {
@@ -127,7 +128,10 @@ export function AquariumCanvas({
     let elapsedSec = 0;
     let resizeObserver: ResizeObserver | undefined;
 
+    const progress = watchSetup("水槽");
+
     async function setup() {
+      progress.mark("WebGLの初期化");
       const width = Math.max(1, targetHost.clientWidth);
       const height = Math.max(1, targetHost.clientHeight);
       await app.init({
@@ -136,7 +140,7 @@ export function AquariumCanvas({
         preference: "webgl",
         backgroundAlpha: 0,
         autoDensity: true,
-        ...getRenderOptions(width, height),
+        ...getRenderOptions(),
       });
       initialized = true;
       if (disposed) {
@@ -150,6 +154,7 @@ export function AquariumCanvas({
       app.stage.filters = [underwater];
       app.stage.filterArea = app.screen;
       targetHost.appendChild(app.canvas);
+      watchContextLoss(app.canvas, "水槽", () => disposed);
       // パネルの開閉など、ウィンドウ以外の理由で枠の大きさが変わっても追従する。
       resizeObserver = new ResizeObserver(() => {
         detachFilterInput(app);
@@ -165,6 +170,7 @@ export function AquariumCanvas({
       targetHost.addEventListener("dblclick", onDoubleClick);
       window.addEventListener("keydown", onKeyDown);
 
+      progress.mark("泡の画像の読み込み");
       const bubbleTexture = await Assets.load<Texture>(environmentAssets.bubbleParticleUrl);
       if (disposed) return;
       bubbles = new BubbleColumns(bubbleTexture);
@@ -179,8 +185,10 @@ export function AquariumCanvas({
           resetZoom: () => zoomAt(1, app.screen.width / 2, app.screen.height / 2),
         };
       }
+      progress.mark("水景の画像の読み込み");
       await showScene(layoutRef.current.sceneId);
       if (disposed) return;
+      progress.mark("最初の描画");
 
       app.ticker.add((ticker) => {
         const deltaSec = Math.min(0.05, ticker.deltaMS / 1000);
@@ -214,7 +222,10 @@ export function AquariumCanvas({
         underwater.update(elapsedSec % 3600, deltaSec);
         // 魚まで描き終えた2フレーム目から見せる。
         renderedFrames += 1;
-        if (renderedFrames === 2) onReadyRef.current?.();
+        if (renderedFrames === 2) {
+          progress.done();
+          onReadyRef.current?.();
+        }
       });
     }
 
@@ -373,10 +384,11 @@ export function AquariumCanvas({
     }
 
     void setup().catch((error: unknown) => {
-      if (!disposed) console.error("Aquarium rendering failed", error);
+      if (!disposed) reportRenderProblem("水槽", error);
     });
     return () => {
       disposed = true;
+      progress.done();
       handleRef.current = null;
       resizeObserver?.disconnect();
       targetHost.removeEventListener("pointerdown", onPointerDown);
