@@ -6,7 +6,7 @@ import {
   type TankDefinition,
 } from "../core";
 import { getFishImageUrl } from "./assets";
-import { FishBody, getBodyTexture } from "./fishBody";
+import { FishBody } from "./fishBody";
 
 type FishRecord = { body: FishBody; visualScale: number };
 export type ViewRect = { x: number; y: number; width: number; height: number };
@@ -52,7 +52,7 @@ export class FishLayer {
         const texture = getFishTexture(definition);
         if (!texture) continue;
         record = {
-          body: new FishBody(getBodyTexture(texture, definition), definition, item),
+          body: new FishBody(texture, definition, item),
           visualScale: 0,
         };
         this.records.set(item.id, record);
@@ -61,7 +61,9 @@ export class FishLayer {
       const targetLayer = item.depth > BACK_DEPTH ? this.backLayer : this.frontLayer;
       if (mesh.parent !== targetLayer) targetLayer.addChild(mesh);
 
-      const scale = getFishSpriteScale({
+      // 体長は原画の体の幅を基準に決まるので、縮小した画像の幅へ換算する。
+      const textureScale = definition.sourceBodyBounds.width / record.body.mesh.texture.width;
+      const scale = textureScale * getFishSpriteScale({
         viewportWidthPx: rect.width,
         tankWidthCm: tank.widthCm,
         species: definition,

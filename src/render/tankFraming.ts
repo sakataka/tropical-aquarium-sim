@@ -25,3 +25,29 @@ export function getMaxZoom(glass: { width: number; height: number }, viewWidth: 
   const cover = Math.max(viewWidth / glass.width, viewHeight / glass.height);
   return Math.max(2, cover * MAX_ZOOM_OVER_COVER);
 }
+
+/** 縦長の画面では、最初から水槽の高さが画面のこの割合になるまで寄せる。 */
+const MIN_INITIAL_HEIGHT_RATIO = 0.4;
+
+/**
+ * 最初に映す倍率。横長の画面では1倍（全体）。縦長の画面で水槽が細い帯に
+ * ならないよう寄せ、はみ出した分は横にスワイプして見る。
+ */
+export function getInitialZoom(glass: { width: number; height: number }, viewWidth: number, viewHeight: number) {
+  const cover = Math.max(viewWidth / glass.width, viewHeight / glass.height);
+  const wanted = (viewHeight * MIN_INITIAL_HEIGHT_RATIO) / glass.height;
+  return Math.max(1, Math.min(wanted, cover));
+}
+
+/** 画素数の多いスマホでGPUメモリを使いすぎないよう、描画解像度に上限を設ける。 */
+const MAX_CANVAS_PIXELS = 4_000_000;
+
+export function getRenderOptions(width: number, height: number) {
+  const devicePixelRatio = window.devicePixelRatio || 1;
+  const pixelLimit = Math.sqrt(MAX_CANVAS_PIXELS / Math.max(1, width * height));
+  return {
+    resolution: Math.max(1, Math.min(devicePixelRatio, 2, pixelLimit)),
+    // 高精細な画面ではアンチエイリアスがなくても縁は十分なめらかで、メモリを大きく節約できる。
+    antialias: devicePixelRatio < 2,
+  };
+}

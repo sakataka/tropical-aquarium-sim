@@ -24,7 +24,7 @@ type Result = {
   restored: { version: number; scene: string; lighting: string; harlequinCount: number; sound: boolean };
   migrated: { version: number; asiaScene: string; amazonNeon: number };
   desktop: { stageWidth: number; stageHeight: number; canvasWidth: number };
-  mobile: { roomTanks: number; overflowWidth: number; tankStageWidth: number };
+  mobile: { entered: boolean; roomTanks: number; overflowWidth: number; tankStageWidth: number };
   removedCopyAbsent: boolean;
   consoleErrors: string[];
 };
@@ -202,6 +202,14 @@ async function main() {
       overflowWidth: document.documentElement.scrollWidth - document.documentElement.clientWidth,
     })`) as { roomTanks: number; overflowWidth: number };
     await Bun.write(`${SCREENSHOT_DIR}/room-mobile-420x912.png`, await mobileView.screenshot({ format: "png" }));
+    // 狭い画面では一覧ボタンから水槽に入り、水槽が細い帯にならず映ること。
+    await mobileView.evaluate(`Array.from(document.querySelectorAll(".room-tank-list button"))
+      .find((button) => button.textContent?.includes("アマゾンの大型水槽"))?.click()`);
+    await sleep(3000);
+    const mobileEntered = Boolean(await mobileView.evaluate(
+      `document.querySelector(".tank-screen")?.classList.contains("visible")`,
+    ));
+    await Bun.write(`${SCREENSHOT_DIR}/amazon-mobile-420x912.png`, await mobileView.screenshot({ format: "png" }));
     await mobileView.navigate(`${BASE_URL}?tank=asia-60`);
     await sleep(2500);
     const tankStageWidth = Number(await mobileView.evaluate(
@@ -212,6 +220,7 @@ async function main() {
     ));
     await Bun.write(`${SCREENSHOT_DIR}/mobile-420x912.png`, await mobileView.screenshot({ format: "png" }));
     const mobile = {
+      entered: mobileEntered,
       roomTanks: mobileRoom.roomTanks,
       overflowWidth: Math.max(mobileRoom.overflowWidth, tankOverflow),
       tankStageWidth,
@@ -240,7 +249,7 @@ async function main() {
     assert(restored.lighting === "night" && restored.harlequinCount === 11 && restored.sound);
     assert(migrated.version === 5 && migrated.asiaScene === "iwagumi" && migrated.amazonNeon === 9);
     assert(desktop.stageWidth >= 700 && desktop.canvasWidth >= 700 && desktop.stageHeight >= 400);
-    assert(mobile.roomTanks === 3 && mobile.tankStageWidth >= 380 && mobile.overflowWidth === 0);
+    assert(mobile.entered && mobile.roomTanks === 3 && mobile.tankStageWidth >= 380 && mobile.overflowWidth === 0);
     assert(removedCopyAbsent);
     assert(consoleErrors.length === 0);
     console.log(`Screenshots: ${SCREENSHOT_DIR}/*.png`);

@@ -1,4 +1,4 @@
-import { MeshPlane, Rectangle, Texture } from "pixi.js";
+import { MeshPlane, type Texture } from "pixi.js";
 import type { FishInstance, FishSpeciesDefinition } from "../core";
 
 const VERTICES_X = 26;
@@ -179,23 +179,6 @@ export class FishBody {
     }
     this.mesh.geometry.getBuffer("aPosition").update();
   }
-}
-
-const bodyTextureCache = new WeakMap<Texture, Texture>();
-
-export function getBodyTexture(texture: Texture, species: FishSpeciesDefinition): Texture {
-  const cached = bodyTextureCache.get(texture);
-  if (cached) return cached;
-  const bounds = species.sourceBodyBounds;
-  const frame = new Rectangle(
-    bounds.x,
-    bounds.y,
-    Math.min(bounds.width, texture.width - bounds.x),
-    Math.min(bounds.height, texture.height - bounds.y),
-  );
-  const body = new Texture({ source: texture.source, frame });
-  bodyTextureCache.set(texture, body);
-  return body;
 }
 
 function smoothstep(edge0: number, edge1: number, value: number): number {

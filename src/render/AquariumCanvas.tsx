@@ -23,7 +23,13 @@ import {
 } from "./assets";
 import { BubbleColumns, FloatingMotes } from "./bubbles";
 import { FishLayer, getWaterTint } from "./fishLayer";
-import { frameGlass, getGlassAspect, getMaxZoom } from "./tankFraming";
+import {
+  frameGlass,
+  getGlassAspect,
+  getInitialZoom,
+  getMaxZoom,
+  getRenderOptions,
+} from "./tankFraming";
 import { UnderwaterFilter } from "./underwaterFilter";
 
 type AquariumCanvasProps = {
@@ -122,20 +128,24 @@ export function AquariumCanvas({
     let resizeObserver: ResizeObserver | undefined;
 
     async function setup() {
+      const width = Math.max(1, targetHost.clientWidth);
+      const height = Math.max(1, targetHost.clientHeight);
       await app.init({
-        width: Math.max(1, targetHost.clientWidth),
-        height: Math.max(1, targetHost.clientHeight),
+        width,
+        height,
         preference: "webgl",
         backgroundAlpha: 0,
-        antialias: true,
         autoDensity: true,
-        resolution: Math.min(window.devicePixelRatio || 1, 2),
+        ...getRenderOptions(width, height),
       });
       initialized = true;
       if (disposed) {
         destroyApp();
         return;
       }
+      const initialZoom = getInitialZoom(getGlassSize(), app.screen.width, app.screen.height);
+      view.zoom = initialZoom;
+      view.targetZoom = initialZoom;
       app.stage.addChild(world);
       app.stage.filters = [underwater];
       app.stage.filterArea = app.screen;

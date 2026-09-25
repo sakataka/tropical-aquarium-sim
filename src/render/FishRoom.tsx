@@ -12,7 +12,7 @@ import {
 import { fishRoom, type RoomRect } from "../core/room";
 import { getScenePlateUrl, roomImageUrl } from "./assets";
 import { FishLayer, getWaterTint, type ViewRect } from "./fishLayer";
-import { frameGlass } from "./tankFraming";
+import { frameGlass, getInitialZoom, getRenderOptions } from "./tankFraming";
 
 type FishRoomProps = {
   tanks: Record<string, AquariumCustomization>;
@@ -96,9 +96,8 @@ export function FishRoom({
         resizeTo: host,
         preference: "webgl",
         backgroundAlpha: 0,
-        antialias: true,
         autoDensity: true,
-        resolution: Math.min(window.devicePixelRatio || 1, 2),
+        ...getRenderOptions(host.clientWidth, host.clientHeight),
       });
       initialized = true;
       if (disposed) {
@@ -285,7 +284,8 @@ export function FishRoom({
       const visible = getVisibleCamera();
       const rect = toPixels(glass, app.screen.width, app.screen.height);
       const framed = frameGlass(rect.width / rect.height, window.innerWidth, window.innerHeight);
-      const scale = framed.width / rect.width;
+      const zoom = getInitialZoom(framed, window.innerWidth, window.innerHeight);
+      const scale = (framed.width * zoom) / rect.width;
       const width = window.innerWidth / scale;
       return {
         centerX: rect.x + rect.width / 2,
@@ -357,6 +357,18 @@ export function FishRoom({
         <p>FISH ROOM</p>
         <h1>フィッシュルーム</h1>
       </header>
+      {/* 狭い画面では部屋の一部しか見えないため、水槽の一覧からも入れるようにする。 */}
+      <nav aria-label="水槽を選ぶ" className="room-tank-list">
+        {fishRoom.tanks.map((placement) => {
+          const tank = getTankById(placement.tankId);
+          if (!tank) return null;
+          return (
+            <button key={tank.id} onClick={() => enter(tank.id)} type="button">
+              {tank.displayName}
+            </button>
+          );
+        })}
+      </nav>
     </div>
   );
 }
