@@ -12,6 +12,11 @@
   --accent: #7ed8d8;
   --muted: #90acad;
   --ink: #e9fbfb;
+  /* ノッチやホームバーを避ける余白。横向きのスマホでは左右に効く。 */
+  --safe-top: max(16px, env(safe-area-inset-top));
+  --safe-right: max(16px, env(safe-area-inset-right));
+  --safe-bottom: max(16px, env(safe-area-inset-bottom));
+  --safe-left: max(16px, env(safe-area-inset-left));
 }
 
 * { box-sizing: border-box; }
@@ -163,13 +168,14 @@ button:focus-visible, input:focus-visible, select:focus-visible {
 .tank-screen.revealed:not(.hud-idle) .tank-hud button { pointer-events: auto; }
 .hud-bar {
   position: absolute;
-  top: 16px;
-  left: 16px;
-  right: 16px;
+  top: var(--safe-top);
+  left: var(--safe-left);
+  right: var(--safe-right);
   display: flex;
   justify-content: space-between;
   gap: 12px;
 }
+.hud-actions { display: flex; gap: 8px; }
 .tank-screen.editing .hud-bar { right: calc(var(--panel-width) + 16px); }
 .hud-bar button, .hud-caption {
   border: 1px solid rgba(199, 244, 242, 0.22);
@@ -181,8 +187,8 @@ button:focus-visible, input:focus-visible, select:focus-visible {
 .hud-bar button { padding: 10px 14px; font-size: 13px; }
 .hud-caption {
   position: absolute;
-  left: 16px;
-  bottom: 16px;
+  left: var(--safe-left);
+  bottom: var(--safe-bottom);
   display: grid;
   gap: 3px;
   padding: 11px 14px;
@@ -192,8 +198,8 @@ button:focus-visible, input:focus-visible, select:focus-visible {
 .tank-screen.editing .hud-caption { opacity: 0; }
 .hud-zoom {
   position: absolute;
-  right: 16px;
-  bottom: 16px;
+  right: var(--safe-right);
+  bottom: var(--safe-bottom);
   display: flex;
   gap: 6px;
 }
@@ -261,8 +267,8 @@ button:focus-visible, input:focus-visible, select:focus-visible {
 }
 .room-heading {
   position: fixed;
-  top: 20px;
-  left: 24px;
+  top: max(20px, env(safe-area-inset-top));
+  left: max(24px, env(safe-area-inset-left));
   padding: 10px 16px;
   border-radius: 12px;
   background: rgba(250, 247, 241, 0.72);
@@ -317,8 +323,8 @@ button:focus-visible, input:focus-visible, select:focus-visible {
 @media (max-width: 920px) {
   .room-tank-list {
     position: fixed;
-    left: 12px;
-    right: 12px;
+    left: max(12px, env(safe-area-inset-left));
+    right: max(12px, env(safe-area-inset-right));
     bottom: max(16px, env(safe-area-inset-bottom));
     display: flex;
     gap: 8px;
@@ -394,7 +400,7 @@ button:focus-visible, input:focus-visible, select:focus-visible {
   color: #f1ffff;
 }
 
-.panel-content { padding: 24px; }
+.panel-content { padding: 24px 24px max(24px, env(safe-area-inset-bottom)); }
 .section-intro { margin-bottom: 20px; }
 .section-intro h2 { margin: 0; font-size: 24px; letter-spacing: -0.03em; }
 .section-intro > p:last-child {
@@ -563,9 +569,11 @@ input::placeholder { color: #6f898a; }
 .lighting-grid button.active { border-color: var(--accent); background: rgba(65, 145, 147, 0.42); }
 .sound-toggle { border-color: var(--line); background: rgba(14, 45, 47, 0.72); }
 .sound-toggle > span:last-child { color: var(--accent); font-size: 12px; font-weight: 900; }
+.sound-credit { margin: 10px 0 0; color: var(--muted); font-size: 10px; }
 .sound-settings label { display: grid; grid-template-columns: 48px 1fr; gap: 10px; align-items: center; margin-top: 14px; color: var(--muted); font-size: 11px; }
 
-@media (max-width: 920px) {
+/* 縦長の画面では下からシートを出す。横向きのスマホは高さが足りないので横のパネルのまま。 */
+@media (max-width: 920px) and (orientation: portrait), (max-width: 920px) and (min-height: 521px) {
   .tank-screen.editing .tank-view { right: 0; bottom: var(--sheet-height); padding: 10px; }
   .control-panel {
     top: auto;
@@ -577,8 +585,25 @@ input::placeholder { color: #6f898a; }
     border-radius: 20px 20px 0 0;
     transform: translateY(100%);
   }
-  .tank-screen.editing .hud-bar { right: 16px; }
-  .tank-screen.editing .hud-zoom { right: 16px; bottom: calc(var(--sheet-height) + 12px); }
+  .tank-screen.editing .hud-bar { right: var(--safe-right); }
+  .tank-screen.editing .hud-zoom { right: var(--safe-right); bottom: calc(var(--sheet-height) + 12px); }
+}
+
+@media (orientation: landscape) and (max-height: 520px) {
+  .tank-screen { --panel-width: min(380px, 46vw); }
+  .tank-screen.editing .tank-view { padding: 8px; padding-left: max(8px, env(safe-area-inset-left)); }
+  .tank-screen.editing .aquarium-stage { border-radius: 12px; }
+  .control-panel { padding-right: env(safe-area-inset-right); }
+  .panel-heading { padding: 12px 16px 10px; }
+  .panel-heading h1 { font-size: 20px; }
+  .eyebrow { margin-bottom: 2px; }
+  .close-panel { margin-bottom: 8px; }
+  .panel-tabs { padding: 6px 10px; }
+  .panel-content { padding: 14px 12px max(14px, env(safe-area-inset-bottom)); }
+  .hud-bar { top: max(10px, env(safe-area-inset-top)); }
+  .hud-bar button { padding: 8px 12px; }
+  .hud-caption { display: none; }
+  .hud-zoom { bottom: max(10px, env(safe-area-inset-bottom)); }
 }
 
 @media (max-width: 520px) {
@@ -589,7 +614,11 @@ input::placeholder { color: #6f898a; }
   .fish-catalog-card { grid-template-columns: 102px minmax(0, 1fr); }
   .fish-portrait img { height: 88px; }
   .fish-catalog-copy { padding: 13px; }
-  .hud-bar { top: 10px; left: 10px; right: 10px; }
+  .hud-bar {
+    top: max(10px, env(safe-area-inset-top));
+    left: max(10px, env(safe-area-inset-left));
+    right: max(10px, env(safe-area-inset-right));
+  }
   .hud-caption { display: none; }
 }
 

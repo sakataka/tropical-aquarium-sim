@@ -32,6 +32,8 @@ import { RENDER_PROBLEM_EVENT } from "./render/renderProblems";
 import { FishRoom } from "./render/FishRoom";
 import { AquariumControls } from "./ui/AquariumControls";
 import "./styles.css";
+import waterAmbienceLoop from "./content/audio/water-ambience.json";
+import waterAmbienceUrl from "./content/audio/water-ambience.m4a?url";
 
 
 type FishRefs = Record<string, MutableRefObject<FishInstance[]>>;
@@ -230,6 +232,7 @@ function TankScreen({
   const [editing, setEditing] = useState(false);
   const [hudIdle, setHudIdle] = useState(false);
   const viewControlRef = useRef<ViewControl | null>(null);
+  const fullscreen = useFullscreen();
   const editingRef = useRef(editing);
   const onBackToRoomRef = useRef(onBackToRoom);
   editingRef.current = editing;
@@ -253,7 +256,8 @@ function TankScreen({
     };
     // Esc で一段戻る。設定を開いていれば閉じ、鑑賞中なら部屋へ戻る。
     const onKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
+      // 全画面中の Esc はブラウザが全画面の解除に使う。
+      if (event.key === "Escape" && !document.fullscreenElement) {
         if (editingRef.current) setEditing(false);
         else onBackToRoomRef.current();
       }
@@ -308,14 +312,21 @@ function TankScreen({
       <div className="tank-hud">
         <div className="hud-bar">
           <button onClick={onBackToRoom} type="button">‹ 部屋に戻る</button>
-          {editing ? null : (
-            <button
-              aria-controls="tank-settings"
-              aria-expanded={editing}
-              onClick={() => setEditing(true)}
-              type="button"
-            >設定</button>
-          )}
+          <div className="hud-actions">
+            {fullscreen.supported ? (
+              <button aria-pressed={fullscreen.active} onClick={fullscreen.toggle} type="button">
+                {fullscreen.active ? "全画面を解除" : "全画面"}
+              </button>
+            ) : null}
+            {editing ? null : (
+              <button
+                aria-controls="tank-settings"
+                aria-expanded={editing}
+                onClick={() => setEditing(true)}
+                type="button"
+              >設定</button>
+            )}
+          </div>
         </div>
         <div className="hud-caption">
           <strong>{tank.displayName}</strong>
@@ -353,6 +364,25 @@ function TankScreen({
   );
 }
 
+// iPhone の Safari は要素の全画面表示に対応していないので、そのときはボタンを出さない。
+function useFullscreen() {
+  const supported = typeof document.documentElement.requestFullscreen === "function" &&
+    document.fullscreenEnabled;
+  const [active, setActive] = useState(() => document.fullscreenElement !== null);
+  useEffect(() => {
+    const sync = () => setActive(document.fullscreenElement !== null);
+    document.addEventListener("fullscreenchange", sync);
+    return () => document.removeEventListener("fullscreenchange", sync);
+  }, []);
+  const toggle = useCallback(() => {
+    const request = document.fullscreenElement
+      ? document.exitFullscreen()
+      : document.documentElement.requestFullscreen();
+    void request.catch(() => undefined);
+  }, []);
+  return { supported, active, toggle };
+}
+
 function loadInitialState(): { state: AquariumPersistedState; phase: Phase } {
   const params = new URLSearchParams(window.location.search);
   let state = createDefaultState(fishCatalog);
@@ -375,7 +405,8 @@ function loadInitialState(): { state: AquariumPersistedState; phase: Phase } {
   const requestedTank = getTankById(params.get("tank")) ?? sceneTank;
   if (!requestedTank) return { state, phase: { kind: "room" } };
   const tanks = { ...state.tanks };
-  if (sceneTank && sceneId) {
+  // すでにその水景なら、選んである照明を残す。
+  if (sceneTank && sceneId && tanks[sceneTank.id]!.layout.sceneId !== sceneId) {
     tanks[sceneTank.id] = {
       ...tanks[sceneTank.id]!,
       layout: getDefaultLayout(sceneTank, sceneId),
@@ -387,45 +418,76 @@ function loadInitialState(): { state: AquariumPersistedState; phase: Phase } {
   };
 }
 
+type AmbientAudio = { context: AudioContext; master: GainNode; suspendTimer: number };
+
+const ambientLevel = (volume: number) => Math.max(0, Math.min(1, volume)) * 0.6;
+
+// 生成した水音のループを流す。音量の変更では鳴らし直さず、ゲインだけを動かす。
 function useAmbientSound(active: boolean, volume: number) {
+  const audioRef = useRef<AmbientAudio | null>(null);
+  const volumeRef = useRef(volume);
+  volumeRef.current = volume;
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio || !active) return;
+    audio.master.gain.setTargetAtTime(ambientLevel(volume), audio.context.currentTime, 0.08);
+  }, [active, volume]);
+
   useEffect(() => {
     if (!active) return;
-    const AudioContextConstructor = window.AudioContext ??
-      (window as Window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
-    if (!AudioContextConstructor) return;
-    const context = new AudioContextConstructor();
-    const master = context.createGain();
-    master.gain.value = Math.max(0, Math.min(1, volume)) * 0.12;
-    master.connect(context.destination);
-
-    const hum = context.createOscillator();
-    const humGain = context.createGain();
-    hum.type = "sine";
-    hum.frequency.value = 58;
-    humGain.gain.value = 0.08;
-    hum.connect(humGain).connect(master);
-
-    const buffer = context.createBuffer(1, context.sampleRate * 2, context.sampleRate);
-    const channel = buffer.getChannelData(0);
-    for (let index = 0; index < channel.length; index += 1) {
-      channel[index] = Math.random() * 2 - 1;
-    }
-    const water = context.createBufferSource();
-    const filter = context.createBiquadFilter();
-    const gain = context.createGain();
-    water.buffer = buffer;
-    water.loop = true;
-    filter.type = "lowpass";
-    filter.frequency.value = 720;
-    gain.gain.value = 0.12;
-    water.connect(filter).connect(gain).connect(master);
-    hum.start();
-    water.start();
-    void context.resume().catch(() => undefined);
-    return () => {
-      hum.stop();
-      water.stop();
-      void context.close();
+    const audio = audioRef.current ?? createAmbientAudio();
+    if (!audio) return;
+    audioRef.current = audio;
+    window.clearTimeout(audio.suspendTimer);
+    // タブが裏へ回ったら止め、戻ったら続きから鳴らす。
+    const sync = () => {
+      if (document.hidden) void audio.context.suspend().catch(() => undefined);
+      else void audio.context.resume().catch(() => undefined);
     };
-  }, [active, volume]);
+    sync();
+    audio.master.gain.setTargetAtTime(ambientLevel(volumeRef.current), audio.context.currentTime, 0.4);
+    document.addEventListener("visibilitychange", sync);
+    return () => {
+      document.removeEventListener("visibilitychange", sync);
+      audio.master.gain.setTargetAtTime(0, audio.context.currentTime, 0.12);
+      audio.suspendTimer = window.setTimeout(
+        () => void audio.context.suspend().catch(() => undefined),
+        800,
+      );
+    };
+  }, [active]);
+
+  useEffect(() => () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    window.clearTimeout(audio.suspendTimer);
+    void audio.context.close();
+  }, []);
+}
+
+function createAmbientAudio(): AmbientAudio | undefined {
+  const AudioContextConstructor = window.AudioContext ??
+    (window as Window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
+  if (!AudioContextConstructor) return undefined;
+  const context = new AudioContextConstructor();
+  const master = context.createGain();
+  master.gain.value = 0;
+  master.connect(context.destination);
+  void fetch(waterAmbienceUrl)
+    .then((response) => response.arrayBuffer())
+    .then((data) => context.decodeAudioData(data))
+    .then((buffer) => {
+      if (context.state === "closed") return;
+      // 前後の余白は同じ波形の複製。デコーダーが先頭に無音を足しても継ぎ目が出ない。
+      const source = context.createBufferSource();
+      source.buffer = buffer;
+      source.loop = true;
+      source.loopStart = waterAmbienceLoop.padSec;
+      source.loopEnd = waterAmbienceLoop.padSec + waterAmbienceLoop.loopSec;
+      source.connect(master);
+      source.start(0, waterAmbienceLoop.padSec);
+    })
+    .catch(() => undefined);
+  return { context, master, suspendTimer: 0 };
 }

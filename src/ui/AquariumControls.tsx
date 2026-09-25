@@ -181,7 +181,7 @@ export function AquariumControls({
               onClick={() => onPreferencesChange({ soundEnabled: !preferences.soundEnabled })}
               type="button"
             >
-              <span><strong>水とフィルターの音</strong><small>静かな低音を重ねます</small></span>
+              <span><strong>水とフィルターの音</strong><small>フィルターから落ちる水の音</small></span>
               <span>{preferences.soundEnabled ? "ON" : "OFF"}</span>
             </button>
             <label>
@@ -199,6 +199,7 @@ export function AquariumControls({
                 value={preferences.soundVolume}
               />
             </label>
+            <p className="sound-credit">水音は Woosh (Sony AI) で生成</p>
           </fieldset>
         </section>
       ) : null}

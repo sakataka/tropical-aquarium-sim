@@ -25,6 +25,7 @@ type Result = {
   migrated: { version: number; asiaScene: string; amazonNeon: number };
   desktop: { stageWidth: number; stageHeight: number; canvasWidth: number };
   mobile: { entered: boolean; roomTanks: number; overflowWidth: number; tankStageWidth: number };
+  landscape: { panelLeft: number; panelTop: number; stageHeight: number; overflowWidth: number };
   removedCopyAbsent: boolean;
   consoleErrors: string[];
 };
@@ -226,10 +227,35 @@ async function main() {
       tankStageWidth,
     };
 
+    // 横向きのスマホでは設定パネルを横に出し、水槽の高さを潰さないこと。
+    await using landscapeView = new Bun.WebView({
+      width: 912,
+      height: 420,
+      backend: "webkit",
+      console: (type, ...args) => {
+        if (type === "error") consoleErrors.push(`landscape: ${args.map(String).join(" ")}`);
+      },
+    });
+    await landscapeView.navigate(`${BASE_URL}?tank=asia-60`);
+    await sleep(2500);
+    await clickButtonByText(landscapeView, "設定");
+    await sleep(1200);
+    const landscape = await landscapeView.evaluate(`(() => {
+      const panel = document.querySelector(".control-panel").getBoundingClientRect();
+      const stage = document.querySelector(".aquarium-stage").getBoundingClientRect();
+      return {
+        panelLeft: Math.round(panel.left),
+        panelTop: Math.round(panel.top),
+        stageHeight: Math.round(stage.height),
+        overflowWidth: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+      };
+    })()`) as Result["landscape"];
+    await Bun.write(`${SCREENSHOT_DIR}/settings-landscape-912x420.png`, await landscapeView.screenshot({ format: "png" }));
+
     const result: Result = {
       title, roomTanks, enteredTank, asiaCards, harlequinCount, rejectedSpecies, scenesVisited,
       viewingOnEntry, viewingStageWidth, editingOpened, editingStageWidth, closedToViewing, backToRoom, cubeCards, cubeStageRatio, amazonCards,
-      restored, migrated, desktop, mobile, removedCopyAbsent, consoleErrors,
+      restored, migrated, desktop, mobile, landscape, removedCopyAbsent, consoleErrors,
     };
     console.log(JSON.stringify(result, null, 2));
 
@@ -246,10 +272,12 @@ async function main() {
     assert(cubeCards === 3 && cubeStageRatio > 1.4);
     assert(amazonCards === 3);
     assert(restored.version === 5 && restored.scene === "driftwood");
-    assert(restored.lighting === "night" && restored.harlequinCount === 11 && restored.sound);
+    assert(restored.lighting === "night" && restored.harlequinCount === 11 && !restored.sound);
     assert(migrated.version === 5 && migrated.asiaScene === "iwagumi" && migrated.amazonNeon === 9);
     assert(desktop.stageWidth >= 700 && desktop.canvasWidth >= 700 && desktop.stageHeight >= 400);
     assert(mobile.entered && mobile.roomTanks === 3 && mobile.tankStageWidth >= 380 && mobile.overflowWidth === 0);
+    assert(landscape.panelTop === 0 && landscape.panelLeft >= 456 && landscape.stageHeight >= 380 &&
+      landscape.overflowWidth === 0);
     assert(removedCopyAbsent);
     assert(consoleErrors.length === 0);
     console.log(`Screenshots: ${SCREENSHOT_DIR}/*.png`);
