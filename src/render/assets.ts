@@ -1,3 +1,4 @@
+import { Assets } from "pixi.js";
 import bubbleParticleUrl from "../content/environment/bubble.png";
 import roomUrl from "../content/room/room.webp";
 
@@ -13,6 +14,10 @@ const sceneImageModules = import.meta.glob<string>(
   "../content/environment/scenes/*/{plate,foreground}.webp",
   { eager: true, import: "default", query: "?url" },
 );
+
+// PixiJS は既定で Web Worker の中で fetch と createImageBitmap を使って画像を読む。
+// iPhone の Safari ではこれが失敗することがあったため、<img> と同じ通常の読み込みにする。
+Assets.setPreferences({ preferWorkers: false, preferCreateImageBitmap: false });
 
 export const environmentAssets = { bubbleParticleUrl };
 export const roomImageUrl = roomUrl;
