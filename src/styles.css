@@ -233,7 +233,13 @@ button:focus-visible, input:focus-visible, select:focus-visible {
   width: max(100vw, calc(100dvh * 1.777));
   margin: 0 auto;
 }
-.room-stage canvas { display: block; width: 100% !important; height: 100% !important; }
+.room-stage canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  /* Pixi が付ける touch-action: none を戻し、部屋のどこからでも横にスクロールできるようにする。 */
+  touch-action: pan-x !important;
+}
 .room-tank {
   position: absolute;
   padding: 0;
