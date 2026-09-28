@@ -23,7 +23,7 @@
 html, body, #root { min-height: 100%; margin: 0; }
 body {
   min-width: 320px;
-  min-height: 100vh;
+  min-height: 100dvh;
   background:
     radial-gradient(circle at 14% 8%, rgba(60, 176, 181, 0.16), transparent 34%),
     linear-gradient(145deg, #031b1e, #020c0d 72%);
@@ -640,4 +640,31 @@ input::placeholder { color: #6f898a; }
 
 @media (prefers-contrast: more) {
   :root { --line: rgba(225, 255, 255, 0.52); --line-strong: rgba(225, 255, 255, 0.88); }
+}
+
+/* Preserve the aquarium artwork while keeping iPhone controls inside safe areas. */
+@media(max-width:640px){
+ :root{--safe-top:calc(12px + env(safe-area-inset-top));--safe-right:calc(12px + env(safe-area-inset-right));--safe-bottom:calc(16px + env(safe-area-inset-bottom));--safe-left:calc(20px + env(safe-area-inset-left))}
+ body{min-width:0;overflow-x:clip}
+ button,input,textarea,select{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+ button,input,select{min-width:44px;min-height:44px}input,textarea,select{font-size:16px}
+ button:active{filter:brightness(.85)}
+ .count-control{grid-template-columns:44px minmax(0,1fr) 44px}.count-control button{width:44px;height:44px}
+ .room-scroll{inset:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) max(20px,env(safe-area-inset-left))}
+ .room-heading{top:calc(20px + env(safe-area-inset-top));left:calc(24px + env(safe-area-inset-left));max-width:calc(100% - 48px - env(safe-area-inset-left) - env(safe-area-inset-right))}
+ .room-tank-list{left:var(--safe-left);right:var(--safe-right);bottom:var(--safe-bottom)}
+ .tank-view{inset:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) max(20px,env(safe-area-inset-left))}
+ .tank-screen.editing .tank-view{right:env(safe-area-inset-right);bottom:var(--sheet-height)}
+ .hud-bar{top:var(--safe-top);left:var(--safe-left);right:var(--safe-right);flex-wrap:wrap}
+ .control-panel{padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right)}
+ .panel-heading{position:relative}.panel-tabs{top:0}
+ .panel-content{padding-bottom:calc(20px + env(safe-area-inset-bottom))}
+ .render-problem{top:var(--safe-top);left:var(--safe-left);right:var(--safe-right)}
+ .room-tank-label{opacity:1;transform:translate(-50%,0)}
+}
+@media(prefers-reduced-transparency:reduce){
+ .hud-zoom button{background:#082426;backdrop-filter:none}
+ .room-heading,.room-tank-list button{background:#faf7f1;backdrop-filter:none}
+ .room-tank-label{background:#18201e;backdrop-filter:none}
+ .render-problem{background:#3c0e0e}
 }

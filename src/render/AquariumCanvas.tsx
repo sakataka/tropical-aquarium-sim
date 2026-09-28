@@ -88,6 +88,7 @@ export function AquariumCanvas({
     let disposed = false;
     let initialized = false;
     let destroyed = false;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const app = new Application();
 
     const world = new Container();
@@ -202,7 +203,7 @@ export function AquariumCanvas({
           lighting: layoutRef.current.lighting,
         }).fish;
         if (revealedRef.current && revealedAtSec === undefined) revealedAtSec = elapsedSec;
-        const effects = revealedAtSec === undefined
+        const effects = reducedMotion.matches || revealedAtSec === undefined
           ? 0
           : smoothstep(0, EFFECTS_FADE_IN_SEC, elapsedSec - revealedAtSec);
         const glass = getGlassSize();
@@ -281,7 +282,7 @@ export function AquariumCanvas({
       for (const layer of [plateLayer, foregroundLayer]) {
         const newest = layer.children[layer.children.length - 1];
         if (!newest || layer.children.length < 2) continue;
-        newest.alpha = Math.min(1, newest.alpha + deltaSec / SCENE_FADE_SEC);
+        newest.alpha = reducedMotion.matches ? 1 : Math.min(1, newest.alpha + deltaSec / SCENE_FADE_SEC);
         if (newest.alpha >= 1) {
           for (const old of layer.children.slice(0, -1)) old.destroy();
         }
@@ -292,7 +293,7 @@ export function AquariumCanvas({
     function driftCamera(width: number, height: number, deltaSec: number, effects: number) {
       const maxZoom = getMaxZoom({ width, height }, app.screen.width, app.screen.height);
       view.targetZoom = clamp(view.targetZoom, 1, maxZoom);
-      const follow = pointers.size > 0 ? 1 : 1 - Math.exp(-10 * deltaSec);
+      const follow = reducedMotion.matches || pointers.size > 0 ? 1 : 1 - Math.exp(-10 * deltaSec);
       view.zoom += (view.targetZoom - view.zoom) * follow;
       const scale = view.zoom * (1 + (0.02 + Math.sin(elapsedSec / 41) * 0.005) * effects);
       const maxX = Math.max(0, (width * scale - app.screen.width) / 2);

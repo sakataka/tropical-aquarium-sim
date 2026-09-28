@@ -88,6 +88,7 @@ export function FishRoom({
     let disposed = false;
     let initialized = false;
     let destroyed = false;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const app = new Application();
     const world = new Container();
     const views: TankView[] = [];
@@ -247,7 +248,7 @@ export function FishRoom({
       }
       zoom.elapsedSec += deltaSec;
       const duration = zoom.direction === "in" ? ZOOM_SEC : ZOOM_OUT_SEC;
-      const progress = clamp01(zoom.elapsedSec / duration);
+      const progress = reducedMotion.matches ? 1 : clamp01(zoom.elapsedSec / duration);
       const t = easeInOutCubic(progress);
       drawCurtain(zoom.glass, zoom.direction === "in"
         ? smoothstep(0.45, 1, progress)
