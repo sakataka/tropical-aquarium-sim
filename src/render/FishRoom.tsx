@@ -366,7 +366,6 @@ export function FishRoom({
         {fishRoom.tanks.map((placement) => {
           const tank = getTankById(placement.tankId);
           if (!tank) return null;
-          const count = (tanks[tank.id]?.stock ?? []).reduce((sum, entry) => sum + entry.count, 0);
           return (
             <button
               aria-label={`${tank.displayName}を眺める`}
@@ -383,16 +382,18 @@ export function FishRoom({
             >
               <span className="room-tank-label">
                 <strong>{tank.displayName}</strong>
-                <small>{tank.widthCm}cm · {count}匹</small>
+                <small>{tank.widthCm}cm · {countFish(tanks[tank.id])}匹</small>
               </span>
             </button>
           );
         })}
       </div>
       <header className="room-heading">
-        <p>FISH ROOM</p>
         <h1>フィッシュルーム</h1>
+        <p>水槽を選ぶと、近くで眺められます</p>
       </header>
+      {/* 左端から始まるスワイプは Safari の「戻る」に使われるので、部屋のスクロールに渡さない。 */}
+      <div aria-hidden="true" className="edge-guard" />
       {/* 狭い画面では部屋の一部しか見えないため、水槽の一覧からも入れるようにする。 */}
       <nav aria-label="水槽を選ぶ" className="room-tank-list">
         {fishRoom.tanks.map((placement) => {
@@ -400,13 +401,18 @@ export function FishRoom({
           if (!tank) return null;
           return (
             <button key={tank.id} onClick={() => enter(tank.id)} type="button">
-              {tank.displayName}
+              <strong>{tank.displayName}</strong>
+              <small>{tank.widthCm}cm · {countFish(tanks[tank.id])}匹</small>
             </button>
           );
         })}
       </nav>
     </div>
   );
+}
+
+function countFish(customization: AquariumCustomization | undefined): number {
+  return (customization?.stock ?? []).reduce((sum, entry) => sum + entry.count, 0);
 }
 
 function toPixels(rect: RoomRect, width: number, height: number): ViewRect {

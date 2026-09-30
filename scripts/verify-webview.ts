@@ -24,7 +24,14 @@ type Result = {
   restored: { version: number; scene: string; lighting: string; harlequinCount: number; sound: boolean };
   migrated: { version: number; asiaScene: string; amazonNeon: number };
   desktop: { stageWidth: number; stageHeight: number; canvasWidth: number };
-  mobile: { entered: boolean; roomTanks: number; roomTouchAction: string; overflowWidth: number; tankStageWidth: number };
+  mobile: {
+    entered: boolean;
+    roomTanks: number;
+    roomTouchAction: string;
+    overflowWidth: number;
+    tankStageWidth: number;
+    sheet: { panelTop: number; stageHeight: number; firstCardVisible: boolean };
+  };
   landscape: { panelLeft: number; panelTop: number; stageHeight: number; overflowWidth: number };
   removedCopyAbsent: boolean;
   consoleErrors: string[];
@@ -98,7 +105,7 @@ async function main() {
       `!document.querySelector("button[aria-label='ネオンテトラを1匹増やす']")`,
     ));
 
-    await clickButtonByText(view, "レイアウト");
+    await clickTab(view, "水景");
     const scenesVisited: string[] = [];
     for (const [label, id] of [
       ["自然な流木景", "driftwood"],
@@ -118,11 +125,12 @@ async function main() {
 
     await clickButtonByText(view, "自然な流木景");
     await sleep(1400);
-    await clickButtonByText(view, "鑑賞設定");
+    await clickTab(view, "照明と音");
     await clickButtonByText(view, "夜景");
     await view.evaluate(`document.querySelector(".sound-toggle")?.click()`);
     await sleep(350);
-    await clickButtonByText(view, "閉じて眺める");
+    await Bun.write(`${SCREENSHOT_DIR}/lighting-1440x960.png`, await view.screenshot({ format: "png" }));
+    await clickByLabel(view, "閉じて眺める");
     await sleep(700);
     const closedToViewing = Boolean(await view.evaluate(
       `!document.querySelector(".tank-screen")?.classList.contains("editing")`,
@@ -222,12 +230,27 @@ async function main() {
       `document.documentElement.scrollWidth - document.documentElement.clientWidth`,
     ));
     await Bun.write(`${SCREENSHOT_DIR}/mobile-420x912.png`, await mobileView.screenshot({ format: "png" }));
+    // 縦長の画面では設定を下からのシートで出し、上に水槽を残す。
+    await clickButtonByText(mobileView, "設定");
+    await sleep(1200);
+    const sheet = await mobileView.evaluate(`(() => {
+      const panel = document.querySelector(".control-panel").getBoundingClientRect();
+      const stage = document.querySelector(".aquarium-stage").getBoundingClientRect();
+      const firstCard = document.querySelector(".fish-catalog-card")?.getBoundingClientRect();
+      return {
+        panelTop: Math.round(panel.top),
+        stageHeight: Math.round(stage.height),
+        firstCardVisible: Boolean(firstCard && firstCard.top < innerHeight - 80),
+      };
+    })()`) as Result["mobile"]["sheet"];
+    await Bun.write(`${SCREENSHOT_DIR}/settings-mobile-420x912.png`, await mobileView.screenshot({ format: "png" }));
     const mobile = {
       entered: mobileEntered,
       roomTanks: mobileRoom.roomTanks,
       roomTouchAction: mobileRoom.roomTouchAction,
       overflowWidth: Math.max(mobileRoom.overflowWidth, tankOverflow),
       tankStageWidth,
+      sheet,
     };
 
     // 横向きのスマホでは設定パネルを横に出し、水槽の高さを潰さないこと。
@@ -280,6 +303,7 @@ async function main() {
     assert(desktop.stageWidth >= 700 && desktop.canvasWidth >= 700 && desktop.stageHeight >= 400);
     assert(mobile.entered && mobile.roomTanks === 3 &&
       mobile.roomTouchAction === "pan-x" && mobile.tankStageWidth >= 380 && mobile.overflowWidth === 0);
+    assert(mobile.sheet.panelTop >= 360 && mobile.sheet.stageHeight >= 360 && mobile.sheet.firstCardVisible);
     assert(landscape.panelTop === 0 && landscape.panelLeft >= 456 && landscape.stageHeight >= 380 &&
       landscape.overflowWidth === 0);
     assert(removedCopyAbsent);
@@ -326,6 +350,18 @@ async function clickButtonByText(view: Bun.WebView, text: string) {
       .find((item) => item.textContent?.includes(${JSON.stringify(text)}));
     if (!(button instanceof HTMLButtonElement)) return false;
     button.click();
+    return true;
+  })()`);
+  assert(clicked);
+  await sleep(100);
+}
+
+async function clickTab(view: Bun.WebView, label: string) {
+  const clicked = await view.evaluate(`(() => {
+    const tab = Array.from(document.querySelectorAll("[role='tab']"))
+      .find((item) => item.textContent?.trim() === ${JSON.stringify(label)});
+    if (!(tab instanceof HTMLButtonElement)) return false;
+    tab.click();
     return true;
   })()`);
   assert(clicked);

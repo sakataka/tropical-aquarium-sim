@@ -31,7 +31,17 @@ import { AquariumCanvas, type ViewControl } from "./render/AquariumCanvas";
 import { forgetMotionState } from "./render/fishBody";
 import { RENDER_PROBLEM_EVENT } from "./render/renderProblems";
 import { FishRoom } from "./render/FishRoom";
-import { AquariumControls } from "./ui/AquariumControls";
+import { getScenePlateUrl } from "./render/assets";
+import { AquariumControls, LIGHTING_OPTIONS } from "./ui/AquariumControls";
+import {
+  BackIcon,
+  CollapseIcon,
+  ExpandIcon,
+  FitIcon,
+  MinusIcon,
+  PlusIcon,
+  SettingsIcon,
+} from "./ui/icons";
 import "./styles.css";
 import waterAmbienceLoop from "./content/audio/water-ambience.json";
 import waterAmbienceUrl from "./content/audio/water-ambience.m4a?url";
@@ -59,7 +69,7 @@ export default function App() {
     tank.id,
     { current: createFishFromStock(initial.state.tanks[tank.id]!.stock, tank) },
   ])), [initial]);
-  const [saveStatus, setSaveStatus] = useState("保存済み");
+  const [saveFailed, setSaveFailed] = useState(false);
   const [audioUnlocked, setAudioUnlocked] = useState(false);
   const [renderProblem, setRenderProblem] = useState<string | null>(null);
 
@@ -109,14 +119,13 @@ export default function App() {
   }, [fishRefs, state.tanks]);
 
   useEffect(() => {
-    setSaveStatus("保存中…");
     const timeout = window.setTimeout(() => {
       try {
         window.localStorage.setItem(AQUARIUM_STATE_STORAGE_KEY, JSON.stringify(state));
         for (const key of [...LEGACY_STORAGE_KEYS, ...DISCARDED_STORAGE_KEYS]) window.localStorage.removeItem(key);
-        setSaveStatus("保存済み");
+        setSaveFailed(false);
       } catch {
-        setSaveStatus("保存できません");
+        setSaveFailed(true);
       }
     }, 180);
     return () => window.clearTimeout(timeout);
@@ -193,7 +202,7 @@ export default function App() {
           }))}
           onReady={handleTankReady}
           preferences={state.preferences}
-          saveStatus={saveStatus}
+          saveFailed={saveFailed}
           tank={tank}
         />
       ) : null}
@@ -206,7 +215,7 @@ function TankScreen({
   customization,
   fishRef,
   preferences,
-  saveStatus,
+  saveFailed,
   active,
   hidden,
   revealed,
@@ -219,7 +228,7 @@ function TankScreen({
   customization: AquariumCustomization;
   fishRef: MutableRefObject<FishInstance[]>;
   preferences: AquariumPersistedState["preferences"];
-  saveStatus: string;
+  saveFailed: boolean;
   active: boolean;
   hidden: boolean;
   revealed: boolean;
@@ -277,10 +286,30 @@ function TankScreen({
     };
   }, []);
 
+  // 開いたらパネルへ（Tab で最初に閉じるボタンへ進む）、閉じたら「設定」ボタンへフォーカスを移し、キーボードでも見失わない。
+  // 放置で閉じたときは、パネルの中にフォーカスがあったときだけ戻す。
+  const settingsButtonRef = useRef<HTMLButtonElement | null>(null);
+  const panelRef = useRef<HTMLElement | null>(null);
+  const wasEditingRef = useRef(false);
+  useEffect(() => {
+    if (editing) {
+      panelRef.current?.focus({ preventScroll: true });
+    } else if (wasEditingRef.current) {
+      const focused = document.activeElement;
+      if (!focused || focused === document.body || focused.closest(".control-panel")) {
+        settingsButtonRef.current?.focus({ preventScroll: true });
+      }
+    }
+    wasEditingRef.current = editing;
+  }, [editing]);
+
   const handleReady = useCallback(() => {
     setReady(true);
     onReady();
   }, [onReady]);
+
+  const plateUrl = getScenePlateUrl(customization.layout.sceneId);
+  const lightingLabel = LIGHTING_OPTIONS.find((item) => item.id === customization.layout.lighting)?.label;
 
   const className = [
     "tank-screen",
@@ -295,6 +324,12 @@ function TankScreen({
       className={className}
       data-lighting={customization.layout.lighting}
     >
+      {/* 水槽の外は暗い部屋。水景の色がガラスからにじむように、同じ一枚絵をぼかして敷く。 */}
+      {plateUrl ? (
+        <div aria-hidden="true" className="tank-glow" key={plateUrl}>
+          <img alt="" src={plateUrl} />
+        </div>
+      ) : null}
       <div className="tank-view">
         <section aria-label={`${tank.displayName}の水槽`} className="aquarium-stage">
           <AquariumCanvas
@@ -312,37 +347,66 @@ function TankScreen({
 
       <div className="tank-hud">
         <div className="hud-bar">
-          <button onClick={onBackToRoom} type="button">‹ 部屋に戻る</button>
+          <button className="hud-button" onClick={onBackToRoom} title="部屋に戻る（Esc）" type="button">
+            <BackIcon />部屋に戻る
+          </button>
           <div className="hud-actions">
             {fullscreen.supported ? (
-              <button aria-pressed={fullscreen.active} onClick={fullscreen.toggle} type="button">
-                {fullscreen.active ? "全画面を解除" : "全画面"}
+              <button
+                aria-label={fullscreen.active ? "全画面を解除" : "全画面"}
+                aria-pressed={fullscreen.active}
+                className="hud-button icon-only"
+                onClick={fullscreen.toggle}
+                title={fullscreen.active ? "全画面を解除" : "全画面"}
+                type="button"
+              >
+                {fullscreen.active ? <CollapseIcon /> : <ExpandIcon />}
               </button>
             ) : null}
             {editing ? null : (
               <button
                 aria-controls="tank-settings"
                 aria-expanded={editing}
+                className="hud-button"
                 onClick={() => setEditing(true)}
+                ref={settingsButtonRef}
                 type="button"
-              >設定</button>
+              ><SettingsIcon />設定</button>
             )}
           </div>
         </div>
         <div className="hud-caption">
           <strong>{tank.displayName}</strong>
-          <span>{activeScene?.displayName} · {totalFish}匹</span>
+          <span>{activeScene?.displayName} · {lightingLabel} · {totalFish}匹</span>
         </div>
         <div className="hud-zoom" role="group" aria-label="水槽の拡大と縮小">
-          <button aria-label="離れる" onClick={() => viewControlRef.current?.zoomBy(1 / 1.4)} type="button">−</button>
-          <button onClick={() => viewControlRef.current?.resetZoom()} type="button">全体</button>
-          <button aria-label="近づく" onClick={() => viewControlRef.current?.zoomBy(1.4)} type="button">＋</button>
+          <button
+            aria-label="離れる"
+            onClick={() => viewControlRef.current?.zoomBy(1 / 1.4)}
+            title="離れる（−）"
+            type="button"
+          ><MinusIcon /></button>
+          <button
+            aria-label="全体を見る"
+            onClick={() => viewControlRef.current?.resetZoom()}
+            title="全体を見る（0）"
+            type="button"
+          ><FitIcon /></button>
+          <button
+            aria-label="近づく"
+            onClick={() => viewControlRef.current?.zoomBy(1.4)}
+            title="近づく（＋）"
+            type="button"
+          ><PlusIcon /></button>
         </div>
       </div>
+      {/* 左端から始まるスワイプは Safari の「戻る」に使われるので、水槽の操作に渡さない。 */}
+      <div aria-hidden="true" className="edge-guard" />
 
       <AquariumControls
         customization={customization}
         onClose={() => setEditing(false)}
+        panelRef={panelRef}
         onLightingChange={(lighting: LightingId) => onCustomizationChange((current) => ({
           ...current,
           layout: { ...current.layout, lighting },
@@ -357,7 +421,7 @@ function TankScreen({
           stock: setStockCount(current.stock, speciesId, count, tank, fishCatalog),
         }))}
         preferences={preferences}
-        saveStatus={saveStatus}
+        saveFailed={saveFailed}
         speciesList={speciesList}
         tank={tank}
       />

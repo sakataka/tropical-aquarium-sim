@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type RefObject } from "react";
 import {
   getSceneById,
   getSpeciesLimit,
@@ -11,15 +11,30 @@ import {
   type TankDefinition,
 } from "../core";
 import { getFishImageUrl, getScenePlateUrl } from "../render/assets";
+import { CheckIcon, CloseIcon, MinusIcon, PlusIcon } from "./icons";
 
-type PanelTab = "fish" | "layout" | "viewing";
+type PanelTab = "fish" | "scene" | "viewing";
+
+const TABS: { id: PanelTab; label: string }[] = [
+  { id: "fish", label: "魚" },
+  { id: "scene", label: "水景" },
+  { id: "viewing", label: "照明と音" },
+];
+
+export const LIGHTING_OPTIONS: { id: LightingId; label: string; note: string }[] = [
+  { id: "natural", label: "自然光", note: "昼のやわらかな光" },
+  { id: "cool", label: "クール", note: "青みの澄んだ光" },
+  { id: "evening", label: "夕景", note: "暖かく沈む光" },
+  { id: "night", label: "夜景", note: "月明かりの暗さ" },
+];
 
 type AquariumControlsProps = {
   speciesList: FishSpeciesDefinition[];
   tank: TankDefinition;
   customization: AquariumCustomization;
   preferences: AquariumPreferences;
-  saveStatus: string;
+  saveFailed: boolean;
+  panelRef: RefObject<HTMLElement | null>;
   onSpeciesCountChange: (speciesId: string, count: number) => void;
   onSceneChange: (sceneId: string) => void;
   onLightingChange: (lighting: LightingId) => void;
@@ -32,7 +47,8 @@ export function AquariumControls({
   tank,
   customization,
   preferences,
-  saveStatus,
+  saveFailed,
+  panelRef,
   onSpeciesCountChange,
   onSceneChange,
   onLightingChange,
@@ -41,185 +57,195 @@ export function AquariumControls({
 }: AquariumControlsProps) {
   const [tab, setTab] = useState<PanelTab>("fish");
   const totalFish = customization.stock.reduce((sum, entry) => sum + entry.count, 0);
+  const tankFull = totalFish >= tank.maxTotalFish;
   const scenes = tank.sceneIds.map((sceneId) => getSceneById(sceneId)).filter((scene) => scene !== undefined);
 
   return (
-    <aside aria-label="水槽の設定" className="control-panel" id="tank-settings">
+    <aside aria-label="水槽の設定" className="control-panel" id="tank-settings" ref={panelRef} tabIndex={-1}>
       <header className="panel-heading">
-        <div>
-          <button className="close-panel" onClick={onClose} type="button">
-            閉じて眺める
-          </button>
-          <p className="eyebrow">{tank.category}</p>
+        <div className="panel-title">
+          <p>{tank.category} · {tank.widthCm}×{tank.heightCm}×{tank.depthCm}cm</p>
           <h1>{tank.displayName}</h1>
         </div>
-        <span className="save-status" role="status">{saveStatus}</span>
-        <p className="tank-summary">
-          {tank.widthCm} × {tank.heightCm} × {tank.depthCm}cm
-          <span>{totalFish} / {tank.maxTotalFish}匹</span>
-        </p>
+        <button
+          aria-label="閉じて眺める"
+          className="panel-close"
+          onClick={onClose}
+          title="閉じて眺める（Esc）"
+          type="button"
+        >
+          <CloseIcon />
+        </button>
+        {saveFailed ? (
+          <p className="save-error" role="alert">
+            この端末に保存できません。閉じると変更が失われます。
+          </p>
+        ) : null}
       </header>
 
-      <nav className="panel-tabs" aria-label="水槽の編集">
-        <TabButton active={tab === "fish"} onClick={() => setTab("fish")}>魚</TabButton>
-        <TabButton active={tab === "layout"} onClick={() => setTab("layout")}>レイアウト</TabButton>
-        <TabButton active={tab === "viewing"} onClick={() => setTab("viewing")}>鑑賞設定</TabButton>
-      </nav>
+      <div className="panel-tabs" role="tablist" aria-label="設定の種類">
+        {TABS.map((item) => (
+          <button
+            aria-controls={`panel-${item.id}`}
+            aria-selected={tab === item.id}
+            className={tab === item.id ? "active" : ""}
+            id={`tab-${item.id}`}
+            key={item.id}
+            onClick={() => setTab(item.id)}
+            role="tab"
+            type="button"
+          >
+            {item.label}
+          </button>
+        ))}
+      </div>
 
-      {tab === "fish" ? (
-        <section className="panel-content fish-shop" aria-label="魚屋カタログ">
-          <div className="section-intro">
-            <p className="eyebrow">FISH CATALOG</p>
-            <h2>魚屋カタログ</h2>
-            <p>{tank.description}</p>
-          </div>
-          <div className="fish-catalog-list">
-            {speciesList.map((species) => {
-              const count = getStockCount(customization.stock, species.id);
-              const limit = getSpeciesLimit(tank, species.id);
-              return (
-                <article className="fish-catalog-card" key={species.id}>
-                  <div className="fish-portrait">
-                    <img alt={species.displayName} loading="lazy" src={getFishImageUrl(species.id)} />
-                    <span>{getZoneLabel(getSwimZone(species))}</span>
-                  </div>
-                  <div className="fish-catalog-copy">
-                    <div className="fish-card-title">
-                      <div>
-                        <h3>{species.displayName}</h3>
-                        <p>{species.catalog.scientificName}</p>
+      <div className="panel-body">
+        {tab === "fish" ? (
+          <section aria-labelledby="tab-fish" className="panel-content" id="panel-fish" role="tabpanel">
+            <div className={tankFull ? "capacity full" : "capacity"}>
+              <div className="capacity-text">
+                <span>{tankFull ? "水槽がいっぱいです" : "水槽の魚"}</span>
+                <strong>{totalFish}<small> / {tank.maxTotalFish}匹</small></strong>
+              </div>
+              <div
+                aria-label="水槽の魚の数"
+                aria-valuemax={tank.maxTotalFish}
+                aria-valuemin={0}
+                aria-valuenow={totalFish}
+                className="capacity-bar"
+                role="meter"
+              >
+                <span style={{ width: `${Math.min(100, (totalFish / tank.maxTotalFish) * 100)}%` }} />
+              </div>
+            </div>
+            <p className="panel-lead">{tank.description}</p>
+            <ul className="fish-catalog-list">
+              {speciesList.map((species) => {
+                const count = getStockCount(customization.stock, species.id);
+                const limit = getSpeciesLimit(tank, species.id);
+                const addBlocked = count >= limit || tankFull;
+                return (
+                  <li className={count > 0 ? "fish-catalog-card stocked" : "fish-catalog-card"} key={species.id}>
+                    <div className="fish-portrait">
+                      <img alt="" loading="lazy" src={getFishImageUrl(species.id)} />
+                    </div>
+                    <div className="fish-catalog-copy">
+                      <h3>{species.displayName}</h3>
+                      <p className="scientific">{species.catalog.scientificName}</p>
+                      <ul className="trait-list" aria-label={`${species.displayName}の特徴`}>
+                        <li>{species.realBodyLengthCm}cm</li>
+                        <li>{getZoneLabel(getSwimZone(species))}</li>
+                        {getTraitLabels(species).map((label) => <li key={label}>{label}</li>)}
+                      </ul>
+                      <p className="movement">{species.catalog.movement}</p>
+                      <div className="fish-card-footer">
+                        <p className="origin">{species.catalog.originRegionName}</p>
+                        <div className="count-control" role="group" aria-label={`${species.displayName}の匹数`}>
+                          <button
+                            aria-label={`${species.displayName}を1匹減らす`}
+                            disabled={count === 0}
+                            onClick={() => onSpeciesCountChange(species.id, count - 1)}
+                            type="button"
+                          ><MinusIcon /></button>
+                          <strong aria-live="polite"><span>{count}</span><small>/{limit}</small></strong>
+                          <button
+                            aria-label={`${species.displayName}を1匹増やす`}
+                            disabled={addBlocked}
+                            onClick={() => onSpeciesCountChange(species.id, count + 1)}
+                            title={count >= limit
+                              ? `この水槽には${limit}匹まで`
+                              : tankFull ? "水槽がいっぱいです" : undefined}
+                            type="button"
+                          ><PlusIcon /></button>
+                        </div>
                       </div>
-                      <span>{species.realBodyLengthCm}cm</span>
                     </div>
-                    <p className="origin">{species.catalog.originRegionName} · {species.catalog.origin}</p>
-                    <ul className="trait-list" aria-label={`${species.displayName}の習性`}>
-                      {getTraitLabels(species).map((label) => <li key={label}>{label}</li>)}
-                    </ul>
-                    <p>{species.catalog.movement}</p>
-                    <div className="count-control" aria-label={`${species.displayName}の匹数`}>
-                      <button
-                        aria-label={`${species.displayName}を1匹減らす`}
-                        disabled={count === 0}
-                        onClick={() => onSpeciesCountChange(species.id, count - 1)}
-                        type="button"
-                      >−</button>
-                      <strong><span>{count}</span>匹<small> / {limit}</small></strong>
-                      <button
-                        aria-label={`${species.displayName}を1匹増やす`}
-                        disabled={count >= limit || totalFish >= tank.maxTotalFish}
-                        onClick={() => onSpeciesCountChange(species.id, count + 1)}
-                        type="button"
-                      >＋</button>
-                    </div>
-                  </div>
-                </article>
-              );
-            })}
-          </div>
-        </section>
-      ) : null}
+                  </li>
+                );
+              })}
+            </ul>
+          </section>
+        ) : null}
 
-      {tab === "layout" ? (
-        <section className="panel-content layout-editor" aria-label="水景">
-          <div className="section-intro">
-            <p className="eyebrow">AQUASCAPE</p>
-            <h2>水景を選ぶ</h2>
-            <p>ひとつの景色として仕上げた水景から、今日眺めたいものを。</p>
-          </div>
+        {tab === "scene" ? (
+          <section aria-labelledby="tab-scene" className="panel-content" id="panel-scene" role="tabpanel">
+            <p className="panel-lead">この水槽のために仕上げた水景から選べます。</p>
+            <div className="theme-grid">
+              {scenes.map((scene) => {
+                const active = customization.layout.sceneId === scene.id;
+                return (
+                  <button
+                    aria-pressed={active}
+                    className={active ? "theme-card active" : "theme-card"}
+                    key={scene.id}
+                    onClick={() => onSceneChange(scene.id)}
+                    type="button"
+                  >
+                    <span className="theme-thumb">
+                      <img alt="" loading="lazy" src={getScenePlateUrl(scene.id)} />
+                      {active ? <span className="theme-check"><CheckIcon /></span> : null}
+                    </span>
+                    <strong>{scene.displayName}</strong>
+                    <small>{scene.description}</small>
+                  </button>
+                );
+              })}
+            </div>
+          </section>
+        ) : null}
 
-          <div className="theme-grid">
-            {scenes.map((scene) => {
-              const active = customization.layout.sceneId === scene.id;
-              return (
-                <button
-                  aria-pressed={active}
-                  className={active ? "theme-card active" : "theme-card"}
-                  key={scene.id}
-                  onClick={() => onSceneChange(scene.id)}
-                  type="button"
-                >
-                  <img alt="" loading="lazy" src={getScenePlateUrl(scene.id)} />
-                  <span><strong>{scene.displayName}</strong><small>{scene.description}</small></span>
-                </button>
-              );
-            })}
-          </div>
-        </section>
-      ) : null}
-
-      {tab === "viewing" ? (
-        <section className="panel-content viewing-settings" aria-label="鑑賞設定">
-          <div className="section-intro">
-            <p className="eyebrow">VIEWING</p>
-            <h2>静かに眺める</h2>
-            <p>照明と環境音を整えます。</p>
-          </div>
-          <fieldset className="setting-group">
-            <legend>照明</legend>
+        {tab === "viewing" ? (
+          <section aria-labelledby="tab-viewing" className="panel-content" id="panel-viewing" role="tabpanel">
+            <h2 className="setting-title">照明</h2>
             <div className="lighting-grid">
-              {([
-                ["natural", "自然光"],
-                ["cool", "クール"],
-                ["evening", "夕景"],
-                ["night", "夜景"],
-              ] as const).map(([id, label]) => (
+              {LIGHTING_OPTIONS.map(({ id, label, note }) => (
                 <button
                   aria-pressed={customization.layout.lighting === id}
                   className={customization.layout.lighting === id ? "active" : ""}
                   key={id}
                   onClick={() => onLightingChange(id)}
                   type="button"
-                >{label}</button>
+                >
+                  <span aria-hidden="true" className={`lighting-swatch ${id}`} />
+                  <span><strong>{label}</strong><small>{note}</small></span>
+                </button>
               ))}
             </div>
-          </fieldset>
-          <fieldset className="setting-group sound-settings">
-            <legend>環境音</legend>
-            <button
-              aria-pressed={preferences.soundEnabled}
-              className="sound-toggle"
-              onClick={() => onPreferencesChange({ soundEnabled: !preferences.soundEnabled })}
-              type="button"
-            >
-              <span><strong>水とフィルターの音</strong><small>フィルターから落ちる水の音</small></span>
-              <span>{preferences.soundEnabled ? "ON" : "OFF"}</span>
-            </button>
-            <label>
-              <span>音量</span>
-              <input
-                aria-label="環境音の音量"
-                disabled={!preferences.soundEnabled}
-                max={1}
-                min={0}
-                onChange={(event) => onPreferencesChange({
-                  soundVolume: Number(event.currentTarget.value),
-                })}
-                step={0.05}
-                type="range"
-                value={preferences.soundVolume}
-              />
-            </label>
-            <p className="sound-credit">水音は Woosh (Sony AI) で生成</p>
-          </fieldset>
-        </section>
-      ) : null}
-    </aside>
-  );
-}
 
-function TabButton({
-  active,
-  children,
-  onClick,
-}: {
-  active: boolean;
-  children: string;
-  onClick: () => void;
-}) {
-  return (
-    <button aria-pressed={active} className={active ? "active" : ""} onClick={onClick} type="button">
-      {children}
-    </button>
+            <h2 className="setting-title">環境音</h2>
+            <div className="sound-settings">
+              <button
+                aria-checked={preferences.soundEnabled}
+                className="sound-toggle"
+                onClick={() => onPreferencesChange({ soundEnabled: !preferences.soundEnabled })}
+                role="switch"
+                type="button"
+              >
+                <span><strong>水とエアストーンの音</strong><small>開くたびにOFFから始まります</small></span>
+                <span aria-hidden="true" className="switch" />
+              </button>
+              <label className="volume">
+                <span>音量</span>
+                <input
+                  aria-label="環境音の音量"
+                  disabled={!preferences.soundEnabled}
+                  max={1}
+                  min={0}
+                  onChange={(event) => onPreferencesChange({
+                    soundVolume: Number(event.currentTarget.value),
+                  })}
+                  step={0.05}
+                  type="range"
+                  value={preferences.soundVolume}
+                />
+              </label>
+            </div>
+            <p className="sound-credit">水音は Woosh (Sony AI) で生成</p>
+          </section>
+        ) : null}
+      </div>
+    </aside>
   );
 }
 
