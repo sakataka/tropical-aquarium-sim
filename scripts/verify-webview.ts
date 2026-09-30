@@ -1,4 +1,7 @@
-const PORT = 5183;
+// A free port chosen by the OS, so this check never collides with a LocalWeb app's dev server.
+const probe = Bun.serve({ hostname: "127.0.0.1", port: 0, fetch: () => new Response() });
+const PORT = probe.port;
+probe.stop(true);
 const HOST = "127.0.0.1";
 const BASE_URL = `http://${HOST}:${PORT}/`;
 const SCREENSHOT_DIR = "tmp/webview";

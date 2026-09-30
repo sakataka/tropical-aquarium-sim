@@ -37,8 +37,8 @@ bun run verify:webview
 水槽や水景はURLで直接開けます。
 
 ```text
-http://127.0.0.1:5173/?tank=cube-30
-http://127.0.0.1:5173/?theme=iwagumi
+http://tropical-aquarium-sim.localhost/?tank=cube-30
+http://tropical-aquarium-sim.localhost/?theme=iwagumi
 ```
 
 ## データとアセット
