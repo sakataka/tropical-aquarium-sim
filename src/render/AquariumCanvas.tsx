@@ -9,6 +9,7 @@ import {
 } from "pixi.js";
 import {
   getSceneById,
+  getStructurePoints,
   stepSimulation,
   type AquariumLayout,
   type FishInstance,
@@ -255,7 +256,7 @@ export function AquariumCanvas({
         layer.addChild(sprite);
       }
       layoutSceneSprites();
-      structurePoints = scene.structurePoints;
+      structurePoints = getStructurePoints(tank, { sceneId, lighting: layoutRef.current.lighting });
       fishLayer.waterTint = getWaterTint(scene.waterColor);
       bubbles?.setSources(scene.bubbleSources);
 
