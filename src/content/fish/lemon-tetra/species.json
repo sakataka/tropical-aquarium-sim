@@ -1,0 +1,65 @@
+{
+  "id": "lemon-tetra",
+  "displayName": "レモンテトラ",
+  "realBodyLengthCm": 4,
+  "swim": {
+    "tailBeatHz": 2.8,
+    "tailSweepRad": 0.42
+  },
+  "visual": {
+    "fallbackColor": "#d9cd52"
+  },
+  "sourceBodyBounds": {
+    "x": 40,
+    "y": 115,
+    "width": 1474,
+    "height": 755
+  },
+  "preferredZone": {
+    "minX": 0.1,
+    "maxX": 0.9,
+    "minY": 0.3,
+    "maxY": 0.7
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.85,
+      "burst": 3.8
+    },
+    "turnRateRadPerSec": 2.8,
+    "restFraction": 0.09,
+    "depthRange": [
+      0.2,
+      0.8
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0.72,
+      "polarization": 0.58
+    },
+    "structureAffinity": 0.2,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Seriously Fish: Hyphessobrycon pulchripinnis",
+        "url": "https://www.seriouslyfish.com/species/hyphessobrycon-pulchripinnis/"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Hyphessobrycon pulchripinnis",
+    "originRegionId": "south-america",
+    "originRegionName": "南米",
+    "origin": "ブラジル中部のアマゾン流域。タパジョス川やシングー川の魚との関係には未解明の点があります。",
+    "temperament": "温和で、仲間との間隔を取りながら群れを作ります。",
+    "movement": "中層の開けた場所を群れで巡り、向きを変えるたびに淡い黄色の体と黒く縁取られたひれが光ります。",
+    "habitat": "流木と水草に囲まれた、中央に遊泳空間のある水景に似合います。",
+    "aliases": [
+      "lemon-tetra",
+      "Lemon Tetra"
+    ]
+  }
+}

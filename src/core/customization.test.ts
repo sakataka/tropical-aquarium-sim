@@ -26,7 +26,9 @@ describe("tanks", () => {
       for (const slot of tank.species) expect(fishCatalog[slot.speciesId]).toBeDefined();
       for (const entry of tank.defaultStock) {
         expect(tank.species.map((slot) => slot.speciesId)).toContain(entry.speciesId);
+        expect(entry.count).toBeLessThanOrEqual(tank.species.find((slot) => slot.speciesId === entry.speciesId)!.maxCount);
       }
+      expect(tank.defaultStock.reduce((sum, entry) => sum + entry.count, 0)).toBeLessThanOrEqual(tank.maxTotalFish);
     }
     // 今の魚種は、どれかひとつの水槽に入れられる。
     const placeable = new Set(aquariumTanks.flatMap((tank) => tank.species.map((slot) => slot.speciesId)));
@@ -61,6 +63,19 @@ describe("tanks", () => {
 });
 
 describe("saved state", () => {
+  test("keeps an existing v5 collection unchanged when catalog species are added", () => {
+    const state = createDefaultState(fishCatalog);
+    state.tanks["cube-30"] = {
+      stock: [{ speciesId: "guppy", count: 4 }, { speciesId: "otocinclus", count: 2 }],
+      layout: { sceneId: "cube-stones", lighting: "evening" },
+    };
+    const restored = normalizeAquariumPersistedState(state, fishCatalog)!;
+    expect(restored.tanks["cube-30"]).toEqual(state.tanks["cube-30"]);
+    const stock = setStockCount(restored.tanks["cube-30"]!.stock, "clown-killifish", 3, cube, fishCatalog);
+    expect(stock).toContainEqual({ speciesId: "clown-killifish", count: 3 });
+    expect(stock).toContainEqual({ speciesId: "guppy", count: 4 });
+  });
+
   test("moves a v4 single tank into the tanks that allow each species", () => {
     const migrated = migrateLegacyAquariumState({
       version: 4,

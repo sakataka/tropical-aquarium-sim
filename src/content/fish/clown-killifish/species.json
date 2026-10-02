@@ -1,0 +1,67 @@
+{
+  "id": "clown-killifish",
+  "displayName": "クラウンキリー",
+  "realBodyLengthCm": 3.5,
+  "swim": {
+    "tailBeatHz": 2,
+    "tailSweepRad": 0.26
+  },
+  "visual": {
+    "fallbackColor": "#d7bd79"
+  },
+  "sourceBodyBounds": {
+    "x": 18,
+    "y": 192,
+    "width": 1501,
+    "height": 596
+  },
+  "preferredZone": {
+    "minX": 0.1,
+    "maxX": 0.9,
+    "minY": 0.05,
+    "maxY": 0.23
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.32,
+      "burst": 3.2
+    },
+    "turnRateRadPerSec": 2.2,
+    "restFraction": 0.5,
+    "depthRange": [
+      0.1,
+      0.65
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 2.2,
+      "cohesion": 0.38,
+      "polarization": 0.2
+    },
+    "structureAffinity": 0.35,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Seriously Fish: Epiplatys annulatus",
+        "url": "https://www.seriouslyfish.com/species/epiplatys-annulatus/"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Epiplatys annulatus",
+    "originRegionId": "west-africa",
+    "originRegionName": "西アフリカ",
+    "origin": "ギニア、シエラレオネ、リベリアの沿岸低地。浅い湿地や流れの穏やかな小川に分布します。",
+    "temperament": "小さく温和で、仲間とゆるく集まります。落ち着いた環境を好みます。",
+    "movement": "水面のすぐ下で静かに漂い、ときどき短く泳ぎます。縞模様の体と青・橙色の尾びれが目を引きます。",
+    "habitat": "水面に浮草の影があり、上層に余白のある景色に似合います。",
+    "aliases": [
+      "clown-killifish",
+      "Clown Killifish",
+      "ロケットキリー",
+      "Pseudepiplatys annulatus"
+    ]
+  }
+}

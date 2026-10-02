@@ -14,6 +14,7 @@ type Result = {
   asiaCards: number;
   harlequinCount: number;
   rejectedSpecies: boolean;
+  newSpeciesChecked: string[];
   scenesVisited: string[];
   viewingOnEntry: boolean;
   viewingStageWidth: number;
@@ -108,6 +109,7 @@ async function main() {
       `!document.querySelector("button[aria-label='ネオンテトラを1匹増やす']")`,
     ));
 
+    const newSpeciesChecked = await verifyNewFish(view, "asia-60", [["honey-gourami", "ハニーグラミー"], ["chili-rasbora", "ボララス・ブリジッタエ"]]);
     await clickTab(view, "水景");
     const scenesVisited: string[] = [];
     for (const [label, id] of [
@@ -146,7 +148,10 @@ async function main() {
     const backToRoom = Number(await view.evaluate(`document.querySelectorAll(".room-tank").length`)) === roomTanks;
     await clickByLabel(view, "小型魚のキューブ水槽を眺める");
     await sleep(2400);
+    await clickButtonByText(view, "設定");
     const cubeCards = await countCards(view);
+    newSpeciesChecked.push(...await verifyNewFish(view, "cube-30", [["ember-tetra", "エンバーテトラ"], ["clown-killifish", "クラウンキリー"]]));
+    await clickByLabel(view, "閉じて眺める");
     const cubeStageRatio = Number(await view.evaluate(`(() => {
       const stage = document.querySelector(".aquarium-stage")?.getBoundingClientRect();
       return stage ? stage.width / stage.height : 0;
@@ -156,7 +161,10 @@ async function main() {
     await sleep(1800);
     await clickByLabel(view, "アマゾンの大型水槽を眺める");
     await sleep(2400);
+    await clickButtonByText(view, "設定");
     const amazonCards = await countCards(view);
+    newSpeciesChecked.push(...await verifyNewFish(view, "amazon-90", [["lemon-tetra", "レモンテトラ"], ["dwarf-pencilfish", "ドワーフペンシル"]]));
+    await clickByLabel(view, "閉じて眺める");
     await Bun.write(`${SCREENSHOT_DIR}/amazon-1440x960.png`, await view.screenshot({ format: "png" }));
 
     await view.reload();
@@ -282,7 +290,7 @@ async function main() {
     await Bun.write(`${SCREENSHOT_DIR}/settings-landscape-912x420.png`, await landscapeView.screenshot({ format: "png" }));
 
     const result: Result = {
-      title, roomTanks, enteredTank, asiaCards, harlequinCount, rejectedSpecies, scenesVisited,
+      title, roomTanks, enteredTank, asiaCards, harlequinCount, rejectedSpecies, newSpeciesChecked, scenesVisited,
       viewingOnEntry, viewingStageWidth, editingOpened, editingStageWidth, closedToViewing, backToRoom, cubeCards, cubeStageRatio, amazonCards,
       restored, migrated, desktop, mobile, landscape, removedCopyAbsent, consoleErrors,
     };
@@ -291,17 +299,17 @@ async function main() {
     assert(title.includes("熱帯魚"));
     assert(roomTanks === 3);
     assert(enteredTank === "東南アジアの水草水槽");
-    assert(asiaCards === 6 && harlequinCount === 11 && rejectedSpecies);
+    assert(asiaCards === 8 && harlequinCount === 7 && rejectedSpecies);
     assert(JSON.stringify(scenesVisited) ===
       JSON.stringify(["driftwood", "root-driftwood", "iwagumi", "planted"]));
     assert(viewingOnEntry && viewingStageWidth >= 1400);
     assert(editingOpened && editingStageWidth < viewingStageWidth && editingStageWidth >= 700);
     assert(closedToViewing);
     assert(backToRoom);
-    assert(cubeCards === 5 && cubeStageRatio > 1.4);
-    assert(amazonCards === 5);
+    assert(cubeCards === 7 && cubeStageRatio > 1.4);
+    assert(amazonCards === 7);
     assert(restored.version === 5 && restored.scene === "driftwood");
-    assert(restored.lighting === "night" && restored.harlequinCount === 11 && !restored.sound);
+    assert(restored.lighting === "night" && restored.harlequinCount === 7 && !restored.sound);
     assert(migrated.version === 5 && migrated.asiaScene === "iwagumi" && migrated.amazonNeon === 9);
     assert(desktop.stageWidth >= 700 && desktop.canvasWidth >= 700 && desktop.stageHeight >= 400);
     assert(mobile.entered && mobile.roomTanks === 3 &&
@@ -309,6 +317,7 @@ async function main() {
     assert(mobile.sheet.panelTop >= 360 && mobile.sheet.stageHeight >= 360 && mobile.sheet.firstCardVisible);
     assert(landscape.panelTop === 0 && landscape.panelLeft >= 456 && landscape.stageHeight >= 380 &&
       landscape.overflowWidth === 0);
+    assert(newSpeciesChecked.length === 6);
     assert(removedCopyAbsent);
     assert(consoleErrors.length === 0);
     console.log(`Screenshots: ${SCREENSHOT_DIR}/*.png`);
@@ -324,6 +333,40 @@ function stockCount(tankId: string, speciesId: string) {
     const stock = value ? JSON.parse(value).tanks["${tankId}"].stock : [];
     return stock.find((entry) => entry.speciesId === "${speciesId}")?.count ?? 0;
   })()`;
+}
+
+// 新魚種の画像・増減・再読込後の保存を、実際の設定パネルで検証する。
+async function verifyNewFish(view: Bun.WebView, tankId: string, species: [string, string][]) {
+  const checked: string[] = [];
+  const counts = new Map<string, number>();
+  for (const [id, name] of species) {
+    const selector = JSON.stringify(`button[aria-label='${name}を1匹増やす']`);
+    await view.evaluate(`document.querySelector(${selector})?.scrollIntoView({ block: "center" })`);
+    await sleep(500);
+    assert(await view.evaluate(`(() => {
+      const img = document.querySelector(${selector})?.closest(".fish-catalog-card")?.querySelector("img");
+      return img?.complete && img.naturalWidth > 0;
+    })()`));
+    const before = Number(await view.evaluate(stockCount(tankId, id)));
+    await clickByLabel(view, `${name}を1匹減らす`);
+    await sleep(350);
+    assert(Number(await view.evaluate(stockCount(tankId, id))) === before - 1);
+    await clickByLabel(view, `${name}を1匹増やす`);
+    await sleep(350);
+    assert(Number(await view.evaluate(stockCount(tankId, id))) === before);
+    counts.set(id, before);
+    await Bun.write(`${SCREENSHOT_DIR}/new-${id}.png`, await view.screenshot({ format: "png" }));
+    checked.push(id);
+  }
+  // 通常URLの再読込は部屋に戻るため、水槽の直リンクで同じ水槽を開く。
+  await view.evaluate(`history.replaceState(null, "", ${JSON.stringify(`?tank=${tankId}`)})`);
+  await view.reload();
+  await sleep(2000);
+  for (const [id, count] of counts) {
+    assert(Number(await view.evaluate(stockCount(tankId, id))) === count);
+  }
+  await clickButtonByText(view, "設定");
+  return checked;
 }
 
 async function stageWidth(view: Bun.WebView) {

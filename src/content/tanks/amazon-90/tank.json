@@ -17,13 +17,17 @@
     { "speciesId": "neon-tetra", "maxCount": 20 },
     { "speciesId": "corydoras", "maxCount": 8 },
     { "speciesId": "rummy-nose-tetra", "maxCount": 16 },
-    { "speciesId": "marbled-hatchetfish", "maxCount": 8 }
+    { "speciesId": "marbled-hatchetfish", "maxCount": 8 },
+    { "speciesId": "lemon-tetra", "maxCount": 16 },
+    { "speciesId": "dwarf-pencilfish", "maxCount": 10 }
   ],
   "defaultStock": [
-    { "speciesId": "neon-tetra", "count": 12 },
-    { "speciesId": "rummy-nose-tetra", "count": 8 },
+    { "speciesId": "neon-tetra", "count": 8 },
+    { "speciesId": "rummy-nose-tetra", "count": 6 },
     { "speciesId": "marbled-hatchetfish", "count": 5 },
     { "speciesId": "corydoras", "count": 5 },
-    { "speciesId": "angelfish", "count": 2 }
+    { "speciesId": "angelfish", "count": 2 },
+    { "speciesId": "lemon-tetra", "count": 6 },
+    { "speciesId": "dwarf-pencilfish", "count": 4 }
   ]
 }

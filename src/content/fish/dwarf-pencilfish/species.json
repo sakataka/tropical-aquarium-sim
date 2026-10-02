@@ -1,0 +1,66 @@
+{
+  "id": "dwarf-pencilfish",
+  "displayName": "ドワーフペンシル",
+  "realBodyLengthCm": 2.5,
+  "swim": {
+    "tailBeatHz": 2.1,
+    "tailSweepRad": 0.28
+  },
+  "visual": {
+    "fallbackColor": "#c8ad72"
+  },
+  "sourceBodyBounds": {
+    "x": 63,
+    "y": 205,
+    "width": 1439,
+    "height": 551
+  },
+  "preferredZone": {
+    "minX": 0.1,
+    "maxX": 0.9,
+    "minY": 0.18,
+    "maxY": 0.5
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.38,
+      "burst": 2.4
+    },
+    "turnRateRadPerSec": 2,
+    "restFraction": 0.42,
+    "depthRange": [
+      0.15,
+      0.7
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 2.2,
+      "cohesion": 0.42,
+      "polarization": 0.25
+    },
+    "structureAffinity": 0.6,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Seriously Fish: Nannostomus marginatus",
+        "url": "https://www.seriouslyfish.com/species/nannostomus-marginatus/"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Nannostomus marginatus",
+    "originRegionId": "south-america",
+    "originRegionName": "南米",
+    "origin": "ガイアナ、スリナム、アマゾン中・下流域。水草や沈木、落ち葉が多い浅く穏やかな水域に広く分布します。",
+    "temperament": "温和でやや臆病です。密集した群れよりも、仲間と少し間隔を空けて過ごします。",
+    "movement": "水草のそばでふわりと止まり、短い距離をゆっくり移動します。細い体の縞模様と赤いひれがアクセントです。",
+    "habitat": "木陰と細かな水草があり、流れの弱い水景に似合います。",
+    "aliases": [
+      "dwarf-pencilfish",
+      "Dwarf Pencilfish",
+      "ナノストムス・マルギナータス"
+    ]
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "id": "honey-gourami",
+  "displayName": "ハニーグラミー",
+  "realBodyLengthCm": 5.5,
+  "swim": {
+    "tailBeatHz": 1.8,
+    "tailSweepRad": 0.32
+  },
+  "visual": {
+    "fallbackColor": "#e6ad42"
+  },
+  "sourceBodyBounds": {
+    "x": 38,
+    "y": 122,
+    "width": 1468,
+    "height": 807
+  },
+  "preferredZone": {
+    "minX": 0.1,
+    "maxX": 0.9,
+    "minY": 0.16,
+    "maxY": 0.58
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.28,
+      "burst": 1.5
+    },
+    "turnRateRadPerSec": 1.5,
+    "restFraction": 0.34,
+    "depthRange": [
+      0.15,
+      0.75
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 3,
+      "cohesion": 0.18,
+      "polarization": 0.12
+    },
+    "structureAffinity": 0.6,
+    "habits": [
+      {
+        "type": "airBreathing",
+        "breathsPerHour": [
+          4,
+          10
+        ],
+        "style": "rise"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Seriously Fish: Trichogaster chuna",
+        "url": "https://www.seriouslyfish.com/species/trichogaster-chuna/"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Trichogaster chuna",
+    "originRegionId": "south-asia",
+    "originRegionName": "南アジア",
+    "origin": "インド北部からバングラデシュ、ネパール周辺。ガンジス川・ブラマプトラ川水系の流れの緩い水域に分布します。",
+    "temperament": "穏やかで慎重な魚です。雄同士は距離を取りながら、ゆるやかな関係を作ります。",
+    "movement": "水草の間をゆっくり巡り、ときどき水面へ上がって空気を吸います。長い腹びれが揺れる姿も見どころです。",
+    "habitat": "浮草や背の高い水草のある、流れが穏やかな景色に似合います。",
+    "aliases": [
+      "honey-gourami",
+      "Honey Gourami",
+      "ゴールデンハニーグラミー"
+    ]
+  }
+}

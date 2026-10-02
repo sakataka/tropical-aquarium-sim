@@ -1,0 +1,67 @@
+{
+  "id": "ember-tetra",
+  "displayName": "エンバーテトラ",
+  "realBodyLengthCm": 2,
+  "swim": {
+    "tailBeatHz": 3.1,
+    "tailSweepRad": 0.38
+  },
+  "visual": {
+    "fallbackColor": "#e58037"
+  },
+  "sourceBodyBounds": {
+    "x": 20,
+    "y": 123,
+    "width": 1499,
+    "height": 751
+  },
+  "preferredZone": {
+    "minX": 0.1,
+    "maxX": 0.9,
+    "minY": 0.28,
+    "maxY": 0.62
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.75,
+      "burst": 3
+    },
+    "turnRateRadPerSec": 3,
+    "restFraction": 0.15,
+    "depthRange": [
+      0.15,
+      0.75
+    ],
+    "social": {
+      "grouping": "school",
+      "spacingBodyLengths": 1.35,
+      "cohesion": 0.8,
+      "polarization": 0.68
+    },
+    "structureAffinity": 0.35,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Seriously Fish: Hyphessobrycon amandae",
+        "url": "https://www.seriouslyfish.com/species/hyphessobrycon-amandae/"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Hyphessobrycon amandae",
+    "originRegionId": "south-america",
+    "originRegionName": "南米",
+    "origin": "ブラジルのアラグアイア川水系、リオ・ダス・モルテスに由来する小型のテトラです。",
+    "temperament": "とても温和で、仲間とまとまって泳ぐ魚です。",
+    "movement": "中層から上層を小さな群れで泳ぎます。透ける橙色の体が、水草の緑の中で灯りのように浮かびます。",
+    "habitat": "細かな水草と穏やかな流れのある景色で、小さな群れを眺めるのに向いています。",
+    "aliases": [
+      "ember-tetra",
+      "Ember Tetra",
+      "ファイヤーテトラ",
+      "アマンダエ"
+    ]
+  }
+}
