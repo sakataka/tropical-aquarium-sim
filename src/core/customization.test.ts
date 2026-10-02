@@ -63,6 +63,27 @@ describe("tanks", () => {
 });
 
 describe("saved state", () => {
+  test("arranges existing tanks once without replacing their scenery or later stock edits", () => {
+    const old = createDefaultState(fishCatalog);
+    old.activeTankId = "cube-30";
+    old.tanks["asia-60"]!.layout = { sceneId: "iwagumi", lighting: "night" };
+    old.tanks["cube-30"]!.layout = { sceneId: "cube-stones", lighting: "evening" };
+    old.preferences = { ...old.preferences, soundVolume: 0.25 };
+    for (const tank of aquariumTanks) old.tanks[tank.id]!.stock = [];
+    const { stockArrangementVersion: _, ...withoutArrangement } = old;
+    const arranged = normalizeAquariumPersistedState(withoutArrangement, fishCatalog)!;
+    expect(arranged.stockArrangementVersion).toBe(1);
+    expect(arranged.activeTankId).toBe(old.activeTankId);
+    expect(arranged.preferences.soundVolume).toBe(0.25);
+    for (const tank of aquariumTanks) {
+      expect(arranged.tanks[tank.id]!.stock).toEqual(tank.defaultStock);
+      expect(arranged.tanks[tank.id]!.layout).toEqual(old.tanks[tank.id]!.layout);
+    }
+    arranged.tanks["cube-30"]!.stock = [];
+    const reloaded = normalizeAquariumPersistedState(JSON.parse(JSON.stringify(arranged)), fishCatalog)!;
+    expect(reloaded.tanks).toEqual(arranged.tanks);
+  });
+
   test("keeps an existing v5 collection unchanged when catalog species are added", () => {
     const state = createDefaultState(fishCatalog);
     state.tanks["cube-30"] = {
@@ -124,6 +145,7 @@ describe("saved state", () => {
     expect(normalizeAquariumPersistedState({ version: 5 }, fishCatalog)).toBeUndefined();
     const state = normalizeAquariumPersistedState({
       version: 5,
+      stockArrangementVersion: 1,
       activeTankId: "missing",
       tanks: {
         "asia-60": {

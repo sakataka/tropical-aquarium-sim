@@ -15,6 +15,7 @@ type Result = {
   harlequinCount: number;
   rejectedSpecies: boolean;
   newSpeciesChecked: string[];
+  arrangementPreserved: boolean;
   scenesVisited: string[];
   viewingOnEntry: boolean;
   viewingStageWidth: number;
@@ -207,6 +208,33 @@ async function main() {
       };
     })()`) as Result["migrated"];
 
+    // 旧v5を想定し、魚だけが一度入れ替わり、水景・照明・以後の手動変更が残ること。
+    await view.evaluate(`(() => {
+      const old = JSON.parse(localStorage.getItem("${STATE_KEY}"));
+      delete old.stockArrangementVersion;
+      old.tanks["cube-30"].stock = [{ speciesId: "guppy", count: 6 }];
+      old.tanks["cube-30"].layout = { sceneId: "cube-stones", lighting: "evening" };
+      old.preferences.soundVolume = 0.25;
+      localStorage.setItem("${STATE_KEY}", JSON.stringify(old));
+    })()`);
+    await view.navigate(`${BASE_URL}?tank=cube-30`);
+    await sleep(2500);
+    const arrangementApplied = Boolean(await view.evaluate(`(() => {
+      const s = JSON.parse(localStorage.getItem("${STATE_KEY}"));
+      const cube = s.tanks["cube-30"];
+      const total = id => s.tanks[id].stock.reduce((n, entry) => n + entry.count, 0);
+      return s.stockArrangementVersion === 1 && total("asia-60") === 27 && total("amazon-90") === 35 && total("cube-30") === 14 &&
+        cube.stock.some(e => e.speciesId === "ember-tetra" && e.count === 8) &&
+        cube.stock.some(e => e.speciesId === "clown-killifish" && e.count === 3) &&
+        cube.layout.sceneId === "cube-stones" && cube.layout.lighting === "evening" && s.preferences.soundVolume === 0.25;
+    })()`));
+    await clickButtonByText(view, "設定");
+    await clickByLabel(view, "エンバーテトラを1匹減らす");
+    await sleep(350);
+    await view.reload();
+    await sleep(2500);
+    const arrangementPreserved = arrangementApplied && Number(await view.evaluate(stockCount("cube-30", "ember-tetra"))) === 7;
+
     await using mobileView = new Bun.WebView({
       width: 420,
       height: 912,
@@ -290,7 +318,7 @@ async function main() {
     await Bun.write(`${SCREENSHOT_DIR}/settings-landscape-912x420.png`, await landscapeView.screenshot({ format: "png" }));
 
     const result: Result = {
-      title, roomTanks, enteredTank, asiaCards, harlequinCount, rejectedSpecies, newSpeciesChecked, scenesVisited,
+      title, roomTanks, enteredTank, asiaCards, harlequinCount, rejectedSpecies, newSpeciesChecked, arrangementPreserved, scenesVisited,
       viewingOnEntry, viewingStageWidth, editingOpened, editingStageWidth, closedToViewing, backToRoom, cubeCards, cubeStageRatio, amazonCards,
       restored, migrated, desktop, mobile, landscape, removedCopyAbsent, consoleErrors,
     };
@@ -299,7 +327,7 @@ async function main() {
     assert(title.includes("熱帯魚"));
     assert(roomTanks === 3);
     assert(enteredTank === "東南アジアの水草水槽");
-    assert(asiaCards === 8 && harlequinCount === 7 && rejectedSpecies);
+    assert(asiaCards === 8 && harlequinCount === 9 && rejectedSpecies);
     assert(JSON.stringify(scenesVisited) ===
       JSON.stringify(["driftwood", "root-driftwood", "iwagumi", "planted"]));
     assert(viewingOnEntry && viewingStageWidth >= 1400);
@@ -309,7 +337,7 @@ async function main() {
     assert(cubeCards === 7 && cubeStageRatio > 1.4);
     assert(amazonCards === 7);
     assert(restored.version === 5 && restored.scene === "driftwood");
-    assert(restored.lighting === "night" && restored.harlequinCount === 7 && !restored.sound);
+    assert(restored.lighting === "night" && restored.harlequinCount === 9 && !restored.sound);
     assert(migrated.version === 5 && migrated.asiaScene === "iwagumi" && migrated.amazonNeon === 9);
     assert(desktop.stageWidth >= 700 && desktop.canvasWidth >= 700 && desktop.stageHeight >= 400);
     assert(mobile.entered && mobile.roomTanks === 3 &&
@@ -318,6 +346,7 @@ async function main() {
     assert(landscape.panelTop === 0 && landscape.panelLeft >= 456 && landscape.stageHeight >= 380 &&
       landscape.overflowWidth === 0);
     assert(newSpeciesChecked.length === 6);
+    assert(arrangementPreserved);
     assert(removedCopyAbsent);
     assert(consoleErrors.length === 0);
     console.log(`Screenshots: ${SCREENSHOT_DIR}/*.png`);

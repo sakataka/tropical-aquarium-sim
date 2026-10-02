@@ -156,6 +156,7 @@ export type AquariumPreferences = { soundEnabled: boolean; soundVolume: number }
 
 export type AquariumPersistedState = {
   version: 5;
+  stockArrangementVersion: number;
   activeTankId: string;
   tanks: Record<string, AquariumCustomization>;
   preferences: AquariumPreferences;

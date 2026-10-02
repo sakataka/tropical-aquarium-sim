@@ -26,8 +26,12 @@ const config = configSchema.parse(configJson) as AquariumConfig;
 export const AQUARIUM_STATE_STORAGE_KEY = config.stateStorageKey;
 /** 新しい順。読み込み時は最初に見つかったものだけを移行する。 */
 export const LEGACY_STORAGE_KEYS = config.legacyStorageKeys;
-/** 読まずに消す古い保存。魚種を追加したら保存キーの末尾を上げ、前のキーをここへ移して初期状態から始め直す。 */
+/** 読まずに消す古い保存。通常の魚種追加では保存キーを変えない。 */
 export const DISCARDED_STORAGE_KEYS = config.discardedStorageKeys;
+
+// 2026-10: 依頼された3水槽の魚の入れ替えを一度だけ適用する。
+// 通常の魚種追加や初期構成の変更では、この番号を上げない。
+const STOCK_ARRANGEMENT_VERSION = 1;
 
 export const DEFAULT_PREFERENCES: AquariumPreferences = {
   soundEnabled: false,
@@ -36,6 +40,7 @@ export const DEFAULT_PREFERENCES: AquariumPreferences = {
 
 const persistedStateSchema = z.object({
   version: z.literal(5),
+  stockArrangementVersion: z.number().int().nonnegative().optional().catch(undefined),
   activeTankId: z.string(),
   tanks: z.record(z.string(), z.unknown()),
   preferences: z.unknown(),
@@ -61,6 +66,7 @@ export function createDefaultState(
 ): AquariumPersistedState {
   return {
     version: 5,
+    stockArrangementVersion: STOCK_ARRANGEMENT_VERSION,
     activeTankId: aquariumTanks[0]!.id,
     tanks: Object.fromEntries(aquariumTanks.map((tank) => [
       tank.id,
@@ -92,13 +98,17 @@ export function normalizeAquariumPersistedState(
 ): AquariumPersistedState | undefined {
   const parsed = persistedStateSchema.safeParse(value);
   if (!parsed.success) return undefined;
+  const needsArrangement = (parsed.data.stockArrangementVersion ?? 0) < STOCK_ARRANGEMENT_VERSION;
   return {
     version: 5,
+    stockArrangementVersion: Math.max(parsed.data.stockArrangementVersion ?? 0, STOCK_ARRANGEMENT_VERSION),
     activeTankId: getTankById(parsed.data.activeTankId)?.id ?? aquariumTanks[0]!.id,
-    tanks: Object.fromEntries(aquariumTanks.map((tank) => [
-      tank.id,
-      normalizeTankCustomization(parsed.data.tanks[tank.id], tank, speciesCatalog),
-    ])),
+    tanks: Object.fromEntries(aquariumTanks.map((tank) => {
+      const customization = normalizeTankCustomization(parsed.data.tanks[tank.id], tank, speciesCatalog);
+      return [tank.id, needsArrangement
+        ? { ...customization, stock: normalizeStock(tank.defaultStock, tank, speciesCatalog) }
+        : customization];
+    })),
     preferences: normalizePreferences(parsed.data.preferences),
   };
 }
