@@ -1,0 +1,67 @@
+{
+  "id": "rusty-cichlid",
+  "displayName": "ラスティ・シクリッド",
+  "realBodyLengthCm": 10,
+  "catalog": {
+    "scientificName": "Iodotropheus sprengerae",
+    "originRegionId": "east-africa",
+    "originRegionName": "東アフリカ",
+    "origin": "マラウイ湖南部の島々の周辺に暮らす、赤褐色の小型シクリッド。",
+    "temperament": "ムブナの仲間では比較的穏やかですが、雄は縄張りを持ちます。",
+    "movement": "岩の隙間や砂地の近くを巡り、銅色の体に淡い紫の光沢が浮かびます。",
+    "habitat": "浅い岩場と砂底。複数の隠れ場所がある湖岸をイメージしています。",
+    "aliases": [
+      "rusty cichlid",
+      "イオドトロフェウス・スプレンゲラエ"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 1.8,
+    "bodyWaveStart": 0.5,
+    "tailSweepRad": 0.32,
+    "verticalFlex": 0.015
+  },
+  "visual": {
+    "fallbackColor": "#b77b5c"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.45,
+    "maxY": 0.8
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.35,
+      "burst": 1.5
+    },
+    "turnRateRadPerSec": 1.9,
+    "restFraction": 0.22,
+    "depthRange": [
+      0.18,
+      0.72
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 2.3,
+      "cohesion": 0.1,
+      "polarization": 0.15
+    },
+    "structureAffinity": 0.65,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Seriously Fish: Iodotropheus sprengerae",
+        "url": "https://www.seriouslyfish.com/species/iodotropheus-sprengerae/"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 51,
+    "y": 154,
+    "width": 1460,
+    "height": 750
+  }
+}

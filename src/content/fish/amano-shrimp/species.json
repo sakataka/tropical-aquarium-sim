@@ -1,0 +1,85 @@
+{
+  "id": "amano-shrimp",
+  "displayName": "ヤマトヌマエビ",
+  "realBodyLengthCm": 4,
+  "catalog": {
+    "scientificName": "Caridina multidentata",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "日本などの河川に暮らす淡水エビ。幼生は海へ下り、成長して川を遡上します。",
+    "temperament": "穏やかで、石や水草の表面を少しずつ巡ります。",
+    "movement": "底近くをゆっくり移動し、石のそばで立ち止まってついばみます。魚のように尾を振り続けません。",
+    "habitat": "きれいな川の石や水草。本水槽では成体のいる浅瀬をイメージしています。",
+    "aliases": [
+      "amano shrimp",
+      "ヤマト",
+      "エビ"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 0.6,
+    "bodyWaveStart": 0.85,
+    "tailSweepRad": 0,
+    "verticalFlex": 0
+  },
+  "visual": {
+    "fallbackColor": "#b4ad88"
+  },
+  "preferredZone": {
+    "minX": 0.12,
+    "maxX": 0.9,
+    "minY": 0.85,
+    "maxY": 0.92
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.07,
+      "burst": 0.35
+    },
+    "turnRateRadPerSec": 1.2,
+    "restFraction": 0.62,
+    "depthRange": [
+      0.04,
+      0.3
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 1.4,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.8,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 4,
+        "durationSec": [
+          8,
+          20
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 2,
+        "durationSec": [
+          6,
+          15
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "東京都公園協会: ヤマトヌマエビ",
+        "url": "https://www.tokyo-park.or.jp/park/hachijo/creature/detail/0985.html"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 14,
+    "y": 104,
+    "width": 1745,
+    "height": 676
+  }
+}

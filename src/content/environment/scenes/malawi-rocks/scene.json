@@ -1,0 +1,19 @@
+{
+  "id": "malawi-rocks",
+  "order": 10,
+  "displayName": "青い湖の岩礁",
+  "description": "透明な青、白い砂と重なる花崗岩。黄色と青紫の魚が映える開けた湖岸。",
+  "defaultLighting": "natural",
+  "waterColor": "#357ead",
+  "structurePoints": [
+    {
+      "x": 0.2,
+      "y": 0.66
+    },
+    {
+      "x": 0.8,
+      "y": 0.7
+    }
+  ],
+  "bubbleSources": []
+}

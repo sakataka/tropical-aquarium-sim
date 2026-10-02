@@ -94,6 +94,9 @@ export function FishRoom({
     const views: TankView[] = [];
     let zoom: ZoomAnimation | undefined;
     let roomSprite: Sprite | undefined;
+    const roomMask = new Graphics();
+    let maskWidth = 0;
+    let maskHeight = 0;
     // 寄るときはガラスの外側を暗くし、水槽画面の鑑賞モードと同じ見た目で終える。
     const curtain = new Graphics();
     curtain.alpha = 0;
@@ -147,7 +150,9 @@ export function FishRoom({
       ]);
       if (disposed) return;
       roomSprite = new Sprite(roomTexture);
-      world.addChild(roomSprite, curtain);
+      // 生成した部屋の前面ガラスだけを抜き、実際の水景と生き物を奥に合成する。
+      roomSprite.mask = roomMask;
+      world.addChild(roomSprite, roomMask, curtain);
 
       zoomRef.current = (tankId, onDone) => {
         const placement = fishRoom.tanks.find((item) => item.tankId === tankId);
@@ -178,6 +183,15 @@ export function FishRoom({
         if (roomSprite) {
           roomSprite.width = width;
           roomSprite.height = height;
+        }
+        if (maskWidth !== width || maskHeight !== height) {
+          roomMask.clear().rect(0, 0, width, height).fill(0xffffff);
+          for (const { window } of fishRoom.tanks) {
+            const rect = toPixels(window, width, height);
+            roomMask.rect(rect.x, rect.y, rect.width, rect.height).cut();
+          }
+          maskWidth = width;
+          maskHeight = height;
         }
         for (const view of views) updateTank(view, width, height, deltaSec);
         updateCamera(deltaSec);

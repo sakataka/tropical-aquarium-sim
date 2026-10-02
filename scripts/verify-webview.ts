@@ -15,6 +15,7 @@ type Result = {
   harlequinCount: number;
   rejectedSpecies: boolean;
   newSpeciesChecked: string[];
+  addedTanksPreserved: boolean;
   arrangementPreserved: boolean;
   scenesVisited: string[];
   viewingOnEntry: boolean;
@@ -168,6 +169,47 @@ async function main() {
     await clickByLabel(view, "閉じて眺める");
     await Bun.write(`${SCREENSHOT_DIR}/amazon-1440x960.png`, await view.screenshot({ format: "png" }));
 
+    // 追加した2水槽を部屋から開き、背景・カタログ・匹数の保存を確認する。
+    for (const [id, name, species] of [
+      ["japan-60", "日本の湧水水槽", [["medaka", "メダカ"], ["amano-shrimp", "ヤマトヌマエビ"], ["japanese-bitterling", "ニッポンバラタナゴ"], ["japanese-loach", "シマドジョウ"]]],
+      ["malawi-120", "マラウイ湖の岩場水槽", [["yellow-lab", "イエローラブ"], ["yellow-tail-acei", "イエローテール・アセイ"], ["rusty-cichlid", "ラスティ・シクリッド"], ["saulosi", "サウロシー"]]],
+    ] as [string, string, [string, string][]][]) {
+      await clickButtonByText(view, "部屋に戻る");
+      await sleep(1800);
+      await clickByLabel(view, `${name}を眺める`);
+      await sleep(2400);
+      await Bun.write(`${SCREENSHOT_DIR}/${id}-1440x960.png`, await view.screenshot({ format: "png" }));
+      await clickButtonByText(view, "設定");
+      assert(await countCards(view) === 4);
+      newSpeciesChecked.push(...await verifyNewFish(view, id, species));
+      await clickTab(view, "水景");
+      assert(await view.evaluate(`(() => {
+        const img = document.querySelector(".theme-thumb img");
+        return img?.complete && img.naturalWidth > 0;
+      })()`));
+      await clickByLabel(view, "閉じて眺める");
+    }
+
+    // 既存3水槽しかないv5保存へ、新しい2水槽だけが加わること。
+    const beforeExpansion = String(await view.evaluate(`(() => {
+      const old = JSON.parse(localStorage.getItem("${STATE_KEY}"));
+      delete old.tanks["japan-60"];
+      delete old.tanks["malawi-120"];
+      old.activeTankId = "cube-30";
+      localStorage.setItem("${STATE_KEY}", JSON.stringify(old));
+      return JSON.stringify(old.tanks);
+    })()`));
+    await view.navigate(BASE_URL);
+    await sleep(2500);
+    const addedTanksPreserved = Boolean(await view.evaluate(`(() => {
+      const now = JSON.parse(localStorage.getItem("${STATE_KEY}"));
+      const before = JSON.parse(${JSON.stringify(beforeExpansion)});
+      return Object.keys(now.tanks).length === 5 &&
+        Object.keys(before).every(id => JSON.stringify(now.tanks[id]) === JSON.stringify(before[id])) &&
+        now.tanks["japan-60"].stock.reduce((n,e) => n+e.count,0) === 26 &&
+        now.tanks["malawi-120"].stock.reduce((n,e) => n+e.count,0) === 18;
+    })()`));
+
     await view.reload();
     await sleep(2200);
     const restored = await view.evaluate(`(() => {
@@ -262,6 +304,21 @@ async function main() {
       `document.querySelector(".tank-screen")?.classList.contains("visible")`,
     ));
     await Bun.write(`${SCREENSHOT_DIR}/amazon-mobile-420x912.png`, await mobileView.screenshot({ format: "png" }));
+    for (const [id, name] of [["japan-60", "日本の湧水水槽"], ["malawi-120", "マラウイ湖の岩場水槽"]]) {
+      await clickButtonByText(mobileView, "部屋に戻る");
+      await sleep(1800);
+      await mobileView.evaluate(`Array.from(document.querySelectorAll(".room-tank-list button"))
+        .find(button => button.textContent?.includes(${JSON.stringify(name)}))?.click()`);
+      await sleep(2600);
+      assert(await mobileView.evaluate(`document.querySelector(".tank-screen")?.classList.contains("visible")`));
+      await Bun.write(`${SCREENSHOT_DIR}/${id}-420x912.png`, await mobileView.screenshot({ format: "png" }));
+      await clickButtonByText(mobileView, "設定");
+      await sleep(700);
+      assert(await countCards(mobileView) === 4);
+      assert(await mobileView.evaluate(`document.documentElement.scrollWidth === innerWidth`));
+      await Bun.write(`${SCREENSHOT_DIR}/${id}-settings-420x912.png`, await mobileView.screenshot({ format: "png" }));
+      await clickByLabel(mobileView, "閉じて眺める");
+    }
     await mobileView.navigate(`${BASE_URL}?tank=asia-60`);
     await sleep(2500);
     const tankStageWidth = Number(await mobileView.evaluate(
@@ -320,14 +377,14 @@ async function main() {
     await Bun.write(`${SCREENSHOT_DIR}/settings-landscape-912x420.png`, await landscapeView.screenshot({ format: "png" }));
 
     const result: Result = {
-      title, roomTanks, enteredTank, asiaCards, harlequinCount, rejectedSpecies, newSpeciesChecked, arrangementPreserved, scenesVisited,
+      title, roomTanks, enteredTank, asiaCards, harlequinCount, rejectedSpecies, newSpeciesChecked, addedTanksPreserved, arrangementPreserved, scenesVisited,
       viewingOnEntry, viewingStageWidth, editingOpened, editingStageWidth, closedToViewing, backToRoom, cubeCards, cubeStageRatio, amazonCards,
       restored, migrated, desktop, mobile, landscape, removedCopyAbsent, consoleErrors,
     };
     console.log(JSON.stringify(result, null, 2));
 
     assert(title.includes("熱帯魚"));
-    assert(roomTanks === 3);
+    assert(roomTanks === 5);
     assert(enteredTank === "東南アジアの水草水槽");
     assert(asiaCards === 8 && harlequinCount === 7 && rejectedSpecies);
     assert(JSON.stringify(scenesVisited) ===
@@ -342,12 +399,13 @@ async function main() {
     assert(restored.lighting === "night" && restored.harlequinCount === 7 && !restored.sound);
     assert(migrated.version === 5 && migrated.asiaScene === "iwagumi" && migrated.amazonNeon === 9);
     assert(desktop.stageWidth >= 700 && desktop.canvasWidth >= 700 && desktop.stageHeight >= 400);
-    assert(mobile.entered && mobile.roomTanks === 3 &&
+    assert(mobile.entered && mobile.roomTanks === 5 &&
       mobile.roomTouchAction === "pan-x" && mobile.tankStageWidth >= 380 && mobile.overflowWidth === 0);
     assert(mobile.sheet.panelTop >= 360 && mobile.sheet.stageHeight >= 360 && mobile.sheet.firstCardVisible);
     assert(landscape.panelTop === 0 && landscape.panelLeft >= 456 && landscape.stageHeight >= 380 &&
       landscape.overflowWidth === 0);
-    assert(newSpeciesChecked.length === 6);
+    assert(newSpeciesChecked.length === 14);
+    assert(addedTanksPreserved);
     assert(arrangementPreserved);
     assert(removedCopyAbsent);
     assert(consoleErrors.length === 0);

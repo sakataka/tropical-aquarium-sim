@@ -1,0 +1,67 @@
+{
+  "id": "japanese-bitterling",
+  "displayName": "ニッポンバラタナゴ",
+  "realBodyLengthCm": 5,
+  "catalog": {
+    "scientificName": "Rhodeus ocellatus kurumeus",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "日本固有の小型のタナゴ。ため池や水路などの穏やかな水辺に暮らします。",
+    "temperament": "小さな群れで暮らし、繁殖期の雄は色づきます。",
+    "movement": "中層を軽やかに泳ぎ、銀色の体に淡い紅色と青緑の輝きが見えます。",
+    "habitat": "水草のある緩やかな水辺。ここでは雄の婚姻色を表現しています。",
+    "aliases": [
+      "バラタナゴ",
+      "Japanese rosy bitterling"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.8,
+    "bodyWaveStart": 0.45,
+    "tailSweepRad": 0.35,
+    "verticalFlex": 0.012
+  },
+  "visual": {
+    "fallbackColor": "#d5999b"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.35,
+    "maxY": 0.65
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.6,
+      "burst": 2.3
+    },
+    "turnRateRadPerSec": 2.5,
+    "restFraction": 0.14,
+    "depthRange": [
+      0.15,
+      0.8
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.8,
+      "cohesion": 0.4,
+      "polarization": 0.45
+    },
+    "structureAffinity": 0.25,
+    "habits": [],
+    "sources": [
+      {
+        "title": "環境省: ニッポンバラタナゴ",
+        "url": "https://www.env.go.jp/content/000187000.pdf"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 60,
+    "y": 104,
+    "width": 1434,
+    "height": 785
+  }
+}

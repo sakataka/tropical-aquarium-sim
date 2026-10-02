@@ -1,6 +1,6 @@
 import { Assets } from "pixi.js";
 import bubbleParticleUrl from "../content/environment/bubble.png";
-import roomUrl from "../content/room/room.webp";
+import roomUrl from "../content/room/room-five.webp";
 
 // 描画とカタログには、原画 side.png から体だけを切り出した軽い body.webp を使う
 // （scripts/build-fish-sprites.py で作る）。

@@ -1,0 +1,50 @@
+{
+  "id": "malawi-120",
+  "order": 5,
+  "displayName": "マラウイ湖の岩場水槽",
+  "category": "アフリカの湖",
+  "description": "青く澄んだ水、白い砂と大きな岩組み。黄色、青紫、赤褐色、青い縞模様の4種が、岩陰から開けた中上層まで泳ぎます。色も動きも賑やかな120cmのマラウイ湖岸風景です。",
+  "widthCm": 120,
+  "heightCm": 50,
+  "depthCm": 45,
+  "maxTotalFish": 26,
+  "sceneIds": [
+    "malawi-rocks"
+  ],
+  "species": [
+    {
+      "speciesId": "yellow-lab",
+      "maxCount": 8
+    },
+    {
+      "speciesId": "yellow-tail-acei",
+      "maxCount": 8
+    },
+    {
+      "speciesId": "rusty-cichlid",
+      "maxCount": 8
+    },
+    {
+      "speciesId": "saulosi",
+      "maxCount": 6
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "yellow-lab",
+      "count": 5
+    },
+    {
+      "speciesId": "yellow-tail-acei",
+      "count": 5
+    },
+    {
+      "speciesId": "rusty-cichlid",
+      "count": 4
+    },
+    {
+      "speciesId": "saulosi",
+      "count": 4
+    }
+  ]
+}

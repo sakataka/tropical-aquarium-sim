@@ -1,0 +1,68 @@
+{
+  "id": "yellow-tail-acei",
+  "displayName": "イエローテール・アセイ",
+  "realBodyLengthCm": 12.5,
+  "catalog": {
+    "scientificName": "Pseudotropheus sp. 'acei'",
+    "originRegionId": "east-africa",
+    "originRegionName": "東アフリカ",
+    "origin": "マラウイ湖西岸に由来するシクリッド。ここでは青紫の体に黄色い尾を持つタイプを表現しています。",
+    "temperament": "ムブナの仲間では比較的穏やかで、仲間とまとまって泳ぎます。",
+    "movement": "岩場の上の開けた中上層を、ゆるい群れで大きく巡ります。",
+    "habitat": "砂地と岩場のある湖岸。自然下では沈木の周辺でも群れをつくります。",
+    "aliases": [
+      "acei",
+      "アケイ",
+      "アフリカンシクリッド"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 1.7,
+    "bodyWaveStart": 0.42,
+    "tailSweepRad": 0.38,
+    "verticalFlex": 0.014
+  },
+  "visual": {
+    "fallbackColor": "#6468be"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.2,
+    "maxY": 0.52
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "steady",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.42,
+      "burst": 1.8
+    },
+    "turnRateRadPerSec": 1.6,
+    "restFraction": 0.12,
+    "depthRange": [
+      0.22,
+      0.85
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.6,
+      "cohesion": 0.48,
+      "polarization": 0.55
+    },
+    "structureAffinity": 0.18,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Seriously Fish: Pseudotropheus sp. 'acei'",
+        "url": "https://www.seriouslyfish.com/species/pseudotropheus-sp-acei/"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 36,
+    "y": 164,
+    "width": 1473,
+    "height": 697
+  }
+}

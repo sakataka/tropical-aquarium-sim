@@ -16,9 +16,9 @@ const asia = getTankById("asia-60")!;
 const cube = getTankById("cube-30")!;
 
 describe("tanks", () => {
-  test("define three tanks whose scenes and species exist", () => {
+  test("define five tanks whose scenes and species exist", () => {
     expect(AQUARIUM_STATE_STORAGE_KEY).toContain(".v5");
-    expect(aquariumTanks.map((tank) => tank.id)).toEqual(["asia-60", "amazon-90", "cube-30"]);
+    expect(aquariumTanks.map((tank) => tank.id)).toEqual(["asia-60", "amazon-90", "cube-30", "japan-60", "malawi-120"]);
     const assignedScenes = aquariumTanks.flatMap((tank) => tank.sceneIds);
     expect(new Set(assignedScenes).size).toBe(assignedScenes.length);
     expect([...assignedScenes].sort()).toEqual(aquariumScenes.map((scene) => scene.id).sort());
@@ -66,6 +66,46 @@ describe("tanks", () => {
 });
 
 describe("saved state", () => {
+  test("adds requested species once to the two preview tanks, preserving the other three and manual counts", () => {
+    const preview = createDefaultState(fishCatalog);
+    preview.tanks["asia-60"]!.stock = [];
+    preview.tanks["japan-60"]!.stock = [{ speciesId: "medaka", count: 8 }, { speciesId: "amano-shrimp", count: 3 }];
+    preview.tanks["malawi-120"]!.stock = [{ speciesId: "yellow-lab", count: 7 }, { speciesId: "yellow-tail-acei", count: 4 }];
+    preview.tanks["japan-60"]!.layout.lighting = "evening";
+    const { fiveTankStockVersion: _, ...withoutExpansion } = preview;
+    const expanded = normalizeAquariumPersistedState(withoutExpansion, fishCatalog)!;
+    for (const id of ["asia-60", "amazon-90", "cube-30"]) expect(expanded.tanks[id]).toEqual(preview.tanks[id]);
+    expect(expanded.tanks["japan-60"]!.stock).toEqual([
+      ...preview.tanks["japan-60"]!.stock, { speciesId: "japanese-bitterling", count: 6 }, { speciesId: "japanese-loach", count: 3 },
+    ]);
+    expect(expanded.tanks["malawi-120"]!.stock).toEqual([
+      ...preview.tanks["malawi-120"]!.stock, { speciesId: "rusty-cichlid", count: 4 }, { speciesId: "saulosi", count: 4 },
+    ]);
+    expect(expanded.tanks["japan-60"]!.layout.lighting).toBe("evening");
+    expect(expanded.fiveTankStockVersion).toBe(1);
+    expanded.tanks["japan-60"]!.stock = [];
+    expect(normalizeAquariumPersistedState(expanded, fishCatalog)).toEqual(expanded);
+  });
+
+  test("adds two populated tanks to a three-tank save without rearranging existing tanks", () => {
+    const previous = createDefaultState(fishCatalog);
+    delete previous.tanks["japan-60"];
+    delete previous.tanks["malawi-120"];
+    previous.activeTankId = "cube-30";
+    previous.tanks["asia-60"] = { stock: [], layout: { sceneId: "iwagumi", lighting: "night" } };
+    previous.tanks["cube-30"]!.stock = [{ speciesId: "guppy", count: 4 }];
+    previous.preferences.soundVolume = 0.27;
+    const restored = normalizeAquariumPersistedState(JSON.parse(JSON.stringify(previous)), fishCatalog)!;
+    for (const id of ["asia-60", "amazon-90", "cube-30"]) expect(restored.tanks[id]).toEqual(previous.tanks[id]);
+    expect(restored.stockArrangementVersion).toBe(previous.stockArrangementVersion);
+    expect(restored.activeTankId).toBe("cube-30");
+    expect(restored.preferences.soundVolume).toBe(0.27);
+    for (const id of ["japan-60", "malawi-120"]) {
+      expect(restored.tanks[id]).toEqual(createDefaultState(fishCatalog).tanks[id]);
+    }
+    expect(normalizeAquariumPersistedState(restored, fishCatalog)).toEqual(restored);
+  });
+
   test.each([undefined, 1])("arranges stock version %s once without replacing scenery or later edits", (previousVersion) => {
     const old = createDefaultState(fishCatalog);
     old.activeTankId = "cube-30";

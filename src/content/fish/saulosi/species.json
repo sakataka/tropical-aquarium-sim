@@ -1,0 +1,68 @@
+{
+  "id": "saulosi",
+  "displayName": "サウロシー",
+  "realBodyLengthCm": 8.5,
+  "catalog": {
+    "scientificName": "Chindongo saulosi",
+    "originRegionId": "east-africa",
+    "originRegionName": "東アフリカ",
+    "origin": "マラウイ湖のタイワンリーフに由来する小型のシクリッド。",
+    "temperament": "岩場に縄張りを持ち、こまめに周囲を巡ります。",
+    "movement": "青と黒の縞模様で岩の上をきびきび泳ぎ、ときどき留まります。",
+    "habitat": "堆積物の少ない岩礁。ここでは青い雄の色彩を表現し、黄色い雌や幼魚は描き分けません。",
+    "aliases": [
+      "saulosi",
+      "サウロシ",
+      "Pseudotropheus saulosi"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.3,
+    "bodyWaveStart": 0.5,
+    "tailSweepRad": 0.32,
+    "verticalFlex": 0.015
+  },
+  "visual": {
+    "fallbackColor": "#408bd6"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.3,
+    "maxY": 0.66
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.48,
+      "burst": 2
+    },
+    "turnRateRadPerSec": 1.9,
+    "restFraction": 0.15,
+    "depthRange": [
+      0.18,
+      0.72
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.3,
+      "cohesion": 0,
+      "polarization": 0.15
+    },
+    "structureAffinity": 0.5,
+    "habits": [],
+    "sources": [
+      {
+        "title": "FishBase: Chindongo saulosi",
+        "url": "https://www.fishbase.se/summary/Pseudotropheus-saulosi.html"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 35,
+    "y": 171,
+    "width": 1484,
+    "height": 721
+  }
+}

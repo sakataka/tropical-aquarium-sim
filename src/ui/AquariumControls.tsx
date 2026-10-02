@@ -16,7 +16,7 @@ import { CheckIcon, CloseIcon, MinusIcon, PlusIcon } from "./icons";
 type PanelTab = "fish" | "scene" | "viewing";
 
 const TABS: { id: PanelTab; label: string }[] = [
-  { id: "fish", label: "魚" },
+  { id: "fish", label: "生き物" },
   { id: "scene", label: "水景" },
   { id: "viewing", label: "照明と音" },
 ];
@@ -105,11 +105,11 @@ export function AquariumControls({
           <section aria-labelledby="tab-fish" className="panel-content" id="panel-fish" role="tabpanel">
             <div className={tankFull ? "capacity full" : "capacity"}>
               <div className="capacity-text">
-                <span>{tankFull ? "水槽がいっぱいです" : "水槽の魚"}</span>
+                <span>{tankFull ? "水槽がいっぱいです" : "水槽の生き物"}</span>
                 <strong>{totalFish}<small> / {tank.maxTotalFish}匹</small></strong>
               </div>
               <div
-                aria-label="水槽の魚の数"
+                aria-label="水槽の生き物の数"
                 aria-valuemax={tank.maxTotalFish}
                 aria-valuemin={0}
                 aria-valuenow={totalFish}

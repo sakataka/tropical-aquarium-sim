@@ -1,0 +1,67 @@
+{
+  "id": "yellow-lab",
+  "displayName": "イエローラブ",
+  "realBodyLengthCm": 10,
+  "catalog": {
+    "scientificName": "Labidochromis caeruleus",
+    "originRegionId": "east-africa",
+    "originRegionName": "東アフリカ",
+    "origin": "マラウイ湖の岩場に由来するシクリッド。黄色い体と黒いひれの縁が印象的な色彩型です。",
+    "temperament": "岩陰を居場所にします。シクリッドの仲間として縄張りを持ちます。",
+    "movement": "岩場の中下層を短く巡回し、ときどき岩のそばに留まります。",
+    "habitat": "明るい砂底と、隠れられる隙間のある岩組み。",
+    "aliases": [
+      "electric yellow",
+      "ラビドクロミス・カエルレウス"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 1.8,
+    "bodyWaveStart": 0.5,
+    "tailSweepRad": 0.32,
+    "verticalFlex": 0.015
+  },
+  "visual": {
+    "fallbackColor": "#f3ce18"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.42,
+    "maxY": 0.78
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.32,
+      "burst": 1.6
+    },
+    "turnRateRadPerSec": 1.9,
+    "restFraction": 0.26,
+    "depthRange": [
+      0.18,
+      0.72
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 2.3,
+      "cohesion": 0.1,
+      "polarization": 0.15
+    },
+    "structureAffinity": 0.75,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Seriously Fish: Labidochromis caeruleus",
+        "url": "https://www.seriouslyfish.com/species/labidochromis-caeruleus/"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 57,
+    "y": 115,
+    "width": 1452,
+    "height": 810
+  }
+}

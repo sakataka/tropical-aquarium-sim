@@ -1,0 +1,80 @@
+{
+  "id": "japanese-loach",
+  "displayName": "シマドジョウ",
+  "realBodyLengthCm": 10,
+  "swim": {
+    "tailBeatHz": 1.8,
+    "bodyWaveStart": 0.05,
+    "waveCount": 1.4,
+    "tailSweepRad": 0.35,
+    "verticalFlex": 0.09
+  },
+  "visual": {
+    "fallbackColor": "#a49165"
+  },
+  "sourceBodyBounds": {
+    "x": 42,
+    "y": 138,
+    "width": 1964,
+    "height": 492
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.78,
+    "maxY": 0.93
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "undulate",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.22,
+      "burst": 1.1
+    },
+    "turnRateRadPerSec": 2.2,
+    "restFraction": 0.3,
+    "depthRange": [
+      0.1,
+      0.65
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 0.8,
+      "cohesion": 0.5,
+      "polarization": 0.1
+    },
+    "structureAffinity": 0.6,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 2,
+        "durationSec": [
+          4,
+          12
+        ]
+      },
+      {
+        "type": "bottomForage"
+      }
+    ],
+    "sources": [
+      {
+        "title": "国立環境研究所: シマドジョウ",
+        "url": "https://www.nies.go.jp/biodiversity/invasive/DB/detail/50740.html"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Cobitis biwae complex",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "日本の砂礫底の河川や水路に暮らすシマドジョウ種群。体側の斑紋には地域差があります。",
+    "temperament": "底の砂や石の陰を好みます。",
+    "movement": "細長い体をゆるくくねらせて底を移動し、砂の近くで休みます。",
+    "habitat": "湧水の流れ込む水路や、砂と小石のある川底をイメージしています。",
+    "aliases": [
+      "Japanese spined loach",
+      "ドジョウ"
+    ]
+  }
+}

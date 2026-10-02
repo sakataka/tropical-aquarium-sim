@@ -32,6 +32,13 @@ export const DISCARDED_STORAGE_KEYS = config.discardedStorageKeys;
 // 2026-10: 依頼された3水槽の魚の入れ替えを一度だけ適用する。
 // 通常の魚種追加や初期構成の変更では、この番号を上げない。
 const STOCK_ARRANGEMENT_VERSION = 2;
+// 5水槽を先行表示した端末にも、依頼された追加4種だけを一度補う。
+// 既存3水槽の構成バージョンや、追加済みの生き物の匹数は変えない。
+const FIVE_TANK_STOCK_VERSION = 1;
+const FIVE_TANK_ADDITIONS: Record<string, string[]> = {
+  "japan-60": ["japanese-bitterling", "japanese-loach"],
+  "malawi-120": ["rusty-cichlid", "saulosi"],
+};
 
 export const DEFAULT_PREFERENCES: AquariumPreferences = {
   soundEnabled: false,
@@ -41,6 +48,7 @@ export const DEFAULT_PREFERENCES: AquariumPreferences = {
 const persistedStateSchema = z.object({
   version: z.literal(5),
   stockArrangementVersion: z.number().int().nonnegative().optional().catch(undefined),
+  fiveTankStockVersion: z.number().int().nonnegative().optional().catch(undefined),
   activeTankId: z.string(),
   tanks: z.record(z.string(), z.unknown()),
   preferences: z.unknown(),
@@ -67,6 +75,7 @@ export function createDefaultState(
   return {
     version: 5,
     stockArrangementVersion: STOCK_ARRANGEMENT_VERSION,
+    fiveTankStockVersion: FIVE_TANK_STOCK_VERSION,
     activeTankId: aquariumTanks[0]!.id,
     tanks: Object.fromEntries(aquariumTanks.map((tank) => [
       tank.id,
@@ -102,9 +111,16 @@ export function normalizeAquariumPersistedState(
   return {
     version: 5,
     stockArrangementVersion: Math.max(parsed.data.stockArrangementVersion ?? 0, STOCK_ARRANGEMENT_VERSION),
+    fiveTankStockVersion: Math.max(parsed.data.fiveTankStockVersion ?? 0, FIVE_TANK_STOCK_VERSION),
     activeTankId: getTankById(parsed.data.activeTankId)?.id ?? aquariumTanks[0]!.id,
     tanks: Object.fromEntries(aquariumTanks.map((tank) => {
       const customization = normalizeTankCustomization(parsed.data.tanks[tank.id], tank, speciesCatalog);
+      if ((parsed.data.fiveTankStockVersion ?? 0) < FIVE_TANK_STOCK_VERSION) {
+        const additions = tank.defaultStock.filter((entry) =>
+          FIVE_TANK_ADDITIONS[tank.id]?.includes(entry.speciesId) &&
+          !customization.stock.some((saved) => saved.speciesId === entry.speciesId));
+        customization.stock = normalizeStock([...customization.stock, ...additions], tank, speciesCatalog);
+      }
       return [tank.id, needsArrangement
         ? { ...customization, stock: normalizeStock(tank.defaultStock, tank, speciesCatalog) }
         : customization];
