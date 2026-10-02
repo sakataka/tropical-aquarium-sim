@@ -22,9 +22,12 @@
     { "speciesId": "clown-killifish", "maxCount": 8 }
   ],
   "defaultStock": [
-    { "speciesId": "guppy", "count": 2 },
+    { "speciesId": "guppy", "count": 1 },
+    { "speciesId": "platy", "count": 1 },
+    { "speciesId": "white-cloud-minnow", "count": 3 },
+    { "speciesId": "zebra-danio", "count": 2 },
     { "speciesId": "otocinclus", "count": 1 },
-    { "speciesId": "ember-tetra", "count": 8 },
-    { "speciesId": "clown-killifish", "count": 3 }
+    { "speciesId": "ember-tetra", "count": 4 },
+    { "speciesId": "clown-killifish", "count": 2 }
   ]
 }

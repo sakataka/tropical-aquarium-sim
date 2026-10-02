@@ -31,7 +31,7 @@ export const DISCARDED_STORAGE_KEYS = config.discardedStorageKeys;
 
 // 2026-10: 依頼された3水槽の魚の入れ替えを一度だけ適用する。
 // 通常の魚種追加や初期構成の変更では、この番号を上げない。
-const STOCK_ARRANGEMENT_VERSION = 1;
+const STOCK_ARRANGEMENT_VERSION = 2;
 
 export const DEFAULT_PREFERENCES: AquariumPreferences = {
   soundEnabled: false,

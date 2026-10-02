@@ -24,6 +24,9 @@ describe("tanks", () => {
     expect([...assignedScenes].sort()).toEqual(aquariumScenes.map((scene) => scene.id).sort());
     for (const tank of aquariumTanks) {
       for (const slot of tank.species) expect(fishCatalog[slot.speciesId]).toBeDefined();
+      for (const slot of tank.species) {
+        expect(tank.defaultStock.find((entry) => entry.speciesId === slot.speciesId)?.count).toBeGreaterThanOrEqual(1);
+      }
       for (const entry of tank.defaultStock) {
         expect(tank.species.map((slot) => slot.speciesId)).toContain(entry.speciesId);
         expect(entry.count).toBeLessThanOrEqual(tank.species.find((slot) => slot.speciesId === entry.speciesId)!.maxCount);
@@ -63,7 +66,7 @@ describe("tanks", () => {
 });
 
 describe("saved state", () => {
-  test("arranges existing tanks once without replacing their scenery or later stock edits", () => {
+  test.each([undefined, 1])("arranges stock version %s once without replacing scenery or later edits", (previousVersion) => {
     const old = createDefaultState(fishCatalog);
     old.activeTankId = "cube-30";
     old.tanks["asia-60"]!.layout = { sceneId: "iwagumi", lighting: "night" };
@@ -71,8 +74,8 @@ describe("saved state", () => {
     old.preferences = { ...old.preferences, soundVolume: 0.25 };
     for (const tank of aquariumTanks) old.tanks[tank.id]!.stock = [];
     const { stockArrangementVersion: _, ...withoutArrangement } = old;
-    const arranged = normalizeAquariumPersistedState(withoutArrangement, fishCatalog)!;
-    expect(arranged.stockArrangementVersion).toBe(1);
+    const arranged = normalizeAquariumPersistedState({ ...withoutArrangement, stockArrangementVersion: previousVersion }, fishCatalog)!;
+    expect(arranged.stockArrangementVersion).toBe(2);
     expect(arranged.activeTankId).toBe(old.activeTankId);
     expect(arranged.preferences.soundVolume).toBe(0.25);
     for (const tank of aquariumTanks) {
@@ -145,7 +148,7 @@ describe("saved state", () => {
     expect(normalizeAquariumPersistedState({ version: 5 }, fishCatalog)).toBeUndefined();
     const state = normalizeAquariumPersistedState({
       version: 5,
-      stockArrangementVersion: 1,
+      stockArrangementVersion: 2,
       activeTankId: "missing",
       tanks: {
         "asia-60": {
