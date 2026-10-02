@@ -9,6 +9,7 @@ const tankSchema = z.object({
   id: z.string().regex(/^[a-z0-9-]+$/),
   order: z.number().finite(),
   displayName: z.string().min(1),
+  exhibitName: z.string().min(1),
   category: z.string().min(1),
   description: z.string().min(1),
   widthCm: z.number().finite().positive(),

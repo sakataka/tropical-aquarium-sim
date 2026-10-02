@@ -110,6 +110,8 @@ export type TankDefinition = {
   id: string;
   order: number;
   displayName: string;
+  /** 展示ラベルに添える英字の名前。 */
+  exhibitName: string;
   category: string;
   description: string;
   widthCm: number;

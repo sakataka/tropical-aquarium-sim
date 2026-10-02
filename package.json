@@ -12,6 +12,7 @@
     "verify:webview": "bun run scripts/verify-webview.ts"
   },
   "dependencies": {
+    "@fontsource/cormorant-garamond": "^5.3.0",
     "@vitejs/plugin-react": "^6.1.1",
     "pixi.js": "^8.21.0",
     "react": "^19.3.0",

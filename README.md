@@ -50,7 +50,7 @@ http://tropical-aquarium-sim.localhost/?theme=iwagumi
 - `src/content/fish/<species-id>/species.json`: 学名、原産地、体長、泳層、生態プロファイル（`ecology`）と出典
 - `src/content/fish/<species-id>/side.png`: 画像生成した横向き魚画像（原本）
 - `src/content/fish/<species-id>/body.webp`: 描画とカタログに使う軽量版。`side.png` から体の部分だけを切り出し、最大幅720pxにしたもの。魚を追加・差し替えたら `uv run scripts/build-fish-sprites.py` で作り直す
-- `src/content/tanks/<tank-id>/tank.json`: 水槽の名前・分類・サイズ、使える水景、入れられる魚種と上限、最初の魚
+- `src/content/tanks/<tank-id>/tank.json`: 水槽の名前・展示ラベル用の英字名（`exhibitName`）・分類・サイズ、使える水景、入れられる魚種と上限、最初の魚
 - `src/content/room/room.json` と `room-five.webp`: フィッシュルームの一枚絵と各水槽のガラスの位置。描画時に前面をマスクして実際の水景を合成（旧 `room.webp` は保持）
 - `src/content/environment/scenes/<scene-id>/scene.json`: 水景名、標準照明、水の色、魚が寄る構造物と泡の出る位置（水槽に対する0〜1の比率）
 - `src/content/environment/scenes/<scene-id>/plate.webp`: 画像生成した一枚絵の水景
@@ -74,6 +74,8 @@ http://tropical-aquarium-sim.localhost/?theme=iwagumi
 | `habits` | `airBreathing`（水面で息継ぎ）、`bottomRest`、`bottomForage`、`grazing`、`hideByDay`、`follow` の組み合わせ |
 | `sources` | 根拠にした資料（1件以上必須） |
 泳ぎは `side.png` 1枚をメッシュとして変形し、尾の振りと方向転換を描きます。尾の振り方は `species.json` の `swim` で魚種ごとに調整できます。
+
+画面は「夜の自然史博物館の展示」を軸に、欧文・数字・学名を Cormorant Garamond（`@fontsource/cormorant-garamond`）、和文の見出しを端末の明朝体で組みます。フィッシュルームでは床側に名前と番号付きの目録を置き、水槽か目録の項目に合わせるとほかを少し暗くしてその水槽を照らします。鑑賞モードでは、描画側がガラスの画面上の位置を `--glass-x/y/w/h` として書き出し、ガラスの縁と照り返し、台の天板への映り込み、照明が壁を照らす光、水景の色のにじみをその位置に合わせて重ねます（水中の揺らぎはガラスの内側だけにかかります）。
 
 水景は、背景、泡、奥の魚、前景切り抜き、手前の魚、浮遊物の順で合成し、最後に水の揺らぎ・コースティクス・光の筋・照明の色調を1パスのフィルターでかけます。水景を別々の部品から組み立てず、同じ一枚絵から前景を切り抜くことで、光や影の統一感を保ちます。
 

@@ -43,6 +43,8 @@ type ZoomAnimation = {
   direction: "in" | "out";
   glass: RoomRect;
   elapsedSec: number;
+  /** 寄り始めたときの暗さ。ホバーで落としていた照明から続けて暗くする。 */
+  startCurtain: number;
   onDone?: () => void;
 };
 
@@ -51,6 +53,8 @@ const ZOOM_OUT_SEC = 1.3;
 /** 戻るときは水槽画面が消えきるのを待ってから引き始める。 */
 const ZOOM_OUT_HOLD_SEC = 0.4;
 const CURTAIN_COLOR = 0x031416;
+/** 水槽にカーソルを合わせたとき、ほかを落とす暗さ。 */
+const SPOTLIGHT_DIM = 0.32;
 
 export function FishRoom({
   tanks,
@@ -73,6 +77,12 @@ export function FishRoom({
   const zoomRef = useRef<((tankId: string, onDone: () => void) => void) | null>(null);
   const [zoomingTo, setZoomingTo] = useState<string | null>(null);
   const [roomReady, setRoomReady] = useState(false);
+  // 水槽か一覧の項目に合わせているあいだ、その水槽だけを照らす。
+  const [hovered, setHovered] = useState<string | null>(null);
+  const hoveredRef = useRef(hovered);
+  hoveredRef.current = hovered;
+  // 初めて開いたときだけ、部屋の明かりがゆっくり灯るように見せる。
+  const [intro] = useState(() => !returningFrom);
   tanksRef.current = tanks;
 
   // 横長の部屋を狭い画面で見るときは、中央の水槽から見えるようにする。
@@ -100,6 +110,8 @@ export function FishRoom({
     // 寄るときはガラスの外側を暗くし、水槽画面の鑑賞モードと同じ見た目で終える。
     const curtain = new Graphics();
     curtain.alpha = 0;
+    let spotlight = 0;
+    let spotlightGlass: RoomRect | undefined;
 
     const progress = watchSetup("部屋");
 
@@ -163,6 +175,7 @@ export function FishRoom({
           direction: "in",
           glass: placement.glass,
           elapsedSec: 0,
+          startCurtain: spotlightGlass === placement.glass ? spotlight : 0,
           onDone,
         };
       };
@@ -174,6 +187,7 @@ export function FishRoom({
           direction: "out",
           glass: returning.glass,
           elapsedSec: -ZOOM_OUT_HOLD_SEC,
+          startCurtain: 1,
         };
       }
 
@@ -195,6 +209,7 @@ export function FishRoom({
         }
         for (const view of views) updateTank(view, width, height, deltaSec);
         updateCamera(deltaSec);
+        if (!zoom) updateSpotlight(deltaSec);
       });
       progress.mark("最初の描画");
       requestAnimationFrame(() => requestAnimationFrame(() => {
@@ -253,6 +268,15 @@ export function FishRoom({
       view.foreground.texture = foregroundTexture;
     }
 
+    // 合わせた水槽のほかを少し暗くし、選ぼうとしている水槽が浮かび上がるようにする。
+    function updateSpotlight(deltaSec: number) {
+      const placement = fishRoom.tanks.find((item) => item.tankId === hoveredRef.current);
+      if (placement && spotlight < 0.01) spotlightGlass = placement.glass;
+      const target = placement && placement.glass === spotlightGlass ? SPOTLIGHT_DIM : 0;
+      spotlight += (target - spotlight) * (reducedMotion.matches ? 1 : 1 - Math.exp(-7 * deltaSec));
+      if (spotlightGlass) drawCurtain(spotlightGlass, spotlight);
+    }
+
     // カメラは「部屋のどこを画面いっぱいに映すか」で表し、寄る・引くを補間する。
     function updateCamera(deltaSec: number) {
       if (!zoom) {
@@ -265,7 +289,7 @@ export function FishRoom({
       const progress = reducedMotion.matches ? 1 : clamp01(zoom.elapsedSec / duration);
       const t = easeInOutCubic(progress);
       drawCurtain(zoom.glass, zoom.direction === "in"
-        ? smoothstep(0.45, 1, progress)
+        ? lerp(zoom.startCurtain, 1, smoothstep(0.3, 1, progress))
         : 1 - smoothstep(0.05, 0.85, progress));
       const camera: Camera = {
         centerX: lerp(zoom.from.centerX, zoom.to.centerX, t),
@@ -278,7 +302,10 @@ export function FishRoom({
         // 寄り終えたら最後の構図のまま止め、水槽画面への切り替えは1回だけ伝える。
         const done = zoom.onDone;
         if (done) zoom.onDone = undefined;
-        else if (zoom.direction === "out") zoom = undefined;
+        else if (zoom.direction === "out") {
+          zoom = undefined;
+          spotlight = 0;
+        }
         done?.();
       }
     }
@@ -356,20 +383,50 @@ export function FishRoom({
     }
   }, [fishRefs]);
 
+  // 部屋が画面より広いとき、一覧で選ぼうとしている水槽が見えるところまで横に送る。
+  function revealTank(tankId: string) {
+    const shell = shellRef.current;
+    const placement = fishRoom.tanks.find((item) => item.tankId === tankId);
+    if (!shell || !placement || shell.scrollWidth <= shell.clientWidth) return;
+    const left = placement.glass.x * shell.scrollWidth;
+    const right = left + placement.glass.width * shell.scrollWidth;
+    const margin = shell.clientWidth * 0.08;
+    if (left < shell.scrollLeft + margin) shell.scrollTo({ left: left - margin, behavior: "smooth" });
+    else if (right > shell.scrollLeft + shell.clientWidth - margin) {
+      shell.scrollTo({ left: right - shell.clientWidth + margin, behavior: "smooth" });
+    }
+  }
+
   function enter(tankId: string) {
     if (zoomingTo) return;
+    setHovered(tankId);
     setZoomingTo(tankId);
     if (zoomRef.current) zoomRef.current(tankId, () => onEnterTank(tankId));
     else onEnterTank(tankId);
   }
 
+  const count = fishRoom.tanks.length;
+  const species = new Set(Object.values(tanks).flatMap((item) => item.stock
+    .filter((entry) => entry.count > 0)
+    .map((entry) => entry.speciesId))).size;
+
   return (
-    <div className={`room-scroll${zoomingTo ? " zooming" : ""}${roomReady ? " ready" : ""}`} ref={shellRef}>
+    <div
+      className={[
+        "room-scroll",
+        zoomingTo ? "zooming" : "",
+        roomReady ? "ready" : "",
+        intro ? "intro" : "",
+        hovered ? "spotlit" : "",
+      ].filter(Boolean).join(" ")}
+      ref={shellRef}
+    >
       {/* 回線やGPUが遅い端末では準備に数秒かかるため、待っていることが分かるようにする。 */}
       {roomReady ? null : (
         <div className="room-loading" aria-live="polite">
-          <span aria-hidden="true" />
-          <p>フィッシュルームを準備しています</p>
+          <p className="room-loading-mark" aria-hidden="true">Tropical Aquarium</p>
+          <span className="room-loading-line" aria-hidden="true" />
+          <p className="room-loading-text">フィッシュルームを準備しています</p>
         </div>
       )}
       <div
@@ -377,15 +434,19 @@ export function FishRoom({
         ref={stageRef}
         style={{ aspectRatio: String(fishRoom.aspectRatio) }}
       >
-        {fishRoom.tanks.map((placement) => {
+        {fishRoom.tanks.map((placement, index) => {
           const tank = getTankById(placement.tankId);
           if (!tank) return null;
           return (
             <button
               aria-label={`${tank.displayName}を眺める`}
-              className="room-tank"
+              className={hovered === tank.id ? "room-tank lit" : "room-tank"}
               key={tank.id}
+              onBlur={() => setHovered(null)}
               onClick={() => enter(tank.id)}
+              onFocus={() => setHovered(tank.id)}
+              onPointerEnter={(event) => { if (event.pointerType === "mouse") setHovered(tank.id); }}
+              onPointerLeave={() => setHovered(null)}
               style={{
                 left: `${placement.glass.x * 100}%`,
                 top: `${placement.glass.y * 100}%`,
@@ -395,28 +456,46 @@ export function FishRoom({
               type="button"
             >
               <span className="room-tank-label">
+                <em>No. {String(index + 1).padStart(2, "0")}</em>
                 <strong>{tank.displayName}</strong>
-                <small>{tank.widthCm}cm · {countFish(tanks[tank.id])}匹</small>
               </span>
             </button>
           );
         })}
       </div>
       <header className="room-heading">
+        <p className="room-eyebrow">Tropical Aquarium <span>— {count} habitats, {species} species</span></p>
         <h1>フィッシュルーム</h1>
-        <p>水槽を選ぶと、近くで眺められます</p>
+        <p className="room-lede">水槽を選ぶと、近くで眺められます</p>
       </header>
       {/* 左端から始まるスワイプは Safari の「戻る」に使われるので、部屋のスクロールに渡さない。 */}
       <div aria-hidden="true" className="edge-guard" />
-      {/* 狭い画面では部屋の一部しか見えないため、水槽の一覧からも入れるようにする。 */}
+      {/* 展示の目録。狭い画面では部屋の一部しか見えないため、ここからも水槽に入れる。 */}
       <nav aria-label="水槽を選ぶ" className="room-tank-list">
-        {fishRoom.tanks.map((placement) => {
+        {fishRoom.tanks.map((placement, index) => {
           const tank = getTankById(placement.tankId);
           if (!tank) return null;
           return (
-            <button key={tank.id} onClick={() => enter(tank.id)} type="button">
-              <strong>{tank.displayName}</strong>
-              <small>{tank.widthCm}cm · {countFish(tanks[tank.id])}匹</small>
+            <button
+              className={hovered === tank.id ? "lit" : undefined}
+              key={tank.id}
+              onBlur={() => setHovered(null)}
+              onClick={() => enter(tank.id)}
+              onFocus={() => setHovered(tank.id)}
+              onPointerEnter={(event) => {
+                if (event.pointerType !== "mouse") return;
+                setHovered(tank.id);
+                revealTank(tank.id);
+              }}
+              onPointerLeave={() => setHovered(null)}
+              type="button"
+            >
+              <span className="index-number" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+              <span className="index-copy">
+                <strong>{tank.displayName}</strong>
+                <em>{tank.exhibitName}</em>
+                <small>{tank.widthCm}cm · {countFish(tanks[tank.id])}匹</small>
+              </span>
             </button>
           );
         })}

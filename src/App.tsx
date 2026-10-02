@@ -242,6 +242,7 @@ function TankScreen({
   const [editing, setEditing] = useState(false);
   const [hudIdle, setHudIdle] = useState(false);
   const viewControlRef = useRef<ViewControl | null>(null);
+  const screenRef = useRef<HTMLElement | null>(null);
   const fullscreen = useFullscreen();
   const editingRef = useRef(editing);
   const onBackToRoomRef = useRef(onBackToRoom);
@@ -309,6 +310,7 @@ function TankScreen({
   }, [onReady]);
 
   const plateUrl = getScenePlateUrl(customization.layout.sceneId);
+  const exhibitNumber = String(aquariumTanks.indexOf(tank) + 1).padStart(2, "0");
   const lightingLabel = LIGHTING_OPTIONS.find((item) => item.id === customization.layout.lighting)?.label;
 
   const className = [
@@ -323,11 +325,18 @@ function TankScreen({
     <main
       className={className}
       data-lighting={customization.layout.lighting}
+      ref={screenRef}
     >
       {/* 水槽の外は暗い部屋。水景の色がガラスからにじむように、同じ一枚絵をぼかして敷く。 */}
       {plateUrl ? (
         <div aria-hidden="true" className="tank-glow" key={plateUrl}>
           <img alt="" src={plateUrl} />
+        </div>
+      ) : null}
+      {/* 水槽を置いた台の艶に、水景がうっすら映り込む。 */}
+      {plateUrl ? (
+        <div aria-hidden="true" className="tank-reflection">
+          <span key={plateUrl} style={{ backgroundImage: `url("${plateUrl}")` }} />
         </div>
       ) : null}
       <div className="tank-view">
@@ -341,9 +350,12 @@ function TankScreen({
             species={fishCatalog}
             tank={tank}
             viewControlRef={viewControlRef}
+            glassFrameRef={screenRef}
           />
         </section>
       </div>
+      {/* ガラスの縁と表面の照り返し。水中の揺らぎの外側に重ねる。 */}
+      <div aria-hidden="true" className="tank-glass" />
 
       <div className="tank-hud">
         <div className="hud-bar">
@@ -376,6 +388,7 @@ function TankScreen({
           </div>
         </div>
         <div className="hud-caption">
+          <p className="caption-eyebrow"><span>No. {exhibitNumber}</span>{tank.exhibitName}</p>
           <strong>{tank.displayName}</strong>
           <span>{activeScene?.displayName} · {lightingLabel} · {totalFish}匹</span>
         </div>

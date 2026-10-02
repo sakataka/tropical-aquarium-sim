@@ -64,8 +64,9 @@ export function AquariumControls({
     <aside aria-label="水槽の設定" className="control-panel" id="tank-settings" ref={panelRef} tabIndex={-1}>
       <header className="panel-heading">
         <div className="panel-title">
-          <p>{tank.category} · {tank.widthCm}×{tank.heightCm}×{tank.depthCm}cm</p>
+          <p className="panel-eyebrow">{tank.exhibitName}</p>
           <h1>{tank.displayName}</h1>
+          <p className="panel-spec">{tank.category} · {tank.widthCm}×{tank.heightCm}×{tank.depthCm}cm</p>
         </div>
         <button
           aria-label="閉じて眺める"

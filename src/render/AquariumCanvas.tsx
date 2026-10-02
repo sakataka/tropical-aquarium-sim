@@ -1,4 +1,4 @@
-import { useEffect, useRef, type MutableRefObject } from "react";
+import { useEffect, useRef, type MutableRefObject, type RefObject } from "react";
 import {
   Application,
   Assets,
@@ -48,6 +48,11 @@ type AquariumCanvasProps = {
   revealed?: boolean;
   /** 画面上のボタンからズームを操作するための口。 */
   viewControlRef?: MutableRefObject<ViewControl | null>;
+  /**
+   * ガラスがいま画面のどこに映っているかを --glass-x/y/w/h（ビューポートの px）として書き込む要素。
+   * ガラスの縁や映り込みなど、水中フィルターの外に重ねる演出が追従する。
+   */
+  glassFrameRef?: RefObject<HTMLElement | null>;
   onReady?: () => void;
 };
 
@@ -67,6 +72,7 @@ export function AquariumCanvas({
   active = true,
   revealed = true,
   viewControlRef,
+  glassFrameRef,
   onReady,
 }: AquariumCanvasProps) {
   const hostRef = useRef<HTMLDivElement | null>(null);
@@ -129,6 +135,9 @@ export function AquariumCanvas({
     let structurePoints: Vec2[] = [];
     let elapsedSec = 0;
     let resizeObserver: ResizeObserver | undefined;
+    let hostOffset = { x: 0, y: 0 };
+    let removeHostMeasure: (() => void) | undefined;
+    const publishedGlass = { x: NaN, y: NaN, width: NaN, height: NaN };
 
     const progress = watchSetup("水槽");
 
@@ -157,8 +166,17 @@ export function AquariumCanvas({
       app.stage.filterArea = app.screen;
       targetHost.appendChild(app.canvas);
       watchContextLoss(app.canvas, "水槽", () => disposed);
+      // ガラスの位置をビューポート基準で書き出すため、枠の位置を覚えておく。
+      const measureHost = () => {
+        const rect = targetHost.getBoundingClientRect();
+        hostOffset = { x: rect.left, y: rect.top };
+      };
+      measureHost();
+      window.addEventListener("resize", measureHost);
+      removeHostMeasure = () => window.removeEventListener("resize", measureHost);
       // パネルの開閉など、ウィンドウ以外の理由で枠の大きさが変わっても追従する。
       resizeObserver = new ResizeObserver(() => {
+        measureHost();
         detachFilterInput(app);
         app.renderer.resize(Math.max(1, targetHost.clientWidth), Math.max(1, targetHost.clientHeight));
       });
@@ -209,6 +227,7 @@ export function AquariumCanvas({
           : smoothstep(0, EFFECTS_FADE_IN_SEC, elapsedSec - revealedAtSec);
         const glass = getGlassSize();
         driftCamera(glass.width, glass.height, deltaSec, effects);
+        publishGlass(glass.width, glass.height);
         fadeScenes(deltaSec);
         fishLayer.update(
           fishRef.current,
@@ -311,6 +330,24 @@ export function AquariumCanvas({
       world.position.set(app.screen.width / 2 + view.x, app.screen.height / 2 + view.y);
     }
 
+    function publishGlass(width: number, height: number) {
+      const target = glassFrameRef?.current;
+      if (!target) return;
+      const topLeft = world.toGlobal({ x: 0, y: 0 });
+      const bottomRight = world.toGlobal({ x: width, y: height });
+      const next = {
+        x: hostOffset.x + topLeft.x,
+        y: hostOffset.y + topLeft.y,
+        width: bottomRight.x - topLeft.x,
+        height: bottomRight.y - topLeft.y,
+      };
+      for (const key of ["x", "y", "width", "height"] as const) {
+        if (Math.abs(next[key] - publishedGlass[key]) < 0.25) continue;
+        publishedGlass[key] = next[key];
+        target.style.setProperty(`--glass-${key[0]}`, `${next[key].toFixed(2)}px`);
+      }
+    }
+
     // 指定した画面上の点を動かさずに拡大・縮小する。
     function zoomAt(nextZoom: number, anchorX: number, anchorY: number) {
       const glass = getGlassSize();
@@ -393,6 +430,7 @@ export function AquariumCanvas({
       progress.done();
       handleRef.current = null;
       resizeObserver?.disconnect();
+      removeHostMeasure?.();
       targetHost.removeEventListener("pointerdown", onPointerDown);
       targetHost.removeEventListener("pointermove", onPointerMove);
       targetHost.removeEventListener("pointerup", onPointerUp);
@@ -415,7 +453,7 @@ export function AquariumCanvas({
       // true を渡すと全レンダラー共有の資源まで解放され、同時に動く別画面が壊れる。
       app.destroy({ removeView: true }, { children: true, texture: false });
     }
-  }, [fishRef, tank]);
+  }, [fishRef, tank, glassFrameRef]);
 
   useEffect(() => {
     handleRef.current?.setScene(layout.sceneId);
