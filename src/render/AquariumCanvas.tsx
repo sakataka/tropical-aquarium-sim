@@ -135,8 +135,6 @@ export function AquariumCanvas({
     let structurePoints: Vec2[] = [];
     let elapsedSec = 0;
     let resizeObserver: ResizeObserver | undefined;
-    let hostOffset = { x: 0, y: 0 };
-    let removeHostMeasure: (() => void) | undefined;
     const publishedGlass = { x: NaN, y: NaN, width: NaN, height: NaN };
 
     const progress = watchSetup("水槽");
@@ -166,17 +164,8 @@ export function AquariumCanvas({
       app.stage.filterArea = app.screen;
       targetHost.appendChild(app.canvas);
       watchContextLoss(app.canvas, "水槽", () => disposed);
-      // ガラスの位置をビューポート基準で書き出すため、枠の位置を覚えておく。
-      const measureHost = () => {
-        const rect = targetHost.getBoundingClientRect();
-        hostOffset = { x: rect.left, y: rect.top };
-      };
-      measureHost();
-      window.addEventListener("resize", measureHost);
-      removeHostMeasure = () => window.removeEventListener("resize", measureHost);
       // パネルの開閉など、ウィンドウ以外の理由で枠の大きさが変わっても追従する。
       resizeObserver = new ResizeObserver(() => {
-        measureHost();
         detachFilterInput(app);
         app.renderer.resize(Math.max(1, targetHost.clientWidth), Math.max(1, targetHost.clientHeight));
       });
@@ -333,11 +322,13 @@ export function AquariumCanvas({
     function publishGlass(width: number, height: number) {
       const target = glassFrameRef?.current;
       if (!target) return;
+      // 隣の水槽へ移るときは枠ごと平行移動するので、毎フレーム見えている位置を測る。
+      const host = targetHost.getBoundingClientRect();
       const topLeft = world.toGlobal({ x: 0, y: 0 });
       const bottomRight = world.toGlobal({ x: width, y: height });
       const next = {
-        x: hostOffset.x + topLeft.x,
-        y: hostOffset.y + topLeft.y,
+        x: host.left + topLeft.x,
+        y: host.top + topLeft.y,
         width: bottomRight.x - topLeft.x,
         height: bottomRight.y - topLeft.y,
       };
@@ -430,7 +421,6 @@ export function AquariumCanvas({
       progress.done();
       handleRef.current = null;
       resizeObserver?.disconnect();
-      removeHostMeasure?.();
       targetHost.removeEventListener("pointerdown", onPointerDown);
       targetHost.removeEventListener("pointermove", onPointerMove);
       targetHost.removeEventListener("pointerup", onPointerUp);

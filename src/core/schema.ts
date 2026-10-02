@@ -92,6 +92,8 @@ const fishSpeciesDefinitionSchema = z.object({
     waveCount: z.number().finite().positive().max(3),
     tailSweepRad: z.number().finite().min(0).max(1.2),
     verticalFlex: z.number().finite().min(0).max(0.2),
+    bodyPlan: z.enum(["fish", "crustacean"]),
+    headStart: z.number().finite().min(0).max(0.8),
   }).partial().optional(),
   visual: z.object({ fallbackColor: z.string().regex(/^#[0-9a-fA-F]{6}$/) }),
   sourceBodyBounds: bodyBoundsSchema,

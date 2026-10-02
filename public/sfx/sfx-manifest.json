@@ -1,0 +1,1692 @@
+{
+  "version": 1,
+  "title": "熱帯魚アクアリウム",
+  "style": "fantasy",
+  "world": "calm, premium home aquarium viewing experience at night; soft water, glass and air bubbles; quiet, intimate, never loud or cartoonish",
+  "sampleRate": 48000,
+  "createdAt": "2026-10-02T23:17:09.956Z",
+  "license": "woosh を含む音は Sony AI の Woosh（重み: CC-BY-NC 4.0）で生成した素材を使っている。非商用で使い、クレジットに Woosh (Sony AI) を記載すること。library の素材は Sonniss #GameAudioGDC Bundle（ロイヤリティフリー、商用可、クレジット不要。素材そのものの再配布と AI 学習への利用は禁止）。freesound の素材は credits に作者とライセンスを載せている。CC-BY / CC-BY-NC は作者の表記が必要、CC-BY-NC は非商用に限る。synth の部分は制限なし",
+  "sounds": [
+    {
+      "key": "tank_enter",
+      "name": "水槽に寄る",
+      "files": [
+        "tank_enter.wav"
+      ],
+      "engine": "ai",
+      "recipe": "swing",
+      "prompt": "slow soft airy underwater whoosh with a few gentle rising air bubbles, muffled water swell",
+      "tier": "light",
+      "durationSec": 1.688,
+      "playbackRandom": {
+        "pitch": 0.06,
+        "volume": 0.12
+      },
+      "use": "the camera glides from the living room into an aquarium tank and the view goes underwater; calm and immersive, no splash impact, no voice, no music",
+      "realism": "real",
+      "judgedBy": "gemini-pro-latest",
+      "candidates": [
+        {
+          "file": "_candidates/tank_enter/01.wav",
+          "engine": "ai",
+          "seed": 1316832183,
+          "score": -0.301,
+          "relevance": 0.1,
+          "styleMatch": -0.135,
+          "penalty": 0.08,
+          "durationSec": 1.454,
+          "source": "woosh",
+          "judge": {
+            "score": 2,
+            "fits": false,
+            "note": "魔法のようなチャイム音で、水中のリアルな音ではありません。シンセサイザーの音が強すぎます。",
+            "problems": [
+              "synthetic",
+              "off-style"
+            ]
+          }
+        },
+        {
+          "file": "_candidates/tank_enter/02.wav",
+          "engine": "ai",
+          "seed": 1316832184,
+          "score": 0.704,
+          "relevance": 0.11,
+          "styleMatch": -0.071,
+          "penalty": 0,
+          "durationSec": 1.128,
+          "source": "woosh",
+          "judge": {
+            "score": 7,
+            "fits": true,
+            "note": "柔らかくこもった水中の音で雰囲気は良いですが、気泡の音がなく少し物足りません。",
+            "problems": [
+              "weak transient"
+            ]
+          }
+        },
+        {
+          "file": "_candidates/tank_enter/03.wav",
+          "engine": "ai",
+          "seed": 1316832185,
+          "score": -0.305,
+          "relevance": 0.02,
+          "styleMatch": -0.103,
+          "penalty": 0.08,
+          "durationSec": 1.489,
+          "source": "woosh",
+          "judge": {
+            "score": 2,
+            "fits": false,
+            "note": "魔法のキラキラした音で、水槽のリアルな音ではありません。",
+            "problems": [
+              "synthetic",
+              "off-style"
+            ]
+          }
+        },
+        {
+          "file": "_candidates/tank_enter/04.wav",
+          "engine": "ai",
+          "seed": 1316832186,
+          "score": 0,
+          "relevance": 0.073,
+          "styleMatch": -0.077,
+          "penalty": 0.04,
+          "durationSec": 1.393,
+          "source": "woosh",
+          "judge": {
+            "score": 5,
+            "fits": false,
+            "note": "空気感のある柔らかい音ですが、少し人工的で水中のリアルな質感に欠けます。",
+            "problems": [
+              "synthetic"
+            ]
+          }
+        },
+        {
+          "file": "_candidates/tank_enter/05.wav",
+          "engine": "ai",
+          "seed": 1316832187,
+          "score": -0.306,
+          "relevance": 0.018,
+          "styleMatch": -0.145,
+          "penalty": 0.08,
+          "durationSec": 1.475,
+          "source": "woosh",
+          "judge": {
+            "score": 2,
+            "fits": false,
+            "note": "人工的な風切音で、水中の音ではありません。",
+            "problems": [
+              "synthetic",
+              "off-style"
+            ]
+          }
+        },
+        {
+          "file": "_candidates/tank_enter/06.wav",
+          "engine": "ai",
+          "seed": 1316832188,
+          "score": -0.304,
+          "relevance": 0.041,
+          "styleMatch": -0.106,
+          "penalty": 0.08,
+          "durationSec": 1.448,
+          "source": "woosh",
+          "judge": {
+            "score": 2,
+            "fits": false,
+            "note": "魔法の呪文のような音で、リアルな水槽の音としては不適切です。",
+            "problems": [
+              "synthetic",
+              "off-style"
+            ]
+          }
+        },
+        {
+          "file": "_candidates/tank_enter/07.wav",
+          "engine": "ai",
+          "seed": 1316832189,
+          "score": -0.304,
+          "relevance": 0.039,
+          "styleMatch": -0.138,
+          "penalty": 0.08,
+          "durationSec": 1.46,
+          "source": "woosh",
+          "judge": {
+            "score": 2,
+            "fits": false,
+            "note": "人工的なスイープ音で、水中の自然な音ではありません。",
+            "problems": [
+              "synthetic",
+              "off-style"
+            ]
+          }
+        },
+        {
+          "file": "_candidates/tank_enter/08.wav",
+          "engine": "ai",
+          "seed": 1316832190,
+          "score": 1.004,
+          "relevance": 0.092,
+          "styleMatch": -0.033,
+          "penalty": 0,
+          "durationSec": 1.688,
+          "source": "woosh",
+          "judge": {
+            "score": 10,
+            "fits": true,
+            "note": "柔らかい水中のうねりと優しい気泡の音が非常にリアルで、カメラが水中に入る没入感を完璧に表現しています。",
+            "problems": []
+          }
+        }
+      ],
+      "chosen": [
+        7
+      ]
+    },
+    {
+      "key": "room_return",
+      "name": "部屋に戻る",
+      "files": [
+        "room_return.wav"
+      ],
+      "engine": "ai",
+      "recipe": "swing",
+      "prompt": "soft airy whoosh rising out of water, gentle muffled water surfacing, light room tone opening up",
+      "tier": "light",
+      "durationSec": 1.6,
+      "playbackRandom": {
+        "pitch": 0.06,
+        "volume": 0.12
+      },
+      "use": "the camera pulls back out of the aquarium into a bright quiet living room; gentle, no splash, no voice",
+      "realism": "real",
+      "judgedBy": "gemini-pro-latest",
+      "candidates": [
+        {
+          "file": "_candidates/room_return/01.wav",
+          "engine": "ai",
+          "seed": 165024096,
+          "score": -0.092,
+          "relevance": 0.129,
+          "styleMatch": -0.169,
+          "penalty": 0,
+          "durationSec": 1.589,
+          "source": "library:freesound/136619@0.03",
+          "judge": {
+            "score": 4,
+            "fits": false,
+            "note": "泡立つ音が強すぎます。ストローで息を吹き込んだような音で、上品で静かな雰囲気に欠けます。",
+            "problems": [
+              "too bubbly",
+              "harsh"
+            ]
+          }
+        },
+        {
+          "file": "_candidates/room_return/02.wav",
+          "engine": "ai",
+          "seed": 165024097,
+          "score": -0.293,
+          "relevance": 0.113,
+          "styleMatch": -0.189,
+          "penalty": 0,
+          "durationSec": 1.198,
+          "source": "library:freesound/572025@0.33",
+          "judge": {
+            "score": 2,
+            "fits": false,
+            "note": "鋭い風切り音のみで、水や部屋の空気感が全くありません。攻撃的すぎます。",
+            "problems": [
+              "too sharp",
+              "no water element"
+            ]
+          }
+        },
+        {
+          "file": "_candidates/room_return/03.wav",
+          "engine": "ai",
+          "seed": 165024098,
+          "score": 0.811,
+          "relevance": 0.158,
+          "styleMatch": -0.087,
+          "penalty": 0,
+          "durationSec": 1.6,
+          "source": "library:freesound/162839@4.27",
+          "judge": {
+            "score": 8,
+            "fits": true,
+            "note": "こもった柔らかい水の音が、水中から水面へ出る感覚をうまく表現しています。静かで上品な雰囲気に非常に合っています。",
+            "problems": []
+          }
+        },
+        {
+          "file": "_candidates/room_return/04.wav",
+          "engine": "ai",
+          "seed": 165024099,
+          "score": 0.811,
+          "relevance": 0.178,
+          "styleMatch": -0.068,
+          "penalty": 0.03,
+          "durationSec": 1.577,
+          "source": "library:freesound/162839@0.27",
+          "judge": {
+            "score": 8,
+            "fits": true,
+            "note": "柔らかくこもった水の音が心地よく、水中から抜け出す穏やかなトランジションに最適です。リラックスした空間に馴染みます。",
+            "problems": []
+          }
+        },
+        {
+          "file": "_candidates/room_return/05.wav",
+          "engine": "ai",
+          "seed": 165024100,
+          "score": -0.292,
+          "relevance": 0.125,
+          "styleMatch": -0.183,
+          "penalty": 0,
+          "durationSec": 1.338,
+          "source": "library:freesound/572025@3.25",
+          "judge": {
+            "score": 2,
+            "fits": false,
+            "note": "鋭い風切り音で、ターゲットとしている水中から出る穏やかな音とは異なります。",
+            "problems": [
+              "too sharp",
+              "no water element"
+            ]
+          }
+        },
+        {
+          "file": "_candidates/room_return/06.wav",
+          "engine": "ai",
+          "seed": 165024101,
+          "score": -0.098,
+          "relevance": 0.182,
+          "styleMatch": -0.184,
+          "penalty": 0.17,
+          "durationSec": 1.446,
+          "source": "library:freesound/699969@0.00",
+          "judge": {
+            "score": 4,
+            "fits": false,
+            "note": "ピッチが上がる音が人工的で、少しカートゥーンやSFのような印象を与えてしまいます。自然な水の音ではありません。",
+            "problems": [
+              "synthetic",
+              "cartoonish"
+            ]
+          }
+        },
+        {
+          "file": "_candidates/room_return/07.wav",
+          "engine": "ai",
+          "seed": 165024102,
+          "score": 0.609,
+          "relevance": 0.137,
+          "styleMatch": -0.145,
+          "penalty": 0,
+          "durationSec": 1.402,
+          "source": "library:freesound/749814@0.22",
+          "judge": {
+            "score": 6,
+            "fits": true,
+            "note": "こもった水の音の質感は良いですが、少し短く、水面に出た後の部屋の空気感や広がりが足りません。",
+            "problems": [
+              "lacks room tone"
+            ]
+          }
+        },
+        {
+          "file": "_candidates/room_return/08.wav",
+          "engine": "ai",
+          "seed": 165024103,
+          "score": -0.291,
+          "relevance": 0.11,
+          "styleMatch": -0.075,
+          "penalty": 0,
+          "durationSec": 1.123,
+          "source": "library:freesound/162844@9.07",
+          "judge": {
+            "score": 2,
+            "fits": false,
+            "note": "鋭い風切り音で、水や部屋の要素がありません。ゲームの穏やかな雰囲気には合いません。",
+            "problems": [
+              "too sharp",
+              "no water element"
+            ]
+          }
+        }
+      ],
+      "chosen": [
+        2
+      ]
+    },
+    {
+      "key": "tank_switch",
+      "name": "隣の水槽へ",
+      "files": [
+        "tank_switch_1.wav",
+        "tank_switch_2.wav"
+      ],
+      "engine": "ai",
+      "recipe": "swing",
+      "prompt": "short soft water swish sideways, gentle current movement with tiny bubbles",
+      "tier": "light",
+      "durationSec": 0.9,
+      "playbackRandom": {
+        "pitch": 0.06,
+        "volume": 0.12
+      },
+      "use": "the view slides from one aquarium to the next aquarium; brief, soft, no splash impact",
+      "realism": "real",
+      "judgedBy": "gemini-pro-latest",
+      "candidates": [
+        {
+          "file": "_candidates/tank_switch/01.wav",
+          "engine": "ai",
+          "seed": 114449326,
+          "score": -0.29,
+          "relevance": 0.159,
+          "styleMatch": -0.057,
+          "penalty": 0.04,
+          "durationSec": 0.802,
+          "source": "library:Epic Stock Media - Public Spaces - Storms Lakes Parks and Rural Nature Exteriors/WATRLap_Summer Tennessee Lake Dock Water Ripples Wake Wave Gentle 05 Distant_ESM_CPS.wav@20.04",
+          "judge": {
+            "score": 2,
+            "fits": false,
+            "note": "激しい水しぶきの音で、水槽を移動する際の穏やかな演出には不向きです。インパクトが強すぎます。",
+            "problems": [
+              "splash impact",
+              "too loud",
+              "aggressive"
+            ]
+          }
+        },
+        {
+          "file": "_candidates/tank_switch/02.wav",
+          "engine": "ai",
+          "seed": 114449327,
+          "score": -0.187,
+          "relevance": 0.202,
+          "styleMatch": -0.008,
+          "penalty": 0.04,
+          "durationSec": 0.721,
+          "source": "library:Epic Stock Media - Public Spaces - Storms Lakes Parks and Rural Nature Exteriors/WATRLap_Summer Tennessee Lake Dock Water Ripples Wake Wave Gentle 05 Distant_ESM_CPS.wav@25.04",
+          "judge": {
+            "score": 3,
+            "fits": false,
+            "note": "やや控えめですが、依然として水面に物が落ちたような打撃感があり、ターゲットの音とは異なります。",
+            "problems": [
+              "splash impact",
+              "too aggressive"
+            ]
+          }
+        },
+        {
+          "file": "_candidates/tank_switch/03.wav",
+          "engine": "ai",
+          "seed": 114449328,
+          "score": -0.293,
+          "relevance": 0.144,
+          "styleMatch": -0.063,
+          "penalty": 0.08,
+          "durationSec": 0.708,
+          "source": "library:Epic Stock Media - Public Spaces - Storms Lakes Parks and Rural Nature Exteriors/WATRLap_Summer Tennessee Lake Dock Water Ripples Wake Wave Gentle 05 Distant_ESM_CPS.wav@15.04",
+          "judge": {
+            "score": 2,
+            "fits": false,
+            "note": "バシャッという水しぶきの音が強く、静かで落ち着いた水槽の雰囲気には合いません。",
+            "problems": [
+              "splash impact",
+              "too loud"
+            ]
+          }
+        },
+        {
+          "file": "_candidates/tank_switch/04.wav",
+          "engine": "ai",
+          "seed": 114449329,
+          "score": -0.292,
+          "relevance": 0.093,
+          "styleMatch": -0.102,
+          "penalty": 0,
+          "durationSec": 0.691,
+          "source": "library:freesound/611289@0.02",
+          "judge": {
+            "score": 2,
+            "fits": false,
+            "note": "短く人工的な風切りのような音で、水の質感が不足しています。ファンタジーの温かみもありません。",
+            "problems": [
+              "synthetic",
+              "dry",
+              "lacks water texture"
+            ]
+          }
+        },
+        {
+          "file": "_candidates/tank_switch/05.wav",
+          "engine": "ai",
+          "seed": 114449330,
+          "score": -0.192,
+          "relevance": 0.099,
+          "styleMatch": -0.089,
+          "penalty": 0,
+          "durationSec": 0.703,
+          "source": "library:freesound/151281@0.00",
+          "judge": {
+            "score": 3,
+            "fits": false,
+            "note": "手で水を叩いたような水しぶき音で、穏やかな水流や気泡の表現としては不適切です。",
+            "problems": [
+              "splash impact"
+            ]
+          }
+        },
+        {
+          "file": "_candidates/tank_switch/06.wav",
+          "engine": "ai",
+          "seed": 114449331,
+          "score": -0.191,
+          "relevance": 0.092,
+          "styleMatch": -0.011,
+          "penalty": 0,
+          "durationSec": 0.693,
+          "source": "library:freesound/151286@0.04",
+          "judge": {
+            "score": 3,
+            "fits": false,
+            "note": "こちらも水しぶきの音が目立ち、画面遷移時の滑らかな水の動きを表現するには激しすぎます。",
+            "problems": [
+              "splash impact"
+            ]
+          }
+        },
+        {
+          "file": "_candidates/tank_switch/07.wav",
+          "engine": "ai",
+          "seed": 114449332,
+          "score": 0.802,
+          "relevance": 0.062,
+          "styleMatch": -0.13,
+          "penalty": 0.08,
+          "durationSec": 0.9,
+          "source": "library:freesound/132230@5.02",
+          "judge": {
+            "score": 8,
+            "fits": true,
+            "note": "柔らかく穏やかな水の動きと微細な気泡の音が感じられ、水槽間の移動というシチュエーションに非常に適しています。ゲーム内でリバーブを足すとさらに良くなります。",
+            "problems": [
+              "slightly dry"
+            ]
+          }
+        },
+        {
+          "file": "_candidates/tank_switch/08.wav",
+          "engine": "ai",
+          "seed": 114449333,
+          "score": -0.191,
+          "relevance": 0.103,
+          "styleMatch": -0.041,
+          "penalty": 0,
+          "durationSec": 0.783,
+          "source": "library:freesound/151285@0.02",
+          "judge": {
+            "score": 3,
+            "fits": false,
+            "note": "水を跳ね上げるような音で、静かな夜のアクアリウムという設定にはそぐわない激しさがあります。",
+            "problems": [
+              "splash impact"
+            ]
+          }
+        }
+      ],
+      "chosen": [
+        6,
+        1
+      ]
+    },
+    {
+      "key": "panel_close",
+      "name": "設定を閉じる",
+      "files": [
+        "panel_close.wav"
+      ],
+      "engine": "synth",
+      "recipe": "ui-cancel",
+      "prompt": "soft muted glass panel sliding closed, gentle low airy slide",
+      "tier": "ui",
+      "durationSec": 0.353,
+      "playbackRandom": {
+        "pitch": 0,
+        "volume": 0
+      },
+      "use": "the frosted glass settings panel slides away to return to viewing; very soft, slightly lower than opening",
+      "realism": "game",
+      "judgedBy": "gemini-pro-latest",
+      "candidates": [
+        {
+          "file": "_candidates/panel_close/01.wav",
+          "engine": "synth",
+          "seed": 735899293,
+          "score": 0.599,
+          "relevance": -0.038,
+          "styleMatch": -0.089,
+          "penalty": 0,
+          "durationSec": 0.354,
+          "source": "synth",
+          "judge": {
+            "score": 6,
+            "fits": true,
+            "note": "柔らかく暖かいガラス系のUI音ですが、閉じる音としては少しピッチが高く、開く音や選択音に聞こえがちです。",
+            "problems": [
+              "pitch slightly high"
+            ]
+          }
+        },
+        {
+          "file": "_candidates/panel_close/02.wav",
+          "engine": "synth",
+          "seed": 735899294,
+          "score": 0.799,
+          "relevance": -0.041,
+          "styleMatch": -0.088,
+          "penalty": 0,
+          "durationSec": 0.354,
+          "source": "synth",
+          "judge": {
+            "score": 8,
+            "fits": true,
+            "note": "低めのピッチで落ち着いた響きがあり、設定画面を閉じる際のアクションによく合っています。水槽の静かな雰囲気にもマッチします。",
+            "problems": []
+          }
+        },
+        {
+          "file": "_candidates/panel_close/03.wav",
+          "engine": "synth",
+          "seed": 735899295,
+          "score": -0.101,
+          "relevance": -0.049,
+          "styleMatch": -0.088,
+          "penalty": 0,
+          "durationSec": 0.354,
+          "source": "synth",
+          "judge": {
+            "score": 4,
+            "fits": false,
+            "note": "ピッチが高く、閉じる動作よりも開く動作や決定音に適しています。",
+            "problems": [
+              "too high pitch"
+            ]
+          }
+        },
+        {
+          "file": "_candidates/panel_close/04.wav",
+          "engine": "synth",
+          "seed": 735899296,
+          "score": -0.201,
+          "relevance": -0.051,
+          "styleMatch": -0.091,
+          "penalty": 0,
+          "durationSec": 0.353,
+          "source": "synth",
+          "judge": {
+            "score": 3,
+            "fits": false,
+            "note": "高音域が目立ち、閉じる際のリラックスした印象とは異なります。",
+            "problems": [
+              "too high pitch"
+            ]
+          }
+        },
+        {
+          "file": "_candidates/panel_close/05.wav",
+          "engine": "synth",
+          "seed": 735899297,
+          "score": -0.201,
+          "relevance": -0.047,
+          "styleMatch": -0.088,
+          "penalty": 0,
+          "durationSec": 0.353,
+          "source": "synth",
+          "judge": {
+            "score": 3,
+            "fits": false,
+            "note": "ピッチが高く、閉じる音としては不適切です。",
+            "problems": [
+              "too high pitch"
+            ]
+          }
+        },
+        {
+          "file": "_candidates/panel_close/06.wav",
+          "engine": "synth",
+          "seed": 735899298,
+          "score": 0.899,
+          "relevance": -0.034,
+          "styleMatch": -0.082,
+          "penalty": 0,
+          "durationSec": 0.353,
+          "source": "synth",
+          "judge": {
+            "score": 9,
+            "fits": true,
+            "note": "非常に柔らかく低めの音で、すりガラスのパネルが静かに閉じる印象にぴったりです。上品で落ち着いた雰囲気がよく出ています。",
+            "problems": []
+          }
+        },
+        {
+          "file": "_candidates/panel_close/07.wav",
+          "engine": "synth",
+          "seed": 735899299,
+          "score": 0.699,
+          "relevance": -0.038,
+          "styleMatch": -0.089,
+          "penalty": 0,
+          "durationSec": 0.353,
+          "source": "synth",
+          "judge": {
+            "score": 7,
+            "fits": true,
+            "note": "低めで落ち着いた音色ですが、アタックが少し弱く、UIのフィードバックとしてやや物足りなさを感じます。",
+            "problems": [
+              "slightly weak transient"
+            ]
+          }
+        },
+        {
+          "file": "_candidates/panel_close/08.wav",
+          "engine": "synth",
+          "seed": 735899300,
+          "score": 0.599,
+          "relevance": -0.05,
+          "styleMatch": -0.093,
+          "penalty": 0,
+          "durationSec": 0.353,
+          "source": "synth",
+          "judge": {
+            "score": 6,
+            "fits": true,
+            "note": "低めのピッチで閉じる印象はありますが、少し音がこもっており、クリアさに欠けます。",
+            "problems": [
+              "slightly muffled"
+            ]
+          }
+        }
+      ],
+      "chosen": [
+        5
+      ]
+    },
+    {
+      "key": "ui_tap",
+      "name": "ボタン",
+      "files": [
+        "ui_tap_1.wav",
+        "ui_tap_2.wav",
+        "ui_tap_3.wav"
+      ],
+      "engine": "synth",
+      "recipe": "ui-confirm",
+      "prompt": "tiny soft glass tick, delicate muted tap on thick aquarium glass",
+      "tier": "ui",
+      "durationSec": 0.25,
+      "playbackRandom": {
+        "pitch": 0,
+        "volume": 0
+      },
+      "use": "the viewer taps a quiet interface button such as a tab, zoom or lighting choice; tiny and refined, not a game coin or beep",
+      "realism": "game",
+      "judgedBy": "gemini-pro-latest",
+      "candidates": [
+        {
+          "file": "_candidates/ui_tap/01.wav",
+          "engine": "synth",
+          "seed": 782470181,
+          "score": 0.899,
+          "relevance": -0.044,
+          "styleMatch": -0.131,
+          "penalty": 0,
+          "durationSec": 0.25,
+          "source": "synth",
+          "judge": {
+            "score": 9,
+            "fits": true,
+            "note": "柔らかく繊細なガラスのタップ音。水族館のUIとして非常に適しており、上品で落ち着いた印象を与えます。",
+            "problems": []
+          }
+        },
+        {
+          "file": "_candidates/ui_tap/02.wav",
+          "engine": "synth",
+          "seed": 782470182,
+          "score": 0.899,
+          "relevance": -0.048,
+          "styleMatch": -0.135,
+          "penalty": 0,
+          "durationSec": 0.25,
+          "source": "synth",
+          "judge": {
+            "score": 9,
+            "fits": true,
+            "note": "わずかにピッチが異なる、柔らかく繊細なガラスのタップ音。UIのクリック音として完璧に機能します。",
+            "problems": []
+          }
+        },
+        {
+          "file": "_candidates/ui_tap/03.wav",
+          "engine": "synth",
+          "seed": 782470183,
+          "score": 0.899,
+          "relevance": -0.046,
+          "styleMatch": -0.136,
+          "penalty": 0,
+          "durationSec": 0.25,
+          "source": "synth",
+          "judge": {
+            "score": 9,
+            "fits": true,
+            "note": "丸みのある繊細なガラスのタップ音。静かで高級感のある雰囲気にぴったりです。",
+            "problems": []
+          }
+        },
+        {
+          "file": "_candidates/ui_tap/04.wav",
+          "engine": "synth",
+          "seed": 782470184,
+          "score": 0.898,
+          "relevance": -0.055,
+          "styleMatch": -0.138,
+          "penalty": 0,
+          "durationSec": 0.25,
+          "source": "synth",
+          "judge": {
+            "score": 9,
+            "fits": true,
+            "note": "控えめで上品なガラスのタップ音。耳障りにならず、UIの操作音として非常に優秀です。",
+            "problems": []
+          }
+        },
+        {
+          "file": "_candidates/ui_tap/05.wav",
+          "engine": "synth",
+          "seed": 782470185,
+          "score": 0.899,
+          "relevance": -0.049,
+          "styleMatch": -0.135,
+          "penalty": 0,
+          "durationSec": 0.25,
+          "source": "synth",
+          "judge": {
+            "score": 9,
+            "fits": true,
+            "note": "短くクリアなガラスのタップ音。暖かみがあり、水族館のテーマに非常によく合っています。",
+            "problems": []
+          }
+        },
+        {
+          "file": "_candidates/ui_tap/06.wav",
+          "engine": "synth",
+          "seed": 782470186,
+          "score": 0.899,
+          "relevance": -0.047,
+          "styleMatch": -0.139,
+          "penalty": 0,
+          "durationSec": 0.25,
+          "source": "synth",
+          "judge": {
+            "score": 9,
+            "fits": true,
+            "note": "繊細で落ち着いたガラスのタップ音。リラックスした雰囲気を壊さない、優れたUIサウンドです。",
+            "problems": []
+          }
+        },
+        {
+          "file": "_candidates/ui_tap/07.wav",
+          "engine": "synth",
+          "seed": 782470187,
+          "score": 0.899,
+          "relevance": -0.046,
+          "styleMatch": -0.142,
+          "penalty": 0,
+          "durationSec": 0.25,
+          "source": "synth",
+          "judge": {
+            "score": 9,
+            "fits": true,
+            "note": "柔らかく心地よいガラスのタップ音。高級感があり、UIのフィードバックとして最適です。",
+            "problems": []
+          }
+        },
+        {
+          "file": "_candidates/ui_tap/08.wav",
+          "engine": "synth",
+          "seed": 782470188,
+          "score": -0.401,
+          "relevance": -0.078,
+          "styleMatch": -0.141,
+          "penalty": 0,
+          "durationSec": 0.25,
+          "source": "library:freesound/135629@0.00",
+          "judge": {
+            "score": 1,
+            "fits": false,
+            "note": "重く鈍い衝撃音で、環境ノイズも多く含まれています。繊細なガラスのタップ音という要件に全く合致しません。",
+            "problems": [
+              "noise/hiss",
+              "off-style",
+              "weak or smeared transient"
+            ]
+          }
+        }
+      ],
+      "chosen": [
+        0,
+        4,
+        7
+      ]
+    },
+    {
+      "key": "fish_add",
+      "name": "生き物を増やす",
+      "files": [
+        "fish_add_1.wav",
+        "fish_add_2.wav",
+        "fish_add_3.wav"
+      ],
+      "engine": "hybrid",
+      "recipe": "hit",
+      "prompt": "single small soft bubble bloop rising in water",
+      "tier": "ui",
+      "durationSec": 0.407,
+      "playbackRandom": {
+        "pitch": 0.06,
+        "volume": 0.12
+      },
+      "use": "one fish is added to the aquarium; a single gentle bubble, cute but natural, no splash",
+      "realism": "real",
+      "judgedBy": "gemini-pro-latest",
+      "candidates": [
+        {
+          "file": "_candidates/fish_add/01.wav",
+          "engine": "hybrid",
+          "seed": 720504659,
+          "score": -0.094,
+          "relevance": 0.094,
+          "styleMatch": -0.012,
+          "penalty": 0.07,
+          "durationSec": 0.451,
+          "source": "library:freesound/508494@0.00",
+          "judge": {
+            "score": 4,
+            "fits": false,
+            "note": "2つの連続した泡の音です。少し人工的でカートゥーンっぽさがあり、落ち着いたプレミアムな雰囲気には合いません。",
+            "problems": [
+              "multiple sounds",
+              "cartoonish"
+            ]
+          }
+        },
+        {
+          "file": "_candidates/fish_add/02.wav",
+          "engine": "hybrid",
+          "seed": 720504660,
+          "score": -0.196,
+          "relevance": 0.035,
+          "styleMatch": -0.055,
+          "penalty": 0.03,
+          "durationSec": 0.389,
+          "source": "library:freesound/508496@0.00",
+          "judge": {
+            "score": 3,
+            "fits": false,
+            "note": "水滴が落ちたようなピチャッという音です。水中で湧き上がる泡の音ではなく、イメージに合いません。",
+            "problems": [
+              "splashy",
+              "wrong event"
+            ]
+          }
+        },
+        {
+          "file": "_candidates/fish_add/03.wav",
+          "engine": "hybrid",
+          "seed": 720504661,
+          "score": 0.906,
+          "relevance": 0.107,
+          "styleMatch": -0.024,
+          "penalty": 0.08,
+          "durationSec": 0.407,
+          "source": "library:freesound/508499@0.00",
+          "judge": {
+            "score": 9,
+            "fits": true,
+            "note": "柔らかく自然な単一の泡の音です。ファンタジーRPGの落ち着いたアクアリウムの雰囲気にぴったり合い、生き物を追加する際の効果音として非常に優れています。",
+            "problems": []
+          }
+        },
+        {
+          "file": "_candidates/fish_add/04.wav",
+          "engine": "hybrid",
+          "seed": 720504662,
+          "score": -0.297,
+          "relevance": 0.002,
+          "styleMatch": -0.107,
+          "penalty": 0,
+          "durationSec": 0.153,
+          "source": "library:freesound/508492@0.00",
+          "judge": {
+            "score": 2,
+            "fits": false,
+            "note": "低く鈍い水音です。泡の音ではなく、重すぎるため今回の用途には適していません。",
+            "problems": [
+              "dull",
+              "wrong event"
+            ]
+          }
+        },
+        {
+          "file": "_candidates/fish_add/05.wav",
+          "engine": "hybrid",
+          "seed": 720504663,
+          "score": -0.196,
+          "relevance": 0.006,
+          "styleMatch": -0.062,
+          "penalty": 0,
+          "durationSec": 0.294,
+          "source": "library:freesound/508491@0.01",
+          "judge": {
+            "score": 3,
+            "fits": false,
+            "note": "鋭い水滴の音です。アタックが強すぎてスプラッシュ感があり、柔らかい泡の音を求める要件に合致しません。",
+            "problems": [
+              "sharp",
+              "splashy"
+            ]
+          }
+        },
+        {
+          "file": "_candidates/fish_add/06.wav",
+          "engine": "hybrid",
+          "seed": 720504664,
+          "score": 0.904,
+          "relevance": 0.035,
+          "styleMatch": -0.063,
+          "penalty": 0.03,
+          "durationSec": 0.335,
+          "source": "library:freesound/508498@0.05",
+          "judge": {
+            "score": 9,
+            "fits": true,
+            "note": "柔らかく自然な単一の泡の音です。丸みのある暖かな音色で、落ち着いた雰囲気のアクアリウムにとてもよく馴染みます。",
+            "problems": []
+          }
+        },
+        {
+          "file": "_candidates/fish_add/07.wav",
+          "engine": "hybrid",
+          "seed": 720504665,
+          "score": -0.296,
+          "relevance": 0.1,
+          "styleMatch": -0.021,
+          "penalty": 0.11,
+          "durationSec": 0.414,
+          "source": "library:freesound/508491@0.99",
+          "judge": {
+            "score": 2,
+            "fits": false,
+            "note": "水が跳ねるようなスプラッシュ音です。静かで親密な空間には派手すぎます。",
+            "problems": [
+              "splashy",
+              "too loud"
+            ]
+          }
+        },
+        {
+          "file": "_candidates/fish_add/08.wav",
+          "engine": "hybrid",
+          "seed": 720504666,
+          "score": -0.091,
+          "relevance": 0.101,
+          "styleMatch": -0.082,
+          "penalty": 0,
+          "durationSec": 0.404,
+          "source": "library:freesound/508488@0.00",
+          "judge": {
+            "score": 4,
+            "fits": false,
+            "note": "短く鋭いポップ音です。少し人工的な響きがあり、自然で柔らかい泡の音としては不十分です。",
+            "problems": [
+              "sharp",
+              "synthetic"
+            ]
+          }
+        }
+      ],
+      "chosen": [
+        2,
+        5,
+        7
+      ]
+    },
+    {
+      "key": "fish_remove",
+      "name": "生き物を減らす",
+      "files": [
+        "fish_remove_1.wav",
+        "fish_remove_2.wav"
+      ],
+      "engine": "synth",
+      "recipe": "ui-move",
+      "prompt": "single small soft lower bubble bloop sinking in water",
+      "tier": "ui",
+      "durationSec": 0.272,
+      "playbackRandom": {
+        "pitch": 0,
+        "volume": 0
+      },
+      "use": "one fish is taken out of the aquarium; gentle and slightly lower pitched than adding, no splash",
+      "realism": "real",
+      "judgedBy": "gemini-pro-latest",
+      "candidates": [
+        {
+          "file": "_candidates/fish_remove/01.wav",
+          "engine": "synth",
+          "seed": 405188327,
+          "score": -0.3,
+          "relevance": 0.011,
+          "styleMatch": -0.119,
+          "penalty": 0,
+          "durationSec": 0.174,
+          "source": "synth",
+          "judge": {
+            "score": 2,
+            "fits": false,
+            "note": "合成音のような不自然な水滴音です。カートゥーン調の響きが強く、リアルで落ち着いた夜のアクアリウムの世界観には全く合いません。",
+            "problems": [
+              "synthetic",
+              "cartoonish",
+              "high pitched"
+            ]
+          }
+        },
+        {
+          "file": "_candidates/fish_remove/02.wav",
+          "engine": "synth",
+          "seed": 405188328,
+          "score": -0.301,
+          "relevance": 0.006,
+          "styleMatch": -0.117,
+          "penalty": 0,
+          "durationSec": 0.174,
+          "source": "synth",
+          "judge": {
+            "score": 2,
+            "fits": false,
+            "note": "ピッチは少し下がりましたが、依然として合成音特有の不自然さがあります。ファンタジーRPGの温かみのあるリアルな環境音としては不適切です。",
+            "problems": [
+              "synthetic",
+              "cartoonish"
+            ]
+          }
+        },
+        {
+          "file": "_candidates/fish_remove/03.wav",
+          "engine": "synth",
+          "seed": 405188329,
+          "score": -0.3,
+          "relevance": 0.011,
+          "styleMatch": -0.118,
+          "penalty": 0,
+          "durationSec": 0.174,
+          "source": "synth",
+          "judge": {
+            "score": 2,
+            "fits": false,
+            "note": "さらにピッチの低い合成音です。リアルな水の音というよりは、レトロゲームのUI音のように聞こえてしまい、没入感を削ぎます。",
+            "problems": [
+              "synthetic",
+              "cartoonish"
+            ]
+          }
+        },
+        {
+          "file": "_candidates/fish_remove/04.wav",
+          "engine": "synth",
+          "seed": 405188330,
+          "score": -0.3,
+          "relevance": 0.011,
+          "styleMatch": -0.117,
+          "penalty": 0,
+          "durationSec": 0.174,
+          "source": "synth",
+          "judge": {
+            "score": 2,
+            "fits": false,
+            "note": "非常にピッチの低い合成音です。不自然でコミカルな印象を与えてしまうため、静かでプレミアムな体験を求めるゲームには適していません。",
+            "problems": [
+              "synthetic",
+              "cartoonish"
+            ]
+          }
+        },
+        {
+          "file": "_candidates/fish_remove/05.wav",
+          "engine": "synth",
+          "seed": 405188331,
+          "score": 0.817,
+          "relevance": 0.226,
+          "styleMatch": 0.012,
+          "penalty": 0,
+          "durationSec": 0.456,
+          "source": "library:freesound/263951@3.37",
+          "judge": {
+            "score": 8,
+            "fits": true,
+            "note": "リアルで自然な水の泡の音です。柔らかく温かみがあり、生き物を取り出す際の控えめな音として世界観にとてもよくマッチしています。",
+            "problems": []
+          }
+        },
+        {
+          "file": "_candidates/fish_remove/06.wav",
+          "engine": "synth",
+          "seed": 405188333,
+          "score": 0.713,
+          "relevance": 0.176,
+          "styleMatch": -0.019,
+          "penalty": 0,
+          "durationSec": 0.284,
+          "source": "library:freesound/104945@0.00",
+          "judge": {
+            "score": 7,
+            "fits": true,
+            "note": "リアルな水の泡の音ですが、ピッチが少し高めです。生き物を減らすというよりは、追加する際のアクションのように聞こえる可能性があります。",
+            "problems": [
+              "slightly high pitched"
+            ]
+          }
+        },
+        {
+          "file": "_candidates/fish_remove/07.wav",
+          "engine": "synth",
+          "seed": 405188335,
+          "score": 0.614,
+          "relevance": 0.184,
+          "styleMatch": -0.038,
+          "penalty": 0,
+          "durationSec": 0.291,
+          "source": "library:freesound/104943@0.00",
+          "judge": {
+            "score": 6,
+            "fits": true,
+            "note": "自然な水の音ですが、アタックが少し強く、微かな水しぶきのような鋭さがあります。静かな夜のアクアリウムの演出としては少し目立ちすぎるかもしれません。",
+            "problems": [
+              "sharp transient"
+            ]
+          }
+        },
+        {
+          "file": "_candidates/fish_remove/08.wav",
+          "engine": "synth",
+          "seed": 405188337,
+          "score": 0.914,
+          "relevance": 0.183,
+          "styleMatch": -0.027,
+          "penalty": 0,
+          "durationSec": 0.272,
+          "source": "library:freesound/104944@0.00",
+          "judge": {
+            "score": 9,
+            "fits": true,
+            "note": "非常に柔らかく、ピッチの低い自然な水の泡の音です。静かで落ち着いており、「生き物を減らす」という控えめなアクションに最適で、ゲームの雰囲気を高めてくれます。",
+            "problems": []
+          }
+        }
+      ],
+      "chosen": [
+        7,
+        4
+      ]
+    },
+    {
+      "key": "scene_change",
+      "name": "水景を変える",
+      "files": [
+        "scene_change.wav"
+      ],
+      "engine": "ai",
+      "recipe": "hit",
+      "prompt": "slow gentle swirl of water with soft shimmering bubbles settling",
+      "tier": "light",
+      "durationSec": 1.189,
+      "playbackRandom": {
+        "pitch": 0.06,
+        "volume": 0.12
+      },
+      "use": "the aquarium's planted scenery crossfades to a different aquascape; calm and magical but natural, no splash, no music",
+      "realism": "real",
+      "judgedBy": "gemini-pro-latest",
+      "candidates": [
+        {
+          "file": "_candidates/scene_change/01.wav",
+          "engine": "ai",
+          "seed": 587361719,
+          "score": -0.193,
+          "relevance": 0.115,
+          "styleMatch": 0.047,
+          "penalty": 0.09,
+          "durationSec": 0.915,
+          "source": "library:freesound/398722@0.20",
+          "judge": {
+            "score": 3,
+            "fits": false,
+            "note": "水を注ぐようなバシャバシャとした音で、静かで落ち着いたアクアリウムの演出には激しすぎます。",
+            "problems": [
+              "too splashy",
+              "aggressive"
+            ]
+          }
+        },
+        {
+          "file": "_candidates/scene_change/02.wav",
+          "engine": "ai",
+          "seed": 587361720,
+          "score": -0.001,
+          "relevance": 0.029,
+          "styleMatch": -0.011,
+          "penalty": 0.04,
+          "durationSec": 1.148,
+          "source": "woosh",
+          "judge": {
+            "score": 5,
+            "fits": false,
+            "note": "グラスを叩いたような音と水の音が混ざっており、少し人工的で魔法のチャイムのような印象が強すぎます。",
+            "problems": [
+              "too glassy",
+              "synthetic"
+            ]
+          }
+        },
+        {
+          "file": "_candidates/scene_change/03.wav",
+          "engine": "ai",
+          "seed": 587361721,
+          "score": 0.805,
+          "relevance": 0.118,
+          "styleMatch": 0.048,
+          "penalty": 0.04,
+          "durationSec": 1.251,
+          "source": "woosh",
+          "judge": {
+            "score": 8,
+            "fits": true,
+            "note": "柔らかく温かみのある水中の泡の音。ファンタジーの雰囲気や落ち着いたアクアリウムの世界観に非常に合っています。",
+            "problems": []
+          }
+        },
+        {
+          "file": "_candidates/scene_change/04.wav",
+          "engine": "ai",
+          "seed": 587361722,
+          "score": -0.305,
+          "relevance": -0.025,
+          "styleMatch": -0.09,
+          "penalty": 0.04,
+          "durationSec": 1.297,
+          "source": "woosh",
+          "judge": {
+            "score": 2,
+            "fits": false,
+            "note": "完全に人工的なシンセサイザーの音であり、自然な水の音が求められる今回の用途には合いません。",
+            "problems": [
+              "synthetic",
+              "no water sound"
+            ]
+          }
+        },
+        {
+          "file": "_candidates/scene_change/05.wav",
+          "engine": "ai",
+          "seed": 587361723,
+          "score": -0.102,
+          "relevance": -0.014,
+          "styleMatch": -0.064,
+          "penalty": 0,
+          "durationSec": 1.552,
+          "source": "woosh",
+          "judge": {
+            "score": 4,
+            "fits": false,
+            "note": "水が跳ねる音が目立ち、穏やかで幻想的な場面の切り替えには適していません。",
+            "problems": [
+              "too splashy",
+              "lacks magical feel"
+            ]
+          }
+        },
+        {
+          "file": "_candidates/scene_change/06.wav",
+          "engine": "ai",
+          "seed": 587361724,
+          "score": -0.104,
+          "relevance": 0.025,
+          "styleMatch": -0.038,
+          "penalty": 0.09,
+          "durationSec": 1.6,
+          "source": "woosh",
+          "judge": {
+            "score": 4,
+            "fits": false,
+            "note": "低音が強く少し濁ったような音色で、プレミアムで美しいアクアリウムの雰囲気には暗すぎます。",
+            "problems": [
+              "too dark",
+              "noisy",
+              "lacks shimmer"
+            ]
+          }
+        },
+        {
+          "file": "_candidates/scene_change/07.wav",
+          "engine": "ai",
+          "seed": 587361725,
+          "score": 0.899,
+          "relevance": 0.091,
+          "styleMatch": -0.029,
+          "penalty": 0.11,
+          "durationSec": 1.189,
+          "source": "woosh",
+          "judge": {
+            "score": 9,
+            "fits": true,
+            "note": "穏やかで魔法のような響きを持つ水中の泡の音。水景が切り替わる際の静かで幻想的な演出に最適です。",
+            "problems": []
+          }
+        },
+        {
+          "file": "_candidates/scene_change/08.wav",
+          "engine": "ai",
+          "seed": 587361726,
+          "score": -0.2,
+          "relevance": 0.033,
+          "styleMatch": 0.026,
+          "penalty": 0.04,
+          "durationSec": 1.561,
+          "source": "woosh",
+          "judge": {
+            "score": 3,
+            "fits": false,
+            "note": "激しく水が湧き上がるような音で、静かで落ち着いた場面には合いません。",
+            "problems": [
+              "too aggressive",
+              "sounds like boiling"
+            ]
+          }
+        }
+      ],
+      "chosen": [
+        6
+      ]
+    },
+    {
+      "key": "light_switch",
+      "name": "照明を変える",
+      "files": [
+        "light_switch.wav"
+      ],
+      "engine": "synth",
+      "recipe": "ui-confirm",
+      "prompt": "soft quiet click of an aquarium LED light switch with a faint warm hum swell",
+      "tier": "ui",
+      "durationSec": 0.5,
+      "playbackRandom": {
+        "pitch": 0,
+        "volume": 0
+      },
+      "use": "the aquarium lighting changes between daylight, cool, evening and night; one soft switch click, no buzz",
+      "realism": "real",
+      "judgedBy": "gemini-pro-latest",
+      "retriedWith": [
+        "soft switch click",
+        "lamp switch",
+        "plastic button"
+      ],
+      "candidates": [
+        {
+          "file": "_candidates/light_switch/01.wav",
+          "engine": "ai",
+          "seed": 1286815925,
+          "score": 0.7,
+          "relevance": 0.032,
+          "styleMatch": -0.079,
+          "penalty": 0,
+          "durationSec": 0.5,
+          "source": "woosh",
+          "judge": {
+            "score": 7,
+            "fits": true,
+            "note": "柔らかく温かみのある丸みを帯びたクリック音で、落ち着いた世界観にマッチします。ハム音の広がりはありませんが、単体のスイッチ音としては質が高く実用的です。",
+            "problems": [
+              "missing hum swell"
+            ]
+          }
+        },
+        {
+          "file": "_candidates/light_switch/02.wav",
+          "engine": "ai",
+          "seed": 1286815919,
+          "score": 0.596,
+          "relevance": -0.038,
+          "styleMatch": -0.119,
+          "penalty": 0,
+          "durationSec": 0.5,
+          "source": "woosh",
+          "judge": {
+            "score": 6,
+            "fits": true,
+            "note": "柔らかくクリーンなスイッチ音です。悪くありませんが、指定にある温かいハム音の余韻がなく、少しドライすぎます。",
+            "problems": [
+              "dry",
+              "missing hum swell"
+            ]
+          }
+        },
+        {
+          "file": "_candidates/light_switch/03.wav",
+          "engine": "ai",
+          "seed": 1286815921,
+          "score": 0.5,
+          "relevance": 0.036,
+          "styleMatch": -0.114,
+          "penalty": 0,
+          "durationSec": 0.5,
+          "source": "woosh",
+          "judge": {
+            "score": 5,
+            "fits": true,
+            "note": "軽快なクリック音ですが、少し金属的でカチッとしすぎており、求められる柔らかさに欠けます。",
+            "problems": [
+              "metallic",
+              "too sharp"
+            ]
+          }
+        },
+        {
+          "file": "_candidates/light_switch/04.wav",
+          "engine": "ai",
+          "seed": 1286815926,
+          "score": 0.397,
+          "relevance": -0.02,
+          "styleMatch": -0.103,
+          "penalty": 0,
+          "durationSec": 0.493,
+          "source": "woosh",
+          "judge": {
+            "score": 4,
+            "fits": true,
+            "note": "音が小さく控えめすぎます。また、背後にわずかなノイズが混じっており、クリアさに欠けます。",
+            "problems": [
+              "too quiet",
+              "noise"
+            ]
+          }
+        },
+        {
+          "file": "_candidates/light_switch/05.wav",
+          "engine": "ai",
+          "seed": 1286815923,
+          "score": 0.397,
+          "relevance": -0.03,
+          "styleMatch": -0.11,
+          "penalty": 0,
+          "durationSec": 0.497,
+          "source": "woosh",
+          "judge": {
+            "score": 4,
+            "fits": true,
+            "note": "音がこもりすぎており、スイッチを押した際の手応え（トランジェント）が弱く不明瞭です。",
+            "problems": [
+              "muffled",
+              "weak transient"
+            ]
+          }
+        },
+        {
+          "file": "_candidates/light_switch/06.wav",
+          "engine": "ai",
+          "seed": 1286815920,
+          "score": 0.394,
+          "relevance": -0.063,
+          "styleMatch": -0.148,
+          "penalty": 0,
+          "durationSec": 0.5,
+          "source": "woosh",
+          "judge": {
+            "score": 4,
+            "fits": true,
+            "note": "プラスチックの質感が強く、プレミアムな水槽の雰囲気には少し安っぽく聞こえてしまいます。",
+            "problems": [
+              "plastic",
+              "cheap sounding"
+            ]
+          }
+        },
+        {
+          "file": "_candidates/light_switch/07.wav",
+          "engine": "ai",
+          "seed": 1286815924,
+          "score": 0.296,
+          "relevance": -0.034,
+          "styleMatch": -0.137,
+          "penalty": 0,
+          "durationSec": 0.474,
+          "source": "woosh",
+          "judge": {
+            "score": 3,
+            "fits": true,
+            "note": "鋭く大きな音で、静かでリラックスした夜の雰囲気には強すぎます。世界観を壊してしまう恐れがあります。",
+            "problems": [
+              "too loud",
+              "too sharp"
+            ]
+          }
+        },
+        {
+          "file": "_candidates/light_switch/08.wav",
+          "engine": "ai",
+          "seed": 1286815922,
+          "score": -0.205,
+          "relevance": -0.05,
+          "styleMatch": -0.13,
+          "penalty": 0,
+          "durationSec": 0.451,
+          "source": "woosh",
+          "judge": {
+            "score": 3,
+            "fits": false,
+            "note": "ダブルクリック音になっており、単一の照明切り替えスイッチ音としては不自然です。",
+            "problems": [
+              "double click"
+            ]
+          }
+        }
+      ],
+      "chosen": [
+        0
+      ]
+    }
+  ],
+  "credits": [
+    {
+      "title": "Whoosh water x4",
+      "author": "beman87",
+      "license": "CC-BY",
+      "url": "https://freesound.org/s/162839/",
+      "usedBy": [
+        "room_return"
+      ]
+    },
+    {
+      "title": "bathswish.mp3",
+      "author": "wrenshep098",
+      "license": "CC0",
+      "url": "https://freesound.org/s/132230/",
+      "usedBy": [
+        "tank_switch"
+      ]
+    },
+    {
+      "title": "Glass Tap No Liquid.WAV",
+      "author": "PrimeJunt",
+      "license": "CC-BY",
+      "url": "https://freesound.org/s/135629/",
+      "usedBy": [
+        "ui_tap"
+      ]
+    },
+    {
+      "title": "water-pour-02.wav",
+      "author": "junggle",
+      "license": "CC-BY-NC",
+      "url": "https://freesound.org/s/508499/",
+      "usedBy": [
+        "fish_add"
+      ]
+    },
+    {
+      "title": "water-whulpop.wav",
+      "author": "junggle",
+      "license": "CC-BY-NC",
+      "url": "https://freesound.org/s/508498/",
+      "usedBy": [
+        "fish_add"
+      ]
+    },
+    {
+      "title": "water-whuph.wav",
+      "author": "junggle",
+      "license": "CC-BY-NC",
+      "url": "https://freesound.org/s/508488/",
+      "usedBy": [
+        "fish_add"
+      ]
+    },
+    {
+      "title": "bubble (5).wav",
+      "author": "Glaneur de sons",
+      "license": "CC-BY",
+      "url": "https://freesound.org/s/104944/",
+      "usedBy": [
+        "fish_remove"
+      ]
+    },
+    {
+      "title": "water_bubbles_04",
+      "author": "audiolarx",
+      "license": "CC-BY",
+      "url": "https://freesound.org/s/263951/",
+      "usedBy": [
+        "fish_remove"
+      ]
+    }
+  ]
+}

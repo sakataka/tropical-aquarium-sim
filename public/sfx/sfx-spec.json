@@ -1,0 +1,135 @@
+{
+  "title": "熱帯魚アクアリウム",
+  "style": "fantasy",
+  "world": "calm, premium home aquarium viewing experience at night; soft water, glass and air bubbles; quiet, intimate, never loud or cartoonish",
+  "sounds": [
+    {
+      "key": "tank_enter",
+      "name": "水槽に寄る",
+      "prompt": "slow soft airy underwater whoosh with a few gentle rising air bubbles, muffled water swell",
+      "use": "the camera glides from the living room into an aquarium tank and the view goes underwater; calm and immersive, no splash impact, no voice, no music",
+      "realism": "real",
+      "engine": "ai",
+      "tier": "light",
+      "maxSec": 1.8,
+      "search": [
+        "underwater whoosh",
+        "bubbles underwater"
+      ]
+    },
+    {
+      "key": "room_return",
+      "name": "部屋に戻る",
+      "prompt": "soft airy whoosh rising out of water, gentle muffled water surfacing, light room tone opening up",
+      "use": "the camera pulls back out of the aquarium into a bright quiet living room; gentle, no splash, no voice",
+      "realism": "real",
+      "engine": "ai",
+      "tier": "light",
+      "maxSec": 1.6,
+      "search": [
+        "whoosh water",
+        "surfacing water"
+      ]
+    },
+    {
+      "key": "tank_switch",
+      "name": "隣の水槽へ",
+      "prompt": "short soft water swish sideways, gentle current movement with tiny bubbles",
+      "use": "the view slides from one aquarium to the next aquarium; brief, soft, no splash impact",
+      "realism": "real",
+      "engine": "ai",
+      "tier": "light",
+      "maxSec": 0.9,
+      "variants": 2,
+      "search": [
+        "water swish",
+        "underwater movement"
+      ]
+    },
+    {
+      "key": "panel_close",
+      "name": "設定を閉じる",
+      "prompt": "soft muted glass panel sliding closed, gentle low airy slide",
+      "recipe": "ui-cancel",
+      "use": "the frosted glass settings panel slides away to return to viewing; very soft, slightly lower than opening",
+      "realism": "game",
+      "tier": "ui",
+      "maxSec": 0.45,
+      "search": [
+        "glass slide",
+        "soft swoosh"
+      ]
+    },
+    {
+      "key": "ui_tap",
+      "name": "ボタン",
+      "prompt": "tiny soft glass tick, delicate muted tap on thick aquarium glass",
+      "recipe": "ui-confirm",
+      "use": "the viewer taps a quiet interface button such as a tab, zoom or lighting choice; tiny and refined, not a game coin or beep",
+      "realism": "game",
+      "tier": "ui",
+      "maxSec": 0.25,
+      "variants": 3,
+      "search": [
+        "glass tap",
+        "soft click"
+      ]
+    },
+    {
+      "key": "fish_add",
+      "name": "生き物を増やす",
+      "prompt": "single small soft bubble bloop rising in water",
+      "use": "one fish is added to the aquarium; a single gentle bubble, cute but natural, no splash",
+      "realism": "real",
+      "tier": "ui",
+      "maxSec": 0.5,
+      "variants": 3,
+      "search": [
+        "bubble pop water",
+        "single bubble"
+      ]
+    },
+    {
+      "key": "fish_remove",
+      "name": "生き物を減らす",
+      "prompt": "single small soft lower bubble bloop sinking in water",
+      "use": "one fish is taken out of the aquarium; gentle and slightly lower pitched than adding, no splash",
+      "realism": "real",
+      "tier": "ui",
+      "maxSec": 0.5,
+      "variants": 2,
+      "search": [
+        "bubble water",
+        "low bubble"
+      ]
+    },
+    {
+      "key": "scene_change",
+      "name": "水景を変える",
+      "prompt": "slow gentle swirl of water with soft shimmering bubbles settling",
+      "use": "the aquarium's planted scenery crossfades to a different aquascape; calm and magical but natural, no splash, no music",
+      "realism": "real",
+      "engine": "ai",
+      "tier": "light",
+      "maxSec": 1.6,
+      "search": [
+        "water swirl",
+        "bubbles underwater"
+      ]
+    },
+    {
+      "key": "light_switch",
+      "name": "照明を変える",
+      "prompt": "soft quiet click of an aquarium LED light switch with a faint warm hum swell",
+      "recipe": "ui-confirm",
+      "use": "the aquarium lighting changes between daylight, cool, evening and night; one soft switch click, no buzz",
+      "realism": "real",
+      "tier": "ui",
+      "maxSec": 0.5,
+      "search": [
+        "light switch click",
+        "switch click"
+      ]
+    }
+  ]
+}

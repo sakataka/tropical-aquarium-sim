@@ -12,6 +12,7 @@ import {
 } from "../core";
 import { getFishImageUrl, getScenePlateUrl } from "../render/assets";
 import { CheckIcon, CloseIcon, MinusIcon, PlusIcon } from "./icons";
+import { playSfx } from "../audio/sfx";
 
 type PanelTab = "fish" | "scene" | "viewing";
 
@@ -92,7 +93,7 @@ export function AquariumControls({
             className={tab === item.id ? "active" : ""}
             id={`tab-${item.id}`}
             key={item.id}
-            onClick={() => setTab(item.id)}
+            onClick={() => { if (tab !== item.id) playSfx("ui_tap"); setTab(item.id); }}
             role="tab"
             type="button"
           >
@@ -146,14 +147,14 @@ export function AquariumControls({
                           <button
                             aria-label={`${species.displayName}を1匹減らす`}
                             disabled={count === 0}
-                            onClick={() => onSpeciesCountChange(species.id, count - 1)}
+                            onClick={() => { playSfx("fish_remove"); onSpeciesCountChange(species.id, count - 1); }}
                             type="button"
                           ><MinusIcon /></button>
                           <strong aria-live="polite"><span>{count}</span><small>/{limit}</small></strong>
                           <button
                             aria-label={`${species.displayName}を1匹増やす`}
                             disabled={addBlocked}
-                            onClick={() => onSpeciesCountChange(species.id, count + 1)}
+                            onClick={() => { playSfx("fish_add"); onSpeciesCountChange(species.id, count + 1); }}
                             title={count >= limit
                               ? `この水槽には${limit}匹まで`
                               : tankFull ? "水槽がいっぱいです" : undefined}
@@ -180,7 +181,7 @@ export function AquariumControls({
                     aria-pressed={active}
                     className={active ? "theme-card active" : "theme-card"}
                     key={scene.id}
-                    onClick={() => onSceneChange(scene.id)}
+                    onClick={() => { if (!active) playSfx("scene_change"); onSceneChange(scene.id); }}
                     type="button"
                   >
                     <span className="theme-thumb">
@@ -205,7 +206,7 @@ export function AquariumControls({
                   aria-pressed={customization.layout.lighting === id}
                   className={customization.layout.lighting === id ? "active" : ""}
                   key={id}
-                  onClick={() => onLightingChange(id)}
+                  onClick={() => { if (customization.layout.lighting !== id) playSfx("light_switch"); onLightingChange(id); }}
                   type="button"
                 >
                   <span aria-hidden="true" className={`lighting-swatch ${id}`} />
@@ -242,7 +243,10 @@ export function AquariumControls({
                 />
               </label>
             </div>
-            <p className="sound-credit">水音は Woosh (Sony AI) で生成</p>
+            <p className="sound-credit">
+              水音と一部の効果音は Woosh (Sony AI) で生成。効果音素材は Freesound の
+              beman87、PrimeJunt、Glaneur de sons、audiolarx（CC BY）、junggle（CC BY-NC）、wrenshep098（CC0）による。
+            </p>
           </section>
         ) : null}
       </div>

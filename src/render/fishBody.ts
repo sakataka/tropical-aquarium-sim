@@ -3,6 +3,8 @@ import type { FishInstance, FishSpeciesDefinition } from "../core";
 
 const VERTICES_X = 26;
 const VERTICES_Y = 5;
+// エビは脚と触角を別々に動かすため、縦の分割を細かくする。
+const CRUSTACEAN_VERTICES_Y = 10;
 const TURN_STIFFNESS = 64;
 const TURN_DAMPING = 16;
 const TURN_HYSTERESIS_CM_PER_SEC = 0.35;
@@ -18,6 +20,8 @@ const DEFAULT_SWIM = {
   waveCount: 0.65,
   tailSweepRad: 0.5,
   verticalFlex: 0.012,
+  bodyPlan: "fish" as "fish" | "crustacean",
+  headStart: 0,
 };
 
 type SwimStyle = typeof DEFAULT_SWIM;
@@ -47,6 +51,9 @@ type MotionState = {
   targetYaw: number;
   sinceTurnSec: number;
   pitch: number;
+  /** エビの脚の運び。歩く速さに合わせて進む。 */
+  stridePhase: number;
+  clockSec: number;
 };
 
 // 尾の振りや向きの状態は魚ごとに1つだけ持ち、部屋と水槽画面で共有する。
@@ -65,6 +72,8 @@ function getMotionState(fish: FishInstance): MotionState {
       targetYaw: yaw,
       sinceTurnSec: MIN_TURN_INTERVAL_SEC,
       pitch: 0,
+      stridePhase: (Math.abs(fish.seed) % 314) / 100,
+      clockSec: (Math.abs(fish.seed) % 1000) / 37,
     };
     motionStates.set(fish.id, state);
   }
@@ -87,11 +96,14 @@ export class FishBody {
   private readonly height: number;
   private readonly motion: MotionState;
 
+  private readonly verticesY: number;
+
   constructor(texture: Texture, species: FishSpeciesDefinition, fish: FishInstance) {
-    this.mesh = new MeshPlane({ texture, verticesX: VERTICES_X, verticesY: VERTICES_Y });
+    this.swim = { ...DEFAULT_SWIM, ...species.swim };
+    this.verticesY = this.swim.bodyPlan === "crustacean" ? CRUSTACEAN_VERTICES_Y : VERTICES_Y;
+    this.mesh = new MeshPlane({ texture, verticesX: VERTICES_X, verticesY: this.verticesY });
     this.mesh.autoResize = false;
     this.basePositions = new Float32Array(this.mesh.geometry.positions);
-    this.swim = { ...DEFAULT_SWIM, ...species.swim };
     this.width = texture.width;
     this.height = texture.height;
     this.pivotX = texture.width * 0.42;
@@ -123,7 +135,8 @@ export class FishBody {
     this.motion.pitch += (targetPitch - this.motion.pitch) * (1 - Math.exp(-4 * deltaSec));
     // 頭が向いている側へ傾ける。反転中は自然に0へ近づく。
     this.mesh.rotation = -this.motion.pitch * Math.cos(this.motion.yaw);
-    this.deform();
+    if (this.swim.bodyPlan === "crustacean") this.deformCrustacean(fish, speed, deltaSec);
+    else this.deform();
   }
 
   destroy() {
@@ -146,6 +159,59 @@ export class FishBody {
     const accel = (this.motion.targetYaw - this.motion.yaw) * TURN_STIFFNESS - this.motion.yawVelocity * TURN_DAMPING;
     this.motion.yawVelocity += accel * deltaSec;
     this.motion.yaw += this.motion.yawVelocity * deltaSec;
+  }
+
+  // エビは尾を振らない。脚を前から後ろへ波のように運んで歩き、触角をゆっくり揺らし、
+  // 底や水草をついばむときは頭を小刻みに下げる。速く進むときは腹の遊泳肢で泳ぎ、腹が小さくしなる。
+  private deformCrustacean(fish: FishInstance, speed: number, deltaSec: number) {
+    const positions = this.mesh.geometry.positions;
+    const base = this.basePositions;
+    const motion = this.motion;
+    motion.clockSec += deltaSec;
+    const swimming = fish.behaviorMode === "kick";
+    const picking = fish.behaviorMode === "forage";
+    const walking = !swimming && speed > 0.04;
+    const strideHz = swimming ? 5.5 : walking ? Math.min(4, 1.6 + speed * 6) : 0.5;
+    motion.stridePhase = (motion.stridePhase + deltaSec * strideHz * Math.PI * 2) % (Math.PI * 200);
+    const legAmplitude = swimming ? 0.006 : walking ? 0.014 : 0.003;
+    const bob = walking ? Math.sin(motion.stridePhase * 2) * this.height * 0.006 : 0;
+    const head = this.swim.headStart;
+    const t = motion.clockSec;
+    const rawCos = Math.cos(motion.yaw);
+    const profile = Math.sign(rawCos || 1) * Math.max(MIN_PROFILE_WIDTH, Math.abs(rawCos));
+    const columns = VERTICES_X;
+    for (let index = 0; index < columns * this.verticesY; index += 1) {
+      const column = index % columns;
+      const row = Math.floor(index / columns);
+      const u = column / (columns - 1);
+      const v = row / (this.verticesY - 1);
+      let dx = 0;
+      let dy = bob;
+      // 脚（体の下側）を、前の脚から順に少し遅れて動かす。
+      const leg = smoothstep(0.55, 0.95, v) * smoothstep(head, head + 0.08, u) * (1 - smoothstep(0.62, 0.8, u));
+      dx += Math.sin(motion.stridePhase - u * 14) * this.width * legAmplitude * leg;
+      dy += Math.max(0, Math.sin(motion.stridePhase - u * 14 + 1.2)) * this.height * legAmplitude * 1.4 * leg;
+      // 触角は根元から先へ向かって大きく、ゆっくり揺れる。
+      if (head > 0 && u < head) {
+        const reach = ((head - u) / head) ** 1.4;
+        dy += (Math.sin(t * 1.6 + u * 7 + fish.seed) * 0.05 + Math.sin(t * 3.7 + u * 13) * 0.015) * this.height * reach;
+        dx += Math.sin(t * 1.1 + fish.seed) * this.width * 0.012 * reach;
+      }
+      // ついばむときは、頭先を小刻みに下げる。
+      if (picking) {
+        const front = smoothstep(head + 0.22, head, u);
+        dy += Math.max(0, Math.sin(t * Math.PI * 2 * 2.4)) * this.height * 0.028 * front;
+      }
+      // 泳ぐときは腹の後ろ半分が遊泳肢の拍に合わせて小さくしなる。
+      if (swimming) {
+        const abdomen = smoothstep(0.55, 1, u);
+        dy += Math.sin(motion.stridePhase * 0.5 - u * 3) * this.height * 0.02 * abdomen;
+      }
+      const x = base[index * 2]! + dx;
+      positions[index * 2] = this.pivotX + (x - this.pivotX) * profile;
+      positions[index * 2 + 1] = base[index * 2 + 1]! + dy;
+    }
+    this.mesh.geometry.getBuffer("aPosition").update();
   }
 
   private deform() {

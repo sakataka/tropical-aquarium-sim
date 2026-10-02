@@ -31,21 +31,9 @@
     }
   ],
   "defaultStock": [
-    {
-      "speciesId": "medaka",
-      "count": 12
-    },
-    {
-      "speciesId": "amano-shrimp",
-      "count": 5
-    },
-    {
-      "speciesId": "japanese-bitterling",
-      "count": 6
-    },
-    {
-      "speciesId": "japanese-loach",
-      "count": 3
-    }
+    { "speciesId": "medaka", "count": 15 },
+    { "speciesId": "japanese-bitterling", "count": 4 },
+    { "speciesId": "amano-shrimp", "count": 7 },
+    { "speciesId": "japanese-loach", "count": 2 }
   ]
 }

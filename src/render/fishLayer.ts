@@ -78,8 +78,10 @@ export class FishLayer {
         rect.y + (item.position.y / tank.heightCm) * rect.height,
       );
       mesh.scale.set(record.visualScale);
-      // 奥の魚はぼかさず、水の色と透明度だけで距離を出す。
-      mesh.tint = mixColor(0xffffff, this.waterTint, 0.06 + item.depth * 0.26);
+      // 奥の魚はぼかさず、水の色と透明度だけで距離を出す。上からの光は水面近くほど強く、
+      // 底や奥では弱まるので、同じ魚でも泳ぐ位置で明るさが変わり、水景の光となじむ。
+      const lightFalloff = clamp(1.04 - (item.position.y / tank.heightCm) * 0.2 - item.depth * 0.1, 0.72, 1);
+      mesh.tint = scaleColor(mixColor(0xffffff, this.waterTint, 0.06 + item.depth * 0.26), lightFalloff);
       mesh.alpha = 1 - item.depth * 0.08;
       mesh.zIndex = -item.depth;
       record.body.update(item, advance ? deltaSec : 0);
@@ -118,6 +120,15 @@ function getFishTexture(definition: FishSpeciesDefinition): Texture | undefined 
     console.error(`Fish texture failed: ${definition.id}`, error);
   }));
   return undefined;
+}
+
+function scaleColor(color: number, amount: number): number {
+  const channel = (shift: number) => Math.round(((color >> shift) & 0xff) * amount) << shift;
+  return channel(16) | channel(8) | channel(0);
+}
+
+function clamp(value: number, min: number, max: number): number {
+  return Math.max(min, Math.min(max, value));
 }
 
 function mixColor(from: number, to: number, amount: number): number {

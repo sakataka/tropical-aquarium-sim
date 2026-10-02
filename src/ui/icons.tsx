@@ -21,6 +21,8 @@ function Icon({ children }: { children: ReactNode }) {
 }
 
 export const BackIcon = () => <Icon><path d="M15 5l-7 7 7 7" /></Icon>;
+export const ChevronLeftIcon = () => <Icon><path d="M14 7l-5 5 5 5" /></Icon>;
+export const ChevronRightIcon = () => <Icon><path d="M10 7l5 5-5 5" /></Icon>;
 export const CloseIcon = () => <Icon><path d="M6 6l12 12M18 6L6 18" /></Icon>;
 export const PlusIcon = () => <Icon><path d="M12 5v14M5 12h14" /></Icon>;
 export const MinusIcon = () => <Icon><path d="M5 12h14" /></Icon>;

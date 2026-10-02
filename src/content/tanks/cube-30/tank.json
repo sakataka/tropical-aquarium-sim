@@ -8,7 +8,7 @@
   "widthCm": 30,
   "heightCm": 30,
   "depthCm": 30,
-  "maxTotalFish": 15,
+  "maxTotalFish": 20,
   "sceneIds": [
     "cube-planted",
     "cube-stones"
@@ -23,12 +23,12 @@
     { "speciesId": "clown-killifish", "maxCount": 8 }
   ],
   "defaultStock": [
-    { "speciesId": "guppy", "count": 1 },
-    { "speciesId": "platy", "count": 1 },
-    { "speciesId": "white-cloud-minnow", "count": 3 },
-    { "speciesId": "zebra-danio", "count": 2 },
-    { "speciesId": "otocinclus", "count": 1 },
-    { "speciesId": "ember-tetra", "count": 4 },
-    { "speciesId": "clown-killifish", "count": 2 }
+    { "speciesId": "ember-tetra", "count": 8 },
+    { "speciesId": "white-cloud-minnow", "count": 2 },
+    { "speciesId": "zebra-danio", "count": 3 },
+    { "speciesId": "otocinclus", "count": 2 },
+    { "speciesId": "guppy", "count": 2 },
+    { "speciesId": "clown-killifish", "count": 2 },
+    { "speciesId": "platy", "count": 1 }
   ]
 }

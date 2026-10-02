@@ -31,21 +31,9 @@
     }
   ],
   "defaultStock": [
-    {
-      "speciesId": "yellow-lab",
-      "count": 5
-    },
-    {
-      "speciesId": "yellow-tail-acei",
-      "count": 5
-    },
-    {
-      "speciesId": "rusty-cichlid",
-      "count": 4
-    },
-    {
-      "speciesId": "saulosi",
-      "count": 4
-    }
+    { "speciesId": "yellow-lab", "count": 8 },
+    { "speciesId": "yellow-tail-acei", "count": 6 },
+    { "speciesId": "saulosi", "count": 6 },
+    { "speciesId": "rusty-cichlid", "count": 3 }
   ]
 }

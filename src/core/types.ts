@@ -56,6 +56,13 @@ export type FishSwimStyle = {
   waveCount: number;
   tailSweepRad: number;
   verticalFlex: number;
+  /**
+   * 体のつくり。crustacean（エビ）は尾で泳がず、脚で歩き、触角を揺らし、
+   * 遊泳肢で泳ぐときだけ腹を小さくしならせる。
+   */
+  bodyPlan: "fish" | "crustacean";
+  /** 画像の左端から頭（触角の付け根）までの割合。これより左は触角として揺らす。 */
+  headStart: number;
 };
 
 export type FishSpeciesDefinition = {

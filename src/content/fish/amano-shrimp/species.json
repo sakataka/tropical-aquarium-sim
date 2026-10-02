@@ -17,6 +17,8 @@
     ]
   },
   "swim": {
+    "bodyPlan": "crustacean",
+    "headStart": 0.3,
     "tailBeatHz": 0.6,
     "bodyWaveStart": 0.85,
     "tailSweepRad": 0,
@@ -77,9 +79,9 @@
     ]
   },
   "sourceBodyBounds": {
-    "x": 14,
-    "y": 104,
-    "width": 1745,
-    "height": 676
+    "x": 69,
+    "y": 216,
+    "width": 1382,
+    "height": 610
   }
 }

@@ -11,10 +11,10 @@
     "fallbackColor": "#d8d4c8"
   },
   "sourceBodyBounds": {
-    "x": 410,
-    "y": 32,
-    "width": 789,
-    "height": 935
+    "x": 431,
+    "y": 64,
+    "width": 702,
+    "height": 890
   },
   "preferredZone": {
     "minX": 0.12,

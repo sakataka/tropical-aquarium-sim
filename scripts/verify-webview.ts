@@ -206,8 +206,8 @@ async function main() {
       const before = JSON.parse(${JSON.stringify(beforeExpansion)});
       return Object.keys(now.tanks).length === 5 &&
         Object.keys(before).every(id => JSON.stringify(now.tanks[id]) === JSON.stringify(before[id])) &&
-        now.tanks["japan-60"].stock.reduce((n,e) => n+e.count,0) === 26 &&
-        now.tanks["malawi-120"].stock.reduce((n,e) => n+e.count,0) === 18;
+        now.tanks["japan-60"].stock.reduce((n,e) => n+e.count,0) === 28 &&
+        now.tanks["malawi-120"].stock.reduce((n,e) => n+e.count,0) === 23;
     })()`));
 
     await view.reload();
@@ -253,7 +253,7 @@ async function main() {
     // 旧v5を想定し、魚だけが一度入れ替わり、水景・照明・以後の手動変更が残ること。
     await view.evaluate(`(() => {
       const old = JSON.parse(localStorage.getItem("${STATE_KEY}"));
-      old.stockArrangementVersion = 1;
+      old.stockArrangementVersion = 2;
       old.tanks["cube-30"].stock = [{ speciesId: "guppy", count: 6 }];
       old.tanks["cube-30"].layout = { sceneId: "cube-stones", lighting: "evening" };
       old.preferences.soundVolume = 0.25;
@@ -265,10 +265,11 @@ async function main() {
       const s = JSON.parse(localStorage.getItem("${STATE_KEY}"));
       const cube = s.tanks["cube-30"];
       const total = id => s.tanks[id].stock.reduce((n, entry) => n + entry.count, 0);
-      return s.stockArrangementVersion === 2 && total("asia-60") === 27 && total("amazon-90") === 35 && total("cube-30") === 14 &&
+      return s.stockArrangementVersion === 3 && total("asia-60") === 34 && total("amazon-90") === 46 && total("cube-30") === 20 &&
+        total("japan-60") === 28 && total("malawi-120") === 23 &&
         s.tanks["asia-60"].stock.length === 8 && s.tanks["amazon-90"].stock.length === 7 && cube.stock.length === 7 &&
         Object.values(s.tanks).every(t => t.stock.every(e => e.count >= 1)) &&
-        cube.stock.some(e => e.speciesId === "ember-tetra" && e.count === 4) &&
+        cube.stock.some(e => e.speciesId === "ember-tetra" && e.count === 8) &&
         cube.stock.some(e => e.speciesId === "clown-killifish" && e.count === 2) &&
         cube.layout.sceneId === "cube-stones" && cube.layout.lighting === "evening" && s.preferences.soundVolume === 0.25;
     })()`));
@@ -277,7 +278,7 @@ async function main() {
     await sleep(350);
     await view.reload();
     await sleep(2500);
-    const arrangementPreserved = arrangementApplied && Number(await view.evaluate(stockCount("cube-30", "ember-tetra"))) === 3;
+    const arrangementPreserved = arrangementApplied && Number(await view.evaluate(stockCount("cube-30", "ember-tetra"))) === 7;
 
     await using mobileView = new Bun.WebView({
       width: 420,
@@ -386,7 +387,7 @@ async function main() {
     assert(title.includes("熱帯魚"));
     assert(roomTanks === 5);
     assert(enteredTank === "東南アジアの水草水槽");
-    assert(asiaCards === 8 && harlequinCount === 7 && rejectedSpecies);
+    assert(asiaCards === 8 && harlequinCount === 12 && rejectedSpecies);
     assert(JSON.stringify(scenesVisited) ===
       JSON.stringify(["driftwood", "root-driftwood", "iwagumi", "planted"]));
     assert(viewingOnEntry && viewingStageWidth >= 1400);
@@ -396,7 +397,7 @@ async function main() {
     assert(cubeCards === 7 && cubeStageRatio > 1.4);
     assert(amazonCards === 7);
     assert(restored.version === 5 && restored.scene === "driftwood");
-    assert(restored.lighting === "night" && restored.harlequinCount === 7 && !restored.sound);
+    assert(restored.lighting === "night" && restored.harlequinCount === 12 && !restored.sound);
     assert(migrated.version === 5 && migrated.asiaScene === "iwagumi" && migrated.amazonNeon === 9);
     assert(desktop.stageWidth >= 700 && desktop.canvasWidth >= 700 && desktop.stageHeight >= 400);
     assert(mobile.entered && mobile.roomTanks === 5 &&

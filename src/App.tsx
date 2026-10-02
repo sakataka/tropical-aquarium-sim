@@ -33,8 +33,12 @@ import { RENDER_PROBLEM_EVENT } from "./render/renderProblems";
 import { FishRoom } from "./render/FishRoom";
 import { getScenePlateUrl } from "./render/assets";
 import { AquariumControls, LIGHTING_OPTIONS } from "./ui/AquariumControls";
+import { SoundToggle } from "./ui/SoundToggle";
+import { configureSfx, playSfx } from "./audio/sfx";
 import {
   BackIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
   CollapseIcon,
   ExpandIcon,
   FitIcon,
@@ -53,7 +57,13 @@ type Phase =
   | { kind: "room"; returningFrom?: string }
   | { kind: "toTank"; tankReady: boolean }
   | { kind: "tank" }
-  | { kind: "toRoom"; returningFrom: string; roomReady: boolean };
+  | { kind: "toRoom"; returningFrom: string; roomReady: boolean }
+  // 部屋に戻らず隣の水槽へ。今の水槽を流し消してから、次の水槽を反対側から出す。
+  | { kind: "leaveTank"; to: string; direction: SwitchDirection }
+  | { kind: "switchTank"; direction: SwitchDirection; tankReady: boolean };
+type SwitchDirection = "next" | "previous";
+
+const TANK_LEAVE_MS = 420;
 
 const CROSSFADE_MS = 400;
 const HUD_IDLE_MS = 3500;
@@ -97,6 +107,17 @@ export default function App() {
     state.preferences.soundEnabled && audioUnlocked,
     state.preferences.soundVolume,
   );
+  useEffect(() => configureSfx({
+    enabled: state.preferences.soundEnabled && audioUnlocked,
+    volume: state.preferences.soundVolume,
+  }), [state.preferences.soundEnabled, state.preferences.soundVolume, audioUnlocked]);
+  const toggleSound = useCallback(() => {
+    setAudioUnlocked(true);
+    setState((current) => ({
+      ...current,
+      preferences: { ...current.preferences, soundEnabled: !current.preferences.soundEnabled },
+    }));
+  }, []);
 
   useEffect(() => {
     const unlock = () => setAudioUnlocked(true);
@@ -133,11 +154,11 @@ export default function App() {
 
   // 重ねた画面の準備ができたら、フェードが終わるのを待って前の画面を外す。
   useEffect(() => {
-    const done = (phase.kind === "toTank" && phase.tankReady) ||
+    const done = ((phase.kind === "toTank" || phase.kind === "switchTank") && phase.tankReady) ||
       (phase.kind === "toRoom" && phase.roomReady);
     if (!done) return;
     const timeout = window.setTimeout(() => setPhase((current) => {
-      if (current.kind === "toTank") return { kind: "tank" };
+      if (current.kind === "toTank" || current.kind === "switchTank") return { kind: "tank" };
       if (current.kind === "toRoom") return { kind: "room", returningFrom: current.returningFrom };
       return current;
     }), CROSSFADE_MS);
@@ -152,10 +173,28 @@ export default function App() {
     current.kind === "toRoom" ? { ...current, roomReady: true } : current
   ), []);
   const handleTankReady = useCallback(() => setPhase((current) =>
-    current.kind === "toTank" ? { ...current, tankReady: true } : current
+    current.kind === "toTank" || current.kind === "switchTank" ? { ...current, tankReady: true } : current
   ), []);
+  const switchTank = useCallback((direction: SwitchDirection) => {
+    setPhase((current) => {
+      if (current.kind !== "tank") return current;
+      const index = aquariumTanks.findIndex((item) => item.id === state.activeTankId);
+      const step = direction === "next" ? 1 : -1;
+      const to = aquariumTanks[(index + step + aquariumTanks.length) % aquariumTanks.length]!.id;
+      playSfx("tank_switch");
+      return { kind: "leaveTank", to, direction };
+    });
+  }, [state.activeTankId]);
+  useEffect(() => {
+    if (phase.kind !== "leaveTank") return;
+    const timeout = window.setTimeout(() => {
+      setState((current) => ({ ...current, activeTankId: phase.to }));
+      setPhase({ kind: "switchTank", direction: phase.direction, tankReady: false });
+    }, TANK_LEAVE_MS);
+    return () => window.clearTimeout(timeout);
+  }, [phase]);
 
-  const showRoom = phase.kind !== "tank";
+  const showRoom = phase.kind === "room" || phase.kind === "toTank" || phase.kind === "toRoom";
   const showTank = phase.kind !== "room";
   const returningFrom = phase.kind === "room" || phase.kind === "toRoom"
     ? phase.returningFrom
@@ -170,6 +209,9 @@ export default function App() {
           <small>{navigator.userAgent}</small>
         </div>
       ) : null}
+      {phase.kind === "room" ? (
+        <SoundToggle className="room-sound" enabled={state.preferences.soundEnabled} onToggle={toggleSound} />
+      ) : null}
       {showRoom ? (
         <FishRoom
           active={phase.kind === "room" || phase.kind === "toRoom"}
@@ -183,15 +225,21 @@ export default function App() {
       ) : null}
       {showTank ? (
         <TankScreen
-          active={phase.kind === "tank" || phase.kind === "toTank"}
+          active={phase.kind !== "toRoom"}
+          leaving={phase.kind === "leaveTank" ? phase.direction : undefined}
+          arriving={phase.kind === "switchTank" ? phase.direction : undefined}
+          onSwitchTank={switchTank}
           customization={customization}
           fishRef={fishRefs[tank.id]!}
           hidden={phase.kind === "toRoom" && phase.roomReady}
           revealed={phase.kind === "tank"}
           key={`tank-${tank.id}`}
-          onBackToRoom={() => setPhase((current) => current.kind === "toRoom"
-            ? current
-            : { kind: "toRoom", returningFrom: tank.id, roomReady: false })}
+          onBackToRoom={() => setPhase((current) => {
+            if (current.kind === "toRoom") return current;
+            playSfx("room_return");
+            return { kind: "toRoom", returningFrom: tank.id, roomReady: false };
+          })}
+          onToggleSound={toggleSound}
           onCustomizationChange={(update) => setState((current) => ({
             ...current,
             tanks: { ...current.tanks, [tank.id]: update(current.tanks[tank.id]!) },
@@ -223,6 +271,10 @@ function TankScreen({
   onCustomizationChange,
   onPreferencesChange,
   onBackToRoom,
+  onSwitchTank,
+  onToggleSound,
+  leaving,
+  arriving,
 }: {
   tank: TankDefinition;
   customization: AquariumCustomization;
@@ -236,6 +288,12 @@ function TankScreen({
   onCustomizationChange: (update: (current: AquariumCustomization) => AquariumCustomization) => void;
   onPreferencesChange: (update: Partial<AquariumPersistedState["preferences"]>) => void;
   onBackToRoom: () => void;
+  onSwitchTank: (direction: SwitchDirection) => void;
+  onToggleSound: () => void;
+  /** 隣の水槽へ移るため、この水槽を流し消しているところ。 */
+  leaving?: SwitchDirection;
+  /** 隣の水槽から移ってきたところ。 */
+  arriving?: SwitchDirection;
 }) {
   const [ready, setReady] = useState(false);
   // 水槽に入ったら、まず水槽だけを眺める鑑賞モード。設定は必要なときだけ開く。
@@ -246,8 +304,10 @@ function TankScreen({
   const fullscreen = useFullscreen();
   const editingRef = useRef(editing);
   const onBackToRoomRef = useRef(onBackToRoom);
+  const onSwitchTankRef = useRef(onSwitchTank);
   editingRef.current = editing;
   onBackToRoomRef.current = onBackToRoom;
+  onSwitchTankRef.current = onSwitchTank;
   const activeScene = getSceneById(customization.layout.sceneId);
   const totalFish = customization.stock.reduce((sum, entry) => sum + entry.count, 0);
   const speciesList = useRef(tank.species
@@ -269,8 +329,15 @@ function TankScreen({
     const onKey = (event: KeyboardEvent) => {
       // 全画面中の Esc はブラウザが全画面の解除に使う。
       if (event.key === "Escape" && !document.fullscreenElement) {
-        if (editingRef.current) setEditing(false);
-        else onBackToRoomRef.current();
+        if (editingRef.current) {
+          playSfx("panel_close");
+          setEditing(false);
+        } else onBackToRoomRef.current();
+      }
+      const target = event.target;
+      const typing = target instanceof Element && target.closest("input, select, textarea");
+      if (!typing && !editingRef.current && (event.key === "[" || event.key === "]")) {
+        onSwitchTankRef.current(event.key === "]" ? "next" : "previous");
       }
       wake();
     };
@@ -310,12 +377,17 @@ function TankScreen({
   }, [onReady]);
 
   const plateUrl = getScenePlateUrl(customization.layout.sceneId);
-  const exhibitNumber = String(aquariumTanks.indexOf(tank) + 1).padStart(2, "0");
+  const tankIndex = aquariumTanks.indexOf(tank);
+  const exhibitNumber = String(tankIndex + 1).padStart(2, "0");
+  const neighbor = (step: number) =>
+    aquariumTanks[(tankIndex + step + aquariumTanks.length) % aquariumTanks.length]!;
   const lightingLabel = LIGHTING_OPTIONS.find((item) => item.id === customization.layout.lighting)?.label;
 
   const className = [
     "tank-screen",
-    ready && !hidden ? "visible" : "",
+    ready && !hidden && !leaving ? "visible" : "",
+    leaving ? `leaving-${leaving}` : "",
+    arriving && !ready ? `arriving-${arriving}` : "",
     revealed ? "revealed" : "",
     editing ? "editing" : "",
     hudIdle && !editing ? "hud-idle" : "",
@@ -360,15 +432,31 @@ function TankScreen({
       <div className="tank-hud">
         <div className="hud-bar">
           <button className="hud-button" onClick={onBackToRoom} title="部屋に戻る（Esc）" type="button">
-            <BackIcon />部屋に戻る
+            <BackIcon /><span className="hud-label">部屋に戻る</span>
           </button>
+          <nav aria-label="ほかの水槽へ" className="hud-stepper">
+            <button
+              aria-label={`前の水槽（${neighbor(-1).displayName}）`}
+              onClick={() => onSwitchTank("previous")}
+              title={`${neighbor(-1).displayName}（[）`}
+              type="button"
+            ><ChevronLeftIcon /></button>
+            <span aria-hidden="true"><b>{exhibitNumber}</b> / {String(aquariumTanks.length).padStart(2, "0")}</span>
+            <button
+              aria-label={`次の水槽（${neighbor(1).displayName}）`}
+              onClick={() => onSwitchTank("next")}
+              title={`${neighbor(1).displayName}（]）`}
+              type="button"
+            ><ChevronRightIcon /></button>
+          </nav>
           <div className="hud-actions">
+            <SoundToggle enabled={preferences.soundEnabled} onToggle={onToggleSound} />
             {fullscreen.supported ? (
               <button
                 aria-label={fullscreen.active ? "全画面を解除" : "全画面"}
                 aria-pressed={fullscreen.active}
                 className="hud-button icon-only"
-                onClick={fullscreen.toggle}
+                onClick={() => { playSfx("ui_tap"); fullscreen.toggle(); }}
                 title={fullscreen.active ? "全画面を解除" : "全画面"}
                 type="button"
               >
@@ -380,10 +468,10 @@ function TankScreen({
                 aria-controls="tank-settings"
                 aria-expanded={editing}
                 className="hud-button"
-                onClick={() => setEditing(true)}
+                onClick={() => { playSfx("panel_open"); setEditing(true); }}
                 ref={settingsButtonRef}
                 type="button"
-              ><SettingsIcon />設定</button>
+              ><SettingsIcon /><span className="hud-label">設定</span></button>
             )}
           </div>
         </div>
@@ -395,19 +483,19 @@ function TankScreen({
         <div className="hud-zoom" role="group" aria-label="水槽の拡大と縮小">
           <button
             aria-label="離れる"
-            onClick={() => viewControlRef.current?.zoomBy(1 / 1.4)}
+            onClick={() => { playSfx("ui_tap", 0.7); viewControlRef.current?.zoomBy(1 / 1.4); }}
             title="離れる（−）"
             type="button"
           ><MinusIcon /></button>
           <button
             aria-label="全体を見る"
-            onClick={() => viewControlRef.current?.resetZoom()}
+            onClick={() => { playSfx("ui_tap", 0.7); viewControlRef.current?.resetZoom(); }}
             title="全体を見る（0）"
             type="button"
           ><FitIcon /></button>
           <button
             aria-label="近づく"
-            onClick={() => viewControlRef.current?.zoomBy(1.4)}
+            onClick={() => { playSfx("ui_tap", 0.7); viewControlRef.current?.zoomBy(1.4); }}
             title="近づく（＋）"
             type="button"
           ><PlusIcon /></button>
@@ -418,7 +506,7 @@ function TankScreen({
 
       <AquariumControls
         customization={customization}
-        onClose={() => setEditing(false)}
+        onClose={() => { playSfx("panel_close"); setEditing(false); }}
         panelRef={panelRef}
         onLightingChange={(lighting: LightingId) => onCustomizationChange((current) => ({
           ...current,

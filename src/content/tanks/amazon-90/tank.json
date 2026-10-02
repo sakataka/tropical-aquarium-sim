@@ -8,7 +8,7 @@
   "widthCm": 90,
   "heightCm": 45,
   "depthCm": 45,
-  "maxTotalFish": 40,
+  "maxTotalFish": 50,
   "sceneIds": [
     "amazon-driftwood",
     "amazon-planted"
@@ -23,12 +23,12 @@
     { "speciesId": "dwarf-pencilfish", "maxCount": 10 }
   ],
   "defaultStock": [
-    { "speciesId": "neon-tetra", "count": 8 },
-    { "speciesId": "rummy-nose-tetra", "count": 6 },
-    { "speciesId": "marbled-hatchetfish", "count": 4 },
-    { "speciesId": "corydoras", "count": 4 },
-    { "speciesId": "angelfish", "count": 2 },
+    { "speciesId": "neon-tetra", "count": 16 },
+    { "speciesId": "rummy-nose-tetra", "count": 8 },
     { "speciesId": "lemon-tetra", "count": 6 },
-    { "speciesId": "dwarf-pencilfish", "count": 5 }
+    { "speciesId": "dwarf-pencilfish", "count": 5 },
+    { "speciesId": "marbled-hatchetfish", "count": 3 },
+    { "speciesId": "corydoras", "count": 6 },
+    { "speciesId": "angelfish", "count": 2 }
   ]
 }

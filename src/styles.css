@@ -495,8 +495,13 @@ button:focus-visible, input:focus-visible, select:focus-visible {
 .tank-view {
   position: absolute;
   inset: 0 env(safe-area-inset-right) 0 env(safe-area-inset-left);
-  transition: right 0.4s var(--ease), bottom 0.4s var(--ease);
+  transition: right 0.4s var(--ease), bottom 0.4s var(--ease), transform 1.1s var(--ease-out);
 }
+/* 隣の水槽へ移るときは、進む向きへ流れて消え、次の水槽が反対側から寄ってくる。 */
+.tank-screen.leaving-next .tank-view { transform: translateX(-56px); transition-duration: 0.4s; transition-timing-function: ease-in; }
+.tank-screen.leaving-previous .tank-view { transform: translateX(56px); transition-duration: 0.4s; transition-timing-function: ease-in; }
+.tank-screen.arriving-next .tank-view { transform: translateX(72px); }
+.tank-screen.arriving-previous .tank-view { transform: translateX(-72px); }
 .tank-screen.editing .tank-view { right: var(--panel-width); }
 .aquarium-stage {
   position: relative;
@@ -552,6 +557,76 @@ button:focus-visible, input:focus-visible, select:focus-visible {
   transition: right 0.4s var(--ease);
 }
 .hud-actions { display: flex; gap: 8px; }
+/* サウンドの入・切。切っているときは平らな線、入っているときは波形が揺れる。 */
+.sound-bars { display: flex; align-items: center; gap: 2px; height: 14px; }
+.sound-bars i {
+  display: block;
+  width: 2px;
+  height: 2px;
+  border-radius: 1px;
+  background: currentColor;
+  transition: height 0.4s var(--ease-out);
+}
+.sound-button.on .sound-bars i { animation: sound-wave 1.4s ease-in-out infinite; }
+.sound-button.on .sound-bars i:nth-child(2) { animation-delay: -0.35s; }
+.sound-button.on .sound-bars i:nth-child(3) { animation-delay: -0.7s; }
+.sound-button.on .sound-bars i:nth-child(4) { animation-delay: -1.05s; }
+@keyframes sound-wave { 0%, 100% { height: 4px; } 50% { height: 13px; } }
+/* 部屋では明るい壁の上に置く。 */
+.hud-button.room-sound {
+  position: fixed;
+  top: max(24px, env(safe-area-inset-top));
+  right: max(28px, env(safe-area-inset-right));
+  z-index: 5;
+  border-color: rgba(34, 48, 43, 0.14);
+  background: rgba(244, 239, 231, 0.72);
+  color: var(--room-ink);
+  box-shadow: 0 8px 24px rgba(40, 34, 24, 0.08);
+}
+.hud-button.room-sound:hover { background: rgba(250, 247, 241, 0.92); border-color: rgba(34, 48, 43, 0.3); }
+
+/* 展示番号と前後の水槽への矢印。上の中央に置く。 */
+.hud-stepper {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  display: flex;
+  align-items: center;
+  height: 40px;
+  padding: 0 3px;
+  border: 1px solid rgba(214, 240, 234, 0.14);
+  border-radius: 999px;
+  background: var(--glass);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.24);
+  transform: translateX(-50%);
+  backdrop-filter: blur(18px) saturate(1.3);
+  -webkit-backdrop-filter: blur(18px) saturate(1.3);
+}
+.hud-stepper button {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ink);
+  transition: background 0.3s;
+}
+.hud-stepper button:hover { background: rgba(28, 64, 64, 0.62); }
+.hud-stepper span {
+  min-width: 64px;
+  color: var(--muted);
+  font-family: var(--font-latin);
+  font-size: 16px;
+  font-variant-numeric: lining-nums tabular-nums;
+  text-align: center;
+  letter-spacing: 0.06em;
+}
+.hud-stepper b { color: var(--ink); font-weight: 500; }
+/* 設定を開いているあいだは、水槽を切り替えない。 */
+.tank-screen.editing .hud-stepper { opacity: 0; pointer-events: none; visibility: hidden; }
 .tank-screen.editing .hud-bar { right: calc(var(--panel-width) + 16px); }
 .hud-button, .hud-zoom {
   border: 1px solid rgba(214, 240, 234, 0.14);
@@ -1065,7 +1140,7 @@ button:focus-visible, input:focus-visible, select:focus-visible {
 }
 .volume input { width: 100%; accent-color: var(--accent); }
 .volume input:disabled { opacity: 0.4; }
-.sound-credit { margin: 12px 2px 0; color: var(--faint); font-size: 10px; letter-spacing: 0.04em; }
+.sound-credit { margin: 12px 2px 0; color: var(--faint); font-size: 10px; line-height: 1.7; letter-spacing: 0.04em; }
 
 /* ───────── 画面幅ごとの配置 ───────── */
 
@@ -1168,6 +1243,20 @@ button:focus-visible, input:focus-visible, select:focus-visible {
   .index-number { font-size: 30px; }
   .hud-button { min-height: 44px; }
   .hud-button.icon-only { width: 44px; }
+  .hud-button.room-sound { top: calc(14px + env(safe-area-inset-top)); right: calc(14px + env(safe-area-inset-right)); }
+  .hud-stepper { height: 44px; }
+  /* 狭い画面では戻るボタンを矢印だけにし、上の中央の番号と重ならないようにする。 */
+  .hud-bar > .hud-button:first-child, .hud-actions .hud-button { width: 44px; padding: 0; justify-content: center; }
+  .hud-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+  .hud-stepper button { width: 38px; height: 38px; }
+  .hud-stepper span { min-width: 52px; font-size: 15px; }
   .hud-zoom button { width: 44px; height: 40px; }
   .hud-caption { left: var(--safe-left); max-width: calc(100% - var(--safe-left) - var(--safe-right) - 150px); }
   .caption-eyebrow { font-size: 14px; }

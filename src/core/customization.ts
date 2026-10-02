@@ -29,9 +29,9 @@ export const LEGACY_STORAGE_KEYS = config.legacyStorageKeys;
 /** 読まずに消す古い保存。通常の魚種追加では保存キーを変えない。 */
 export const DISCARDED_STORAGE_KEYS = config.discardedStorageKeys;
 
-// 2026-10: 依頼された3水槽の魚の入れ替えを一度だけ適用する。
+// 2026-10: 依頼された魚の入れ替えを一度だけ適用する（2: 3水槽に全魚種、3: 5水槽を実際の水槽らしい匹数に）。
 // 通常の魚種追加や初期構成の変更では、この番号を上げない。
-const STOCK_ARRANGEMENT_VERSION = 2;
+const STOCK_ARRANGEMENT_VERSION = 3;
 // 5水槽を先行表示した端末にも、依頼された追加4種だけを一度補う。
 // 既存3水槽の構成バージョンや、追加済みの生き物の匹数は変えない。
 const FIVE_TANK_STOCK_VERSION = 1;

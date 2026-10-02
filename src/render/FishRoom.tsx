@@ -14,6 +14,7 @@ import { reportRenderProblem, watchContextLoss, watchSetup } from "./renderProbl
 import { getSceneForegroundUrl, getScenePlateUrl, roomImageUrl } from "./assets";
 import { FishLayer, getWaterTint, type ViewRect } from "./fishLayer";
 import { frameGlass, getInitialZoom, getRenderOptions } from "./tankFraming";
+import { playSfx } from "../audio/sfx";
 
 type FishRoomProps = {
   tanks: Record<string, AquariumCustomization>;
@@ -401,6 +402,7 @@ export function FishRoom({
     if (zoomingTo) return;
     setHovered(tankId);
     setZoomingTo(tankId);
+    playSfx("tank_enter");
     if (zoomRef.current) zoomRef.current(tankId, () => onEnterTank(tankId));
     else onEnterTank(tankId);
   }

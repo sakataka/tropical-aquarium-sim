@@ -76,10 +76,10 @@ describe("saved state", () => {
     const expanded = normalizeAquariumPersistedState(withoutExpansion, fishCatalog)!;
     for (const id of ["asia-60", "amazon-90", "cube-30"]) expect(expanded.tanks[id]).toEqual(preview.tanks[id]);
     expect(expanded.tanks["japan-60"]!.stock).toEqual([
-      ...preview.tanks["japan-60"]!.stock, { speciesId: "japanese-bitterling", count: 6 }, { speciesId: "japanese-loach", count: 3 },
+      ...preview.tanks["japan-60"]!.stock, { speciesId: "japanese-bitterling", count: 4 }, { speciesId: "japanese-loach", count: 2 },
     ]);
     expect(expanded.tanks["malawi-120"]!.stock).toEqual([
-      ...preview.tanks["malawi-120"]!.stock, { speciesId: "rusty-cichlid", count: 4 }, { speciesId: "saulosi", count: 4 },
+      ...preview.tanks["malawi-120"]!.stock, { speciesId: "saulosi", count: 6 }, { speciesId: "rusty-cichlid", count: 3 },
     ]);
     expect(expanded.tanks["japan-60"]!.layout.lighting).toBe("evening");
     expect(expanded.fiveTankStockVersion).toBe(1);
@@ -106,7 +106,7 @@ describe("saved state", () => {
     expect(normalizeAquariumPersistedState(restored, fishCatalog)).toEqual(restored);
   });
 
-  test.each([undefined, 1])("arranges stock version %s once without replacing scenery or later edits", (previousVersion) => {
+  test.each([undefined, 1, 2])("arranges stock version %s once without replacing scenery or later edits", (previousVersion) => {
     const old = createDefaultState(fishCatalog);
     old.activeTankId = "cube-30";
     old.tanks["asia-60"]!.layout = { sceneId: "iwagumi", lighting: "night" };
@@ -115,7 +115,7 @@ describe("saved state", () => {
     for (const tank of aquariumTanks) old.tanks[tank.id]!.stock = [];
     const { stockArrangementVersion: _, ...withoutArrangement } = old;
     const arranged = normalizeAquariumPersistedState({ ...withoutArrangement, stockArrangementVersion: previousVersion }, fishCatalog)!;
-    expect(arranged.stockArrangementVersion).toBe(2);
+    expect(arranged.stockArrangementVersion).toBe(3);
     expect(arranged.activeTankId).toBe(old.activeTankId);
     expect(arranged.preferences.soundVolume).toBe(0.25);
     for (const tank of aquariumTanks) {
@@ -188,7 +188,7 @@ describe("saved state", () => {
     expect(normalizeAquariumPersistedState({ version: 5 }, fishCatalog)).toBeUndefined();
     const state = normalizeAquariumPersistedState({
       version: 5,
-      stockArrangementVersion: 2,
+      stockArrangementVersion: 3,
       activeTankId: "missing",
       tanks: {
         "asia-60": {

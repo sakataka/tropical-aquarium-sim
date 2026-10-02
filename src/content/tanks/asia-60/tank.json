@@ -8,7 +8,7 @@
   "widthCm": 60,
   "heightCm": 36,
   "depthCm": 30,
-  "maxTotalFish": 30,
+  "maxTotalFish": 36,
   "sceneIds": [
     "planted",
     "root-driftwood",
@@ -26,13 +26,13 @@
     { "speciesId": "chili-rasbora", "maxCount": 14 }
   ],
   "defaultStock": [
-    { "speciesId": "harlequin-rasbora", "count": 6 },
+    { "speciesId": "harlequin-rasbora", "count": 11 },
+    { "speciesId": "chili-rasbora", "count": 9 },
     { "speciesId": "celestial-pearl-danio", "count": 4 },
-    { "speciesId": "cherry-barb", "count": 3 },
+    { "speciesId": "cherry-barb", "count": 4 },
     { "speciesId": "kuhli-loach", "count": 3 },
     { "speciesId": "siamese-algae-eater", "count": 1 },
     { "speciesId": "dwarf-gourami", "count": 1 },
-    { "speciesId": "honey-gourami", "count": 2 },
-    { "speciesId": "chili-rasbora", "count": 7 }
+    { "speciesId": "honey-gourami", "count": 1 }
   ]
 }
