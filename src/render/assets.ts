@@ -11,13 +11,13 @@ const fishImageModules = import.meta.glob<string>("../content/fish/**/body.webp"
 });
 
 const sceneImageModules = import.meta.glob<string>(
-  "../content/environment/scenes/*/{plate,foreground}.webp",
+  "../content/environment/scenes/*/plate.webp",
   { eager: true, import: "default", query: "?url" },
 );
 
-// 部屋の一枚絵。room.json の image で参照する。旧3水槽の room.webp は使わないので配信に含めない。
+// 部屋の一枚絵。部屋の JSON の image で参照する。
 const roomImageModules = import.meta.glob<string>(
-  ["../content/room/*.webp", "!../content/room/room.webp"],
+  "../content/room/*.webp",
   { eager: true, import: "default", query: "?url" },
 );
 
@@ -38,10 +38,6 @@ export function getFishImageUrl(speciesId: string): string | undefined {
 
 export function getScenePlateUrl(sceneId: string): string | undefined {
   return findBySuffix(sceneImageModules, `/scenes/${sceneId}/plate.webp`);
-}
-
-export function getSceneForegroundUrl(sceneId: string): string | undefined {
-  return findBySuffix(sceneImageModules, `/scenes/${sceneId}/foreground.webp`);
 }
 
 function findBySuffix(modules: Record<string, string>, suffix: string): string | undefined {

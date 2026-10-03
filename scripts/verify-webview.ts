@@ -305,9 +305,9 @@ async function main() {
       const s = JSON.parse(localStorage.getItem("${STATE_KEY}"));
       const cube = s.tanks["cube-30"];
       const total = id => s.tanks[id].stock.reduce((n, entry) => n + entry.count, 0);
-      return s.stockArrangementVersion === 3 && total("asia-60") === 34 && total("amazon-90") === 46 && total("cube-30") === 20 &&
+      return s.stockArrangementVersion === 3 && total("asia-60") === 36 && total("amazon-90") === 46 && total("cube-30") === 20 &&
         total("japan-60") === 28 && total("malawi-120") === 23 &&
-        s.tanks["asia-60"].stock.length === 8 && s.tanks["amazon-90"].stock.length === 7 && cube.stock.length === 7 &&
+        s.tanks["asia-60"].stock.length === 9 && s.tanks["amazon-90"].stock.length === 7 && cube.stock.length === 6 &&
         Object.values(s.tanks).every(t => t.stock.every(e => e.count >= 1)) &&
         cube.stock.some(e => e.speciesId === "ember-tetra" && e.count === 8) &&
         cube.stock.some(e => e.speciesId === "clown-killifish" && e.count === 2) &&
@@ -433,14 +433,14 @@ async function main() {
     assert(title.includes("熱帯魚"));
     assert(roomTanks === 5);
     assert(enteredTank === "東南アジアの水草水槽");
-    assert(asiaCards === 8 && harlequinCount === 12 && rejectedSpecies);
+    assert(asiaCards === 9 && harlequinCount === 12 && rejectedSpecies);
     assert(JSON.stringify(scenesVisited) ===
       JSON.stringify(["driftwood", "root-driftwood", "iwagumi", "planted"]));
     assert(viewingOnEntry && viewingStageWidth >= 1400);
     assert(editingOpened && editingStageWidth < viewingStageWidth && editingStageWidth >= 700);
     assert(closedToViewing);
     assert(backToRoom);
-    assert(cubeCards === 7 && cubeStageRatio > 1.4);
+    assert(cubeCards === 6 && cubeStageRatio > 1.4);
     assert(amazonCards === 7);
     assert(restored.version === 5 && restored.scene === "driftwood");
     assert(restored.lighting === "night" && restored.harlequinCount === 12 && !restored.sound);
@@ -501,6 +501,20 @@ async function verifySpecialRoom(consoleErrors: string[]) {
       assert(await view.evaluate(`(() => {const text=document.querySelector('.caption-species')?.textContent ?? ''; return ${JSON.stringify(fish.map(([, label]) => label))}.every((label) => text.includes(label));})()`));
       assert(await view.evaluate(`(() => {const caption=document.querySelector('.hud-caption'),zoom=document.querySelector('.hud-zoom');return [...caption.children].every(child => child.getBoundingClientRect().right < zoom.getBoundingClientRect().left);})()`));
       await Bun.write(`${SCREENSHOT_DIR}/${id}-${viewport}.png`, await view.screenshot({ format: "png" }));
+      // ガラスを軽く叩くと、魚が驚く（短い押し下げだけを叩いた操作として扱い、ドラッグは含めない）。
+      await view.evaluate(`(() => {
+        const host = document.querySelector('.aquarium-canvas'); const r = host.getBoundingClientRect();
+        const at = { clientX: r.left + r.width * .5, clientY: r.top + r.height * .55, pointerId: 7, bubbles: true, pointerType: 'mouse', button: 0 };
+        host.dispatchEvent(new PointerEvent('pointerdown', at)); host.dispatchEvent(new PointerEvent('pointerup', at));
+        const drag = { ...at, pointerId: 8 };
+        host.dispatchEvent(new PointerEvent('pointerdown', drag));
+        host.dispatchEvent(new PointerEvent('pointermove', { ...drag, clientX: at.clientX + 40 }));
+        host.dispatchEvent(new PointerEvent('pointerup', { ...drag, clientX: at.clientX + 40 }));
+      })()`);
+      await sleep(350);
+      assert(await view.evaluate(`document.querySelector('.aquarium-canvas').dataset.glassTaps === '1'`));
+      await Bun.write(`${SCREENSHOT_DIR}/${id}-tapped-${viewport}.png`, await view.screenshot({ format: "png" }));
+      await view.evaluate(`window.dispatchEvent(new KeyboardEvent('keydown', {key:'0'}))`);
       await clickButtonByText(view, "設定");
       await sleep(650);
       assert(await countCards(view) === fish.length);

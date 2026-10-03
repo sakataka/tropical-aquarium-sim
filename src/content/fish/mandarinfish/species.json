@@ -4,16 +4,20 @@
   "realBodyLengthCm": 7,
   "swim": {
     "tailBeatHz": 1.8,
-    "tailSweepRad": 0.08
+    "tailSweepRad": 0.08,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.55
+    }
   },
   "visual": {
     "fallbackColor": "#24c9c0"
   },
   "sourceBodyBounds": {
-    "x": 56,
-    "y": 45,
-    "width": 1464,
-    "height": 929
+    "x": 135,
+    "y": 128,
+    "width": 1313,
+    "height": 763
   },
   "preferredZone": {
     "minX": 0.1,

@@ -1,5 +1,6 @@
 import type { AquariumScene, FishInstance, FishSpeciesDefinition, ShelterKind, SurfaceFrame, TankDefinition, Vec2 } from "./types";
 import { sampleSurface, worldPoint } from "./surfaceMotion";
+import { distance } from "./math";
 
 type Goal = NonNullable<FishInstance["terrainGoal"]>;
 type Context = { scene: AquariumScene; tank: TankDefinition; frame: SurfaceFrame; species: FishSpeciesDefinition };
@@ -134,7 +135,8 @@ export function routeTerrainTarget(fish: FishInstance, target: Vec2, context: Co
     }
   }
   return { target: point,
-    route: { sceneId: context.scene.id, obstacleId: solid.id, side } };
+    route: { sceneId: context.scene.id, obstacleId: solid.id, side,
+      stuckSec: previous?.obstacleId === solid.id && previous.side === side ? previous.stuckSec : 0 } };
 }
 
 /** 前後移動でも薄い物体を飛び越えない。深さ区間を分割し、最初の接触直前まで進める。 */
@@ -224,4 +226,3 @@ export function constrainTerrainStep(from: Vec2, to: Vec2, depth: number, contex
   return insideTerrain(result, depth, context) && !insideTerrain(from, depth, context) ? from : result;
 }
 
-function distance(a: Vec2, b: Vec2) { return Math.hypot(a.x - b.x, a.y - b.y); }

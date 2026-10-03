@@ -1,4 +1,5 @@
 import type { FishSpeciesDefinition } from "./types";
+import { clamp } from "./math";
 
 export function getTargetBodyLengthPx(params: {
   viewportWidthPx: number;
@@ -28,14 +29,14 @@ export function getBaseSpriteScale(params: {
   return targetBodyLengthPx / (params.species.sourceBodyBounds.width * (1 - antennaFraction));
 }
 
-export function applyBodyLengthVariance(
+function applyBodyLengthVariance(
   baseScale: number,
   bodyLengthVariance: number,
 ): number {
   return baseScale * clamp(bodyLengthVariance, 0.85, 1.15);
 }
 
-export function applyDepthScale(baseScale: number, depth: number): number {
+function applyDepthScale(baseScale: number, depth: number): number {
   const normalizedDepth = clamp(depth, 0, 1);
   return baseScale * (1.04 - normalizedDepth * 0.1);
 }
@@ -60,6 +61,3 @@ export function getFishSpriteScale(params: {
   return scale;
 }
 
-function clamp(value: number, min: number, max: number): number {
-  return Math.min(max, Math.max(min, value));
-}

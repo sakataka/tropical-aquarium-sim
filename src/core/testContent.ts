@@ -8,7 +8,7 @@ const plateModules = import.meta.glob<string>("../content/environment/scenes/*/p
 });
 
 /** WebP のヘッダー（VP8X / VP8 / VP8L）から画像の幅と高さを読む。 */
-export function getPlateSize(sceneId: string): { width: number; height: number } {
+function getPlateSize(sceneId: string): { width: number; height: number } {
   const entry = Object.entries(plateModules).find(([path]) => path.endsWith(`/scenes/${sceneId}/plate.webp`));
   if (!entry) throw new Error(`plate.webp not found: ${sceneId}`);
   const binary = atob(entry[1].slice(entry[1].indexOf(",") + 1, entry[1].indexOf(",") + 1 + 64));

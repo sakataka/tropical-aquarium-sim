@@ -3,7 +3,6 @@ import { Application, Assets, Container, Graphics, Sprite, Texture } from "pixi.
 import {
   fishCatalog,
   getSceneById,
-  getStructurePoints,
   getTankById,
   stepSimulation,
   type AquariumCustomization,
@@ -11,11 +10,12 @@ import {
 } from "../core";
 import { getWindowOverscan, type FishRoomDefinition, type RoomRect } from "../core/room";
 import { reportRenderProblem, watchContextLoss, watchSetup } from "./renderProblems";
-import { getSceneForegroundUrl, getScenePlateUrl, getRoomImageUrl } from "./assets";
+import { getScenePlateUrl, getRoomImageUrl } from "./assets";
 import { FishLayer, getWaterTint, type ViewRect } from "./fishLayer";
 import { frameGlass, getInitialZoom, getRenderOptions } from "./tankFraming";
 import { playSfx } from "../audio/sfx";
 import { getSurfaceFrame, placePlate, TerrainLayer } from "./terrainLayer";
+import { lerp, smoothstep } from "../core/math";
 
 type FishRoomProps = {
   room: FishRoomDefinition;
@@ -33,7 +33,6 @@ type TankView = {
   tankId: string;
   container: Container;
   plate: Sprite;
-  foreground: Sprite;
   mask: Graphics;
   fish: FishLayer;
   terrain: TerrainLayer;
@@ -142,24 +141,20 @@ export function FishRoom({
       for (const placement of fishRoom.tanks) {
         const container = new Container();
         const plate = new Sprite(Texture.EMPTY);
-        const foreground = new Sprite(Texture.EMPTY);
         plate.anchor.set(0.5);
-        foreground.anchor.set(0.5);
-        // 水槽画面と同じ重なり順（奥の魚は手前の水草の後ろ）にして、寄り終えた絵をそろえる。
-        const fishBack = new Container();
-        const fishFront = new Container();
+        // 水槽画面と同じ重なり順（生き物と石・流木を奥行き順）にして、寄り終えた絵をそろえる。
+        const creatures = new Container();
         const mask = new Graphics();
-        container.addChild(plate, fishBack, foreground, fishFront, mask);
+        container.addChild(plate, creatures, mask);
         container.mask = mask;
         world.addChild(container);
         views.push({
           tankId: placement.tankId,
           container,
           plate,
-          foreground,
           mask,
-          fish: new FishLayer(fishBack, fishFront),
-          terrain: new TerrainLayer(fishFront),
+          fish: new FishLayer(creatures),
+          terrain: new TerrainLayer(creatures),
         });
       }
       progress.mark("部屋と水景の画像の読み込み");
@@ -238,17 +233,15 @@ export function FishRoom({
       const windowRect = toPixels(placement.window, width, height);
       const glassRect = toPixels(placement.glass, width, height);
       view.mask.clear().rect(windowRect.x, windowRect.y, windowRect.width, windowRect.height).fill(0xffffff);
-      for (const sprite of [view.plate, view.foreground]) {
-        if (sprite.texture === Texture.EMPTY) continue;
+      if (view.plate.texture !== Texture.EMPTY) {
         // 前面ガラスを基準に、側面ガラスから見える部分まで水景を広げる。
-        placePlate(sprite, glassRect, getWindowOverscan(view.tankId), getSceneById(view.loadedSceneId));
+        placePlate(view.plate, glassRect, getWindowOverscan(view.tankId), getSceneById(view.loadedSceneId));
       }
       if (activeRef.current) fishRef.current = stepSimulation({
         tank,
         species: fishCatalog,
         fish: fishRef.current,
         deltaSec,
-        structurePoints: getStructurePoints(tank, customization.layout),
         scene: getSceneById(view.loadedSceneId),
         surfaceFrame: getSurfaceFrame(view.plate, glassRect),
         lighting: customization.layout.lighting,
@@ -262,22 +255,13 @@ export function FishRoom({
       view.sceneId = sceneId;
       const scene = getSceneById(sceneId);
       const url = getScenePlateUrl(sceneId);
-      const foregroundUrl = scene?.terrain ? undefined : getSceneForegroundUrl(sceneId);
-      if (scene) view.fish.waterTint = getWaterTint(scene.waterColor);
-      if (!url) return;
-      const [texture, foregroundTexture] = await Promise.all([
-        Assets.load<Texture>(url),
-        foregroundUrl ? Assets.load<Texture>(foregroundUrl) : Promise.resolve(Texture.EMPTY),
-      ]);
+      if (!scene || !url) return;
+      view.fish.waterTint = getWaterTint(scene.waterColor);
+      const texture = await Assets.load<Texture>(url);
       if (disposed || view.sceneId !== sceneId) return;
       view.plate.texture = texture;
-      view.foreground.texture = foregroundTexture;
       view.loadedSceneId = sceneId;
-      if (scene) {
-        view.fish.terrainEnabled = !!scene.terrain;
-        view.foreground.visible = !scene.terrain;
-        view.terrain.setScene(scene, texture);
-      }
+      view.terrain.setScene(scene, texture);
     }
 
     // 合わせた水槽のほかを少し暗くし、選ぼうとしている水槽が浮かび上がるようにする。
@@ -538,15 +522,8 @@ function clamp01(value: number): number {
   return Math.max(0, Math.min(1, value));
 }
 
-function smoothstep(edge0: number, edge1: number, value: number): number {
-  const t = Math.max(0, Math.min(1, (value - edge0) / (edge1 - edge0)));
-  return t * t * (3 - 2 * t);
-}
 
 function easeInOutCubic(t: number): number {
   return t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2;
 }
 
-function lerp(from: number, to: number, amount: number): number {
-  return from + (to - from) * amount;
-}

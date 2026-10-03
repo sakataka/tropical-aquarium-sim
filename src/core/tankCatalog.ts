@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { getGlassAspectForTank } from "./room";
 import type { TankDefinition } from "./types";
 
 type TankJsonModule = { default: unknown };
@@ -38,7 +39,11 @@ function loadTanks(): TankDefinition[] {
     if (!path.includes(`/tanks/${tank.id}/`)) {
       throw new Error(`Tank id "${tank.id}" must match its folder: ${path}`);
     }
-    return { ...tank, safeMarginCm: SAFE_MARGIN_CM };
+    // 部屋の絵のガラスは実寸より横長なことがある。縦を縮めて描くと上下の動きが潰れるので、
+    // 横幅とガラスの縦横比から「見えている水の高さ」を求め、縦横の縮尺をそろえる。
+    const aspect = getGlassAspectForTank(tank.id);
+    const waterHeightCm = aspect ? Math.min(tank.heightCm, tank.widthCm / aspect) : tank.heightCm;
+    return { ...tank, heightCm: waterHeightCm, specHeightCm: tank.heightCm, safeMarginCm: SAFE_MARGIN_CM };
   });
   if (tanks.length === 0) throw new Error("No aquarium tanks found");
   return tanks.sort((a, b) => a.order - b.order);

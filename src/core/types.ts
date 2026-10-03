@@ -27,6 +27,8 @@ export type SurfaceMotion = {
   pauseSec: number;
   grazing: boolean;
   angle: number;
+  /** 驚いて尾を打ち、後ろ向きに跳ね退いている間。向き（facing）は変えない。 */
+  flee?: { direction: -1 | 1; remainingSec: number; facing: -1 | 1 };
 };
 
 export type LightingId = "natural" | "cool" | "evening" | "night";
@@ -130,7 +132,8 @@ export type FishTargetKind =
   | "hide"
   | "forage"
   | "follow"
-  | "home";
+  | "home"
+  | "flee";
 
 /** 生成時に決まる種の標準値への倍率。泳ぐ間は変化させず、保存・管理UIの対象にしない。 */
 export type FishPersonality = Readonly<{
@@ -158,7 +161,8 @@ export type FishInstance = {
   };
   /** 接地への寄り・離れを描画でも連続させる。保存対象外。 */
   contact?: { angle: number; kind: "mouth" | "belly"; weight: number };
-  terrainRoute?: { sceneId: string; obstacleId: string; side: -1 | 1 };
+  /** 岩を回り込む側。stuckSec は回り込みの途中で進めずにいる秒数。 */
+  terrainRoute?: { sceneId: string; obstacleId: string; side: -1 | 1; stuckSec?: number };
   depthMotion?: { target: number; velocity: number; remainingSec: number };
   homeDepth?: number;
   bodyLengthVariance: number;
@@ -173,6 +177,8 @@ export type FishInstance = {
   habitTimeSec?: number;
   followId?: string;
   nextBreathSec?: number;
+  /** ガラスを叩かれて警戒している残り秒数。群れが締まり、物陰への戻りが速くなる。保存対象外。 */
+  alarmSec?: number;
   /** 描画用の姿勢。底を探るときは頭を下げる。 */
   posture?: "level" | "noseDown";
   seed: number;
@@ -190,7 +196,13 @@ export type TankDefinition = {
   category: string;
   description: string;
   widthCm: number;
+  /**
+   * ガラス越しに見える水の高さ (cm)。魚の座標の縦の長さで、縦横の縮尺をそろえるため
+   * 部屋の絵のガラスの縦横比から決める（水槽の高さを超えない）。
+   */
   heightCm: number;
+  /** 水槽の仕様としての高さ (cm)。表示用。 */
+  specHeightCm: number;
   depthCm: number;
   safeMarginCm: number;
   maxTotalFish: number;
@@ -205,7 +217,8 @@ export type SimulationInput = {
   species: Record<string, FishSpeciesDefinition>;
   fish: FishInstance[];
   deltaSec: number;
-  structurePoints: Vec2[];
+  /** 寄り道先 (cm)。省略すると水景の structurePoints から求める。 */
+  structurePoints?: Vec2[];
   scene?: AquariumScene;
   surfaceFrame?: SurfaceFrame;
 };
@@ -221,11 +234,13 @@ export type AquariumScene = {
   description: string;
   defaultLighting: LightingId;
   waterColor: string;
+  /** 魚が寄り道する流木や水草の位置。地形と同じく背景画像に対する0〜1の比率。 */
   structurePoints: Vec2[];
+  /** エアストーンの位置。背景画像に対する0〜1の比率。 */
   bubbleSources: Vec2[];
   /** 画像のどの高さ（0〜1）をガラスの下端に合わせるか。超横長の水槽で水の層を残すために使う。 */
   framing?: { plateBottom: number };
-  terrain?: SceneTerrain;
+  terrain: SceneTerrain;
 };
 
 export type AquariumLayout = {

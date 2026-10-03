@@ -7,8 +7,7 @@
     "bodyWaveStart": 0.15,
     "waveCount": 1.6,
     "tailSweepRad": 0.19,
-    "verticalFlex": 0.035,
-    "headStart": 0.13
+    "verticalFlex": 0.035
   },
   "visual": {
     "fallbackColor": "#9a9562"

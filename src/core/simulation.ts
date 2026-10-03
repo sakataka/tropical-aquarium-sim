@@ -2,7 +2,6 @@ import type {
   ActivityPeriod,
   AquariumScene,
   FishHabit,
-  FishHabitType,
   FishInstance,
   FishSpeciesDefinition,
   LightingId,
@@ -13,8 +12,11 @@ import type {
   TankDefinition,
   Vec2,
 } from "./types";
+import { findHabit } from "./habits";
+import { getStructurePoints } from "./plateFraming";
 import { FULL_SURFACE_FRAME, stepSurfaceWalker, worldPoint } from "./surfaceMotion";
 import { chooseTerrainGoal, constrainTerrainDepth, constrainTerrainStep, findHomeShelter, insideTerrain, resolveTerrainGoal, routeTerrainTarget, terrainAvoidance } from "./terrainMotion";
+import { add, addMany, clamp, length, lerp, normalize, scale, subtract } from "./math";
 
 const FORWARD_TARGET_CHANCE = 0.86;
 const FACING_THRESHOLD_CM_PER_SEC = 0.3;
@@ -45,7 +47,7 @@ const ACTIVITY_BY_LIGHT: Record<ActivityPeriod, Record<LightingId, number>> = {
 };
 
 /** 照明（昼・夕・夜）に対する魚種の活動量。1 が標準。 */
-export function getActivityLevel(species: FishSpeciesDefinition, lighting: LightingId): number {
+function getActivityLevel(species: FishSpeciesDefinition, lighting: LightingId): number {
   return ACTIVITY_BY_LIGHT[species.ecology.activityPeriod][lighting];
 }
 
@@ -53,13 +55,16 @@ export function stepSimulation(input: SimulationInput): SimulationOutput {
   const deltaSec = clamp(input.deltaSec, 0, 0.25);
   const groups = groupBySpecies(input.fish);
   const lighting = input.lighting ?? "natural";
+  const frame = input.surfaceFrame ?? FULL_SURFACE_FRAME;
+  const structurePoints = input.structurePoints ??
+    (input.scene ? getStructurePoints(input.tank, input.scene, frame) : []);
   return {
     fish: input.fish.map((fish) => {
       const species = input.species[fish.speciesId];
       if (!species) return fish;
       if (species.swim?.bodyPlan === "crustacean" && input.scene?.terrain) {
         return stepSurfaceWalker(fish, species, input.tank, input.scene,
-          input.surfaceFrame ?? FULL_SURFACE_FRAME, deltaSec, getActivityLevel(species, lighting));
+          frame, deltaSec, getActivityLevel(species, lighting));
       }
       return stepFish({
         fish: fish.surfaceMotion ? { ...fish, surfaceMotion: undefined, target: undefined,
@@ -69,9 +74,9 @@ export function stepSimulation(input: SimulationInput): SimulationOutput {
         tankmates: input.fish,
         catalog: input.species,
         tank: input.tank,
-        structurePoints: input.structurePoints,
+        structurePoints,
         scene: input.scene,
-        frame: input.surfaceFrame ?? FULL_SURFACE_FRAME,
+        frame,
         activity: getActivityLevel(species, lighting),
         deltaSec,
       });
@@ -121,6 +126,7 @@ function stepFish(context: StepContext): FishInstance {
   let legTimeSec = (fish.legTimeSec ?? 0) + deltaSec;
   let habitTimeSec = fish.habitTimeSec === undefined ? undefined : fish.habitTimeSec - deltaSec;
   let followId = fish.followId;
+  const alarmSec = Math.max(0, (fish.alarmSec ?? 0) - deltaSec);
   let terrainGoal = fish.terrainGoal;
   let homeDepth = fish.homeDepth;
   let goalPoint = terrain && terrainGoal ? resolveTerrainGoal(terrainGoal, terrain) : undefined;
@@ -175,10 +181,16 @@ function stepFish(context: StepContext): FishInstance {
       // 住みかに入ってしばらく休み、また近くを泳ぎ始める。
       if (mode === "rest") {
         if ((habitTimeSec ?? 0) <= 0) startOpenWater();
-      } else if (reached && homeHabit) {
+      } else if (reached) {
         mode = "rest";
-        habitTimeSec = lerp(homeHabit.visitDurationSec[0], homeHabit.visitDurationSec[1], random()) * personality.restfulness;
+        // 驚いて逃げ込んだ物陰からは、しばらく様子をうかがってから出る。
+        const [min, max] = homeHabit?.visitDurationSec ?? [6, 14];
+        habitTimeSec = lerp(min, max, random()) * personality.restfulness * (alarmSec > 0 ? 1.6 : 1);
       }
+      break;
+    case "flee":
+      // 瞬発で逃げ切ったら、また普段の泳ぎへ戻る。
+      if ((habitTimeSec ?? 0) <= 0 || reached) startOpenWater();
       break;
     case "forage":
       if (mode === "forage") {
@@ -228,7 +240,8 @@ function stepFish(context: StepContext): FishInstance {
   }
 
   // 2. 自由に泳いでいるときだけ、魚種固有の習性を始める。
-  if ((targetKind === "openWater" || targetKind === "structure") && mode !== "rest" && mode !== "forage") {
+  // 警戒している間は、採餌や寄り道を始めない。
+  if ((targetKind === "openWater" || targetKind === "structure") && mode !== "rest" && mode !== "forage" && alarmSec <= 0) {
     const habit = pickHabit(context, random, nextBreathSec);
     if (habit) {
       target = habit.target;
@@ -276,12 +289,15 @@ function stepFish(context: StepContext): FishInstance {
   let velocity = steerVelocity(
     fish.velocity,
     desired,
-    species.ecology.turnRateRadPerSec * personality.responsiveness * (targetKind === "surfaceVisit" ? 1.6 : 1),
+    // 驚いたときは C 字に体を曲げて一気に向きを変える。
+    species.ecology.turnRateRadPerSec * personality.responsiveness *
+      (targetKind === "flee" ? 3 : targetKind === "surfaceVisit" || alarmSec > 0 ? 1.6 : 1),
     gait.dragPerSec,
     mode,
     deltaSec,
   );
   let position = keepInTank(add(fish.position, scale(velocity, deltaSec)), tank);
+  let route = navigation.route;
   let depth = fish.depth;
   let depthMotion = fish.depthMotion;
   if (terrain && deltaSec > 0) {
@@ -320,6 +336,15 @@ function stepFish(context: StepContext): FishInstance {
     depth += clamp(homeDepth - depth, -step, step);
   }
   if (!terrainGoal && homeDepth !== undefined && Math.abs(depth - homeDepth) < .0001) homeDepth = undefined;
+  // 岩と壁の狭いすき間で回り込めずに止まったら、反対側から回り、普段の泳ぎなら行き先も選び直す。
+  if (route && (mode === "kick" || mode === "coast") && deltaSec > 0) {
+    const slow = length(subtract(position, fish.position)) / deltaSec < Math.max(0.05, bodyLength * 0.02);
+    const stuckSec = slow ? (route.stuckSec ?? 0) + deltaSec : 0;
+    if (stuckSec > 0.6) {
+      route = { ...route, side: route.side === 1 ? -1 : 1, stuckSec: 0 };
+      if (targetKind === "openWater" || targetKind === "structure") legTimeSec = Number.POSITIVE_INFINITY;
+    } else route = { ...route, stuckSec };
+  }
   let contact = fish.contact;
   if (goalPoint?.angle !== undefined && (targetKind === "forage" || targetKind === "rest")) {
     const gap = Math.hypot(length(subtract(position, goalPoint.position)), (depth - goalPoint.depth) * tank.depthCm);
@@ -339,7 +364,7 @@ function stepFish(context: StepContext): FishInstance {
     terrainGoal,
     homeDepth,
     depthMotion: terrain ? depthMotion : undefined,
-    terrainRoute: navigation.route,
+    terrainRoute: route,
     contact,
     facing: terrainGoal?.facing && contact && contact.weight > .5 ? terrainGoal.facing : velocity.x < -FACING_THRESHOLD_CM_PER_SEC
       ? -1
@@ -352,6 +377,7 @@ function stepFish(context: StepContext): FishInstance {
     habitTimeSec,
     followId,
     nextBreathSec,
+    alarmSec: alarmSec > 0 ? alarmSec : undefined,
     posture: getPosture(species, tank, position, mode),
     seed,
   };
@@ -628,7 +654,8 @@ function getDesiredVelocity(context: StepContext & {
     zone,
     flock,
     avoidance,
-    inHabit || nearRock ? { x: 0, y: 0 } : crowdingVector(fish, species, context.tankmates, context.catalog, tank),
+    // 住みかや物陰へ向かう途中も、ほかの種の体の上を素通りしないよう弱めに間合いを取る。
+    nearRock ? { x: 0, y: 0 } : scale(crowdingVector(fish, species, context.tankmates, context.catalog, tank), inHabit ? 0.5 : 1),
   ));
 
   const kickSpeed = cruise + (burst - cruise) * GAITS[species.ecology.gait].kickBlend;
@@ -641,13 +668,15 @@ function getDesiredVelocity(context: StepContext & {
   } else if (targetKind === "rest" || targetKind === "hide") {
     speed = cruise * 0.8;
   } else if (targetKind === "home") {
-    // 住みかへは短く素早く戻る（ハタタテハゼが巣穴へ、クマノミがイソギンチャクへ）。
-    speed = kickSpeed;
+    // 住みかへは短く素早く戻る（ハタタテハゼが巣穴へ、クマノミがイソギンチャクへ）。驚いたときはさらに速い。
+    speed = (fish.alarmSec ?? 0) > 0 ? Math.max(kickSpeed, burst * 0.8) : kickSpeed;
+  } else if (targetKind === "flee") {
+    speed = burst;
   }
   if (fish.terrainGoal && target && !fish.terrainRoute) {
     speed = Math.min(speed, Math.max(.04, length(subtract(target, fish.position)) * 1.4));
   }
-  const tripPace = targetKind === "surfaceVisit" ? 1 : pace;
+  const tripPace = targetKind === "surfaceVisit" || targetKind === "flee" || (fish.alarmSec ?? 0) > 0 ? 1 : pace;
   let desiredSpeed = speed * tripPace * (1 - fish.depth * 0.1) * fish.personality.pace;
   // 仲間の実際の速さにも少し合わせる。停止した仲間へ全員が失速するのは避ける。
   const social = species.ecology.social;
@@ -676,7 +705,10 @@ function schoolingVector(
     return { x: 0, y: 0 };
   }
   const radius = getSchoolRadiusCm(species) * fish.personality.sociability;
-  const spacing = social.spacingBodyLengths * species.realBodyLengthCm * fish.personality.personalSpace;
+  // 警戒すると群れは間隔を詰めてまとまる。
+  const alarmed = (fish.alarmSec ?? 0) > 0 || school.some((other) => (other.alarmSec ?? 0) > 0);
+  const spacing = social.spacingBodyLengths * species.realBodyLengthCm * fish.personality.personalSpace * (alarmed ? 0.7 : 1);
+  const tighten = alarmed ? 1.8 : 1;
   let center = { x: 0, y: 0 };
   let alignment = { x: 0, y: 0 };
   let separation = { x: 0, y: 0 };
@@ -696,7 +728,7 @@ function schoolingVector(
   if (count === 0) return { x: 0, y: 0 };
   center = scale(center, 1 / count);
   return addMany(
-    scale(normalize(subtract(center, fish.position)), social.cohesion * 0.4 * fish.personality.sociability),
+    scale(normalize(subtract(center, fish.position)), social.cohesion * 0.4 * fish.personality.sociability * tighten),
     scale(normalize(alignment), social.polarization * 0.4 * fish.personality.sociability),
     scale(normalize(separation), 0.7),
   );
@@ -795,14 +827,6 @@ function getPosture(
   return "level";
 }
 
-function findHabit<T extends FishHabitType>(
-  species: FishSpeciesDefinition,
-  type: T,
-): Extract<FishHabit, { type: T }> | undefined {
-  return species.ecology.habits.find((habit) => habit.type === type) as
-    Extract<FishHabit, { type: T }> | undefined;
-}
-
 function drawHabitDuration(
   species: FishSpeciesDefinition,
   type: "bottomRest" | "hideByDay" | "grazing",
@@ -888,14 +912,3 @@ function createRng(initialSeed: number): () => { value: number; seed: number } {
 function tankCenter(tank: TankDefinition): Vec2 {
   return { x: tank.widthCm / 2, y: tank.heightCm / 2 };
 }
-function add(a: Vec2, b: Vec2): Vec2 { return { x: a.x + b.x, y: a.y + b.y }; }
-function subtract(a: Vec2, b: Vec2): Vec2 { return { x: a.x - b.x, y: a.y - b.y }; }
-function scale(value: Vec2, amount: number): Vec2 { return { x: value.x * amount, y: value.y * amount }; }
-function addMany(...values: Vec2[]): Vec2 { return values.reduce(add, { x: 0, y: 0 }); }
-function length(value: Vec2): number { return Math.hypot(value.x, value.y); }
-function normalize(value: Vec2): Vec2 {
-  const magnitude = length(value);
-  return magnitude > 0.0001 ? scale(value, 1 / magnitude) : { x: 0, y: 0 };
-}
-function lerp(from: number, to: number, amount: number): number { return from + (to - from) * amount; }
-function clamp(value: number, min: number, max: number): number { return Math.max(min, Math.min(max, value)); }

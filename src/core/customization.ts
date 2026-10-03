@@ -12,7 +12,6 @@ import type {
   FishStockEntry,
   LightingId,
   TankDefinition,
-  Vec2,
 } from "./types";
 
 const configSchema = z.object({
@@ -40,7 +39,7 @@ const FIVE_TANK_ADDITIONS: Record<string, string[]> = {
   "malawi-120": ["rusty-cichlid", "saulosi"],
 };
 
-export const DEFAULT_PREFERENCES: AquariumPreferences = {
+const DEFAULT_PREFERENCES: AquariumPreferences = {
   soundEnabled: false,
   soundVolume: 0.42,
 };
@@ -59,7 +58,7 @@ export function getDefaultLayout(tank: TankDefinition, sceneId?: string): Aquari
   return { sceneId: id, lighting: getSceneById(id)?.defaultLighting ?? "natural" };
 }
 
-export function getDefaultCustomization(
+function getDefaultCustomization(
   tank: TankDefinition,
   speciesCatalog: Record<string, FishSpeciesDefinition>,
 ): AquariumCustomization {
@@ -108,13 +107,14 @@ export function normalizeAquariumPersistedState(
   const parsed = persistedStateSchema.safeParse(value);
   if (!parsed.success) return undefined;
   const needsArrangement = (parsed.data.stockArrangementVersion ?? 0) < STOCK_ARRANGEMENT_VERSION;
+  const relocated = relocateMovedSpecies(parsed.data.tanks);
   return {
     version: 5,
     stockArrangementVersion: Math.max(parsed.data.stockArrangementVersion ?? 0, STOCK_ARRANGEMENT_VERSION),
     fiveTankStockVersion: Math.max(parsed.data.fiveTankStockVersion ?? 0, FIVE_TANK_STOCK_VERSION),
     activeTankId: getTankById(parsed.data.activeTankId)?.id ?? aquariumTanks[0]!.id,
     tanks: Object.fromEntries(aquariumTanks.map((tank) => {
-      const customization = normalizeTankCustomization(parsed.data.tanks[tank.id], tank, speciesCatalog);
+      const customization = normalizeTankCustomization(relocated[tank.id], tank, speciesCatalog);
       if ((parsed.data.fiveTankStockVersion ?? 0) < FIVE_TANK_STOCK_VERSION) {
         const additions = tank.defaultStock.filter((entry) =>
           FIVE_TANK_ADDITIONS[tank.id]?.includes(entry.speciesId) &&
@@ -127,6 +127,25 @@ export function normalizeAquariumPersistedState(
     })),
     preferences: normalizePreferences(parsed.data.preferences),
   };
+}
+
+// 魚種を別の水槽へ移したとき（例: ゼブラダニオを30cmキューブから60cm水槽へ）、元の水槽に保存された
+// 匹数を、その魚種を新しく受け入れた水槽へ引き継ぐ。移し先にすでにその魚種があれば手を付けない。
+function relocateMovedSpecies(savedTanks: Record<string, unknown>): Record<string, unknown> {
+  const result: Record<string, unknown> = { ...savedTanks };
+  const stockOf = (value: unknown): FishStockEntry[] =>
+    value && typeof value === "object" && Array.isArray((value as { stock?: unknown }).stock)
+      ? (value as { stock: FishStockEntry[] }).stock : [];
+  for (const tank of aquariumTanks) {
+    for (const entry of stockOf(savedTanks[tank.id])) {
+      if (!entry || typeof entry !== "object" || getSpeciesLimit(tank, entry.speciesId) > 0) continue;
+      const destination = aquariumTanks.find((item) => getSpeciesLimit(item, entry.speciesId) > 0);
+      const saved = destination && result[destination.id];
+      if (!destination || !saved || stockOf(saved).some((other) => other?.speciesId === entry.speciesId)) continue;
+      result[destination.id] = { ...(saved as object), stock: [...stockOf(saved), entry] };
+    }
+  }
+  return result;
 }
 
 // v1〜v4 は60cm水槽1つだった。魚種はそれを入れられる水槽へ、水景と照明はその水景を持つ水槽へ移す。
@@ -203,14 +222,6 @@ export function setStockCount(
     tank,
     speciesCatalog,
   );
-}
-
-/** 水景の構造物（流木など）の位置を、水槽の実寸 (cm) で返す。 */
-export function getStructurePoints(tank: TankDefinition, layout: AquariumLayout): Vec2[] {
-  return (getSceneById(layout.sceneId)?.structurePoints ?? []).map((point) => ({
-    x: point.x * tank.widthCm,
-    y: point.y * tank.heightCm,
-  }));
 }
 
 function normalizeLayout(value: unknown, tank: TankDefinition): AquariumLayout {

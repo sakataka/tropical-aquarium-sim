@@ -7,27 +7,22 @@ import {
 } from "../core";
 import { getFishImageUrl } from "./assets";
 import { FishBody } from "./fishBody";
+import { clamp } from "../core/math";
 
 type FishRecord = { body: FishBody; visualScale: number };
 export type ViewRect = { x: number; y: number; width: number; height: number };
 
-const BACK_DEPTH = 0.56;
 // 魚の画像は全画面で共有し、同じ魚種を何度も読み込まない。
 const fishTextures = new Map<string, Texture | Promise<void>>();
 
 // 水槽1つ分の魚を、指定した矩形（水槽の前面ガラス）に描く。
+// 背景から切り抜いた石・流木（TerrainLayer）と同じ層に置き、zIndex（奥行き）で前後を決める。
 export class FishLayer {
   waterTint = 0xffffff;
-  /** 地形つき水景では、生き物と背景の切り抜きを同じ奥行き順に並べる。 */
-  terrainEnabled = false;
   private readonly records = new Map<string, FishRecord>();
 
-  constructor(
-    private readonly backLayer: Container,
-    private readonly frontLayer: Container,
-  ) {
-    backLayer.sortableChildren = true;
-    frontLayer.sortableChildren = true;
+  constructor(private readonly layer: Container) {
+    layer.sortableChildren = true;
   }
 
   update(
@@ -60,8 +55,7 @@ export class FishLayer {
         this.records.set(item.id, record);
       }
       const mesh = record.body.mesh;
-      const targetLayer = !this.terrainEnabled && item.depth > BACK_DEPTH ? this.backLayer : this.frontLayer;
-      if (mesh.parent !== targetLayer) targetLayer.addChild(mesh);
+      if (mesh.parent !== this.layer) this.layer.addChild(mesh);
 
       // 体長は原画の体の幅を基準に決まるので、縮小した画像の幅へ換算する。
       const textureScale = definition.sourceBodyBounds.width / record.body.mesh.texture.width;
@@ -132,9 +126,6 @@ function scaleColor(color: number, amount: number): number {
   return channel(16) | channel(8) | channel(0);
 }
 
-function clamp(value: number, min: number, max: number): number {
-  return Math.max(min, Math.min(max, value));
-}
 
 function mixColor(from: number, to: number, amount: number): number {
   const t = Math.max(0, Math.min(1, amount));

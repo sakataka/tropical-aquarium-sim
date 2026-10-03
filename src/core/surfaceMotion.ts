@@ -103,6 +103,23 @@ export function stepSurfaceWalker(fish: FishInstance, species: FishSpeciesDefini
   });
   motion.progress = Math.max(interval.from, Math.min(interval.to, motion.progress));
   const before = sampleSurface(surface, motion.progress, tank, frame);
+  if (motion.flee) {
+    // 尾を打って後ろ向きに跳ね退く。経路の外へは出ず、跳び終えたらしばらく固まる。
+    const flee = { ...motion.flee, remainingSec: motion.flee.remainingSec - deltaSec };
+    const speed = species.realBodyLengthCm * Math.max(6, species.ecology.speedBodyLengthsPerSec.burst);
+    motion.progress = Math.max(interval.from, Math.min(interval.to,
+      motion.progress + flee.direction * speed * deltaSec / before.length));
+    motion.flee = flee.remainingSec > 0 ? flee : undefined;
+    if (!motion.flee) motion.pauseSec = 1.2 + random() * 1.8;
+    const sampled = sampleSurface(surface, motion.progress, tank, frame);
+    motion.angle = sampled.angle;
+    return {
+      ...fish, position: sampled.position, depth: sampled.depth, facing: flee.facing,
+      velocity: deltaSec > 0 ? { x: (sampled.position.x - before.position.x) / deltaSec,
+        y: (sampled.position.y - before.position.y) / deltaSec } : { x: 0, y: 0 },
+      surfaceMotion: motion, behaviorMode: "kick", behaviorTimeRemainingSec: 0, seed,
+    };
+  }
   const wasPaused = motion.pauseSec > 0;
   motion.pauseSec = Math.max(0, motion.pauseSec - deltaSec);
   if (!wasPaused && deltaSec > 0) {

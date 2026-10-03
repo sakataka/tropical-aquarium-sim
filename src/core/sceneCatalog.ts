@@ -3,7 +3,6 @@ import type { AquariumScene } from "./types";
 
 type SceneJsonModule = { default: unknown };
 
-const pointSchema = z.object({ x: z.number().finite(), y: z.number().finite() });
 const unit = z.number().finite().min(0).max(1);
 const surfacePointSchema = z.object({ x: unit, y: unit, depth: unit });
 export const terrainSchema = z.object({
@@ -40,13 +39,10 @@ const sceneSchema = z.object({
   description: z.string().min(1),
   defaultLighting: z.enum(["natural", "cool", "evening", "night"]),
   waterColor: z.string().regex(/^#[0-9a-fA-F]{6}$/),
-  structurePoints: z.array(pointSchema),
-  bubbleSources: z.array(z.object({
-    x: z.number().finite().min(0).max(1),
-    y: z.number().finite().min(0).max(1),
-  })),
+  structurePoints: z.array(z.object({ x: unit, y: unit })),
+  bubbleSources: z.array(z.object({ x: unit, y: unit })),
   framing: z.object({ plateBottom: unit.gt(0) }).optional(),
-  terrain: terrainSchema.optional(),
+  terrain: terrainSchema,
 }) satisfies z.ZodType<AquariumScene>;
 
 const sceneModules = import.meta.glob<SceneJsonModule>(

@@ -1,4 +1,4 @@
-import type { AquariumScene, SurfaceFrame } from "./types";
+import type { AquariumScene, SurfaceFrame, TankDefinition, Vec2 } from "./types";
 
 export type FrameRect = { x: number; y: number; width: number; height: number };
 
@@ -36,4 +36,17 @@ export function toSurfaceFrame(plateRect: FrameRect, glass: FrameRect): SurfaceF
     width: plateRect.width / glass.width,
     height: plateRect.height / glass.height,
   };
+}
+
+/** 背景画像に対する比率の点を、前面ガラスに対する比率へ直す（泡の出る位置など）。 */
+export function imageToGlass(point: Vec2, frame: SurfaceFrame): Vec2 {
+  return { x: frame.x + point.x * frame.width, y: frame.y + point.y * frame.height };
+}
+
+/** 水景の寄り道先（流木・水草）を水槽の実寸 (cm) で返す。 */
+export function getStructurePoints(tank: TankDefinition, scene: AquariumScene, frame: SurfaceFrame): Vec2[] {
+  return scene.structurePoints.map((point) => {
+    const glass = imageToGlass(point, frame);
+    return { x: glass.x * tank.widthCm, y: glass.y * tank.heightCm };
+  });
 }

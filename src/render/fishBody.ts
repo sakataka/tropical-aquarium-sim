@@ -1,6 +1,7 @@
 import { MeshPlane, type Texture } from "pixi.js";
 import type { FishInstance, FishSpeciesDefinition } from "../core";
 import { blendAngle, sampleMeshPoint, stepTurnSpring } from "./fishMotion";
+import { clamp, smoothstep } from "../core/math";
 
 const VERTICES_X = 26;
 const VERTICES_Y = 5;
@@ -58,6 +59,8 @@ type MotionState = {
   surfaceRotation?: number;
   detailPhase: number;
   contactAnchor?: { x: number; y: number };
+  /** エビが尾を打って跳ね退くときの腹の曲がり（0〜1）。 */
+  flick: number;
 };
 
 // 尾の振りや向きの状態は魚ごとに1つだけ持ち、部屋と水槽画面で共有する。
@@ -79,6 +82,7 @@ function getMotionState(fish: FishInstance): MotionState {
       stridePhase: (Math.abs(fish.seed) % 314) / 100,
       clockSec: (Math.abs(fish.seed) % 1000) / 37,
       detailPhase: (Math.abs(fish.seed) % 628) / 100,
+      flick: 0,
     };
     motionStates.set(fish.id, state);
   }
@@ -208,8 +212,11 @@ export class FishBody {
     const walking = !swimming && speed > 0.04;
     const strideHz = swimming ? 5.5 : walking ? Math.min(4, 1.6 + speed * 6) : 0.5;
     motion.stridePhase = (motion.stridePhase + deltaSec * strideHz * Math.PI * 2) % (Math.PI * 200);
-    const legAmplitude = swimming ? 0.006 : walking ? 0.014 : 0.003;
-    const bob = walking ? Math.sin(motion.stridePhase * 2) * this.height * 0.006 : 0;
+    // 驚いたエビは腹を一気に丸めて尾で水を打ち、少し浮いて後ろへ跳ぶ。脚はたたむ。
+    const flickTarget = fish.surfaceMotion?.flee ? 1 : 0;
+    motion.flick += (flickTarget - motion.flick) * (1 - Math.exp(-(flickTarget ? 30 : 6) * deltaSec));
+    const legAmplitude = (swimming ? 0.006 : walking ? 0.014 : 0.003) * (1 - motion.flick);
+    const bob = (walking ? Math.sin(motion.stridePhase * 2) * this.height * 0.006 : 0) - motion.flick * this.height * 0.22;
     const head = this.swim.headStart;
     const t = motion.clockSec;
     const rawCos = Math.cos(motion.yaw);
@@ -236,6 +243,11 @@ export class FishBody {
       if (picking) {
         const front = smoothstep(head + 0.22, head, u);
         dy += Math.max(0, Math.sin(t * Math.PI * 2 * 2.4)) * this.height * 0.028 * front;
+      }
+      if (motion.flick > 0.01) {
+        const abdomen = smoothstep(0.5, 1, u) ** 1.5;
+        dy += motion.flick * this.height * 0.3 * abdomen;
+        dx -= motion.flick * this.width * 0.05 * abdomen;
       }
       // 泳ぐときは腹の後ろ半分が遊泳肢の拍に合わせて小さくしなる。
       if (swimming) {
@@ -282,11 +294,4 @@ export class FishBody {
   }
 }
 
-function smoothstep(edge0: number, edge1: number, value: number): number {
-  const t = clamp((value - edge0) / (edge1 - edge0), 0, 1);
-  return t * t * (3 - 2 * t);
-}
 
-function clamp(value: number, min: number, max: number): number {
-  return Math.max(min, Math.min(max, value));
-}

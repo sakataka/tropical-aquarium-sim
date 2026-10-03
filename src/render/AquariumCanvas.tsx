@@ -9,19 +9,15 @@ import {
 } from "pixi.js";
 import {
   getSceneById,
-  getStructurePoints,
+  imageToGlass,
+  startleFish,
   stepSimulation,
   type AquariumLayout,
   type FishInstance,
   type FishSpeciesDefinition,
   type TankDefinition,
-  type Vec2,
 } from "../core";
-import {
-  environmentAssets,
-  getSceneForegroundUrl,
-  getScenePlateUrl,
-} from "./assets";
+import { environmentAssets, getScenePlateUrl } from "./assets";
 import { reportRenderProblem, watchContextLoss, watchSetup } from "./renderProblems";
 import { BubbleColumns, FloatingMotes } from "./bubbles";
 import { FishLayer, getWaterTint } from "./fishLayer";
@@ -32,9 +28,11 @@ import {
   getRenderOptions,
 } from "./tankFraming";
 import { UnderwaterFilter } from "./underwaterFilter";
+import { playSfx } from "../audio/sfx";
 import { getGlassAspect, getWindowOverscan } from "../core/room";
 import { getSurfaceFrame, placePlate, TerrainLayer } from "./terrainLayer";
 import type { AquariumScene } from "../core/types";
+import { clamp, smoothstep } from "../core/math";
 
 type AquariumCanvasProps = {
   fishRef: MutableRefObject<FishInstance[]>;
@@ -63,6 +61,10 @@ export type ViewControl = { zoomBy: (factor: number) => void; resetZoom: () => v
 type CanvasHandle = { setScene: (sceneId: string) => void };
 
 const SCENE_FADE_SEC = 0.9;
+/** これより短く、動きの少ない押し下げをガラスを叩いた操作として扱う。 */
+const TAP_MAX_MS = 320;
+const TAP_MAX_MOVE_PX = 8;
+const TAP_RIPPLE_SEC = 0.7;
 const KEY_PAN_PX = 90;
 const EFFECTS_FADE_IN_SEC = 2.5;
 
@@ -103,12 +105,11 @@ export function AquariumCanvas({
     const world = new Container();
     const plateLayer = new Container();
     const bubbleLayer = new Container();
-    const fishBackLayer = new Container();
-    const foregroundLayer = new Container();
-    const fishFrontLayer = new Container();
+    // 生き物と、背景から切り抜いた石・流木を同じ層で奥行き順に並べる。
+    const creatureLayer = new Container();
     const moteLayer = new Container();
-    const fishLayer = new FishLayer(fishBackLayer, fishFrontLayer);
-    const terrainLayer = new TerrainLayer(fishFrontLayer);
+    const fishLayer = new FishLayer(creatureLayer);
+    const terrainLayer = new TerrainLayer(creatureLayer);
     let scenePlate: Sprite | undefined;
     let activeScene: AquariumScene | undefined;
     // フェード中の古い水景は、その水景の切り取り方のまま残す。
@@ -118,9 +119,7 @@ export function AquariumCanvas({
     world.addChild(
       plateLayer,
       bubbleLayer,
-      fishBackLayer,
-      foregroundLayer,
-      fishFrontLayer,
+      creatureLayer,
       moteLayer,
       glassMask,
     );
@@ -133,6 +132,10 @@ export function AquariumCanvas({
     const view = { x: 0, y: 0, targetX: 0, targetY: 0, zoom: 1, targetZoom: 1 };
     const pointers = new Map<number, { x: number; y: number }>();
     let pinchDistance: number | undefined;
+    // ガラスを叩いた操作の判定と、続けて叩いたときの慣れ（魚の驚き方が弱まり、しばらくで戻る）。
+    let tapStart: { id: number; x: number; y: number; time: number } | undefined;
+    let habituation = 0;
+    const ripples: { ring: Graphics; ageSec: number }[] = [];
     let revealedAtSec: number | undefined;
     let renderedFrames = 0;
 
@@ -140,7 +143,6 @@ export function AquariumCanvas({
     let motes: FloatingMotes | undefined;
     let currentSceneId: string | undefined;
     let sceneToken = 0;
-    let structurePoints: Vec2[] = [];
     let elapsedSec = 0;
     let resizeObserver: ResizeObserver | undefined;
     const publishedGlass = { x: NaN, y: NaN, width: NaN, height: NaN };
@@ -210,12 +212,13 @@ export function AquariumCanvas({
       app.ticker.add((ticker) => {
         const deltaSec = Math.min(0.05, ticker.deltaMS / 1000);
         elapsedSec += deltaSec;
+        habituation = Math.max(0, habituation - deltaSec * 0.025);
+        updateRipples(deltaSec);
         if (activeRef.current) fishRef.current = stepSimulation({
           tank,
           species: speciesRef.current,
           fish: fishRef.current,
           deltaSec,
-          structurePoints,
           scene: activeScene,
           surfaceFrame: scenePlate ? getSurfaceFrame(scenePlate,
             { x: 0, y: 0, ...getGlassSize() }) : undefined,
@@ -257,37 +260,23 @@ export function AquariumCanvas({
       if (!scene || !plateUrl || sceneId === currentSceneId) return;
       currentSceneId = sceneId;
       const token = ++sceneToken;
-      const foregroundUrl = scene.terrain ? undefined : getSceneForegroundUrl(sceneId);
-      const [plateTexture, foregroundTexture] = await Promise.all([
-        Assets.load<Texture>(plateUrl),
-        foregroundUrl ? Assets.load<Texture>(foregroundUrl) : Promise.resolve(undefined),
-      ]);
+      const plateTexture = await Assets.load<Texture>(plateUrl);
       if (disposed || token !== sceneToken) return;
 
       const immediate = plateLayer.children.length === 0;
       activeScene = scene;
       terrainLayer.setScene(scene, plateTexture);
-      fishLayer.terrainEnabled = !!scene.terrain;
-      if (scene.terrain) {
-        for (const child of foregroundLayer.removeChildren()) child.destroy();
-      }
-      for (const [layer, texture] of [
-        [plateLayer, plateTexture],
-        [foregroundLayer, foregroundTexture],
-      ] as const) {
-        if (!texture) continue;
-        const sprite = new Sprite(texture);
-        sprite.anchor.set(0.5);
-        sprite.alpha = immediate ? 1 : 0;
-        spriteScenes.set(sprite, scene);
-        layer.addChild(sprite);
-        if (layer === plateLayer) scenePlate = sprite;
-      }
+      const sprite = new Sprite(plateTexture);
+      sprite.anchor.set(0.5);
+      sprite.alpha = immediate ? 1 : 0;
+      spriteScenes.set(sprite, scene);
+      plateLayer.addChild(sprite);
+      scenePlate = sprite;
       layoutSceneSprites();
-      structurePoints = getStructurePoints(tank, { sceneId, lighting: layoutRef.current.lighting });
       fishLayer.waterTint = getWaterTint(scene.waterColor);
-      bubbles?.setSources(scene.bubbleSources);
-
+      // エアストーンの位置は背景画像に対する比率なので、敷いた位置からガラス上の比率へ直す。
+      const frame = getSurfaceFrame(sprite, { x: 0, y: 0, ...getGlassSize() });
+      bubbles?.setSources(scene.bubbleSources.map((point) => imageToGlass(point, frame)));
     }
 
     function getGlassSize() {
@@ -297,24 +286,18 @@ export function AquariumCanvas({
     function layoutSceneSprites() {
       const { width, height } = getGlassSize();
       glassMask.clear().rect(0, 0, width, height).fill(0xffffff);
-      for (const layer of [plateLayer, foregroundLayer]) {
-        for (const child of layer.children) {
-          if (!(child instanceof Sprite)) continue;
-          // 前景切り抜きは背景と同じ構図なので、同じ位置へ敷く。
-          placePlate(child, { x: 0, y: 0, width, height }, overscan, spriteScenes.get(child));
-        }
+      for (const child of plateLayer.children) {
+        if (child instanceof Sprite) placePlate(child, { x: 0, y: 0, width, height }, overscan, spriteScenes.get(child));
       }
     }
 
     // 新しい水景をフェードインし、重なりきったら古い水景を外す。
     function fadeScenes(deltaSec: number) {
-      for (const layer of [plateLayer, foregroundLayer]) {
-        const newest = layer.children[layer.children.length - 1];
-        if (!newest || layer.children.length < 2) continue;
-        newest.alpha = reducedMotion.matches ? 1 : Math.min(1, newest.alpha + deltaSec / SCENE_FADE_SEC);
-        if (newest.alpha >= 1) {
-          for (const old of layer.children.slice(0, -1)) old.destroy();
-        }
+      const newest = plateLayer.children[plateLayer.children.length - 1];
+      if (!newest || plateLayer.children.length < 2) return;
+      newest.alpha = reducedMotion.matches ? 1 : Math.min(1, newest.alpha + deltaSec / SCENE_FADE_SEC);
+      if (newest.alpha >= 1) {
+        for (const old of plateLayer.children.slice(0, -1)) old.destroy();
       }
     }
 
@@ -378,8 +361,11 @@ export function AquariumCanvas({
 
     function onPointerDown(event: PointerEvent) {
       if (event.pointerType === "mouse" && event.button !== 0) return;
-      pointers.set(event.pointerId, localPoint(event));
-      targetHost.setPointerCapture(event.pointerId);
+      const point = localPoint(event);
+      tapStart = pointers.size === 0 ? { id: event.pointerId, ...point, time: performance.now() } : undefined;
+      pointers.set(event.pointerId, point);
+      // ポインターがすでに離れている（合成イベントなど）と例外になるので、捕捉できなくても続ける。
+      try { targetHost.setPointerCapture(event.pointerId); } catch { /* 捕捉なしでも操作できる */ }
       pinchDistance = undefined;
     }
 
@@ -388,6 +374,7 @@ export function AquariumCanvas({
       if (!previous) return;
       const point = localPoint(event);
       pointers.set(event.pointerId, point);
+      if (tapStart && Math.hypot(point.x - tapStart.x, point.y - tapStart.y) > TAP_MAX_MOVE_PX) tapStart = undefined;
       if (pointers.size >= 2) {
         const [a, b] = [...pointers.values()];
         const distance = Math.hypot(a!.x - b!.x, a!.y - b!.y);
@@ -402,6 +389,54 @@ export function AquariumCanvas({
     function onPointerUp(event: PointerEvent) {
       pointers.delete(event.pointerId);
       pinchDistance = undefined;
+      const tap = tapStart;
+      tapStart = undefined;
+      if (event.type === "pointerup" && tap?.id === event.pointerId && performance.now() - tap.time < TAP_MAX_MS) {
+        tapGlass(tap.x, tap.y);
+      }
+    }
+
+    // ガラスを指先で軽く叩く。近くの魚ほど驚き、住みかや物陰へ逃げ込み、エビは後ろへ跳ねる。
+    function tapGlass(screenX: number, screenY: number) {
+      if (!activeRef.current || !activeScene || !scenePlate) return;
+      const glass = getGlassSize();
+      const local = world.toLocal({ x: screenX, y: screenY });
+      if (local.x < 0 || local.y < 0 || local.x > glass.width || local.y > glass.height) return;
+      const strength = Math.max(0.2, 1 - habituation);
+      habituation = Math.min(0.8, habituation + 0.22);
+      fishRef.current = startleFish({
+        fish: fishRef.current,
+        species: speciesRef.current,
+        tank,
+        scene: activeScene,
+        frame: getSurfaceFrame(scenePlate, { x: 0, y: 0, ...glass }),
+        point: { x: local.x / glass.width * tank.widthCm, y: local.y / glass.height * tank.heightCm },
+        strength,
+      });
+      playSfx("ui_tap", 0.6 + strength * 0.4);
+      // 画面検証で、叩いた操作が届いたことを確かめられるようにする。
+      targetHost.dataset.glassTaps = String(Number(targetHost.dataset.glassTaps ?? 0) + 1);
+      if (reducedMotion.matches) return;
+      const ring = new Graphics();
+      ring.position.set(local.x, local.y);
+      moteLayer.addChild(ring);
+      ripples.push({ ring, ageSec: 0 });
+    }
+
+    // 叩いた所に、ガラスに伝わる小さな波紋を短く出す。
+    function updateRipples(deltaSec: number) {
+      for (let index = ripples.length - 1; index >= 0; index -= 1) {
+        const ripple = ripples[index]!;
+        ripple.ageSec += deltaSec;
+        const t = ripple.ageSec / TAP_RIPPLE_SEC;
+        if (t >= 1) {
+          ripple.ring.destroy();
+          ripples.splice(index, 1);
+          continue;
+        }
+        ripple.ring.clear().circle(0, 0, 6 + t * 34)
+          .stroke({ color: 0xffffff, width: 1.5 / world.scale.x, alpha: 0.32 * (1 - t) ** 2 });
+      }
     }
 
     function onDoubleClick(event: MouseEvent) {
@@ -474,14 +509,7 @@ export function AquariumCanvas({
   return <div className="aquarium-canvas" ref={hostRef} />;
 }
 
-function smoothstep(edge0: number, edge1: number, value: number): number {
-  const t = clamp((value - edge0) / (edge1 - edge0), 0, 1);
-  return t * t * (3 - 2 * t);
-}
 
-function clamp(value: number, min: number, max: number): number {
-  return Math.max(min, Math.min(max, value));
-}
 
 // PixiJS 8.21 の FilterSystem は、最後にフィルターへ渡した入力テクスチャ（共有の
 // 作業用テクスチャ）を内部の BindGroup に持ち続ける。リサイズやレンダラー破棄で

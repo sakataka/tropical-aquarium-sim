@@ -8,16 +8,19 @@
     "waveCount": 1.15,
     "tailSweepRad": 0.13,
     "verticalFlex": 0.025,
-    "headStart": 0.2
+    "mouthAnchor": {
+      "x": 0.0,
+      "y": 0.52
+    }
   },
   "visual": {
     "fallbackColor": "#a59974"
   },
   "sourceBodyBounds": {
-    "x": 44,
-    "y": 187,
-    "width": 1857,
-    "height": 429
+    "x": 173,
+    "y": 384,
+    "width": 1217,
+    "height": 278
   },
   "preferredZone": {
     "minX": 0.1,

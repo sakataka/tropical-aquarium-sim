@@ -1,5 +1,6 @@
 import { fishCatalog } from "./catalog";
 import type { FishInstance, FishPersonality, FishStockEntry, TankDefinition } from "./types";
+import { lerp } from "./math";
 
 /** 初期の乱数から一度だけ作る。移動用 seed が進んでも性格は変わらない。 */
 export function createFishPersonality(birthSeed: number): FishPersonality {
@@ -81,6 +82,3 @@ function createFish(speciesId: string, index: number, tank: TankDefinition): Fis
   };
 }
 
-function lerp(from: number, to: number, amount: number): number {
-  return from + (to - from) * amount;
-}

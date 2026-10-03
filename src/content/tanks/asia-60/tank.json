@@ -8,7 +8,7 @@
   "widthCm": 60,
   "heightCm": 36,
   "depthCm": 30,
-  "maxTotalFish": 36,
+  "maxTotalFish": 40,
   "sceneIds": [
     "planted",
     "root-driftwood",
@@ -16,23 +16,79 @@
     "iwagumi"
   ],
   "species": [
-    { "speciesId": "harlequin-rasbora", "maxCount": 12 },
-    { "speciesId": "cherry-barb", "maxCount": 10 },
-    { "speciesId": "kuhli-loach", "maxCount": 6 },
-    { "speciesId": "dwarf-gourami", "maxCount": 2 },
-    { "speciesId": "celestial-pearl-danio", "maxCount": 12 },
-    { "speciesId": "siamese-algae-eater", "maxCount": 2 },
-    { "speciesId": "honey-gourami", "maxCount": 4 },
-    { "speciesId": "chili-rasbora", "maxCount": 14 }
+    {
+      "speciesId": "harlequin-rasbora",
+      "maxCount": 12
+    },
+    {
+      "speciesId": "cherry-barb",
+      "maxCount": 10
+    },
+    {
+      "speciesId": "kuhli-loach",
+      "maxCount": 6
+    },
+    {
+      "speciesId": "dwarf-gourami",
+      "maxCount": 2
+    },
+    {
+      "speciesId": "celestial-pearl-danio",
+      "maxCount": 12
+    },
+    {
+      "speciesId": "siamese-algae-eater",
+      "maxCount": 2
+    },
+    {
+      "speciesId": "honey-gourami",
+      "maxCount": 4
+    },
+    {
+      "speciesId": "chili-rasbora",
+      "maxCount": 14
+    },
+    {
+      "speciesId": "zebra-danio",
+      "maxCount": 6
+    }
   ],
   "defaultStock": [
-    { "speciesId": "harlequin-rasbora", "count": 11 },
-    { "speciesId": "chili-rasbora", "count": 9 },
-    { "speciesId": "celestial-pearl-danio", "count": 4 },
-    { "speciesId": "cherry-barb", "count": 4 },
-    { "speciesId": "kuhli-loach", "count": 3 },
-    { "speciesId": "siamese-algae-eater", "count": 1 },
-    { "speciesId": "dwarf-gourami", "count": 1 },
-    { "speciesId": "honey-gourami", "count": 1 }
+    {
+      "speciesId": "harlequin-rasbora",
+      "count": 11
+    },
+    {
+      "speciesId": "chili-rasbora",
+      "count": 9
+    },
+    {
+      "speciesId": "celestial-pearl-danio",
+      "count": 4
+    },
+    {
+      "speciesId": "zebra-danio",
+      "count": 2
+    },
+    {
+      "speciesId": "cherry-barb",
+      "count": 4
+    },
+    {
+      "speciesId": "kuhli-loach",
+      "count": 3
+    },
+    {
+      "speciesId": "siamese-algae-eater",
+      "count": 1
+    },
+    {
+      "speciesId": "dwarf-gourami",
+      "count": 1
+    },
+    {
+      "speciesId": "honey-gourami",
+      "count": 1
+    }
   ]
 }

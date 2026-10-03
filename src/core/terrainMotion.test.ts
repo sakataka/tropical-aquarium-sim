@@ -15,7 +15,8 @@ describe("depth-aware terrain across habitats", () => {
         radius: { x: .1, y: .1 }, depthRadius: .12 }],
     } };
     const context = { tank, scene, species: fishCatalog["ember-tetra"]!, frame: FULL_SURFACE_FRAME };
-    const from = { x: 4, y: 15 }, to = { x: 26, y: 15 };
+    const midY = tank.heightCm / 2;
+    const from = { x: 4, y: midY }, to = { x: 26, y: midY };
     const hit = constrainTerrainStep(from, to, .5, context);
     expect(hit.x).toBeGreaterThan(from.x);
     expect(hit.x).toBeLessThan(12);
@@ -23,7 +24,7 @@ describe("depth-aware terrain across habitats", () => {
     expect(constrainTerrainStep(from, to, .2, context)).toEqual(to);
     expect(constrainTerrainStep(from, to, .8, context)).toEqual(to);
     // 停止直前の微小な惰性でも、境界から岩の内側へ染み込まない。
-    const edge = { x: 15 - (3 + context.species.realBodyLengthCm * .2) * 1.000000001, y: 15 };
+    const edge = { x: 15 - (3 + context.species.realBodyLengthCm * .2) * 1.000000001, y: midY };
     const tiny = constrainTerrainStep(edge, { x: edge.x + .000001, y: edge.y }, .5, context);
     expect(insideTerrain(tiny, .5, context)).toBe(false);
   });

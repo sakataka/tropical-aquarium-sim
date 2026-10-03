@@ -49,9 +49,14 @@ export function getRoomForTank(tankId: string): FishRoomDefinition {
 // 水槽画面は部屋で見えているガラスと同じ縦横比で水景を切り取る。
 // こうすると、部屋から寄り終えた構図と水槽画面の構図が一致する。
 export function getGlassAspect(tank: TankDefinition): number {
-  const placement = getTankPlacement(tank.id);
-  if (!placement) return tank.widthCm / tank.heightCm;
-  return (placement.glass.width * getRoomForTank(tank.id).aspectRatio) / placement.glass.height;
+  return getGlassAspectForTank(tank.id) ?? tank.widthCm / tank.heightCm;
+}
+
+/** 部屋の絵に置かれたガラスの縦横比（幅 / 高さ）。どの部屋にもない水槽は undefined。 */
+export function getGlassAspectForTank(tankId: string): number | undefined {
+  const room = fishRooms.find((item) => item.tanks.some((tank) => tank.tankId === tankId));
+  const placement = room?.tanks.find((item) => item.tankId === tankId);
+  return room && placement ? (placement.glass.width * room.aspectRatio) / placement.glass.height : undefined;
 }
 
 /** 側面ガラスまで含めた切り抜き範囲が、前面ガラスの何倍か。水景はここまで広げて描く。 */

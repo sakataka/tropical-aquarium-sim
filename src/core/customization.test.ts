@@ -3,12 +3,12 @@ import { fishCatalog } from "./catalog";
 import {
   AQUARIUM_STATE_STORAGE_KEY,
   createDefaultState,
-  getStructurePoints,
   migrateLegacyAquariumState,
   normalizeAquariumPersistedState,
   setStockCount,
 } from "./customization";
 import { fishRooms, getRoomForTank } from "./room";
+import { getStructurePoints } from "./plateFraming";
 import { aquariumScenes, getSceneById } from "./sceneCatalog";
 import { aquariumTanks, getTankById } from "./tankCatalog";
 
@@ -58,15 +58,30 @@ describe("tanks", () => {
     expect(stock.reduce((sum, entry) => sum + entry.count, 0)).toBe(cube.maxTotalFish);
   });
 
-  test("scales scene structure points to the tank size", () => {
+  test("places scene structure points through the plate framing, in tank centimetres", () => {
     const scene = getSceneById("driftwood")!;
-    const points = getStructurePoints(asia, { sceneId: scene.id, lighting: "natural" });
-    expect(points[0]!.x).toBeCloseTo(scene.structurePoints[0]!.x * asia.widthCm);
-    expect(points[0]!.y).toBeCloseTo(scene.structurePoints[0]!.y * asia.heightCm);
+    const frame = { x: -.1, y: -.2, width: 1.2, height: 1.2 };
+    const points = getStructurePoints(asia, scene, frame);
+    expect(points[0]!.x).toBeCloseTo((frame.x + scene.structurePoints[0]!.x * frame.width) * asia.widthCm);
+    expect(points[0]!.y).toBeCloseTo((frame.y + scene.structurePoints[0]!.y * frame.height) * asia.heightCm);
   });
 });
 
 describe("saved state", () => {
+  test("carries the saved count of a species moved to another tank, once, without touching chosen counts", () => {
+    const saved = createDefaultState(fishCatalog);
+    saved.tanks["cube-30"]!.stock = [{ speciesId: "ember-tetra", count: 6 }, { speciesId: "zebra-danio", count: 4 }];
+    saved.tanks["asia-60"]!.stock = [{ speciesId: "harlequin-rasbora", count: 10 }];
+    const restored = normalizeAquariumPersistedState(JSON.parse(JSON.stringify(saved)), fishCatalog)!;
+    expect(restored.tanks["cube-30"]!.stock).toEqual([{ speciesId: "ember-tetra", count: 6 }]);
+    expect(restored.tanks["asia-60"]!.stock).toEqual([
+      { speciesId: "harlequin-rasbora", count: 10 }, { speciesId: "zebra-danio", count: 4 }]);
+    // 移し先ですでに選んである匹数は上書きしない。
+    saved.tanks["asia-60"]!.stock = [{ speciesId: "zebra-danio", count: 1 }];
+    expect(normalizeAquariumPersistedState(JSON.parse(JSON.stringify(saved)), fishCatalog)!.tanks["asia-60"]!.stock)
+      .toEqual([{ speciesId: "zebra-danio", count: 1 }]);
+  });
+
   test("adds the second room to an existing five-tank save, preserving manual changes", () => {
     const old = createDefaultState(fishCatalog);
     delete old.tanks["reef-120"];

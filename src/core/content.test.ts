@@ -46,6 +46,13 @@ describe("content wiring", () => {
     }
   });
 
+  test("swim parameters only describe body parts the body plan has", () => {
+    for (const species of Object.values(fishCatalog)) {
+      // 触角の範囲 headStart は、エビ（crustacean）にだけ意味がある。
+      if (species.swim?.bodyPlan !== "crustacean") expect(species.swim?.headStart, species.id).toBeUndefined();
+    }
+  });
+
   test("species with a home shelter find that kind of shelter in every scene of their tanks", () => {
     for (const tank of aquariumTanks) for (const slot of tank.species) {
       const home = fishCatalog[slot.speciesId]!.ecology.habits.find((habit) => habit.type === "homeShelter");

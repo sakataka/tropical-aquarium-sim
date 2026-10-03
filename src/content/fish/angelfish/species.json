@@ -31,12 +31,15 @@
     },
     "turnRateRadPerSec": 1.4,
     "restFraction": 0.3,
-    "depthRange": [0.2, 0.8],
+    "depthRange": [
+      0.2,
+      0.8
+    ],
     "social": {
-      "grouping": "solitary",
+      "grouping": "group",
       "spacingBodyLengths": 3,
-      "cohesion": 0,
-      "polarization": 0
+      "cohesion": 0.25,
+      "polarization": 0.15
     },
     "structureAffinity": 0.7,
     "habits": [],

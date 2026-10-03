@@ -14,21 +14,55 @@
     "cube-stones"
   ],
   "species": [
-    { "speciesId": "guppy", "maxCount": 6 },
-    { "speciesId": "platy", "maxCount": 4 },
-    { "speciesId": "white-cloud-minnow", "maxCount": 10 },
-    { "speciesId": "zebra-danio", "maxCount": 6 },
-    { "speciesId": "otocinclus", "maxCount": 4 },
-    { "speciesId": "ember-tetra", "maxCount": 10 },
-    { "speciesId": "clown-killifish", "maxCount": 8 }
+    {
+      "speciesId": "guppy",
+      "maxCount": 6
+    },
+    {
+      "speciesId": "platy",
+      "maxCount": 4
+    },
+    {
+      "speciesId": "white-cloud-minnow",
+      "maxCount": 10
+    },
+    {
+      "speciesId": "otocinclus",
+      "maxCount": 4
+    },
+    {
+      "speciesId": "ember-tetra",
+      "maxCount": 10
+    },
+    {
+      "speciesId": "clown-killifish",
+      "maxCount": 8
+    }
   ],
   "defaultStock": [
-    { "speciesId": "ember-tetra", "count": 8 },
-    { "speciesId": "white-cloud-minnow", "count": 2 },
-    { "speciesId": "zebra-danio", "count": 3 },
-    { "speciesId": "otocinclus", "count": 2 },
-    { "speciesId": "guppy", "count": 2 },
-    { "speciesId": "clown-killifish", "count": 2 },
-    { "speciesId": "platy", "count": 1 }
+    {
+      "speciesId": "ember-tetra",
+      "count": 8
+    },
+    {
+      "speciesId": "white-cloud-minnow",
+      "count": 4
+    },
+    {
+      "speciesId": "otocinclus",
+      "count": 2
+    },
+    {
+      "speciesId": "guppy",
+      "count": 3
+    },
+    {
+      "speciesId": "clown-killifish",
+      "count": 2
+    },
+    {
+      "speciesId": "platy",
+      "count": 1
+    }
   ]
 }
