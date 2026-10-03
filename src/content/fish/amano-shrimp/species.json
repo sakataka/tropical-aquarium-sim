@@ -8,7 +8,7 @@
     "originRegionName": "日本",
     "origin": "日本などの河川に暮らす淡水エビ。幼生は海へ下り、成長して川を遡上します。",
     "temperament": "穏やかで、石や水草の表面を少しずつ巡ります。",
-    "movement": "底近くをゆっくり移動し、石のそばで立ち止まってついばみます。魚のように尾を振り続けません。",
+    "movement": "砂底、石、流木の表面をゆっくり歩き、立ち止まってついばみます。魚のように尾を振り続けません。",
     "habitat": "きれいな川の石や水草。本水槽では成体のいる浅瀬をイメージしています。",
     "aliases": [
       "amano shrimp",
@@ -75,6 +75,10 @@
       {
         "title": "東京都公園協会: ヤマトヌマエビ",
         "url": "https://www.tokyo-park.or.jp/park/hachijo/creature/detail/0985.html"
+      },
+      {
+        "title": "Fluval: Species Spotlight — Amano Shrimp (surface grazing)",
+        "url": "https://fluvalaquatics.com/uk/wp-content/uploads/2022/02/Species-Spotlight_Amano-Shrimp_EN.pdf"
       }
     ]
   },

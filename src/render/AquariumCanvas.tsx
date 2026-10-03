@@ -33,6 +33,9 @@ import {
   getRenderOptions,
 } from "./tankFraming";
 import { UnderwaterFilter } from "./underwaterFilter";
+import { fishRoom } from "../core/room";
+import { getSurfaceFrame, TerrainLayer } from "./terrainLayer";
+import type { AquariumScene } from "../core/types";
 
 type AquariumCanvasProps = {
   fishRef: MutableRefObject<FishInstance[]>;
@@ -106,6 +109,9 @@ export function AquariumCanvas({
     const fishFrontLayer = new Container();
     const moteLayer = new Container();
     const fishLayer = new FishLayer(fishBackLayer, fishFrontLayer);
+    const terrainLayer = new TerrainLayer(fishFrontLayer);
+    let scenePlate: Sprite | undefined;
+    let activeScene: AquariumScene | undefined;
     // 水景・魚・泡はすべて部屋のガラスと同じ形で切り抜く。
     const glassMask = new Graphics();
     world.addChild(
@@ -208,6 +214,9 @@ export function AquariumCanvas({
           fish: fishRef.current,
           deltaSec,
           structurePoints,
+          scene: activeScene,
+          surfaceFrame: scenePlate ? getSurfaceFrame(scenePlate,
+            { x: 0, y: 0, ...getGlassSize() }) : undefined,
           lighting: layoutRef.current.lighting,
         }).fish;
         if (revealedRef.current && revealedAtSec === undefined) revealedAtSec = elapsedSec;
@@ -218,6 +227,7 @@ export function AquariumCanvas({
         driftCamera(glass.width, glass.height, deltaSec, effects);
         publishGlass(glass.width, glass.height);
         fadeScenes(deltaSec);
+        if (scenePlate) terrainLayer.layout(scenePlate);
         fishLayer.update(
           fishRef.current,
           speciesRef.current,
@@ -245,7 +255,7 @@ export function AquariumCanvas({
       if (!scene || !plateUrl || sceneId === currentSceneId) return;
       currentSceneId = sceneId;
       const token = ++sceneToken;
-      const foregroundUrl = getSceneForegroundUrl(sceneId);
+      const foregroundUrl = scene.terrain ? undefined : getSceneForegroundUrl(sceneId);
       const [plateTexture, foregroundTexture] = await Promise.all([
         Assets.load<Texture>(plateUrl),
         foregroundUrl ? Assets.load<Texture>(foregroundUrl) : Promise.resolve(undefined),
@@ -253,6 +263,12 @@ export function AquariumCanvas({
       if (disposed || token !== sceneToken) return;
 
       const immediate = plateLayer.children.length === 0;
+      activeScene = scene;
+      terrainLayer.setScene(scene, plateTexture);
+      fishLayer.terrainEnabled = !!scene.terrain;
+      if (scene.terrain) {
+        for (const child of foregroundLayer.removeChildren()) child.destroy();
+      }
       for (const [layer, texture] of [
         [plateLayer, plateTexture],
         [foregroundLayer, foregroundTexture],
@@ -262,6 +278,7 @@ export function AquariumCanvas({
         sprite.anchor.set(0.5);
         sprite.alpha = immediate ? 1 : 0;
         layer.addChild(sprite);
+        if (layer === plateLayer) scenePlate = sprite;
       }
       layoutSceneSprites();
       structurePoints = getStructurePoints(tank, { sceneId, lighting: layoutRef.current.lighting });
@@ -281,7 +298,13 @@ export function AquariumCanvas({
         for (const child of layer.children) {
           if (!(child instanceof Sprite)) continue;
           child.position.set(width / 2, height / 2);
-          child.scale.set(Math.max(width / child.texture.width, height / child.texture.height));
+          const placement = fishRoom.tanks.find((item) => item.tankId === tank.id);
+          const terrain = !!activeScene?.terrain;
+          const overscanX = terrain && placement ? placement.window.width / placement.glass.width : 1;
+          const overscanY = terrain && placement ? placement.window.height / placement.glass.height : 1;
+          child.scale.set(Math.max(width * overscanX / child.texture.width, height * overscanY / child.texture.height));
+          // 地形のある水景は砂底をガラスの下端に合わせ、cover で歩く面が切れないようにする。
+          if (terrain) child.y = height - child.height / 2;
         }
       }
     }
@@ -430,6 +453,7 @@ export function AquariumCanvas({
       if (viewControlRef) viewControlRef.current = null;
       window.removeEventListener("keydown", onKeyDown);
       fishLayer.destroy();
+      terrainLayer.clear();
       if (initialized) destroyApp();
     };
 

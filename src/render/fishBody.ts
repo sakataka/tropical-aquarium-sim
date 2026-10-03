@@ -54,6 +54,7 @@ type MotionState = {
   /** エビの脚の運び。歩く速さに合わせて進む。 */
   stridePhase: number;
   clockSec: number;
+  surfaceRotation?: number;
 };
 
 // 尾の振りや向きの状態は魚ごとに1つだけ持ち、部屋と水槽画面で共有する。
@@ -111,7 +112,8 @@ export class FishBody {
     this.motion = getMotionState(fish);
   }
 
-  update(fish: FishInstance, deltaSec: number, bottomY: number) {
+  update(fish: FishInstance, deltaSec: number, bottomY: number, surfaceAngle?: number) {
+    this.mesh.pivot.y = this.height * (fish.surfaceMotion ? 0.88 : 0.5);
     this.updateYaw(fish, deltaSec);
     const speed = Math.hypot(fish.velocity.x, fish.velocity.y);
     const turning = Math.abs(Math.sin(this.motion.yaw));
@@ -134,7 +136,14 @@ export class FishBody {
       : headingPitch;
     this.motion.pitch += (targetPitch - this.motion.pitch) * (1 - Math.exp(-4 * deltaSec));
     // 頭が向いている側へ傾ける。反転中は自然に0へ近づく。
-    this.mesh.rotation = -this.motion.pitch * Math.cos(this.motion.yaw);
+    if (surfaceAngle !== undefined) {
+      this.motion.surfaceRotation = this.motion.surfaceRotation === undefined ? surfaceAngle
+        : this.motion.surfaceRotation + (surfaceAngle - this.motion.surfaceRotation) * (1 - Math.exp(-6 * deltaSec));
+      this.mesh.rotation = this.motion.surfaceRotation;
+    } else {
+      this.motion.surfaceRotation = undefined;
+      this.mesh.rotation = -this.motion.pitch * Math.cos(this.motion.yaw);
+    }
     if (this.swim.bodyPlan === "crustacean") this.deformCrustacean(fish, speed, deltaSec, bottomY);
     else this.deform();
   }
@@ -146,6 +155,11 @@ export class FishBody {
   private updateYaw(fish: FishInstance, deltaSec: number) {
     this.motion.sinceTurnSec += deltaSec;
     const vx = fish.velocity.x;
+    if (fish.surfaceMotion && this.motion.sinceTurnSec >= MIN_TURN_INTERVAL_SEC &&
+      (fish.facing === 1) !== (this.motion.targetYaw > Math.PI / 2)) {
+      this.motion.targetYaw = fish.facing === 1 ? Math.PI : 0;
+      this.motion.sinceTurnSec = 0;
+    }
     const facingRight = this.motion.targetYaw > Math.PI / 2;
     if (this.motion.sinceTurnSec >= MIN_TURN_INTERVAL_SEC) {
       if (!facingRight && vx > TURN_HYSTERESIS_CM_PER_SEC) {
@@ -169,7 +183,7 @@ export class FishBody {
     const motion = this.motion;
     motion.clockSec += deltaSec;
     // kick は通常移動のリズムでも発生する。底にいる間は加速中も脚で歩く。
-    const swimming = fish.position.y < bottomY - 0.6 && speed > 0.04;
+    const swimming = !fish.surfaceMotion && fish.position.y < bottomY - 0.6 && speed > 0.04;
     const picking = fish.behaviorMode === "forage";
     const walking = !swimming && speed > 0.04;
     const strideHz = swimming ? 5.5 : walking ? Math.min(4, 1.6 + speed * 6) : 0.5;

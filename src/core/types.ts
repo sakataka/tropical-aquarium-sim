@@ -1,5 +1,28 @@
 export type Vec2 = { x: number; y: number };
 
+// 背景画像上の座標と前後位置。画像の輪郭に沿う経路を、水景ごとに持つ。
+export type SurfacePoint = Vec2 & { depth: number };
+export type SceneSurface = {
+  id: string;
+  material: "sand" | "stone" | "wood";
+  points: SurfacePoint[];
+};
+export type SceneTerrain = {
+  surfaces: SceneSurface[];
+  occluders: { id: string; depth: number; polygon: Vec2[] }[];
+};
+// cover 表示で切り取られる背景と、前面ガラスの座標を一致させる。
+export type SurfaceFrame = { x: number; y: number; width: number; height: number };
+export type SurfaceMotion = {
+  sceneId: string;
+  surfaceId: string;
+  progress: number;
+  direction: -1 | 1;
+  pauseSec: number;
+  grazing: boolean;
+  angle: number;
+};
+
 export type LightingId = "natural" | "cool" | "evening" | "night";
 export type SwimZoneId = "surface" | "middle" | "bottom";
 
@@ -94,6 +117,7 @@ export type FishInstance = {
   velocity: Vec2;
   facing: -1 | 1;
   depth: number;
+  surfaceMotion?: SurfaceMotion;
   bodyLengthVariance: number;
   behaviorMode: "kick" | "coast" | "pause" | "rest" | "forage";
   behaviorTimeRemainingSec: number;
@@ -138,6 +162,8 @@ export type SimulationInput = {
   fish: FishInstance[];
   deltaSec: number;
   structurePoints: Vec2[];
+  scene?: AquariumScene;
+  surfaceFrame?: SurfaceFrame;
 };
 
 export type SimulationOutput = { fish: FishInstance[] };
@@ -153,6 +179,7 @@ export type AquariumScene = {
   waterColor: string;
   structurePoints: Vec2[];
   bubbleSources: Vec2[];
+  terrain?: SceneTerrain;
 };
 
 export type AquariumLayout = {

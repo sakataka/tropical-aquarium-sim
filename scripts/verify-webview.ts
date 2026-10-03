@@ -18,6 +18,7 @@ type Result = {
   addedTanksPreserved: boolean;
   arrangementPreserved: boolean;
   scenesVisited: string[];
+  japanScenes: string[];
   viewingOnEntry: boolean;
   viewingStageWidth: number;
   editingOpened: boolean;
@@ -113,6 +114,7 @@ async function main() {
     ));
 
     const newSpeciesChecked = await verifyNewFish(view, "asia-60", [["honey-gourami", "ハニーグラミー"], ["chili-rasbora", "ボララス・ブリジッタエ"]]);
+    const japanScenes: string[] = [];
     await clickTab(view, "水景");
     const scenesVisited: string[] = [];
     for (const [label, id] of [
@@ -190,6 +192,7 @@ async function main() {
         const img = document.querySelector(".theme-thumb img");
         return img?.complete && img.naturalWidth > 0;
       })()`));
+      if (id === "japan-60") japanScenes.push(...await verifyJapanScenes(view, "desktop"));
       await clickByLabel(view, "閉じて眺める");
     }
 
@@ -346,6 +349,10 @@ async function main() {
       assert(await countCards(mobileView) === 4);
       assert(await mobileView.evaluate(`document.documentElement.scrollWidth === innerWidth`));
       await Bun.write(`${SCREENSHOT_DIR}/${id}-settings-420x912.png`, await mobileView.screenshot({ format: "png" }));
+      if (id === "japan-60") {
+        await clickTab(mobileView, "水景");
+        japanScenes.push(...await verifyJapanScenes(mobileView, "420x912"));
+      }
       await clickByLabel(mobileView, "閉じて眺める");
     }
     await mobileView.navigate(`${BASE_URL}?tank=asia-60`);
@@ -406,7 +413,7 @@ async function main() {
     await Bun.write(`${SCREENSHOT_DIR}/settings-landscape-912x420.png`, await landscapeView.screenshot({ format: "png" }));
 
     const result: Result = {
-      title, roomTanks, enteredTank, asiaCards, harlequinCount, rejectedSpecies, newSpeciesChecked, addedTanksPreserved, arrangementPreserved, scenesVisited,
+      title, roomTanks, enteredTank, asiaCards, harlequinCount, rejectedSpecies, newSpeciesChecked, addedTanksPreserved, arrangementPreserved, scenesVisited, japanScenes,
       viewingOnEntry, viewingStageWidth, editingOpened, editingStageWidth, closedToViewing, backToRoom, cubeCards, cubeStageRatio, amazonCards, adjacentTanks,
       restored, migrated, desktop, mobile, landscape, removedCopyAbsent, consoleErrors,
     };
@@ -434,6 +441,7 @@ async function main() {
     assert(landscape.panelTop === 0 && landscape.panelLeft >= 456 && landscape.stageHeight >= 380 &&
       landscape.overflowWidth === 0);
     assert(newSpeciesChecked.length === 14);
+    assert(japanScenes.length === 6);
     assert(addedTanksPreserved);
     assert(arrangementPreserved);
     assert(removedCopyAbsent);
@@ -443,6 +451,33 @@ async function main() {
     server.kill();
     await server.exited.catch(() => undefined);
   }
+}
+
+// 既存の水景・匹数を維持し、新しい地形つき水景を通常のUIで選択・復元する。
+async function verifyJapanScenes(view: Bun.WebView, viewport: string) {
+  const stock = String(await view.evaluate(`JSON.stringify(JSON.parse(localStorage.getItem("${STATE_KEY}")).tanks["japan-60"].stock)`));
+  const visited: string[] = [];
+  for (const [id, name] of [["japan-moss-stones", "苔石と砂の小径"],
+    ["japan-moss-wood", "苔むす流木の浅瀬"], ["japan-spring", "木漏れ日の湧水"]]) {
+    await clickButtonByText(view, name!);
+    await sleep(1600);
+    assert(await view.evaluate(`Array.from(document.querySelectorAll('.theme-thumb img')).every(img => img.complete && img.naturalWidth > 0)`));
+    assert(await view.evaluate(`JSON.parse(localStorage.getItem("${STATE_KEY}")).tanks["japan-60"].layout.sceneId === ${JSON.stringify(id)}`));
+    await clickByLabel(view, "閉じて眺める");
+    await sleep(900);
+    await Bun.write(`${SCREENSHOT_DIR}/${id}-${viewport}.png`, await view.screenshot({ format: "png" }));
+    assert(await view.evaluate(`document.documentElement.scrollWidth === innerWidth`));
+    assert(!await view.evaluate(`!!document.querySelector('.render-problem')`));
+    await view.evaluate(`history.replaceState(null, "", "?tank=japan-60")`);
+    await view.reload();
+    await sleep(2000);
+    assert(await view.evaluate(`JSON.parse(localStorage.getItem("${STATE_KEY}")).tanks["japan-60"].layout.sceneId === ${JSON.stringify(id)}`));
+    assert(stock === await view.evaluate(`JSON.stringify(JSON.parse(localStorage.getItem("${STATE_KEY}")).tanks["japan-60"].stock)`));
+    await clickButtonByText(view, "設定");
+    await clickTab(view, "水景");
+    visited.push(`${viewport}:${id}`);
+  }
+  return visited;
 }
 
 function stockCount(tankId: string, speciesId: string) {

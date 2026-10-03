@@ -18,6 +18,8 @@ const fishTextures = new Map<string, Texture | Promise<void>>();
 // 水槽1つ分の魚を、指定した矩形（水槽の前面ガラス）に描く。
 export class FishLayer {
   waterTint = 0xffffff;
+  /** 地形つき水景では、生き物と背景の切り抜きを同じ奥行き順に並べる。 */
+  terrainEnabled = false;
   private readonly records = new Map<string, FishRecord>();
 
   constructor(
@@ -58,7 +60,7 @@ export class FishLayer {
         this.records.set(item.id, record);
       }
       const mesh = record.body.mesh;
-      const targetLayer = item.depth > BACK_DEPTH ? this.backLayer : this.frontLayer;
+      const targetLayer = !this.terrainEnabled && item.depth > BACK_DEPTH ? this.backLayer : this.frontLayer;
       if (mesh.parent !== targetLayer) targetLayer.addChild(mesh);
 
       // 体長は原画の体の幅を基準に決まるので、縮小した画像の幅へ換算する。
@@ -84,7 +86,9 @@ export class FishLayer {
       mesh.tint = scaleColor(mixColor(0xffffff, this.waterTint, 0.06 + item.depth * 0.26), lightFalloff);
       mesh.alpha = 1 - item.depth * 0.08;
       mesh.zIndex = -item.depth;
-      record.body.update(item, advance ? deltaSec : 0, tank.heightCm - tank.safeMarginCm);
+      const surfaceAngle = item.surfaceMotion
+        ? Math.atan(Math.tan(item.surfaceMotion.angle) * rect.height / rect.width) : undefined;
+      record.body.update(item, advance ? deltaSec : 0, tank.heightCm - tank.safeMarginCm, surfaceAngle);
     }
   }
 

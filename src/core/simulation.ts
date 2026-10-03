@@ -11,6 +11,7 @@ import type {
   TankDefinition,
   Vec2,
 } from "./types";
+import { FULL_SURFACE_FRAME, stepSurfaceWalker } from "./surfaceMotion";
 
 const FORWARD_TARGET_CHANCE = 0.86;
 const FACING_THRESHOLD_CM_PER_SEC = 0.3;
@@ -53,8 +54,13 @@ export function stepSimulation(input: SimulationInput): SimulationOutput {
     fish: input.fish.map((fish) => {
       const species = input.species[fish.speciesId];
       if (!species) return fish;
+      if (species.swim?.bodyPlan === "crustacean" && input.scene?.terrain) {
+        return stepSurfaceWalker(fish, species, input.tank, input.scene,
+          input.surfaceFrame ?? FULL_SURFACE_FRAME, deltaSec, getActivityLevel(species, lighting));
+      }
       return stepFish({
-        fish,
+        fish: fish.surfaceMotion ? { ...fish, surfaceMotion: undefined, target: undefined,
+          targetKind: "openWater", behaviorMode: "coast", behaviorTimeRemainingSec: 0 } : fish,
         species,
         school: groups.get(fish.speciesId) ?? [],
         tank: input.tank,

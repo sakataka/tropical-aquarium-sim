@@ -10,7 +10,9 @@
   "depthCm": 30,
   "maxTotalFish": 32,
   "sceneIds": [
-    "japan-spring"
+    "japan-spring",
+    "japan-moss-stones",
+    "japan-moss-wood"
   ],
   "species": [
     {
@@ -31,9 +33,21 @@
     }
   ],
   "defaultStock": [
-    { "speciesId": "medaka", "count": 15 },
-    { "speciesId": "japanese-bitterling", "count": 4 },
-    { "speciesId": "amano-shrimp", "count": 7 },
-    { "speciesId": "japanese-loach", "count": 2 }
+    {
+      "speciesId": "medaka",
+      "count": 15
+    },
+    {
+      "speciesId": "japanese-bitterling",
+      "count": 4
+    },
+    {
+      "speciesId": "amano-shrimp",
+      "count": 7
+    },
+    {
+      "speciesId": "japanese-loach",
+      "count": 2
+    }
   ]
 }

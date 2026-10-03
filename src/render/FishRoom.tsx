@@ -15,6 +15,7 @@ import { getSceneForegroundUrl, getScenePlateUrl, roomImageUrl } from "./assets"
 import { FishLayer, getWaterTint, type ViewRect } from "./fishLayer";
 import { frameGlass, getInitialZoom, getRenderOptions } from "./tankFraming";
 import { playSfx } from "../audio/sfx";
+import { getSurfaceFrame, TerrainLayer } from "./terrainLayer";
 
 type FishRoomProps = {
   tanks: Record<string, AquariumCustomization>;
@@ -34,6 +35,8 @@ type TankView = {
   foreground: Sprite;
   mask: Graphics;
   fish: FishLayer;
+  terrain: TerrainLayer;
+  loadedSceneId?: string;
   sceneId?: string;
 };
 
@@ -154,6 +157,7 @@ export function FishRoom({
           foreground,
           mask,
           fish: new FishLayer(fishBack, fishFront),
+          terrain: new TerrainLayer(fishFront),
         });
       }
       progress.mark("部屋と水景の画像の読み込み");
@@ -240,6 +244,9 @@ export function FishRoom({
           windowRect.width / sprite.texture.width,
           windowRect.height / sprite.texture.height,
         ));
+        if (getSceneById(view.loadedSceneId)?.terrain) {
+          sprite.y = glassRect.y + glassRect.height - sprite.height / 2;
+        }
       }
       if (activeRef.current) fishRef.current = stepSimulation({
         tank,
@@ -247,8 +254,11 @@ export function FishRoom({
         fish: fishRef.current,
         deltaSec,
         structurePoints: getStructurePoints(tank, customization.layout),
+        scene: getSceneById(view.loadedSceneId),
+        surfaceFrame: getSurfaceFrame(view.plate, glassRect),
         lighting: customization.layout.lighting,
       }).fish;
+      view.terrain.layout(view.plate);
       view.fish.update(fishRef.current, fishCatalog, tank, glassRect, deltaSec, activeRef.current);
     }
 
@@ -257,7 +267,7 @@ export function FishRoom({
       view.sceneId = sceneId;
       const scene = getSceneById(sceneId);
       const url = getScenePlateUrl(sceneId);
-      const foregroundUrl = getSceneForegroundUrl(sceneId);
+      const foregroundUrl = scene?.terrain ? undefined : getSceneForegroundUrl(sceneId);
       if (scene) view.fish.waterTint = getWaterTint(scene.waterColor);
       if (!url) return;
       const [texture, foregroundTexture] = await Promise.all([
@@ -267,6 +277,12 @@ export function FishRoom({
       if (disposed || view.sceneId !== sceneId) return;
       view.plate.texture = texture;
       view.foreground.texture = foregroundTexture;
+      view.loadedSceneId = sceneId;
+      if (scene) {
+        view.fish.terrainEnabled = !!scene.terrain;
+        view.foreground.visible = !scene.terrain;
+        view.terrain.setScene(scene, texture);
+      }
     }
 
     // 合わせた水槽のほかを少し暗くし、選ぼうとしている水槽が浮かび上がるようにする。
@@ -372,7 +388,10 @@ export function FishRoom({
       disposed = true;
       progress.done();
       zoomRef.current = null;
-      for (const view of views) view.fish.destroy();
+      for (const view of views) {
+        view.fish.destroy();
+        view.terrain.clear();
+      }
       if (initialized) destroyApp();
     };
 
