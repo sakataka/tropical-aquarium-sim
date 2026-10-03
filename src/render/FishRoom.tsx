@@ -9,15 +9,16 @@ import {
   type AquariumCustomization,
   type FishInstance,
 } from "../core";
-import { fishRoom, type RoomRect } from "../core/room";
+import { type FishRoomDefinition, type RoomRect } from "../core/room";
 import { reportRenderProblem, watchContextLoss, watchSetup } from "./renderProblems";
-import { getSceneForegroundUrl, getScenePlateUrl, roomImageUrl } from "./assets";
+import { getSceneForegroundUrl, getScenePlateUrl, getRoomImageUrl } from "./assets";
 import { FishLayer, getWaterTint, type ViewRect } from "./fishLayer";
 import { frameGlass, getInitialZoom, getRenderOptions } from "./tankFraming";
 import { playSfx } from "../audio/sfx";
 import { getSurfaceFrame, TerrainLayer } from "./terrainLayer";
 
 type FishRoomProps = {
+  room: FishRoomDefinition;
   tanks: Record<string, AquariumCustomization>;
   fishRefs: Record<string, MutableRefObject<FishInstance[]>>;
   /** 水槽画面から戻ったときは、その水槽に寄った状態から引いて始める。 */
@@ -61,6 +62,7 @@ const CURTAIN_COLOR = 0x031416;
 const SPOTLIGHT_DIM = 0.32;
 
 export function FishRoom({
+  room: fishRoom,
   tanks,
   fishRefs,
   returningFrom,
@@ -162,7 +164,7 @@ export function FishRoom({
       }
       progress.mark("部屋と水景の画像の読み込み");
       const [roomTexture] = await Promise.all([
-        Assets.load<Texture>(roomImageUrl),
+        Assets.load<Texture>(getRoomImageUrl(fishRoom.id)),
         ...views.map((view) => loadPlate(view, tanksRef.current[view.tankId]?.layout.sceneId)),
       ]);
       if (disposed) return;
@@ -427,7 +429,7 @@ export function FishRoom({
   }
 
   const count = fishRoom.tanks.length;
-  const species = new Set(Object.values(tanks).flatMap((item) => item.stock
+  const species = new Set(fishRoom.tanks.flatMap(({ tankId }) => tanks[tankId]!.stock
     .filter((entry) => entry.count > 0)
     .map((entry) => entry.speciesId))).size;
 
@@ -441,6 +443,7 @@ export function FishRoom({
         hovered ? "spotlit" : "",
       ].filter(Boolean).join(" ")}
       ref={shellRef}
+      data-room={fishRoom.id}
     >
       {/* 回線やGPUが遅い端末では準備に数秒かかるため、待っていることが分かるようにする。 */}
       {roomReady ? null : (
@@ -453,7 +456,7 @@ export function FishRoom({
       <div
         className="room-stage"
         ref={stageRef}
-        style={{ aspectRatio: String(fishRoom.aspectRatio) }}
+        style={{ aspectRatio: String(fishRoom.aspectRatio), width: `max(100vw, calc(100dvh * ${fishRoom.aspectRatio}))` }}
       >
         {fishRoom.tanks.map((placement, index) => {
           const tank = getTankById(placement.tankId);
@@ -486,7 +489,7 @@ export function FishRoom({
       </div>
       <header className="room-heading">
         <p className="room-eyebrow">Tropical Aquarium <span>— {count} habitats, {species} species</span></p>
-        <h1>フィッシュルーム</h1>
+        <h1>{fishRoom.displayName}</h1>
         <p className="room-lede">水槽を選ぶと、近くで眺められます</p>
       </header>
       {/* 左端から始まるスワイプは Safari の「戻る」に使われるので、部屋のスクロールに渡さない。 */}

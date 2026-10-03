@@ -8,7 +8,7 @@ import {
   normalizeAquariumPersistedState,
   setStockCount,
 } from "./customization";
-import { fishRoom } from "./room";
+import { fishRooms, getRoomForTank } from "./room";
 import { aquariumScenes, getSceneById } from "./sceneCatalog";
 import { aquariumTanks, getTankById } from "./tankCatalog";
 
@@ -16,9 +16,9 @@ const asia = getTankById("asia-60")!;
 const cube = getTankById("cube-30")!;
 
 describe("tanks", () => {
-  test("define five tanks whose scenes and species exist", () => {
+  test("define seven tanks whose scenes and species exist", () => {
     expect(AQUARIUM_STATE_STORAGE_KEY).toContain(".v5");
-    expect(aquariumTanks.map((tank) => tank.id)).toEqual(["asia-60", "amazon-90", "cube-30", "japan-60", "malawi-120"]);
+    expect(aquariumTanks.map((tank) => tank.id)).toEqual(["asia-60", "amazon-90", "cube-30", "japan-60", "malawi-120", "reef-120", "ancient-180"]);
     const assignedScenes = aquariumTanks.flatMap((tank) => tank.sceneIds);
     expect(new Set(assignedScenes).size).toBe(assignedScenes.length);
     expect([...assignedScenes].sort()).toEqual(aquariumScenes.map((scene) => scene.id).sort());
@@ -38,10 +38,11 @@ describe("tanks", () => {
     expect([...placeable].sort()).toEqual(Object.keys(fishCatalog).sort());
   });
 
-  test("place every tank once in the fish room", () => {
-    expect(fishRoom.tanks.map((item) => item.tankId).sort())
+  test("place every tank once across the two rooms", () => {
+    expect(fishRooms.flatMap((room) => room.tanks.map((item) => item.tankId)).sort())
       .toEqual(aquariumTanks.map((tank) => tank.id).sort());
-    for (const { glass } of fishRoom.tanks) {
+    expect(fishRooms.map((room) => room.tanks.length)).toEqual([5, 2]);
+    for (const { glass } of fishRooms.flatMap((room) => room.tanks)) {
       expect(glass.x + glass.width).toBeLessThanOrEqual(1);
       expect(glass.y + glass.height).toBeLessThanOrEqual(1);
     }
@@ -66,6 +67,27 @@ describe("tanks", () => {
 });
 
 describe("saved state", () => {
+  test("adds the second room to an existing five-tank save, preserving manual changes", () => {
+    const old = createDefaultState(fishCatalog);
+    delete old.tanks["reef-120"];
+    delete old.tanks["ancient-180"];
+    old.tanks["asia-60"]!.stock = [];
+    old.tanks["japan-60"]!.layout.lighting = "night";
+    old.activeTankId = "japan-60";
+    old.preferences.soundVolume = .27;
+    const restored = normalizeAquariumPersistedState(JSON.parse(JSON.stringify(old)), fishCatalog)!;
+    for (const id of Object.keys(old.tanks)) expect(restored.tanks[id]).toEqual(old.tanks[id]);
+    expect(restored.activeTankId).toBe(old.activeTankId);
+    expect(restored.preferences).toEqual(old.preferences);
+    for (const id of ["reef-120", "ancient-180"]) {
+      expect(restored.tanks[id]).toEqual(createDefaultState(fishCatalog).tanks[id]);
+      expect(getRoomForTank(id).id).toBe("special");
+    }
+    restored.activeTankId = "ancient-180";
+    restored.tanks["reef-120"]!.stock = [];
+    expect(normalizeAquariumPersistedState(restored, fishCatalog)).toEqual(restored);
+    expect(setStockCount(old.tanks["asia-60"]!.stock, "ocellaris-clownfish", 1, asia, fishCatalog)).toEqual([]);
+  });
   test("adds requested species once to the two preview tanks, preserving the other three and manual counts", () => {
     const preview = createDefaultState(fishCatalog);
     preview.tanks["asia-60"]!.stock = [];

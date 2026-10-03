@@ -1,0 +1,89 @@
+{
+  "id": "ropefish",
+  "displayName": "アミメウナギ",
+  "realBodyLengthCm": 35,
+  "swim": {
+    "tailBeatHz": 0.85,
+    "bodyWaveStart": 0.15,
+    "waveCount": 1.6,
+    "tailSweepRad": 0.19,
+    "verticalFlex": 0.035,
+    "headStart": 0.13
+  },
+  "visual": {
+    "fallbackColor": "#9a9562"
+  },
+  "sourceBodyBounds": {
+    "x": 65,
+    "y": 285,
+    "width": 1946,
+    "height": 212
+  },
+  "preferredZone": {
+    "minX": 0.12,
+    "maxX": 0.88,
+    "minY": 0.7,
+    "maxY": 0.9
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "undulate",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.15,
+      "burst": 0.65
+    },
+    "turnRateRadPerSec": 1.4,
+    "restFraction": 0.45,
+    "depthRange": [
+      0.2,
+      0.8
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 2,
+      "cohesion": 0.2,
+      "polarization": 0.05
+    },
+    "structureAffinity": 0.45,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1,
+        "durationSec": [
+          10,
+          28
+        ]
+      },
+      {
+        "type": "airBreathing",
+        "breathsPerHour": [
+          6,
+          14
+        ],
+        "style": "rise"
+      },
+      {
+        "type": "hideByDay",
+        "durationSec": [
+          12,
+          30
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Erpetoichthys calabaricus species reference",
+        "url": "https://www.fishbase.se/summary/erpetoichthys-calabaricus.html"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Erpetoichthys calabaricus",
+    "originRegionId": "west-africa",
+    "originRegionName": "西アフリカ",
+    "origin": "西アフリカのベナンからカメルーンにかけて分布します。水草の多い、緩やかな流れの浅い水域に暮らします。",
+    "temperament": "細長い体を持つポリプテルス科の魚です。主に夜に小さな動物を探し、昼は陰で休む傾向があります。",
+    "movement": "胴体全体を蛇のようにくねらせて底近くを進みます。夜は動きが増え、ときどき空気呼吸のために水面へ上がります。",
+    "habitat": "砂底と流木、植生の陰がある古代魚専用の水景に配置します。名前にウナギとありますが、ウナギ科の魚ではありません。"
+  }
+}

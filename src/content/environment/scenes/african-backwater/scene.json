@@ -1,0 +1,167 @@
+{
+  "id": "african-backwater",
+  "order": 15,
+  "displayName": "西アフリカの静かな入り江",
+  "description": "琥珀色の光、低い根と開けた砂底。細長い古代魚が静かに巡る緩流域。",
+  "defaultLighting": "natural",
+  "waterColor": "#69734b",
+  "structurePoints": [
+    {
+      "x": 0.17,
+      "y": 0.73
+    },
+    {
+      "x": 0.84,
+      "y": 0.76
+    }
+  ],
+  "bubbleSources": [],
+  "terrain": {
+    "surfaces": [
+      {
+        "id": "sand-floor",
+        "material": "sand",
+        "points": [
+          {
+            "x": 0.22,
+            "y": 0.91,
+            "depth": 0.25
+          },
+          {
+            "x": 0.5,
+            "y": 0.91,
+            "depth": 0.25
+          },
+          {
+            "x": 0.78,
+            "y": 0.91,
+            "depth": 0.25
+          },
+          {
+            "x": 0.7,
+            "y": 0.78,
+            "depth": 0.7
+          },
+          {
+            "x": 0.4,
+            "y": 0.75,
+            "depth": 0.75
+          }
+        ]
+      },
+      {
+        "id": "left-structure",
+        "material": "wood",
+        "points": [
+          {
+            "x": 0.04,
+            "y": 0.74,
+            "depth": 0.45
+          },
+          {
+            "x": 0.1,
+            "y": 0.68,
+            "depth": 0.45
+          },
+          {
+            "x": 0.19,
+            "y": 0.7,
+            "depth": 0.45
+          }
+        ]
+      }
+    ],
+    "occluders": [
+      {
+        "id": "left-bank",
+        "depth": 0.5,
+        "polygon": [
+          {
+            "x": 0,
+            "y": 0.28
+          },
+          {
+            "x": 0.05,
+            "y": 0.54
+          },
+          {
+            "x": 0.16,
+            "y": 0.65
+          },
+          {
+            "x": 0.3,
+            "y": 0.75
+          },
+          {
+            "x": 0,
+            "y": 0.78
+          }
+        ]
+      },
+      {
+        "id": "right-bank",
+        "depth": 0.5,
+        "polygon": [
+          {
+            "x": 1,
+            "y": 0.51
+          },
+          {
+            "x": 0.87,
+            "y": 0.59
+          },
+          {
+            "x": 0.79,
+            "y": 0.78
+          },
+          {
+            "x": 1,
+            "y": 0.84
+          }
+        ]
+      }
+    ],
+    "obstacles": [
+      {
+        "id": "left-root",
+        "center": {
+          "x": 0.09,
+          "y": 0.7,
+          "depth": 0.48
+        },
+        "radius": {
+          "x": 0.035,
+          "y": 0.055
+        },
+        "depthRadius": 0.08
+      },
+      {
+        "id": "right-rock",
+        "center": {
+          "x": 0.94,
+          "y": 0.73,
+          "depth": 0.48
+        },
+        "radius": {
+          "x": 0.03,
+          "y": 0.045
+        },
+        "depthRadius": 0.08
+      }
+    ],
+    "shelters": [
+      {
+        "id": "left-shadow",
+        "x": 0.16,
+        "y": 0.74,
+        "depth": 0.7
+      },
+      {
+        "id": "right-shadow",
+        "x": 0.86,
+        "y": 0.74,
+        "depth": 0.7
+      }
+    ]
+  }
+}

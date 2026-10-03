@@ -31,6 +31,7 @@ import { AquariumCanvas, type ViewControl } from "./render/AquariumCanvas";
 import { forgetMotionState } from "./render/fishBody";
 import { RENDER_PROBLEM_EVENT } from "./render/renderProblems";
 import { FishRoom } from "./render/FishRoom";
+import { fishRooms, getRoomForTank } from "./core/room";
 import { getScenePlateUrl } from "./render/assets";
 import { AquariumControls, LIGHTING_OPTIONS } from "./ui/AquariumControls";
 import { SoundToggle } from "./ui/SoundToggle";
@@ -102,6 +103,8 @@ export default function App() {
   }, []);
   const tank = getTankById(state.activeTankId) ?? aquariumTanks[0]!;
   const customization = state.tanks[tank.id]!;
+  const room = getRoomForTank(tank.id);
+  const roomTanks = room.tanks.map((placement) => getTankById(placement.tankId)!);
 
   useAmbientSound(
     state.preferences.soundEnabled && audioUnlocked,
@@ -178,9 +181,9 @@ export default function App() {
   const switchTank = useCallback((direction: SwitchDirection) => {
     setPhase((current) => {
       if (current.kind !== "tank") return current;
-      const index = aquariumTanks.findIndex((item) => item.id === state.activeTankId);
+      const index = roomTanks.findIndex((item) => item.id === state.activeTankId);
       const step = direction === "next" ? 1 : -1;
-      const to = aquariumTanks[(index + step + aquariumTanks.length) % aquariumTanks.length]!.id;
+      const to = roomTanks[(index + step + roomTanks.length) % roomTanks.length]!.id;
       playSfx("tank_switch");
       return { kind: "leaveTank", to, direction };
     });
@@ -210,13 +213,30 @@ export default function App() {
         </div>
       ) : null}
       {phase.kind === "room" ? (
-        <SoundToggle className="room-sound" enabled={state.preferences.soundEnabled} onToggle={toggleSound} />
+        <>
+          <nav className="room-switcher" aria-label="部屋を選ぶ">
+            {fishRooms.map((item, index) => (
+              <button key={item.id} type="button" aria-pressed={item.id === room.id}
+                onClick={() => {
+                  if (item.id === room.id) return;
+                  playSfx("tank_switch");
+                  setState((current) => ({ ...current, activeTankId: item.tanks[0]!.tankId }));
+                  setPhase({ kind: "room" });
+                }}>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                {item.id === "freshwater" ? "淡水の部屋" : "海と古代魚"}
+              </button>
+            ))}
+          </nav>
+          <SoundToggle className="room-sound" enabled={state.preferences.soundEnabled} onToggle={toggleSound} />
+        </>
       ) : null}
       {showRoom ? (
         <FishRoom
           active={phase.kind === "room" || phase.kind === "toRoom"}
           fishRefs={fishRefs}
-          key="room"
+          key={`room-${room.id}`}
+          room={room}
           onEnterTank={enterTank}
           onReady={handleRoomReady}
           returningFrom={returningFrom}
@@ -377,10 +397,11 @@ function TankScreen({
   }, [onReady]);
 
   const plateUrl = getScenePlateUrl(customization.layout.sceneId);
-  const tankIndex = aquariumTanks.indexOf(tank);
+  const roomTanks = getRoomForTank(tank.id).tanks.map((placement) => getTankById(placement.tankId)!);
+  const tankIndex = roomTanks.indexOf(tank);
   const exhibitNumber = String(tankIndex + 1).padStart(2, "0");
   const neighbor = (step: number) =>
-    aquariumTanks[(tankIndex + step + aquariumTanks.length) % aquariumTanks.length]!;
+    roomTanks[(tankIndex + step + roomTanks.length) % roomTanks.length]!;
   const lightingLabel = LIGHTING_OPTIONS.find((item) => item.id === customization.layout.lighting)?.label;
 
   const className = [
@@ -441,7 +462,7 @@ function TankScreen({
               title={`${neighbor(-1).displayName}（[）`}
               type="button"
             ><ChevronLeftIcon /></button>
-            <span aria-hidden="true"><b>{exhibitNumber}</b> / {String(aquariumTanks.length).padStart(2, "0")}</span>
+            <span aria-hidden="true"><b>{exhibitNumber}</b> / {String(roomTanks.length).padStart(2, "0")}</span>
             <button
               aria-label={`次の水槽（${neighbor(1).displayName}）`}
               onClick={() => onSwitchTank("next")}

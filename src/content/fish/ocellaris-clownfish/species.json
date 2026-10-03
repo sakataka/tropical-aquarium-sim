@@ -1,0 +1,60 @@
+{
+  "id": "ocellaris-clownfish",
+  "displayName": "カクレクマノミ",
+  "realBodyLengthCm": 8,
+  "swim": {
+    "tailBeatHz": 2.3
+  },
+  "visual": {
+    "fallbackColor": "#f68a27"
+  },
+  "sourceBodyBounds": {
+    "x": 79,
+    "y": 120,
+    "width": 1406,
+    "height": 767
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.55,
+    "minY": 0.4,
+    "maxY": 0.78
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.35,
+      "burst": 1.8
+    },
+    "turnRateRadPerSec": 2.5,
+    "restFraction": 0.22,
+    "depthRange": [
+      0.2,
+      0.8
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 2,
+      "cohesion": 0.2,
+      "polarization": 0.05
+    },
+    "structureAffinity": 0.75,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Amphiprion ocellaris species reference",
+        "url": "https://www.aquariumofpacific.org/onlinelearningcenter/species/clown_anemonefish"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Amphiprion ocellaris",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "インド洋東部から西太平洋。浅いサンゴ礁やラグーンで、宿主のイソギンチャクの近くに暮らします。",
+    "temperament": "宿主の周辺に小さな縄張りを持つ魚です。大きな群れで泳ぐ魚とは異なる、限られた範囲での動きが特徴です。",
+    "movement": "ひれを小刻みに動かして低い岩場の周りを巡ります。この水槽では左寄りの下層を好む設定です。",
+    "habitat": "浅いサンゴ礁をイメージした海水の水景です。イソギンチャクは背景素材で、宿主との接触や共生の判定は再現していません。"
+  }
+}

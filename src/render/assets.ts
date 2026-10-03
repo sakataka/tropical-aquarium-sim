@@ -1,6 +1,7 @@
 import { Assets } from "pixi.js";
 import bubbleParticleUrl from "../content/environment/bubble.png";
 import roomUrl from "../content/room/room-five.webp";
+import specialRoomUrl from "../content/room/room-special.webp";
 
 // 描画とカタログには、原画 side.png から体だけを切り出した軽い body.webp を使う
 // （scripts/build-fish-sprites.py で作る）。
@@ -20,7 +21,9 @@ const sceneImageModules = import.meta.glob<string>(
 Assets.setPreferences({ preferWorkers: false, preferCreateImageBitmap: false });
 
 export const environmentAssets = { bubbleParticleUrl };
-export const roomImageUrl = roomUrl;
+export function getRoomImageUrl(roomId: string): string {
+  return roomId === "special" ? specialRoomUrl : roomUrl;
+}
 
 export function getFishImageUrl(speciesId: string): string | undefined {
   return findBySuffix(fishImageModules, `/fish/${speciesId}/body.webp`);

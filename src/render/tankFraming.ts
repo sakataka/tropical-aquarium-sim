@@ -1,5 +1,5 @@
 import type { TankDefinition } from "../core";
-import { fishRoom } from "../core/room";
+import { getRoomForTank } from "../core/room";
 
 /** 最初は水槽の全体が余白を残して収まるようにする。 */
 const VIEW_FILL_RATIO = 0.9;
@@ -9,6 +9,7 @@ const MAX_ZOOM_OVER_COVER = 1.8;
 // 水槽画面は部屋で見えているガラスと同じ縦横比で水景を切り取る。
 // こうすると、部屋から寄り終えた構図と水槽画面の構図が一致する。
 export function getGlassAspect(tank: TankDefinition): number {
+  const fishRoom = getRoomForTank(tank.id);
   const placement = fishRoom.tanks.find((item) => item.tankId === tank.id);
   if (!placement) return tank.widthCm / tank.heightCm;
   return (placement.glass.width * fishRoom.aspectRatio) / placement.glass.height;

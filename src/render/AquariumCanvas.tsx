@@ -33,7 +33,7 @@ import {
   getRenderOptions,
 } from "./tankFraming";
 import { UnderwaterFilter } from "./underwaterFilter";
-import { fishRoom } from "../core/room";
+import { getRoomForTank } from "../core/room";
 import { getSurfaceFrame, TerrainLayer } from "./terrainLayer";
 import type { AquariumScene } from "../core/types";
 
@@ -298,6 +298,7 @@ export function AquariumCanvas({
         for (const child of layer.children) {
           if (!(child instanceof Sprite)) continue;
           child.position.set(width / 2, height / 2);
+          const fishRoom = getRoomForTank(tank.id);
           const placement = fishRoom.tanks.find((item) => item.tankId === tank.id);
           const terrain = !!activeScene?.terrain;
           const overscanX = terrain && placement ? placement.window.width / placement.glass.width : 1;

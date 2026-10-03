@@ -67,6 +67,30 @@ button:focus-visible, input:focus-visible, select:focus-visible {
   scrollbar-width: none;
 }
 .room-scroll::-webkit-scrollbar { display: none; }
+.room-switcher {
+  position: fixed;
+  z-index: 12;
+  top: max(18px, env(safe-area-inset-top));
+  left: max(18px, env(safe-area-inset-left));
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid rgba(70, 58, 41, 0.15);
+  border-radius: 12px;
+  background: rgba(249, 245, 236, 0.92);
+  backdrop-filter: blur(12px);
+}
+.room-switcher button {
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 0;
+  border-radius: 8px;
+  color: var(--room-ink);
+  background: transparent;
+  font-size: 13px;
+}
+.room-switcher button span { margin-right: 7px; font-size: 10px; opacity: 0.65; }
+.room-switcher button[aria-pressed="true"] { background: #dfd6c5; }
 .room-stage {
   position: relative;
   flex: none;
@@ -658,6 +682,7 @@ button:focus-visible, input:focus-visible, select:focus-visible {
   left: calc(var(--safe-left) + 8px);
   bottom: calc(var(--safe-bottom) + 4px);
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 2px;
   max-width: min(460px, calc(100% - 220px));
   text-shadow: 0 1px 14px rgba(0, 0, 0, 0.55);

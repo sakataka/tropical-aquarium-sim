@@ -1,0 +1,82 @@
+{
+  "id": "senegal-bichir",
+  "displayName": "ポリプテルス・セネガルス",
+  "realBodyLengthCm": 30,
+  "swim": {
+    "tailBeatHz": 1.1,
+    "bodyWaveStart": 0.24,
+    "waveCount": 1.15,
+    "tailSweepRad": 0.13,
+    "verticalFlex": 0.025,
+    "headStart": 0.2
+  },
+  "visual": {
+    "fallbackColor": "#a59974"
+  },
+  "sourceBodyBounds": {
+    "x": 44,
+    "y": 187,
+    "width": 1857,
+    "height": 429
+  },
+  "preferredZone": {
+    "minX": 0.12,
+    "maxX": 0.88,
+    "minY": 0.65,
+    "maxY": 0.89
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "undulate",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.18,
+      "burst": 0.75
+    },
+    "turnRateRadPerSec": 1.4,
+    "restFraction": 0.48,
+    "depthRange": [
+      0.2,
+      0.8
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2,
+      "cohesion": 0,
+      "polarization": 0.05
+    },
+    "structureAffinity": 0.35,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.1,
+        "durationSec": [
+          8,
+          24
+        ]
+      },
+      {
+        "type": "airBreathing",
+        "breathsPerHour": [
+          8,
+          16
+        ],
+        "style": "rise"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Polypterus senegalus species reference",
+        "url": "https://www.fishbase.se/summary/5024"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Polypterus senegalus",
+    "originRegionId": "west-africa",
+    "originRegionName": "西アフリカ",
+    "origin": "西アフリカからナイル流域まで分布します。流れの緩い川辺、沼や氾濫原などの淡水域に暮らします。",
+    "temperament": "小魚などを食べる肉食性の古代魚です。小型の群泳魚とは分け、この部屋の古代魚専用水槽に配置します。",
+    "movement": "底近くで休み、長い体をゆっくりくねらせて移動します。ときどき水面へ上がり、空気を吸って底へ戻ります。",
+    "habitat": "開けた砂底、低い流木と陰のある西アフリカの緩流域をイメージしています。表示体長は代表的な観賞サイズで、最大体長ではありません。"
+  }
+}

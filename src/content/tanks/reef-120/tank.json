@@ -1,0 +1,43 @@
+{
+  "id": "reef-120",
+  "order": 6,
+  "displayName": "サンゴ礁の海水水槽",
+  "exhibitName": "Coral Reef Lagoon",
+  "category": "インド太平洋の海",
+  "description": "青い海、白い砂と低いサンゴ礁。カクレクマノミ、ハタタテハゼ、ニシキテグリが、それぞれ異なる高さと速さで泳ぐ120cmの海水水槽です。",
+  "widthCm": 120,
+  "heightCm": 45,
+  "depthCm": 45,
+  "maxTotalFish": 4,
+  "sceneIds": [
+    "reef-lagoon"
+  ],
+  "species": [
+    {
+      "speciesId": "ocellaris-clownfish",
+      "maxCount": 2
+    },
+    {
+      "speciesId": "firefish",
+      "maxCount": 1
+    },
+    {
+      "speciesId": "mandarinfish",
+      "maxCount": 1
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "ocellaris-clownfish",
+      "count": 2
+    },
+    {
+      "speciesId": "firefish",
+      "count": 1
+    },
+    {
+      "speciesId": "mandarinfish",
+      "count": 1
+    }
+  ]
+}

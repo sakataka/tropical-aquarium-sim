@@ -1,0 +1,35 @@
+{
+  "id": "ancient-180",
+  "order": 7,
+  "displayName": "アフリカの古代魚専用水槽",
+  "exhibitName": "West African Backwater",
+  "category": "西アフリカの緩流域",
+  "description": "低い流木と開けた砂底。セネガルスとアミメウナギが長い体をくねらせ、底で休み、ときどき水面へ空気を吸いに上がる180cmの古代魚専用水槽です。",
+  "widthCm": 180,
+  "heightCm": 55,
+  "depthCm": 60,
+  "maxTotalFish": 6,
+  "sceneIds": [
+    "african-backwater"
+  ],
+  "species": [
+    {
+      "speciesId": "senegal-bichir",
+      "maxCount": 3
+    },
+    {
+      "speciesId": "ropefish",
+      "maxCount": 3
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "senegal-bichir",
+      "count": 2
+    },
+    {
+      "speciesId": "ropefish",
+      "count": 2
+    }
+  ]
+}

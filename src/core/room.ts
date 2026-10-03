@@ -1,5 +1,6 @@
 import { z } from "zod";
 import roomJson from "../content/room/room.json";
+import specialRoomJson from "../content/room/room-special.json";
 
 const rectSchema = z.object({
   x: z.number().finite().min(0).max(1),
@@ -23,3 +24,14 @@ export type RoomRect = z.infer<typeof rectSchema>;
 export type RoomLayout = z.infer<typeof roomSchema>;
 
 export const fishRoom: RoomLayout = roomSchema.parse(roomJson);
+
+export type FishRoomDefinition = RoomLayout & { id: string; displayName: string };
+export const fishRooms: FishRoomDefinition[] = [
+  { ...fishRoom, id: "freshwater", displayName: "フィッシュルーム" },
+  { ...roomSchema.parse(specialRoomJson), id: "special", displayName: "海と古代魚の部屋" },
+];
+
+// 最後に選んだ水槽から部屋も復元するため、保存キーや水槽IDを変更しない。
+export function getRoomForTank(tankId: string): FishRoomDefinition {
+  return fishRooms.find((room) => room.tanks.some((tank) => tank.tankId === tankId)) ?? fishRooms[0]!;
+}

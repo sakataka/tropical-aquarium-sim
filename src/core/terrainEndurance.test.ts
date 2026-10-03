@@ -9,7 +9,7 @@ import type { FishStockEntry, LightingId } from "./types";
 
 // 上限匹数で昼・夜を続けて泳がせる。フレームごとの大量の expect は避け、
 // 実寸での移動量・衝突・個体数・通常の奥行き変化を検証する。
-test.each([42, 137])("all 13 habitats remain stable at capacity through ten minutes of day and night (seed %s)", (seed) => {
+test.each([42, 137])("all habitats remain stable at capacity through ten minutes of day and night (seed %s)", (seed) => {
   const results: { sceneId: string; fish: number; depthTravel: number; longestBlockedSec: number }[] = [];
   for (const tank of aquariumTanks) for (const sceneId of tank.sceneIds) {
     const scene = getSceneById(sceneId)!;
@@ -20,8 +20,13 @@ test.each([42, 137])("all 13 habitats remain stable at capacity through ten minu
     while (count < tank.maxTotalFish) for (const [i, slot] of tank.species.entries()) {
       if (count < tank.maxTotalFish && stock[i]!.count < slot.maxCount) { stock[i]!.count++; count++; }
     }
-    let fish = createFishFromStock(stock, tank).map((f, i) => ({ ...f, id: `${sceneId}-${i}`, seed: seed + i * 1327,
-      personality: createFishPersonality(seed + i * 1327), bodyLengthVariance: 1, behaviorTimeRemainingSec: .6 }));
+    let fish = createFishFromStock(stock, tank).map((f, i) => {
+      const personality = createFishPersonality(seed + i * 1327);
+      // 初速にも生成時のランダムな pace が入るため、テスト用の性格へ揃える。
+      return { ...f, id: `${sceneId}-${i}`, seed: seed + i * 1327, personality,
+        velocity: { ...f.velocity, x: f.velocity.x / f.personality.pace * personality.pace },
+        bodyLengthVariance: 1, behaviorTimeRemainingSec: .6 };
+    });
     const initial = fish.map((f) => f.depth);
     const blocked = fish.map(() => 0);
     let depthTravel = 0, longestBlockedSec = 0;

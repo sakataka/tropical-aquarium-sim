@@ -1,0 +1,60 @@
+{
+  "id": "firefish",
+  "displayName": "ハタタテハゼ",
+  "realBodyLengthCm": 8,
+  "swim": {
+    "tailBeatHz": 3
+  },
+  "visual": {
+    "fallbackColor": "#fa735d"
+  },
+  "sourceBodyBounds": {
+    "x": 115,
+    "y": 28,
+    "width": 1338,
+    "height": 927
+  },
+  "preferredZone": {
+    "minX": 0.25,
+    "maxX": 0.85,
+    "minY": 0.3,
+    "maxY": 0.65
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.3,
+      "burst": 2.6
+    },
+    "turnRateRadPerSec": 2.5,
+    "restFraction": 0.2,
+    "depthRange": [
+      0.2,
+      0.8
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2,
+      "cohesion": 0,
+      "polarization": 0.05
+    },
+    "structureAffinity": 0.5,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Nemateleotris magnifica species reference",
+        "url": "https://australian.museum/learn/animals/fishes/nemateleotris-magnifica-fowler-1938/"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Nemateleotris magnifica",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "インド太平洋の熱帯域。サンゴ礁の岩や砂底に近い場所に生息します。",
+    "temperament": "細身の海水魚です。隠れ場所になる岩の近くで、ひれを使いながら水中にとどまる姿が特徴です。",
+    "movement": "中層でゆっくり進み、短い加速を挟みます。長い第一背びれが白から赤へ変わる体色とともに目立ちます。",
+    "habitat": "開けた水域と岩の陰が隣り合うサンゴ礁の水景に配置します。"
+  }
+}
