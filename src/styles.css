@@ -80,6 +80,10 @@ button:focus-visible, input:focus-visible, select:focus-visible {
   background: rgba(249, 245, 236, 0.92);
   backdrop-filter: blur(12px);
 }
+.room-switcher, .hud-button.room-sound { transition: opacity 0.35s, visibility 0.35s; }
+/* 水槽へ寄っている間は、暗くなっていく部屋の上に操作を残さない。 */
+.room-scroll.zooming ~ .room-switcher,
+.room-scroll.zooming ~ .hud-button.room-sound { opacity: 0; visibility: hidden; }
 .room-switcher button {
   min-height: 44px;
   padding: 8px 12px;
@@ -719,6 +723,25 @@ button:focus-visible, input:focus-visible, select:focus-visible {
   letter-spacing: 0.1em;
 }
 .hud-caption strong, .hud-caption > span, .caption-eyebrow { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tank-screen.revealed .hud-caption > :nth-child(4) { transition-delay: 0.24s; }
+.caption-species {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 14px;
+  max-height: 2.9em;
+  margin: 8px 0 0;
+  overflow: hidden;
+  color: rgba(236, 241, 234, 0.72);
+  font-size: 11.5px;
+  line-height: 1.45;
+  letter-spacing: 0.06em;
+}
+.caption-species small {
+  margin-left: 5px;
+  color: var(--brass);
+  font-family: var(--font-latin);
+  font-size: 13px;
+}
 .tank-screen.editing .hud-caption,
 .tank-screen.editing .tank-hud::before { opacity: 0; }
 .hud-zoom {
@@ -1288,6 +1311,8 @@ button:focus-visible, input:focus-visible, select:focus-visible {
   .caption-eyebrow span { margin-right: 8px; }
   .hud-caption strong { font-size: 17px; letter-spacing: 0.08em; }
   .hud-caption > span { margin-top: 2px; font-size: 10.5px; letter-spacing: 0.04em; }
+  .caption-species { max-height: 1.45em; margin-top: 3px; gap: 0 10px; font-size: 10.5px; letter-spacing: 0.02em; }
+  .caption-species small { margin-left: 3px; font-size: 12px; }
   .panel-close { width: 44px; height: 44px; }
   .panel-tabs { gap: 22px; }
   .count-control button { width: 40px; height: 40px; }

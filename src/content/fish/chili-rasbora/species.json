@@ -35,10 +35,10 @@
       0.8
     ],
     "social": {
-      "grouping": "school",
+      "grouping": "shoal",
       "spacingBodyLengths": 1.2,
-      "cohesion": 0.88,
-      "polarization": 0.78
+      "cohesion": 0.55,
+      "polarization": 0.35
     },
     "structureAffinity": 0.42,
     "habits": [],
@@ -55,7 +55,7 @@
     "originRegionName": "東南アジア",
     "origin": "ボルネオ島南西部。落ち葉や枝が沈む、流れの緩いブラックウォーターの小河川や湿地に由来します。",
     "temperament": "小さく温和で、仲間がいると落ち着く魚です。水草の近くにまとまります。",
-    "movement": "小さな赤い群れが中層を軽やかに泳ぎ、短く尾を振ってはすっと滑ります。",
+    "movement": "小さな赤い魚がゆるい群れで中層を漂い、短く尾を振ってはすっと止まります。",
     "habitat": "暗めの底床と密な水草を背景にすると、赤い体と黒い帯が引き立ちます。",
     "aliases": [
       "chili-rasbora",

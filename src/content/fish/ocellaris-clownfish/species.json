@@ -15,10 +15,10 @@
     "height": 767
   },
   "preferredZone": {
-    "minX": 0.08,
-    "maxX": 0.55,
-    "minY": 0.4,
-    "maxY": 0.78
+    "minX": 0.02,
+    "maxX": 0.34,
+    "minY": 0.12,
+    "maxY": 0.62
   },
   "ecology": {
     "activityPeriod": "diurnal",
@@ -28,19 +28,45 @@
       "burst": 1.8
     },
     "turnRateRadPerSec": 2.5,
-    "restFraction": 0.22,
+    "restFraction": 0.25,
     "depthRange": [
-      0.2,
+      0.45,
       0.8
     ],
     "social": {
       "grouping": "group",
-      "spacingBodyLengths": 2,
-      "cohesion": 0.2,
-      "polarization": 0.05
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0.55,
+      "polarization": 0.2
     },
-    "structureAffinity": 0.75,
-    "habits": [],
+    "structureAffinity": 0.9,
+    "habits": [
+      {
+        "type": "homeShelter",
+        "kind": "anemone",
+        "rangeBodyLengths": 2.6,
+        "visitChancePerMin": 1.2,
+        "visitDurationSec": [
+          4,
+          12
+        ]
+      },
+      {
+        "type": "follow",
+        "chancePerMin": 1.2,
+        "durationSec": [
+          3,
+          8
+        ]
+      },
+      {
+        "type": "hideByDay",
+        "durationSec": [
+          60,
+          180
+        ]
+      }
+    ],
     "sources": [
       {
         "title": "Amphiprion ocellaris species reference",
@@ -53,8 +79,8 @@
     "originRegionId": "indo-pacific",
     "originRegionName": "インド太平洋",
     "origin": "インド洋東部から西太平洋。浅いサンゴ礁やラグーンで、宿主のイソギンチャクの近くに暮らします。",
-    "temperament": "宿主の周辺に小さな縄張りを持つ魚です。大きな群れで泳ぐ魚とは異なる、限られた範囲での動きが特徴です。",
-    "movement": "ひれを小刻みに動かして低い岩場の周りを巡ります。この水槽では左寄りの下層を好む設定です。",
-    "habitat": "浅いサンゴ礁をイメージした海水の水景です。イソギンチャクは背景素材で、宿主との接触や共生の判定は再現していません。"
+    "temperament": "ペアで宿主のイソギンチャクを住みかにし、その周りの小さな範囲を守ります。",
+    "movement": "胸びれを小刻みに動かし、イソギンチャクから1〜2体長ほどの範囲を行き来します。ときどき触手の間に体をうずめ、夜はそこで休みます。",
+    "habitat": "浅いサンゴ礁のラグーン。左の岩場のイソギンチャクを住みかにしています。刺胞や粘液による共生の仕組みまでは再現していません。"
   }
 }

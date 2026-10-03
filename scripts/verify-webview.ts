@@ -493,8 +493,12 @@ async function verifySpecialRoom(consoleErrors: string[]) {
       ["ancient-180", "アフリカの古代魚専用水槽", [["senegal-bichir", "ポリプテルス・セネガルス"], ["ropefish", "アミメウナギ"]]],
     ] as [string, string, [string, string][]][]) {
       await clickByLabel(view, `${name}を眺める`);
+      // 寄っている間は、暗くなる部屋の上に部屋の切り替えを残さない。
+      assert(await view.evaluate(`!!document.querySelector('.room-scroll.zooming ~ .room-switcher')`));
       await sleep(2500);
       assert(await view.evaluate(`document.querySelector('.tank-screen.visible') && document.querySelector('.aquarium-stage canvas') && !document.querySelector('.render-problem')`));
+      // 展示ラベルに、いま水槽にいる生き物の名前が並ぶ。
+      assert(await view.evaluate(`(() => {const text=document.querySelector('.caption-species')?.textContent ?? ''; return ${JSON.stringify(fish.map(([, label]) => label))}.every((label) => text.includes(label));})()`));
       assert(await view.evaluate(`(() => {const caption=document.querySelector('.hud-caption'),zoom=document.querySelector('.hud-zoom');return [...caption.children].every(child => child.getBoundingClientRect().right < zoom.getBoundingClientRect().left);})()`));
       await Bun.write(`${SCREENSHOT_DIR}/${id}-${viewport}.png`, await view.screenshot({ format: "png" }));
       await clickButtonByText(view, "設定");
@@ -518,6 +522,10 @@ async function verifySpecialRoom(consoleErrors: string[]) {
     await sleep(2500);
     assert(await view.evaluate(`document.querySelector('.room-scroll.ready[data-room="freshwater"]') && document.querySelectorAll('.room-tank').length === 5`));
     assert(original === await view.evaluate(`JSON.stringify(Object.fromEntries(Object.entries(JSON.parse(localStorage.getItem('${STATE_KEY}')).tanks).filter(([id]) => !['reef-120','ancient-180'].includes(id))))`));
+    // 部屋を行き来しても、その部屋で最後に見ていた水槽を覚えている。
+    await clickButtonByText(view, "海と古代魚");
+    await sleep(2500);
+    assert(await view.evaluate(`JSON.parse(localStorage.getItem('${STATE_KEY}')).activeTankId === 'ancient-180'`));
     results.push({ viewport, species });
   }
   return results;

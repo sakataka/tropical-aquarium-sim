@@ -19,6 +19,7 @@ export {
   reconcileFishStock,
 } from "./fishPopulation";
 export { aquariumScenes, getSceneById } from "./sceneCatalog";
+export { framePlate, toSurfaceFrame, type FrameRect } from "./plateFraming";
 export { getBaseSpriteScale, getFishSpriteScale, getTargetBodyLengthPx } from "./scale";
 export { getActivityLevel, stepSimulation } from "./simulation";
 export { aquariumTanks, getSpeciesLimit, getTankById } from "./tankCatalog";

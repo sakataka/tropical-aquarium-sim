@@ -174,4 +174,22 @@ describe("natural swimming", () => {
     };
     expect(averageSpeed("night")).toBeLessThan(averageSpeed("natural") * 0.6);
   });
+
+  test("diurnal midwater fish settle lower at night, while surface fish stay up", () => {
+    const tank = getTankById("amazon-90")!;
+    const averageDepth = (speciesId: string, lighting: "natural" | "night") => {
+      let fish = createFishFromStock([{ speciesId, count: 8 }], tank).map((item, index) => ({ ...item, seed: 7 + index * 13 }));
+      let total = 0, samples = 0;
+      for (let index = 0; index < 3600; index += 1) {
+        fish = stepSimulation({ tank, species: fishCatalog, fish, deltaSec: 0.05, lighting, structurePoints: [] }).fish;
+        if (index < 1200) continue;
+        total += fish.reduce((sum, item) => sum + item.position.y / tank.heightCm, 0);
+        samples += fish.length;
+      }
+      return total / samples;
+    };
+    expect(averageDepth("neon-tetra", "night")).toBeGreaterThan(averageDepth("neon-tetra", "natural") + 0.05);
+    // 水面に暮らすマーブルハチェットは夜も上層にいる。
+    expect(averageDepth("marbled-hatchetfish", "night")).toBeLessThan(0.4);
+  });
 });

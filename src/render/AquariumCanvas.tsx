@@ -27,14 +27,13 @@ import { BubbleColumns, FloatingMotes } from "./bubbles";
 import { FishLayer, getWaterTint } from "./fishLayer";
 import {
   frameGlass,
-  getGlassAspect,
   getInitialZoom,
   getMaxZoom,
   getRenderOptions,
 } from "./tankFraming";
 import { UnderwaterFilter } from "./underwaterFilter";
-import { getRoomForTank } from "../core/room";
-import { getSurfaceFrame, TerrainLayer } from "./terrainLayer";
+import { getGlassAspect, getWindowOverscan } from "../core/room";
+import { getSurfaceFrame, placePlate, TerrainLayer } from "./terrainLayer";
 import type { AquariumScene } from "../core/types";
 
 type AquariumCanvasProps = {
@@ -112,6 +111,8 @@ export function AquariumCanvas({
     const terrainLayer = new TerrainLayer(fishFrontLayer);
     let scenePlate: Sprite | undefined;
     let activeScene: AquariumScene | undefined;
+    // フェード中の古い水景は、その水景の切り取り方のまま残す。
+    const spriteScenes = new WeakMap<Sprite, AquariumScene>();
     // 水景・魚・泡はすべて部屋のガラスと同じ形で切り抜く。
     const glassMask = new Graphics();
     world.addChild(
@@ -127,6 +128,7 @@ export function AquariumCanvas({
     // 部屋から入った直後は部屋で見えていた絵のままにし、水中の効果は少しずつ効かせる。
     const underwater = new UnderwaterFilter(layoutRef.current.lighting, { startNeutral: true });
     const glassAspect = getGlassAspect(tank);
+    const overscan = getWindowOverscan(tank.id);
     // 最初は水槽の全体が入る大きさ。ホイール・ピンチ・キーで近づき、ドラッグで見回す。
     const view = { x: 0, y: 0, targetX: 0, targetY: 0, zoom: 1, targetZoom: 1 };
     const pointers = new Map<number, { x: number; y: number }>();
@@ -277,6 +279,7 @@ export function AquariumCanvas({
         const sprite = new Sprite(texture);
         sprite.anchor.set(0.5);
         sprite.alpha = immediate ? 1 : 0;
+        spriteScenes.set(sprite, scene);
         layer.addChild(sprite);
         if (layer === plateLayer) scenePlate = sprite;
       }
@@ -297,15 +300,8 @@ export function AquariumCanvas({
       for (const layer of [plateLayer, foregroundLayer]) {
         for (const child of layer.children) {
           if (!(child instanceof Sprite)) continue;
-          child.position.set(width / 2, height / 2);
-          const fishRoom = getRoomForTank(tank.id);
-          const placement = fishRoom.tanks.find((item) => item.tankId === tank.id);
-          const terrain = !!activeScene?.terrain;
-          const overscanX = terrain && placement ? placement.window.width / placement.glass.width : 1;
-          const overscanY = terrain && placement ? placement.window.height / placement.glass.height : 1;
-          child.scale.set(Math.max(width * overscanX / child.texture.width, height * overscanY / child.texture.height));
-          // 地形のある水景は砂底をガラスの下端に合わせ、cover で歩く面が切れないようにする。
-          if (terrain) child.y = height - child.height / 2;
+          // 前景切り抜きは背景と同じ構図なので、同じ位置へ敷く。
+          placePlate(child, { x: 0, y: 0, width, height }, overscan, spriteScenes.get(child));
         }
       }
     }

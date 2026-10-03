@@ -4,6 +4,7 @@ import { createFishFromStock, createFishPersonality } from "./fishPopulation";
 import { getSceneById } from "./sceneCatalog";
 import { stepSimulation } from "./simulation";
 import { aquariumTanks } from "./tankCatalog";
+import { getRenderedSurfaceFrame } from "./testContent";
 import { insideTerrain } from "./terrainMotion";
 import type { FishStockEntry, LightingId } from "./types";
 
@@ -13,8 +14,8 @@ test.each([42, 137])("all habitats remain stable at capacity through ten minutes
   const results: { sceneId: string; fish: number; depthTravel: number; longestBlockedSec: number }[] = [];
   for (const tank of aquariumTanks) for (const sceneId of tank.sceneIds) {
     const scene = getSceneById(sceneId)!;
-    const frame = tank.id === "cube-30" ? { x: -.02, y: -.02, width: 1.04, height: 1.02 }
-      : { x: -.02, y: -.52, width: 1.04, height: 1.52 };
+    // 画面と同じ切り取り方（水景ごとの framing と部屋のガラスの縦横比）で地形を置く。
+    const frame = getRenderedSurfaceFrame(tank, scene);
     const stock: FishStockEntry[] = tank.species.map((slot) => ({ speciesId: slot.speciesId, count: 0 }));
     let count = 0;
     while (count < tank.maxTotalFish) for (const [i, slot] of tank.species.entries()) {

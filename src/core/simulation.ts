@@ -13,8 +13,8 @@ import type {
   TankDefinition,
   Vec2,
 } from "./types";
-import { FULL_SURFACE_FRAME, stepSurfaceWalker } from "./surfaceMotion";
-import { chooseTerrainGoal, constrainTerrainDepth, constrainTerrainStep, insideTerrain, resolveTerrainGoal, routeTerrainTarget, terrainAvoidance } from "./terrainMotion";
+import { FULL_SURFACE_FRAME, stepSurfaceWalker, worldPoint } from "./surfaceMotion";
+import { chooseTerrainGoal, constrainTerrainDepth, constrainTerrainStep, findHomeShelter, insideTerrain, resolveTerrainGoal, routeTerrainTarget, terrainAvoidance } from "./terrainMotion";
 
 const FORWARD_TARGET_CHANCE = 0.86;
 const FACING_THRESHOLD_CM_PER_SEC = 0.3;
@@ -66,6 +66,8 @@ export function stepSimulation(input: SimulationInput): SimulationOutput {
           targetKind: "openWater", behaviorMode: "coast", behaviorTimeRemainingSec: 0 } : fish,
         species,
         school: groups.get(fish.speciesId) ?? [],
+        tankmates: input.fish,
+        catalog: input.species,
         tank: input.tank,
         structurePoints: input.structurePoints,
         scene: input.scene,
@@ -81,6 +83,9 @@ type StepContext = {
   fish: FishInstance;
   species: FishSpeciesDefinition;
   school: FishInstance[];
+  /** 同じ水槽のすべての生き物。ほかの種との間合いに使う。 */
+  tankmates: FishInstance[];
+  catalog: Record<string, FishSpeciesDefinition>;
   tank: TankDefinition;
   structurePoints: Vec2[];
   scene?: AquariumScene;
@@ -88,6 +93,9 @@ type StepContext = {
   activity: number;
   deltaSec: number;
 };
+
+/** 住みかを持つ魚の、住みかの位置と離れる範囲 (cm)。 */
+type HomeRange = { position: Vec2; rangeCm: number };
 
 function stepFish(context: StepContext): FishInstance {
   if (context.fish.terrainGoal && context.fish.terrainGoal.sceneId !== context.scene?.id) {
@@ -118,6 +126,12 @@ function stepFish(context: StepContext): FishInstance {
   let goalPoint = terrain && terrainGoal ? resolveTerrainGoal(terrainGoal, terrain) : undefined;
   if (goalPoint) target = goalPoint.position;
   const airBreathing = findHabit(species, "airBreathing");
+  const homeHabit = findHabit(species, "homeShelter");
+  const homeShelter = homeHabit && terrain ? findHomeShelter(fish, terrain.scene, homeHabit.kind) : undefined;
+  const home: HomeRange | undefined = homeHabit && homeShelter && terrain
+    ? { position: worldPoint(homeShelter, tank, terrain.frame), rangeCm: homeHabit.rangeBodyLengths * bodyLength }
+    : undefined;
+  const isFree = (point: Vec2) => !terrain || !insideTerrain(point, fish.depth, terrain);
   let nextBreathSec = airBreathing
     ? (fish.nextBreathSec ?? getBreathIntervalSec(airBreathing, random) * random()) - deltaSec
     : undefined;
@@ -125,7 +139,7 @@ function stepFish(context: StepContext): FishInstance {
   const startOpenWater = () => {
     mode = "coast";
     remaining = lerp(gait.kickIntervalSec[0], gait.kickIntervalSec[1], random()) * 0.5 * personality.restfulness;
-    const choice = chooseTarget(fish, species, school, tank, structurePoints, random);
+    const choice = chooseTarget(fish, species, school, tank, structurePoints, random, home, isFree, activity);
     target = choice.position;
     targetKind = choice.kind;
     legTimeSec = 0;
@@ -136,7 +150,7 @@ function stepFish(context: StepContext): FishInstance {
   };
 
   // 1. 進行中の習性行動を進める。
-  const precise = targetKind === "rest" || targetKind === "hide" || targetKind === "forage";
+  const precise = targetKind === "rest" || targetKind === "hide" || targetKind === "forage" || targetKind === "home";
   const reached = target !== undefined && (goalPoint
     ? length(subtract(target, fish.position)) < Math.max(.12, bodyLength * .06)
     : hasReachedTarget(fish, target, species, precise)) &&
@@ -155,6 +169,15 @@ function stepFish(context: StepContext): FishInstance {
       } else if (reached) {
         mode = "rest";
         habitTimeSec = drawHabitDuration(species, targetKind === "hide" ? "hideByDay" : "bottomRest", random) * personality.restfulness;
+      }
+      break;
+    case "home":
+      // 住みかに入ってしばらく休み、また近くを泳ぎ始める。
+      if (mode === "rest") {
+        if ((habitTimeSec ?? 0) <= 0) startOpenWater();
+      } else if (reached && homeHabit) {
+        mode = "rest";
+        habitTimeSec = lerp(homeHabit.visitDurationSec[0], homeHabit.visitDurationSec[1], random()) * personality.restfulness;
       }
       break;
     case "forage":
@@ -197,7 +220,7 @@ function stepFish(context: StepContext): FishInstance {
     default:
       // 目的地に着いたら、通り過ぎて引き返す前に次の目的地へ切り替える。
       if (reached) {
-        const choice = chooseTarget(fish, species, school, tank, structurePoints, random);
+        const choice = chooseTarget(fish, species, school, tank, structurePoints, random, home, isFree, activity);
         target = choice.position;
         targetKind = choice.kind;
         legTimeSec = 0;
@@ -239,7 +262,7 @@ function stepFish(context: StepContext): FishInstance {
       // 目的地はキックごとに選び直さず、着いたか長く向かい続けたときだけ変える。
       if ((targetKind === "openWater" || targetKind === "structure") &&
         (!target || legTimeSec > getLegLimitSec(targetKind, random))) {
-        const choice = chooseTarget(fish, species, school, tank, structurePoints, random);
+        const choice = chooseTarget(fish, species, school, tank, structurePoints, random, home, isFree, activity);
         target = choice.position;
         targetKind = choice.kind;
         legTimeSec = 0;
@@ -350,10 +373,11 @@ function pickHabit(
   const { fish, species, school, tank, structurePoints, activity, deltaSec } = context;
   const bottomY = tank.heightCm - tank.safeMarginCm;
   const perStep = (chancePerMin: number) => random() < (chancePerMin / 60) * deltaSec;
+  const homeKind = findHabit(species, "homeShelter")?.kind;
   const terrainHabit = (kind: "hide" | "rest" | "forage"): HabitStart | undefined => {
     if (!context.scene?.terrain) return undefined;
     const terrain = { scene: context.scene, tank, species, frame: context.frame };
-    const goal = chooseTerrainGoal(kind, fish, terrain, random);
+    const goal = chooseTerrainGoal(kind, fish, terrain, random, homeKind);
     const point = goal && resolveTerrainGoal(goal, terrain);
     return point ? { kind, target: point.position, terrainGoal: goal } : undefined;
   };
@@ -429,6 +453,13 @@ function pickHabit(
           }
         }
         break;
+      case "homeShelter":
+        // 明るい間も、ときどき住みかへ戻って身を寄せる。暗いときほど戻りやすい。
+        if (perStep(habit.visitChancePerMin * (activity < 0.6 ? 2 : 1))) {
+          const terrain = terrainHabit("hide");
+          if (terrain) return { ...terrain, kind: "home" };
+        }
+        break;
       case "bottomForage":
         break;
     }
@@ -443,7 +474,28 @@ function chooseTarget(
   tank: TankDefinition,
   structurePoints: Vec2[],
   random: () => number,
+  home?: HomeRange,
+  isFree: (point: Vec2) => boolean = () => true,
+  activity = 1,
 ): { position: Vec2; kind: "openWater" | "structure" } {
+  // 住みかを持つ魚は、住みかを中心にした範囲の中で泳ぐ先を選ぶ（岩の内側は避ける）。
+  if (home && species.swim?.bodyPlan !== "crustacean") {
+    const zone = species.preferredZone;
+    let position = home.position;
+    for (let attempt = 0; attempt < 6; attempt++) {
+      const angle = random() * Math.PI * 2;
+      const radius = home.rangeCm * Math.sqrt(random());
+      position = {
+        x: clamp(home.position.x + Math.cos(angle) * radius, tank.safeMarginCm, tank.widthCm - tank.safeMarginCm),
+        // 住みかの真下へは潜り込まず、少し上の水中を中心にする。
+        y: clamp(home.position.y - home.rangeCm * 0.2 + Math.sin(angle) * radius * 0.6,
+          Math.max(tank.safeMarginCm, tank.heightCm * zone.minY),
+          Math.min(tank.heightCm - tank.safeMarginCm, tank.heightCm * zone.maxY)),
+      };
+      if (isFree(position)) break;
+    }
+    return { kind: "openWater", position };
+  }
   const point = structurePoints.length > 0
     ? structurePoints[Math.floor(random() * structurePoints.length)]!
     : undefined;
@@ -471,8 +523,16 @@ function chooseTarget(
   const heading = getSchoolHeading(fish, species, school);
   return {
     kind: "openWater",
-    position: chooseOpenWaterTarget(fish, heading, species, tank, random),
+    position: chooseOpenWaterTarget(fish, heading, species, tank, random, activity),
   };
+}
+
+// 昼行性の中層・下層の魚は、暗い間は生活層の下寄りへ沈んで静かに過ごす。水面に暮らす魚はそのまま。
+const NIGHT_SETTLE_ACTIVITY = 0.5;
+function getActiveZone(species: FishSpeciesDefinition, activity: number) {
+  const zone = species.preferredZone;
+  if (activity >= NIGHT_SETTLE_ACTIVITY || zone.maxY <= 0.4) return zone;
+  return { ...zone, minY: lerp(zone.minY, zone.maxY, 0.55), maxY: Math.min(0.9, zone.maxY + 0.1) };
 }
 
 // 水槽の魚は同じ向きへしばらく泳ぎ、前が詰まったところで折り返す。
@@ -482,8 +542,9 @@ function chooseOpenWaterTarget(
   species: FishSpeciesDefinition,
   tank: TankDefinition,
   random: () => number,
+  activity = 1,
 ): Vec2 {
-  const zone = species.preferredZone;
+  const zone = getActiveZone(species, activity);
   const minX = tank.widthCm * zone.minX;
   const maxX = tank.widthCm * zone.maxX;
   const minY = tank.heightCm * zone.minY;
@@ -550,20 +611,24 @@ function getDesiredVelocity(context: StepContext & {
   const boundary = boundaryVector(fish.position, tank,
     targetKind === "surfaceVisit" || species.preferredZone.maxY <= 0.25,
     crustacean);
-  const zone = inHabit || crustacean ? { x: 0, y: 0 } : zoneVector(fish.position, tank, species);
+  const zone = inHabit || crustacean ? { x: 0, y: 0 } : zoneVector(fish.position, tank, species, activity);
   const rawFlock = inHabit ? { x: 0, y: 0 } : schoolingVector(fish, school, species, tank);
   // 群れの引力で後ろ向きに引き戻されると、頻繁に向きが入れ替わってしまう。
   const flock = rawFlock.x * fish.facing < 0
     ? { x: rawFlock.x * 0.2, y: rawFlock.y }
     : rawFlock;
   const structureBias = targetKind === "structure" ? species.ecology.structureAffinity * 0.35 : 0;
+  const avoidance = context.scene?.terrain ? terrainAvoidance(fish,
+    { scene: context.scene, tank, species, frame: context.frame }) : { x: 0, y: 0 };
+  // 岩の近くや回り込みの最中は、狭い隙間で押し合って止まらないよう、ほかの種との間合いを取らない。
+  const nearRock = fish.terrainRoute !== undefined || avoidance.x !== 0 || avoidance.y !== 0;
   const direction = normalize(addMany(
     scale(targetDirection, 0.9 + structureBias + (inHabit ? 0.8 : 0)),
     boundary,
     zone,
     flock,
-    context.scene?.terrain ? terrainAvoidance(fish,
-      { scene: context.scene, tank, species, frame: context.frame }) : { x: 0, y: 0 },
+    avoidance,
+    inHabit || nearRock ? { x: 0, y: 0 } : crowdingVector(fish, species, context.tankmates, context.catalog, tank),
   ));
 
   const kickSpeed = cruise + (burst - cruise) * GAITS[species.ecology.gait].kickBlend;
@@ -575,6 +640,9 @@ function getDesiredVelocity(context: StepContext & {
     speed = kickSpeed * 1.2;
   } else if (targetKind === "rest" || targetKind === "hide") {
     speed = cruise * 0.8;
+  } else if (targetKind === "home") {
+    // 住みかへは短く素早く戻る（ハタタテハゼが巣穴へ、クマノミがイソギンチャクへ）。
+    speed = kickSpeed;
   }
   if (fish.terrainGoal && target && !fish.terrainRoute) {
     speed = Math.min(speed, Math.max(.04, length(subtract(target, fish.position)) * 1.4));
@@ -634,6 +702,36 @@ function schoolingVector(
   );
 }
 
+// ほかの種とは体が重ならない程度の間合いを取る。小さい魚ほど大きい魚に道を譲る。
+// 同じ種の間隔は群れの計算（schoolingVector）が受け持つ。
+function crowdingVector(
+  fish: FishInstance,
+  species: FishSpeciesDefinition,
+  tankmates: FishInstance[],
+  catalog: Record<string, FishSpeciesDefinition>,
+  tank: TankDefinition,
+): Vec2 {
+  let x = 0;
+  let y = 0;
+  for (const other of tankmates) {
+    if (other.speciesId === fish.speciesId) continue;
+    const otherLength = catalog[other.speciesId]?.realBodyLengthCm;
+    if (!otherLength) continue;
+    const reach = (species.realBodyLengthCm + otherLength) * 0.5;
+    const dx = fish.position.x - other.position.x;
+    const dy = fish.position.y - other.position.y;
+    if (Math.abs(dx) > reach || Math.abs(dy) > reach) continue;
+    const distance = Math.hypot(dx, dy, (fish.depth - other.depth) * tank.depthCm);
+    if (distance >= reach || distance < 1e-6) continue;
+    const yieldShare = otherLength / (species.realBodyLengthCm + otherLength);
+    const push = (1 - distance / reach) * yieldShare * 2.4 / Math.max(Math.hypot(dx, dy), 0.2);
+    x += dx * push;
+    // 上下へよけるほうが自然なので、縦の成分を少し強める。
+    y += dy * push * 1.3;
+  }
+  return { x, y };
+}
+
 function boundaryVector(position: Vec2, tank: TankDefinition, allowSurface: boolean, allowBottom = false): Vec2 {
   const margin = tank.safeMarginCm * 3.2;
   const strength = WALL_AVOIDANCE_STRENGTH * 0.16;
@@ -655,9 +753,11 @@ function zoneVector(
   position: Vec2,
   tank: TankDefinition,
   species: FishSpeciesDefinition,
+  activity: number,
 ): Vec2 {
-  const minY = tank.heightCm * species.preferredZone.minY;
-  const maxY = tank.heightCm * species.preferredZone.maxY;
+  const active = getActiveZone(species, activity);
+  const minY = tank.heightCm * active.minY;
+  const maxY = tank.heightCm * active.maxY;
   const y = position.y < minY ? minY - position.y : position.y > maxY ? maxY - position.y : 0;
   return { x: 0, y: y * ZONE_HOLD_STRENGTH * 0.18 };
 }

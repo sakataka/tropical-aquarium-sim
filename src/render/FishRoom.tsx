@@ -9,13 +9,13 @@ import {
   type AquariumCustomization,
   type FishInstance,
 } from "../core";
-import { type FishRoomDefinition, type RoomRect } from "../core/room";
+import { getWindowOverscan, type FishRoomDefinition, type RoomRect } from "../core/room";
 import { reportRenderProblem, watchContextLoss, watchSetup } from "./renderProblems";
 import { getSceneForegroundUrl, getScenePlateUrl, getRoomImageUrl } from "./assets";
 import { FishLayer, getWaterTint, type ViewRect } from "./fishLayer";
 import { frameGlass, getInitialZoom, getRenderOptions } from "./tankFraming";
 import { playSfx } from "../audio/sfx";
-import { getSurfaceFrame, TerrainLayer } from "./terrainLayer";
+import { getSurfaceFrame, placePlate, TerrainLayer } from "./terrainLayer";
 
 type FishRoomProps = {
   room: FishRoomDefinition;
@@ -164,7 +164,7 @@ export function FishRoom({
       }
       progress.mark("部屋と水景の画像の読み込み");
       const [roomTexture] = await Promise.all([
-        Assets.load<Texture>(getRoomImageUrl(fishRoom.id)),
+        Assets.load<Texture>(getRoomImageUrl(fishRoom)),
         ...views.map((view) => loadPlate(view, tanksRef.current[view.tankId]?.layout.sceneId)),
       ]);
       if (disposed) return;
@@ -240,15 +240,8 @@ export function FishRoom({
       view.mask.clear().rect(windowRect.x, windowRect.y, windowRect.width, windowRect.height).fill(0xffffff);
       for (const sprite of [view.plate, view.foreground]) {
         if (sprite.texture === Texture.EMPTY) continue;
-        sprite.position.set(glassRect.x + glassRect.width / 2, glassRect.y + glassRect.height / 2);
         // 前面ガラスを基準に、側面ガラスから見える部分まで水景を広げる。
-        sprite.scale.set(Math.max(
-          windowRect.width / sprite.texture.width,
-          windowRect.height / sprite.texture.height,
-        ));
-        if (getSceneById(view.loadedSceneId)?.terrain) {
-          sprite.y = glassRect.y + glassRect.height - sprite.height / 2;
-        }
+        placePlate(sprite, glassRect, getWindowOverscan(view.tankId), getSceneById(view.loadedSceneId));
       }
       if (activeRef.current) fishRef.current = stepSimulation({
         tank,

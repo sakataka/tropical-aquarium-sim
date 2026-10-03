@@ -1,4 +1,4 @@
-import type { AquariumScene, FishInstance, FishSpeciesDefinition, SurfaceFrame, TankDefinition, Vec2 } from "./types";
+import type { AquariumScene, FishInstance, FishSpeciesDefinition, ShelterKind, SurfaceFrame, TankDefinition, Vec2 } from "./types";
 import { sampleSurface, worldPoint } from "./surfaceMotion";
 
 type Goal = NonNullable<FishInstance["terrainGoal"]>;
@@ -10,7 +10,7 @@ export function resolveTerrainGoal(goal: Goal, context: Context): { position: Ve
   const shelter = scene.terrain?.shelters?.find((s) => s.id === goal.shelterId);
   if (shelter) {
     const point = worldPoint(shelter, tank, frame);
-    return { position: { x: point.x, y: point.y }, depth: point.depth };
+    return { position: { x: point.x + (goal.offsetCm ?? 0), y: point.y }, depth: point.depth };
   }
   const surface = scene.terrain?.surfaces.find((s) => s.id === goal.surfaceId);
   if (!surface) return undefined;
@@ -19,11 +19,25 @@ export function resolveTerrainGoal(goal: Goal, context: Context): { position: Ve
   return sampled;
 }
 
+/** 住みかの種類が合う shelter のうち、個体ごとに決まった1か所。魚の id から選ぶので、泳ぐ間は変わらない。 */
+export function findHomeShelter(fish: FishInstance, scene: AquariumScene, kind: ShelterKind) {
+  const homes = (scene.terrain?.shelters ?? []).filter((shelter) => shelter.kind === kind);
+  if (homes.length === 0) return undefined;
+  let hash = 0;
+  for (let i = 0; i < fish.id.length; i++) hash = (Math.imul(hash, 31) + fish.id.charCodeAt(i)) >>> 0;
+  return homes[hash % homes.length];
+}
+
 export function chooseTerrainGoal(kind: "hide" | "rest" | "forage", fish: FishInstance,
-  context: Context, random: () => number): Goal | undefined {
+  context: Context, random: () => number, preferredShelter?: ShelterKind): Goal | undefined {
   const { scene, tank } = context;
+  const shelters = scene.terrain?.shelters ?? [];
+  // 住みかを持つ魚は、同じ種類の隠れ場所があればそこへ入る。
+  const home = preferredShelter ? findHomeShelter(fish, scene, preferredShelter) : undefined;
+  // 同じ隠れ場所へ入る仲間と重ならないよう、体長の範囲で左右へずらす。
+  const offsetCm = kind === "hide" ? (random() - .5) * context.species.realBodyLengthCm * .9 : 0;
   const candidates: Goal[] = kind === "hide"
-    ? (scene.terrain?.shelters ?? []).map((s) => ({ sceneId: scene.id, shelterId: s.id }))
+    ? (home ? [home] : shelters).map((s) => ({ sceneId: scene.id, shelterId: s.id, offsetCm }))
     : (scene.terrain?.surfaces ?? []).filter((s) => kind === "rest" ? s.material === "sand" : s.material !== "sand")
       .flatMap((s) => [.2, .5, .8].map((progress) =>
         ({ sceneId: scene.id, surfaceId: s.id, progress })));

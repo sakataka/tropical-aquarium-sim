@@ -20,13 +20,13 @@
     "height": 429
   },
   "preferredZone": {
-    "minX": 0.12,
-    "maxX": 0.88,
-    "minY": 0.65,
-    "maxY": 0.89
+    "minX": 0.1,
+    "maxX": 0.9,
+    "minY": 0.62,
+    "maxY": 0.95
   },
   "ecology": {
-    "activityPeriod": "crepuscular",
+    "activityPeriod": "nocturnal",
     "gait": "undulate",
     "speedBodyLengthsPerSec": {
       "cruise": 0.18,
@@ -35,8 +35,8 @@
     "turnRateRadPerSec": 1.4,
     "restFraction": 0.48,
     "depthRange": [
-      0.2,
-      0.8
+      0.3,
+      0.9
     ],
     "social": {
       "grouping": "solitary",
@@ -44,7 +44,7 @@
       "cohesion": 0,
       "polarization": 0.05
     },
-    "structureAffinity": 0.35,
+    "structureAffinity": 0.55,
     "habits": [
       {
         "type": "bottomRest",
@@ -60,7 +60,7 @@
           8,
           16
         ],
-        "style": "rise"
+        "style": "dash"
       }
     ],
     "sources": [

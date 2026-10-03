@@ -16,23 +16,23 @@
     "height": 929
   },
   "preferredZone": {
-    "minX": 0.12,
-    "maxX": 0.88,
-    "minY": 0.66,
-    "maxY": 0.91
+    "minX": 0.1,
+    "maxX": 0.9,
+    "minY": 0.7,
+    "maxY": 0.93
   },
   "ecology": {
-    "activityPeriod": "crepuscular",
-    "gait": "glide",
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
     "speedBodyLengthsPerSec": {
-      "cruise": 0.22,
-      "burst": 1.2
+      "cruise": 0.15,
+      "burst": 0.8
     },
     "turnRateRadPerSec": 2.5,
-    "restFraction": 0.4,
+    "restFraction": 0.35,
     "depthRange": [
-      0.2,
-      0.8
+      0.3,
+      0.85
     ],
     "social": {
       "grouping": "solitary",
@@ -43,7 +43,40 @@
     "structureAffinity": 0.65,
     "habits": [
       {
+        "type": "grazing",
+        "chancePerMin": 4,
+        "durationSec": [
+          3,
+          10
+        ]
+      },
+      {
         "type": "bottomForage"
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1,
+        "durationSec": [
+          4,
+          12
+        ]
+      },
+      {
+        "type": "homeShelter",
+        "kind": "crevice",
+        "rangeBodyLengths": 14,
+        "visitChancePerMin": 0.1,
+        "visitDurationSec": [
+          6,
+          15
+        ]
+      },
+      {
+        "type": "hideByDay",
+        "durationSec": [
+          60,
+          180
+        ]
       }
     ],
     "sources": [
@@ -58,8 +91,8 @@
     "originRegionId": "indo-pacific",
     "originRegionName": "インド太平洋",
     "origin": "西太平洋の熱帯域。浅いサンゴ礁やラグーンの底近くに暮らすネズッポ科の魚です。",
-    "temperament": "底に近い場所で小さな餌生物を探す魚です。鮮やかな青緑と橙色の複雑な模様が特徴です。",
-    "movement": "岩や砂の近くをゆっくり移動し、底面で餌を探す動きを挟みます。中層を群れで泳ぐ魚とは違う見え方になります。",
-    "habitat": "低い岩組みと砂底のあるサンゴ礁の水景に配置します。給餌や飼育の難しさを扱うゲームではありません。"
+    "temperament": "岩や砂の上の小さな甲殻類を一日中ついばむ、底生のネズッポ科の魚です。",
+    "movement": "胸びれで小さく進んでは止まり、岩の表面をついばみます。長く滑るようには泳がず、夜は岩の隙間に入って休みます。",
+    "habitat": "低い岩組みと砂底のあるサンゴ礁のラグーン。餌になる小さな生き物が多い岩の根元を好みます。"
   }
 }

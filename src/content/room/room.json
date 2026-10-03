@@ -1,4 +1,9 @@
 {
+  "id": "freshwater",
+  "order": 1,
+  "displayName": "淡水の部屋",
+  "shortName": "淡水の部屋",
+  "image": "room-five.webp",
   "aspectRatio": 1.7768331562167907,
   "tanks": [
     {

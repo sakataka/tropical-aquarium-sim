@@ -43,6 +43,13 @@ const habitSchema = z.discriminatedUnion("type", [
     chancePerMin: z.number().finite().min(0).max(10),
     durationSec: rangeSchema,
   }),
+  z.object({
+    type: z.literal("homeShelter"),
+    kind: z.enum(["anemone", "burrow", "crevice", "cave"]),
+    rangeBodyLengths: z.number().finite().positive().max(40),
+    visitChancePerMin: z.number().finite().min(0).max(10),
+    visitDurationSec: rangeSchema,
+  }),
 ]);
 
 const unit = z.number().finite().min(0).max(1);

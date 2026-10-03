@@ -268,6 +268,13 @@ const HABIT_LABELS = {
   grazing: "ついばむ",
   hideByDay: "昼は隠れる",
   follow: "追いかける",
+  homeShelter: "住みかを持つ",
+} as const;
+const SHELTER_LABELS = {
+  anemone: "イソギンチャクに住む",
+  burrow: "巣穴に住む",
+  crevice: "岩の隙間で休む",
+  cave: "物陰を住みかにする",
 } as const;
 
 function getTraitLabels(species: FishSpeciesDefinition): string[] {
@@ -275,7 +282,7 @@ function getTraitLabels(species: FishSpeciesDefinition): string[] {
   return [
     ACTIVITY_LABELS[activityPeriod],
     GROUPING_LABELS[social.grouping],
-    ...habits.map((habit) => HABIT_LABELS[habit.type]),
+    ...habits.map((habit) => habit.type === "homeShelter" ? SHELTER_LABELS[habit.kind] : HABIT_LABELS[habit.type]),
   ];
 }
 

@@ -23,7 +23,10 @@ export const terrainSchema = z.object({
     id: z.string().min(1), center: surfacePointSchema,
     radius: z.object({ x: unit.gt(0), y: unit.gt(0) }), depthRadius: unit.gt(0),
   })).optional(),
-  shelters: z.array(surfacePointSchema.extend({ id: z.string().min(1) })).optional(),
+  shelters: z.array(surfacePointSchema.extend({
+    id: z.string().min(1),
+    kind: z.enum(["anemone", "burrow", "crevice", "cave"]).optional(),
+  })).optional(),
 }).refine((terrain) => new Set(terrain.surfaces.map((s) => s.id)).size === terrain.surfaces.length,
 { message: "Surface ids must be unique" })
   .refine((terrain) => [terrain.occluders, terrain.obstacles ?? [], terrain.shelters ?? []]
@@ -42,6 +45,7 @@ const sceneSchema = z.object({
     x: z.number().finite().min(0).max(1),
     y: z.number().finite().min(0).max(1),
   })),
+  framing: z.object({ plateBottom: unit.gt(0) }).optional(),
   terrain: terrainSchema.optional(),
 }) satisfies z.ZodType<AquariumScene>;
 

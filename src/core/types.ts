@@ -12,8 +12,11 @@ export type SceneTerrain = {
   occluders: { id: string; depth: number; polygon: Vec2[] }[];
   /** 画像内の石・木の内部。遮蔽の輪郭とは別に、奥行きのある回避領域を持つ。 */
   obstacles?: { id: string; center: SurfacePoint; radius: Vec2; depthRadius: number }[];
-  shelters?: (SurfacePoint & { id: string })[];
+  /** 隠れ場所・住みか。kind を持つものは、その種類を住みかにする魚が優先して使う。 */
+  shelters?: (SurfacePoint & { id: string; kind?: ShelterKind })[];
 };
+/** 住みかの種類。イソギンチャク、砂礫の巣穴、岩の隙間、流木や岩の下の陰。 */
+export type ShelterKind = "anemone" | "burrow" | "crevice" | "cave";
 // cover 表示で切り取られる背景と、前面ガラスの座標を一致させる。
 export type SurfaceFrame = { x: number; y: number; width: number; height: number };
 export type SurfaceMotion = {
@@ -50,7 +53,19 @@ export type FishHabit =
   | { type: "bottomForage" }
   | { type: "grazing"; chancePerMin: number; durationSec: [number, number] }
   | { type: "hideByDay"; durationSec: [number, number] }
-  | { type: "follow"; chancePerMin: number; durationSec: [number, number] };
+  | { type: "follow"; chancePerMin: number; durationSec: [number, number] }
+  /**
+   * 決まった住みか（水景の shelter の kind）の近くで暮らし、ときどき入って休む。
+   * 夜や昼の隠れ場所にも、この種類の住みかを優先して使う。
+   */
+  | {
+    type: "homeShelter";
+    kind: ShelterKind;
+    /** 住みかから離れる範囲（体長の倍数）。 */
+    rangeBodyLengths: number;
+    visitChancePerMin: number;
+    visitDurationSec: [number, number];
+  };
 
 export type FishHabitType = FishHabit["type"];
 
@@ -114,7 +129,8 @@ export type FishTargetKind =
   | "rest"
   | "hide"
   | "forage"
-  | "follow";
+  | "follow"
+  | "home";
 
 /** 生成時に決まる種の標準値への倍率。泳ぐ間は変化させず、保存・管理UIの対象にしない。 */
 export type FishPersonality = Readonly<{
@@ -135,7 +151,11 @@ export type FishInstance = {
   depth: number;
   surfaceMotion?: SurfaceMotion;
   /** 習性行動の目的地。画像の座標を再計算できる参照だけを保持する。 */
-  terrainGoal?: { sceneId: string; surfaceId?: string; progress?: number; shelterId?: string; facing?: -1 | 1 };
+  terrainGoal?: {
+    sceneId: string; surfaceId?: string; progress?: number; shelterId?: string; facing?: -1 | 1;
+    /** 同じ隠れ場所に入る仲間と重ならないよう、左右へずらす量 (cm)。 */
+    offsetCm?: number;
+  };
   /** 接地への寄り・離れを描画でも連続させる。保存対象外。 */
   contact?: { angle: number; kind: "mouth" | "belly"; weight: number };
   terrainRoute?: { sceneId: string; obstacleId: string; side: -1 | 1 };
@@ -203,6 +223,8 @@ export type AquariumScene = {
   waterColor: string;
   structurePoints: Vec2[];
   bubbleSources: Vec2[];
+  /** 画像のどの高さ（0〜1）をガラスの下端に合わせるか。超横長の水槽で水の層を残すために使う。 */
+  framing?: { plateBottom: number };
   terrain?: SceneTerrain;
 };
 

@@ -1,6 +1,15 @@
 import { Container, Graphics, Sprite, Texture } from "pixi.js";
+import { framePlate } from "../core/plateFraming";
 import type { AquariumScene, SurfaceFrame } from "../core/types";
 import type { ViewRect } from "./fishLayer";
+
+/** 水景の一枚絵（anchor 0.5）を、部屋と水槽画面で同じ切り取り方でガラスへ敷く。 */
+export function placePlate(sprite: Sprite, glass: ViewRect, overscan: { x: number; y: number },
+  scene: AquariumScene | undefined) {
+  const rect = framePlate(sprite.texture, glass, overscan, scene);
+  sprite.scale.set(rect.width / sprite.texture.width);
+  sprite.position.set(rect.x + rect.width / 2, rect.y + rect.height / 2);
+}
 
 /** cover 表示の画像座標を、前面ガラスに対する比率へ変換する。 */
 export function getSurfaceFrame(plate: Sprite, glass: ViewRect): SurfaceFrame {

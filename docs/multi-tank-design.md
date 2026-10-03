@@ -63,10 +63,15 @@
 - 水景の `structurePoints` と `bubbleSources` は水槽サイズに依存しない 0〜1 の比率で持つ。
 - 魚種（`fish/<id>/species.json`）は全水槽共通のまま。どの水槽に入れられるかは水槽側が決める。
 
-### フィッシュルーム `src/content/room/room.json`
+### フィッシュルーム `src/content/room/*.json`
 
 ```json
 {
+  "id": "freshwater",
+  "order": 1,
+  "displayName": "淡水の部屋",
+  "shortName": "淡水の部屋",
+  "image": "room-five.webp",
   "aspectRatio": 1.777,
   "tanks": [
     {

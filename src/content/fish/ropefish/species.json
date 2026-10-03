@@ -20,10 +20,10 @@
     "height": 212
   },
   "preferredZone": {
-    "minX": 0.12,
-    "maxX": 0.88,
-    "minY": 0.7,
-    "maxY": 0.9
+    "minX": 0.1,
+    "maxX": 0.9,
+    "minY": 0.66,
+    "maxY": 0.95
   },
   "ecology": {
     "activityPeriod": "nocturnal",
@@ -35,8 +35,8 @@
     "turnRateRadPerSec": 1.4,
     "restFraction": 0.45,
     "depthRange": [
-      0.2,
-      0.8
+      0.3,
+      0.9
     ],
     "social": {
       "grouping": "group",

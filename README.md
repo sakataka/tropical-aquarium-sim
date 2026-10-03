@@ -59,9 +59,8 @@ http://tropical-aquarium-sim.localhost/?theme=iwagumi
 - `src/content/fish/<species-id>/side.png`: 画像生成した横向き魚画像（原本）
 - `src/content/fish/<species-id>/body.webp`: 描画とカタログに使う軽量版。`side.png` から体の部分だけを切り出し、最大幅720pxにしたもの。生成画像は `uv run scripts/install-fish-sprite.py <species-id> <PNG>` で取り込み（透過の端数をそろえ、`sourceBodyBounds` を計算し直す）、魚を追加・差し替えたら `uv run scripts/build-fish-sprites.py` で作り直す
 - `src/content/tanks/<tank-id>/tank.json`: 水槽の名前・展示ラベル用の英字名（`exhibitName`）・分類・サイズ、使える水景、入れられる魚種と上限、最初の魚
-- `src/content/room/room.json` と `room-five.webp`: フィッシュルームの一枚絵と各水槽のガラスの位置。描画時に前面をマスクして実際の水景を合成（旧 `room.webp` は保持）
-- `src/content/room/room-special.json` と `room-special.webp`: 第2の部屋の一枚絵とガラス位置。部屋の一覧は `src/core/room.ts` で定義
-- `src/content/environment/scenes/<scene-id>/scene.json`: 水景名、標準照明、水の色、魚が寄る構造物と泡の出る位置（水槽に対する0〜1の比率）。日本水景の `terrain` は、背景画像に対する0〜1のXYと奥行き `depth` を持つ表面経路、および奥行き別の遮蔽領域
+- `src/content/room/*.json` と同じフォルダの `.webp`: 部屋ごとのID・並び順・見出し（`displayName`）・切り替えボタンの名前（`shortName`）・一枚絵のファイル名（`image`）と、各水槽のガラスの位置。JSONと画像を置くと自動で読み込みます（`room.json` + `room-five.webp` が淡水の部屋、`room-special.json` + `room-special.webp` が海と古代魚の部屋）。描画時に前面をマスクして実際の水景を合成します。旧 `room.webp` は保持しますが配信には含めません
+- `src/content/environment/scenes/<scene-id>/scene.json`: 水景名、標準照明、水の色、魚が寄る構造物と泡の出る位置（水槽に対する0〜1の比率）。`terrain` は、背景画像に対する0〜1のXYと奥行き `depth` を持つ表面経路、奥行き別の遮蔽領域、岩や流木の回避領域、隠れ場所（`shelters`。`kind` に `anemone` / `burrow` / `crevice` / `cave` を付けると住みかになる）。ガラスが画像よりかなり横長な水槽では、`framing.plateBottom` に画像のどの高さをガラスの下端へ合わせるかを書き、砂底だけが映らないようにします（サンゴ礁0.88、古代魚0.80）
 - `src/content/environment/scenes/<scene-id>/plate.webp`: 画像生成した一枚絵の水景
 - `src/content/environment/scenes/<scene-id>/foreground.webp`: 同じ一枚絵から最前面の水草・石だけを切り抜いた透過レイヤー
 - `sfx.json` と `public/sfx/`: 効果音の注文書と、SFX Forge で作った効果音一式（`sfx-manifest.json` と WAV）。作り直すときは `bun run --cwd /Users/sakataka/Documents/sfx-forge sfx build "$PWD/sfx.json" --out "$PWD/public/sfx"`。「設定を開く」は審査の点が低かったため、「閉じる」を少し高く鳴らして使う。素材の作者とライセンスは `sfx-manifest.json` の `credits` と設定パネルに載せる
@@ -81,7 +80,7 @@ http://tropical-aquarium-sim.localhost/?theme=iwagumi
 | `depthRange` | 前後方向の居場所（0 = ガラス側、1 = 奥） |
 | `social` | 群れ方（`school` / `shoal` / `group` / `solitary`）、仲間との間隔、まとまり、向きのそろい方 |
 | `structureAffinity` | 流木や水草に寄る傾向 |
-| `habits` | `airBreathing`（水面で息継ぎ）、`bottomRest`、`bottomForage`、`grazing`、`hideByDay`、`follow` の組み合わせ |
+| `habits` | `airBreathing`（水面で息継ぎ）、`bottomRest`、`bottomForage`、`grazing`、`hideByDay`（暗い間・明るい間など活動が落ちたときに物陰で休む）、`follow`、`homeShelter`（決まった種類の住みかの近くで暮らし、ときどき入って休む。夜もそこで休む）の組み合わせ |
 | `sources` | 根拠にした資料（1件以上必須） |
 泳ぎは `side.png` 1枚をメッシュとして変形し、尾の振りと方向転換を描きます。尾の振り方は `species.json` の `swim` で魚種ごとに調整できます。エビは `swim.bodyPlan: "crustacean"` にすると尾を振らず、脚を前から順に運んで歩き、触角（画像の左端から `swim.headStart` まで）をゆっくり揺らし、ついばむときは頭先を小刻みに下げます。底から離れて移動している場合だけ遊泳肢の動きと腹のしなりを描きます。地形を持つ日本水景では、エビは石や流木の表面にも沿って歩き、脚を表面に合わせて体を傾けます。地形のある面では水中を泳ぐ動きへ切り替えません。水草の葉を登る動きは未実装です。体長の縮尺には触角を含めません。魚は泳ぐ高さと前後の位置で明るさが変わり（水面近くは明るく、底や奥は暗く水の色に寄る）、水景の光となじみます。
 
@@ -109,7 +108,7 @@ v1〜v4 は60cm水槽1つの形式でした。移行時は、魚種をそれを�
 
 ## 検証
 
-`bun run test` は魚種・水景・水槽のカタログ、水槽ごとの魚種と上限、v1〜v4→v5移行、破損データ、境界・泳層・群泳・構造物への接近、方向転換の頻度、夜行性・空気呼吸・照明による活動量の違いを確認します。
+`bun run test` は部屋・水槽・水景・魚種の参照と画像の有無、住みかの種類が各水景にあるか、画面と同じ切り取り方で地形がガラス内に収まるか（`src/core/content.test.ts`）、魚種・水景・水槽のカタログ、水槽ごとの魚種と上限、v1〜v4→v5移行、破損データ、境界・泳層・群泳・構造物への接近、方向転換の頻度、夜行性・空気呼吸・照明による活動量の違い、住みか（クマノミのイソギンチャク、ハタタテハゼの巣穴、ニシキテグリの岩の隙間）、昼行性の中層魚が夜に下寄りへ沈むこと、別種どうしの体の重なりの少なさを確認します。
 
 `bun run verify:webview` はWebKit backendの `Bun.WebView` を使い、フィッシュルーム、水槽へ寄って鑑賞モードに入る操作、設定パネルの開閉、水槽ごとの生き物と上限、4水景の切替、新水槽の背景画像、照明、環境音、部屋へ戻る操作、5水槽の切り替え、再読込後の復元、3水槽保存からの追加、構成バージョン2からの一度だけの構成更新、v4からの移行、420px幅の表示と下からの設定シート、912×420の横向きで設定パネルが横に出ることを確認します。スクリーンショットは `tmp/webview/` に保存します。
 

@@ -15,23 +15,23 @@
     "height": 927
   },
   "preferredZone": {
-    "minX": 0.25,
+    "minX": 0.4,
     "maxX": 0.85,
-    "minY": 0.3,
-    "maxY": 0.65
+    "minY": 0.5,
+    "maxY": 0.88
   },
   "ecology": {
     "activityPeriod": "diurnal",
     "gait": "burstCoast",
     "speedBodyLengthsPerSec": {
-      "cruise": 0.3,
+      "cruise": 0.15,
       "burst": 2.6
     },
     "turnRateRadPerSec": 2.5,
-    "restFraction": 0.2,
+    "restFraction": 0.5,
     "depthRange": [
-      0.2,
-      0.8
+      0.35,
+      0.7
     ],
     "social": {
       "grouping": "solitary",
@@ -40,7 +40,25 @@
       "polarization": 0.05
     },
     "structureAffinity": 0.5,
-    "habits": [],
+    "habits": [
+      {
+        "type": "homeShelter",
+        "kind": "burrow",
+        "rangeBodyLengths": 3,
+        "visitChancePerMin": 0.8,
+        "visitDurationSec": [
+          3,
+          10
+        ]
+      },
+      {
+        "type": "hideByDay",
+        "durationSec": [
+          60,
+          180
+        ]
+      }
+    ],
     "sources": [
       {
         "title": "Nemateleotris magnifica species reference",
@@ -53,8 +71,8 @@
     "originRegionId": "indo-pacific",
     "originRegionName": "インド太平洋",
     "origin": "インド太平洋の熱帯域。サンゴ礁の岩や砂底に近い場所に生息します。",
-    "temperament": "細身の海水魚です。隠れ場所になる岩の近くで、ひれを使いながら水中にとどまる姿が特徴です。",
-    "movement": "中層でゆっくり進み、短い加速を挟みます。長い第一背びれが白から赤へ変わる体色とともに目立ちます。",
-    "habitat": "開けた水域と岩の陰が隣り合うサンゴ礁の水景に配置します。"
+    "temperament": "砂礫の巣穴を住みかにする臆病なハゼの仲間です。危険を感じるとすぐ巣穴へ飛び込みます。",
+    "movement": "巣穴の少し上で頭を流れに向けて静止し、長い第一背びれを立てたり倒したりします。ときどき素早く巣穴へ戻り、夜はその中で休みます。",
+    "habitat": "サンゴ礁の外側の斜面に近い砂礫底。この水景では右の根元の砂に巣穴があります。"
   }
 }

@@ -105,6 +105,8 @@ export default function App() {
   const customization = state.tanks[tank.id]!;
   const room = getRoomForTank(tank.id);
   const roomTanks = room.tanks.map((placement) => getTankById(placement.tankId)!);
+  const lastTankByRoom = useRef<Record<string, string>>({});
+  lastTankByRoom.current[room.id] = tank.id;
 
   useAmbientSound(
     state.preferences.soundEnabled && audioUnlocked,
@@ -212,25 +214,6 @@ export default function App() {
           <small>{navigator.userAgent}</small>
         </div>
       ) : null}
-      {phase.kind === "room" ? (
-        <>
-          <nav className="room-switcher" aria-label="部屋を選ぶ">
-            {fishRooms.map((item, index) => (
-              <button key={item.id} type="button" aria-pressed={item.id === room.id}
-                onClick={() => {
-                  if (item.id === room.id) return;
-                  playSfx("tank_switch");
-                  setState((current) => ({ ...current, activeTankId: item.tanks[0]!.tankId }));
-                  setPhase({ kind: "room" });
-                }}>
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                {item.id === "freshwater" ? "淡水の部屋" : "海と古代魚"}
-              </button>
-            ))}
-          </nav>
-          <SoundToggle className="room-sound" enabled={state.preferences.soundEnabled} onToggle={toggleSound} />
-        </>
-      ) : null}
       {showRoom ? (
         <FishRoom
           active={phase.kind === "room" || phase.kind === "toRoom"}
@@ -242,6 +225,28 @@ export default function App() {
           returningFrom={returningFrom}
           tanks={state.tanks}
         />
+      ) : null}
+      {/* 部屋の後ろに置き、寄っている間は .room-scroll.zooming から隠す。 */}
+      {phase.kind === "room" ? (
+        <>
+          <nav className="room-switcher" aria-label="部屋を選ぶ">
+            {fishRooms.map((item, index) => (
+              <button key={item.id} type="button" aria-pressed={item.id === room.id}
+                onClick={() => {
+                  if (item.id === room.id) return;
+                  playSfx("tank_switch");
+                  // 部屋を行き来しても、その部屋で最後に見ていた水槽を選んでおく。
+                  const last = lastTankByRoom.current[item.id];
+                  setState((current) => ({ ...current, activeTankId: last ?? item.tanks[0]!.tankId }));
+                  setPhase({ kind: "room" });
+                }}>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                {item.shortName}
+              </button>
+            ))}
+          </nav>
+          <SoundToggle className="room-sound" enabled={state.preferences.soundEnabled} onToggle={toggleSound} />
+        </>
       ) : null}
       {showTank ? (
         <TankScreen
@@ -500,6 +505,16 @@ function TankScreen({
           <p className="caption-eyebrow"><span>No. {exhibitNumber}</span>{tank.exhibitName}</p>
           <strong>{tank.displayName}</strong>
           <span>{activeScene?.displayName} · {lightingLabel} · {totalFish}匹</span>
+          {/* 展示ラベルのように、いま水槽にいる生き物の名前を添える。 */}
+          {customization.stock.length > 0 ? (
+            <p className="caption-species" aria-label="展示中の生き物">
+              {customization.stock.map((entry) => (
+                <span key={entry.speciesId}>
+                  {fishCatalog[entry.speciesId]?.displayName}<small>{entry.count}</small>
+                </span>
+              ))}
+            </p>
+          ) : null}
         </div>
         <div className="hud-zoom" role="group" aria-label="水槽の拡大と縮小">
           <button
