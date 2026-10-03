@@ -1,0 +1,52 @@
+{
+  "displayName": "水の生き物館",
+  "exhibitName": "Museum of Aquatic Life",
+  "lede": "身近な水辺から、遠く深い水へ。階を下りるほど、見慣れない生き物に出会えます。",
+  "floors": [
+    {
+      "id": "rivers",
+      "order": 1,
+      "label": "地上",
+      "exhibitLabel": "Ground Floor",
+      "displayName": "川と湖",
+      "exhibitName": "Rivers & Lakes",
+      "description": "日本の湧水から、アマゾン、東南アジア、アフリカの湖まで。淡水の魚とエビの展示です。"
+    },
+    {
+      "id": "cold",
+      "order": 2,
+      "label": "地下1階",
+      "exhibitLabel": "Floor B1",
+      "displayName": "冷たい水",
+      "exhibitName": "Cold Waters",
+      "description": "冷たい渓流と北の海。低い水温に適応した生き物の展示です。"
+    },
+    {
+      "id": "sea",
+      "order": 3,
+      "label": "地下2階",
+      "exhibitLabel": "Floor B2",
+      "displayName": "サンゴ礁と海",
+      "exhibitName": "Reefs & Seas",
+      "description": "サンゴ礁、砂地、磯。暖かい海の魚と、魚以外の海の生き物の展示です。"
+    },
+    {
+      "id": "ancient",
+      "order": 4,
+      "label": "地下3階",
+      "exhibitLabel": "Floor B3",
+      "displayName": "生きた化石",
+      "exhibitName": "Living Fossils",
+      "description": "大昔の姿を今に残す、古代魚とその仲間の展示です。"
+    },
+    {
+      "id": "deep",
+      "order": 5,
+      "label": "地下4階",
+      "exhibitLabel": "Floor B4",
+      "displayName": "洞窟と深海",
+      "exhibitName": "Caves & the Deep",
+      "description": "光の届かない洞窟と深海。暗闇に暮らす生き物の展示です。"
+    }
+  ]
+}

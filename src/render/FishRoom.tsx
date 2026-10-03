@@ -9,6 +9,7 @@ import {
   type FishInstance,
 } from "../core";
 import { getWindowOverscan, type FishRoomDefinition, type RoomRect } from "../core/room";
+import { getFloorById } from "../core/museum";
 import { reportRenderProblem, watchContextLoss, watchSetup } from "./renderProblems";
 import { getScenePlateUrl, getRoomImageUrl } from "./assets";
 import { FishLayer, getWaterTint, type ViewRect } from "./fishLayer";
@@ -405,6 +406,7 @@ export function FishRoom({
     else onEnterTank(tankId);
   }
 
+  const floor = getFloorById(fishRoom.floorId);
   const count = fishRoom.tanks.length;
   const species = new Set(fishRoom.tanks.flatMap(({ tankId }) => tanks[tankId]!.stock
     .filter((entry) => entry.count > 0)
@@ -427,7 +429,7 @@ export function FishRoom({
         <div className="room-loading" aria-live="polite">
           <p className="room-loading-mark" aria-hidden="true">Tropical Aquarium</p>
           <span className="room-loading-line" aria-hidden="true" />
-          <p className="room-loading-text">フィッシュルームを準備しています</p>
+          <p className="room-loading-text">展示室を準備しています</p>
         </div>
       )}
       <div
@@ -465,9 +467,9 @@ export function FishRoom({
         })}
       </div>
       <header className="room-heading">
-        <p className="room-eyebrow">Tropical Aquarium <span>— {count} habitats, {species} species</span></p>
+        <p className="room-eyebrow">{floor ? `${floor.exhibitLabel} · ${floor.exhibitName}` : "Tropical Aquarium"} <span>— {count} habitats, {species} species</span></p>
         <h1>{fishRoom.displayName}</h1>
-        <p className="room-lede">水槽を選ぶと、近くで眺められます</p>
+        <p className="room-lede">{floor ? `${floor.label}「${floor.displayName}」 · ` : ""}水槽を選ぶと、近くで眺められます</p>
       </header>
       {/* 左端から始まるスワイプは Safari の「戻る」に使われるので、部屋のスクロールに渡さない。 */}
       <div aria-hidden="true" className="edge-guard" />

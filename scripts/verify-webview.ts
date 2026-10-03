@@ -9,6 +9,8 @@ const STATE_KEY = "tropical-aquarium.state.v5.r2";
 
 type Result = {
   title: string;
+  map: { floors: number; halls: string[]; firstLastHall: boolean; overflowWidth: number };
+  history: string[];
   roomTanks: number;
   enteredTank: string;
   asiaCards: number;
@@ -79,8 +81,11 @@ async function main() {
     await view.reload();
     await sleep(2500);
 
-    // フィッシュルーム
+    // 館内図から始まり、階ごとの展示室を選べる。初めての訪問では「前回の展示室」を付けない。
     const title = String(await view.evaluate("document.title"));
+    const map = await mapSummary(view);
+    await Bun.write(`${SCREENSHOT_DIR}/map-1440x960.png`, await view.screenshot({ format: "png" }));
+    await openHall(view, "淡水の展示室");
     const roomTanks = Number(await view.evaluate(`document.querySelectorAll(".room-tank").length`));
     await Bun.write(`${SCREENSHOT_DIR}/room-1440x960.png`, await view.screenshot({ format: "png" }));
 
@@ -172,7 +177,7 @@ async function main() {
       return stage ? stage.width / stage.height : 0;
     })()`));
     await Bun.write(`${SCREENSHOT_DIR}/cube-1440x960.png`, await view.screenshot({ format: "png" }));
-    await clickButtonByText(view, "部屋に戻る");
+    await clickButtonByText(view, "展示室に戻る");
     await sleep(1800);
     await clickByLabel(view, "アマゾンの大型水槽を眺める");
     await sleep(2400);
@@ -188,7 +193,7 @@ async function main() {
       ["japan-60", "日本の湧水水槽", [["medaka", "メダカ"], ["amano-shrimp", "ヤマトヌマエビ"], ["japanese-bitterling", "ニッポンバラタナゴ"], ["japanese-loach", "シマドジョウ"]]],
       ["malawi-120", "マラウイ湖の岩場水槽", [["yellow-lab", "イエローラブ"], ["yellow-tail-acei", "イエローテール・アセイ"], ["rusty-cichlid", "ラスティ・シクリッド"], ["saulosi", "サウロシー"]]],
     ] as [string, string, [string, string][]][]) {
-      await clickButtonByText(view, "部屋に戻る");
+      await clickButtonByText(view, "展示室に戻る");
       await sleep(1800);
       await clickByLabel(view, `${name}を眺める`);
       await sleep(2400);
@@ -329,7 +334,11 @@ async function main() {
       },
     });
     await mobileView.navigate(BASE_URL);
-    await sleep(2500);
+    await sleep(2000);
+    const mobileMap = await mapSummary(mobileView);
+    await Bun.write(`${SCREENSHOT_DIR}/map-420x912.png`, await mobileView.screenshot({ format: "png" }));
+    await openHall(mobileView, "淡水の展示室");
+    await sleep(500);
     const mobileRoom = await mobileView.evaluate(`({
       roomTanks: document.querySelectorAll(".room-tank").length,
       // 部屋の絵（canvas）の上からも横スクロールできること。
@@ -346,7 +355,7 @@ async function main() {
     ));
     await Bun.write(`${SCREENSHOT_DIR}/amazon-mobile-420x912.png`, await mobileView.screenshot({ format: "png" }));
     for (const [id, name] of [["japan-60", "日本の湧水水槽"], ["malawi-120", "マラウイ湖の岩場水槽"]]) {
-      await clickButtonByText(mobileView, "部屋に戻る");
+      await clickButtonByText(mobileView, "展示室に戻る");
       await sleep(1800);
       await mobileView.evaluate(`Array.from(document.querySelectorAll(".room-tank-list button"))
         .find(button => button.textContent?.includes(${JSON.stringify(name)}))?.click()`);
@@ -391,7 +400,7 @@ async function main() {
       entered: mobileEntered,
       roomTanks: mobileRoom.roomTanks,
       roomTouchAction: mobileRoom.roomTouchAction,
-      overflowWidth: Math.max(mobileRoom.overflowWidth, tankOverflow),
+      overflowWidth: Math.max(mobileRoom.overflowWidth, tankOverflow, mobileMap.overflowWidth),
       tankStageWidth,
       sheet,
     };
@@ -423,14 +432,17 @@ async function main() {
 
     const expandedScenes = await verifyExpandedScenes(consoleErrors);
     const specialRoom = await verifySpecialRoom(consoleErrors);
+    const history = await verifyHistory(consoleErrors);
     const result: Result = {
-      title, roomTanks, enteredTank, asiaCards, harlequinCount, rejectedSpecies, newSpeciesChecked, addedTanksPreserved, arrangementPreserved, scenesVisited, japanScenes,
+      title, map, history, roomTanks, enteredTank, asiaCards, harlequinCount, rejectedSpecies, newSpeciesChecked, addedTanksPreserved, arrangementPreserved, scenesVisited, japanScenes,
       viewingOnEntry, viewingStageWidth, editingOpened, editingStageWidth, closedToViewing, backToRoom, cubeCards, cubeStageRatio, amazonCards, adjacentTanks,
       restored, migrated, desktop, mobile, landscape, removedCopyAbsent, consoleErrors, expandedScenes, specialRoom,
     };
     console.log(JSON.stringify(result, null, 2));
 
     assert(title.includes("熱帯魚"));
+    assert(map.floors === 5 && JSON.stringify(map.halls) === JSON.stringify(["淡水の展示室", "海と古代魚の展示室"]) && !map.firstLastHall && map.overflowWidth === 0);
+    assert(history.length === 6);
     assert(roomTanks === 5);
     assert(enteredTank === "東南アジアの水草水槽");
     assert(asiaCards === 9 && harlequinCount === 12 && rejectedSpecies);
@@ -477,15 +489,17 @@ async function verifySpecialRoom(consoleErrors: string[]) {
     await sleep(2500);
     await view.evaluate(`localStorage.clear()`);
     await view.reload();
-    await sleep(2500);
+    await sleep(2000);
+    // 館内図では、どの水景や生き物の画像もまだ要求しない。
+    assert(await view.evaluate(`!performance.getEntriesByType('resource').some(r => /\\/(plate|body)\\.webp$/.test(r.name))`));
+    await openHall(view, "淡水の展示室");
     assert(await view.evaluate(`document.querySelectorAll('.room-tank').length === 5`));
     // 最初の部屋では、追加魚と追加水景の画像をまだ要求しない。
     assert(await view.evaluate(`!performance.getEntriesByType('resource').some(r => /\\/(plate|body)\\.webp$/.test(r.name) && /reef-lagoon|african-backwater|ocellaris-clownfish|firefish|mandarinfish|senegal-bichir|ropefish/.test(r.name))`));
     const original = String(await view.evaluate(`JSON.stringify(Object.fromEntries(Object.entries(JSON.parse(localStorage.getItem('${STATE_KEY}')).tanks).filter(([id]) => !['reef-120','ancient-180'].includes(id))))`));
-    await clickButtonByText(view, "海と古代魚");
-    await sleep(2500);
+    await openHall(view, "海と古代魚の展示室");
     assert(await view.evaluate(`document.querySelector('.room-scroll.ready[data-room="special"]') && document.querySelectorAll('.room-tank').length === 2 && document.querySelector('.room-stage canvas') && !document.querySelector('.render-problem')`));
-    assert(await view.evaluate(`document.documentElement.scrollWidth === document.documentElement.clientWidth && [...document.querySelectorAll('.room-switcher button')].every(b => {const r=b.getBoundingClientRect(); return r.height>=44 && r.left>=0 && r.right<=innerWidth-50;})`));
+    assert(await view.evaluate(`document.documentElement.scrollWidth === document.documentElement.clientWidth && (() => {const r=document.querySelector('.room-map-button').getBoundingClientRect(); return r.height>=44 && r.left>=0 && r.right<=innerWidth-50;})()`));
     await Bun.write(`${SCREENSHOT_DIR}/special-room-${viewport}.png`, await view.screenshot({ format: "png" }));
     const species: string[] = [];
     for (const [id, name, fish] of [
@@ -493,8 +507,8 @@ async function verifySpecialRoom(consoleErrors: string[]) {
       ["ancient-180", "アフリカの古代魚専用水槽", [["senegal-bichir", "ポリプテルス・セネガルス"], ["ropefish", "アミメウナギ"]]],
     ] as [string, string, [string, string][]][]) {
       await clickByLabel(view, `${name}を眺める`);
-      // 寄っている間は、暗くなる部屋の上に部屋の切り替えを残さない。
-      assert(await view.evaluate(`!!document.querySelector('.room-scroll.zooming ~ .room-switcher')`));
+      // 寄っている間は、暗くなる部屋の上に館内図ボタンを残さない。
+      assert(await view.evaluate(`!!document.querySelector('.room-scroll.zooming ~ .room-map-button')`));
       await sleep(2500);
       assert(await view.evaluate(`document.querySelector('.tank-screen.visible') && document.querySelector('.aquarium-stage canvas') && !document.querySelector('.render-problem')`));
       // 展示ラベルに、いま水槽にいる生き物の名前が並ぶ。
@@ -525,20 +539,21 @@ async function verifySpecialRoom(consoleErrors: string[]) {
       await view.evaluate(`window.dispatchEvent(new KeyboardEvent('keydown', {key:']'}))`);
       await sleep(2200);
       assert(await view.evaluate(`JSON.parse(localStorage.getItem('${STATE_KEY}')).activeTankId === '${id}'`));
-      await clickButtonByText(view, "部屋に戻る");
+      await clickButtonByText(view, "展示室に戻る");
       await sleep(2500);
       assert(await view.evaluate(`document.querySelector('.room-scroll.ready[data-room="special"]') && document.querySelectorAll('.room-tank').length === 2`));
     }
+    // 開き直すと館内図から始まり、前回の展示室に目印が付く。
     await view.navigate(BASE_URL);
-    await sleep(2500);
+    await sleep(2000);
+    assert(await view.evaluate(`document.querySelector('.hall-card.last')?.textContent?.includes('海と古代魚の展示室')`));
+    await openHall(view, "海と古代魚の展示室");
     assert(await view.evaluate(`document.querySelector('.room-scroll[data-room="special"]') && document.querySelectorAll('.room-tank').length === 2`));
-    await clickButtonByText(view, "淡水の部屋");
-    await sleep(2500);
+    await openHall(view, "淡水の展示室");
     assert(await view.evaluate(`document.querySelector('.room-scroll.ready[data-room="freshwater"]') && document.querySelectorAll('.room-tank').length === 5`));
     assert(original === await view.evaluate(`JSON.stringify(Object.fromEntries(Object.entries(JSON.parse(localStorage.getItem('${STATE_KEY}')).tanks).filter(([id]) => !['reef-120','ancient-180'].includes(id))))`));
     // 部屋を行き来しても、その部屋で最後に見ていた水槽を覚えている。
-    await clickButtonByText(view, "海と古代魚");
-    await sleep(2500);
+    await openHall(view, "海と古代魚の展示室");
     assert(await view.evaluate(`JSON.parse(localStorage.getItem('${STATE_KEY}')).activeTankId === 'ancient-180'`));
     results.push({ viewport, species });
   }
@@ -577,7 +592,7 @@ async function verifyExpandedScenes(consoleErrors: string[]) {
       const lastScene = await Bun.file(`src/content/environment/scenes/${tank.sceneIds.at(-1)}/scene.json`).json();
       assert(await view.evaluate(`JSON.parse(localStorage.getItem("${STATE_KEY}")).tanks[${JSON.stringify(tankId)}].layout.lighting === ${JSON.stringify(lastScene.defaultLighting)}`));
       assert(saved === await view.evaluate(`JSON.stringify(JSON.parse(localStorage.getItem("${STATE_KEY}")).tanks[${JSON.stringify(tankId)}].stock)`));
-      await clickButtonByText(view, "部屋に戻る");
+      await clickButtonByText(view, "展示室に戻る");
       await sleep(1800);
       assert(await view.evaluate(`document.querySelectorAll('.room-tank').length === 5 && !!document.querySelector('.room-stage canvas') && !document.querySelector('.render-problem')`));
     }
@@ -644,7 +659,7 @@ async function verifyNewFish(view: Bun.WebView, tankId: string, species: [string
     await Bun.write(`${SCREENSHOT_DIR}/new-${id}.png`, await view.screenshot({ format: "png" }));
     checked.push(id);
   }
-  // 通常URLの再読込は部屋に戻るため、水槽の直リンクで同じ水槽を開く。
+  // 通常URLの再読込は館内図に戻るため、水槽の直リンクで同じ水槽を開く。
   await view.evaluate(`history.replaceState(null, "", ${JSON.stringify(`?tank=${tankId}`)})`);
   await view.reload();
   await sleep(2000);
@@ -653,6 +668,69 @@ async function verifyNewFish(view: Bun.WebView, tankId: string, species: [string
   }
   await clickButtonByText(view, "設定");
   return checked;
+}
+
+async function mapSummary(view: Bun.WebView) {
+  assert(await view.evaluate(`!!document.querySelector('.museum-map') && location.search === ''`));
+  return await view.evaluate(`({
+    floors: document.querySelectorAll('.map-floor').length,
+    halls: [...document.querySelectorAll('.hall-card strong')].map((item) => item.textContent),
+    firstLastHall: !!document.querySelector('.hall-card.last'),
+    overflowWidth: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+  })`) as Result["map"];
+}
+
+// 展示室を開く。館内図にいなければ Esc で館内図へ戻ってから選ぶ。
+async function openHall(view: Bun.WebView, name: string) {
+  if (!await view.evaluate(`!!document.querySelector('.museum-map')`)) {
+    await view.evaluate(`window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }))`);
+    await sleep(900);
+  }
+  const clicked = await view.evaluate(`(() => {
+    const card = [...document.querySelectorAll('.hall-card')].find((item) => item.textContent?.includes(${JSON.stringify(name)}));
+    card?.click();
+    return Boolean(card);
+  })()`);
+  assert(clicked);
+  await sleep(2500);
+  assert(await view.evaluate(`!!document.querySelector('.room-scroll.ready')`));
+}
+
+// 館内図・展示室・水槽が URL に映り、ブラウザの戻る・進むで行き来できる。隣の水槽への移動は履歴を増やさない。
+async function verifyHistory(consoleErrors: string[]) {
+  await using view = new Bun.WebView({ width: 1440, height: 960, backend: "webkit",
+    console: (type, ...args) => { if (type === "error") consoleErrors.push(`history: ${args.map(String).join(" ")}`); } });
+  const steps: string[] = [];
+  const where = async () => String(await view.evaluate(`[location.search,
+    document.querySelector('.museum-map') ? 'map' : document.querySelector('.tank-screen.visible') ? 'tank' : document.querySelector('.room-scroll.ready')?.dataset.room ?? '?'].join(' ')`));
+  await view.navigate(BASE_URL);
+  await sleep(2000);
+  await openHall(view, "海と古代魚の展示室");
+  steps.push(await where());
+  await clickByLabel(view, "サンゴ礁の海水水槽を眺める");
+  await sleep(2500);
+  steps.push(await where());
+  await view.evaluate(`window.dispatchEvent(new KeyboardEvent('keydown', { key: ']' }))`);
+  await sleep(2500);
+  steps.push(await where());
+  await view.evaluate(`history.back()`);
+  await sleep(2800);
+  steps.push(await where());
+  await view.evaluate(`history.back()`);
+  await sleep(1200);
+  steps.push(await where());
+  await view.evaluate(`history.forward()`);
+  await sleep(2500);
+  steps.push(await where());
+  assert(JSON.stringify(steps) === JSON.stringify([
+    "?hall=special special", "?tank=reef-120 tank", "?tank=ancient-180 tank",
+    "?hall=special special", " map", "?hall=special special",
+  ]));
+  // 展示室の直リンク
+  await view.navigate(`${BASE_URL}?hall=special`);
+  await sleep(2500);
+  assert(await view.evaluate(`document.querySelector('.room-scroll.ready')?.dataset.room === 'special'`));
+  return steps;
 }
 
 async function stageWidth(view: Bun.WebView) {

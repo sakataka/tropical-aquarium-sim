@@ -1,5 +1,6 @@
 import { describe, expect, test } from "vitest";
 import { fishCatalog } from "./catalog";
+import { museum } from "./museum";
 import { fishRooms } from "./room";
 import { aquariumScenes, getSceneById } from "./sceneCatalog";
 import { visibleSurfaceIntervals, worldPoint } from "./surfaceMotion";
@@ -19,6 +20,13 @@ describe("content wiring", () => {
     expect([...placed].sort()).toEqual(aquariumTanks.map((tank) => tank.id).sort());
     expect(new Set(fishRooms.map((room) => room.id)).size).toBe(fishRooms.length);
     for (const room of fishRooms) expect(roomImages[`../content/room/${room.image}`], room.id).toBeDefined();
+  });
+
+  test("every room is an exhibit hall on a known floor of the museum", () => {
+    const floorIds = museum.floors.map((floor) => floor.id);
+    expect(new Set(floorIds).size).toBe(floorIds.length);
+    expect(new Set(museum.floors.map((floor) => floor.order)).size).toBe(floorIds.length);
+    for (const room of fishRooms) expect(floorIds, room.id).toContain(room.floorId);
   });
 
   test("tanks reference existing scenes and species, with default stock inside the limits", () => {

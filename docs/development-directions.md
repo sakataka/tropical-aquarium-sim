@@ -49,7 +49,7 @@
 1. 魚種: `fish/<id>/species.json`・`side.png`・`body.webp`。入れる水槽の `tank.json` の `species` に足す（どの水槽にも入らない魚種はテストで失敗する）。住みかを持つ魚は `homeShelter` の `kind` を決め、その水槽の全水景に同じ `kind` の shelter を置く。
 2. 水景: `environment/scenes/<id>/scene.json`・`plate.webp`。地形・寄り道先・泡の位置はすべて背景画像に対する比率で、画像の輪郭に合わせて書き、使い回さない。水槽のガラスの縦横比が画像よりかなり横長なら `framing.plateBottom` を決め、テストの「画面と同じ切り取り方」でガラス内に収まることを確かめる。
 3. 水槽: `tanks/<id>/tank.json`。部屋のJSONの `tanks` にガラス位置を足し、部屋の絵を描き直す（どの部屋にもない水槽はテストで失敗する）。
-4. 部屋: `room/<name>.json` と一枚絵。`id`・`order`・`displayName`・`shortName`・`image` を書く。切り替えボタンと部屋の読み込みは自動で増える。
+4. 展示室: `room/<name>.json` と一枚絵。`id`・`order`・`floorId`・`displayName`・`shortName`・`image` を書く。`floorId` は `museum/museum.json` の階のどれか（ない階はテストで失敗する）。館内図のカードと展示室の読み込みは自動で増える。新しい階は `museum.json` の `floors` に足す。
 5. `bun run test`・`bun run build`・`bun run verify:webview` で確認し、生成画像は前後関係と420px幅をスクリーンショットで目視する。
 
 ## 次に伸ばす方向

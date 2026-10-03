@@ -43,3 +43,7 @@ export const FitIcon = () => (
   <Icon><rect height="12" rx="2" width="16" x="4" y="6" /></Icon>
 );
 export const CheckIcon = () => <Icon><path d="M5 12.5l4.5 4.5L19 7.5" /></Icon>;
+// 館内図。階を重ねた断面の記号。
+export const MapIcon = () => (
+  <Icon><path d="M4 5h16M4 10h16M4 15h16M4 20h16" /><path d="M8 5v15" /></Icon>
+);

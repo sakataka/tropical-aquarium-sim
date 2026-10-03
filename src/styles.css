@@ -53,6 +53,123 @@ button:focus-visible, input:focus-visible, select:focus-visible {
 .icon { flex: none; display: block; }
 .edge-guard { display: none; }
 
+/* ───────── 館内図 ───────── */
+
+/* 地上から下へ階を重ねた断面。下の階ほど水が深く暗くなる（--depth: 0〜1）。 */
+.museum-map {
+  position: fixed;
+  inset: 0;
+  overflow-y: auto;
+  padding: calc(var(--safe-top) + 56px) var(--safe-right) calc(var(--safe-bottom) + 40px) var(--safe-left);
+  background:
+    radial-gradient(120% 60% at 50% -10%, rgba(143, 220, 211, 0.16), transparent 60%),
+    linear-gradient(180deg, #0b2a2c 0%, #062022 30%, #03161a 70%, #010a0d 100%);
+  color: var(--ink);
+  animation: map-in 0.6s var(--ease-out) both;
+}
+@keyframes map-in { from { opacity: 0; } }
+.map-heading { max-width: 880px; margin: 0 auto 40px; text-align: center; }
+.map-eyebrow {
+  margin: 0;
+  color: var(--brass);
+  font-family: var(--font-latin);
+  font-size: 18px;
+  font-style: italic;
+  letter-spacing: 0.02em;
+}
+.map-heading h1 {
+  margin: 6px 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(30px, 3.4vw, 46px);
+  font-weight: 500;
+  letter-spacing: 0.2em;
+}
+.map-lede { margin: 14px 0 0; color: var(--muted); font-size: 13px; letter-spacing: 0.08em; line-height: 1.8; }
+.map-section {
+  position: relative;
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid rgba(214, 240, 234, 0.42);
+}
+/* 地上の線（水面）。 */
+.map-section::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  right: 0;
+  height: 18px;
+  background: linear-gradient(180deg, rgba(143, 220, 211, 0.18), transparent);
+  pointer-events: none;
+}
+.map-floor {
+  position: relative;
+  display: grid;
+  grid-template-columns: 132px minmax(0, 1fr);
+  gap: 24px;
+  padding: 26px 24px 28px 0;
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(90deg, rgba(143, 220, 211, calc(0.06 - var(--depth) * 0.05)), transparent 70%);
+}
+.floor-tag { display: grid; align-content: start; gap: 4px; padding-left: 18px; border-left: 2px solid rgba(143, 220, 211, calc(0.7 - var(--depth) * 0.5)); }
+.floor-tag strong { font-family: var(--font-display); font-size: 20px; font-weight: 500; letter-spacing: 0.12em; }
+.floor-tag em { color: var(--faint); font-family: var(--font-latin); font-size: 15px; }
+.floor-body h2 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 14px;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+}
+.floor-body h2 em { color: var(--brass); font-family: var(--font-latin); font-size: 17px; letter-spacing: 0.02em; }
+.floor-body > p { margin: 8px 0 0; color: var(--muted); font-size: 13px; line-height: 1.8; }
+.floor-halls { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; margin-top: 16px; }
+.hall-card {
+  position: relative;
+  display: grid;
+  gap: 4px;
+  min-height: 44px;
+  padding: 14px 16px 15px;
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  background: var(--surface);
+  text-align: left;
+  transition: background 0.3s, border-color 0.3s, transform 0.4s var(--ease-out);
+}
+.hall-card:hover { background: var(--surface-strong); border-color: rgba(143, 220, 211, 0.55); transform: translateY(-1px); }
+.hall-card strong { font-family: var(--font-display); font-size: 17px; font-weight: 500; letter-spacing: 0.1em; }
+.hall-card small { color: var(--accent); font-size: 11.5px; letter-spacing: 0.08em; }
+.hall-tanks { color: var(--muted); font-size: 12px; line-height: 1.7; }
+.hall-last {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 10.5px;
+  font-style: normal;
+  letter-spacing: 0.08em;
+}
+.map-floor.empty .floor-tag, .map-floor.empty .floor-body { opacity: 0.55; }
+.floor-soon { display: inline-block; margin: 14px 0 0; padding: 3px 12px; border: 1px dashed var(--line-strong); border-radius: 999px; color: var(--faint); font-size: 11.5px; letter-spacing: 0.16em; }
+.hud-button.map-sound {
+  position: fixed;
+  top: max(24px, env(safe-area-inset-top));
+  right: max(28px, env(safe-area-inset-right));
+  z-index: 5;
+  border: 1px solid var(--line-strong);
+  background: rgba(4, 19, 21, 0.6);
+  backdrop-filter: blur(10px);
+}
+
 /* ───────── フィッシュルーム ───────── */
 
 .room-scroll {
@@ -67,34 +184,24 @@ button:focus-visible, input:focus-visible, select:focus-visible {
   scrollbar-width: none;
 }
 .room-scroll::-webkit-scrollbar { display: none; }
-.room-switcher {
+/* 展示室から館内図へ戻るボタン。右上の音のボタンと同じ明るい地にする。 */
+.hud-button.room-map-button {
   position: fixed;
   z-index: 12;
-  top: max(18px, env(safe-area-inset-top));
-  left: max(18px, env(safe-area-inset-left));
-  display: flex;
-  gap: 4px;
-  padding: 4px;
-  border: 1px solid rgba(70, 58, 41, 0.15);
-  border-radius: 12px;
-  background: rgba(249, 245, 236, 0.92);
+  top: max(24px, env(safe-area-inset-top));
+  left: max(28px, env(safe-area-inset-left));
+  min-height: 44px;
+  border: 1px solid rgba(34, 48, 43, 0.14);
+  background: rgba(244, 239, 231, 0.72);
+  color: var(--room-ink);
+  box-shadow: 0 8px 24px rgba(40, 34, 24, 0.08);
   backdrop-filter: blur(12px);
 }
-.room-switcher, .hud-button.room-sound { transition: opacity 0.35s, visibility 0.35s; }
+.hud-button.room-map-button:hover { background: rgba(250, 247, 241, 0.92); border-color: rgba(34, 48, 43, 0.3); }
+.hud-button.room-map-button, .hud-button.room-sound { transition: opacity 0.35s, visibility 0.35s, background 0.3s; }
 /* 水槽へ寄っている間は、暗くなっていく部屋の上に操作を残さない。 */
-.room-scroll.zooming ~ .room-switcher,
+.room-scroll.zooming ~ .room-map-button,
 .room-scroll.zooming ~ .hud-button.room-sound { opacity: 0; visibility: hidden; }
-.room-switcher button {
-  min-height: 44px;
-  padding: 8px 12px;
-  border: 0;
-  border-radius: 8px;
-  color: var(--room-ink);
-  background: transparent;
-  font-size: 13px;
-}
-.room-switcher button span { margin-right: 7px; font-size: 10px; opacity: 0.65; }
-.room-switcher button[aria-pressed="true"] { background: #dfd6c5; }
 .room-stage {
   position: relative;
   flex: none;
@@ -1292,6 +1399,15 @@ button:focus-visible, input:focus-visible, select:focus-visible {
   .hud-button { min-height: 44px; }
   .hud-button.icon-only { width: 44px; }
   .hud-button.room-sound { top: calc(14px + env(safe-area-inset-top)); right: calc(14px + env(safe-area-inset-right)); }
+  .hud-button.room-map-button { top: calc(14px + env(safe-area-inset-top)); left: calc(24px + env(safe-area-inset-left)); }
+  .hud-button.map-sound { top: calc(14px + env(safe-area-inset-top)); right: calc(14px + env(safe-area-inset-right)); }
+  .museum-map { padding-top: calc(var(--safe-top) + 64px); padding-right: 16px; padding-left: calc(20px + env(safe-area-inset-left)); }
+  .map-heading { margin-bottom: 28px; }
+  .map-lede { font-size: 12px; }
+  .map-floor { grid-template-columns: minmax(0, 1fr); gap: 12px; padding: 22px 0 24px; }
+  .floor-tag { grid-auto-flow: column; justify-content: start; align-items: baseline; gap: 10px; padding-left: 12px; }
+  .floor-body { padding-left: 14px; }
+  .floor-halls { grid-template-columns: minmax(0, 1fr); }
   .hud-stepper { height: 44px; }
   /* 狭い画面では戻るボタンを矢印だけにし、上の中央の番号と重ならないようにする。 */
   .hud-bar > .hud-button:first-child, .hud-actions .hud-button { width: 44px; padding: 0; justify-content: center; }
@@ -1303,6 +1419,8 @@ button:focus-visible, input:focus-visible, select:focus-visible {
     clip: rect(0 0 0 0);
     white-space: nowrap;
   }
+  /* 展示室の左上は広く空いているので、館内図ボタンは文字も出す。 */
+  .room-map-button .hud-label { position: static; width: auto; height: auto; overflow: visible; clip: auto; }
   .hud-stepper button { width: 38px; height: 38px; }
   .hud-stepper span { min-width: 52px; font-size: 15px; }
   .hud-zoom button { width: 44px; height: 40px; }

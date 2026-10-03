@@ -13,6 +13,8 @@ const rectSchema = z.object({
 const roomSchema = z.object({
   id: z.string().regex(/^[a-z0-9-]+$/),
   order: z.number().finite(),
+  /** 展示室を置く階（src/content/museum/museum.json の floors の id）。 */
+  floorId: z.string().min(1),
   /** 部屋の見出し。 */
   displayName: z.string().min(1),
   /** 部屋の切り替えボタンに出す短い名前。 */

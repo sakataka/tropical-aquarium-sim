@@ -31,7 +31,9 @@ import { AquariumCanvas, type ViewControl } from "./render/AquariumCanvas";
 import { forgetMotionState } from "./render/fishBody";
 import { RENDER_PROBLEM_EVENT } from "./render/renderProblems";
 import { FishRoom } from "./render/FishRoom";
-import { fishRooms, getRoomForTank } from "./core/room";
+import { getRoomForTank } from "./core/room";
+import { getHallById } from "./core/museum";
+import { MuseumMap } from "./ui/MuseumMap";
 import { getScenePlateUrl } from "./render/assets";
 import { AquariumControls, LIGHTING_OPTIONS } from "./ui/AquariumControls";
 import { SoundToggle } from "./ui/SoundToggle";
@@ -43,6 +45,7 @@ import {
   CollapseIcon,
   ExpandIcon,
   FitIcon,
+  MapIcon,
   MinusIcon,
   PlusIcon,
   SettingsIcon,
@@ -55,6 +58,7 @@ import waterAmbienceUrl from "./content/audio/water-ambience.m4a?url";
 type FishRefs = Record<string, MutableRefObject<FishInstance[]>>;
 // 画面を切り替える間は、次の画面の準備ができるまで前の画面を重ねて残す。
 type Phase =
+  | { kind: "map" }
   | { kind: "room"; returningFrom?: string }
   | { kind: "toTank"; tankReady: boolean }
   | { kind: "tank" }
@@ -106,6 +110,9 @@ export default function App() {
   const room = getRoomForTank(tank.id);
   const roomTanks = room.tanks.map((placement) => getTankById(placement.tankId)!);
   const lastTankByRoom = useRef<Record<string, string>>({});
+  // 館内図の「前回の展示室」は、保存データがあるか、この回に展示室を見たあとだけ付ける。
+  const visitedRef = useRef(initial.restored);
+  if (phase.kind !== "map") visitedRef.current = true;
   lastTankByRoom.current[room.id] = tank.id;
 
   useAmbientSound(
@@ -199,8 +206,55 @@ export default function App() {
     return () => window.clearTimeout(timeout);
   }, [phase]);
 
+  // 展示室に入るときは、その展示室で最後に見ていた水槽を選んでおく。
+  const enterHall = useCallback((hallId: string) => {
+    const hall = getHallById(hallId);
+    if (!hall) return;
+    setState((current) => {
+      const last = lastTankByRoom.current[hall.id];
+      const saved = hall.tanks.some((item) => item.tankId === current.activeTankId) ? current.activeTankId : undefined;
+      return { ...current, activeTankId: last ?? saved ?? hall.tanks[0]!.tankId };
+    });
+    setPhase({ kind: "room" });
+  }, []);
+  const showMap = useCallback(() => {
+    playSfx("room_return");
+    setPhase({ kind: "map" });
+  }, []);
+  // 展示室で Esc を押すと館内図へ戻る（水槽画面の Esc は TankScreen が扱う）。
+  useEffect(() => {
+    if (phase.kind !== "room") return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape" && !document.fullscreenElement) showMap();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [phase.kind, showMap]);
+
+  const phaseRef = useRef(phase);
+  phaseRef.current = phase;
+  const activeTankRef = useRef(state.activeTankId);
+  activeTankRef.current = state.activeTankId;
+  useHistorySync(phase, state.activeTankId, {
+    toMap: () => setPhase({ kind: "map" }),
+    toHall: (hallId) => {
+      const current = phaseRef.current;
+      // 水槽から、その水槽のある展示室へ戻るときは引く演出を使う。
+      if (current.kind === "tank" && getRoomForTank(activeTankRef.current).id === hallId) {
+        setPhase({ kind: "toRoom", returningFrom: activeTankRef.current, roomReady: false });
+      } else enterHall(hallId);
+    },
+    toTank: (tankId) => {
+      const current = phaseRef.current;
+      setState((value) => ({ ...value, activeTankId: tankId }));
+      if (current.kind === "room" && getRoomForTank(tankId).id === getRoomForTank(activeTankRef.current).id) {
+        setPhase({ kind: "toTank", tankReady: false });
+      } else setPhase({ kind: "tank" });
+    },
+  });
+
   const showRoom = phase.kind === "room" || phase.kind === "toTank" || phase.kind === "toRoom";
-  const showTank = phase.kind !== "room";
+  const showTank = phase.kind !== "room" && phase.kind !== "map";
   const returningFrom = phase.kind === "room" || phase.kind === "toRoom"
     ? phase.returningFrom
     : undefined;
@@ -213,6 +267,14 @@ export default function App() {
           <span>{renderProblem}</span>
           <small>{navigator.userAgent}</small>
         </div>
+      ) : null}
+      {phase.kind === "map" ? (
+        <MuseumMap
+          lastHallId={visitedRef.current ? room.id : undefined}
+          onEnterHall={enterHall}
+          onToggleSound={toggleSound}
+          soundEnabled={state.preferences.soundEnabled}
+        />
       ) : null}
       {showRoom ? (
         <FishRoom
@@ -229,22 +291,9 @@ export default function App() {
       {/* 部屋の後ろに置き、寄っている間は .room-scroll.zooming から隠す。 */}
       {phase.kind === "room" ? (
         <>
-          <nav className="room-switcher" aria-label="部屋を選ぶ">
-            {fishRooms.map((item, index) => (
-              <button key={item.id} type="button" aria-pressed={item.id === room.id}
-                onClick={() => {
-                  if (item.id === room.id) return;
-                  playSfx("tank_switch");
-                  // 部屋を行き来しても、その部屋で最後に見ていた水槽を選んでおく。
-                  const last = lastTankByRoom.current[item.id];
-                  setState((current) => ({ ...current, activeTankId: last ?? item.tanks[0]!.tankId }));
-                  setPhase({ kind: "room" });
-                }}>
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                {item.shortName}
-              </button>
-            ))}
-          </nav>
+          <button className="hud-button room-map-button" onClick={showMap} title="館内図へ（Esc）" type="button">
+            <MapIcon /><span className="hud-label">館内図</span>
+          </button>
           <SoundToggle className="room-sound" enabled={state.preferences.soundEnabled} onToggle={toggleSound} />
         </>
       ) : null}
@@ -457,8 +506,8 @@ function TankScreen({
 
       <div className="tank-hud">
         <div className="hud-bar">
-          <button className="hud-button" onClick={onBackToRoom} title="部屋に戻る（Esc）" type="button">
-            <BackIcon /><span className="hud-label">部屋に戻る</span>
+          <button className="hud-button" onClick={onBackToRoom} title="展示室に戻る（Esc）" type="button">
+            <BackIcon /><span className="hud-label">展示室に戻る</span>
           </button>
           <nav aria-label="ほかの水槽へ" className="hud-stepper">
             <button
@@ -566,6 +615,55 @@ function TankScreen({
   );
 }
 
+type HistoryTargets = {
+  toMap: () => void;
+  toHall: (hallId: string) => void;
+  toTank: (tankId: string) => void;
+};
+
+/** 館内図は ""、展示室は ?hall=、水槽は ?tank=。切り替えの途中は URL を書き換えない。 */
+function searchForPhase(phase: Phase, tankId: string): string | null {
+  if (phase.kind === "map") return "";
+  if (phase.kind === "room") return `?hall=${getRoomForTank(tankId).id}`;
+  if (phase.kind === "tank") return `?tank=${tankId}`;
+  return null;
+}
+
+// 見ている画面を URL に映し、ブラウザの戻る・進むで館内図・展示室・水槽を行き来できるようにする。
+// GitHub Pages で動くよう、パスではなくクエリで表す。
+function useHistorySync(phase: Phase, tankId: string, targets: HistoryTargets) {
+  const targetsRef = useRef(targets);
+  targetsRef.current = targets;
+  const syncedRef = useRef(false);
+  const search = searchForPhase(phase, tankId);
+
+  useEffect(() => {
+    if (search === null) return;
+    const current = window.location.search;
+    if (search !== current) {
+      const url = `${window.location.pathname}${search}${window.location.hash}`;
+      // 開いた直後の正規化（?theme= など）と、同じ展示室の隣の水槽への移動では履歴を増やさない。
+      const sideways = search.startsWith("?tank=") && current.startsWith("?tank=");
+      if (!syncedRef.current || sideways) window.history.replaceState(null, "", url);
+      else window.history.pushState(null, "", url);
+    }
+    syncedRef.current = true;
+  }, [search]);
+
+  useEffect(() => {
+    const onPop = () => {
+      const params = new URLSearchParams(window.location.search);
+      const tank = getTankById(params.get("tank"));
+      const hall = getHallById(params.get("hall"));
+      if (tank) targetsRef.current.toTank(tank.id);
+      else if (hall) targetsRef.current.toHall(hall.id);
+      else targetsRef.current.toMap();
+    };
+    window.addEventListener("popstate", onPop);
+    return () => window.removeEventListener("popstate", onPop);
+  }, []);
+}
+
 // iPhone の Safari は要素の全画面表示に対応していないので、そのときはボタンを出さない。
 function useFullscreen() {
   const supported = typeof document.documentElement.requestFullscreen === "function" &&
@@ -585,9 +683,10 @@ function useFullscreen() {
   return { supported, active, toggle };
 }
 
-function loadInitialState(): { state: AquariumPersistedState; phase: Phase } {
+function loadInitialState(): { state: AquariumPersistedState; phase: Phase; restored: boolean } {
   const params = new URLSearchParams(window.location.search);
   let state = createDefaultState(fishCatalog);
+  let restored = false;
   try {
     const currentValue = window.localStorage.getItem(AQUARIUM_STATE_STORAGE_KEY);
     const current = currentValue
@@ -598,14 +697,25 @@ function loadInitialState(): { state: AquariumPersistedState; phase: Phase } {
       ? migrateLegacyAquariumState(JSON.parse(window.localStorage.getItem(legacyKey)!), fishCatalog)
       : undefined;
     state = current ?? legacy ?? state;
+    restored = Boolean(current ?? legacy);
   } catch {
     // 壊れた保存データは初期状態から始める。
   }
-  // ?tank=<id> で水槽を、?theme=<水景id> でその水景を持つ水槽を直接開く。
+  // ?tank=<id> で水槽を、?theme=<水景id> でその水景を持つ水槽を、?hall=<id> で展示室を直接開く。
+  // 何も指定がなければ館内図から始める。
   const sceneId = params.get("theme");
   const sceneTank = aquariumTanks.find((item) => sceneId && item.sceneIds.includes(sceneId));
   const requestedTank = getTankById(params.get("tank")) ?? sceneTank;
-  if (!requestedTank) return { state, phase: { kind: "room" } };
+  if (!requestedTank) {
+    const hall = getHallById(params.get("hall"));
+    if (!hall) return { state, phase: { kind: "map" }, restored };
+    const saved = hall.tanks.some((item) => item.tankId === state.activeTankId);
+    return {
+      state: saved ? state : { ...state, activeTankId: hall.tanks[0]!.tankId },
+      phase: { kind: "room" },
+      restored,
+    };
+  }
   const tanks = { ...state.tanks };
   // すでにその水景なら、選んである照明を残す。
   if (sceneTank && sceneId && tanks[sceneTank.id]!.layout.sceneId !== sceneId) {
@@ -617,6 +727,7 @@ function loadInitialState(): { state: AquariumPersistedState; phase: Phase } {
   return {
     state: { ...state, tanks, activeTankId: requestedTank.id },
     phase: { kind: "tank" },
+    restored,
   };
 }
 
