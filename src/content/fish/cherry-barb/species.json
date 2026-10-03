@@ -2,6 +2,12 @@
   "id": "cherry-barb",
   "displayName": "チェリーバルブ",
   "realBodyLengthCm": 5,
+  "swim": {
+    "mouthAnchor": {
+      "x": 0.028,
+      "y": 0.585
+    }
+  },
   "visual": {
     "fallbackColor": "#cf2f21"
   },

@@ -4,7 +4,11 @@
   "realBodyLengthCm": 3.3,
   "swim": {
     "tailBeatHz": 2.8,
-    "tailSweepRad": 0.4
+    "tailSweepRad": 0.4,
+    "mouthAnchor": {
+      "x": 0.02,
+      "y": 0.7
+    }
   },
   "visual": {
     "fallbackColor": "#a39a72"

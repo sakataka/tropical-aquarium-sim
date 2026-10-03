@@ -14,7 +14,7 @@ import type {
   Vec2,
 } from "./types";
 import { FULL_SURFACE_FRAME, stepSurfaceWalker } from "./surfaceMotion";
-import { chooseTerrainGoal, constrainTerrainStep, insideTerrain, resolveTerrainGoal, terrainAvoidance } from "./terrainMotion";
+import { chooseTerrainGoal, constrainTerrainDepth, constrainTerrainStep, insideTerrain, resolveTerrainGoal, routeTerrainTarget, terrainAvoidance } from "./terrainMotion";
 
 const FORWARD_TARGET_CHANCE = 0.86;
 const FACING_THRESHOLD_CM_PER_SEC = 0.3;
@@ -92,9 +92,10 @@ type StepContext = {
 function stepFish(context: StepContext): FishInstance {
   if (context.fish.terrainGoal && context.fish.terrainGoal.sceneId !== context.scene?.id) {
     context = { ...context, fish: { ...context.fish, terrainGoal: undefined, target: undefined,
-      targetKind: "openWater", behaviorMode: "coast", behaviorTimeRemainingSec: 0, habitTimeSec: undefined } };
+      targetKind: "openWater", behaviorMode: "coast", behaviorTimeRemainingSec: 0, habitTimeSec: undefined, terrainRoute: undefined } };
   }
   const { fish, species, school, tank, structurePoints, activity, deltaSec } = context;
+  const personality = fish.personality;
   const terrain = context.scene?.terrain ? { scene: context.scene, tank, species, frame: context.frame } : undefined;
   const rng = createRng(fish.seed);
   let seed = fish.seed;
@@ -123,7 +124,7 @@ function stepFish(context: StepContext): FishInstance {
 
   const startOpenWater = () => {
     mode = "coast";
-    remaining = lerp(gait.kickIntervalSec[0], gait.kickIntervalSec[1], random()) * 0.5;
+    remaining = lerp(gait.kickIntervalSec[0], gait.kickIntervalSec[1], random()) * 0.5 * personality.restfulness;
     const choice = chooseTarget(fish, species, school, tank, structurePoints, random);
     target = choice.position;
     targetKind = choice.kind;
@@ -136,8 +137,10 @@ function stepFish(context: StepContext): FishInstance {
 
   // 1. 進行中の習性行動を進める。
   const precise = targetKind === "rest" || targetKind === "hide" || targetKind === "forage";
-  const reached = target !== undefined && hasReachedTarget(fish, target, species, precise) &&
-    (!goalPoint || Math.abs(goalPoint.depth - fish.depth) * tank.depthCm < Math.max(.4, bodyLength * .2));
+  const reached = target !== undefined && (goalPoint
+    ? length(subtract(target, fish.position)) < Math.max(.12, bodyLength * .06)
+    : hasReachedTarget(fish, target, species, precise)) &&
+    (!goalPoint || Math.abs(goalPoint.depth - fish.depth) * tank.depthCm < Math.max(.08, bodyLength * .04));
   // 隠れ場所への入口が塞がれた場合も、目的地を選び直せるようにする。
   if (terrainGoal && mode !== "rest" && mode !== "forage" && legTimeSec > 90) startOpenWater();
   switch (targetKind) {
@@ -145,11 +148,13 @@ function stepFish(context: StepContext): FishInstance {
     case "hide":
       if (mode === "rest") {
         const stillHiding = targetKind === "hide" && activity < 0.6;
+        // 昼間の長い休止時間を夜へ持ち越さず、明かりが変わったら出口へ泳ぎ出す。
+        if (targetKind === "hide" && !stillHiding) { startOpenWater(); break; }
         if ((habitTimeSec ?? 0) <= 0 && !stillHiding) startOpenWater();
-        else if ((habitTimeSec ?? 0) <= 0) habitTimeSec = drawHabitDuration(species, "hideByDay", random);
+        else if ((habitTimeSec ?? 0) <= 0) habitTimeSec = drawHabitDuration(species, "hideByDay", random) * personality.restfulness;
       } else if (reached) {
         mode = "rest";
-        habitTimeSec = drawHabitDuration(species, targetKind === "hide" ? "hideByDay" : "bottomRest", random);
+        habitTimeSec = drawHabitDuration(species, targetKind === "hide" ? "hideByDay" : "bottomRest", random) * personality.restfulness;
       }
       break;
     case "forage":
@@ -225,9 +230,9 @@ function stepFish(context: StepContext): FishInstance {
     if (mode === "kick") {
       mode = "coast";
       remaining = lerp(gait.kickIntervalSec[0], gait.kickIntervalSec[1], random()) * (inTrip ? 0.3 : 1);
-    } else if (!inTrip && random() < clamp((species.ecology.restFraction * 1.6) / Math.max(activity, 0.2), 0, 0.9)) {
+    } else if (!inTrip && random() < clamp((species.ecology.restFraction * 1.6 * personality.restfulness) / Math.max(activity, 0.2), 0, 0.9)) {
       mode = "pause";
-      remaining = lerp(gait.pauseSec[0], gait.pauseSec[1], random()) * (activity < 0.6 ? 2 : 1);
+      remaining = lerp(gait.pauseSec[0], gait.pauseSec[1], random()) * personality.restfulness * (activity < 0.6 ? 2 : 1);
     } else {
       mode = "kick";
       remaining = gait.kickDurationSec;
@@ -242,28 +247,66 @@ function stepFish(context: StepContext): FishInstance {
     }
   }
 
-  const desired = getDesiredVelocity({ ...context, mode, target, targetKind });
-  const velocity = steerVelocity(
+  const navigation = terrain && target && mode !== "rest" && mode !== "forage"
+    ? routeTerrainTarget(fish, target, terrain) : { target, route: undefined };
+  const desired = getDesiredVelocity({ ...context, mode, target: navigation.target, targetKind });
+  let velocity = steerVelocity(
     fish.velocity,
     desired,
-    species.ecology.turnRateRadPerSec * (targetKind === "surfaceVisit" ? 1.6 : 1),
+    species.ecology.turnRateRadPerSec * personality.responsiveness * (targetKind === "surfaceVisit" ? 1.6 : 1),
     gait.dragPerSec,
     mode,
     deltaSec,
   );
   let position = keepInTank(add(fish.position, scale(velocity, deltaSec)), tank);
   let depth = fish.depth;
+  let depthMotion = fish.depthMotion;
   if (terrain && deltaSec > 0) {
+    const proposed = position;
     position = keepInTank(constrainTerrainStep(fish.position, position, depth, terrain), tank);
-    const depthTarget = goalPoint?.depth ?? homeDepth ?? depth;
-    const maxDepthStep = bodyLength * species.ecology.speedBodyLengthsPerSec.cruise * .65 * deltaSec / tank.depthCm;
-    const candidateDepth = depth + clamp(depthTarget - depth, -maxDepthStep, maxDepthStep);
-    if (!insideTerrain(position, candidateDepth, terrain)) depth = candidateDepth;
+    // 衝突後も岩へ押す速度を残さない。初期配置の補正は移動速度として扱わない。
+    if (!insideTerrain(fish.position, depth, terrain) && length(subtract(position, proposed)) > 1e-8) {
+      velocity = scale(subtract(position, fish.position), 1 / deltaSec);
+    }
+    let timer = (depthMotion?.remainingSec ?? 0) - deltaSec;
+    let wander = depthMotion?.target ?? depth;
+    if (timer <= 0) {
+      const [minDepth, maxDepth] = species.ecology.depthRange;
+      wander = lerp(minDepth, maxDepth, random());
+      timer = lerp(8, 22, random());
+    }
+    // 群れの前後方向も近くの仲間へ緩く寄せる。習性行動の目的地を優先する。
+    const neighbors = school.filter((other) => other.id !== fish.id && !other.terrainGoal &&
+      length(subtract(other.position, fish.position)) < getSchoolRadiusCm(species) * personality.sociability);
+    const cohesion = Math.min(.9, species.ecology.social.cohesion * .65 * personality.sociability);
+    const schoolDepth = neighbors.length ? neighbors.reduce((sum, f) => sum + f.depth, 0) / neighbors.length : wander;
+    const depthTarget = goalPoint?.depth ?? homeDepth ?? lerp(wander, schoolDepth, cohesion);
+    const cruise = bodyLength * species.ecology.speedBodyLengthsPerSec.cruise * personality.pace;
+    const limit = cruise * (goalPoint || homeDepth !== undefined ? .65 : .2) / tank.depthCm;
+    const active = mode === "rest" || mode === "pause" || mode === "forage" ? .25 : activity;
+    const desiredDepthVelocity = clamp((depthTarget - depth) * .8, -limit, limit) * (goalPoint ? 1 : active);
+    const depthVelocity = (depthMotion?.velocity ?? 0) + (desiredDepthVelocity - (depthMotion?.velocity ?? 0)) * (1 - Math.exp(-2 * personality.responsiveness * deltaSec));
+    const candidateDepth = depth + clamp(depthVelocity * deltaSec, -Math.abs(depthTarget - depth), Math.abs(depthTarget - depth));
+    const [minDepth, maxDepth] = species.ecology.depthRange;
+    const boundedDepth = goalPoint || homeDepth !== undefined ? clamp(candidateDepth, 0, 1)
+      : clamp(candidateDepth, minDepth, maxDepth);
+    depth = constrainTerrainDepth(position, depth, boundedDepth, terrain, !terrainGoal);
+    depthMotion = { target: wander, velocity: Math.abs(depth - candidateDepth) > 1e-9 ? 0 : depthVelocity, remainingSec: timer };
   } else if (!terrain && homeDepth !== undefined) {
     const step = bodyLength * species.ecology.speedBodyLengthsPerSec.cruise * .65 * deltaSec / tank.depthCm;
     depth += clamp(homeDepth - depth, -step, step);
   }
   if (!terrainGoal && homeDepth !== undefined && Math.abs(depth - homeDepth) < .0001) homeDepth = undefined;
+  let contact = fish.contact;
+  if (goalPoint?.angle !== undefined && (targetKind === "forage" || targetKind === "rest")) {
+    const gap = Math.hypot(length(subtract(position, goalPoint.position)), (depth - goalPoint.depth) * tank.depthCm);
+    const weight = clamp(1 - gap / Math.max(.3, bodyLength * .65), 0, 1);
+    contact = { angle: goalPoint.angle, kind: targetKind === "forage" ? "mouth" : "belly",
+      weight: (contact?.weight ?? 0) + (weight - (contact?.weight ?? 0)) * (1 - Math.exp(-4 * deltaSec)) };
+  } else if (contact) {
+    const weight = contact.weight * Math.exp(-3 * deltaSec);
+    contact = weight > .001 ? { ...contact, weight } : undefined;
+  }
 
   return {
     ...fish,
@@ -272,7 +315,10 @@ function stepFish(context: StepContext): FishInstance {
     depth,
     terrainGoal,
     homeDepth,
-    facing: velocity.x < -FACING_THRESHOLD_CM_PER_SEC
+    depthMotion: terrain ? depthMotion : undefined,
+    terrainRoute: navigation.route,
+    contact,
+    facing: terrainGoal?.facing && contact && contact.weight > .5 ? terrainGoal.facing : velocity.x < -FACING_THRESHOLD_CM_PER_SEC
       ? -1
       : velocity.x > FACING_THRESHOLD_CM_PER_SEC ? 1 : fish.facing,
     behaviorMode: mode,
@@ -341,7 +387,7 @@ function pickHabit(
         break;
       case "bottomRest": {
         const nearBottom = fish.position.y > tank.heightCm * 0.72;
-        if (nearBottom && perStep(habit.chancePerMin / Math.max(activity, 0.3))) {
+        if (nearBottom && perStep(habit.chancePerMin * fish.personality.restfulness / Math.max(activity, 0.3))) {
           const terrain = terrainHabit("rest");
           if (terrain) return terrain;
           return {
@@ -352,7 +398,7 @@ function pickHabit(
         break;
       }
       case "grazing":
-        if (perStep(habit.chancePerMin * activity)) {
+        if (perStep(habit.chancePerMin * activity * fish.personality.exploration)) {
           const terrain = terrainHabit("forage");
           if (terrain) return terrain;
           const onStructure = structurePoints.length > 0 && random() < 0.6;
@@ -371,7 +417,7 @@ function pickHabit(
         }
         break;
       case "follow":
-        if (perStep(habit.chancePerMin * activity)) {
+        if (perStep(habit.chancePerMin * activity * fish.personality.sociability)) {
           const leader = findNearest(fish, school, species.realBodyLengthCm * 12);
           if (leader) {
             return {
@@ -410,7 +456,7 @@ function chooseTarget(
       position: { ...chooseOpenWaterTarget(fish, fish.facing, species, tank, random), y: tank.heightCm - tank.safeMarginCm },
     };
   }
-  if (point && random() < species.ecology.structureAffinity * (behind ? 0.3 : 1)) {
+  if (point && random() < Math.min(1, species.ecology.structureAffinity * fish.personality.exploration) * (behind ? 0.3 : 1)) {
     return {
       kind: "structure",
       position: {
@@ -452,7 +498,7 @@ function chooseOpenWaterTarget(
   const distance = Math.min(available, lerp(minLeg, tank.widthCm * 0.6, random()));
   return {
     x: clamp(fish.position.x + direction * distance, minX, maxX),
-    y: clamp(fish.position.y + lerp(-0.16, 0.16, random()) * tank.heightCm, minY, maxY),
+    y: clamp(fish.position.y + lerp(-0.16, 0.16, random()) * tank.heightCm * fish.personality.exploration, minY, maxY),
   };
 }
 
@@ -464,7 +510,7 @@ function getSchoolHeading(
 ): -1 | 1 {
   const social = species.ecology.social;
   if (social.grouping === "solitary" || social.polarization < 0.5) return fish.facing;
-  const radius = getSchoolRadiusCm(species);
+  const radius = getSchoolRadiusCm(species) * fish.personality.sociability;
   let sumX = 0;
   for (const other of school) {
     if (other.id === fish.id) continue;
@@ -481,7 +527,8 @@ function getDesiredVelocity(context: StepContext & {
   targetKind: NonNullable<FishInstance["targetKind"]>;
 }): Vec2 {
   const { fish, species, school, tank, activity, mode, target, targetKind } = context;
-  if (mode === "pause" || mode === "rest") return scale(fish.velocity, mode === "rest" ? 0 : 0.12);
+  if (mode === "pause") return scale(fish.velocity, 0.12);
+  if (mode === "rest" && !fish.terrainGoal) return { x: 0, y: 0 };
 
   const bodyLength = species.realBodyLengthCm;
   const speeds = species.ecology.speedBodyLengthsPerSec;
@@ -489,10 +536,11 @@ function getDesiredVelocity(context: StepContext & {
   const burst = speeds.burst * bodyLength;
   const pace = 0.45 + 0.55 * Math.min(activity, 1.1);
 
-  if (mode === "forage") {
-    // ついばむ間は、目的地のまわりをごく小さく探る。
+  if (mode === "forage" || mode === "rest") {
+    // 接地点へゆっくり収束し、休止に入った瞬間の慣性で面から離れない。
     const toTarget = target ? subtract(target, fish.position) : { x: 0, y: 0 };
-    const creep = Math.min(length(toTarget), bodyLength * 0.12);
+    const creep = fish.terrainGoal ? Math.min(length(toTarget) * 2, bodyLength * 0.2)
+      : Math.min(length(toTarget), bodyLength * .12);
     return scale(normalize(toTarget), creep);
   }
 
@@ -503,7 +551,7 @@ function getDesiredVelocity(context: StepContext & {
     targetKind === "surfaceVisit" || species.preferredZone.maxY <= 0.25,
     crustacean);
   const zone = inHabit || crustacean ? { x: 0, y: 0 } : zoneVector(fish.position, tank, species);
-  const rawFlock = inHabit ? { x: 0, y: 0 } : schoolingVector(fish, school, species);
+  const rawFlock = inHabit ? { x: 0, y: 0 } : schoolingVector(fish, school, species, tank);
   // 群れの引力で後ろ向きに引き戻されると、頻繁に向きが入れ替わってしまう。
   const flock = rawFlock.x * fish.facing < 0
     ? { x: rawFlock.x * 0.2, y: rawFlock.y }
@@ -528,21 +576,39 @@ function getDesiredVelocity(context: StepContext & {
   } else if (targetKind === "rest" || targetKind === "hide") {
     speed = cruise * 0.8;
   }
+  if (fish.terrainGoal && target && !fish.terrainRoute) {
+    speed = Math.min(speed, Math.max(.04, length(subtract(target, fish.position)) * 1.4));
+  }
   const tripPace = targetKind === "surfaceVisit" ? 1 : pace;
-  return scale(direction, speed * tripPace * (1 - fish.depth * 0.1));
+  let desiredSpeed = speed * tripPace * (1 - fish.depth * 0.1) * fish.personality.pace;
+  // 仲間の実際の速さにも少し合わせる。停止した仲間へ全員が失速するのは避ける。
+  const social = species.ecology.social;
+  if (!inHabit && social.grouping !== "solitary" && social.polarization > 0) {
+    const nearby = school.filter((other) => other.id !== fish.id &&
+      (other.behaviorMode === "coast" || other.behaviorMode === "kick") &&
+      Math.hypot(length(subtract(other.position, fish.position)), (other.depth - fish.depth) * tank.depthCm)
+        < getSchoolRadiusCm(species) * fish.personality.sociability);
+    if (nearby.length) {
+      const sharedSpeed = nearby.reduce((sum, other) => sum + length(other.velocity), 0) / nearby.length;
+      desiredSpeed = lerp(desiredSpeed, clamp(sharedSpeed, desiredSpeed * .8, desiredSpeed * 1.2),
+        Math.min(.4, social.polarization * .3 * fish.personality.sociability));
+    }
+  }
+  return scale(direction, desiredSpeed);
 }
 
 function schoolingVector(
   fish: FishInstance,
   school: FishInstance[],
   species: FishSpeciesDefinition,
+  tank: TankDefinition,
 ): Vec2 {
   const social = species.ecology.social;
   if (social.grouping === "solitary" || social.cohesion <= 0 || school.length < 2) {
     return { x: 0, y: 0 };
   }
-  const radius = getSchoolRadiusCm(species);
-  const spacing = social.spacingBodyLengths * species.realBodyLengthCm;
+  const radius = getSchoolRadiusCm(species) * fish.personality.sociability;
+  const spacing = social.spacingBodyLengths * species.realBodyLengthCm * fish.personality.personalSpace;
   let center = { x: 0, y: 0 };
   let alignment = { x: 0, y: 0 };
   let separation = { x: 0, y: 0 };
@@ -550,7 +616,7 @@ function schoolingVector(
   for (const other of school) {
     if (other.id === fish.id || other.behaviorMode === "rest") continue;
     const delta = subtract(other.position, fish.position);
-    const distance = length(delta);
+    const distance = Math.hypot(length(delta), (other.depth - fish.depth) * tank.depthCm);
     if (distance > radius) continue;
     center = add(center, other.position);
     alignment = add(alignment, other.velocity);
@@ -562,8 +628,8 @@ function schoolingVector(
   if (count === 0) return { x: 0, y: 0 };
   center = scale(center, 1 / count);
   return addMany(
-    scale(normalize(subtract(center, fish.position)), social.cohesion * 0.4),
-    scale(normalize(alignment), social.polarization * 0.4),
+    scale(normalize(subtract(center, fish.position)), social.cohesion * 0.4 * fish.personality.sociability),
+    scale(normalize(alignment), social.polarization * 0.4 * fish.personality.sociability),
     scale(normalize(separation), 0.7),
   );
 }

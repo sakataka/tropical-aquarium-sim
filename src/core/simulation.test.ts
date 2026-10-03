@@ -74,6 +74,8 @@ describe("natural swimming", () => {
     species.ecology.restFraction = 0;
     species.ecology.habits = [];
     const fish = createFishFromStock([{ speciesId: species.id, count: 1 }], TANK_60CM);
+    // 構造物選択そのものを確認するため、個体の寄り道倍率は標準に固定する。
+    fish[0].personality = { ...fish[0].personality, exploration: 1 };
     fish[0].behaviorMode = "coast";
     fish[0].behaviorTimeRemainingSec = 0;
     fish[0].target = undefined;

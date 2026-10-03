@@ -5,7 +5,7 @@ import { getSceneById, terrainSchema } from "./sceneCatalog";
 import { stepSimulation } from "./simulation";
 import { aquariumTanks, getTankById } from "./tankCatalog";
 import { FULL_SURFACE_FRAME } from "./surfaceMotion";
-import { chooseTerrainGoal, constrainTerrainStep, insideTerrain, resolveTerrainGoal } from "./terrainMotion";
+import { chooseTerrainGoal, constrainTerrainDepth, constrainTerrainStep, insideTerrain, pointInPolygon, resolveTerrainGoal } from "./terrainMotion";
 
 describe("depth-aware terrain across habitats", () => {
   test("blocks a swept crossing at rock depth, while permitting passage in front and behind", () => {
@@ -104,5 +104,113 @@ describe("depth-aware terrain across habitats", () => {
     expect(terrainSchema.safeParse({ ...terrain, obstacles: [{ ...obstacle, depthRadius: 0 }] }).success).toBe(false);
     expect(terrainSchema.safeParse({ ...terrain, obstacles: [{ ...obstacle, radius: { x: -1, y: .1 } }] }).success).toBe(false);
     expect(terrainSchema.safeParse({ ...terrain, shelters: [terrain.shelters![0], terrain.shelters![0]] }).success).toBe(false);
+  });
+
+  test("goes around a head-on rock instead of reversing or pushing against it", () => {
+    const tank = getTankById("cube-30")!, species = structuredClone(fishCatalog["ember-tetra"]!);
+    species.ecology.habits = [];
+    const scene = { ...getSceneById("cube-stones")!, terrain: { surfaces: [], occluders: [],
+      obstacles: [{ id: "rock", center: { x: .5, y: .5, depth: .5 }, radius: { x: .12, y: .12 }, depthRadius: .1 }] } };
+    let fish = [{ ...createFishFromStock([{ speciesId: species.id, count: 1 }], tank)[0]!,
+      position: { x: 5, y: 15 }, velocity: { x: 2, y: 0 }, depth: .5,
+      target: { x: 25, y: 15 }, behaviorMode: "coast" as const, seed: 42,
+      depthMotion: { target: .5, velocity: 0, remainingSec: 1000 } }];
+    let passed = false, detoured = false;
+    for (let i = 0; i < 1200; i++) {
+      const previous = fish[0]!;
+      fish = stepSimulation({ tank, scene, fish, species: { [species.id]: species }, structurePoints: [], deltaSec: .05 }).fish as typeof fish;
+      const f = fish[0]!;
+      expect(insideTerrain(f.position, f.depth, { tank, scene, species, frame: FULL_SURFACE_FRAME })).toBe(false);
+      expect(Math.hypot(f.position.x - previous.position.x, f.position.y - previous.position.y)).toBeLessThan(.25);
+      detoured ||= !!f.terrainRoute;
+      passed ||= f.position.x > 22;
+    }
+    expect(detoured && passed).toBe(true);
+  });
+
+  test("even a thin depth obstacle blocks a front-to-back swept crossing", () => {
+    const tank = getTankById("cube-30")!, species = fishCatalog["ember-tetra"]!;
+    const scene = { ...getSceneById("cube-stones")!, terrain: { surfaces: [], occluders: [],
+      obstacles: [{ id: "thin", center: { x: .5, y: .5, depth: .5 }, radius: { x: .1, y: .1 }, depthRadius: .002 }] } };
+    const context = { tank, scene, species, frame: FULL_SURFACE_FRAME };
+    const depth = constrainTerrainDepth({ x: 15, y: 15 }, .48, .52, context);
+    expect(depth).toBeGreaterThan(.48);
+    expect(depth).toBeLessThan(.499);
+    expect(insideTerrain({ x: 15, y: 15 }, depth, context)).toBe(false);
+  });
+
+  test("grazing settles onto the actual contact point and release stays continuous", () => {
+    const tank = getTankById("cube-30")!, scene = getSceneById("cube-planted")!, species = fishCatalog.otocinclus!;
+    const goal = { sceneId: scene.id, surfaceId: "broad-leaf", progress: .5, facing: -1 as const };
+    const point = resolveTerrainGoal(goal, { tank, scene, species, frame: FULL_SURFACE_FRAME })!;
+    let fish = [{ ...createFishFromStock([{ speciesId: species.id, count: 1 }], tank)[0]!,
+      position: { x: point.position.x + .3, y: point.position.y - .3 }, depth: point.depth,
+      velocity: { x: -.1, y: .1 }, terrainGoal: goal, targetKind: "forage" as const,
+      behaviorMode: "forage" as const, habitTimeSec: 20 }];
+    for (let i = 0; i < 150; i++) fish = stepSimulation({ tank, scene, fish, species: fishCatalog, structurePoints: [], deltaSec: .05 }).fish as typeof fish;
+    expect(Math.hypot(fish[0]!.position.x - point.position.x, fish[0]!.position.y - point.position.y)).toBeLessThan(.02);
+    expect(fish[0]!.contact!.weight).toBeGreaterThan(.98);
+    const before = { ...fish[0]!, habitTimeSec: 0 };
+    const released = stepSimulation({ tank, scene, fish: [before], species: fishCatalog, structurePoints: [], deltaSec: .05 }).fish[0]!;
+    expect(released.terrainGoal).toBeUndefined();
+    expect(released.contact!.weight).toBeLessThan(before.contact!.weight);
+    expect(released.contact!.weight).toBeGreaterThan(.8);
+    expect(Math.hypot(released.position.x - before.position.x, released.position.y - before.position.y)).toBeLessThan(.1);
+  });
+
+  test("ordinary depth travel waits until clear of an occluding silhouette", () => {
+    const tank = getTankById("cube-30")!, species = fishCatalog["ember-tetra"]!;
+    const scene = { ...getSceneById("cube-stones")!, terrain: { surfaces: [], obstacles: [],
+      occluders: [{ id: "stone", depth: .5, polygon: [{ x: .3, y: .4 }, { x: .7, y: .4 }, { x: .7, y: .8 }, { x: .3, y: .8 }] }] } };
+    const context = { tank, scene, species, frame: FULL_SURFACE_FRAME };
+    expect(constrainTerrainDepth({ x: 15, y: 18 }, .49, .51, context, true)).toBeLessThan(.5);
+    expect(constrainTerrainDepth({ x: 15, y: 4 }, .49, .51, context, true)).toBe(.51);
+  });
+
+  test("all thirteen silhouettes leave open water and front gravel visible", () => {
+    for (const tank of aquariumTanks) for (const sceneId of tank.sceneIds) {
+      for (const occluder of getSceneById(sceneId)!.terrain!.occluders) {
+        expect(pointInPolygon({ x: .5, y: .3 }, occluder.polygon), sceneId).toBe(false);
+        expect(pointInPolygon({ x: .15, y: .99 }, occluder.polygon), sceneId).toBe(false);
+      }
+    }
+    const crevices = getSceneById("malawi-crevices")!;
+    expect(crevices.terrain!.occluders.some((o) => pointInPolygon({ x: .75, y: .63 }, o.polygon))).toBe(false);
+    const wood = getSceneById("japan-moss-wood")!;
+    expect(wood.terrain!.occluders.some((o) => pointInPolygon({ x: .78, y: .77 }, o.polygon))).toBe(false);
+  });
+
+  test("a fish between the glass and a clipped root can slide out and reach the surface", () => {
+    const tank = getTankById("asia-60")!, scene = getSceneById("root-driftwood")!, species = fishCatalog["honey-gourami"]!;
+    let fish = [{ ...createFishFromStock([{ speciesId: species.id, count: 1 }], tank)[0]!,
+      position: { x: 56.911008463661844, y: 22.504634731339998 }, velocity: { x: 0, y: 0 },
+      depth: .5299987370031973, seed: 3587811097, target: { x: 53.27332010955902, y: 2.3 },
+      targetKind: "surfaceVisit" as const, behaviorMode: "coast" as const, nextBreathSec: -32,
+      depthMotion: { target: .4772849368862807, velocity: 0, remainingSec: 19.7 },
+      terrainRoute: { sceneId: scene.id, obstacleId: "east-root-core", side: -1 as const } }];
+    const frame = { x: -.02, y: -.52, width: 1.04, height: 1.52 };
+    let nearestSurface = tank.heightCm;
+    for (let i = 0; i < 1200; i++) {
+      fish = stepSimulation({ tank, scene, surfaceFrame: frame, fish, species: fishCatalog,
+        lighting: "night", deltaSec: .05, structurePoints: [] }).fish as typeof fish;
+      nearestSurface = Math.min(nearestSurface, fish[0]!.position.y);
+      expect(insideTerrain(fish[0]!.position, fish[0]!.depth, { tank, scene, species, frame })).toBe(false);
+    }
+    expect(nearestSurface).toBeLessThan(4);
+  });
+
+  test("nightfall releases a daytime shelter with a continuous departure", () => {
+    const tank = getTankById("asia-60")!, scene = getSceneById("planted")!, species = fishCatalog["kuhli-loach"]!;
+    const goal = { sceneId: scene.id, shelterId: scene.terrain!.shelters![0]!.id };
+    const point = resolveTerrainGoal(goal, { tank, scene, species, frame: FULL_SURFACE_FRAME })!;
+    const fish = { ...createFishFromStock([{ speciesId: species.id, count: 1 }], tank)[0]!,
+      position: point.position, depth: point.depth, velocity: { x: 0, y: 0 }, terrainGoal: goal,
+      target: point.position, targetKind: "hide" as const, behaviorMode: "rest" as const, habitTimeSec: 100 };
+    const day = stepSimulation({ tank, scene, fish: [fish], species: fishCatalog, structurePoints: [], deltaSec: .05 }).fish[0]!;
+    expect(day.targetKind).toBe("hide");
+    const night = stepSimulation({ tank, scene, fish: [day], species: fishCatalog, lighting: "night", structurePoints: [], deltaSec: .05 }).fish[0]!;
+    expect(night.targetKind).not.toBe("hide");
+    expect(night.terrainGoal).toBeUndefined();
+    expect(Math.hypot(night.position.x - day.position.x, night.position.y - day.position.y)).toBeLessThan(.1);
   });
 });

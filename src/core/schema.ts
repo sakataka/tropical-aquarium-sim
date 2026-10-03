@@ -94,6 +94,8 @@ const fishSpeciesDefinitionSchema = z.object({
     verticalFlex: z.number().finite().min(0).max(0.2),
     bodyPlan: z.enum(["fish", "crustacean"]),
     headStart: z.number().finite().min(0).max(0.8),
+    mouthAnchor: z.object({ x: unit, y: unit }),
+    footAnchor: z.object({ x: unit, y: unit }),
   }).partial().optional(),
   visual: z.object({ fallbackColor: z.string().regex(/^#[0-9a-fA-F]{6}$/) }),
   sourceBodyBounds: bodyBoundsSchema,

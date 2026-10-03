@@ -1,12 +1,11 @@
 import { MeshPlane, type Texture } from "pixi.js";
 import type { FishInstance, FishSpeciesDefinition } from "../core";
+import { blendAngle, sampleMeshPoint, stepTurnSpring } from "./fishMotion";
 
 const VERTICES_X = 26;
 const VERTICES_Y = 5;
 // エビは脚と触角を別々に動かすため、縦の分割を細かくする。
 const CRUSTACEAN_VERTICES_Y = 10;
-const TURN_STIFFNESS = 64;
-const TURN_DAMPING = 16;
 const TURN_HYSTERESIS_CM_PER_SEC = 0.35;
 const MIN_TURN_INTERVAL_SEC = 0.7;
 const MIN_PROFILE_WIDTH = 0.1;
@@ -22,6 +21,8 @@ const DEFAULT_SWIM = {
   verticalFlex: 0.012,
   bodyPlan: "fish" as "fish" | "crustacean",
   headStart: 0,
+  mouthAnchor: { x: .025, y: .62 },
+  footAnchor: { x: .42, y: .95 },
 };
 
 type SwimStyle = typeof DEFAULT_SWIM;
@@ -55,6 +56,8 @@ type MotionState = {
   stridePhase: number;
   clockSec: number;
   surfaceRotation?: number;
+  detailPhase: number;
+  contactAnchor?: { x: number; y: number };
 };
 
 // 尾の振りや向きの状態は魚ごとに1つだけ持ち、部屋と水槽画面で共有する。
@@ -75,6 +78,7 @@ function getMotionState(fish: FishInstance): MotionState {
       pitch: 0,
       stridePhase: (Math.abs(fish.seed) % 314) / 100,
       clockSec: (Math.abs(fish.seed) % 1000) / 37,
+      detailPhase: (Math.abs(fish.seed) % 628) / 100,
     };
     motionStates.set(fish.id, state);
   }
@@ -113,7 +117,6 @@ export class FishBody {
   }
 
   update(fish: FishInstance, deltaSec: number, bottomY: number, surfaceAngle?: number) {
-    this.mesh.pivot.y = this.height * (fish.surfaceMotion ? 0.88 : 0.5);
     this.updateYaw(fish, deltaSec);
     const speed = Math.hypot(fish.velocity.x, fish.velocity.y);
     const turning = Math.abs(Math.sin(this.motion.yaw));
@@ -136,9 +139,12 @@ export class FishBody {
       : headingPitch;
     this.motion.pitch += (targetPitch - this.motion.pitch) * (1 - Math.exp(-4 * deltaSec));
     // 頭が向いている側へ傾ける。反転中は自然に0へ近づく。
+    const freeRotation = -this.motion.pitch * Math.cos(this.motion.yaw);
     if (surfaceAngle !== undefined) {
-      this.motion.surfaceRotation = this.motion.surfaceRotation === undefined ? surfaceAngle
-        : this.motion.surfaceRotation + (surfaceAngle - this.motion.surfaceRotation) * (1 - Math.exp(-6 * deltaSec));
+      const contactRotation = surfaceAngle + (fish.contact?.kind === "mouth" ? -NOSE_DOWN_PITCH_RAD * Math.cos(this.motion.yaw) : 0);
+      const targetRotation = fish.surfaceMotion ? contactRotation : blendAngle(freeRotation, contactRotation, fish.contact?.weight ?? 0);
+      this.motion.surfaceRotation = this.motion.surfaceRotation === undefined ? targetRotation
+        : blendAngle(this.motion.surfaceRotation, targetRotation, 1 - Math.exp(-6 * deltaSec));
       this.mesh.rotation = this.motion.surfaceRotation;
     } else {
       this.motion.surfaceRotation = undefined;
@@ -146,6 +152,19 @@ export class FishBody {
     }
     if (this.swim.bodyPlan === "crustacean") this.deformCrustacean(fish, speed, deltaSec, bottomY);
     else this.deform();
+    const desiredAnchor = fish.surfaceMotion ? this.swim.footAnchor
+      : fish.contact?.kind === "mouth" ? this.swim.mouthAnchor : { x: .42, y: .82 };
+    if (fish.contact || fish.surfaceMotion) {
+      const previous = this.motion.contactAnchor;
+      const response = 1 - Math.exp(-5 * deltaSec);
+      this.motion.contactAnchor = previous ? { x: previous.x + (desiredAnchor.x - previous.x) * response,
+        y: previous.y + (desiredAnchor.y - previous.y) * response } : desiredAnchor;
+    } else this.motion.contactAnchor = undefined;
+    const anchor = this.motion.contactAnchor ?? desiredAnchor;
+    const point = sampleMeshPoint(this.mesh.geometry.positions, VERTICES_X, this.verticesY, anchor.x, anchor.y);
+    const weight = fish.surfaceMotion ? 1 : fish.contact?.weight ?? 0;
+    this.mesh.pivot.set(this.pivotX + (point.x - this.pivotX) * weight,
+      this.height / 2 + (point.y - this.height / 2) * weight);
   }
 
   destroy() {
@@ -155,13 +174,14 @@ export class FishBody {
   private updateYaw(fish: FishInstance, deltaSec: number) {
     this.motion.sinceTurnSec += deltaSec;
     const vx = fish.velocity.x;
-    if (fish.surfaceMotion && this.motion.sinceTurnSec >= MIN_TURN_INTERVAL_SEC &&
+    const anchored = fish.surfaceMotion || (fish.contact && fish.contact.weight > .5);
+    if (anchored && this.motion.sinceTurnSec >= MIN_TURN_INTERVAL_SEC &&
       (fish.facing === 1) !== (this.motion.targetYaw > Math.PI / 2)) {
       this.motion.targetYaw = fish.facing === 1 ? Math.PI : 0;
       this.motion.sinceTurnSec = 0;
     }
     const facingRight = this.motion.targetYaw > Math.PI / 2;
-    if (this.motion.sinceTurnSec >= MIN_TURN_INTERVAL_SEC) {
+    if (!anchored && this.motion.sinceTurnSec >= MIN_TURN_INTERVAL_SEC) {
       if (!facingRight && vx > TURN_HYSTERESIS_CM_PER_SEC) {
         this.motion.targetYaw = Math.PI;
         this.motion.sinceTurnSec = 0;
@@ -170,9 +190,9 @@ export class FishBody {
         this.motion.sinceTurnSec = 0;
       }
     }
-    const accel = (this.motion.targetYaw - this.motion.yaw) * TURN_STIFFNESS - this.motion.yawVelocity * TURN_DAMPING;
-    this.motion.yawVelocity += accel * deltaSec;
-    this.motion.yaw += this.motion.yawVelocity * deltaSec;
+    const next = stepTurnSpring(this.motion.yaw, this.motion.yawVelocity, this.motion.targetYaw, deltaSec);
+    this.motion.yaw = next.value;
+    this.motion.yawVelocity = next.velocity;
   }
 
   // エビは尾を振らない。脚を前から後ろへ波のように運んで歩き、触角をゆっくり揺らし、
@@ -209,8 +229,8 @@ export class FishBody {
       // 触角は根元から先へ向かって大きく、ゆっくり揺れる。
       if (head > 0 && u < head) {
         const reach = ((head - u) / head) ** 1.4;
-        dy += (Math.sin(t * 1.6 + u * 7 + fish.seed) * 0.05 + Math.sin(t * 3.7 + u * 13) * 0.015) * this.height * reach;
-        dx += Math.sin(t * 1.1 + fish.seed) * this.width * 0.012 * reach;
+        dy += (Math.sin(t * 1.6 + u * 7 + motion.detailPhase) * 0.05 + Math.sin(t * 3.7 + u * 13) * 0.015) * this.height * reach;
+        dx += Math.sin(t * 1.1 + motion.detailPhase) * this.width * 0.012 * reach;
       }
       // ついばむときは、頭先を小刻みに下げる。
       if (picking) {

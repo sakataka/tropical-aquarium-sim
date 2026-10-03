@@ -32,6 +32,7 @@ export type {
   FishEcology,
   FishHabit,
   FishInstance,
+  FishPersonality,
   FishSpeciesDefinition,
   FishStockEntry,
   FishSwimStyle,

@@ -89,6 +89,9 @@ export type FishSwimStyle = {
   bodyPlan: "fish" | "crustacean";
   /** 画像の左端から頭（触角の付け根）までの割合。これより左は触角として揺らす。 */
   headStart: number;
+  /** 切り出した画像内の口・脚の接地点。画像の見た目に合わせた比率。 */
+  mouthAnchor: Vec2;
+  footAnchor: Vec2;
 };
 
 export type FishSpeciesDefinition = {
@@ -113,6 +116,16 @@ export type FishTargetKind =
   | "forage"
   | "follow";
 
+/** 生成時に決まる種の標準値への倍率。泳ぐ間は変化させず、保存・管理UIの対象にしない。 */
+export type FishPersonality = Readonly<{
+  pace: number;
+  responsiveness: number;
+  restfulness: number;
+  sociability: number;
+  personalSpace: number;
+  exploration: number;
+}>;
+
 export type FishInstance = {
   id: string;
   speciesId: string;
@@ -122,9 +135,14 @@ export type FishInstance = {
   depth: number;
   surfaceMotion?: SurfaceMotion;
   /** 習性行動の目的地。画像の座標を再計算できる参照だけを保持する。 */
-  terrainGoal?: { sceneId: string; surfaceId?: string; progress?: number; shelterId?: string };
+  terrainGoal?: { sceneId: string; surfaceId?: string; progress?: number; shelterId?: string; facing?: -1 | 1 };
+  /** 接地への寄り・離れを描画でも連続させる。保存対象外。 */
+  contact?: { angle: number; kind: "mouth" | "belly"; weight: number };
+  terrainRoute?: { sceneId: string; obstacleId: string; side: -1 | 1 };
+  depthMotion?: { target: number; velocity: number; remainingSec: number };
   homeDepth?: number;
   bodyLengthVariance: number;
+  personality: FishPersonality;
   behaviorMode: "kick" | "coast" | "pause" | "rest" | "forage";
   behaviorTimeRemainingSec: number;
   target?: Vec2;

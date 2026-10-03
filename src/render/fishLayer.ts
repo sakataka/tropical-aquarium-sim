@@ -86,8 +86,9 @@ export class FishLayer {
       mesh.tint = scaleColor(mixColor(0xffffff, this.waterTint, 0.06 + item.depth * 0.26), lightFalloff);
       mesh.alpha = 1 - item.depth * 0.08;
       mesh.zIndex = -item.depth;
-      const surfaceAngle = item.surfaceMotion
-        ? Math.atan(Math.tan(item.surfaceMotion.angle) * rect.height / rect.width) : undefined;
+      const angle = item.surfaceMotion?.angle ?? item.contact?.angle;
+      const surfaceAngle = angle !== undefined
+        ? Math.atan(Math.tan(angle) * rect.height / rect.width) : undefined;
       record.body.update(item, advance ? deltaSec : 0, tank.heightCm - tank.safeMarginCm, surfaceAngle);
     }
   }

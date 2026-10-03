@@ -36,7 +36,8 @@ describe("scene surface movement", () => {
           expect(item.position.y).toBeGreaterThanOrEqual(tank.safeMarginCm);
           expect(item.position.y).toBeLessThanOrEqual(tank.heightCm - tank.safeMarginCm);
           expect(Number.isFinite(motion.angle)).toBe(true);
-          expect(Math.hypot(item.velocity.x, item.velocity.y)).toBeLessThanOrEqual(.281);
+          expect(Math.hypot(item.velocity.x, item.velocity.y)).toBeLessThanOrEqual(
+            shrimp.realBodyLengthCm * shrimp.ecology.speedBodyLengthsPerSec.cruise * item.personality.pace + .001);
           minY = Math.min(minY, item.position.y);
           minDepth[index] = Math.min(minDepth[index]!, item.depth);
           maxDepth[index] = Math.max(maxDepth[index]!, item.depth);
@@ -61,7 +62,8 @@ describe("scene surface movement", () => {
     const next = stepSimulation({ tank, species: fishCatalog, fish: [fish], deltaSec: .25,
       structurePoints: [], scene }).fish[0]!;
     expect(next.surfaceMotion!.surfaceId).not.toBe(surface.id);
-    expect(Math.hypot(next.position.x - fish.position.x, next.position.y - fish.position.y)).toBeLessThan(.071);
+    expect(Math.hypot(next.position.x - fish.position.x, next.position.y - fish.position.y)).toBeLessThan(
+      shrimp.realBodyLengthCm * shrimp.ecology.speedBodyLengthsPerSec.cruise * fish.personality.pace * .25 + .001);
   });
 
   test("switching water scenes replaces old paths, and a scene without terrain falls back safely", () => {
@@ -81,7 +83,15 @@ describe("scene surface movement", () => {
     const scene = getSceneById("japan-moss-wood")!;
     const fish = createFishFromStock([{ speciesId: "medaka", count: 3 }], tank);
     const input = { tank, species: fishCatalog, fish, deltaSec: .05, structurePoints: [] };
-    expect(stepSimulation({ ...input, scene })).toEqual(stepSimulation(input));
+    const next = stepSimulation({ ...input, scene }).fish;
+    const fallback = stepSimulation(input).fish;
+    for (const [i, f] of next.entries()) {
+      expect(f.position).toEqual(fallback[i]!.position);
+      expect(f.surfaceMotion).toBeUndefined();
+      expect(f.depthMotion).toBeDefined();
+      expect(Math.abs(f.depth - fish[i]!.depth)).toBeLessThan(.001);
+      expect(f.position.y).toBeLessThan(tank.heightCm * fishCatalog.medaka!.preferredZone.maxY);
+    }
     const saved = { stock: [{ speciesId: shrimp.id, count: 3 }],
       layout: { sceneId: "japan-spring", lighting: "night" } };
     expect(normalizeTankCustomization(saved, tank, fishCatalog)).toEqual(saved);
@@ -96,5 +106,22 @@ describe("scene surface movement", () => {
     expect(terrainSchema.safeParse({ ...terrain, surfaces: [first, first] }).success).toBe(false);
     expect(terrainSchema.safeParse({ ...terrain,
       surfaces: [{ ...first, points: [first.points[0], first.points[0]] }] }).success).toBe(false);
+  });
+
+  test("walkers turn at a cropped path boundary instead of leaving the glass", () => {
+    const scene = getSceneById("japan-moss-wood")!;
+    const frame = { x: -.25, y: -.52, width: 1.5, height: 1.52 };
+    let fish = createFishFromStock([{ speciesId: shrimp.id, count: 7 }], tank)
+      .map((f, i) => ({ ...f, seed: 137 + i * 1327 }));
+    for (let i = 0; i < 12000; i++) {
+      fish = stepSimulation({ tank, scene, surfaceFrame: frame, fish, species: fishCatalog, structurePoints: [], deltaSec: .1 }).fish;
+      for (const f of fish) {
+        if (f.position.x < tank.safeMarginCm || f.position.x > tank.widthCm - tank.safeMarginCm ||
+          f.position.y < tank.safeMarginCm || f.position.y > tank.heightCm - tank.safeMarginCm) throw new Error("Cropped surface escaped glass");
+        const motion = f.surfaceMotion!, surface = scene.terrain!.surfaces.find((s) => s.id === motion.surfaceId)!;
+        const sample = sampleSurface(surface, motion.progress, tank, frame);
+        if (Math.hypot(sample.position.x - f.position.x, sample.position.y - f.position.y) > 1e-8) throw new Error("Walker lost surface contact");
+      }
+    }
   });
 });

@@ -4,8 +4,8 @@ import { sampleSurface, worldPoint } from "./surfaceMotion";
 type Goal = NonNullable<FishInstance["terrainGoal"]>;
 type Context = { scene: AquariumScene; tank: TankDefinition; frame: SurfaceFrame; species: FishSpeciesDefinition };
 
-export function resolveTerrainGoal(goal: Goal, context: Context) {
-  const { scene, tank, frame, species } = context;
+export function resolveTerrainGoal(goal: Goal, context: Context): { position: Vec2; depth: number; angle?: number } | undefined {
+  const { scene, tank, frame } = context;
   if (goal.sceneId !== scene.id) return undefined;
   const shelter = scene.terrain?.shelters?.find((s) => s.id === goal.shelterId);
   if (shelter) {
@@ -15,9 +15,8 @@ export function resolveTerrainGoal(goal: Goal, context: Context) {
   const surface = scene.terrain?.surfaces.find((s) => s.id === goal.surfaceId);
   if (!surface) return undefined;
   const sampled = sampleSurface(surface, goal.progress ?? .5, tank, frame);
-  // 口・腹の接地点が表面に寄るよう、中心は少しだけ上へ置く。
-  return { ...sampled, position: { x: sampled.position.x,
-    y: sampled.position.y - species.realBodyLengthCm * .16 } };
+  // 接地点そのものを目標にする。描画側は近づくにつれ口・腹へ支点を移す。
+  return sampled;
 }
 
 export function chooseTerrainGoal(kind: "hide" | "rest" | "forage", fish: FishInstance,
@@ -33,9 +32,11 @@ export function chooseTerrainGoal(kind: "hide" | "rest" | "forage", fish: FishIn
       point.position.x <= tank.widthCm - tank.safeMarginCm &&
       point.position.y >= tank.safeMarginCm && point.position.y <= tank.heightCm - tank.safeMarginCm &&
       !insideTerrain(point.position, point.depth, context))
-    .sort((a, b) => distance(a.point.position, fish.position) - distance(b.point.position, fish.position));
+    .sort((a, b) => Math.hypot(distance(a.point.position, fish.position), (a.point.depth - fish.depth) * tank.depthCm)
+      - Math.hypot(distance(b.point.position, fish.position), (b.point.depth - fish.depth) * tank.depthCm));
   // 近い場所を中心に選び、全員が同じ葉へ集中しない。
-  return visible[Math.floor(random() * Math.min(3, visible.length))]?.goal;
+  const selected = visible[Math.floor(random() * Math.min(3, visible.length))];
+  return selected ? { ...selected.goal, facing: selected.point.position.x >= fish.position.x ? 1 : -1 } : undefined;
 }
 
 function ellipses(depth: number, context: Context) {
@@ -46,7 +47,7 @@ function ellipses(depth: number, context: Context) {
     const section = Math.sqrt(1 - relativeDepth * relativeDepth);
     const center = worldPoint(obstacle.center, tank, frame);
     const clearance = species.realBodyLengthCm * .2;
-    return [{ center, rx: obstacle.radius.x * frame.width * tank.widthCm * section + clearance,
+    return [{ id: obstacle.id, center, rx: obstacle.radius.x * frame.width * tank.widthCm * section + clearance,
       ry: obstacle.radius.y * frame.height * tank.heightCm * section + clearance }];
   });
 }
@@ -59,23 +60,113 @@ export function insideTerrain(position: Vec2, depth: number, context: Context) {
 export function terrainAvoidance(fish: FishInstance, context: Context): Vec2 {
   let x = 0, y = 0;
   for (const { center, rx, ry } of ellipses(fish.depth, context)) {
-    const lookAhead = Math.min(1.5, context.species.realBodyLengthCm / Math.max(.1, Math.hypot(fish.velocity.x, fish.velocity.y)));
+    const lookAhead = Math.min(.6, context.species.realBodyLengthCm / Math.max(.1, Math.hypot(fish.velocity.x, fish.velocity.y)));
     const ahead = { x: fish.position.x + fish.velocity.x * lookAhead,
       y: fish.position.y + fish.velocity.y * lookAhead };
     const nx = (ahead.x - center.x) / rx, ny = (ahead.y - center.y) / ry;
     const d = Math.hypot(nx, ny);
-    if (d >= 1.65) continue;
+    if (d >= 1.25) continue;
     // 楕円の法線で押し返す。止まった魚にも上側へ抜ける向きがある。
     const dx = nx / rx, dy = ny / ry;
     const norm = Math.hypot(dx, dy);
-    const force = Math.min(4, (1.65 - d) * 4);
+    const force = Math.min(2.5, (1.25 - d) * 5);
     x += norm > .0001 ? dx / norm * force : 0;
     y += norm > .0001 ? dy / norm * force : -force;
   }
   return { x, y };
 }
 
-/** 慣性で回避領域を突き抜ける場合は、連続した移動区間の入口で止める。 */
+/** 衝突しそうな物体の周囲へ一貫した側から回り込む。毎フレーム左右を選び直さない。 */
+export function routeTerrainTarget(fish: FishInstance, target: Vec2, context: Context) {
+  const solids = ellipses(fish.depth, context);
+  const intersects = (solid: typeof solids[number]) => {
+    const ax = (fish.position.x - solid.center.x) / solid.rx;
+    const ay = (fish.position.y - solid.center.y) / solid.ry;
+    const dx = (target.x - fish.position.x) / solid.rx;
+    const dy = (target.y - fish.position.y) / solid.ry;
+    const t = Math.max(0, Math.min(1, -(ax * dx + ay * dy) / Math.max(1e-12, dx * dx + dy * dy)));
+    return Math.hypot(ax + t * dx, ay + t * dy) < 1.18;
+  };
+  const previous = fish.terrainRoute?.sceneId === context.scene.id ? fish.terrainRoute : undefined;
+  const solid = solids.find((s) => s.id === previous?.obstacleId && intersects(s))
+    ?? solids.filter(intersects).sort((a, b) => distance(a.center, fish.position) - distance(b.center, fish.position))[0];
+  if (!solid) return { target, route: undefined };
+  const angle = Math.atan2((fish.position.y - solid.center.y) / solid.ry,
+    (fish.position.x - solid.center.x) / solid.rx);
+  const waypoint = (side: -1 | 1, advance: number) => ({
+    x: solid.center.x + Math.cos(angle + side * advance) * solid.rx * 1.3,
+    y: solid.center.y + Math.sin(angle + side * advance) * solid.ry * 1.3,
+  });
+  const cost = (side: -1 | 1) => {
+    const p = waypoint(side, Math.PI / 2), margin = context.tank.safeMarginCm;
+    const outside = Math.max(0, margin - p.x, p.x - context.tank.widthCm + margin,
+      margin - p.y, p.y - context.tank.heightCm + margin);
+    return distance(p, target) + outside * 20;
+  };
+  let side = previous?.obstacleId === solid.id ? previous.side : cost(1) <= cost(-1) ? 1 : -1;
+  const margin = context.tank.safeMarginCm;
+  const visible = (p: Vec2) => p.x >= margin && p.x <= context.tank.widthCm - margin &&
+    p.y >= margin && p.y <= context.tank.heightCm - margin && !insideTerrain(p, fish.depth, context);
+  let point = waypoint(side, .65);
+  if (!visible(point)) {
+    const alternative = waypoint(side === 1 ? -1 : 1, .65);
+    if (visible(alternative)) { side = side === 1 ? -1 : 1; point = alternative; }
+    else {
+      // 壁に切られた岩でも、目標を壁へ丸めて岩の内側に置かない。
+      const alternatives = [side, side === 1 ? -1 as const : 1 as const].flatMap((direction) =>
+        [1, 1.4, 1.8, 2.2, 2.6].map((advance) => ({ point: waypoint(direction, advance), side: direction })));
+      const choice = alternatives.find((item) => visible(item.point));
+      if (choice) { point = choice.point; side = choice.side; }
+    }
+  }
+  return { target: point,
+    route: { sceneId: context.scene.id, obstacleId: solid.id, side } };
+}
+
+/** 前後移動でも薄い物体を飛び越えない。深さ区間を分割し、最初の接触直前まで進める。 */
+export function constrainTerrainDepth(position: Vec2, from: number, to: number, context: Context, protectSilhouette = false) {
+  if (protectSilhouette) {
+    for (const occluder of context.scene.terrain?.occluders ?? []) {
+      if ((from - occluder.depth) * (to - occluder.depth) >= 0) continue;
+      const polygon = occluder.polygon.map((p) => worldPoint({ ...p, depth: 0 }, context.tank, context.frame));
+      const clearance = context.species.realBodyLengthCm * .55;
+      if (pointInPolygon(position, polygon) || polygon.some((a, i) => {
+        const b = polygon[(i + 1) % polygon.length]!;
+        const dx = b.x - a.x, dy = b.y - a.y;
+        const t = Math.max(0, Math.min(1, ((position.x - a.x) * dx + (position.y - a.y) * dy) / Math.max(1e-12, dx * dx + dy * dy)));
+        return Math.hypot(position.x - a.x - t * dx, position.y - a.y - t * dy) < clearance;
+      })) to = occluder.depth + Math.sign(from - occluder.depth) * 1e-7;
+    }
+  }
+  const smallest = Math.min(1, ...(context.scene.terrain?.obstacles ?? []).map((s) => s.depthRadius));
+  const steps = Math.max(1, Math.ceil(Math.abs(to - from) / (smallest * .25)));
+  let previous = from;
+  for (let i = 1; i <= steps; i++) {
+    const depth = from + (to - from) * i / steps;
+    if (insideTerrain(position, depth, context)) {
+      let safe = previous, blocked = depth;
+      for (let j = 0; j < 24; j++) {
+        const mid = (safe + blocked) / 2;
+        if (insideTerrain(position, mid, context)) blocked = mid; else safe = mid;
+      }
+      return safe;
+    }
+    previous = depth;
+  }
+  return to;
+}
+
+export function pointInPolygon(point: Vec2, polygon: Vec2[]) {
+  let inside = false;
+  for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
+    const a = polygon[i]!, b = polygon[j]!;
+    if ((a.y > point.y) !== (b.y > point.y) &&
+      point.x < (b.x - a.x) * (point.y - a.y) / (b.y - a.y) + a.x) inside = !inside;
+  }
+  return inside;
+}
+
+/** 慣性で回避領域へ接触したら、入口で法線方向を止め、接線方向へ滑らせる。 */
 export function constrainTerrainStep(from: Vec2, to: Vec2, depth: number, context: Context): Vec2 {
   let result = { ...to };
   for (const { center, rx, ry } of ellipses(depth, context)) {
@@ -107,9 +198,16 @@ export function constrainTerrainStep(from: Vec2, to: Vec2, depth: number, contex
     const hit = (-b - Math.sqrt(discriminant)) / (2 * a);
     if (hit < 0 || hit > 1) continue;
     const t = Math.max(0, hit - .001);
-    result = { x: from.x + (result.x - from.x) * t, y: from.y + (result.y - from.y) * t };
+    const contact = { x: from.x + (result.x - from.x) * t, y: from.y + (result.y - from.y) * t };
+    const nx = (contact.x - center.x) / (rx * rx), ny = (contact.y - center.y) / (ry * ry);
+    const remainingX = result.x - contact.x, remainingY = result.y - contact.y;
+    const inward = Math.min(0, (remainingX * nx + remainingY * ny) / (nx * nx + ny * ny));
+    const margin = context.tank.safeMarginCm;
+    const slide = { x: Math.max(margin, Math.min(context.tank.widthCm - margin, contact.x + remainingX - inward * nx)),
+      y: Math.max(margin, Math.min(context.tank.heightCm - margin, contact.y + remainingY - inward * ny)) };
+    result = insideTerrain(slide, depth, context) ? contact : slide;
   }
-  return result;
+  return insideTerrain(result, depth, context) && !insideTerrain(from, depth, context) ? from : result;
 }
 
 function distance(a: Vec2, b: Vec2) { return Math.hypot(a.x - b.x, a.y - b.y); }

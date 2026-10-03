@@ -42,11 +42,44 @@ function connected(a: SurfacePoint, b: SurfacePoint): boolean {
   return Math.hypot(a.x - b.x, a.y - b.y, a.depth - b.depth) < 0.00001;
 }
 
+/** cover で切り取られる経路も、ガラス内に見える連続区間だけを歩く。 */
+export function visibleSurfaceIntervals(surface: SceneSurface, tank: TankDefinition, frame: SurfaceFrame) {
+  const points = surface.points.map((p) => worldPoint(p, tank, frame));
+  const lengths = points.slice(1).map((p, i) => segmentLength(points[i]!, p, tank));
+  const total = lengths.reduce((sum, value) => sum + value, 0);
+  const intervals: { from: number; to: number }[] = [];
+  let traveled = 0;
+  const margin = tank.safeMarginCm + 1e-6;
+  for (let i = 0; i < lengths.length; i++) {
+    const a = points[i]!, b = points[i + 1]!;
+    let low = 0, high = 1;
+    for (const [start, change, maximum] of [[a.x, b.x - a.x, tank.widthCm], [a.y, b.y - a.y, tank.heightCm]]) {
+      if (Math.abs(change!) < 1e-12) { if (start! < margin || start! > maximum! - margin) high = -1; }
+      else {
+        const t1 = (margin - start!) / change!, t2 = (maximum! - margin - start!) / change!;
+        low = Math.max(low, Math.min(t1, t2)); high = Math.min(high, Math.max(t1, t2));
+      }
+    }
+    if (high > low) {
+      const from = (traveled + lengths[i]! * low) / total, to = (traveled + lengths[i]! * high) / total;
+      const last = intervals[intervals.length - 1];
+      if (last && Math.abs(last.to - from) < 1e-9) last.to = to; else intervals.push({ from, to });
+    }
+    traveled += lengths[i]!;
+  }
+  return intervals;
+}
+
 /** 表面を歩く生き物だけに使う。経路は水景の情報で、魚種名による分岐を持たない。 */
 export function stepSurfaceWalker(fish: FishInstance, species: FishSpeciesDefinition,
   tank: TankDefinition, scene: AquariumScene, frame: SurfaceFrame, deltaSec: number,
   activity: number): FishInstance {
-  const surfaces = scene.terrain!.surfaces;
+  const visible = scene.terrain!.surfaces.map((surface) => ({ surface, intervals: visibleSurfaceIntervals(surface, tank, frame) }))
+    .filter((item) => item.intervals.length > 0);
+  const surfaces = visible.map((item) => item.surface);
+  if (surfaces.length === 0) return { ...fish, surfaceMotion: undefined, velocity: { x: 0, y: 0 },
+    position: { x: Math.max(tank.safeMarginCm, Math.min(tank.widthCm - tank.safeMarginCm, fish.position.x)),
+      y: Math.max(tank.safeMarginCm, Math.min(tank.heightCm - tank.safeMarginCm, fish.position.y)) } };
   let seed = fish.seed >>> 0;
   const random = () => {
     seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
@@ -63,20 +96,35 @@ export function stepSurfaceWalker(fish: FishInstance, species: FishSpeciesDefini
       direction: fish.facing, pauseSec: random() * 4, grazing: false, angle: 0,
     };
   } else motion = { ...motion };
+  const intervals = visible.find((item) => item.surface.id === surface!.id)!.intervals;
+  const interval = intervals.reduce((best, item) => {
+    const gap = (range: typeof item) => Math.max(range.from - motion!.progress, motion!.progress - range.to, 0);
+    return gap(item) < gap(best) ? item : best;
+  });
+  motion.progress = Math.max(interval.from, Math.min(interval.to, motion.progress));
   const before = sampleSurface(surface, motion.progress, tank, frame);
   const wasPaused = motion.pauseSec > 0;
   motion.pauseSec = Math.max(0, motion.pauseSec - deltaSec);
   if (!wasPaused && deltaSec > 0) {
-    const speed = species.realBodyLengthCm * species.ecology.speedBodyLengthsPerSec.cruise *
+    const speed = species.realBodyLengthCm * species.ecology.speedBodyLengthsPerSec.cruise * fish.personality.pace *
       (0.45 + 0.55 * Math.min(activity, 1.1));
     motion.progress += motion.direction * speed * deltaSec / before.length;
+    if (motion.progress < interval.from && interval.from > 1e-9) {
+      motion.progress = Math.min(interval.to, interval.from + (interval.from - motion.progress));
+      motion.direction = 1;
+    } else if (motion.progress > interval.to && interval.to < 1 - 1e-9) {
+      motion.progress = Math.max(interval.from, interval.to - (motion.progress - interval.to));
+      motion.direction = -1;
+    }
     if (motion.progress < 0 || motion.progress > 1) {
       const atEnd = motion.direction === 1;
       const endpoint = surface.points[atEnd ? surface.points.length - 1 : 0]!;
       const candidates = surfaces.flatMap<{ surface: SceneSurface; direction: -1 | 1 }>((candidate) => {
         if (candidate.id === surface!.id) return [];
-        if (connected(endpoint, candidate.points[0]!)) return [{ surface: candidate, direction: 1 as const }];
-        if (connected(endpoint, candidate.points[candidate.points.length - 1]!))
+        const intervals = visible.find((item) => item.surface.id === candidate.id)!.intervals;
+        if (connected(endpoint, candidate.points[0]!) && intervals[0]!.from < 1e-9)
+          return [{ surface: candidate, direction: 1 as const }];
+        if (connected(endpoint, candidate.points[candidate.points.length - 1]!) && intervals[intervals.length - 1]!.to > 1 - 1e-9)
           return [{ surface: candidate, direction: -1 as const }];
         return [];
       });
@@ -93,12 +141,12 @@ export function stepSurfaceWalker(fish: FishInstance, species: FishSpeciesDefini
     }
     const grazing = species.ecology.habits.find((habit) => habit.type === "grazing");
     const rest = species.ecology.habits.find((habit) => habit.type === "bottomRest");
-    const grazingChance = (grazing?.chancePerMin ?? 0) * activity;
-    const restChance = (rest?.chancePerMin ?? 0) / Math.max(activity, 0.3);
+    const grazingChance = (grazing?.chancePerMin ?? 0) * activity * fish.personality.exploration;
+    const restChance = (rest?.chancePerMin ?? 0) * fish.personality.restfulness / Math.max(activity, 0.3);
     if (random() < (grazingChance + restChance) * deltaSec / 60) {
       motion.grazing = random() * (grazingChance + restChance) < grazingChance;
       const range = (motion.grazing ? grazing : rest)?.durationSec ?? [6, 12];
-      motion.pauseSec = range[0] + random() * (range[1] - range[0]);
+      motion.pauseSec = (range[0] + random() * (range[1] - range[0])) * (motion.grazing ? 1 : fish.personality.restfulness);
     }
   }
   const sampled = sampleSurface(surface, motion.progress, tank, frame);
@@ -111,6 +159,7 @@ export function stepSurfaceWalker(fish: FishInstance, species: FishSpeciesDefini
   const facing = Math.cos(sampled.angle) * motion.direction >= 0 ? 1 : -1;
   return {
     ...fish, position: sampled.position, depth: sampled.depth, velocity, facing,
+    terrainGoal: undefined, terrainRoute: undefined, depthMotion: undefined, contact: undefined, homeDepth: undefined,
     surfaceMotion: motion, target: undefined, targetKind: "openWater",
     behaviorMode: motion.pauseSec > 0 ? (motion.grazing ? "forage" : "rest") : "coast",
     behaviorTimeRemainingSec: motion.pauseSec, posture: "level", seed,

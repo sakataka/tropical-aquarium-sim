@@ -20,7 +20,11 @@
     "tailBeatHz": 2.3,
     "bodyWaveStart": 0.5,
     "tailSweepRad": 0.32,
-    "verticalFlex": 0.015
+    "verticalFlex": 0.015,
+    "mouthAnchor": {
+      "x": 0.022,
+      "y": 0.552
+    }
   },
   "visual": {
     "fallbackColor": "#408bd6"
