@@ -8,7 +8,7 @@
     "originRegionName": "東アフリカ",
     "origin": "マラウイ湖のタイワンリーフに由来する小型のシクリッド。",
     "temperament": "岩場に縄張りを持ち、こまめに周囲を巡ります。",
-    "movement": "青と黒の縞模様で岩の上をきびきび泳ぎ、ときどき留まります。",
+    "movement": "岩の上をきびきび泳ぎ、表面の付着生物をついばんでは周囲を巡ります。ここでは青と黒の縞模様の雄を表現しています。",
     "habitat": "堆積物の少ない岩礁。ここでは青い雄の色彩を表現し、黄色い雌や幼魚は描き分けません。",
     "aliases": [
       "saulosi",
@@ -51,11 +51,17 @@
       "polarization": 0.15
     },
     "structureAffinity": 0.5,
-    "habits": [],
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 1.2,
+        "durationSec": [3, 7]
+      }
+    ],
     "sources": [
       {
         "title": "FishBase: Chindongo saulosi",
-        "url": "https://www.fishbase.se/summary/Pseudotropheus-saulosi.html"
+        "url": "https://www.fishbase.se/summary/Chindongo-saulosi.html"
       }
     ]
   },

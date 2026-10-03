@@ -27,6 +27,7 @@ type Result = {
   cubeCards: number;
   cubeStageRatio: number;
   amazonCards: number;
+  adjacentTanks: string[];
   restored: { version: number; scene: string; lighting: string; harlequinCount: number; sound: boolean };
   migrated: { version: number; asiaScene: string; amazonNeon: number };
   desktop: { stageWidth: number; stageHeight: number; canvasWidth: number };
@@ -154,6 +155,7 @@ async function main() {
     const cubeCards = await countCards(view);
     newSpeciesChecked.push(...await verifyNewFish(view, "cube-30", [["ember-tetra", "エンバーテトラ"], ["clown-killifish", "クラウンキリー"]]));
     await clickByLabel(view, "閉じて眺める");
+    await sleep(700);
     const cubeStageRatio = Number(await view.evaluate(`(() => {
       const stage = document.querySelector(".aquarium-stage")?.getBoundingClientRect();
       return stage ? stage.width / stage.height : 0;
@@ -167,6 +169,7 @@ async function main() {
     const amazonCards = await countCards(view);
     newSpeciesChecked.push(...await verifyNewFish(view, "amazon-90", [["lemon-tetra", "レモンテトラ"], ["dwarf-pencilfish", "ドワーフペンシル"]]));
     await clickByLabel(view, "閉じて眺める");
+    await sleep(700);
     await Bun.write(`${SCREENSHOT_DIR}/amazon-1440x960.png`, await view.screenshot({ format: "png" }));
 
     // 追加した2水槽を部屋から開き、背景・カタログ・匹数の保存を確認する。
@@ -189,6 +192,31 @@ async function main() {
       })()`));
       await clickByLabel(view, "閉じて眺める");
     }
+
+    // 隣の水槽への移動、両端の折り返し、キー操作でも構成を保つこと。
+    const stockBeforeTravel = String(await view.evaluate(
+      `JSON.stringify(JSON.parse(localStorage.getItem("${STATE_KEY}")).tanks)`,
+    ));
+    const adjacentTanks: string[] = [];
+    await sleep(700);
+    for (const id of ["asia-60", "amazon-90", "cube-30", "japan-60", "malawi-120"]) {
+      await view.evaluate(`document.querySelector('button[aria-label^="次の水槽（"]')?.click()`);
+      await sleep(2200);
+      const active = String(await view.evaluate(`JSON.parse(localStorage.getItem("${STATE_KEY}")).activeTankId`));
+      assert(active === id);
+      assert(await view.evaluate(`document.querySelector(".tank-screen")?.classList.contains("visible")`));
+      adjacentTanks.push(active);
+      await Bun.write(`${SCREENSHOT_DIR}/adjacent-${id}.png`, await view.screenshot({ format: "png" }));
+    }
+    await view.evaluate(`document.querySelector('button[aria-label^="前の水槽（"]')?.click()`);
+    await sleep(2200);
+    assert(await view.evaluate(`JSON.parse(localStorage.getItem("${STATE_KEY}")).activeTankId === "japan-60"`));
+    await view.evaluate(`window.dispatchEvent(new KeyboardEvent("keydown", { key: "]" }))`);
+    await sleep(2200);
+    assert(await view.evaluate(`JSON.parse(localStorage.getItem("${STATE_KEY}")).activeTankId === "malawi-120"`));
+    assert(stockBeforeTravel === await view.evaluate(
+      `JSON.stringify(JSON.parse(localStorage.getItem("${STATE_KEY}")).tanks)`,
+    ));
 
     // 既存3水槽しかないv5保存へ、新しい2水槽だけが加わること。
     const beforeExpansion = String(await view.evaluate(`(() => {
@@ -379,7 +407,7 @@ async function main() {
 
     const result: Result = {
       title, roomTanks, enteredTank, asiaCards, harlequinCount, rejectedSpecies, newSpeciesChecked, addedTanksPreserved, arrangementPreserved, scenesVisited,
-      viewingOnEntry, viewingStageWidth, editingOpened, editingStageWidth, closedToViewing, backToRoom, cubeCards, cubeStageRatio, amazonCards,
+      viewingOnEntry, viewingStageWidth, editingOpened, editingStageWidth, closedToViewing, backToRoom, cubeCards, cubeStageRatio, amazonCards, adjacentTanks,
       restored, migrated, desktop, mobile, landscape, removedCopyAbsent, consoleErrors,
     };
     console.log(JSON.stringify(result, null, 2));

@@ -40,6 +40,10 @@
     "habits": [],
     "sources": [
       {
+        "title": "Tan (2020): Trigonostigma truncata and redescription of T. heteromorpha",
+        "url": "https://lkcnhm.nus.edu.sg/app/uploads/2020/01/RBZ-2020-0058.pdf"
+      },
+      {
         "title": "Seriously Fish: Trigonostigma heteromorpha",
         "url": "https://www.seriouslyfish.com/species/trigonostigma-heteromorpha/"
       }
@@ -49,8 +53,8 @@
     "scientificName": "Trigonostigma heteromorpha",
     "originRegionId": "southeast-asia",
     "originRegionName": "東南アジア",
-    "origin": "東南アジア。マレー半島南部、タイ南部、スマトラ周辺の緩やかな流れや湿地性の水域に分布します。",
-    "temperament": "温和で協調性が高い魚です。ネオンテトラより少し落ち着いた群れを作り、混泳水槽でも前に出やすい性格です。",
+    "origin": "東南アジアのマレー半島南部、シンガポール、スマトラなど。緩やかな流れや湿地性の水域に由来します。タイ南部などの近縁種 Trigonostigma truncata とは区別されます。",
+    "temperament": "温和で仲間と群れを作る魚です。水草の陰と開けた場所を行き来し、刺激を受けると仲間に寄ります。",
     "movement": "中層を滑るように泳ぎ、群れの間隔を保ちながら方向を合わせます。急な刺激にはまとまって逃げます。",
     "habitat": "水草が多く、流れが強すぎない水槽で見栄えします。体側の黒い三角斑が背景の緑に映えます。",
     "aliases": [

@@ -52,6 +52,10 @@
     ],
     "sources": [
       {
+        "title": "Eschmeyer's Catalog of Fishes: Pangio semicincta",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=45160"
+      },
+      {
         "title": "Wikipedia: Kuhli loach",
         "url": "https://en.wikipedia.org/wiki/Kuhli_loach"
       },
@@ -62,10 +66,10 @@
     ]
   },
   "catalog": {
-    "scientificName": "Pangio kuhlii",
+    "scientificName": "Pangio sp. (kuhlii group)",
     "originRegionId": "southeast-asia",
     "originRegionName": "東南アジア",
-    "origin": "東南アジア。インドネシア、マレー半島、タイ周辺の落ち葉や流木が多い細流、湿地性水域に由来します。",
+    "origin": "東南アジアの落ち葉や流木が多い細流。クーリーローチの流通名には近縁種が含まれ、マレー半島・スマトラ・ボルネオの Pangio semicincta などが知られます。本展示の縞模様型は種を限定していません。",
     "temperament": "非常に温和で、底面や物陰を好みます。昼間は控えめですが、安心できる隠れ場所があると水槽内を細かく巡回します。",
     "movement": "底層を細長い体でくねるように進み、流木や水草の根元をなぞる動きが目立ちます。刺激には物陰へ逃げ込みます。",
     "habitat": "砂底、落ち葉、流木、密な水草と相性が良い魚です。派手な泳ぎより、水槽の下層に生活感を足す役割が強いです。",

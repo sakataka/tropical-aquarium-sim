@@ -55,6 +55,10 @@
     ],
     "sources": [
       {
+        "title": "Eschmeyer's Catalog of Fishes: Osteogaster aenea",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?genus=Osteogaster&tbl=species"
+      },
+      {
         "title": "Kramer & McClure (1980) Aerial respiration in the catfish, Corydoras aeneus",
         "url": "https://cdnsciencepub.com/doi/10.1139/z80-273"
       },
@@ -69,16 +73,19 @@
     ]
   },
   "catalog": {
-    "scientificName": "Corydoras sp.",
+    "scientificName": "Osteogaster aenea",
     "originRegionId": "south-america",
     "originRegionName": "南米",
-    "origin": "南米の河川や支流に広く見られる小型ナマズの仲間です。砂底、落ち葉、流木の周辺で底を探る生活をします。",
+    "origin": "南米北部とトリニダードなどに由来する小型ナマズ。ここではブロンズ・コリドラス（旧学名 Corydoras aeneus）をモデルに、砂底や落ち葉の周辺で底を探る姿を表現しています。",
     "temperament": "非常に温和な底ものです。同種や近い仲間と一緒にいると落ち着き、他魚を追い回すことはほとんどありません。",
     "movement": "底面を短く進んでは止まり、口ひげで砂や石の周辺を探ります。時々水面へ空気を吸いに上がる行動もあります。",
     "habitat": "角のない砂底、流木、石陰、水草の根元が似合います。派手さより、底で生活感を作る役割が強い魚です。",
     "aliases": [
       "corydoras",
-      "Corydoras sp."
+      "Osteogaster aenea",
+      "Corydoras aeneus",
+      "ブロンズ・コリドラス",
+      "赤コリ"
     ]
   }
 }

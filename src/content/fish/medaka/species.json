@@ -6,7 +6,7 @@
     "scientificName": "Oryzias latipes",
     "originRegionId": "japan",
     "originRegionName": "日本",
-    "origin": "日本の水田や水路、流れの緩やかな浅い水辺に暮らす小型魚。自然色の銀褐色を表現しています。",
+    "origin": "日本の水田や水路、流れの緩やかな浅い水辺。ここではミナミメダカ（Oryzias latipes）の自然色を表現しています。北日本のキタノメダカ（Oryzias sakaizumii）とは別種です。",
     "temperament": "穏やかで、仲間とゆるくまとまります。",
     "movement": "水面近くを小さな群れで巡り、短く泳いではふわりと漂います。",
     "habitat": "水草の茂みと明るく開けた水面のある、穏やかな浅瀬。",
@@ -53,6 +53,10 @@
     "structureAffinity": 0.12,
     "habits": [],
     "sources": [
+      {
+        "title": "大阪府立環境農林水産総合研究所: メダカ",
+        "url": "https://www.knsk-osaka.jp/zukan/zukan_database/tansui/8450b2c298b2683/9950b6e7394c5f6.html"
+      },
       {
         "title": "Seriously Fish: Oryzias latipes",
         "url": "https://www.seriouslyfish.com/species/oryzias-latipes/"

@@ -304,7 +304,9 @@ function pickHabit(
             kind: "forage",
             target: {
               x: keepX(point.x + lerp(-4, 4, random()), tank),
-              y: clamp(point.y + lerp(-2, 2, random()), tank.safeMarginCm, bottomY),
+              y: species.swim?.bodyPlan === "crustacean"
+                ? bottomY
+                : clamp(point.y + lerp(-2, 2, random()), tank.safeMarginCm, bottomY),
             },
           };
         }
@@ -342,12 +344,22 @@ function chooseTarget(
     : undefined;
   // 背後の構造物へは、わざわざ引き返してまでは寄りにくい。
   const behind = point !== undefined && (point.x - fish.position.x) * fish.facing < -3;
+  // 底を歩くエビは、水中の構造物の中心へ向かって浮き上がらない。
+  if (species.swim?.bodyPlan === "crustacean") {
+    return {
+      kind: "openWater",
+      position: { ...chooseOpenWaterTarget(fish, fish.facing, species, tank, random), y: tank.heightCm - tank.safeMarginCm },
+    };
+  }
   if (point && random() < species.ecology.structureAffinity * (behind ? 0.3 : 1)) {
     return {
       kind: "structure",
       position: {
         x: clamp(point.x + lerp(-5, 5, random()), tank.safeMarginCm, tank.widthCm - tank.safeMarginCm),
-        y: clamp(point.y + lerp(-4, 3, random()), tank.safeMarginCm, tank.heightCm - tank.safeMarginCm),
+        // 日常の寄り道でも上層魚・底魚の生活層を保つ。息継ぎなどは別の習性行動で扱う。
+        y: clamp(point.y + lerp(-4, 3, random()),
+          Math.max(tank.safeMarginCm, tank.heightCm * species.preferredZone.minY),
+          Math.min(tank.heightCm - tank.safeMarginCm, tank.heightCm * species.preferredZone.maxY)),
       },
     };
   }
@@ -427,8 +439,11 @@ function getDesiredVelocity(context: StepContext & {
 
   const inHabit = targetKind !== "openWater" && targetKind !== "structure";
   const targetDirection = normalize(subtract(target ?? tankCenter(tank), fish.position));
-  const boundary = boundaryVector(fish.position, tank, targetKind === "surfaceVisit");
-  const zone = inHabit ? { x: 0, y: 0 } : zoneVector(fish.position, tank, species);
+  const crustacean = species.swim?.bodyPlan === "crustacean";
+  const boundary = boundaryVector(fish.position, tank,
+    targetKind === "surfaceVisit" || species.preferredZone.maxY <= 0.25,
+    crustacean);
+  const zone = inHabit || crustacean ? { x: 0, y: 0 } : zoneVector(fish.position, tank, species);
   const rawFlock = inHabit ? { x: 0, y: 0 } : schoolingVector(fish, school, species);
   // 群れの引力で後ろ向きに引き戻されると、頻繁に向きが入れ替わってしまう。
   const flock = rawFlock.x * fish.facing < 0
@@ -443,7 +458,7 @@ function getDesiredVelocity(context: StepContext & {
   ));
 
   const kickSpeed = cruise + (burst - cruise) * GAITS[species.ecology.gait].kickBlend;
-  let speed = mode === "kick" ? kickSpeed : cruise;
+  let speed = mode === "kick" && !crustacean ? kickSpeed : cruise;
   if (targetKind === "surfaceVisit") {
     const style = findHabit(species, "airBreathing")?.style;
     speed = style === "dash" ? burst * 0.8 : cruise * 1.3;
@@ -492,7 +507,7 @@ function schoolingVector(
   );
 }
 
-function boundaryVector(position: Vec2, tank: TankDefinition, allowSurface: boolean): Vec2 {
+function boundaryVector(position: Vec2, tank: TankDefinition, allowSurface: boolean, allowBottom = false): Vec2 {
   const margin = tank.safeMarginCm * 3.2;
   const strength = WALL_AVOIDANCE_STRENGTH * 0.16;
   return {
@@ -503,7 +518,7 @@ function boundaryVector(position: Vec2, tank: TankDefinition, allowSurface: bool
         : 0,
     y: position.y < margin && !allowSurface
       ? (margin - position.y) * strength
-      : position.y > tank.heightCm - margin
+      : position.y > tank.heightCm - margin && !allowBottom
         ? -(position.y - (tank.heightCm - margin)) * strength * 0.3
         : 0,
   };

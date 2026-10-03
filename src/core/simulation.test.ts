@@ -7,6 +7,41 @@ import { getTankById } from "./tankCatalog";
 const TANK_60CM = getTankById("asia-60")!;
 
 describe("natural swimming", () => {
+  test("surface fish keep their layer when attracted to bottom structures", () => {
+    const tank = getTankById("cube-30")!;
+    const species = structuredClone(fishCatalog["clown-killifish"]);
+    species.ecology.structureAffinity = 1;
+    species.ecology.restFraction = 0;
+    let fish = createFishFromStock([{ speciesId: species.id, count: 1 }], tank);
+    fish[0] = { ...fish[0], position: { x: 12, y: 4 }, velocity: { x: 0.5, y: 0 },
+      facing: 1, seed: 42, target: undefined, behaviorMode: "coast", behaviorTimeRemainingSec: 0 };
+    for (let i = 0; i < 3600; i++) {
+      fish = stepSimulation({ tank, species: { [species.id]: species }, fish, deltaSec: 0.05,
+        structurePoints: [{ x: 20, y: 26 }] }).fish;
+      expect(fish[0].target!.y).toBeLessThanOrEqual(tank.heightCm * species.preferredZone.maxY);
+      expect(fish[0].position.y).toBeLessThanOrEqual(tank.heightCm * species.preferredZone.maxY + 1);
+    }
+  });
+
+  test("shrimp walk and graze at the bottom without rising toward structure centers", () => {
+    const tank = getTankById("japan-60")!;
+    const species = fishCatalog["amano-shrimp"];
+    let fish = createFishFromStock([{ speciesId: species.id, count: 3 }], tank);
+    fish = fish.map((item, index) => ({ ...item, seed: 42 + index }));
+    const bottomY = tank.heightCm - tank.safeMarginCm;
+    let grazing = false;
+    for (let i = 0; i < 3600; i++) {
+      fish = stepSimulation({ tank, species: fishCatalog, fish, deltaSec: 0.05,
+        structurePoints: [{ x: 20, y: 24 }, { x: 46, y: 25 }] }).fish;
+      for (const item of fish) {
+        expect(item.position.y).toBeCloseTo(bottomY, 5);
+        // 採餌中の短い移動も含め、尾跳ねの瞬発速度には達しない。
+        expect(Math.hypot(item.velocity.x, item.velocity.y)).toBeLessThanOrEqual(species.realBodyLengthCm * 0.12);
+        grazing ||= item.behaviorMode === "forage";
+      }
+    }
+    expect(grazing).toBe(true);
+  });
   test("keeps fish inside the tank over time", () => {
     let fish = createFishFromStock([{ speciesId: "neon-tetra", count: 8 }], TANK_60CM);
     for (let index = 0; index < 600; index += 1) {

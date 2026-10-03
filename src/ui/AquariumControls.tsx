@@ -107,7 +107,7 @@ export function AquariumControls({
           <section aria-labelledby="tab-fish" className="panel-content" id="panel-fish" role="tabpanel">
             <div className={tankFull ? "capacity full" : "capacity"}>
               <div className="capacity-text">
-                <span>{tankFull ? "水槽がいっぱいです" : "水槽の生き物"}</span>
+                <span>{tankFull ? "表示数の上限です" : "水槽の生き物"}</span>
                 <strong>{totalFish}<small> / {tank.maxTotalFish}匹</small></strong>
               </div>
               <div
@@ -157,7 +157,7 @@ export function AquariumControls({
                             onClick={() => { playSfx("fish_add"); onSpeciesCountChange(species.id, count + 1); }}
                             title={count >= limit
                               ? `この水槽には${limit}匹まで`
-                              : tankFull ? "水槽がいっぱいです" : undefined}
+                              : tankFull ? "表示数の上限です" : undefined}
                             type="button"
                           ><PlusIcon /></button>
                         </div>

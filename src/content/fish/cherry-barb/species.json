@@ -43,13 +43,17 @@
     ],
     "sources": [
       {
+        "title": "Sudasinghe et al. (2023): Molecular phylogeny and systematics of Puntius",
+        "url": "https://doi.org/10.1111/zsc.12618"
+      },
+      {
         "title": "Seriously Fish: Puntius titteya",
         "url": "https://www.seriouslyfish.com/species/puntius-titteya/"
       }
     ]
   },
   "catalog": {
-    "scientificName": "Puntius titteya",
+    "scientificName": "Rohanella titteya",
     "originRegionId": "south-asia",
     "originRegionName": "南アジア",
     "origin": "スリランカの小川や森林に近い水域に由来します。植物や落ち葉、陰影のある流れの穏やかな場所と関わりが深い魚です。",
@@ -58,6 +62,7 @@
     "habitat": "水草や流木の陰がある落ち着いた水槽で色がよく映えます。赤い体と黒いラインが、緑の背景の中で視線を拾いやすい魚です。",
     "aliases": [
       "cherry-barb",
+      "Rohanella titteya",
       "Puntius titteya"
     ]
   }

@@ -52,6 +52,10 @@
     ],
     "sources": [
       {
+        "title": "FishBase: Crossocheilus oblongus (trade-name identification note)",
+        "url": "https://www.fishbase.se/summary/Crossocheilus_oblongus.html"
+      },
+      {
         "title": "Seriously Fish: Crossocheilus oblongus",
         "url": "https://www.seriouslyfish.com/species/crossocheilus-oblongus/"
       },
@@ -62,11 +66,11 @@
     ]
   },
   "catalog": {
-    "scientificName": "Crossocheilus oblongus",
+    "scientificName": "Crossocheilus sp.",
     "originRegionId": "southeast-asia",
     "originRegionName": "東南アジア",
-    "origin": "東南アジア。タイ、マレー半島、インドネシアの澄んだ流れのある河川や、雨季に浸水する森に由来します。",
-    "temperament": "他魚には温和ですが、同種や似た体形の魚とは場所を巡って追い合うことがあります。1匹だけでも落ち着いて暮らせます。",
+    "origin": "東南アジアの河川に暮らす Crossocheilus 属の仲間。サイアミーズ・アルジーイーターという流通名には複数の種が含まれるため、本展示は種を限定せず、体側の黒い帯と藻類をついばむ姿を表現しています。",
+    "temperament": "他魚を追い回すことは少ない一方、仲間同士では追い合うこともあります。性質は種や成長段階、環境で変わります。",
     "movement": "流木や石、葉の上で体を休めては、下向きの口で表面のコケをこそげ取ります。移動は素早い短距離の泳ぎが中心です。",
     "habitat": "流木や大きな葉の水草、石組みがある水槽が似合います。黒い縦帯が目立ち、水景の手入れ役として存在感があります。",
     "aliases": [

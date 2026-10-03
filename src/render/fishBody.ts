@@ -111,7 +111,7 @@ export class FishBody {
     this.motion = getMotionState(fish);
   }
 
-  update(fish: FishInstance, deltaSec: number) {
+  update(fish: FishInstance, deltaSec: number, bottomY: number) {
     this.updateYaw(fish, deltaSec);
     const speed = Math.hypot(fish.velocity.x, fish.velocity.y);
     const turning = Math.abs(Math.sin(this.motion.yaw));
@@ -135,7 +135,7 @@ export class FishBody {
     this.motion.pitch += (targetPitch - this.motion.pitch) * (1 - Math.exp(-4 * deltaSec));
     // 頭が向いている側へ傾ける。反転中は自然に0へ近づく。
     this.mesh.rotation = -this.motion.pitch * Math.cos(this.motion.yaw);
-    if (this.swim.bodyPlan === "crustacean") this.deformCrustacean(fish, speed, deltaSec);
+    if (this.swim.bodyPlan === "crustacean") this.deformCrustacean(fish, speed, deltaSec, bottomY);
     else this.deform();
   }
 
@@ -163,12 +163,13 @@ export class FishBody {
 
   // エビは尾を振らない。脚を前から後ろへ波のように運んで歩き、触角をゆっくり揺らし、
   // 底や水草をついばむときは頭を小刻みに下げる。速く進むときは腹の遊泳肢で泳ぎ、腹が小さくしなる。
-  private deformCrustacean(fish: FishInstance, speed: number, deltaSec: number) {
+  private deformCrustacean(fish: FishInstance, speed: number, deltaSec: number, bottomY: number) {
     const positions = this.mesh.geometry.positions;
     const base = this.basePositions;
     const motion = this.motion;
     motion.clockSec += deltaSec;
-    const swimming = fish.behaviorMode === "kick";
+    // kick は通常移動のリズムでも発生する。底にいる間は加速中も脚で歩く。
+    const swimming = fish.position.y < bottomY - 0.6 && speed > 0.04;
     const picking = fish.behaviorMode === "forage";
     const walking = !swimming && speed > 0.04;
     const strideHz = swimming ? 5.5 : walking ? Math.min(4, 1.6 + speed * 6) : 0.5;

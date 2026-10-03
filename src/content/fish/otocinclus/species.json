@@ -1,7 +1,7 @@
 {
   "id": "otocinclus",
   "displayName": "オトシンクルス",
-  "realBodyLengthCm": 4,
+  "realBodyLengthCm": 3.3,
   "swim": {
     "tailBeatHz": 2.8,
     "tailSweepRad": 0.4
@@ -52,8 +52,8 @@
     ],
     "sources": [
       {
-        "title": "Seriously Fish: Otocinclus affinis",
-        "url": "https://www.seriouslyfish.com/species/otocinclus-affinis/"
+        "title": "FishBase: Otocinclus vittatus",
+        "url": "https://www.fishbase.se/summary/Otocinclus-vittatus.html"
       },
       {
         "title": "Wikipedia: Otocinclus",
@@ -62,16 +62,16 @@
     ]
   },
   "catalog": {
-    "scientificName": "Otocinclus affinis",
+    "scientificName": "Otocinclus vittatus",
     "originRegionId": "south-america",
     "originRegionName": "南米",
-    "origin": "南米ブラジル南東部。水草や岸辺の植物が茂る、流れの緩い小川や支流に由来します。",
-    "temperament": "非常に温和な小型のナマズの仲間です。数匹で寄り添うように暮らし、他魚にはまったく干渉しません。",
+    "origin": "南米のアマゾン川、オリノコ川、パラナ・パラグアイ川などの水系。ここでは体側に暗い帯があるオトシンクルス・ヴィッタータスを表現しています。",
+    "temperament": "温和な小型のナマズの仲間です。仲間とまとまって暮らし、他魚を追い回すことはほとんどありません。",
     "movement": "吸盤状の口で水草の葉や石、ガラス面に張り付き、少しずつ移動しながらコケを食べます。泳ぐのは短い距離だけです。",
     "habitat": "水草の多い、落ち着いた小型水槽が似合います。葉の上でじっとコケを食む姿が、水景に静かな生活感を加えます。",
     "aliases": [
       "otocinclus",
-      "Otocinclus affinis",
+      "Otocinclus vittatus",
       "オトシン"
     ]
   }

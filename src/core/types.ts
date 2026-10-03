@@ -28,7 +28,7 @@ export type FishHabit =
 
 export type FishHabitType = FishHabit["type"];
 
-// 公開情報から調べた生態を、体長あたりの速度など実在の単位で持つ。
+// 生態の傾向は公開情報を参照。速度・頻度などの数値は鑑賞用の調整値で、実測値ではない。
 export type FishEcology = {
   activityPeriod: ActivityPeriod;
   gait: SwimGait;

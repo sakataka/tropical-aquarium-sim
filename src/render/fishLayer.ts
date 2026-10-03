@@ -84,7 +84,7 @@ export class FishLayer {
       mesh.tint = scaleColor(mixColor(0xffffff, this.waterTint, 0.06 + item.depth * 0.26), lightFalloff);
       mesh.alpha = 1 - item.depth * 0.08;
       mesh.zIndex = -item.depth;
-      record.body.update(item, advance ? deltaSec : 0);
+      record.body.update(item, advance ? deltaSec : 0, tank.heightCm - tank.safeMarginCm);
     }
   }
 

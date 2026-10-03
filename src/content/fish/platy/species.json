@@ -48,6 +48,10 @@
     ],
     "sources": [
       {
+        "title": "FishBase: Xiphophorus maculatus",
+        "url": "https://www.fishbase.se/summary/Xiphophorus-maculatus.html"
+      },
+      {
         "title": "Seriously Fish: Xiphophorus maculatus",
         "url": "https://www.seriouslyfish.com/species/xiphophorus-maculatus/"
       },
@@ -61,7 +65,7 @@
     "scientificName": "Xiphophorus maculatus",
     "originRegionId": "central-america",
     "originRegionName": "中央アメリカ",
-    "origin": "中央アメリカ。メキシコ南部からグアテマラ周辺の流れの緩い小川や水草のある浅い水域に由来します。",
+    "origin": "メキシコのベラクルス州からベリーズ北部の大西洋側。流れの緩い小川や水草のある浅い水域に由来します。",
     "temperament": "温和で前に出やすく、混泳水槽の中で明るい色のアクセントになります。単独でも落ち着きますが、数匹いると動きが自然です。",
     "movement": "中層から上層を丸い軌道で泳ぎ、短く止まってからまた進みます。餌には素早く反応し、表層にもよく出ます。",
     "habitat": "明るい水槽、水草の隙間、開けた遊泳スペースのどちらにも合います。赤橙色が背景の緑や青い照明でよく目立ちます。",
