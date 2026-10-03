@@ -1,5 +1,6 @@
 import type {
   ActivityPeriod,
+  AquariumScene,
   FishHabit,
   FishHabitType,
   FishInstance,
@@ -8,10 +9,12 @@ import type {
   SimulationInput,
   SimulationOutput,
   SwimGait,
+  SurfaceFrame,
   TankDefinition,
   Vec2,
 } from "./types";
 import { FULL_SURFACE_FRAME, stepSurfaceWalker } from "./surfaceMotion";
+import { chooseTerrainGoal, constrainTerrainStep, insideTerrain, resolveTerrainGoal, terrainAvoidance } from "./terrainMotion";
 
 const FORWARD_TARGET_CHANCE = 0.86;
 const FACING_THRESHOLD_CM_PER_SEC = 0.3;
@@ -65,6 +68,8 @@ export function stepSimulation(input: SimulationInput): SimulationOutput {
         school: groups.get(fish.speciesId) ?? [],
         tank: input.tank,
         structurePoints: input.structurePoints,
+        scene: input.scene,
+        frame: input.surfaceFrame ?? FULL_SURFACE_FRAME,
         activity: getActivityLevel(species, lighting),
         deltaSec,
       });
@@ -78,12 +83,19 @@ type StepContext = {
   school: FishInstance[];
   tank: TankDefinition;
   structurePoints: Vec2[];
+  scene?: AquariumScene;
+  frame: SurfaceFrame;
   activity: number;
   deltaSec: number;
 };
 
 function stepFish(context: StepContext): FishInstance {
+  if (context.fish.terrainGoal && context.fish.terrainGoal.sceneId !== context.scene?.id) {
+    context = { ...context, fish: { ...context.fish, terrainGoal: undefined, target: undefined,
+      targetKind: "openWater", behaviorMode: "coast", behaviorTimeRemainingSec: 0, habitTimeSec: undefined } };
+  }
   const { fish, species, school, tank, structurePoints, activity, deltaSec } = context;
+  const terrain = context.scene?.terrain ? { scene: context.scene, tank, species, frame: context.frame } : undefined;
   const rng = createRng(fish.seed);
   let seed = fish.seed;
   const random = () => {
@@ -100,6 +112,10 @@ function stepFish(context: StepContext): FishInstance {
   let legTimeSec = (fish.legTimeSec ?? 0) + deltaSec;
   let habitTimeSec = fish.habitTimeSec === undefined ? undefined : fish.habitTimeSec - deltaSec;
   let followId = fish.followId;
+  let terrainGoal = fish.terrainGoal;
+  let homeDepth = fish.homeDepth;
+  let goalPoint = terrain && terrainGoal ? resolveTerrainGoal(terrainGoal, terrain) : undefined;
+  if (goalPoint) target = goalPoint.position;
   const airBreathing = findHabit(species, "airBreathing");
   let nextBreathSec = airBreathing
     ? (fish.nextBreathSec ?? getBreathIntervalSec(airBreathing, random) * random()) - deltaSec
@@ -114,11 +130,16 @@ function stepFish(context: StepContext): FishInstance {
     legTimeSec = 0;
     habitTimeSec = undefined;
     followId = undefined;
+    terrainGoal = undefined;
+    goalPoint = undefined;
   };
 
   // 1. 進行中の習性行動を進める。
   const precise = targetKind === "rest" || targetKind === "hide" || targetKind === "forage";
-  const reached = target !== undefined && hasReachedTarget(fish, target, species, precise);
+  const reached = target !== undefined && hasReachedTarget(fish, target, species, precise) &&
+    (!goalPoint || Math.abs(goalPoint.depth - fish.depth) * tank.depthCm < Math.max(.4, bodyLength * .2));
+  // 隠れ場所への入口が塞がれた場合も、目的地を選び直せるようにする。
+  if (terrainGoal && mode !== "rest" && mode !== "forage" && legTimeSec > 90) startOpenWater();
   switch (targetKind) {
     case "rest":
     case "hide":
@@ -187,6 +208,9 @@ function stepFish(context: StepContext): FishInstance {
       legTimeSec = 0;
       habitTimeSec = habit.durationSec;
       followId = habit.followId;
+      terrainGoal = habit.terrainGoal;
+      goalPoint = terrain && terrainGoal ? resolveTerrainGoal(terrainGoal, terrain) : undefined;
+      if (terrainGoal) homeDepth ??= fish.depth;
       if (habit.kind === "surfaceVisit" || habit.kind === "follow") {
         mode = "kick";
         remaining = gait.kickDurationSec;
@@ -227,12 +251,27 @@ function stepFish(context: StepContext): FishInstance {
     mode,
     deltaSec,
   );
-  const position = keepInTank(add(fish.position, scale(velocity, deltaSec)), tank);
+  let position = keepInTank(add(fish.position, scale(velocity, deltaSec)), tank);
+  let depth = fish.depth;
+  if (terrain && deltaSec > 0) {
+    position = keepInTank(constrainTerrainStep(fish.position, position, depth, terrain), tank);
+    const depthTarget = goalPoint?.depth ?? homeDepth ?? depth;
+    const maxDepthStep = bodyLength * species.ecology.speedBodyLengthsPerSec.cruise * .65 * deltaSec / tank.depthCm;
+    const candidateDepth = depth + clamp(depthTarget - depth, -maxDepthStep, maxDepthStep);
+    if (!insideTerrain(position, candidateDepth, terrain)) depth = candidateDepth;
+  } else if (!terrain && homeDepth !== undefined) {
+    const step = bodyLength * species.ecology.speedBodyLengthsPerSec.cruise * .65 * deltaSec / tank.depthCm;
+    depth += clamp(homeDepth - depth, -step, step);
+  }
+  if (!terrainGoal && homeDepth !== undefined && Math.abs(depth - homeDepth) < .0001) homeDepth = undefined;
 
   return {
     ...fish,
     position,
     velocity,
+    depth,
+    terrainGoal,
+    homeDepth,
     facing: velocity.x < -FACING_THRESHOLD_CM_PER_SEC
       ? -1
       : velocity.x > FACING_THRESHOLD_CM_PER_SEC ? 1 : fish.facing,
@@ -254,6 +293,7 @@ type HabitStart = {
   target: Vec2;
   durationSec?: number;
   followId?: string;
+  terrainGoal?: FishInstance["terrainGoal"];
 };
 
 function pickHabit(
@@ -264,6 +304,13 @@ function pickHabit(
   const { fish, species, school, tank, structurePoints, activity, deltaSec } = context;
   const bottomY = tank.heightCm - tank.safeMarginCm;
   const perStep = (chancePerMin: number) => random() < (chancePerMin / 60) * deltaSec;
+  const terrainHabit = (kind: "hide" | "rest" | "forage"): HabitStart | undefined => {
+    if (!context.scene?.terrain) return undefined;
+    const terrain = { scene: context.scene, tank, species, frame: context.frame };
+    const goal = chooseTerrainGoal(kind, fish, terrain, random);
+    const point = goal && resolveTerrainGoal(goal, terrain);
+    return point ? { kind, target: point.position, terrainGoal: goal } : undefined;
+  };
 
   for (const habit of species.ecology.habits) {
     switch (habit.type) {
@@ -281,6 +328,8 @@ function pickHabit(
       case "hideByDay":
         // 明るい間は物陰の底へ潜り込み、仲間と身を寄せて休む。
         if (activity < 0.6 && perStep(30)) {
+          const terrain = terrainHabit("hide");
+          if (terrain) return terrain;
           const anchor = structurePoints.length > 0
             ? structurePoints[Math.floor(random() * structurePoints.length)]!
             : { x: fish.position.x < tank.widthCm / 2 ? tank.widthCm * 0.12 : tank.widthCm * 0.88, y: bottomY };
@@ -293,6 +342,8 @@ function pickHabit(
       case "bottomRest": {
         const nearBottom = fish.position.y > tank.heightCm * 0.72;
         if (nearBottom && perStep(habit.chancePerMin / Math.max(activity, 0.3))) {
+          const terrain = terrainHabit("rest");
+          if (terrain) return terrain;
           return {
             kind: "rest",
             target: { x: keepX(fish.position.x + fish.facing * lerp(0.5, 3, random()), tank), y: bottomY },
@@ -302,6 +353,8 @@ function pickHabit(
       }
       case "grazing":
         if (perStep(habit.chancePerMin * activity)) {
+          const terrain = terrainHabit("forage");
+          if (terrain) return terrain;
           const onStructure = structurePoints.length > 0 && random() < 0.6;
           const point = onStructure
             ? structurePoints[Math.floor(random() * structurePoints.length)]!
@@ -461,6 +514,8 @@ function getDesiredVelocity(context: StepContext & {
     boundary,
     zone,
     flock,
+    context.scene?.terrain ? terrainAvoidance(fish,
+      { scene: context.scene, tank, species, frame: context.frame }) : { x: 0, y: 0 },
   ));
 
   const kickSpeed = cruise + (burst - cruise) * GAITS[species.ecology.gait].kickBlend;

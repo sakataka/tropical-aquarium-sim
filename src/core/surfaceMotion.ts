@@ -5,7 +5,7 @@ import type {
 
 export const FULL_SURFACE_FRAME: SurfaceFrame = { x: 0, y: 0, width: 1, height: 1 };
 
-function worldPoint(point: SurfacePoint, tank: TankDefinition, frame: SurfaceFrame): SurfacePoint {
+export function worldPoint(point: SurfacePoint, tank: TankDefinition, frame: SurfaceFrame): SurfacePoint {
   return {
     x: (frame.x + point.x * frame.width) * tank.widthCm,
     y: (frame.y + point.y * frame.height) * tank.heightCm,

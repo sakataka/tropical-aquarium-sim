@@ -4,12 +4,15 @@ export type Vec2 = { x: number; y: number };
 export type SurfacePoint = Vec2 & { depth: number };
 export type SceneSurface = {
   id: string;
-  material: "sand" | "stone" | "wood";
+  material: "sand" | "stone" | "wood" | "leaf";
   points: SurfacePoint[];
 };
 export type SceneTerrain = {
   surfaces: SceneSurface[];
   occluders: { id: string; depth: number; polygon: Vec2[] }[];
+  /** 画像内の石・木の内部。遮蔽の輪郭とは別に、奥行きのある回避領域を持つ。 */
+  obstacles?: { id: string; center: SurfacePoint; radius: Vec2; depthRadius: number }[];
+  shelters?: (SurfacePoint & { id: string })[];
 };
 // cover 表示で切り取られる背景と、前面ガラスの座標を一致させる。
 export type SurfaceFrame = { x: number; y: number; width: number; height: number };
@@ -118,6 +121,9 @@ export type FishInstance = {
   facing: -1 | 1;
   depth: number;
   surfaceMotion?: SurfaceMotion;
+  /** 習性行動の目的地。画像の座標を再計算できる参照だけを保持する。 */
+  terrainGoal?: { sceneId: string; surfaceId?: string; progress?: number; shelterId?: string };
+  homeDepth?: number;
   bodyLengthVariance: number;
   behaviorMode: "kick" | "coast" | "pause" | "rest" | "forage";
   behaviorTimeRemainingSec: number;

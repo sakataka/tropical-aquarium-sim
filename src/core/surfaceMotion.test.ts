@@ -77,7 +77,7 @@ describe("scene surface movement", () => {
     expect(Number.isFinite(fish[0]!.position.y)).toBe(true);
   });
 
-  test("terrain changes neither open-water fish nor saved stock and lighting", () => {
+  test("surface-layer fish keep their clear-water motion, and stock and lighting remain compatible", () => {
     const scene = getSceneById("japan-moss-wood")!;
     const fish = createFishFromStock([{ speciesId: "medaka", count: 3 }], tank);
     const input = { tank, species: fishCatalog, fish, deltaSec: .05, structurePoints: [] };

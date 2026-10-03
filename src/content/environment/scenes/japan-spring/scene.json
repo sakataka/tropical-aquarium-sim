@@ -241,6 +241,48 @@
           }
         ]
       }
+    ],
+    "obstacles": [
+      {
+        "id": "west-moss-core",
+        "center": {
+          "x": 0.28,
+          "y": 0.81,
+          "depth": 0.44
+        },
+        "radius": {
+          "x": 0.066,
+          "y": 0.045
+        },
+        "depthRadius": 0.1
+      },
+      {
+        "id": "east-moss-core",
+        "center": {
+          "x": 0.86,
+          "y": 0.83,
+          "depth": 0.44
+        },
+        "radius": {
+          "x": 0.058,
+          "y": 0.038
+        },
+        "depthRadius": 0.1
+      }
+    ],
+    "shelters": [
+      {
+        "id": "west-grass-shade",
+        "x": 0.25,
+        "y": 0.84,
+        "depth": 0.72
+      },
+      {
+        "id": "east-grass-shade",
+        "x": 0.85,
+        "y": 0.86,
+        "depth": 0.72
+      }
     ]
   }
 }

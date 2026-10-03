@@ -19,6 +19,7 @@ type Result = {
   arrangementPreserved: boolean;
   scenesVisited: string[];
   japanScenes: string[];
+  expandedScenes: string[];
   viewingOnEntry: boolean;
   viewingStageWidth: number;
   editingOpened: boolean;
@@ -412,10 +413,11 @@ async function main() {
     })()`) as Result["landscape"];
     await Bun.write(`${SCREENSHOT_DIR}/settings-landscape-912x420.png`, await landscapeView.screenshot({ format: "png" }));
 
+    const expandedScenes = await verifyExpandedScenes(consoleErrors);
     const result: Result = {
       title, roomTanks, enteredTank, asiaCards, harlequinCount, rejectedSpecies, newSpeciesChecked, addedTanksPreserved, arrangementPreserved, scenesVisited, japanScenes,
       viewingOnEntry, viewingStageWidth, editingOpened, editingStageWidth, closedToViewing, backToRoom, cubeCards, cubeStageRatio, amazonCards, adjacentTanks,
-      restored, migrated, desktop, mobile, landscape, removedCopyAbsent, consoleErrors,
+      restored, migrated, desktop, mobile, landscape, removedCopyAbsent, consoleErrors, expandedScenes,
     };
     console.log(JSON.stringify(result, null, 2));
 
@@ -442,6 +444,7 @@ async function main() {
       landscape.overflowWidth === 0);
     assert(newSpeciesChecked.length === 14);
     assert(japanScenes.length === 6);
+    assert(expandedScenes.length === 20);
     assert(addedTanksPreserved);
     assert(arrangementPreserved);
     assert(removedCopyAbsent);
@@ -451,6 +454,47 @@ async function main() {
     server.kill();
     await server.exited.catch(() => undefined);
   }
+}
+
+// 他の4水槽は全水景を鑑賞画面で描画し、水槽ごとに最後の選択を再読込して確認する。
+async function verifyExpandedScenes(consoleErrors: string[]) {
+  const visited: string[] = [];
+  for (const [width, height, viewport] of [[1440, 960, "desktop"], [420, 912, "420x912"]] as const) {
+    await using view = new Bun.WebView({ width, height, backend: "webkit",
+      console: (type, ...args) => { if (type === "error") consoleErrors.push(`terrain: ${args.map(String).join(" ")}`); } });
+    for (const tankId of ["asia-60", "amazon-90", "cube-30", "malawi-120"]) {
+      const tank = await Bun.file(`src/content/tanks/${tankId}/tank.json`).json();
+      await view.navigate(`${BASE_URL}?tank=${tankId}`);
+      await sleep(2200);
+      const saved = String(await view.evaluate(`JSON.stringify(JSON.parse(localStorage.getItem("${STATE_KEY}")).tanks[${JSON.stringify(tankId)}].stock)`));
+      for (const sceneId of tank.sceneIds as string[]) {
+        const scene = await Bun.file(`src/content/environment/scenes/${sceneId}/scene.json`).json();
+        await clickButtonByText(view, "設定");
+        await clickTab(view, "水景");
+        await clickButtonByText(view, scene.displayName);
+        await sleep(1500);
+        assert(await view.evaluate(`Array.from(document.querySelectorAll('.theme-thumb img')).every(img => img.complete && img.naturalWidth > 0)`));
+        await clickByLabel(view, "閉じて眺める");
+        await sleep(700);
+        assert(await view.evaluate(`document.querySelectorAll('.aquarium-canvas canvas').length === 1 && !document.querySelector('.render-problem') && !document.querySelector('vite-error-overlay') && document.documentElement.scrollWidth === innerWidth`));
+        assert(await view.evaluate(`JSON.parse(localStorage.getItem("${STATE_KEY}")).tanks[${JSON.stringify(tankId)}].layout.sceneId === ${JSON.stringify(sceneId)}`));
+        assert(await view.evaluate(`JSON.parse(localStorage.getItem("${STATE_KEY}")).tanks[${JSON.stringify(tankId)}].layout.lighting === ${JSON.stringify(scene.defaultLighting)}`));
+        await Bun.write(`${SCREENSHOT_DIR}/terrain-${sceneId}-${viewport}.png`, await view.screenshot({ format: "png" }));
+        visited.push(`${viewport}:${sceneId}`);
+      }
+      await view.reload();
+      await sleep(2000);
+      assert(await view.evaluate(`JSON.parse(localStorage.getItem("${STATE_KEY}")).tanks[${JSON.stringify(tankId)}].layout.sceneId === ${JSON.stringify(tank.sceneIds.at(-1))}`));
+      const lastScene = await Bun.file(`src/content/environment/scenes/${tank.sceneIds.at(-1)}/scene.json`).json();
+      assert(await view.evaluate(`JSON.parse(localStorage.getItem("${STATE_KEY}")).tanks[${JSON.stringify(tankId)}].layout.lighting === ${JSON.stringify(lastScene.defaultLighting)}`));
+      assert(saved === await view.evaluate(`JSON.stringify(JSON.parse(localStorage.getItem("${STATE_KEY}")).tanks[${JSON.stringify(tankId)}].stock)`));
+      await clickButtonByText(view, "部屋に戻る");
+      await sleep(1800);
+      assert(await view.evaluate(`document.querySelectorAll('.room-tank').length === 5 && !!document.querySelector('.room-stage canvas') && !document.querySelector('.render-problem')`));
+    }
+    await Bun.write(`${SCREENSHOT_DIR}/terrain-room-${viewport}.png`, await view.screenshot({ format: "png" }));
+  }
+  return visited;
 }
 
 // 既存の水景・匹数を維持し、新しい地形つき水景を通常のUIで選択・復元する。

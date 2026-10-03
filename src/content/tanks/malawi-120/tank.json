@@ -10,7 +10,8 @@
   "depthCm": 45,
   "maxTotalFish": 26,
   "sceneIds": [
-    "malawi-rocks"
+    "malawi-rocks",
+    "malawi-crevices"
   ],
   "species": [
     {
