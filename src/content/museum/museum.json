@@ -5,7 +5,7 @@
   "map": {
     "image": "museum-section.webp",
     "width": 1024,
-    "height": 1392
+    "height": 1344
   },
   "floors": [
     {
@@ -17,7 +17,7 @@
       "displayName": "川と湖",
       "exhibitName": "Rivers & Lakes",
       "description": "日本の湧水から、アマゾン、東南アジア、アフリカの湖まで。淡水の魚とエビの展示です。",
-      "mapArea": { "x": 210, "y": 240, "width": 602, "height": 138 }
+      "mapArea": { "x": 185, "y": 418, "width": 657, "height": 154 }
     },
     {
       "id": "cold",
@@ -28,7 +28,7 @@
       "displayName": "冷たい水",
       "exhibitName": "Cold Waters",
       "description": "冷たい渓流と北の海。低い水温に適応した生き物の展示です。",
-      "mapArea": { "x": 205, "y": 412, "width": 605, "height": 186 }
+      "mapArea": { "x": 185, "y": 598, "width": 657, "height": 152 }
     },
     {
       "id": "sea",
@@ -39,7 +39,7 @@
       "displayName": "サンゴ礁と海",
       "exhibitName": "Reefs & Seas",
       "description": "サンゴ礁、砂地、磯。暖かい海の魚と、魚以外の海の生き物の展示です。",
-      "mapArea": { "x": 200, "y": 650, "width": 610, "height": 188 }
+      "mapArea": { "x": 185, "y": 772, "width": 657, "height": 153 }
     },
     {
       "id": "ancient",
@@ -50,7 +50,7 @@
       "displayName": "生きた化石",
       "exhibitName": "Living Fossils",
       "description": "大昔の姿を今に残す、古代魚とその仲間の展示です。",
-      "mapArea": { "x": 168, "y": 880, "width": 642, "height": 168 }
+      "mapArea": { "x": 185, "y": 950, "width": 657, "height": 150 }
     },
     {
       "id": "deep",
@@ -61,7 +61,7 @@
       "displayName": "洞窟と深海",
       "exhibitName": "Caves & the Deep",
       "description": "光の届かない洞窟と深海。暗闇に暮らす生き物の展示です。",
-      "mapArea": { "x": 148, "y": 1105, "width": 664, "height": 213 }
+      "mapArea": { "x": 185, "y": 1124, "width": 657, "height": 176 }
     }
   ]
 }

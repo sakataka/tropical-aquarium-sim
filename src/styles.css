@@ -122,7 +122,7 @@ button:focus-visible, input:focus-visible, select:focus-visible {
   border-radius: 2px;
   transition: background-color 0.35s, box-shadow 0.35s;
 }
-.map-zone.soon { background: rgba(1, 8, 10, 0.5); }
+.map-zone.soon { background: rgba(1, 8, 10, 0.4); }
 .map-zone.soon.active { background: rgba(1, 8, 10, 0.28); }
 .map-zone.open.active {
   background: rgba(143, 220, 211, 0.07);
