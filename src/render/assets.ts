@@ -21,6 +21,13 @@ const roomImageModules = import.meta.glob<string>(
   { eager: true, import: "default", query: "?url" },
 );
 
+// 館内図の縮小版に映す、水景の小さな画像（scripts/build-scene-thumbs.py で作る）。
+// 館内図では plate.webp を読まず、こちらだけを読む。
+const sceneThumbModules = import.meta.glob<string>(
+  "../content/environment/scenes/*/thumb.webp",
+  { eager: true, import: "default", query: "?url" },
+);
+
 // 館内図の断面図。museum.json の map.image で参照する。
 const museumImageModules = import.meta.glob<string>(
   "../content/museum/*.webp",
@@ -46,6 +53,10 @@ export function getMuseumMapImageUrl(image: string): string {
 
 export function getFishImageUrl(speciesId: string): string | undefined {
   return findBySuffix(fishImageModules, `/fish/${speciesId}/body.webp`);
+}
+
+export function getSceneThumbUrl(sceneId: string): string | undefined {
+  return findBySuffix(sceneThumbModules, `/scenes/${sceneId}/thumb.webp`);
 }
 
 export function getScenePlateUrl(sceneId: string): string | undefined {

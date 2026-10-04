@@ -1,25 +1,30 @@
 import { useState, type CSSProperties } from "react";
-import { getTankById } from "../core";
+import { getTankById, type AquariumCustomization } from "../core";
 import { getHallsOnFloor, museum, type MuseumFloor } from "../core/museum";
 import type { FishRoomDefinition } from "../core/room";
 import { playSfx } from "../audio/sfx";
 import { getMuseumMapImageUrl } from "../render/assets";
+import { HallPreview } from "./HallPreview";
 import { SoundToggle } from "./SoundToggle";
 
 const mapImageUrl = getMuseumMapImageUrl(museum.map.image);
 
 // 館内図。館の断面図の絵に、階ごとの展示フロアを重ねて選べるようにする。
+// 展示室のある階には、その展示室の画面の縮小版を映す。
 // 横のフロアガイドと断面図は、どちらかに触れると同じ階が光る。
 // まだ展示室のない階も、館の構成として「準備中」で見せる。
 export function MuseumMap({
   lastHallId,
   soundEnabled,
+  tanks,
   onEnterHall,
   onToggleSound,
 }: {
   /** 前回見ていた展示室。目印を付ける。 */
   lastHallId?: string;
   soundEnabled: boolean;
+  /** 水槽ごとの今の設定。縮小版に今の水景を映す。 */
+  tanks: Record<string, AquariumCustomization>;
   onEnterHall: (hallId: string) => void;
   onToggleSound: () => void;
 }) {
@@ -52,6 +57,7 @@ export function MuseumMap({
               key={floor.id}
               lastHallId={lastHallId}
               onEnter={enter}
+              tanks={tanks}
               {...highlight(floor.id)}
             />
           ))}
@@ -120,6 +126,7 @@ function MapZone({
   onEnter,
   onPointerEnter,
   onPointerLeave,
+  tanks: customizations,
 }: {
   active: boolean;
   floor: MuseumFloor;
@@ -128,6 +135,7 @@ function MapZone({
   onEnter: (hallId: string) => void;
   onPointerEnter: () => void;
   onPointerLeave: () => void;
+  tanks: Record<string, AquariumCustomization>;
 }) {
   const { width, height } = museum.map;
   const area = floor.mapArea;
@@ -153,6 +161,7 @@ function MapZone({
             tabIndex={-1}
             type="button"
           >
+            <HallPreview aspect={area.width / halls.length / area.height} hall={hall} tanks={customizations} />
             <span className="hotspot-plate">
               <strong>{hall.displayName}</strong>
               <small>{tanks.length}水槽 · {species}種{hall.id === lastHallId ? " · 前回" : ""}</small>

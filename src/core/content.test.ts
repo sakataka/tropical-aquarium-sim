@@ -12,6 +12,7 @@ import { insideTerrain } from "./terrainMotion";
 // 魚・水景・水槽・部屋を追加したときの取り違えを、画面を開く前に見つける。
 const fishImages = import.meta.glob("../content/fish/*/body.webp");
 const plateImages = import.meta.glob("../content/environment/scenes/*/plate.webp");
+const thumbImages = import.meta.glob("../content/environment/scenes/*/thumb.webp");
 const roomImages = import.meta.glob("../content/room/*.webp");
 const museumImages = import.meta.glob("../content/museum/*.webp");
 
@@ -64,6 +65,8 @@ describe("content wiring", () => {
     for (const scene of aquariumScenes) {
       expect(usedScenes.has(scene.id), `${scene.id} is not offered by any tank`).toBe(true);
       expect(plateImages[`../content/environment/scenes/${scene.id}/plate.webp`], `${scene.id}/plate.webp`).toBeDefined();
+      // 館内図の縮小版用。scripts/build-scene-thumbs.py で作る。
+      expect(thumbImages[`../content/environment/scenes/${scene.id}/thumb.webp`], `${scene.id}/thumb.webp`).toBeDefined();
     }
   });
 

@@ -274,6 +274,7 @@ export default function App() {
           onEnterHall={enterHall}
           onToggleSound={toggleSound}
           soundEnabled={state.preferences.soundEnabled}
+          tanks={state.tanks}
         />
       ) : null}
       {showRoom ? (
