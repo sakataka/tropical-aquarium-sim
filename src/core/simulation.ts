@@ -12,6 +12,7 @@ import type {
   TankDefinition,
   Vec2,
 } from "./types";
+import { getBodyPlan } from "./bodyPlans";
 import { findHabit } from "./habits";
 import { getStructurePoints } from "./plateFraming";
 import { FULL_SURFACE_FRAME, stepSurfaceWalker, worldPoint } from "./surfaceMotion";
@@ -62,7 +63,7 @@ export function stepSimulation(input: SimulationInput): SimulationOutput {
     fish: input.fish.map((fish) => {
       const species = input.species[fish.speciesId];
       if (!species) return fish;
-      if (species.swim?.bodyPlan === "crustacean" && input.scene?.terrain) {
+      if (getBodyPlan(species).walksOnSurfaces && input.scene?.terrain) {
         return stepSurfaceWalker(fish, species, input.tank, input.scene,
           frame, deltaSec, getActivityLevel(species, lighting));
       }
@@ -459,7 +460,7 @@ function pickHabit(
             kind: "forage",
             target: {
               x: keepX(point.x + lerp(-4, 4, random()), tank),
-              y: species.swim?.bodyPlan === "crustacean"
+              y: getBodyPlan(species).bottomDweller
                 ? bottomY
                 : clamp(point.y + lerp(-2, 2, random()), tank.safeMarginCm, bottomY),
             },
@@ -505,7 +506,7 @@ function chooseTarget(
   activity = 1,
 ): { position: Vec2; kind: "openWater" | "structure" } {
   // 住みかを持つ魚は、住みかを中心にした範囲の中で泳ぐ先を選ぶ（岩の内側は避ける）。
-  if (home && species.swim?.bodyPlan !== "crustacean") {
+  if (home && !getBodyPlan(species).bottomDweller) {
     const zone = species.preferredZone;
     let position = home.position;
     for (let attempt = 0; attempt < 6; attempt++) {
@@ -528,7 +529,7 @@ function chooseTarget(
   // 背後の構造物へは、わざわざ引き返してまでは寄りにくい。
   const behind = point !== undefined && (point.x - fish.position.x) * fish.facing < -3;
   // 底を歩くエビは、水中の構造物の中心へ向かって浮き上がらない。
-  if (species.swim?.bodyPlan === "crustacean") {
+  if (getBodyPlan(species).bottomDweller) {
     return {
       kind: "openWater",
       position: { ...chooseOpenWaterTarget(fish, fish.facing, species, tank, random), y: tank.heightCm - tank.safeMarginCm },
@@ -633,11 +634,11 @@ function getDesiredVelocity(context: StepContext & {
 
   const inHabit = targetKind !== "openWater" && targetKind !== "structure";
   const targetDirection = normalize(subtract(target ?? tankCenter(tank), fish.position));
-  const crustacean = species.swim?.bodyPlan === "crustacean";
+  const bodyPlan = getBodyPlan(species);
   const boundary = boundaryVector(fish.position, tank,
     targetKind === "surfaceVisit" || species.preferredZone.maxY <= 0.25,
-    crustacean);
-  const zone = inHabit || crustacean ? { x: 0, y: 0 } : zoneVector(fish.position, tank, species, activity);
+    bodyPlan.bottomDweller);
+  const zone = inHabit || bodyPlan.bottomDweller ? { x: 0, y: 0 } : zoneVector(fish.position, tank, species, activity);
   const rawFlock = inHabit ? { x: 0, y: 0 } : schoolingVector(fish, school, species, tank);
   // 群れの引力で後ろ向きに引き戻されると、頻繁に向きが入れ替わってしまう。
   const flock = rawFlock.x * fish.facing < 0
@@ -659,7 +660,7 @@ function getDesiredVelocity(context: StepContext & {
   ));
 
   const kickSpeed = cruise + (burst - cruise) * GAITS[species.ecology.gait].kickBlend;
-  let speed = mode === "kick" && !crustacean ? kickSpeed : cruise;
+  let speed = mode === "kick" && bodyPlan.tailKick ? kickSpeed : cruise;
   if (targetKind === "surfaceVisit") {
     const style = findHabit(species, "airBreathing")?.style;
     speed = style === "dash" ? burst * 0.8 : cruise * 1.3;

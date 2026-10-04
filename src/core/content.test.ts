@@ -1,4 +1,5 @@
 import { describe, expect, test } from "vitest";
+import { getBodyPlan } from "./bodyPlans";
 import { fishCatalog } from "./catalog";
 import { museum } from "./museum";
 import { fishRooms } from "./room";
@@ -56,8 +57,8 @@ describe("content wiring", () => {
 
   test("swim parameters only describe body parts the body plan has", () => {
     for (const species of Object.values(fishCatalog)) {
-      // 触角の範囲 headStart は、エビ（crustacean）にだけ意味がある。
-      if (species.swim?.bodyPlan !== "crustacean") expect(species.swim?.headStart, species.id).toBeUndefined();
+      // 触角の範囲 headStart は、触角のある体のつくり（エビ）にだけ意味がある。
+      if (!getBodyPlan(species).antennae) expect(species.swim?.headStart, species.id).toBeUndefined();
     }
   });
 

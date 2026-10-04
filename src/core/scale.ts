@@ -1,3 +1,4 @@
+import { getBodyPlan } from "./bodyPlans";
 import type { FishSpeciesDefinition } from "./types";
 import { clamp } from "./math";
 
@@ -23,8 +24,8 @@ export function getBaseSpriteScale(params: {
   });
 
   // 切り出しには触角も含まれるが、エビの体長は頭から尾までで合わせる。
-  const antennaFraction = params.species.swim?.bodyPlan === "crustacean"
-    ? params.species.swim.headStart ?? 0
+  const antennaFraction = getBodyPlan(params.species).antennae
+    ? params.species.swim?.headStart ?? 0
     : 0;
   return targetBodyLengthPx / (params.species.sourceBodyBounds.width * (1 - antennaFraction));
 }

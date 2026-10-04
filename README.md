@@ -52,7 +52,7 @@ bun run verify:webview
 
 ## データとアセット
 
-魚・水景・水槽・展示室は `src/content/` にファイルを置くと自動で読み込みます。追加の手順は [開発方向性](docs/development-directions.md#魚水景水槽を足すときの手順) にあります。
+魚・水景・水槽・展示室は `src/content/` にファイルを置くと自動で読み込みます。追加の手順は [開発方向性](docs/development-directions.md#魚水景水槽展示室を足すときの手順) にあります。
 
 - `fish/<species-id>/species.json`: 学名、原産地、体長、泳層、生態プロファイル（`ecology`）、泳ぎ方（`swim`）、出典
 - `fish/<species-id>/side.png`: 画像生成した横向きの魚画像（頭が左）。`uv run scripts/install-fish-sprite.py <species-id> <PNG>` で取り込み、`uv run scripts/build-fish-sprites.py` で描画用の `body.webp`（体だけを切り出した最大幅720px）を作る
@@ -85,7 +85,7 @@ bun run verify:webview
 
 ### 描画
 
-泳ぎは魚の画像1枚をメッシュとして変形し、尾の振りと方向転換を描きます（`swim` で魚種ごとに調整）。エビは `swim.bodyPlan: "crustacean"` にすると尾を振らず、脚を前から順に運んで砂底・石・流木の上を歩き、触角（画像の左端から `swim.headStart` まで）を揺らします。驚くと腹を丸めて後ろへ跳ねます。
+泳ぎは魚の画像1枚をメッシュとして変形し、尾の振りと方向転換を描きます（`swim` で魚種ごとに調整）。体のつくりは `swim.bodyPlan` で選びます（性質は `src/core/bodyPlans.ts`、描き方は `src/render/bodyPlans/`）。エビは `swim.bodyPlan: "crustacean"` にすると尾を振らず、脚を前から順に運んで砂底・石・流木の上を歩き、触角（画像の左端から `swim.headStart` まで）を揺らします。驚くと腹を丸めて後ろへ跳ねます。
 
 水景は、背景、泡、生き物と遮蔽（奥行き順）、浮遊物の順で合成し、最後に水の揺らぎ・コースティクス・光の筋・照明の色調を1パスのフィルターでかけます。背景画像は前面ガラスへ cover で敷き、既定では砂底をガラスの下端に合わせます。ガラスが画像よりかなり横長な水槽では、`scene.json` の `framing.plateBottom` で画像のどの高さを下端に合わせるかを決め、砂底だけが映らないようにします（`src/core/plateFraming.ts`。部屋・水槽画面・テストが同じ計算を使う）。
 
@@ -100,7 +100,7 @@ bun run verify:webview
 - 水槽・魚種・水景を足しても保存キーは変えず、未保存の水槽だけ初期構成で補います。
 - 魚種を別の水槽へ移したとき（例: ゼブラダニオを30cmキューブから60cm水槽へ）は、元の水槽に保存された匹数を移し先へ引き継ぎます。移し先ですでに選んである匹数は上書きしません。
 - 入れられない魚種、上限を超えた匹数、ほかの水槽の水景は読み込み時に落とします。壊れた保存データは水槽ごとに初期値へ戻します。
-- v1〜v4（60cm水槽1つの形式）からの移行と、過去に依頼された構成の一度だけの更新（`stockArrangementVersion`・`fiveTankStockVersion`）は `src/core/customization.ts` にあります。経緯は [多水槽の設計](docs/multi-tank-design.md) と [リアリティ改善](docs/realism-2026-10.md) を参照してください。
+- v1〜v4（60cm水槽1つの形式）からの移行と、過去に依頼された構成の一度だけの更新（`stockArrangementVersion`・`fiveTankStockVersion`）は `src/core/customization.ts` にあります。経緯は [多水槽の設計](docs/multi-tank-design.md) と [リアリティ改善](docs/history/realism-2026-10.md) を参照してください。
 
 ## 検証
 
@@ -117,4 +117,4 @@ bun run verify:webview
 
 部屋の絵と水槽の光は画面の端まで描き、ボタンは安全領域の内側に置きます。左端20pxは Safari の戻るジェスチャー用に透明な領域で覆います。操作部は44px以上です。モーション軽減設定では画面切替のズーム、カメラの漂い、ガラスを叩いたときの波紋を省きます。
 
-今後の方針は [開発方向性](docs/development-directions.md) にまとめています。
+ドキュメントの一覧は [docs/README.md](docs/README.md) にあります。今後の進め方は [ロードマップ](docs/roadmap.md)、今の決まりは [開発方向性](docs/development-directions.md) にまとめています。

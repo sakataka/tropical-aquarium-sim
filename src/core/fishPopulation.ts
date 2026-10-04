@@ -1,3 +1,4 @@
+import { getBodyPlan } from "./bodyPlans";
 import { fishCatalog } from "./catalog";
 import type { FishInstance, FishPersonality, FishStockEntry, TankDefinition } from "./types";
 import { lerp } from "./math";
@@ -48,9 +49,9 @@ function createFish(speciesId: string, index: number, tank: TankDefinition): Fis
   const yRatio = zone.minY + (((index * 29) % 100) / 100) * (zone.maxY - zone.minY);
   const seed = Math.floor(Math.random() * 1_000_000) + index * 7919;
   const personality = createFishPersonality(seed);
-  const crustacean = species.swim?.bodyPlan === "crustacean";
-  const y = crustacean ? tank.heightCm - tank.safeMarginCm : tank.heightCm * yRatio;
-  const initialSpeed = crustacean
+  const onBottom = getBodyPlan(species).bottomDweller;
+  const y = onBottom ? tank.heightCm - tank.safeMarginCm : tank.heightCm * yRatio;
+  const initialSpeed = onBottom
     ? species.realBodyLengthCm * species.ecology.speedBodyLengthsPerSec.cruise * personality.pace
     : 1.6 * personality.pace;
 
@@ -63,7 +64,7 @@ function createFish(speciesId: string, index: number, tank: TankDefinition): Fis
     },
     velocity: {
       x: index % 2 === 0 ? initialSpeed : -initialSpeed,
-      y: crustacean ? 0 : Math.sin(index) * 0.35,
+      y: onBottom ? 0 : Math.sin(index) * 0.35,
     },
     facing: index % 2 === 0 ? 1 : -1,
     depth: lerp(species.ecology.depthRange[0], species.ecology.depthRange[1], (index * 0.37) % 1),
@@ -74,7 +75,7 @@ function createFish(speciesId: string, index: number, tank: TankDefinition): Fis
     target: {
       x: tank.widthCm *
         (zone.minX + (((index * 17) % 100) / 100) * (zone.maxX - zone.minX)),
-      y: crustacean ? y : tank.heightCm *
+      y: onBottom ? y : tank.heightCm *
         (zone.minY + (((index * 13) % 100) / 100) * (zone.maxY - zone.minY)),
     },
     targetKind: "openWater",

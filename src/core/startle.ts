@@ -1,3 +1,4 @@
+import { getBodyPlan } from "./bodyPlans";
 import { findHabit } from "./habits";
 import { sampleSurface } from "./surfaceMotion";
 import { chooseTerrainGoal, insideTerrain, resolveTerrainGoal } from "./terrainMotion";
@@ -38,7 +39,7 @@ export function startleFish(input: StartleInput): FishInstance[] {
     const chance = input.strength * (1 - distance / reach) ** 0.6 * fish.personality.responsiveness;
     if (random() >= Math.min(1, chance * 1.4)) return fish;
     const away = normalize({ x: dx, y: dy }, { x: fish.facing, y: 0 });
-    if (species.swim?.bodyPlan === "crustacean" && fish.surfaceMotion && input.scene) {
+    if (getBodyPlan(species).startle === "tailFlip" && fish.surfaceMotion && input.scene) {
       return tailFlip(fish, tank, input.scene, input.frame, point, random);
     }
     return retreatToShelter(fish, species, input, random) ?? dart(fish, species, tank, away, random, input);

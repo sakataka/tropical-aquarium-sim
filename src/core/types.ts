@@ -1,3 +1,5 @@
+import type { BodyPlanId } from "./bodyPlans";
+
 export type Vec2 = { x: number; y: number };
 
 // 背景画像上の座標と前後位置。画像の輪郭に沿う経路を、水景ごとに持つ。
@@ -100,10 +102,10 @@ export type FishSwimStyle = {
   tailSweepRad: number;
   verticalFlex: number;
   /**
-   * 体のつくり。crustacean（エビ）は尾で泳がず、脚で歩き、触角を揺らし、
-   * 遊泳肢で泳ぐときだけ腹を小さくしならせる。
+   * 体のつくり。性質は src/core/bodyPlans.ts、描き方は src/render/bodyPlans/ にある。
+   * crustacean（エビ）は尾で泳がず、脚で歩き、触角を揺らし、遊泳肢で泳ぐときだけ腹を小さくしならせる。
    */
-  bodyPlan: "fish" | "crustacean";
+  bodyPlan: BodyPlanId;
   /** 画像の左端から頭（触角の付け根）までの割合。これより左は触角として揺らす。 */
   headStart: number;
   /** 切り出した画像内の口・脚の接地点。画像の見た目に合わせた比率。 */

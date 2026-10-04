@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { BODY_PLAN_IDS } from "./bodyPlans";
 import type { FishSpeciesDefinition } from "./types";
 
 const bodyBoundsSchema = z.object({
@@ -99,7 +100,7 @@ const fishSpeciesDefinitionSchema = z.object({
     waveCount: z.number().finite().positive().max(3),
     tailSweepRad: z.number().finite().min(0).max(1.2),
     verticalFlex: z.number().finite().min(0).max(0.2),
-    bodyPlan: z.enum(["fish", "crustacean"]),
+    bodyPlan: z.enum(BODY_PLAN_IDS),
     headStart: z.number().finite().min(0).max(0.8),
     mouthAnchor: z.object({ x: unit, y: unit }),
     footAnchor: z.object({ x: unit, y: unit }),
