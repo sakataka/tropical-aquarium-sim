@@ -1,7 +1,6 @@
 {
   "id": "freshwater",
   "order": 1,
-  "floorId": "rivers",
   "displayName": "淡水の展示室",
   "shortName": "淡水の展示室",
   "image": "room-five.webp",

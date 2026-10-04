@@ -9,7 +9,7 @@ const STATE_KEY = "tropical-aquarium.state.v5.r2";
 
 type Result = {
   title: string;
-  map: { floors: number; halls: string[]; firstLastHall: boolean; overflowWidth: number };
+  map: { floors: number; halls: string[]; soonHalls: number; previews: number; firstLastHall: boolean; overflowWidth: number };
   history: string[];
   roomTanks: number;
   enteredTank: string;
@@ -441,7 +441,9 @@ async function main() {
     console.log(JSON.stringify(result, null, 2));
 
     assert(title.includes("熱帯魚"));
-    assert(map.floors === 5 && JSON.stringify(map.halls) === JSON.stringify(["淡水の展示室", "海と古代魚の展示室"]) && !map.firstLastHall && map.overflowWidth === 0);
+    // 館内図は上の階から並ぶ（2階の海と古代魚、1階の淡水）。準備中の枠は6つ。
+    assert(map.floors === 4 && JSON.stringify(map.halls) === JSON.stringify(["海と古代魚の展示室", "淡水の展示室"])
+      && map.soonHalls === 6 && map.previews === 2 && !map.firstLastHall && map.overflowWidth === 0);
     assert(history.length === 6);
     assert(roomTanks === 5);
     assert(enteredTank === "東南アジアの水草水槽");
@@ -675,6 +677,8 @@ async function mapSummary(view: Bun.WebView) {
   return await view.evaluate(`({
     floors: document.querySelectorAll('.map-floor').length,
     halls: [...document.querySelectorAll('.hall-card strong')].map((item) => item.textContent),
+    soonHalls: document.querySelectorAll('.map-hall.soon').length,
+    previews: document.querySelectorAll('.map-hall.open .hall-preview').length,
     firstLastHall: !!document.querySelector('.hall-card.last'),
     overflowWidth: document.documentElement.scrollWidth - document.documentElement.clientWidth,
   })`) as Result["map"];

@@ -25,19 +25,31 @@ describe("content wiring", () => {
     for (const room of fishRooms) expect(roomImages[`../content/room/${room.image}`], room.id).toBeDefined();
   });
 
-  test("every room is an exhibit hall on a known floor of the museum", () => {
+  test("every room is placed once in a hall slot of the museum, and planned slots have names", () => {
     const floorIds = museum.floors.map((floor) => floor.id);
     expect(new Set(floorIds).size).toBe(floorIds.length);
     expect(new Set(museum.floors.map((floor) => floor.order)).size).toBe(floorIds.length);
-    for (const room of fishRooms) expect(floorIds, room.id).toContain(room.floorId);
+    const slotIds = museum.floors.flatMap((floor) => floor.halls.map((hall) => hall.id));
+    expect(new Set(slotIds).size).toBe(slotIds.length);
+    for (const room of fishRooms) expect(slotIds, room.id).toContain(room.id);
+    for (const floor of museum.floors) {
+      for (const hall of floor.halls) {
+        if (!fishRooms.some((room) => room.id === hall.id)) expect(hall.displayName, hall.id).toBeTruthy();
+      }
+    }
   });
 
   test("the museum map image exists and each floor area sits inside it without overlapping", () => {
     expect(museumImages[`../content/museum/${museum.map.image}`]).toBeDefined();
+    const { focus } = museum.map;
+    expect(focus.x + focus.width).toBeLessThanOrEqual(museum.map.width);
     const areas = museum.floors.map((floor) => floor.mapArea);
     for (const [index, area] of areas.entries()) {
       expect(area.x + area.width, museum.floors[index]!.id).toBeLessThanOrEqual(museum.map.width);
       expect(area.y + area.height, museum.floors[index]!.id).toBeLessThanOrEqual(museum.map.height);
+      // 狭い画面で切り出す範囲に、階の範囲が収まる（左の階名の札の分も空ける）。
+      expect(area.x, museum.floors[index]!.id).toBeGreaterThanOrEqual(focus.x + 40);
+      expect(area.x + area.width, museum.floors[index]!.id).toBeLessThanOrEqual(focus.x + focus.width);
       // 階は上から順に並び、断面図の中でも下の階ほど下にある。
       if (index > 0) expect(area.y, museum.floors[index]!.id).toBeGreaterThanOrEqual(areas[index - 1]!.y + areas[index - 1]!.height);
     }

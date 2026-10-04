@@ -1,7 +1,6 @@
 {
   "id": "special",
   "order": 2,
-  "floorId": "sea",
   "displayName": "海と古代魚の展示室",
   "shortName": "海と古代魚",
   "image": "room-special.webp",

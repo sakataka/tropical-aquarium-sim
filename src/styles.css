@@ -69,17 +69,18 @@ button:focus-visible, input:focus-visible, select:focus-visible {
 }
 @keyframes map-in { from { opacity: 0; } }
 .map-layout {
-  --plate-height: clamp(560px, calc(100dvh - var(--safe-top) - var(--safe-bottom) - 24px), 1180px);
+  --guide-width: clamp(300px, 26vw, 380px);
+  --map-gap: clamp(28px, 3.4vw, 56px);
   display: grid;
-  grid-template-columns: auto minmax(300px, 400px);
+  grid-template-columns: auto var(--guide-width);
   grid-template-rows: auto 1fr;
-  grid-template-areas: "plate heading" "plate directory";
-  column-gap: clamp(28px, 4vw, 60px);
+  grid-template-areas: "heading directory" "plate directory";
+  column-gap: var(--map-gap);
   justify-content: center;
   align-items: start;
-  padding-top: 12px;
+  min-height: 100%;
 }
-.map-heading { grid-area: heading; padding: 20px 56px 0 0; }
+.map-heading { grid-area: heading; padding: 24px 0 22px; }
 .map-eyebrow {
   margin: 0;
   color: var(--brass);
@@ -97,11 +98,16 @@ button:focus-visible, input:focus-visible, select:focus-visible {
 }
 .map-lede { margin: 12px 0 0; color: var(--muted); font-size: 12.5px; letter-spacing: 0.06em; line-height: 1.8; }
 
-/* 断面図。絵の画素で決めた展示フロアの範囲を、割合で重ねる。 */
+/* 断面図。絵の画素で決めた階と展示室の範囲を、割合で重ねる。 */
 .map-plate {
   grid-area: plate;
   position: relative;
-  height: var(--plate-height);
+  width: min(
+    calc(100vw - var(--safe-left) - var(--safe-right) - var(--guide-width) - var(--map-gap) - 32px),
+    calc((100dvh - var(--safe-top) - var(--safe-bottom) - 170px) * var(--map-ratio)),
+    1500px
+  );
+  aspect-ratio: var(--map-aspect);
   margin: 0;
   overflow: hidden;
   border-radius: 6px;
@@ -109,51 +115,87 @@ button:focus-visible, input:focus-visible, select:focus-visible {
   box-shadow: 0 0 0 1px rgba(214, 192, 143, 0.3), 0 30px 80px rgba(0, 0, 0, 0.55);
   container-type: inline-size;
 }
-.map-plate > img {
+.map-canvas { position: absolute; inset: 0; }
+.map-canvas > img {
   display: block;
   width: 100%;
   height: 100%;
   user-select: none;
   -webkit-user-select: none;
 }
-.map-zone {
-  position: absolute;
-  display: flex;
-  border-radius: 2px;
-  transition: background-color 0.35s, box-shadow 0.35s;
-}
-.map-zone.soon { background: rgba(1, 8, 10, 0.4); }
-.map-zone.soon.active { background: rgba(1, 8, 10, 0.28); }
-.map-zone.open.active {
-  background: rgba(143, 220, 211, 0.07);
-  box-shadow: inset 0 0 0 1.5px rgba(143, 220, 211, 0.85), 0 0 32px rgba(143, 220, 211, 0.3);
-}
+.map-zone { position: absolute; pointer-events: none; }
 .zone-sign {
   position: absolute;
   top: 50%;
   right: 100%;
-  transform: translate(-6px, -50%);
+  transform: translate(-0.4em, -50%);
   color: var(--brass);
   font-family: var(--font-latin);
-  font-size: clamp(15px, 3.4cqw, 28px);
+  font-size: clamp(14px, 2.2cqw, 28px);
   font-weight: 500;
   text-shadow: 0 1px 8px rgba(0, 0, 0, 0.9);
-  pointer-events: none;
+  transition: color 0.3s;
 }
 .map-zone.active .zone-sign { color: #f3e2b8; }
-.map-hotspot {
-  position: relative;
+/* 展示室の枠。枠のまわりを床や壁の色で縁取り、部屋が並んで見えるようにする。 */
+.map-hall {
+  position: absolute;
   display: flex;
-  flex: 1;
-  /* 札は下の台のあたりに置き、縮小版の水槽を隠さない。 */
   align-items: flex-end;
-  min-width: 0;
   padding: 0;
   border: 0;
+  border-radius: 2px;
   background: transparent;
+  box-shadow: inset 0 0 0 1.5px rgba(32, 44, 48, 0.95);
+  transition: background-color 0.35s, box-shadow 0.35s;
 }
-.map-hotspot + .map-hotspot { border-left: 1px dashed rgba(143, 220, 211, 0.4); }
-/* 展示室の画面の縮小版。展示フロアの窓のように、ふちを少し暗くする。 */
+.map-hall.soon { align-items: center; justify-content: center; background: rgba(1, 8, 10, 0.42); }
+.map-hall.soon.active { background: rgba(1, 8, 10, 0.24); }
+.map-hall.open.active {
+  z-index: 1;
+  box-shadow: inset 0 0 0 1.5px rgba(143, 220, 211, 0.9), 0 0 30px rgba(143, 220, 211, 0.32);
+}
+.hall-label {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  gap: 0.7em;
+  max-width: calc(100% - 8px);
+  margin: clamp(3px, 0.6cqw, 8px);
+  overflow: hidden;
+  padding: 0.3em 0.8em 0.35em;
+  border-left: 2px solid var(--brass);
+  border-radius: 0 4px 4px 0;
+  background: rgba(3, 16, 18, 0.78);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  font-family: var(--font-display);
+  font-size: clamp(10px, 1.15cqw, 14px);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-align: left;
+  white-space: nowrap;
+}
+.hall-label small { color: var(--accent); font-family: var(--font-sans); font-size: 0.78em; letter-spacing: 0.06em; }
+.map-hall.last .hall-label { border-left-color: var(--accent); }
+.hall-label.soon {
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1em;
+  padding: 0.25em 1em;
+  border: 1px dashed rgba(196, 228, 220, 0.42);
+  border-radius: 8px;
+  background: rgba(1, 8, 10, 0.55);
+  color: var(--muted);
+}
+.hall-label.soon small { color: var(--faint); letter-spacing: 0.16em; }
+@container (max-width: 560px) {
+  .hall-label { font-size: 10px; }
+  .map-hall.open .hall-label small { display: none; }
+  .hall-label.soon { padding: 0.15em 0.7em; }
+}
+
+/* 展示室の画面の縮小版。展示室の枠の窓のように、ふちを少し暗くする。 */
 .hall-preview {
   position: absolute;
   inset: 0;
@@ -168,52 +210,18 @@ button:focus-visible, input:focus-visible, select:focus-visible {
   box-shadow: inset 0 0 18px 4px rgba(2, 10, 12, 0.7);
   transition: box-shadow 0.35s;
 }
-.map-zone.active .hall-preview::after { box-shadow: inset 0 0 10px 2px rgba(2, 10, 12, 0.45); }
+.map-hall.active .hall-preview::after { box-shadow: inset 0 0 10px 2px rgba(2, 10, 12, 0.45); }
 .hall-preview-room { position: absolute; display: block; opacity: 0; transition: opacity 0.5s; }
 .hall-preview-room.loaded { opacity: 1; }
 .hall-preview-room > img, .hall-preview-glass > img { position: absolute; display: block; user-select: none; -webkit-user-select: none; }
-.hall-preview-glass > img { opacity: 0; transition: opacity 0.5s; }
 .hall-preview-room > img { inset: 0; width: 100%; height: 100%; }
 .hall-preview-glass { position: absolute; display: block; overflow: hidden; }
-.hotspot-plate { position: relative; }
-.hotspot-plate, .zone-soon { margin: clamp(3px, 1cqw, 8px); }
-/* 札は1行にして、縮小版の下の台のあたりだけを覆う。 */
-.hotspot-plate {
-  display: flex;
-  align-items: baseline;
-  gap: 0.7em;
-  max-width: calc(100% - 8px);
-  overflow: hidden;
-  padding: 0.3em 0.8em 0.35em;
-  border-left: 2px solid var(--brass);
-  border-radius: 0 4px 4px 0;
-  background: rgba(3, 16, 18, 0.74);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  font-size: clamp(10px, 1.9cqw, 13.5px);
-  text-align: left;
-  transition: background 0.3s;
-}
-.map-zone.active .hotspot-plate { background: rgba(3, 16, 18, 0.88); }
-.hotspot-plate strong { font-family: var(--font-display); font-size: 1em; font-weight: 500; letter-spacing: 0.1em; white-space: nowrap; }
-.hotspot-plate small { color: var(--accent); font-size: 0.78em; letter-spacing: 0.06em; white-space: nowrap; }
-.map-hotspot.last .hotspot-plate { border-left-color: var(--accent); }
-.zone-soon {
-  align-self: flex-start;
-  padding: 0.25em 0.9em;
-  border: 1px dashed rgba(196, 228, 220, 0.42);
-  border-radius: 999px;
-  background: rgba(1, 8, 10, 0.55);
-  color: var(--muted);
-  font-size: clamp(10px, 1.8cqw, 12px);
-  letter-spacing: 0.14em;
-  white-space: nowrap;
-}
+.hall-preview-glass > img { opacity: 0; transition: opacity 0.5s; }
 
-/* フロアガイド。断面図と同じ階を光らせる。 */
+/* フロアガイド。断面図と同じ階・展示室を光らせる。 */
 .map-directory {
   grid-area: directory;
-  margin: 22px 0 0;
+  margin: 20px 0 0;
   padding: 0;
   list-style: none;
   border-top: 1px solid var(--line);
@@ -256,7 +264,7 @@ button:focus-visible, input:focus-visible, select:focus-visible {
 }
 .floor-body h2 em { color: var(--brass); font-family: var(--font-latin); font-size: 15px; letter-spacing: 0.02em; }
 .floor-body > p { margin: 4px 0 0; color: var(--muted); font-size: 12px; line-height: 1.7; }
-.floor-halls { display: grid; gap: 8px; margin-top: 10px; }
+.floor-halls { display: grid; gap: 6px; margin-top: 9px; }
 .hall-card {
   position: relative;
   display: grid;
@@ -269,8 +277,7 @@ button:focus-visible, input:focus-visible, select:focus-visible {
   text-align: left;
   transition: background 0.3s, border-color 0.3s, transform 0.4s var(--ease-out);
 }
-.hall-card:hover, .map-floor.active .hall-card { background: var(--surface-strong); border-color: rgba(143, 220, 211, 0.55); }
-.hall-card:hover { transform: translateY(-1px); }
+.hall-card:hover { background: var(--surface-strong); border-color: rgba(143, 220, 211, 0.55); transform: translateY(-1px); }
 .hall-card strong { font-family: var(--font-display); font-size: 16px; font-weight: 500; letter-spacing: 0.1em; }
 .hall-card small { color: var(--accent); font-size: 11px; letter-spacing: 0.08em; }
 .hall-tanks { overflow: hidden; color: var(--muted); font-size: 11.5px; line-height: 1.6; text-overflow: ellipsis; white-space: nowrap; }
@@ -286,9 +293,22 @@ button:focus-visible, input:focus-visible, select:focus-visible {
   font-style: normal;
   letter-spacing: 0.08em;
 }
-.map-floor.empty .floor-tag, .map-floor.empty .floor-body { opacity: 0.55; }
-/* 準備中の階は、札を見出しの右に置いて高さを詰める。 */
-.floor-soon { position: absolute; top: 13px; right: 8px; margin: 0; padding: 2px 12px; border: 1px dashed var(--line-strong); border-radius: 999px; color: var(--faint); font-size: 11px; letter-spacing: 0.16em; }
+.hall-soon {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 0;
+  padding: 6px 12px;
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+  color: var(--faint);
+  font-family: var(--font-display);
+  font-size: 13.5px;
+  letter-spacing: 0.1em;
+}
+.hall-soon span { font-family: var(--font-sans); font-size: 10.5px; letter-spacing: 0.16em; }
+.map-floor.empty .floor-tag, .map-floor.empty .floor-body > h2, .map-floor.empty .floor-body > p { opacity: 0.6; }
 .hud-button.map-sound {
   position: fixed;
   top: max(24px, env(safe-area-inset-top));
@@ -298,17 +318,22 @@ button:focus-visible, input:focus-visible, select:focus-visible {
   background: rgba(4, 19, 21, 0.6);
   backdrop-filter: blur(10px);
 }
+/* 狭い画面では建物のあたりだけを切り出して大きく見せる。 */
 @media (max-width: 900px) {
   .map-layout {
     grid-template-columns: minmax(0, 1fr);
     grid-template-rows: none;
     grid-template-areas: "heading" "plate" "directory";
-    max-width: 560px;
+    max-width: 640px;
+    min-height: 0;
     margin: 0 auto;
     padding-top: 0;
   }
   .map-heading { padding: 40px 0 22px; text-align: center; }
-  .map-plate { width: 100%; height: auto; }
+  .map-directory { grid-area: directory; }
+  .map-plate { width: 100%; aspect-ratio: var(--focus-aspect); }
+  .map-canvas { right: auto; left: calc(var(--focus-left) * 100%); width: calc(var(--focus-scale) * 100%); }
+  .zone-sign { font-size: clamp(13px, 3.4cqw, 22px); }
   .map-directory { margin-top: 24px; }
   .map-floor::before { left: 0; }
   .map-floor { padding-left: 12px; }

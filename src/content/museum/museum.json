@@ -1,67 +1,73 @@
 {
   "displayName": "水の生き物館",
   "exhibitName": "Museum of Aquatic Life",
-  "lede": "身近な水辺から、遠く深い水へ。階を下りるほど、見慣れない生き物に出会えます。",
+  "lede": "身近な水辺から、遠く深い水へ。階ごとに、違う水に暮らす生き物に出会えます。",
   "map": {
     "image": "museum-section.webp",
-    "width": 1024,
-    "height": 1344
+    "width": 1536,
+    "height": 900,
+    "focus": { "x": 200, "width": 1200 }
   },
   "floors": [
     {
-      "id": "rivers",
+      "id": "cold",
       "order": 1,
-      "label": "地上",
+      "label": "3階",
+      "shortLabel": "3F",
+      "exhibitLabel": "Floor 3",
+      "displayName": "冷たい水",
+      "exhibitName": "Cold Waters",
+      "description": "冷たい渓流と北の海。低い水温に適応した生き物の展示です。",
+      "mapArea": { "x": 325, "y": 262, "width": 915, "height": 130 },
+      "halls": [
+        { "id": "mountain-streams", "displayName": "渓流と湖" },
+        { "id": "northern-seas", "displayName": "北の海" }
+      ]
+    },
+    {
+      "id": "sea",
+      "order": 2,
+      "label": "2階",
+      "shortLabel": "2F",
+      "exhibitLabel": "Floor 2",
+      "displayName": "サンゴ礁と海",
+      "exhibitName": "Reefs & Seas",
+      "description": "サンゴ礁、砂地、磯。暖かい海の魚と、魚以外の海の生き物の展示です。",
+      "mapArea": { "x": 325, "y": 414, "width": 915, "height": 134 },
+      "halls": [
+        { "id": "special" },
+        { "id": "rocky-shores", "displayName": "磯と砂地" }
+      ]
+    },
+    {
+      "id": "rivers",
+      "order": 3,
+      "label": "1階",
       "shortLabel": "1F",
       "exhibitLabel": "Ground Floor",
       "displayName": "川と湖",
       "exhibitName": "Rivers & Lakes",
       "description": "日本の湧水から、アマゾン、東南アジア、アフリカの湖まで。淡水の魚とエビの展示です。",
-      "mapArea": { "x": 185, "y": 418, "width": 657, "height": 154 }
+      "mapArea": { "x": 325, "y": 570, "width": 915, "height": 112 },
+      "halls": [
+        { "id": "freshwater" },
+        { "id": "mangroves", "displayName": "汽水とマングローブ" }
+      ]
     },
     {
-      "id": "cold",
-      "order": 2,
+      "id": "special-exhibits",
+      "order": 4,
       "label": "地下1階",
       "shortLabel": "B1",
-      "exhibitLabel": "Floor B1",
-      "displayName": "冷たい水",
-      "exhibitName": "Cold Waters",
-      "description": "冷たい渓流と北の海。低い水温に適応した生き物の展示です。",
-      "mapArea": { "x": 185, "y": 598, "width": 657, "height": 152 }
-    },
-    {
-      "id": "sea",
-      "order": 3,
-      "label": "地下2階",
-      "shortLabel": "B2",
-      "exhibitLabel": "Floor B2",
-      "displayName": "サンゴ礁と海",
-      "exhibitName": "Reefs & Seas",
-      "description": "サンゴ礁、砂地、磯。暖かい海の魚と、魚以外の海の生き物の展示です。",
-      "mapArea": { "x": 185, "y": 772, "width": 657, "height": 153 }
-    },
-    {
-      "id": "ancient",
-      "order": 4,
-      "label": "地下3階",
-      "shortLabel": "B3",
-      "exhibitLabel": "Floor B3",
-      "displayName": "生きた化石",
-      "exhibitName": "Living Fossils",
-      "description": "大昔の姿を今に残す、古代魚とその仲間の展示です。",
-      "mapArea": { "x": 185, "y": 950, "width": 657, "height": 150 }
-    },
-    {
-      "id": "deep",
-      "order": 5,
-      "label": "地下4階",
-      "shortLabel": "B4",
-      "exhibitLabel": "Floor B4",
-      "displayName": "洞窟と深海",
-      "exhibitName": "Caves & the Deep",
-      "description": "光の届かない洞窟と深海。暗闇に暮らす生き物の展示です。",
-      "mapArea": { "x": 185, "y": 1124, "width": 657, "height": 176 }
+      "exhibitLabel": "Basement",
+      "displayName": "地下の特別展示",
+      "exhibitName": "Special Exhibits",
+      "description": "大昔の姿を今に残す生き物と、光の届かない洞窟と深海。ふだん出会えない生き物の特別展示です。",
+      "mapArea": { "x": 325, "y": 704, "width": 915, "height": 136 },
+      "halls": [
+        { "id": "living-fossils", "displayName": "生きた化石" },
+        { "id": "caves-and-deep", "displayName": "洞窟と深海" }
+      ]
     }
   ]
 }

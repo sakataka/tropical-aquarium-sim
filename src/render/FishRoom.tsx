@@ -9,7 +9,7 @@ import {
   type FishInstance,
 } from "../core";
 import { getWindowOverscan, type FishRoomDefinition, type RoomRect } from "../core/room";
-import { getFloorById } from "../core/museum";
+import { getFloorOfHall } from "../core/museum";
 import { reportRenderProblem, watchContextLoss, watchSetup } from "./renderProblems";
 import { getScenePlateUrl, getRoomImageUrl } from "./assets";
 import { FishLayer, getWaterTint, type ViewRect } from "./fishLayer";
@@ -406,7 +406,7 @@ export function FishRoom({
     else onEnterTank(tankId);
   }
 
-  const floor = getFloorById(fishRoom.floorId);
+  const floor = getFloorOfHall(fishRoom.id);
   const count = fishRoom.tanks.length;
   const species = new Set(fishRoom.tanks.flatMap(({ tankId }) => tanks[tankId]!.stock
     .filter((entry) => entry.count > 0)
