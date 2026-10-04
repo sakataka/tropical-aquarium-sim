@@ -21,6 +21,12 @@ const roomImageModules = import.meta.glob<string>(
   { eager: true, import: "default", query: "?url" },
 );
 
+// 館内図の断面図。museum.json の map.image で参照する。
+const museumImageModules = import.meta.glob<string>(
+  "../content/museum/*.webp",
+  { eager: true, import: "default", query: "?url" },
+);
+
 // PixiJS は既定で Web Worker の中で fetch と createImageBitmap を使って画像を読む。
 // iPhone の Safari ではこれが失敗することがあったため、<img> と同じ通常の読み込みにする。
 Assets.setPreferences({ preferWorkers: false, preferCreateImageBitmap: false });
@@ -29,6 +35,12 @@ export const environmentAssets = { bubbleParticleUrl };
 export function getRoomImageUrl(room: FishRoomDefinition): string {
   const url = findBySuffix(roomImageModules, `/room/${room.image}`);
   if (!url) throw new Error(`Room image not found: ${room.image}`);
+  return url;
+}
+
+export function getMuseumMapImageUrl(image: string): string {
+  const url = findBySuffix(museumImageModules, `/museum/${image}`);
+  if (!url) throw new Error(`Museum map image not found: ${image}`);
   return url;
 }
 

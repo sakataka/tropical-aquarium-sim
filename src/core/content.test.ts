@@ -13,6 +13,7 @@ import { insideTerrain } from "./terrainMotion";
 const fishImages = import.meta.glob("../content/fish/*/body.webp");
 const plateImages = import.meta.glob("../content/environment/scenes/*/plate.webp");
 const roomImages = import.meta.glob("../content/room/*.webp");
+const museumImages = import.meta.glob("../content/museum/*.webp");
 
 describe("content wiring", () => {
   test("every tank is placed in exactly one room, and rooms only place known tanks", () => {
@@ -28,6 +29,17 @@ describe("content wiring", () => {
     expect(new Set(floorIds).size).toBe(floorIds.length);
     expect(new Set(museum.floors.map((floor) => floor.order)).size).toBe(floorIds.length);
     for (const room of fishRooms) expect(floorIds, room.id).toContain(room.floorId);
+  });
+
+  test("the museum map image exists and each floor area sits inside it without overlapping", () => {
+    expect(museumImages[`../content/museum/${museum.map.image}`]).toBeDefined();
+    const areas = museum.floors.map((floor) => floor.mapArea);
+    for (const [index, area] of areas.entries()) {
+      expect(area.x + area.width, museum.floors[index]!.id).toBeLessThanOrEqual(museum.map.width);
+      expect(area.y + area.height, museum.floors[index]!.id).toBeLessThanOrEqual(museum.map.height);
+      // 階は上から順に並び、断面図の中でも下の階ほど下にある。
+      if (index > 0) expect(area.y, museum.floors[index]!.id).toBeGreaterThanOrEqual(areas[index - 1]!.y + areas[index - 1]!.height);
+    }
   });
 
   test("tanks reference existing scenes and species, with default stock inside the limits", () => {

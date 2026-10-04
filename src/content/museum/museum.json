@@ -2,51 +2,66 @@
   "displayName": "水の生き物館",
   "exhibitName": "Museum of Aquatic Life",
   "lede": "身近な水辺から、遠く深い水へ。階を下りるほど、見慣れない生き物に出会えます。",
+  "map": {
+    "image": "museum-section.webp",
+    "width": 1024,
+    "height": 1392
+  },
   "floors": [
     {
       "id": "rivers",
       "order": 1,
       "label": "地上",
+      "shortLabel": "1F",
       "exhibitLabel": "Ground Floor",
       "displayName": "川と湖",
       "exhibitName": "Rivers & Lakes",
-      "description": "日本の湧水から、アマゾン、東南アジア、アフリカの湖まで。淡水の魚とエビの展示です。"
+      "description": "日本の湧水から、アマゾン、東南アジア、アフリカの湖まで。淡水の魚とエビの展示です。",
+      "mapArea": { "x": 210, "y": 240, "width": 602, "height": 138 }
     },
     {
       "id": "cold",
       "order": 2,
       "label": "地下1階",
+      "shortLabel": "B1",
       "exhibitLabel": "Floor B1",
       "displayName": "冷たい水",
       "exhibitName": "Cold Waters",
-      "description": "冷たい渓流と北の海。低い水温に適応した生き物の展示です。"
+      "description": "冷たい渓流と北の海。低い水温に適応した生き物の展示です。",
+      "mapArea": { "x": 205, "y": 412, "width": 605, "height": 186 }
     },
     {
       "id": "sea",
       "order": 3,
       "label": "地下2階",
+      "shortLabel": "B2",
       "exhibitLabel": "Floor B2",
       "displayName": "サンゴ礁と海",
       "exhibitName": "Reefs & Seas",
-      "description": "サンゴ礁、砂地、磯。暖かい海の魚と、魚以外の海の生き物の展示です。"
+      "description": "サンゴ礁、砂地、磯。暖かい海の魚と、魚以外の海の生き物の展示です。",
+      "mapArea": { "x": 200, "y": 650, "width": 610, "height": 188 }
     },
     {
       "id": "ancient",
       "order": 4,
       "label": "地下3階",
+      "shortLabel": "B3",
       "exhibitLabel": "Floor B3",
       "displayName": "生きた化石",
       "exhibitName": "Living Fossils",
-      "description": "大昔の姿を今に残す、古代魚とその仲間の展示です。"
+      "description": "大昔の姿を今に残す、古代魚とその仲間の展示です。",
+      "mapArea": { "x": 168, "y": 880, "width": 642, "height": 168 }
     },
     {
       "id": "deep",
       "order": 5,
       "label": "地下4階",
+      "shortLabel": "B4",
       "exhibitLabel": "Floor B4",
       "displayName": "洞窟と深海",
       "exhibitName": "Caves & the Deep",
-      "description": "光の届かない洞窟と深海。暗闇に暮らす生き物の展示です。"
+      "description": "光の届かない洞窟と深海。暗闇に暮らす生き物の展示です。",
+      "mapArea": { "x": 148, "y": 1105, "width": 664, "height": 213 }
     }
   ]
 }
