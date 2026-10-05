@@ -3,7 +3,7 @@ import { getBodyPlan } from "./bodyPlans";
 import { fishCatalog } from "./catalog";
 import { museum } from "./museum";
 import { fishRooms } from "./room";
-import { aquariumScenes, getSceneById } from "./sceneCatalog";
+import { getSceneById, sceneHeaders as aquariumScenes } from "./sceneCatalog";
 import { visibleSurfaceIntervals, worldPoint } from "./surfaceMotion";
 import { aquariumTanks } from "./tankCatalog";
 import { getRenderedSurfaceFrame } from "./testContent";
@@ -14,6 +14,7 @@ const fishImages = import.meta.glob("../content/fish/*/body.webp");
 const plateImages = import.meta.glob("../content/environment/scenes/*/plate.webp");
 const thumbImages = import.meta.glob("../content/environment/scenes/*/thumb.webp");
 const roomImages = import.meta.glob("../content/room/*.webp");
+const roomThumbs = import.meta.glob("../content/room/thumbs/*.webp");
 const museumImages = import.meta.glob("../content/museum/*.webp");
 
 describe("content wiring", () => {
@@ -22,7 +23,11 @@ describe("content wiring", () => {
     expect(new Set(placed).size).toBe(placed.length);
     expect([...placed].sort()).toEqual(aquariumTanks.map((tank) => tank.id).sort());
     expect(new Set(fishRooms.map((room) => room.id)).size).toBe(fishRooms.length);
-    for (const room of fishRooms) expect(roomImages[`../content/room/${room.image}`], room.id).toBeDefined();
+    for (const room of fishRooms) {
+      expect(roomImages[`../content/room/${room.image}`], room.id).toBeDefined();
+      // 館内図の縮小版用。scripts/build-room-thumbs.py で作る。
+      expect(roomThumbs[`../content/room/thumbs/${room.image}`], `${room.id} thumb`).toBeDefined();
+    }
   });
 
   test("every room is placed once in a hall slot of the museum, and planned slots have names", () => {
@@ -74,6 +79,8 @@ describe("content wiring", () => {
       expect(fishImages[`../content/fish/${id}/body.webp`], `${id}/body.webp`).toBeDefined();
     }
     const usedScenes = new Set(aquariumTanks.flatMap((tank) => tank.sceneIds));
+    // 地形は展示室に入るときに読むので、すべての水景に terrain.json がある（テストの準備で全件読んでいる）。
+    for (const scene of aquariumScenes) expect(getSceneById(scene.id), `${scene.id}/terrain.json`).toBeDefined();
     for (const scene of aquariumScenes) {
       expect(usedScenes.has(scene.id), `${scene.id} is not offered by any tank`).toBe(true);
       expect(plateImages[`../content/environment/scenes/${scene.id}/plate.webp`], `${scene.id}/plate.webp`).toBeDefined();

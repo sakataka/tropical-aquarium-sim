@@ -1,4 +1,4 @@
-export { fishCatalog } from "./catalog";
+export { fishCatalog, loadSpecies, speciesDirectory } from "./catalog";
 export {
   AQUARIUM_STATE_STORAGE_KEY,
   DISCARDED_STORAGE_KEYS,
@@ -14,7 +14,7 @@ export {
   getStockCount,
   reconcileFishStock,
 } from "./fishPopulation";
-export { getSceneById } from "./sceneCatalog";
+export { getSceneById, getSceneHeader, loadScenes } from "./sceneCatalog";
 export { imageToGlass } from "./plateFraming";
 export { getFishSpriteScale } from "./scale";
 export { stepSimulation } from "./simulation";

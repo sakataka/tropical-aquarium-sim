@@ -1,4 +1,6 @@
 import {
+  lazy,
+  Suspense,
   useCallback,
   useEffect,
   useMemo,
@@ -15,26 +17,27 @@ import {
   createFishFromStock,
   fishCatalog,
   getDefaultLayout,
-  getSceneById,
+  getSceneHeader,
   getTankById,
   migrateLegacyAquariumState,
   normalizeAquariumPersistedState,
   reconcileFishStock,
   setStockCount,
+  speciesDirectory,
   type AquariumCustomization,
   type AquariumPersistedState,
   type FishInstance,
   type LightingId,
   type TankDefinition,
 } from "./core";
-import { AquariumCanvas, type ViewControl } from "./render/AquariumCanvas";
-import { forgetMotionState } from "./render/fishBody";
+import type { ViewControl } from "./render/AquariumCanvas";
+import { forgetMotionState } from "./render/motionState";
 import { RENDER_PROBLEM_EVENT } from "./render/renderProblems";
-import { FishRoom } from "./render/FishRoom";
 import { getRoomForTank } from "./core/room";
+import { loadHallContent } from "./core/hallContent";
 import { getHallById } from "./core/museum";
 import { MuseumMap } from "./ui/MuseumMap";
-import { getScenePlateUrl } from "./render/assets";
+import { getHallTextureUrls, getScenePlateUrl } from "./render/assetUrls";
 import { AquariumControls, LIGHTING_OPTIONS } from "./ui/AquariumControls";
 import { SoundToggle } from "./ui/SoundToggle";
 import { configureSfx, playSfx } from "./audio/sfx";
@@ -54,6 +57,13 @@ import "./styles.css";
 import waterAmbienceLoop from "./content/audio/water-ambience.json";
 import waterAmbienceUrl from "./content/audio/water-ambience.m4a?url";
 
+
+// 展示室と水槽の描画（PixiJS）は、館内図では使わないので、展示室に入るときに読む。
+// 館内図にいる間に先読みしておき、展示室を選んだときに待たせないようにする。
+const loadFishRoom = () => import("./render/FishRoom");
+const loadAquariumCanvas = () => import("./render/AquariumCanvas");
+const FishRoom = lazy(() => loadFishRoom().then((module) => ({ default: module.FishRoom })));
+const AquariumCanvas = lazy(() => loadAquariumCanvas().then((module) => ({ default: module.AquariumCanvas })));
 
 type FishRefs = Record<string, MutableRefObject<FishInstance[]>>;
 // 画面を切り替える間は、次の画面の準備ができるまで前の画面を重ねて残す。
@@ -79,11 +89,11 @@ export default function App() {
   const [state, setState] = useState(initial.state);
   const [phase, setPhase] = useState<Phase>(initial.phase);
   // 魚の位置は毎フレーム描画側で進めるため、React の state には載せない。
-  // 部屋の画面と水槽画面で同じ魚を泳がせ続ける。
-  const fishRefs = useMemo<FishRefs>(() => Object.fromEntries(aquariumTanks.map((tank) => [
-    tank.id,
-    { current: createFishFromStock(initial.state.tanks[tank.id]!.stock, tank) },
-  ])), [initial]);
+  // 部屋の画面と水槽画面で同じ魚を泳がせ続ける。魚は、その展示室の魚種を読み込んでから生まれる。
+  const fishRefs = useMemo<FishRefs>(() => ({}), []);
+  const [loadedHalls, setLoadedHalls] = useState<ReadonlySet<string>>(() => new Set());
+  const stateRef = useRef(state);
+  stateRef.current = state;
   const [saveFailed, setSaveFailed] = useState(false);
   const [audioUnlocked, setAudioUnlocked] = useState(false);
   const [renderProblem, setRenderProblem] = useState<string | null>(null);
@@ -109,6 +119,39 @@ export default function App() {
   const customization = state.tanks[tank.id]!;
   const room = getRoomForTank(tank.id);
   const roomTanks = room.tanks.map((placement) => getTankById(placement.tankId)!);
+  const hallReady = loadedHalls.has(room.id);
+
+  // 展示室に入るときに、その展示室の魚種と水景の地形を読み、魚を生む。
+  useEffect(() => {
+    if (phase.kind === "map" || hallReady) return;
+    let cancelled = false;
+    loadHallContent(room)
+      .then(() => {
+        if (cancelled) return;
+        for (const placement of room.tanks) {
+          const item = getTankById(placement.tankId)!;
+          fishRefs[item.id] ??= { current: createFishFromStock(stateRef.current.tanks[item.id]!.stock, item) };
+        }
+        setLoadedHalls((current) => new Set(current).add(room.id));
+      })
+      .catch((error: unknown) => setRenderProblem((current) =>
+        current ?? `content: ${error instanceof Error ? error.message : String(error)}`));
+    return () => { cancelled = true; };
+  }, [fishRefs, hallReady, phase.kind, room]);
+
+  // 展示室や水槽の画面が落ち着いたら、ほかの展示室のテクスチャを外す。
+  // 館内図にいる間は、戻ってくることが多い直前の展示室の分を残す。
+  useEffect(() => {
+    if (!hallReady || (phase.kind !== "room" && phase.kind !== "tank")) return;
+    void import("./render/assets").then(({ releaseTexturesExcept }) => releaseTexturesExcept(getHallTextureUrls(room)));
+  }, [hallReady, phase.kind, room]);
+
+  // 館内図を見ている間に、展示室の描画部品を先読みしておく。
+  useEffect(() => {
+    if (phase.kind !== "map") return;
+    const idle = window.setTimeout(() => { void loadFishRoom(); void loadAquariumCanvas(); }, 1200);
+    return () => window.clearTimeout(idle);
+  }, [phase.kind]);
   const lastTankByRoom = useRef<Record<string, string>>({});
   // 館内図の「前回の展示室」は、保存データがあるか、この回に展示室を見たあとだけ付ける。
   const visitedRef = useRef(initial.restored);
@@ -143,13 +186,14 @@ export default function App() {
 
   useEffect(() => {
     for (const item of aquariumTanks) {
-      const ref = fishRefs[item.id]!;
+      const ref = fishRefs[item.id];
+      if (!ref) continue;
       const next = reconcileFishStock(ref.current, state.tanks[item.id]!.stock, item);
       const kept = new Set(next.map((fish) => fish.id));
       for (const fish of ref.current) if (!kept.has(fish.id)) forgetMotionState(fish.id);
       ref.current = next;
     }
-  }, [fishRefs, state.tanks]);
+  }, [fishRefs, state.tanks, loadedHalls]);
 
   useEffect(() => {
     const timeout = window.setTimeout(() => {
@@ -277,7 +321,9 @@ export default function App() {
           tanks={state.tanks}
         />
       ) : null}
-      {showRoom ? (
+      {phase.kind !== "map" && !hallReady ? <HallLoading /> : null}
+      <Suspense fallback={<HallLoading />}>
+      {showRoom && hallReady ? (
         <FishRoom
           active={phase.kind === "room" || phase.kind === "toRoom"}
           fishRefs={fishRefs}
@@ -298,7 +344,7 @@ export default function App() {
           <SoundToggle className="room-sound" enabled={state.preferences.soundEnabled} onToggle={toggleSound} />
         </>
       ) : null}
-      {showTank ? (
+      {showTank && hallReady ? (
         <TankScreen
           active={phase.kind !== "toRoom"}
           leaving={phase.kind === "leaveTank" ? phase.direction : undefined}
@@ -329,8 +375,13 @@ export default function App() {
           tank={tank}
         />
       ) : null}
+      </Suspense>
     </>
   );
+}
+
+function HallLoading() {
+  return <div aria-live="polite" className="hall-loading" role="status">展示室を準備しています</div>;
 }
 
 function TankScreen({
@@ -383,7 +434,7 @@ function TankScreen({
   editingRef.current = editing;
   onBackToRoomRef.current = onBackToRoom;
   onSwitchTankRef.current = onSwitchTank;
-  const activeScene = getSceneById(customization.layout.sceneId);
+  const activeScene = getSceneHeader(customization.layout.sceneId);
   const totalFish = customization.stock.reduce((sum, entry) => sum + entry.count, 0);
   const speciesList = useRef(tank.species
     .map((slot) => fishCatalog[slot.speciesId])
@@ -605,7 +656,7 @@ function TankScreen({
         }))}
         onSpeciesCountChange={(speciesId, count) => onCustomizationChange((current) => ({
           ...current,
-          stock: setStockCount(current.stock, speciesId, count, tank, fishCatalog),
+          stock: setStockCount(current.stock, speciesId, count, tank, speciesDirectory),
         }))}
         preferences={preferences}
         saveFailed={saveFailed}
@@ -686,16 +737,16 @@ function useFullscreen() {
 
 function loadInitialState(): { state: AquariumPersistedState; phase: Phase; restored: boolean } {
   const params = new URLSearchParams(window.location.search);
-  let state = createDefaultState(fishCatalog);
+  let state = createDefaultState(speciesDirectory);
   let restored = false;
   try {
     const currentValue = window.localStorage.getItem(AQUARIUM_STATE_STORAGE_KEY);
     const current = currentValue
-      ? normalizeAquariumPersistedState(JSON.parse(currentValue), fishCatalog)
+      ? normalizeAquariumPersistedState(JSON.parse(currentValue), speciesDirectory)
       : undefined;
     const legacyKey = LEGACY_STORAGE_KEYS.find((key) => window.localStorage.getItem(key));
     const legacy = !current && legacyKey
-      ? migrateLegacyAquariumState(JSON.parse(window.localStorage.getItem(legacyKey)!), fishCatalog)
+      ? migrateLegacyAquariumState(JSON.parse(window.localStorage.getItem(legacyKey)!), speciesDirectory)
       : undefined;
     state = current ?? legacy ?? state;
     restored = Boolean(current ?? legacy);

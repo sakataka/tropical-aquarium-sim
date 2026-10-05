@@ -1,6 +1,6 @@
 import { z } from "zod";
 import configJson from "../content/aquarium/customization.json";
-import { getSceneById } from "./sceneCatalog";
+import { getSceneHeader } from "./sceneCatalog";
 import { aquariumTanks, getSpeciesLimit, getTankById } from "./tankCatalog";
 import type {
   AquariumConfig,
@@ -8,11 +8,13 @@ import type {
   AquariumLayout,
   AquariumPersistedState,
   AquariumPreferences,
-  FishSpeciesDefinition,
   FishStockEntry,
   LightingId,
   TankDefinition,
 } from "./types";
+
+/** 魚種があるかどうかだけを引く表。中身は使わないので、読み込み前の ID の表でも足りる。 */
+type SpeciesDirectory = Readonly<Record<string, unknown>>;
 
 const configSchema = z.object({
   stateStorageKey: z.string().min(1),
@@ -55,12 +57,12 @@ const persistedStateSchema = z.object({
 
 export function getDefaultLayout(tank: TankDefinition, sceneId?: string): AquariumLayout {
   const id = sceneId && tank.sceneIds.includes(sceneId) ? sceneId : tank.sceneIds[0]!;
-  return { sceneId: id, lighting: getSceneById(id)?.defaultLighting ?? "natural" };
+  return { sceneId: id, lighting: getSceneHeader(id)?.defaultLighting ?? "natural" };
 }
 
 function getDefaultCustomization(
   tank: TankDefinition,
-  speciesCatalog: Record<string, FishSpeciesDefinition>,
+  speciesCatalog: SpeciesDirectory,
 ): AquariumCustomization {
   return {
     stock: normalizeStock(tank.defaultStock, tank, speciesCatalog),
@@ -69,7 +71,7 @@ function getDefaultCustomization(
 }
 
 export function createDefaultState(
-  speciesCatalog: Record<string, FishSpeciesDefinition>,
+  speciesCatalog: SpeciesDirectory,
 ): AquariumPersistedState {
   return {
     version: 5,
@@ -88,7 +90,7 @@ export function createDefaultState(
 export function normalizeTankCustomization(
   value: unknown,
   tank: TankDefinition,
-  speciesCatalog: Record<string, FishSpeciesDefinition>,
+  speciesCatalog: SpeciesDirectory,
 ): AquariumCustomization {
   if (!value || typeof value !== "object") return getDefaultCustomization(tank, speciesCatalog);
   const candidate = value as Partial<AquariumCustomization>;
@@ -102,7 +104,7 @@ export function normalizeTankCustomization(
 
 export function normalizeAquariumPersistedState(
   value: unknown,
-  speciesCatalog: Record<string, FishSpeciesDefinition>,
+  speciesCatalog: SpeciesDirectory,
 ): AquariumPersistedState | undefined {
   const parsed = persistedStateSchema.safeParse(value);
   if (!parsed.success) return undefined;
@@ -151,7 +153,7 @@ function relocateMovedSpecies(savedTanks: Record<string, unknown>): Record<strin
 // v1〜v4 は60cm水槽1つだった。魚種はそれを入れられる水槽へ、水景と照明はその水景を持つ水槽へ移す。
 export function migrateLegacyAquariumState(
   value: unknown,
-  speciesCatalog: Record<string, FishSpeciesDefinition>,
+  speciesCatalog: SpeciesDirectory,
 ): AquariumPersistedState | undefined {
   if (!value || typeof value !== "object") return undefined;
   const source = value as {
@@ -210,7 +212,7 @@ export function setStockCount(
   speciesId: string,
   count: number,
   tank: TankDefinition,
-  speciesCatalog: Record<string, FishSpeciesDefinition>,
+  speciesCatalog: SpeciesDirectory,
 ): FishStockEntry[] {
   const next = new Map(stock.map((entry) => [entry.speciesId, entry.count]));
   next.set(speciesId, count);
@@ -238,7 +240,7 @@ function normalizeLayout(value: unknown, tank: TankDefinition): AquariumLayout {
 function normalizeStock(
   stock: unknown[],
   tank: TankDefinition,
-  speciesCatalog: Record<string, FishSpeciesDefinition>,
+  speciesCatalog: SpeciesDirectory,
 ): FishStockEntry[] {
   const counts = new Map<string, number>();
   const order: string[] = [];

@@ -9,7 +9,7 @@ import {
 } from "./customization";
 import { fishRooms, getRoomForTank } from "./room";
 import { getStructurePoints } from "./plateFraming";
-import { aquariumScenes, getSceneById } from "./sceneCatalog";
+import { getSceneById, sceneHeaders as aquariumScenes } from "./sceneCatalog";
 import { aquariumTanks, getTankById } from "./tankCatalog";
 
 const asia = getTankById("asia-60")!;

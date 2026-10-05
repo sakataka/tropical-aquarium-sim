@@ -3,7 +3,7 @@ import { getTankById, type AquariumCustomization } from "../core";
 import { getHallSlotsOnFloor, museum, type HallSlot } from "../core/museum";
 import type { FishRoomDefinition } from "../core/room";
 import { playSfx } from "../audio/sfx";
-import { getMuseumMapImageUrl } from "../render/assets";
+import { getMuseumMapImageUrl } from "../render/assetUrls";
 import { HallPreview } from "./HallPreview";
 import { SoundToggle } from "./SoundToggle";
 

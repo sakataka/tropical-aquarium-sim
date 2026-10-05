@@ -1,11 +1,11 @@
-import { Assets, Container, Texture } from "pixi.js";
+import { Container, Texture } from "pixi.js";
 import {
   getFishSpriteScale,
   type FishInstance,
   type FishSpeciesDefinition,
   type TankDefinition,
 } from "../core";
-import { getFishImageUrl } from "./assets";
+import { getFishImageUrl, loadTexture } from "./assets";
 import { FishBody } from "./fishBody";
 import { clamp } from "../core/math";
 
@@ -104,15 +104,13 @@ export function getWaterTint(hex: string): number {
 
 function getFishTexture(definition: FishSpeciesDefinition): Texture | undefined {
   const cached = fishTextures.get(definition.id);
-  if (cached instanceof Texture) return cached;
-  if (cached) return undefined;
+  // 展示室を移ったときに解放されたテクスチャは読み直す（assets.ts の releaseTexturesExcept）。
+  if (cached instanceof Texture && !cached.destroyed) return cached;
+  if (cached && !(cached instanceof Texture)) return undefined;
   const url = getFishImageUrl(definition.id);
   if (!url) return undefined;
   // 大きな原画を小さく表示するため、ミップマップでちらつきを抑える。
-  fishTextures.set(definition.id, Assets.load<Texture>({
-    src: url,
-    data: { autoGenerateMipmaps: true },
-  }).then((texture) => {
+  fishTextures.set(definition.id, loadTexture(url, { mipmaps: true }).then((texture) => {
     fishTextures.set(definition.id, texture);
   }).catch((error: unknown) => {
     fishTextures.delete(definition.id);

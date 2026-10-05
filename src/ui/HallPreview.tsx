@@ -1,8 +1,8 @@
 import { useState, type CSSProperties } from "react";
-import { getSceneById, type AquariumCustomization } from "../core";
+import { getSceneHeader, type AquariumCustomization } from "../core";
 import { framePlate } from "../core/plateFraming";
 import { getWindowOverscan, type FishRoomDefinition, type RoomRect } from "../core/room";
-import { getRoomImageUrl, getSceneThumbUrl } from "../render/assets";
+import { getRoomThumbUrl, getSceneThumbUrl } from "../render/assetUrls";
 
 /** 水槽の並びの上下左右に残す余白（水槽の並びの大きさに対する比率）。 */
 const MARGIN = { x: 0.06, y: 0.35 };
@@ -34,7 +34,7 @@ export function HallPreview({
   return (
     <span aria-hidden="true" className="hall-preview">
       <span className={roomLoaded ? "hall-preview-room loaded" : "hall-preview-room"} style={roomStyle}>
-        <img alt="" decoding="async" draggable={false} onLoad={() => setRoomLoaded(true)} src={getRoomImageUrl(hall)} />
+        <img alt="" decoding="async" draggable={false} loading="lazy" onLoad={() => setRoomLoaded(true)} src={getRoomThumbUrl(hall)} />
         {hall.tanks.map((placement) => (
           <GlassPlate
             aspect={hall.aspectRatio}
@@ -64,7 +64,7 @@ function GlassPlate({ aspect, glass, sceneId, tankId }: {
   // 絵の高さを1とした座標でガラスを表し、展示室の画面と同じく cover で水景を置く。
   const glassRect = { x: 0, y: 0, width: glass.width * aspect, height: glass.height };
   const plate = plateSize
-    ? framePlate(plateSize, glassRect, getWindowOverscan(tankId), getSceneById(sceneId ?? ""))
+    ? framePlate(plateSize, glassRect, getWindowOverscan(tankId), getSceneHeader(sceneId ?? ""))
     : undefined;
 
   return (
@@ -82,6 +82,7 @@ function GlassPlate({ aspect, glass, sceneId, tankId }: {
           alt=""
           decoding="async"
           draggable={false}
+          loading="lazy"
           onLoad={(event) => setPlateSize({ width: event.currentTarget.naturalWidth, height: event.currentTarget.naturalHeight })}
           src={url}
           style={plate ? {

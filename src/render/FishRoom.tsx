@@ -1,5 +1,5 @@
 import { useEffect, useLayoutEffect, useRef, useState, type MutableRefObject } from "react";
-import { Application, Assets, Container, Graphics, Sprite, Texture } from "pixi.js";
+import { Application, Container, Graphics, Sprite, Texture } from "pixi.js";
 import {
   fishCatalog,
   getSceneById,
@@ -11,7 +11,7 @@ import {
 import { getWindowOverscan, type FishRoomDefinition, type RoomRect } from "../core/room";
 import { getFloorOfHall } from "../core/museum";
 import { reportRenderProblem, watchContextLoss, watchSetup } from "./renderProblems";
-import { getScenePlateUrl, getRoomImageUrl } from "./assets";
+import { getScenePlateUrl, getRoomImageUrl, loadTexture } from "./assets";
 import { FishLayer, getWaterTint, type ViewRect } from "./fishLayer";
 import { frameGlass, getInitialZoom, getRenderOptions } from "./tankFraming";
 import { playSfx } from "../audio/sfx";
@@ -160,7 +160,7 @@ export function FishRoom({
       }
       progress.mark("部屋と水景の画像の読み込み");
       const [roomTexture] = await Promise.all([
-        Assets.load<Texture>(getRoomImageUrl(fishRoom)),
+        loadTexture(getRoomImageUrl(fishRoom)),
         ...views.map((view) => loadPlate(view, tanksRef.current[view.tankId]?.layout.sceneId)),
       ]);
       if (disposed) return;
@@ -258,7 +258,7 @@ export function FishRoom({
       const url = getScenePlateUrl(sceneId);
       if (!scene || !url) return;
       view.fish.waterTint = getWaterTint(scene.waterColor);
-      const texture = await Assets.load<Texture>(url);
+      const texture = await loadTexture(url);
       if (disposed || view.sceneId !== sceneId) return;
       view.plate.texture = texture;
       view.loadedSceneId = sceneId;

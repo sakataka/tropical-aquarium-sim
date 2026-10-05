@@ -3,9 +3,9 @@ import type { FishInstance, FishSpeciesDefinition } from "../core";
 import { blendAngle, sampleMeshPoint, stepTurnSpring } from "./fishMotion";
 import { clamp } from "../core/math";
 import { BODY_PLAN_RENDERERS, VERTICES_X, type BodyPlanRenderer, type MotionState, type SwimStyle } from "./bodyPlans";
+import { getMotionState, MIN_TURN_INTERVAL_SEC } from "./motionState";
 
 const TURN_HYSTERESIS_CM_PER_SEC = 0.35;
-const MIN_TURN_INTERVAL_SEC = 0.7;
 const MAX_PITCH_RAD = 0.42;
 const MAX_TRIP_PITCH_RAD = 1.05;
 const NOSE_DOWN_PITCH_RAD = 0.32;
@@ -39,37 +39,6 @@ const MODE_BEAT: Record<BehaviorMode, number> = {
   forage: 0.5,
   rest: 0.25,
 };
-
-// 尾の振りや向きの状態は魚ごとに1つだけ持ち、部屋と水槽画面で共有する。
-// 画面を重ねて切り替える間も、2つの画面の魚が同じ形で描かれる。
-const motionStates = new Map<string, MotionState>();
-
-function getMotionState(fish: FishInstance): MotionState {
-  let state = motionStates.get(fish.id);
-  if (!state) {
-    const yaw = fish.facing === 1 ? Math.PI : 0;
-    state = {
-      phase: (Math.abs(fish.seed) % 628) / 100,
-      amplitude: 0.12,
-      yaw,
-      yawVelocity: 0,
-      targetYaw: yaw,
-      sinceTurnSec: MIN_TURN_INTERVAL_SEC,
-      pitch: 0,
-      stridePhase: (Math.abs(fish.seed) % 314) / 100,
-      clockSec: (Math.abs(fish.seed) % 1000) / 37,
-      detailPhase: (Math.abs(fish.seed) % 628) / 100,
-      flick: 0,
-    };
-    motionStates.set(fish.id, state);
-  }
-  return state;
-}
-
-/** 水槽から外れた魚の状態を捨てる。 */
-export function forgetMotionState(fishId: string) {
-  motionStates.delete(fishId);
-}
 
 // 横向き写真1枚をメッシュとして変形し、尾の振りと反転を立体的に見せる。
 // 画像は頭が左を向いている前提（yaw 0 = 左向き、yaw π = 右向き）。
@@ -187,3 +156,4 @@ export class FishBody {
     this.motion.yawVelocity = next.velocity;
   }
 }
+export { forgetMotionState } from "./motionState";

@@ -1,7 +1,6 @@
 import { useEffect, useRef, type MutableRefObject, type RefObject } from "react";
 import {
   Application,
-  Assets,
   Container,
   Graphics,
   Sprite,
@@ -17,7 +16,7 @@ import {
   type FishSpeciesDefinition,
   type TankDefinition,
 } from "../core";
-import { environmentAssets, getScenePlateUrl } from "./assets";
+import { environmentAssets, getScenePlateUrl, loadTexture } from "./assets";
 import { reportRenderProblem, watchContextLoss, watchSetup } from "./renderProblems";
 import { BubbleColumns, FloatingMotes } from "./bubbles";
 import { FishLayer, getWaterTint } from "./fishLayer";
@@ -190,7 +189,7 @@ export function AquariumCanvas({
       window.addEventListener("keydown", onKeyDown);
 
       progress.mark("泡の画像の読み込み");
-      const bubbleTexture = await Assets.load<Texture>(environmentAssets.bubbleParticleUrl);
+      const bubbleTexture = await loadTexture(environmentAssets.bubbleParticleUrl);
       if (disposed) return;
       bubbles = new BubbleColumns(bubbleTexture);
       motes = new FloatingMotes(bubbleTexture);
@@ -260,7 +259,7 @@ export function AquariumCanvas({
       if (!scene || !plateUrl || sceneId === currentSceneId) return;
       currentSceneId = sceneId;
       const token = ++sceneToken;
-      const plateTexture = await Assets.load<Texture>(plateUrl);
+      const plateTexture = await loadTexture(plateUrl);
       if (disposed || token !== sceneToken) return;
 
       const immediate = plateLayer.children.length === 0;
