@@ -57,7 +57,7 @@ export function MuseumMap({
         </header>
         <figure className="map-plate" style={plateStyle}>
           <div className="map-canvas">
-            <img alt="水の生き物館の断面図。地上3階と地下1階に、展示室が並ぶ。" draggable={false} src={mapImageUrl} />
+            <img alt="水の生き物館の断面図。地上4階と地下2階に、展示室が並ぶ。" draggable={false} src={mapImageUrl} />
             {floors.map(({ floor, slots }) => (
               <div
                 className={floor.id === active?.floorId ? "map-zone active" : "map-zone"}

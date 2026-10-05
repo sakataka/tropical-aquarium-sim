@@ -1,0 +1,11 @@
+{
+  "id": "reef-puffers-180",
+  "order": 111,
+  "displayName": "岩穴のある外側の礁",
+  "description": "張り出した岩の下に暗い岩穴があり、岩肌には橙や紫の海綿が付いています。手前の白い砂地には、サンゴのかけらが散らばります。",
+  "defaultLighting": "natural",
+  "waterColor": "#2a86b0",
+  "framing": {
+    "plateBottom": 0.965
+  }
+}

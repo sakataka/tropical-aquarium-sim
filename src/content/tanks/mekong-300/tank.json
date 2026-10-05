@@ -1,0 +1,43 @@
+{
+  "id": "mekong-300",
+  "order": 128,
+  "displayName": "メコン川の大型魚水槽",
+  "exhibitName": "Mekong Giants",
+  "category": "メコン川",
+  "description": "濁った水に倒木と太い根が沈む、メコン川の深みを思わせる300cmの大水槽。シルバーバーブの群れが開けた中層を行き交い、ジャイアント・グラミーは大きな体でゆったりと泳いで、ときおり水面へ息を吸いに上がります。夜に動くナイフフィッシュは、昼は根や岩の陰に隠れています。",
+  "widthCm": 300,
+  "heightCm": 90,
+  "depthCm": 100,
+  "maxTotalFish": 10,
+  "sceneIds": [
+    "mekong-300"
+  ],
+  "species": [
+    {
+      "speciesId": "clown-knifefish",
+      "maxCount": 2
+    },
+    {
+      "speciesId": "giant-gourami",
+      "maxCount": 2
+    },
+    {
+      "speciesId": "silver-barb",
+      "maxCount": 8
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "silver-barb",
+      "count": 5
+    },
+    {
+      "speciesId": "giant-gourami",
+      "count": 1
+    },
+    {
+      "speciesId": "clown-knifefish",
+      "count": 1
+    }
+  ]
+}

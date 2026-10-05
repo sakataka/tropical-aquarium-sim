@@ -1,0 +1,11 @@
+{
+  "id": "arowana-300",
+  "order": 168,
+  "displayName": "垂れ根と浮き葉の川",
+  "description": "浮き葉が重なる水面へ岸の細い根が垂れ下がる熱帯の川。左に根を広げた倒木、中央には日の差す砂底が開けています。",
+  "defaultLighting": "natural",
+  "waterColor": "#606a40",
+  "framing": {
+    "plateBottom": 0.856
+  }
+}

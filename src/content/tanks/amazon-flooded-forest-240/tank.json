@@ -1,0 +1,59 @@
+{
+  "id": "amazon-flooded-forest-240",
+  "order": 112,
+  "displayName": "アマゾンの浸水林水槽",
+  "exhibitName": "Flooded Forest",
+  "category": "アマゾンの浸水林",
+  "description": "雨季に水没したアマゾンの森を再現した240cm水槽。大木の板根のあいだをシルバーダラーとアノストムスの群れが行き交い、砂底ではゲオファーガスが砂をはみ、セベラムとオスカーがゆったり泳ぎます。",
+  "widthCm": 240,
+  "heightCm": 82,
+  "depthCm": 80,
+  "maxTotalFish": 34,
+  "sceneIds": [
+    "amazon-flooded-forest-240"
+  ],
+  "species": [
+    {
+      "speciesId": "silver-dollar",
+      "maxCount": 14
+    },
+    {
+      "speciesId": "striped-headstander",
+      "maxCount": 8
+    },
+    {
+      "speciesId": "severum",
+      "maxCount": 4
+    },
+    {
+      "speciesId": "geophagus-altifrons",
+      "maxCount": 8
+    },
+    {
+      "speciesId": "oscar",
+      "maxCount": 3
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "silver-dollar",
+      "count": 10
+    },
+    {
+      "speciesId": "striped-headstander",
+      "count": 6
+    },
+    {
+      "speciesId": "severum",
+      "count": 3
+    },
+    {
+      "speciesId": "geophagus-altifrons",
+      "count": 5
+    },
+    {
+      "speciesId": "oscar",
+      "count": 2
+    }
+  ]
+}

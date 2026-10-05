@@ -1,0 +1,11 @@
+{
+  "id": "rainbowfish-150",
+  "order": 154,
+  "displayName": "白い流木とヴァリスネリア",
+  "description": "左右に背の高いヴァリスネリアと細葉の水草が茂り、白っぽい流木が横たわる澄んだ川。中央に砂の川底と広い中層が開けます。",
+  "defaultLighting": "natural",
+  "waterColor": "#004157",
+  "framing": {
+    "plateBottom": 0.794
+  }
+}

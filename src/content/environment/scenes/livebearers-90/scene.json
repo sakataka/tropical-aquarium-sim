@@ -1,0 +1,11 @@
+{
+  "id": "livebearers-90",
+  "order": 141,
+  "displayName": "有茎草の茂る小川",
+  "description": "赤や緑の有茎草とヴァリスネリアが両岸に茂り、流木と苔石のあいだを砂利の小道が奥へ続く明るい水景。",
+  "defaultLighting": "natural",
+  "waterColor": "#034a5c",
+  "framing": {
+    "plateBottom": 0.919
+  }
+}

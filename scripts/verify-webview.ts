@@ -7,6 +7,24 @@ const BASE_URL = `http://${HOST}:${PORT}/`;
 const SCREENSHOT_DIR = "tmp/webview";
 const STATE_KEY = "tropical-aquarium.state.v5.r2";
 
+// 展示室・水槽の名前や数は、内容ファイルから読む（展示室を開けるたびに書き換えずに済むように）。
+type RoomJson = { id: string; order: number; displayName: string; tanks: { tankId: string }[] };
+type TankJson = { id: string; displayName: string; sceneIds: string[]; species: { speciesId: string }[]; defaultStock: { speciesId: string; count: number }[] };
+const museumJson = await Bun.file("src/content/museum/museum.json").json() as { floors: { halls: { id: string }[] }[] };
+const ROOMS: RoomJson[] = [];
+for await (const path of new Bun.Glob("src/content/room/*.json").scan()) ROOMS.push(await Bun.file(path).json());
+const HALL_ORDER = museumJson.floors.flatMap((floor) => floor.halls.map((hall) => hall.id));
+ROOMS.sort((a, b) => HALL_ORDER.indexOf(a.id) - HALL_ORDER.indexOf(b.id));
+const TANKS = new Map<string, TankJson>();
+for await (const path of new Bun.Glob("src/content/tanks/*/tank.json").scan()) {
+  const tank = await Bun.file(path).json() as TankJson;
+  TANKS.set(tank.id, tank);
+}
+const tankName = (id: string) => TANKS.get(id)!.displayName;
+const roomOf = (tankId: string) => ROOMS.find((room) => room.tanks.some((tank) => tank.tankId === tankId))!;
+const defaultTotal = (id: string) => TANKS.get(id)!.defaultStock.reduce((sum, entry) => sum + entry.count, 0);
+const ASIA_HALL = roomOf("asia-60");
+
 type Result = {
   title: string;
   map: { floors: number; halls: string[]; soonHalls: number; previews: number; firstLastHall: boolean; overflowWidth: number };
@@ -22,7 +40,7 @@ type Result = {
   scenesVisited: string[];
   japanScenes: string[];
   expandedScenes: string[];
-  specialRoom: { viewport: string; species: string[] }[];
+  halls: { viewport: string; hall: string; tanks: number }[];
   viewingOnEntry: boolean;
   viewingStageWidth: number;
   editingOpened: boolean;
@@ -59,11 +77,10 @@ async function main() {
   try {
     await waitForServer(BASE_URL);
     const consoleErrors: string[] = [];
-    if (Bun.argv.includes("--special-only")) {
-      const specialRoom = await verifySpecialRoom(consoleErrors);
-      assert(specialRoom.length === 2 && specialRoom.every((result) => result.species.length === 5));
+    if (Bun.argv.includes("--halls-only")) {
+      const halls = await verifyHalls(consoleErrors);
       assert(consoleErrors.length === 0);
-      console.log(JSON.stringify({ specialRoom, consoleErrors }, null, 2));
+      console.log(JSON.stringify({ halls, consoleErrors }, null, 2));
       return;
     }
     await using view = new Bun.WebView({
@@ -85,12 +102,12 @@ async function main() {
     const title = String(await view.evaluate("document.title"));
     const map = await mapSummary(view);
     await Bun.write(`${SCREENSHOT_DIR}/map-1440x960.png`, await view.screenshot({ format: "png" }));
-    await openHall(view, "淡水の展示室");
+    await openHall(view, ASIA_HALL.displayName);
     const roomTanks = Number(await view.evaluate(`document.querySelectorAll(".room-tank").length`));
     await Bun.write(`${SCREENSHOT_DIR}/room-1440x960.png`, await view.screenshot({ format: "png" }));
 
     // 水槽に寄って入る
-    await clickByLabel(view, "東南アジアの水草水槽を眺める");
+    await clickByLabel(view, `${tankName("asia-60")}を眺める`);
     await sleep(700);
     await Bun.write(`${SCREENSHOT_DIR}/zooming-1440x960.png`, await view.screenshot({ format: "png" }));
     await sleep(1800);
@@ -165,8 +182,9 @@ async function main() {
     await view.evaluate(`window.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape" }))`);
     await sleep(1800);
     const backToRoom = Number(await view.evaluate(`document.querySelectorAll(".room-tank").length`)) === roomTanks;
-    await clickByLabel(view, "小型魚のキューブ水槽を眺める");
-    await sleep(2400);
+    // キューブ水槽とアマゾンの水槽は別の展示室にあるので、水槽の直リンクで開く。
+    await view.navigate(`${BASE_URL}?tank=cube-30`);
+    await sleep(2600);
     await clickButtonByText(view, "設定");
     const cubeCards = await countCards(view);
     newSpeciesChecked.push(...await verifyNewFish(view, "cube-30", [["ember-tetra", "エンバーテトラ"], ["clown-killifish", "クラウンキリー"]]));
@@ -177,10 +195,8 @@ async function main() {
       return stage ? stage.width / stage.height : 0;
     })()`));
     await Bun.write(`${SCREENSHOT_DIR}/cube-1440x960.png`, await view.screenshot({ format: "png" }));
-    await clickButtonByText(view, "展示室に戻る");
-    await sleep(1800);
-    await clickByLabel(view, "アマゾンの大型水槽を眺める");
-    await sleep(2400);
+    await view.navigate(`${BASE_URL}?tank=amazon-90`);
+    await sleep(2600);
     await clickButtonByText(view, "設定");
     const amazonCards = await countCards(view);
     newSpeciesChecked.push(...await verifyNewFish(view, "amazon-90", [["lemon-tetra", "レモンテトラ"], ["dwarf-pencilfish", "ドワーフペンシル"]]));
@@ -188,18 +204,16 @@ async function main() {
     await sleep(700);
     await Bun.write(`${SCREENSHOT_DIR}/amazon-1440x960.png`, await view.screenshot({ format: "png" }));
 
-    // 追加した2水槽を部屋から開き、背景・カタログ・匹数の保存を確認する。
-    for (const [id, name, species] of [
+    // 日本とマラウイの水槽を開き、背景・カタログ・匹数の保存を確認する。
+    for (const [id, , species] of [
       ["japan-60", "日本の湧水水槽", [["medaka", "メダカ"], ["amano-shrimp", "ヤマトヌマエビ"], ["japanese-bitterling", "ニッポンバラタナゴ"], ["japanese-loach", "シマドジョウ"]]],
       ["malawi-120", "マラウイ湖の岩場水槽", [["yellow-lab", "イエローラブ"], ["yellow-tail-acei", "イエローテール・アセイ"], ["rusty-cichlid", "ラスティ・シクリッド"], ["saulosi", "サウロシー"]]],
     ] as [string, string, [string, string][]][]) {
-      await clickButtonByText(view, "展示室に戻る");
-      await sleep(1800);
-      await clickByLabel(view, `${name}を眺める`);
-      await sleep(2400);
+      await view.navigate(`${BASE_URL}?tank=${id}`);
+      await sleep(2600);
       await Bun.write(`${SCREENSHOT_DIR}/${id}-1440x960.png`, await view.screenshot({ format: "png" }));
       await clickButtonByText(view, "設定");
-      assert(await countCards(view) === 4);
+      assert(await countCards(view) === TANKS.get(id)!.species.length);
       newSpeciesChecked.push(...await verifyNewFish(view, id, species));
       await clickTab(view, "水景");
       assert(await view.evaluate(`(() => {
@@ -215,8 +229,10 @@ async function main() {
       `JSON.stringify(JSON.parse(localStorage.getItem("${STATE_KEY}")).tanks)`,
     ));
     const adjacentTanks: string[] = [];
-    await sleep(700);
-    for (const id of ["asia-60", "amazon-90", "cube-30", "japan-60", "malawi-120"]) {
+    await view.navigate(`${BASE_URL}?tank=asia-60`);
+    await sleep(2600);
+    const asiaHallTanks = ASIA_HALL.tanks.map((tank) => tank.tankId);
+    for (const id of [...asiaHallTanks.slice(1), asiaHallTanks[0]!]) {
       await view.evaluate(`document.querySelector('button[aria-label^="次の水槽（"]')?.click()`);
       await sleep(2200);
       const active = String(await view.evaluate(`JSON.parse(localStorage.getItem("${STATE_KEY}")).activeTankId`));
@@ -227,15 +243,15 @@ async function main() {
     }
     await view.evaluate(`document.querySelector('button[aria-label^="前の水槽（"]')?.click()`);
     await sleep(2200);
-    assert(await view.evaluate(`JSON.parse(localStorage.getItem("${STATE_KEY}")).activeTankId === "japan-60"`));
+    assert(await view.evaluate(`JSON.parse(localStorage.getItem("${STATE_KEY}")).activeTankId === ${JSON.stringify(asiaHallTanks.at(-1))}`));
     await view.evaluate(`window.dispatchEvent(new KeyboardEvent("keydown", { key: "]" }))`);
     await sleep(2200);
-    assert(await view.evaluate(`JSON.parse(localStorage.getItem("${STATE_KEY}")).activeTankId === "malawi-120"`));
+    assert(await view.evaluate(`JSON.parse(localStorage.getItem("${STATE_KEY}")).activeTankId === "asia-60"`));
     assert(stockBeforeTravel === await view.evaluate(
       `JSON.stringify(JSON.parse(localStorage.getItem("${STATE_KEY}")).tanks)`,
     ));
 
-    // 既存3水槽しかないv5保存へ、新しい2水槽だけが加わること。
+    // 一部の水槽しかない古いv5保存へ、足りない水槽だけが既定の構成で加わること。
     const beforeExpansion = String(await view.evaluate(`(() => {
       const old = JSON.parse(localStorage.getItem("${STATE_KEY}"));
       delete old.tanks["japan-60"];
@@ -249,10 +265,10 @@ async function main() {
     const addedTanksPreserved = Boolean(await view.evaluate(`(() => {
       const now = JSON.parse(localStorage.getItem("${STATE_KEY}"));
       const before = JSON.parse(${JSON.stringify(beforeExpansion)});
-      return Object.keys(now.tanks).length === 7 &&
+      return Object.keys(now.tanks).length === ${TANKS.size} &&
         Object.keys(before).every(id => JSON.stringify(now.tanks[id]) === JSON.stringify(before[id])) &&
-        now.tanks["japan-60"].stock.reduce((n,e) => n+e.count,0) === 28 &&
-        now.tanks["malawi-120"].stock.reduce((n,e) => n+e.count,0) === 23;
+        now.tanks["japan-60"].stock.reduce((n,e) => n+e.count,0) === ${defaultTotal("japan-60")} &&
+        now.tanks["malawi-120"].stock.reduce((n,e) => n+e.count,0) === ${defaultTotal("malawi-120")};
     })()`));
 
     await view.reload();
@@ -310,9 +326,9 @@ async function main() {
       const s = JSON.parse(localStorage.getItem("${STATE_KEY}"));
       const cube = s.tanks["cube-30"];
       const total = id => s.tanks[id].stock.reduce((n, entry) => n + entry.count, 0);
-      return s.stockArrangementVersion === 3 && total("asia-60") === 36 && total("amazon-90") === 46 && total("cube-30") === 20 &&
-        total("japan-60") === 28 && total("malawi-120") === 23 &&
-        s.tanks["asia-60"].stock.length === 9 && s.tanks["amazon-90"].stock.length === 7 && cube.stock.length === 6 &&
+      return s.stockArrangementVersion === 3 && total("asia-60") === ${defaultTotal("asia-60")} && total("amazon-90") === ${defaultTotal("amazon-90")} && total("cube-30") === ${defaultTotal("cube-30")} &&
+        total("japan-60") === ${defaultTotal("japan-60")} && total("malawi-120") === ${defaultTotal("malawi-120")} &&
+        s.tanks["asia-60"].stock.length === ${TANKS.get("asia-60")!.defaultStock.length} && s.tanks["amazon-90"].stock.length === ${TANKS.get("amazon-90")!.defaultStock.length} && cube.stock.length === ${TANKS.get("cube-30")!.defaultStock.length} &&
         Object.values(s.tanks).every(t => t.stock.every(e => e.count >= 1)) &&
         cube.stock.some(e => e.speciesId === "ember-tetra" && e.count === 8) &&
         cube.stock.some(e => e.speciesId === "clown-killifish" && e.count === 2) &&
@@ -337,7 +353,7 @@ async function main() {
     await sleep(2000);
     const mobileMap = await mapSummary(mobileView);
     await Bun.write(`${SCREENSHOT_DIR}/map-420x912.png`, await mobileView.screenshot({ format: "png" }));
-    await openHall(mobileView, "淡水の展示室");
+    await openHall(mobileView, ASIA_HALL.displayName);
     await sleep(500);
     const mobileRoom = await mobileView.evaluate(`({
       roomTanks: document.querySelectorAll(".room-tank").length,
@@ -348,23 +364,20 @@ async function main() {
     await Bun.write(`${SCREENSHOT_DIR}/room-mobile-420x912.png`, await mobileView.screenshot({ format: "png" }));
     // 狭い画面では一覧ボタンから水槽に入り、水槽が細い帯にならず映ること。
     await mobileView.evaluate(`Array.from(document.querySelectorAll(".room-tank-list button"))
-      .find((button) => button.textContent?.includes("アマゾンの大型水槽"))?.click()`);
+      .find((button) => button.textContent?.includes(${JSON.stringify(tankName(ASIA_HALL.tanks[1]!.tankId))}))?.click()`);
     await sleep(3000);
     const mobileEntered = Boolean(await mobileView.evaluate(
       `document.querySelector(".tank-screen")?.classList.contains("visible")`,
     ));
-    await Bun.write(`${SCREENSHOT_DIR}/amazon-mobile-420x912.png`, await mobileView.screenshot({ format: "png" }));
-    for (const [id, name] of [["japan-60", "日本の湧水水槽"], ["malawi-120", "マラウイ湖の岩場水槽"]]) {
-      await clickButtonByText(mobileView, "展示室に戻る");
-      await sleep(1800);
-      await mobileView.evaluate(`Array.from(document.querySelectorAll(".room-tank-list button"))
-        .find(button => button.textContent?.includes(${JSON.stringify(name)}))?.click()`);
-      await sleep(2600);
+    await Bun.write(`${SCREENSHOT_DIR}/list-entered-mobile-420x912.png`, await mobileView.screenshot({ format: "png" }));
+    for (const id of ["japan-60", "malawi-120"]) {
+      await mobileView.navigate(`${BASE_URL}?tank=${id}`);
+      await sleep(2800);
       assert(await mobileView.evaluate(`document.querySelector(".tank-screen")?.classList.contains("visible")`));
       await Bun.write(`${SCREENSHOT_DIR}/${id}-420x912.png`, await mobileView.screenshot({ format: "png" }));
       await clickButtonByText(mobileView, "設定");
       await sleep(700);
-      assert(await countCards(mobileView) === 4);
+      assert(await countCards(mobileView) === TANKS.get(id)!.species.length);
       assert(await mobileView.evaluate(`document.documentElement.scrollWidth === innerWidth`));
       await Bun.write(`${SCREENSHOT_DIR}/${id}-settings-420x912.png`, await mobileView.screenshot({ format: "png" }));
       if (id === "japan-60") {
@@ -431,22 +444,22 @@ async function main() {
     await Bun.write(`${SCREENSHOT_DIR}/settings-landscape-912x420.png`, await landscapeView.screenshot({ format: "png" }));
 
     const expandedScenes = await verifyExpandedScenes(consoleErrors);
-    const specialRoom = await verifySpecialRoom(consoleErrors);
+    const halls = await verifyHalls(consoleErrors);
     const history = await verifyHistory(consoleErrors);
     const result: Result = {
       title, map, history, roomTanks, enteredTank, asiaCards, harlequinCount, rejectedSpecies, newSpeciesChecked, addedTanksPreserved, arrangementPreserved, scenesVisited, japanScenes,
       viewingOnEntry, viewingStageWidth, editingOpened, editingStageWidth, closedToViewing, backToRoom, cubeCards, cubeStageRatio, amazonCards, adjacentTanks,
-      restored, migrated, desktop, mobile, landscape, removedCopyAbsent, consoleErrors, expandedScenes, specialRoom,
+      restored, migrated, desktop, mobile, landscape, removedCopyAbsent, consoleErrors, expandedScenes, halls,
     };
     console.log(JSON.stringify(result, null, 2));
 
     assert(title.includes("熱帯魚"));
-    // 館内図は上の階から並ぶ（2階の海と古代魚、1階の淡水）。準備中の枠は6つ。
-    assert(map.floors === 4 && JSON.stringify(map.halls) === JSON.stringify(["海と古代魚の展示室", "淡水の展示室"])
-      && map.soonHalls === 6 && map.previews === 2 && !map.firstLastHall && map.overflowWidth === 0);
+    // 館内図は上の階から並ぶ。開いている展示室には縮小版を映し、ほかの枠は準備中。
+    assert(map.floors === museumJson.floors.length && JSON.stringify(map.halls) === JSON.stringify(ROOMS.map((room) => room.displayName))
+      && map.soonHalls === HALL_ORDER.length - ROOMS.length && map.previews === ROOMS.length && !map.firstLastHall && map.overflowWidth === 0);
     assert(history.length === 6);
-    assert(roomTanks === 5);
-    assert(enteredTank === "東南アジアの水草水槽");
+    assert(roomTanks === ASIA_HALL.tanks.length);
+    assert(enteredTank === tankName("asia-60"));
     assert(asiaCards === 9 && harlequinCount === 12 && rejectedSpecies);
     assert(JSON.stringify(scenesVisited) ===
       JSON.stringify(["driftwood", "root-driftwood", "iwagumi", "planted"]));
@@ -454,13 +467,13 @@ async function main() {
     assert(editingOpened && editingStageWidth < viewingStageWidth && editingStageWidth >= 700);
     assert(closedToViewing);
     assert(backToRoom);
-    assert(cubeCards === 6 && cubeStageRatio > 1.4);
-    assert(amazonCards === 7);
+    assert(cubeCards === TANKS.get("cube-30")!.species.length && cubeStageRatio > 1);
+    assert(amazonCards === TANKS.get("amazon-90")!.species.length);
     assert(restored.version === 5 && restored.scene === "driftwood");
     assert(restored.lighting === "night" && restored.harlequinCount === 12 && !restored.sound);
     assert(migrated.version === 5 && migrated.asiaScene === "iwagumi" && migrated.amazonNeon === 9);
     assert(desktop.stageWidth >= 700 && desktop.canvasWidth >= 700 && desktop.stageHeight >= 400);
-    assert(mobile.entered && mobile.roomTanks === 5 &&
+    assert(mobile.entered && mobile.roomTanks === ASIA_HALL.tanks.length &&
       mobile.roomTouchAction === "pan-x" && mobile.tankStageWidth >= 380 && mobile.overflowWidth === 0);
     assert(mobile.sheet.panelTop >= 360 && mobile.sheet.stageHeight >= 360 && mobile.sheet.firstCardVisible);
     assert(landscape.panelTop === 0 && landscape.panelLeft >= 456 && landscape.stageHeight >= 380 &&
@@ -468,7 +481,7 @@ async function main() {
     assert(newSpeciesChecked.length === 14);
     assert(japanScenes.length === 6);
     assert(expandedScenes.length === 20);
-    assert(specialRoom.length === 2 && specialRoom.every((result) => result.species.length === 5));
+    assert(halls.length === ROOMS.length * 2);
     assert(addedTanksPreserved);
     assert(arrangementPreserved);
     assert(removedCopyAbsent);
@@ -480,13 +493,15 @@ async function main() {
   }
 }
 
-// 第2の部屋を開き、2水槽の巡回・魚画像・保存・元の部屋への復帰を確認する。
-async function verifySpecialRoom(consoleErrors: string[]) {
-  const results: Result["specialRoom"] = [];
+// 開いている展示室をすべて館内図から開き、どの水槽にも入れて、絵・魚・展示ラベルが出ることを確かめる。
+// 狭い画面では展示室と、一覧から入る最初の水槽だけを見る。
+async function verifyHalls(consoleErrors: string[]) {
+  const results: Result["halls"] = [];
   for (const [width, height] of [[1440, 960], [420, 912]]) {
     const viewport = `${width}x${height}`;
+    const wide = width > 800;
     await using view = new Bun.WebView({ width, height, backend: "webkit",
-      console: (type, ...args) => { if (type === "error") consoleErrors.push(args.map(String).join(" ")); } });
+      console: (type, ...args) => { if (type === "error") consoleErrors.push(`halls ${viewport}: ${args.map(String).join(" ")}`); } });
     await view.navigate(BASE_URL);
     await sleep(2500);
     await view.evaluate(`localStorage.clear()`);
@@ -494,75 +509,57 @@ async function verifySpecialRoom(consoleErrors: string[]) {
     await sleep(2000);
     // 館内図では、どの水景や生き物の画像もまだ要求しない。
     assert(await view.evaluate(`!performance.getEntriesByType('resource').some(r => /\\/(plate|body)\\.webp$/.test(r.name))`));
-    await openHall(view, "淡水の展示室");
-    assert(await view.evaluate(`document.querySelectorAll('.room-tank').length === 5`));
-    // 最初の部屋では、追加魚と追加水景の画像をまだ要求しない。
-    assert(await view.evaluate(`!performance.getEntriesByType('resource').some(r => /\\/(plate|body)\\.webp$/.test(r.name) && /reef-lagoon|african-backwater|ocellaris-clownfish|firefish|mandarinfish|senegal-bichir|ropefish/.test(r.name))`));
-    const original = String(await view.evaluate(`JSON.stringify(Object.fromEntries(Object.entries(JSON.parse(localStorage.getItem('${STATE_KEY}')).tanks).filter(([id]) => !['reef-120','ancient-180'].includes(id))))`));
-    await openHall(view, "海と古代魚の展示室");
-    assert(await view.evaluate(`document.querySelector('.room-scroll.ready[data-room="special"]') && document.querySelectorAll('.room-tank').length === 2 && document.querySelector('.room-stage canvas') && !document.querySelector('.render-problem')`));
-    assert(await view.evaluate(`document.documentElement.scrollWidth === document.documentElement.clientWidth && (() => {const r=document.querySelector('.room-map-button').getBoundingClientRect(); return r.height>=44 && r.left>=0 && r.right<=innerWidth-50;})()`));
-    await Bun.write(`${SCREENSHOT_DIR}/special-room-${viewport}.png`, await view.screenshot({ format: "png" }));
-    const species: string[] = [];
-    for (const [id, name, fish] of [
-      ["reef-120", "サンゴ礁の海水水槽", [["ocellaris-clownfish", "カクレクマノミ"], ["firefish", "ハタタテハゼ"], ["mandarinfish", "ニシキテグリ"]]],
-      ["ancient-180", "アフリカの古代魚専用水槽", [["senegal-bichir", "ポリプテルス・セネガルス"], ["ropefish", "アミメウナギ"]]],
-    ] as [string, string, [string, string][]][]) {
-      await clickByLabel(view, `${name}を眺める`);
-      // 寄っている間は、暗くなる部屋の上に館内図ボタンを残さない。
-      assert(await view.evaluate(`!!document.querySelector('.room-scroll.zooming ~ .room-map-button')`));
-      await sleep(2500);
-      assert(await view.evaluate(`document.querySelector('.tank-screen.visible') && document.querySelector('.aquarium-stage canvas') && !document.querySelector('.render-problem')`));
-      // 展示ラベルに、いま水槽にいる生き物の名前が並ぶ。
-      assert(await view.evaluate(`(() => {const text=document.querySelector('.caption-species')?.textContent ?? ''; return ${JSON.stringify(fish.map(([, label]) => label))}.every((label) => text.includes(label));})()`));
-      assert(await view.evaluate(`(() => {const caption=document.querySelector('.hud-caption'),zoom=document.querySelector('.hud-zoom');return [...caption.children].every(child => child.getBoundingClientRect().right < zoom.getBoundingClientRect().left);})()`));
-      await Bun.write(`${SCREENSHOT_DIR}/${id}-${viewport}.png`, await view.screenshot({ format: "png" }));
-      // ガラスを軽く叩くと、魚が驚く（短い押し下げだけを叩いた操作として扱い、ドラッグは含めない）。
-      await view.evaluate(`(() => {
-        const host = document.querySelector('.aquarium-canvas'); const r = host.getBoundingClientRect();
-        const at = { clientX: r.left + r.width * .5, clientY: r.top + r.height * .55, pointerId: 7, bubbles: true, pointerType: 'mouse', button: 0 };
-        host.dispatchEvent(new PointerEvent('pointerdown', at)); host.dispatchEvent(new PointerEvent('pointerup', at));
-        const drag = { ...at, pointerId: 8 };
-        host.dispatchEvent(new PointerEvent('pointerdown', drag));
-        host.dispatchEvent(new PointerEvent('pointermove', { ...drag, clientX: at.clientX + 40 }));
-        host.dispatchEvent(new PointerEvent('pointerup', { ...drag, clientX: at.clientX + 40 }));
-      })()`);
-      await sleep(350);
-      assert(await view.evaluate(`document.querySelector('.aquarium-canvas').dataset.glassTaps === '1'`));
-      await Bun.write(`${SCREENSHOT_DIR}/${id}-tapped-${viewport}.png`, await view.screenshot({ format: "png" }));
-      await view.evaluate(`window.dispatchEvent(new KeyboardEvent('keydown', {key:'0'}))`);
-      await clickButtonByText(view, "設定");
-      await sleep(650);
-      assert(await countCards(view) === fish.length);
-      species.push(...await verifyNewFish(view, id, fish));
-      await view.evaluate(`document.querySelector('button[aria-label^="次の水槽（"]')?.click()`);
-      await sleep(2200);
-      assert(await view.evaluate(`JSON.parse(localStorage.getItem('${STATE_KEY}')).activeTankId === '${id === "reef-120" ? "ancient-180" : "reef-120"}'`));
-      await view.evaluate(`window.dispatchEvent(new KeyboardEvent('keydown', {key:']'}))`);
-      await sleep(2200);
-      assert(await view.evaluate(`JSON.parse(localStorage.getItem('${STATE_KEY}')).activeTankId === '${id}'`));
-      await clickButtonByText(view, "展示室に戻る");
-      await sleep(2500);
-      assert(await view.evaluate(`document.querySelector('.room-scroll.ready[data-room="special"]') && document.querySelectorAll('.room-tank').length === 2`));
+    for (const room of ROOMS) {
+      await openHall(view, room.displayName);
+      assert(await view.evaluate(`document.querySelector('.room-scroll.ready[data-room="${room.id}"]') && document.querySelectorAll('.room-tank').length === ${room.tanks.length} && document.querySelector('.room-stage canvas') && !document.querySelector('.render-problem')`));
+      assert(await view.evaluate(`document.documentElement.scrollWidth === document.documentElement.clientWidth`));
+      await Bun.write(`${SCREENSHOT_DIR}/hall-${room.id}-${viewport}.png`, await view.screenshot({ format: "png" }));
+      const tanks = wide ? room.tanks.map((tank) => tank.tankId) : [room.tanks[0]!.tankId];
+      for (const tankId of tanks) {
+        const tank = TANKS.get(tankId)!;
+        if (wide) {
+          await clickByLabel(view, `${tank.displayName}を眺める`);
+        } else {
+          await view.evaluate(`Array.from(document.querySelectorAll(".room-tank-list button"))
+            .find((button) => button.textContent?.includes(${JSON.stringify(tank.displayName)}))?.click()`);
+        }
+        await sleep(2800);
+        assert(await view.evaluate(`document.querySelector('.tank-screen.visible') && document.querySelector('.aquarium-stage canvas') && !document.querySelector('.render-problem')`));
+        // 展示ラベルに、いま水槽にいる生き物の名前が並ぶ。
+        const names = await Promise.all(tank.defaultStock.map(async (entry) =>
+          (await Bun.file(`src/content/fish/${entry.speciesId}/species.json`).json()).displayName as string));
+        assert(await view.evaluate(`(() => {const text=document.querySelector('.caption-species')?.textContent ?? ''; return ${JSON.stringify(names)}.every((label) => text.includes(label));})()`));
+        assert(await view.evaluate(`document.documentElement.scrollWidth === document.documentElement.clientWidth`));
+        await Bun.write(`${SCREENSHOT_DIR}/tank-${tankId}-${viewport}.png`, await view.screenshot({ format: "png" }));
+        await clickButtonByText(view, "展示室に戻る");
+        await sleep(2200);
+        assert(await view.evaluate(`!!document.querySelector('.room-scroll.ready[data-room="${room.id}"]')`));
+      }
+      results.push({ viewport, hall: room.id, tanks: tanks.length });
     }
+    // ガラスを軽く叩くと、魚が驚く（短い押し下げだけを叩いた操作として扱い、ドラッグは含めない）。
+    await view.navigate(`${BASE_URL}?tank=reef-120`);
+    await sleep(2800);
+    await view.evaluate(`(() => {
+      const host = document.querySelector('.aquarium-canvas'); const r = host.getBoundingClientRect();
+      const at = { clientX: r.left + r.width * .5, clientY: r.top + r.height * .55, pointerId: 7, bubbles: true, pointerType: 'mouse', button: 0 };
+      host.dispatchEvent(new PointerEvent('pointerdown', at)); host.dispatchEvent(new PointerEvent('pointerup', at));
+      const drag = { ...at, pointerId: 8 };
+      host.dispatchEvent(new PointerEvent('pointerdown', drag));
+      host.dispatchEvent(new PointerEvent('pointermove', { ...drag, clientX: at.clientX + 40 }));
+      host.dispatchEvent(new PointerEvent('pointerup', { ...drag, clientX: at.clientX + 40 }));
+    })()`);
+    await sleep(350);
+    assert(await view.evaluate(`document.querySelector('.aquarium-canvas').dataset.glassTaps === '1'`));
     // 開き直すと館内図から始まり、前回の展示室に目印が付く。
     await view.navigate(BASE_URL);
     await sleep(2000);
-    assert(await view.evaluate(`document.querySelector('.hall-card.last')?.textContent?.includes('海と古代魚の展示室')`));
-    await openHall(view, "海と古代魚の展示室");
-    assert(await view.evaluate(`document.querySelector('.room-scroll[data-room="special"]') && document.querySelectorAll('.room-tank').length === 2`));
-    await openHall(view, "淡水の展示室");
-    assert(await view.evaluate(`document.querySelector('.room-scroll.ready[data-room="freshwater"]') && document.querySelectorAll('.room-tank').length === 5`));
-    assert(original === await view.evaluate(`JSON.stringify(Object.fromEntries(Object.entries(JSON.parse(localStorage.getItem('${STATE_KEY}')).tanks).filter(([id]) => !['reef-120','ancient-180'].includes(id))))`));
-    // 部屋を行き来しても、その部屋で最後に見ていた水槽を覚えている。
-    await openHall(view, "海と古代魚の展示室");
-    assert(await view.evaluate(`JSON.parse(localStorage.getItem('${STATE_KEY}')).activeTankId === 'ancient-180'`));
-    results.push({ viewport, species });
+    assert(await view.evaluate(`document.querySelector('.hall-card.last')?.textContent?.includes(${JSON.stringify(roomOf("reef-120").displayName)})`));
   }
   return results;
 }
 
-// 他の4水槽は全水景を鑑賞画面で描画し、水槽ごとに最後の選択を再読込して確認する。
+// 既存の4水槽は全水景を鑑賞画面で描画し、水槽ごとに最後の選択を再読込して確認する。
 async function verifyExpandedScenes(consoleErrors: string[]) {
   const visited: string[] = [];
   for (const [width, height, viewport] of [[1440, 960, "desktop"], [420, 912, "420x912"]] as const) {
@@ -596,7 +593,7 @@ async function verifyExpandedScenes(consoleErrors: string[]) {
       assert(saved === await view.evaluate(`JSON.stringify(JSON.parse(localStorage.getItem("${STATE_KEY}")).tanks[${JSON.stringify(tankId)}].stock)`));
       await clickButtonByText(view, "展示室に戻る");
       await sleep(1800);
-      assert(await view.evaluate(`document.querySelectorAll('.room-tank').length === 5 && !!document.querySelector('.room-stage canvas') && !document.querySelector('.render-problem')`));
+      assert(await view.evaluate(`document.querySelectorAll('.room-tank').length === ${roomOf(tankId).tanks.length} && !!document.querySelector('.room-stage canvas') && !document.querySelector('.render-problem')`));
     }
     await Bun.write(`${SCREENSHOT_DIR}/terrain-room-${viewport}.png`, await view.screenshot({ format: "png" }));
   }
@@ -707,11 +704,13 @@ async function verifyHistory(consoleErrors: string[]) {
   const steps: string[] = [];
   const where = async () => String(await view.evaluate(`[location.search,
     document.querySelector('.museum-map') ? 'map' : document.querySelector('.tank-screen.visible') ? 'tank' : document.querySelector('.room-scroll.ready')?.dataset.room ?? '?'].join(' ')`));
+  const reef = roomOf("reef-120");
+  const next = reef.tanks[(reef.tanks.findIndex((tank) => tank.tankId === "reef-120") + 1) % reef.tanks.length]!.tankId;
   await view.navigate(BASE_URL);
   await sleep(2000);
-  await openHall(view, "海と古代魚の展示室");
+  await openHall(view, reef.displayName);
   steps.push(await where());
-  await clickByLabel(view, "サンゴ礁の海水水槽を眺める");
+  await clickByLabel(view, `${tankName("reef-120")}を眺める`);
   await sleep(2500);
   steps.push(await where());
   await view.evaluate(`window.dispatchEvent(new KeyboardEvent('keydown', { key: ']' }))`);
@@ -727,13 +726,13 @@ async function verifyHistory(consoleErrors: string[]) {
   await sleep(2500);
   steps.push(await where());
   assert(JSON.stringify(steps) === JSON.stringify([
-    "?hall=special special", "?tank=reef-120 tank", "?tank=ancient-180 tank",
-    "?hall=special special", " map", "?hall=special special",
+    `?hall=${reef.id} ${reef.id}`, "?tank=reef-120 tank", `?tank=${next} tank`,
+    `?hall=${reef.id} ${reef.id}`, " map", `?hall=${reef.id} ${reef.id}`,
   ]));
   // 展示室の直リンク
-  await view.navigate(`${BASE_URL}?hall=special`);
+  await view.navigate(`${BASE_URL}?hall=${reef.id}`);
   await sleep(2500);
-  assert(await view.evaluate(`document.querySelector('.room-scroll.ready')?.dataset.room === 'special'`));
+  assert(await view.evaluate(`document.querySelector('.room-scroll.ready')?.dataset.room === ${JSON.stringify(reef.id)}`));
   return steps;
 }
 

@@ -1,0 +1,11 @@
+{
+  "id": "reef-surgeonfish-240",
+  "order": 110,
+  "displayName": "サンゴ礁の斜面と開けた青",
+  "description": "両側の岩にテーブルサンゴ、ノウサンゴ、ウミウチワが育ち、中央には深い青の水が大きく開けています。足もとは白い砂とサンゴのかけら。",
+  "defaultLighting": "natural",
+  "waterColor": "#2683b3",
+  "framing": {
+    "plateBottom": 0.942
+  }
+}

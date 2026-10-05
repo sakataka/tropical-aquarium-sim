@@ -6,7 +6,7 @@
   "category": "地域ビオトープ",
   "description": "南米アマゾン川の支流を思わせる90cmの大型水槽。流木と落ち葉の間をエンゼルフィッシュとテトラの群れが泳ぎ、水面直下にはハチェットが漂います。",
   "widthCm": 90,
-  "heightCm": 45,
+  "heightCm": 52,
   "depthCm": 45,
   "maxTotalFish": 50,
   "sceneIds": [
@@ -14,21 +14,63 @@
     "amazon-planted"
   ],
   "species": [
-    { "speciesId": "angelfish", "maxCount": 4 },
-    { "speciesId": "neon-tetra", "maxCount": 20 },
-    { "speciesId": "corydoras", "maxCount": 8 },
-    { "speciesId": "rummy-nose-tetra", "maxCount": 16 },
-    { "speciesId": "marbled-hatchetfish", "maxCount": 8 },
-    { "speciesId": "lemon-tetra", "maxCount": 16 },
-    { "speciesId": "dwarf-pencilfish", "maxCount": 10 }
+    {
+      "speciesId": "angelfish",
+      "maxCount": 4
+    },
+    {
+      "speciesId": "neon-tetra",
+      "maxCount": 20
+    },
+    {
+      "speciesId": "corydoras",
+      "maxCount": 8
+    },
+    {
+      "speciesId": "rummy-nose-tetra",
+      "maxCount": 16
+    },
+    {
+      "speciesId": "marbled-hatchetfish",
+      "maxCount": 8
+    },
+    {
+      "speciesId": "lemon-tetra",
+      "maxCount": 16
+    },
+    {
+      "speciesId": "dwarf-pencilfish",
+      "maxCount": 10
+    }
   ],
   "defaultStock": [
-    { "speciesId": "neon-tetra", "count": 16 },
-    { "speciesId": "rummy-nose-tetra", "count": 8 },
-    { "speciesId": "lemon-tetra", "count": 6 },
-    { "speciesId": "dwarf-pencilfish", "count": 5 },
-    { "speciesId": "marbled-hatchetfish", "count": 3 },
-    { "speciesId": "corydoras", "count": 6 },
-    { "speciesId": "angelfish", "count": 2 }
+    {
+      "speciesId": "neon-tetra",
+      "count": 16
+    },
+    {
+      "speciesId": "rummy-nose-tetra",
+      "count": 8
+    },
+    {
+      "speciesId": "lemon-tetra",
+      "count": 6
+    },
+    {
+      "speciesId": "dwarf-pencilfish",
+      "count": 5
+    },
+    {
+      "speciesId": "marbled-hatchetfish",
+      "count": 3
+    },
+    {
+      "speciesId": "corydoras",
+      "count": 6
+    },
+    {
+      "speciesId": "angelfish",
+      "count": 2
+    }
   ]
 }

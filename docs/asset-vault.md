@@ -34,6 +34,16 @@ dots と Claude Code は直接やりとりできないので、保管庫で連�
 
 修正版の画像が届いたら、`adoptions/` を書き換えて手順2をやり直す（`species.json` があれば `sourceBodyBounds` だけを書き換える）。
 
+## 展示室を開ける流れ
+
+展示室の絵・水景・館内図は、保管庫の `adoptions/`（hall-*・scene-*・museum-section）に採否を記録してから取り込む。水槽の並びと大きさは展示計画（`catalog/exhibit-plan.json`）が正本。
+
+1. 水槽の雛形を作る: 開ける水槽ごとに `src/content/tanks/<tank-id>/tank.json` を置き、入る魚を `content-drafts/fish/` から `src/content/fish/` へ移す。まだ開けない水槽（魚以外の生き物を待つものなど）は tank.json を置かない。
+2. 水景を取り込む: `AQUARIUM_ASSET_VAULT=~/Documents/aquarium-assets uv run scripts/install-vault-scene.py <tank-id>...`。水景の id は水槽の id と同じ。dots は中央で切り取る前提で構図を作るので、ガラスが画像より横長な水槽には `framing.plateBottom` を自動で入れる。続けて `uv run scripts/build-scene-thumbs.py`。
+3. 展示室を作る: `AQUARIUM_ASSET_VAULT=... uv run scripts/install-vault-hall.py <hall-id>...`。dots が測った緑のガラスの矩形から `room/<hall-id>.json` を書き、絵の緑を塗る。tank.json のない水槽のガラスには、その水槽の水景を暗く焼き込んで準備中として見せる。続けて `uv run scripts/build-room-thumbs.py`。
+4. 中身を作る: 水槽ごとに `terrain.json`（面・遮蔽・回避・隠れ場所）を絵に合わせて書き、`scene.json` の名前・説明・水の色と、`tank.json` の名前・説明・匹数を決める。見える範囲を切り出した絵に地形を重ねた確認画像で合わせる。
+5. `museum.json` の枠の id と展示室の id が同じなら、館内図で開いた展示室として出る。`bun run test`・`bun run build`・`bun run verify:webview` で確かめる。
+
 ## 画像の条件
 
 共通（[`AGENTS.md`](../AGENTS.md) のアセット制作方針）:

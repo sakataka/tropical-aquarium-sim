@@ -1,0 +1,43 @@
+{
+  "id": "tanganyika-deep-240",
+  "order": 121,
+  "displayName": "タンガニイカ湖の深場水槽",
+  "exhibitName": "Tanganyika Depths",
+  "category": "タンガニイカ湖の深場",
+  "description": "タンガニイカ湖の深い岩場を再現した240cm水槽。サイプリクロミスの群れが上層を行き交い、フロントーサは中層から下をゆったりと泳ぎます。底では大型のシノドンティス・グラニュロススが砂を探ります。",
+  "widthCm": 240,
+  "heightCm": 97,
+  "depthCm": 80,
+  "maxTotalFish": 26,
+  "sceneIds": [
+    "tanganyika-deep-240"
+  ],
+  "species": [
+    {
+      "speciesId": "frontosa",
+      "maxCount": 6
+    },
+    {
+      "speciesId": "cyprichromis-leptosoma",
+      "maxCount": 20
+    },
+    {
+      "speciesId": "granular-synodontis",
+      "maxCount": 2
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "frontosa",
+      "count": 4
+    },
+    {
+      "speciesId": "cyprichromis-leptosoma",
+      "count": 14
+    },
+    {
+      "speciesId": "granular-synodontis",
+      "count": 1
+    }
+  ]
+}

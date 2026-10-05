@@ -1,0 +1,43 @@
+{
+  "id": "japan-river-pool-120",
+  "order": 132,
+  "displayName": "淵の岩陰水槽",
+  "exhibitName": "River Pool",
+  "category": "日本の川の淵",
+  "description": "大岩と倒木が重なる川の淵を再現した180cm水槽。ニホンウナギとドンコは岩の下の暗い穴を住みかにして出入りし、ギギは底近くをゆっくり泳ぎます。どれも夜行性で、明るい照明では物陰に隠れて休みます。",
+  "widthCm": 180,
+  "heightCm": 76,
+  "depthCm": 68,
+  "maxTotalFish": 7,
+  "sceneIds": [
+    "japan-river-pool-120"
+  ],
+  "species": [
+    {
+      "speciesId": "japanese-eel",
+      "maxCount": 2
+    },
+    {
+      "speciesId": "gigi-catfish",
+      "maxCount": 3
+    },
+    {
+      "speciesId": "japanese-dark-sleeper",
+      "maxCount": 3
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "japanese-eel",
+      "count": 1
+    },
+    {
+      "speciesId": "gigi-catfish",
+      "count": 2
+    },
+    {
+      "speciesId": "japanese-dark-sleeper",
+      "count": 2
+    }
+  ]
+}

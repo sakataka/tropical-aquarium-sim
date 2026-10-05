@@ -1,0 +1,43 @@
+{
+  "id": "amazon-giants-400",
+  "order": 114,
+  "displayName": "アマゾンの大型魚水槽",
+  "exhibitName": "River Giants",
+  "category": "アマゾンの本流",
+  "description": "アマゾン本流の深みを思わせる400cmの大水槽。レッドテールキャットとデンキウナギは砂底で休み、デンキウナギはときおり水面へ息を吸いに上がります。ブラックゴーストは昼は物陰に隠れ、暗くなると泳ぎ出します。",
+  "widthCm": 400,
+  "heightCm": 142,
+  "depthCm": 150,
+  "maxTotalFish": 6,
+  "sceneIds": [
+    "amazon-giants-400"
+  ],
+  "species": [
+    {
+      "speciesId": "redtail-catfish",
+      "maxCount": 2
+    },
+    {
+      "speciesId": "black-ghost-knifefish",
+      "maxCount": 3
+    },
+    {
+      "speciesId": "electric-eel",
+      "maxCount": 2
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "redtail-catfish",
+      "count": 1
+    },
+    {
+      "speciesId": "black-ghost-knifefish",
+      "count": 2
+    },
+    {
+      "speciesId": "electric-eel",
+      "count": 1
+    }
+  ]
+}

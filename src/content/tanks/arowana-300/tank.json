@@ -1,0 +1,35 @@
+{
+  "id": "arowana-300",
+  "order": 136,
+  "displayName": "アロワナの大型水槽",
+  "exhibitName": "Arowanas",
+  "category": "東南アジアと南米の河川",
+  "description": "浮き葉が重なる水面の下、アジアアロワナとシルバーアロワナが上層をゆったり滑るように巡る300cmの水槽です。岸から垂れる根と倒木の根元が、開けた水の両脇を縁取ります。",
+  "widthCm": 300,
+  "heightCm": 107,
+  "depthCm": 90,
+  "maxTotalFish": 4,
+  "sceneIds": [
+    "arowana-300"
+  ],
+  "species": [
+    {
+      "speciesId": "asian-arowana",
+      "maxCount": 3
+    },
+    {
+      "speciesId": "silver-arowana",
+      "maxCount": 2
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "asian-arowana",
+      "count": 2
+    },
+    {
+      "speciesId": "silver-arowana",
+      "count": 1
+    }
+  ]
+}

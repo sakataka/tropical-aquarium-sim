@@ -1,4 +1,5 @@
 import { expect, test } from "vitest";
+import { getBodyPlan } from "./bodyPlans";
 import { fishCatalog } from "./catalog";
 import { createFishFromStock, createFishPersonality } from "./fishPopulation";
 import { getSceneById } from "./sceneCatalog";
@@ -58,7 +59,10 @@ test.each([42, 137])("all habitats remain stable at capacity through ten minutes
       }
     }
     expect(fish.length, sceneId).toBe(tank.maxTotalFish);
-    expect(depthTravel, sceneId).toBeGreaterThan(.03);
+    // 面を歩く生き物（エビ）の奥行きは経路が決める。泳ぐ魚がいる水槽だけ、奥行きの変化を確かめる。
+    if (fish.some((f) => !getBodyPlan(fishCatalog[f.speciesId]!).walksOnSurfaces)) {
+      expect(depthTravel, sceneId).toBeGreaterThan(.03);
+    }
     results.push({ sceneId, fish: fish.length, depthTravel, longestBlockedSec });
   }
   expect(results.filter(r => r.longestBlockedSec > 1)).toEqual([]);

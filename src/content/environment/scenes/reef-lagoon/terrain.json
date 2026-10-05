@@ -302,28 +302,28 @@
         "kind": "anemone",
         "x": 0.115,
         "y": 0.55,
-        "depth": 0.62
+        "depth": 0.72
       },
       {
         "id": "sand-burrow",
         "kind": "burrow",
         "x": 0.5,
         "y": 0.81,
-        "depth": 0.55
+        "depth": 0.72
       },
       {
         "id": "right-crevice",
         "kind": "crevice",
         "x": 0.73,
         "y": 0.765,
-        "depth": 0.62
+        "depth": 0.72
       },
       {
         "id": "left-overhang",
         "kind": "cave",
         "x": 0.29,
         "y": 0.79,
-        "depth": 0.62
+        "depth": 0.72
       }
     ]
   }

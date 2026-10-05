@@ -1,0 +1,11 @@
+{
+  "id": "amazon-tetras-120",
+  "order": 133,
+  "displayName": "水草の岸と砂の小径",
+  "description": "左右の岸にアマゾンソードとヴァリスネリアが茂り、根元に流木と苔むした石。中央の砂の小径の上に、群れが泳ぐ広い中層が開けています。",
+  "defaultLighting": "natural",
+  "waterColor": "#0a4a55",
+  "framing": {
+    "plateBottom": 0.876
+  }
+}

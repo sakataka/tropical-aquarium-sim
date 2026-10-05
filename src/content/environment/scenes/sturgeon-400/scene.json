@@ -1,0 +1,11 @@
+{
+  "id": "sturgeon-400",
+  "order": 171,
+  "displayName": "丸石と砂利の川底",
+  "description": "苔をまとった丸い大石が左右に集まり、中央に砂利の川底が奥まで続く、冷たく澄んだ大河。",
+  "defaultLighting": "cool",
+  "waterColor": "#2a8a96",
+  "framing": {
+    "plateBottom": 0.897
+  }
+}

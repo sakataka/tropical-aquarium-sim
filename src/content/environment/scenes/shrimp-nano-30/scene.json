@@ -1,0 +1,11 @@
+{
+  "id": "shrimp-nano-30",
+  "order": 152,
+  "displayName": "モスの流木と石",
+  "description": "モスをまとった流木と石、シダの葉が茂る小さな水景。黒いソイルと前景の小さな水草の上を、エビが歩き回ります。",
+  "defaultLighting": "natural",
+  "waterColor": "#024054",
+  "framing": {
+    "plateBottom": 0.917
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "id": "gar-400",
+  "order": 138,
+  "displayName": "ガーとアミアの水槽",
+  "exhibitName": "Gars & Bowfin",
+  "category": "北米南部の湿地",
+  "description": "ヌマスギの膝根と倒木の間を、アリゲーターガー、ロングノーズガー、スポッテッドガーが細長い体で漂うように泳ぎ、アミアは底で休みます。どの魚もときどき水面へ空気を吸いに上がる600cmの水槽です。",
+  "widthCm": 600,
+  "heightCm": 225,
+  "depthCm": 180,
+  "maxTotalFish": 8,
+  "sceneIds": [
+    "gar-400"
+  ],
+  "species": [
+    {
+      "speciesId": "alligator-gar",
+      "maxCount": 2
+    },
+    {
+      "speciesId": "longnose-gar",
+      "maxCount": 3
+    },
+    {
+      "speciesId": "spotted-gar",
+      "maxCount": 3
+    },
+    {
+      "speciesId": "bowfin",
+      "maxCount": 2
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "alligator-gar",
+      "count": 1
+    },
+    {
+      "speciesId": "longnose-gar",
+      "count": 2
+    },
+    {
+      "speciesId": "spotted-gar",
+      "count": 2
+    },
+    {
+      "speciesId": "bowfin",
+      "count": 1
+    }
+  ]
+}

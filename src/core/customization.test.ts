@@ -16,9 +16,10 @@ const asia = getTankById("asia-60")!;
 const cube = getTankById("cube-30")!;
 
 describe("tanks", () => {
-  test("define seven tanks whose scenes and species exist", () => {
+  test("define tanks whose scenes and species exist, keeping the first seven tank ids", () => {
     expect(AQUARIUM_STATE_STORAGE_KEY).toContain(".v5");
-    expect(aquariumTanks.map((tank) => tank.id)).toEqual(["asia-60", "amazon-90", "cube-30", "japan-60", "malawi-120", "reef-120", "ancient-180"]);
+    // 保存データは水槽IDで持つので、最初の7水槽のIDは変えない。
+    expect(aquariumTanks.map((tank) => tank.id)).toEqual(expect.arrayContaining(["asia-60", "amazon-90", "cube-30", "japan-60", "malawi-120", "reef-120", "ancient-180"]));
     const assignedScenes = aquariumTanks.flatMap((tank) => tank.sceneIds);
     expect(new Set(assignedScenes).size).toBe(assignedScenes.length);
     expect([...assignedScenes].sort()).toEqual(aquariumScenes.map((scene) => scene.id).sort());
@@ -38,10 +39,10 @@ describe("tanks", () => {
     expect([...placeable].sort()).toEqual(Object.keys(fishCatalog).sort());
   });
 
-  test("place every tank once across the two rooms", () => {
+  test("place every tank once across the halls, at most six to a hall", () => {
     expect(fishRooms.flatMap((room) => room.tanks.map((item) => item.tankId)).sort())
       .toEqual(aquariumTanks.map((tank) => tank.id).sort());
-    expect(fishRooms.map((room) => room.tanks.length)).toEqual([5, 2]);
+    for (const room of fishRooms) expect(room.tanks.length, room.id).toBeLessThanOrEqual(6);
     for (const { glass } of fishRooms.flatMap((room) => room.tanks)) {
       expect(glass.x + glass.width).toBeLessThanOrEqual(1);
       expect(glass.y + glass.height).toBeLessThanOrEqual(1);
@@ -82,7 +83,7 @@ describe("saved state", () => {
       .toEqual([{ speciesId: "zebra-danio", count: 1 }]);
   });
 
-  test("adds the second room to an existing five-tank save, preserving manual changes", () => {
+  test("adds tanks missing from an older save, preserving manual changes", () => {
     const old = createDefaultState(fishCatalog);
     delete old.tanks["reef-120"];
     delete old.tanks["ancient-180"];
@@ -96,7 +97,7 @@ describe("saved state", () => {
     expect(restored.preferences).toEqual(old.preferences);
     for (const id of ["reef-120", "ancient-180"]) {
       expect(restored.tanks[id]).toEqual(createDefaultState(fishCatalog).tanks[id]);
-      expect(getRoomForTank(id).id).toBe("special");
+      expect(getRoomForTank(id).tanks.some((item) => item.tankId === id), id).toBe(true);
     }
     restored.activeTankId = "ancient-180";
     restored.tanks["reef-120"]!.stock = [];

@@ -1,0 +1,59 @@
+{
+  "id": "congo-river-120",
+  "order": 122,
+  "displayName": "コンゴ川の流木水槽",
+  "exhibitName": "Congo River",
+  "category": "中央アフリカの川",
+  "description": "コンゴ川の流れを思わせる120cm水槽。コンゴテトラの群れが中層を泳ぎ、ペルヴィカクロミスは根の下の洞を住みかにします。赤いヘミクロミス・リファリリは根のまわりを泳ぎ、シノドンティス・ニグリヴェントリスとエレファントノーズは昼は根の陰に隠れて、暗くなると砂底へ出てきます。",
+  "widthCm": 120,
+  "heightCm": 69,
+  "depthCm": 45,
+  "maxTotalFish": 24,
+  "sceneIds": [
+    "congo-river-120"
+  ],
+  "species": [
+    {
+      "speciesId": "congo-tetra",
+      "maxCount": 14
+    },
+    {
+      "speciesId": "upside-down-catfish",
+      "maxCount": 6
+    },
+    {
+      "speciesId": "elephantnose-fish",
+      "maxCount": 1
+    },
+    {
+      "speciesId": "kribensis",
+      "maxCount": 4
+    },
+    {
+      "speciesId": "lifalili-jewel-cichlid",
+      "maxCount": 4
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "congo-tetra",
+      "count": 10
+    },
+    {
+      "speciesId": "upside-down-catfish",
+      "count": 4
+    },
+    {
+      "speciesId": "elephantnose-fish",
+      "count": 1
+    },
+    {
+      "speciesId": "kribensis",
+      "count": 2
+    },
+    {
+      "speciesId": "lifalili-jewel-cichlid",
+      "count": 2
+    }
+  ]
+}

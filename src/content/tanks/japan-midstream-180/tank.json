@@ -1,0 +1,67 @@
+{
+  "id": "japan-midstream-180",
+  "order": 131,
+  "displayName": "川の中流水槽",
+  "exhibitName": "Midstream Riffle",
+  "category": "日本の川の中流",
+  "description": "玉石と砂利が続く川の中流の瀬を再現した180cm水槽。アユは石の表面をついばみ、オイカワ、カワムツ、ウグイの群れが開けた中層から上層を行き交います。カワヨシノボリとヌマチチブは底の石のあいだで休み、ときどき短く泳ぎ出します。",
+  "widthCm": 180,
+  "heightCm": 55,
+  "depthCm": 60,
+  "maxTotalFish": 26,
+  "sceneIds": [
+    "japan-midstream-180"
+  ],
+  "species": [
+    {
+      "speciesId": "ayu",
+      "maxCount": 8
+    },
+    {
+      "speciesId": "pale-chub",
+      "maxCount": 8
+    },
+    {
+      "speciesId": "dark-chub",
+      "maxCount": 6
+    },
+    {
+      "speciesId": "japanese-dace",
+      "maxCount": 5
+    },
+    {
+      "speciesId": "kawayoshinobori",
+      "maxCount": 3
+    },
+    {
+      "speciesId": "numachichibu",
+      "maxCount": 3
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "ayu",
+      "count": 5
+    },
+    {
+      "speciesId": "pale-chub",
+      "count": 5
+    },
+    {
+      "speciesId": "dark-chub",
+      "count": 3
+    },
+    {
+      "speciesId": "japanese-dace",
+      "count": 3
+    },
+    {
+      "speciesId": "kawayoshinobori",
+      "count": 2
+    },
+    {
+      "speciesId": "numachichibu",
+      "count": 2
+    }
+  ]
+}

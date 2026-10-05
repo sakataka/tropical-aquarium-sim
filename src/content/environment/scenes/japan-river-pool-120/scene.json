@@ -1,0 +1,11 @@
+{
+  "id": "japan-river-pool-120",
+  "order": 157,
+  "displayName": "沈み木と岩穴の淵",
+  "description": "苔むした大岩のあいだに古い倒木が沈み、岩の下に暗い穴がのぞく川の淵。上から届く弱い光の中、泥まじりの砂利底が奥へ続きます。",
+  "defaultLighting": "evening",
+  "waterColor": "#1d4d4b",
+  "framing": {
+    "plateBottom": 0.922
+  }
+}

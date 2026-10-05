@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState, type MutableRefObject } from "react";
+import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties, type MutableRefObject } from "react";
 import { Application, Container, Graphics, Sprite, Texture } from "pixi.js";
 import {
   fishCatalog,
@@ -474,7 +474,7 @@ export function FishRoom({
       {/* 左端から始まるスワイプは Safari の「戻る」に使われるので、部屋のスクロールに渡さない。 */}
       <div aria-hidden="true" className="edge-guard" />
       {/* 展示の目録。狭い画面では部屋の一部しか見えないため、ここからも水槽に入れる。 */}
-      <nav aria-label="水槽を選ぶ" className="room-tank-list">
+      <nav aria-label="水槽を選ぶ" className="room-tank-list" style={{ "--tank-count": fishRoom.tanks.length } as CSSProperties}>
         {fishRoom.tanks.map((placement, index) => {
           const tank = getTankById(placement.tankId);
           if (!tank) return null;

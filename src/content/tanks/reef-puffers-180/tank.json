@@ -1,0 +1,75 @@
+{
+  "id": "reef-puffers-180",
+  "order": 104,
+  "displayName": "フグとモンガラカワハギの水槽",
+  "exhibitName": "Pufferfish & Triggerfish",
+  "category": "サンゴ礁の海",
+  "description": "岩穴と張り出しの多い、外側の礁を再現した180cmの水槽。モンガラカワハギとムラサメモンガラは岩の隙間を住みかに砂地をつつき、ハリセンボン、コンゴウフグ、ミナミハコフグはゆっくりと泳ぎます。ハナミノカサゴとクマドリカエルアンコウは岩陰でじっと構えます。",
+  "widthCm": 180,
+  "heightCm": 94,
+  "depthCm": 60,
+  "maxTotalFish": 11,
+  "sceneIds": [
+    "reef-puffers-180"
+  ],
+  "species": [
+    {
+      "speciesId": "clown-triggerfish",
+      "maxCount": 1
+    },
+    {
+      "speciesId": "picasso-triggerfish",
+      "maxCount": 2
+    },
+    {
+      "speciesId": "long-spine-porcupinefish",
+      "maxCount": 1
+    },
+    {
+      "speciesId": "longhorn-cowfish",
+      "maxCount": 1
+    },
+    {
+      "speciesId": "yellow-boxfish",
+      "maxCount": 3
+    },
+    {
+      "speciesId": "red-lionfish",
+      "maxCount": 2
+    },
+    {
+      "speciesId": "warty-frogfish",
+      "maxCount": 1
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "clown-triggerfish",
+      "count": 1
+    },
+    {
+      "speciesId": "picasso-triggerfish",
+      "count": 2
+    },
+    {
+      "speciesId": "long-spine-porcupinefish",
+      "count": 1
+    },
+    {
+      "speciesId": "longhorn-cowfish",
+      "count": 1
+    },
+    {
+      "speciesId": "yellow-boxfish",
+      "count": 2
+    },
+    {
+      "speciesId": "red-lionfish",
+      "count": 1
+    },
+    {
+      "speciesId": "warty-frogfish",
+      "count": 1
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "id": "barbs-stream-90",
+  "order": 126,
+  "displayName": "バルブとダニオの渓流水槽",
+  "exhibitName": "Barbs & Danios Stream",
+  "category": "インドと東南アジアの渓流",
+  "description": "丸石と砂利の川床に、インドと東南アジアの渓流の魚を集めた90cm水槽。パール・ダニオとグローライト・ダニオが上層を素早く行き交い、スマトラ、ロージーバルブ、デニソニーは中層を群れで泳ぎます。インディアン・グラスフィッシュは透きとおった体を中層に浮かべ、クラウンローチとヨーヨーローチは底を探りながら石のあいだを巡ります。",
+  "widthCm": 90,
+  "heightCm": 40,
+  "depthCm": 45,
+  "maxTotalFish": 48,
+  "sceneIds": [
+    "barbs-stream-90"
+  ],
+  "species": [
+    {
+      "speciesId": "denison-barb",
+      "maxCount": 6
+    },
+    {
+      "speciesId": "rosy-barb",
+      "maxCount": 8
+    },
+    {
+      "speciesId": "tiger-barb",
+      "maxCount": 10
+    },
+    {
+      "speciesId": "yoyo-loach",
+      "maxCount": 5
+    },
+    {
+      "speciesId": "glowlight-danio",
+      "maxCount": 12
+    },
+    {
+      "speciesId": "pearl-danio",
+      "maxCount": 10
+    },
+    {
+      "speciesId": "indian-glassy-fish",
+      "maxCount": 8
+    },
+    {
+      "speciesId": "clown-loach",
+      "maxCount": 5
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "glowlight-danio",
+      "count": 7
+    },
+    {
+      "speciesId": "pearl-danio",
+      "count": 5
+    },
+    {
+      "speciesId": "tiger-barb",
+      "count": 6
+    },
+    {
+      "speciesId": "rosy-barb",
+      "count": 5
+    },
+    {
+      "speciesId": "denison-barb",
+      "count": 4
+    },
+    {
+      "speciesId": "indian-glassy-fish",
+      "count": 5
+    },
+    {
+      "speciesId": "clown-loach",
+      "count": 3
+    },
+    {
+      "speciesId": "yoyo-loach",
+      "count": 3
+    }
+  ]
+}

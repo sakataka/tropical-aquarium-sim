@@ -1,0 +1,11 @@
+{
+  "id": "mekong-300",
+  "order": 153,
+  "displayName": "濁った大河の倒木",
+  "description": "緑がかった濁り水の奥へ倒木が沈み、左手前に太い根、右に大きな丸石が横たわる大河の底。光の弱い、開けた砂泥の川底です。",
+  "defaultLighting": "natural",
+  "waterColor": "#485531",
+  "framing": {
+    "plateBottom": 0.799
+  }
+}

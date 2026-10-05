@@ -1,0 +1,67 @@
+{
+  "id": "reef-small-fishes-120",
+  "order": 102,
+  "displayName": "サンゴ礁の小魚水槽",
+  "exhibitName": "Reef Damsels & Anthias",
+  "category": "サンゴ礁の海",
+  "description": "白いサンゴ砂を挟んで、テーブルサンゴと枝サンゴの岩場が向かい合う120cmの水槽。デバスズメダイの群れとキンギョハナダイが中層を舞い、ルリスズメダイは岩のまわりを行き来します。ロイヤルグラマとフレームエンゼルフィッシュは岩陰の近くで暮らし、マンジュウイシモチは昼のあいだ岩陰で静かに過ごします。",
+  "widthCm": 120,
+  "heightCm": 88,
+  "depthCm": 60,
+  "maxTotalFish": 38,
+  "sceneIds": [
+    "reef-small-fishes-120"
+  ],
+  "species": [
+    {
+      "speciesId": "blue-green-chromis",
+      "maxCount": 16
+    },
+    {
+      "speciesId": "sapphire-devil",
+      "maxCount": 6
+    },
+    {
+      "speciesId": "lyretail-anthias",
+      "maxCount": 10
+    },
+    {
+      "speciesId": "royal-gramma",
+      "maxCount": 3
+    },
+    {
+      "speciesId": "pajama-cardinalfish",
+      "maxCount": 8
+    },
+    {
+      "speciesId": "flame-angelfish",
+      "maxCount": 2
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "blue-green-chromis",
+      "count": 12
+    },
+    {
+      "speciesId": "sapphire-devil",
+      "count": 4
+    },
+    {
+      "speciesId": "lyretail-anthias",
+      "count": 7
+    },
+    {
+      "speciesId": "royal-gramma",
+      "count": 2
+    },
+    {
+      "speciesId": "pajama-cardinalfish",
+      "count": 5
+    },
+    {
+      "speciesId": "flame-angelfish",
+      "count": 1
+    }
+  ]
+}

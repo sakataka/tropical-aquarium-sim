@@ -1,0 +1,11 @@
+{
+  "id": "japan-midstream-180",
+  "order": 156,
+  "displayName": "玉石と陽ざしの瀬",
+  "description": "苔のついた丸い玉石と砂利の川底に、さざ波越しの陽ざしが差し込む中流の瀬。左の岸辺には草の根が垂れ、両岸に細長い水草がそよぎます。",
+  "defaultLighting": "natural",
+  "waterColor": "#36878a",
+  "framing": {
+    "plateBottom": 0.805
+  }
+}

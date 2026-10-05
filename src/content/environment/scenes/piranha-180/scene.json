@@ -1,0 +1,11 @@
+{
+  "id": "piranha-180",
+  "order": 138,
+  "displayName": "琥珀色の川岸",
+  "description": "太い流木の根と苔むした岩のあいだに、琥珀色に濁った水と開けた砂底が広がるアマゾンの川岸。",
+  "defaultLighting": "evening",
+  "waterColor": "#54582c",
+  "framing": {
+    "plateBottom": 0.833
+  }
+}

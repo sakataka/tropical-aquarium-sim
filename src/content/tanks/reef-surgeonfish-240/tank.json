@@ -1,0 +1,75 @@
+{
+  "id": "reef-surgeonfish-240",
+  "order": 103,
+  "displayName": "ハギとチョウチョウウオの水槽",
+  "exhibitName": "Tangs & Butterflyfish",
+  "category": "サンゴ礁の海",
+  "description": "両側のサンゴの岩場のあいだに、青い水が広く開けた240cmの水槽。ナンヨウハギ、キイロハギ、ツノダシが連れ立って中央を横切り、チョウチョウウオの仲間とタテジマキンチャクダイは岩のサンゴをついばみます。シチセンベラは砂底で餌を探します。",
+  "widthCm": 240,
+  "heightCm": 119,
+  "depthCm": 90,
+  "maxTotalFish": 20,
+  "sceneIds": [
+    "reef-surgeonfish-240"
+  ],
+  "species": [
+    {
+      "speciesId": "blue-tang",
+      "maxCount": 4
+    },
+    {
+      "speciesId": "yellow-tang",
+      "maxCount": 5
+    },
+    {
+      "speciesId": "emperor-angelfish",
+      "maxCount": 1
+    },
+    {
+      "speciesId": "copperband-butterflyfish",
+      "maxCount": 3
+    },
+    {
+      "speciesId": "raccoon-butterflyfish",
+      "maxCount": 4
+    },
+    {
+      "speciesId": "moorish-idol",
+      "maxCount": 4
+    },
+    {
+      "speciesId": "harlequin-tuskfish",
+      "maxCount": 1
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "blue-tang",
+      "count": 3
+    },
+    {
+      "speciesId": "yellow-tang",
+      "count": 4
+    },
+    {
+      "speciesId": "emperor-angelfish",
+      "count": 1
+    },
+    {
+      "speciesId": "copperband-butterflyfish",
+      "count": 2
+    },
+    {
+      "speciesId": "raccoon-butterflyfish",
+      "count": 3
+    },
+    {
+      "speciesId": "moorish-idol",
+      "count": 3
+    },
+    {
+      "speciesId": "harlequin-tuskfish",
+      "count": 1
+    }
+  ]
+}

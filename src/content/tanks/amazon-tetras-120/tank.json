@@ -1,0 +1,83 @@
+{
+  "id": "amazon-tetras-120",
+  "order": 108,
+  "displayName": "カラシンの群泳水槽",
+  "exhibitName": "Tetra Shoals",
+  "category": "アマゾンの清流",
+  "description": "水草の茂る岸と砂の小径を再現した120cm水槽。カージナルテトラとブラックネオンテトラの群れが開けた中層を行き交い、コペラ・アーノルディは水面近く、グローライトテトラとブラックファントムテトラは水草の前の低い層を泳ぎます。",
+  "widthCm": 120,
+  "heightCm": 45,
+  "depthCm": 45,
+  "maxTotalFish": 70,
+  "sceneIds": [
+    "amazon-tetras-120"
+  ],
+  "species": [
+    {
+      "speciesId": "cardinal-tetra",
+      "maxCount": 24
+    },
+    {
+      "speciesId": "black-neon-tetra",
+      "maxCount": 14
+    },
+    {
+      "speciesId": "glowlight-tetra",
+      "maxCount": 12
+    },
+    {
+      "speciesId": "x-ray-tetra",
+      "maxCount": 12
+    },
+    {
+      "speciesId": "emperor-tetra",
+      "maxCount": 8
+    },
+    {
+      "speciesId": "black-phantom-tetra",
+      "maxCount": 10
+    },
+    {
+      "speciesId": "bleeding-heart-tetra",
+      "maxCount": 8
+    },
+    {
+      "speciesId": "splash-tetra",
+      "maxCount": 10
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "cardinal-tetra",
+      "count": 14
+    },
+    {
+      "speciesId": "black-neon-tetra",
+      "count": 8
+    },
+    {
+      "speciesId": "glowlight-tetra",
+      "count": 8
+    },
+    {
+      "speciesId": "x-ray-tetra",
+      "count": 6
+    },
+    {
+      "speciesId": "emperor-tetra",
+      "count": 4
+    },
+    {
+      "speciesId": "black-phantom-tetra",
+      "count": 6
+    },
+    {
+      "speciesId": "bleeding-heart-tetra",
+      "count": 4
+    },
+    {
+      "speciesId": "splash-tetra",
+      "count": 6
+    }
+  ]
+}

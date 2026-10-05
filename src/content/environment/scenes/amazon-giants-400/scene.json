@@ -1,0 +1,11 @@
+{
+  "id": "amazon-giants-400",
+  "order": 139,
+  "displayName": "大河の砂底と倒木",
+  "description": "大木の根と苔むした岩を両端に置き、奥に倒木が沈む広い砂底。緑がかった濁り水が遠くで暗く溶けていきます。",
+  "defaultLighting": "evening",
+  "waterColor": "#424e36",
+  "framing": {
+    "plateBottom": 0.855
+  }
+}

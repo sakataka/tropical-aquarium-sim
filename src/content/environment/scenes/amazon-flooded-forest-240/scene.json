@@ -1,0 +1,11 @@
+{
+  "id": "amazon-flooded-forest-240",
+  "order": 137,
+  "displayName": "浸水林の板根",
+  "description": "水に沈んだ森の大木が板根を広げ、木漏れ日が砂底に揺れる浸水林。中央には落ち葉の散る広い砂地が開けています。",
+  "defaultLighting": "natural",
+  "waterColor": "#57603b",
+  "framing": {
+    "plateBottom": 0.842
+  }
+}

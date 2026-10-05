@@ -1,0 +1,59 @@
+{
+  "id": "tanganyika-rocks-180",
+  "order": 120,
+  "displayName": "タンガニイカ湖の岩場水槽",
+  "exhibitName": "Lake Tanganyika Rocks",
+  "category": "タンガニイカ湖の岩場",
+  "description": "平たい岩が重なるタンガニイカ湖の岩場を再現した180cm水槽。トロフェウス、ジュリドクロミス、カルブス、ブリシャルディは岩の隙間を住みかにして出入りし、トロフェウスとジュリドクロミスは岩肌の藻をついばみます。夕方にはシノドンティスの群れが砂底を探って回ります。",
+  "widthCm": 180,
+  "heightCm": 79,
+  "depthCm": 60,
+  "maxTotalFish": 22,
+  "sceneIds": [
+    "tanganyika-rocks-180"
+  ],
+  "species": [
+    {
+      "speciesId": "blunthead-cichlid",
+      "maxCount": 6
+    },
+    {
+      "speciesId": "marliers-julie",
+      "maxCount": 4
+    },
+    {
+      "speciesId": "altolamprologus-calvus",
+      "maxCount": 2
+    },
+    {
+      "speciesId": "fairy-cichlid",
+      "maxCount": 10
+    },
+    {
+      "speciesId": "cuckoo-catfish",
+      "maxCount": 5
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "blunthead-cichlid",
+      "count": 4
+    },
+    {
+      "speciesId": "marliers-julie",
+      "count": 2
+    },
+    {
+      "speciesId": "altolamprologus-calvus",
+      "count": 1
+    },
+    {
+      "speciesId": "fairy-cichlid",
+      "count": 6
+    },
+    {
+      "speciesId": "cuckoo-catfish",
+      "count": 3
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "id": "arapaima-1000",
+  "order": 137,
+  "displayName": "ピラルクの大水槽",
+  "exhibitName": "Arapaima",
+  "category": "アマゾンの氾濫原",
+  "description": "沈んだ大木と広い砂泥の底を、体長2mを超えるピラルクがゆっくり行き来し、ときどき水面へ上がって空気を吸う10mの大水槽です。",
+  "widthCm": 1000,
+  "heightCm": 330,
+  "depthCm": 400,
+  "maxTotalFish": 3,
+  "sceneIds": [
+    "arapaima-1000"
+  ],
+  "species": [
+    {
+      "speciesId": "arapaima",
+      "maxCount": 3
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "arapaima",
+      "count": 2
+    }
+  ]
+}

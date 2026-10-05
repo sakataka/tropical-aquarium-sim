@@ -1,0 +1,35 @@
+{
+  "id": "sturgeon-400",
+  "order": 139,
+  "displayName": "チョウザメの大型水槽",
+  "exhibitName": "Sturgeons & Paddlefish",
+  "category": "北半球の冷たい大河",
+  "description": "丸石の並ぶ砂利の川底を、コチョウザメの群れがひげで探りながら巡り、ヘラチョウザメは長い吻を前に向けて中層を休まず泳ぎ続けます。冷たい大河を再現した500cmの水槽です。",
+  "widthCm": 500,
+  "heightCm": 198,
+  "depthCm": 150,
+  "maxTotalFish": 10,
+  "sceneIds": [
+    "sturgeon-400"
+  ],
+  "species": [
+    {
+      "speciesId": "american-paddlefish",
+      "maxCount": 3
+    },
+    {
+      "speciesId": "sterlet",
+      "maxCount": 8
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "american-paddlefish",
+      "count": 2
+    },
+    {
+      "speciesId": "sterlet",
+      "count": 5
+    }
+  ]
+}

@@ -82,7 +82,9 @@ def main() -> None:
     vault = vault_path()
     ids = args.species
     if args.all_adopted:
-        ids = sorted(path.stem for path in (vault / "adoptions").glob("*.json"))
+        # adoptions/ には展示室（hall-*）や水景（scene-*）の採否もあるので、生き物だけを選ぶ。
+        ids = sorted(path.stem for path in (vault / "adoptions").glob("*.json")
+                     if "speciesId" in json.loads(path.read_text()))
     if not ids:
         parser.error("species id か --all-adopted を指定してください")
     names = display_names(vault)

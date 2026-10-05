@@ -1,0 +1,43 @@
+{
+  "id": "livebearers-90",
+  "order": 116,
+  "displayName": "卵胎生魚の水草水槽",
+  "exhibitName": "Livebearers",
+  "category": "中米の小川",
+  "description": "中米の小川を思わせる、明るい90cmの水草水槽。ソードテールとセイルフィンモーリーが水草のあいだを泳ぎ、モーリーは流木や石の表面をついばみます。小さなエンドラーズは群れて水草の前を行き交います。",
+  "widthCm": 90,
+  "heightCm": 42,
+  "depthCm": 45,
+  "maxTotalFish": 30,
+  "sceneIds": [
+    "livebearers-90"
+  ],
+  "species": [
+    {
+      "speciesId": "green-swordtail",
+      "maxCount": 6
+    },
+    {
+      "speciesId": "sailfin-molly",
+      "maxCount": 8
+    },
+    {
+      "speciesId": "endlers-livebearer",
+      "maxCount": 20
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "green-swordtail",
+      "count": 4
+    },
+    {
+      "speciesId": "sailfin-molly",
+      "count": 5
+    },
+    {
+      "speciesId": "endlers-livebearer",
+      "count": 12
+    }
+  ]
+}

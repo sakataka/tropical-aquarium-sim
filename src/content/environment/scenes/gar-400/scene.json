@@ -1,0 +1,11 @@
+{
+  "id": "gar-400",
+  "order": 170,
+  "displayName": "ヌマスギの膝根と倒木",
+  "description": "ヌマスギの幹と膝根が立ち並び、右に苔むした倒木が横たわる北米の湿地。水面に浮き草が散り、落ち葉の積もる泥底へ光が差します。",
+  "defaultLighting": "natural",
+  "waterColor": "#67703f",
+  "framing": {
+    "plateBottom": 0.875
+  }
+}

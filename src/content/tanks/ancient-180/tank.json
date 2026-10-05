@@ -4,11 +4,11 @@
   "displayName": "アフリカの古代魚専用水槽",
   "exhibitName": "West African Backwater",
   "category": "西アフリカの緩流域",
-  "description": "低い流木と開けた砂底。セネガルスとアミメウナギが長い体をくねらせ、底で休み、ときどき水面へ空気を吸いに上がる180cmの古代魚専用水槽です。",
+  "description": "低い流木と開けた砂底。3種のポリプテルスとアミメウナギが長い体をくねらせて底で休み、ときどき水面へ空気を吸いに上がります。水面近くにはバタフライフィッシュが浮かぶ、180cmの古代魚専用水槽です。",
   "widthCm": 180,
-  "heightCm": 55,
+  "heightCm": 62,
   "depthCm": 60,
-  "maxTotalFish": 6,
+  "maxTotalFish": 8,
   "sceneIds": [
     "african-backwater"
   ],
@@ -20,6 +20,18 @@
     {
       "speciesId": "ropefish",
       "maxCount": 3
+    },
+    {
+      "speciesId": "ornate-bichir",
+      "maxCount": 2
+    },
+    {
+      "speciesId": "saddled-bichir",
+      "maxCount": 2
+    },
+    {
+      "speciesId": "african-butterflyfish",
+      "maxCount": 2
     }
   ],
   "defaultStock": [
@@ -30,6 +42,18 @@
     {
       "speciesId": "ropefish",
       "count": 2
+    },
+    {
+      "speciesId": "ornate-bichir",
+      "count": 1
+    },
+    {
+      "speciesId": "saddled-bichir",
+      "count": 1
+    },
+    {
+      "speciesId": "african-butterflyfish",
+      "count": 1
     }
   ]
 }

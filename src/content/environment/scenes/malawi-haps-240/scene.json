@@ -1,0 +1,11 @@
+{
+  "id": "malawi-haps-240",
+  "order": 144,
+  "displayName": "光る砂地と花崗岩",
+  "description": "淡い白砂が広がり、苔をまとった丸い花崗岩が左右に重なる湖底。日差しの筋が差し込み、上半分は開けた青い水です。",
+  "defaultLighting": "natural",
+  "waterColor": "#2f78ae",
+  "framing": {
+    "plateBottom": 0.858
+  }
+}

@@ -4,11 +4,11 @@
   "displayName": "マラウイ湖の岩場水槽",
   "exhibitName": "Lake Malawi Rockshore",
   "category": "アフリカの湖",
-  "description": "青く澄んだ水、白い砂と大きな岩組み。黄色、青紫、赤褐色、青い縞模様の4種が、岩陰から開けた中上層まで泳ぎます。色も動きも賑やかな120cmのマラウイ湖岸風景です。",
+  "description": "青く澄んだ水、白い砂と大きな岩組み。黄色、青紫、赤褐色、青い縞模様、濃紺の縞模様の5種が、岩陰から開けた中上層まで泳ぎ、デマソニは小さな群れで岩肌をついばみます。色も動きも賑やかな120cmのマラウイ湖岸風景です。",
   "widthCm": 120,
-  "heightCm": 50,
+  "heightCm": 69,
   "depthCm": 45,
-  "maxTotalFish": 26,
+  "maxTotalFish": 30,
   "sceneIds": [
     "malawi-rocks",
     "malawi-crevices"
@@ -29,12 +29,32 @@
     {
       "speciesId": "saulosi",
       "maxCount": 6
+    },
+    {
+      "speciesId": "demasoni",
+      "maxCount": 6
     }
   ],
   "defaultStock": [
-    { "speciesId": "yellow-lab", "count": 8 },
-    { "speciesId": "yellow-tail-acei", "count": 6 },
-    { "speciesId": "saulosi", "count": 6 },
-    { "speciesId": "rusty-cichlid", "count": 3 }
+    {
+      "speciesId": "yellow-lab",
+      "count": 8
+    },
+    {
+      "speciesId": "yellow-tail-acei",
+      "count": 6
+    },
+    {
+      "speciesId": "saulosi",
+      "count": 6
+    },
+    {
+      "speciesId": "rusty-cichlid",
+      "count": 3
+    },
+    {
+      "speciesId": "demasoni",
+      "count": 4
+    }
   ]
 }

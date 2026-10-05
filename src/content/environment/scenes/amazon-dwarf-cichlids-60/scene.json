@@ -1,0 +1,11 @@
+{
+  "id": "amazon-dwarf-cichlids-60",
+  "order": 135,
+  "displayName": "落ち葉とヤシの実の洞",
+  "description": "落ち葉と小枝が散る砂底に、倒れた流木と半分に割れたヤシの実の洞。琥珀色の水にアマゾンソードの広い葉が揺れます。",
+  "defaultLighting": "natural",
+  "waterColor": "#524825",
+  "framing": {
+    "plateBottom": 0.946
+  }
+}

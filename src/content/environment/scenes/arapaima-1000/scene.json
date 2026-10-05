@@ -1,0 +1,11 @@
+{
+  "id": "arapaima-1000",
+  "order": 169,
+  "displayName": "氾濫原の大木と砂底",
+  "description": "左に根を張る大木、右に朽ちた切り株が沈む氾濫原の湖。奥へ霞む倒木の手前に、明るい砂泥の底が大きく開けています。",
+  "defaultLighting": "natural",
+  "waterColor": "#565d3a",
+  "framing": {
+    "plateBottom": 0.83
+  }
+}

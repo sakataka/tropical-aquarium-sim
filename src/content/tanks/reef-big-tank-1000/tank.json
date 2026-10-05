@@ -1,0 +1,43 @@
+{
+  "id": "reef-big-tank-1000",
+  "order": 105,
+  "displayName": "サンゴ礁の大水槽",
+  "exhibitName": "Great Reef Tank",
+  "category": "サンゴ礁の海",
+  "description": "幅10mのアクリル越しに、サンゴの岩壁と広い砂地を見渡す大水槽。ツマグロの群れが開けた青い水を周回し、トラフザメは砂底で休み、メガネモチノウオは砂地を探りながらゆったりと泳ぎます。",
+  "widthCm": 1000,
+  "heightCm": 276,
+  "depthCm": 500,
+  "maxTotalFish": 8,
+  "sceneIds": [
+    "reef-big-tank-1000"
+  ],
+  "species": [
+    {
+      "speciesId": "blacktip-reef-shark",
+      "maxCount": 5
+    },
+    {
+      "speciesId": "zebra-shark",
+      "maxCount": 2
+    },
+    {
+      "speciesId": "humphead-wrasse",
+      "maxCount": 1
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "blacktip-reef-shark",
+      "count": 4
+    },
+    {
+      "speciesId": "zebra-shark",
+      "count": 1
+    },
+    {
+      "speciesId": "humphead-wrasse",
+      "count": 1
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "id": "barbs-stream-90",
+  "order": 151,
+  "displayName": "丸石の渓流",
+  "description": "苔をまとった丸石が左右に重なり、中央に小石と砂利の川床が開けた明るい渓流。石の間からクリプトコリネとアポノゲトンが伸びます。",
+  "defaultLighting": "natural",
+  "waterColor": "#217f9c",
+  "framing": {
+    "plateBottom": 0.893
+  }
+}

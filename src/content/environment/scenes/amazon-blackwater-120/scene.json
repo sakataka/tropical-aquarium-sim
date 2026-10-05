@@ -1,0 +1,11 @@
+{
+  "id": "amazon-blackwater-120",
+  "order": 134,
+  "displayName": "紅茶色の水と根の林",
+  "description": "紅茶色に染まった水に、左右から太い根と幹が立ち上がるネグロ川の浸水林。落ち葉の積もった砂底に、木漏れ日が差し込みます。",
+  "defaultLighting": "natural",
+  "waterColor": "#55431e",
+  "framing": {
+    "plateBottom": 0.922
+  }
+}

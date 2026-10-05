@@ -1,0 +1,11 @@
+{
+  "id": "tanganyika-rocks-180",
+  "order": 145,
+  "displayName": "重なる岩棚と隙間",
+  "description": "平たい岩が棚のように重なり、あちこちに暗い隙間がある岩場。中央には白い砂の通り道が奥へ続きます。",
+  "defaultLighting": "natural",
+  "waterColor": "#2c6fa8",
+  "framing": {
+    "plateBottom": 0.89
+  }
+}

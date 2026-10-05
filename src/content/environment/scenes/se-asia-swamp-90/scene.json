@@ -1,0 +1,11 @@
+{
+  "id": "se-asia-swamp-90",
+  "order": 150,
+  "displayName": "泥炭湿地の木の根",
+  "description": "紅茶色に染まった薄暗い水に光の筋が差し込む、熱帯の湿地林の水たまり。左に木の根が張り出し、両脇にクリプトコリネと落ち葉、右手前に黒い岩が沈みます。",
+  "defaultLighting": "natural",
+  "waterColor": "#454226",
+  "framing": {
+    "plateBottom": 0.886
+  }
+}

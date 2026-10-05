@@ -1,0 +1,11 @@
+{
+  "id": "central-america-cichlids-120",
+  "order": 140,
+  "displayName": "平石の洞と川石",
+  "description": "苔むした平石が丸石に載って洞をつくり、川石と小石の砂地が続く中米の澄んだ流れ。差し込む光で水が明るく揺れます。",
+  "defaultLighting": "natural",
+  "waterColor": "#21849d",
+  "framing": {
+    "plateBottom": 0.875
+  }
+}

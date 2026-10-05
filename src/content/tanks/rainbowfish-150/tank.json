@@ -1,0 +1,91 @@
+{
+  "id": "rainbowfish-150",
+  "order": 129,
+  "displayName": "レインボーフィッシュの水槽",
+  "exhibitName": "Rainbowfish Rivers",
+  "category": "ニューギニアとオーストラリアの川",
+  "description": "背の高い水草と白っぽい流木のあいだに、広い中層が開けた150cm水槽。ニューギニアとオーストラリアのレインボーフィッシュとブルーアイの群れが、層を分けて泳ぎます。フォークテール・ブルーアイ、パシフィック・ブルーアイ、マレーリバー・レインボーフィッシュは水面近くを、ボエセマニやサーモンレッドなど体高のある種は中層を行き交います。",
+  "widthCm": 150,
+  "heightCm": 44,
+  "depthCm": 50,
+  "maxTotalFish": 58,
+  "sceneIds": [
+    "rainbowfish-150"
+  ],
+  "species": [
+    {
+      "speciesId": "boesemani-rainbowfish",
+      "maxCount": 8
+    },
+    {
+      "speciesId": "dwarf-neon-rainbowfish",
+      "maxCount": 10
+    },
+    {
+      "speciesId": "forktail-blue-eye",
+      "maxCount": 10
+    },
+    {
+      "speciesId": "threadfin-rainbowfish",
+      "maxCount": 8
+    },
+    {
+      "speciesId": "salmon-red-rainbowfish",
+      "maxCount": 6
+    },
+    {
+      "speciesId": "banded-rainbowfish",
+      "maxCount": 6
+    },
+    {
+      "speciesId": "spotted-blue-eye",
+      "maxCount": 10
+    },
+    {
+      "speciesId": "pacific-blue-eye",
+      "maxCount": 10
+    },
+    {
+      "speciesId": "murray-river-rainbowfish",
+      "maxCount": 6
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "dwarf-neon-rainbowfish",
+      "count": 6
+    },
+    {
+      "speciesId": "forktail-blue-eye",
+      "count": 6
+    },
+    {
+      "speciesId": "spotted-blue-eye",
+      "count": 6
+    },
+    {
+      "speciesId": "pacific-blue-eye",
+      "count": 6
+    },
+    {
+      "speciesId": "boesemani-rainbowfish",
+      "count": 5
+    },
+    {
+      "speciesId": "threadfin-rainbowfish",
+      "count": 5
+    },
+    {
+      "speciesId": "salmon-red-rainbowfish",
+      "count": 4
+    },
+    {
+      "speciesId": "banded-rainbowfish",
+      "count": 4
+    },
+    {
+      "speciesId": "murray-river-rainbowfish",
+      "count": 4
+    }
+  ]
+}

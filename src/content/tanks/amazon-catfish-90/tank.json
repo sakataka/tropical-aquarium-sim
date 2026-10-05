@@ -1,0 +1,51 @@
+{
+  "id": "amazon-catfish-90",
+  "order": 111,
+  "displayName": "ナマズとプレコの岩場水槽",
+  "exhibitName": "Catfish & Plecos",
+  "category": "シングー川の岩場",
+  "description": "黒っぽい岩を重ねたシングー川の川底を再現した90cm水槽。ブッシープレコは岩の洞、インペリアルゼブラプレコは岩の隙間を住みかに石や流木の表面をなめ、コリドラス・パンダの群れは砂をつつき、バンジョーキャットは昼は物陰で休みます。",
+  "widthCm": 90,
+  "heightCm": 50,
+  "depthCm": 45,
+  "maxTotalFish": 14,
+  "sceneIds": [
+    "amazon-catfish-90"
+  ],
+  "species": [
+    {
+      "speciesId": "bristlenose-pleco",
+      "maxCount": 2
+    },
+    {
+      "speciesId": "zebra-pleco",
+      "maxCount": 3
+    },
+    {
+      "speciesId": "banjo-catfish",
+      "maxCount": 2
+    },
+    {
+      "speciesId": "panda-corydoras",
+      "maxCount": 10
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "bristlenose-pleco",
+      "count": 1
+    },
+    {
+      "speciesId": "zebra-pleco",
+      "count": 2
+    },
+    {
+      "speciesId": "banjo-catfish",
+      "count": 1
+    },
+    {
+      "speciesId": "panda-corydoras",
+      "count": 6
+    }
+  ]
+}

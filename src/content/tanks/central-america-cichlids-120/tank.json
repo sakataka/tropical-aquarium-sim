@@ -1,0 +1,35 @@
+{
+  "id": "central-america-cichlids-120",
+  "order": 115,
+  "displayName": "中米シクリッドの岩場水槽",
+  "exhibitName": "Central American Cichlids",
+  "category": "中米の川",
+  "description": "中米の澄んだ川を再現した120cm水槽。コンビクトシクリッドは平石の下の洞を住みかにして出入りし、ファイヤーマウスは砂底をついばみながら石のまわりを泳ぎます。",
+  "widthCm": 120,
+  "heightCm": 45,
+  "depthCm": 45,
+  "maxTotalFish": 10,
+  "sceneIds": [
+    "central-america-cichlids-120"
+  ],
+  "species": [
+    {
+      "speciesId": "convict-cichlid",
+      "maxCount": 4
+    },
+    {
+      "speciesId": "firemouth-cichlid",
+      "maxCount": 6
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "convict-cichlid",
+      "count": 2
+    },
+    {
+      "speciesId": "firemouth-cichlid",
+      "count": 4
+    }
+  ]
+}

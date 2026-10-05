@@ -1,0 +1,43 @@
+{
+  "id": "malawi-haps-240",
+  "order": 119,
+  "displayName": "マラウイ湖の砂地水槽",
+  "exhibitName": "Malawi Sand Zone",
+  "category": "マラウイ湖の砂地",
+  "description": "マラウイ湖の岩場と砂地の境を再現した240cmの大水槽。青いフライエリーが開けた中層を悠々と泳ぎ、スチュアートグランティは砂底すれすれで餌を探し、大柄なヴェヌストゥスはときどき砂の上で身を伏せます。",
+  "widthCm": 240,
+  "heightCm": 86,
+  "depthCm": 80,
+  "maxTotalFish": 15,
+  "sceneIds": [
+    "malawi-haps-240"
+  ],
+  "species": [
+    {
+      "speciesId": "electric-blue-hap",
+      "maxCount": 4
+    },
+    {
+      "speciesId": "stuartgranti-peacock",
+      "maxCount": 8
+    },
+    {
+      "speciesId": "giraffe-cichlid",
+      "maxCount": 3
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "electric-blue-hap",
+      "count": 3
+    },
+    {
+      "speciesId": "stuartgranti-peacock",
+      "count": 6
+    },
+    {
+      "speciesId": "giraffe-cichlid",
+      "count": 2
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "id": "reef-big-tank-1000",
+  "order": 112,
+  "displayName": "サンゴの岩壁と青い奥行き",
+  "description": "サンゴに覆われた岩壁が左右にそびえ、その間を白い砂地と青い水が奥まで続きます。遠くの礁は青く霞み、水面から光の筋が差し込みます。",
+  "defaultLighting": "natural",
+  "waterColor": "#2477aa",
+  "framing": {
+    "plateBottom": 0.776
+  }
+}
