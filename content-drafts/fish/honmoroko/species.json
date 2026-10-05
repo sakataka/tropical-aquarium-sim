@@ -1,0 +1,112 @@
+{
+  "id": "honmoroko",
+  "displayName": "ホンモロコ",
+  "realBodyLengthCm": 10,
+  "catalog": {
+    "scientificName": "Gnathopogon caerulescens",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "琵琶湖の固有種です。奥多摩湖、山中湖、諏訪湖、湯原湖など、ほかの湖にも持ち込まれています。",
+    "temperament": "主に動物プランクトンを食べ、岸へ寄る繁殖期には水生昆虫も食べます。飼育下の産卵では、1尾の雌を2〜5尾の雄が追いかけました。",
+    "movement": "ふだんは沖合の中層を群れで泳ぎます。繁殖期になると、岸辺の抽水植物の茂みや内湖、用水路へ寄ってきます。",
+    "habitat": "琵琶湖の沖合、水深5mより深い中層をイメージしています。卵は岸の水草などに産み付けられ、浅く波の当たるヤナギの根のまわりに多いと報告されています。",
+    "aliases": [
+      "Honmoroko",
+      "Gnathopogon coerulescens",
+      "Otakia rasborina"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cypriniformes",
+      "orderJa": "コイ目",
+      "family": "Gobionidae",
+      "familyJa": "カマツカ科"
+    },
+    "adultSizeCm": 10,
+    "sizeNote": "満1年で全長7〜10cm、満2年で10〜12cmに育ち、14cmに達すると解説されます。典型的な成魚の大きさは確かめられておらず、ここでは約10cmとして表示しています。",
+    "distribution": "琵琶湖の固有種です。奥多摩湖、山中湖、諏訪湖、湯原湖などにも移入されています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "世界の IUCN 区分は確かめられていません。環境省レッドリスト2020では絶滅危惧IA類（CR）です。岸辺の産卵場所が減ることや、水位が下がって卵が干上がることが心配されています。"
+    },
+    "highlights": [
+      "タモロコより細長く、とがった口先がやや上を向き、ごく短い口ひげがあります。",
+      "銀色の体の中央に暗い線が通りますが、側線より下の縞はタモロコほどはっきりしません。",
+      "沖合の中層を、群れになって泳ぎます。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.8
+  },
+  "visual": {
+    "fallbackColor": "#a09b8a"
+  },
+  "sourceBodyBounds": {
+    "x": 121,
+    "y": 261,
+    "width": 1341,
+    "height": 481
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.2,
+    "maxY": 0.72
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.6,
+      "burst": 2.8
+    },
+    "turnRateRadPerSec": 2.8,
+    "restFraction": 0.08,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "school",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0.65,
+      "polarization": 0.6
+    },
+    "structureAffinity": 0.15,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Otakia rasborina",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=3389"
+      },
+      {
+        "title": "国立環境研究所 侵入生物DB — ホンモロコ",
+        "url": "https://www.nies.go.jp/biodiversity/invasive/DB/detail/50560.html"
+      },
+      {
+        "title": "滋賀県琵琶湖環境科学研究センター — ホンモロコ画像DB",
+        "url": "https://www.lberi.jp/iframe_dir/data/gnathopogon-caerulescens/index.html"
+      },
+      {
+        "title": "琵琶湖博物館 うみんど10 — 琵琶湖の環境と魚",
+        "url": "https://www.biwahaku.jp/publication/umindo/volume10/umind10c.html"
+      },
+      {
+        "title": "藤岡・田口・亀甲2013 — 多回産卵魚ホンモロコの産卵時期・産卵回数・産卵数",
+        "url": "https://www.jstage.jst.go.jp/article/suisan/79/1/79_12-00058/_pdf"
+      },
+      {
+        "title": "京都大学ほか2025 — ホンモロコの産卵環境を科学的に解明",
+        "url": "https://www.kyoto-u.ac.jp/sites/default/files/2025-04/web_250415_Kai-f1858f6635a7007f3fe242bf07ed96a8.pdf"
+      },
+      {
+        "title": "環境省レッドリスト2020 — 汽水・淡水魚類",
+        "url": "https://www.env.go.jp/press/files/jp/114457.pdf"
+      }
+    ]
+  }
+}

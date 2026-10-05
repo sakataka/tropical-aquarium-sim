@@ -1,0 +1,132 @@
+{
+  "id": "crimson-soldierfish",
+  "displayName": "ヨゴレマツカサ",
+  "realBodyLengthCm": 18,
+  "catalog": {
+    "scientificName": "Myripristis murdjan",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "紅海と東アフリカから西太平洋・中部太平洋まで分布し、北は日本の南部、南はオーストラリアまで見られます。2023年には高知市の春野漁港でも採集されました。",
+    "temperament": "夜に活動する魚です。単独でいることも群れることもあり、昼は洞窟の天井近くに集まっていることがあります。",
+    "movement": "昼は洞窟や岩棚の張り出しの下にとどまり、底近くの水中に浮かんでいます。夜になると隠れ場所から出て、大型の動物プランクトンや甲殻類の幼生などを食べます。",
+    "habitat": "サンゴ礁の礁原や浅い礁湖、外側の礁に暮らし、岩棚や洞窟、割れ目を利用します。おもに水深1〜50mで見られ、160mの記録もあります。",
+    "aliases": [
+      "Crimson soldierfish",
+      "Pinecone soldierfish"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Holocentriformes",
+      "orderJa": "イットウダイ目",
+      "family": "Holocentridae",
+      "familyJa": "イットウダイ科"
+    },
+    "adultSizeCm": 18,
+    "sizeNote": "全長18cmほどにふつうに達します。最大全長は資料によって23cm、27cmと異なり、60cmとする記録もありますが、その根拠は確かめられていません。",
+    "distribution": "紅海・東アフリカから西〜中部太平洋まで、日本の南部からオーストラリアにかけて分布します。高知県で2023年に採集された標本が、四国で確実な初めての記録として報告されています。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2015,
+      "note": "キンメダイ目に分類する資料もあります。"
+    },
+    "highlights": [
+      "大きな目と、縁が赤い大きな鱗が目立ちます。",
+      "えらぶたの後ろから胸びれの付け根にかけて暗色の部分があり、背びれの後半、しりびれ、尾びれ、腹びれの前の縁が白く見えます。",
+      "よく似たアカマツカサとは、背びれが赤く、下あごがあまり突き出ないことで見分けます。",
+      "昼は岩陰でじっとしていて、夜になると隠れ場所から出て餌を探します。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.2
+  },
+  "visual": {
+    "fallbackColor": "#c65a56"
+  },
+  "sourceBodyBounds": {
+    "x": 55,
+    "y": 103,
+    "width": 1434,
+    "height": 790
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.2,
+    "maxY": 0.85
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.3,
+      "burst": 2.2
+    },
+    "turnRateRadPerSec": 2.4,
+    "restFraction": 0.35,
+    "depthRange": [
+      0.35,
+      0.9
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.3,
+      "cohesion": 0.45,
+      "polarization": 0.2
+    },
+    "structureAffinity": 0.85,
+    "habits": [
+      {
+        "type": "hideByDay",
+        "durationSec": [
+          90,
+          240
+        ]
+      },
+      {
+        "type": "homeShelter",
+        "kind": "cave",
+        "rangeBodyLengths": 6,
+        "visitChancePerMin": 0.6,
+        "visitDurationSec": [
+          20,
+          60
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Bray 2022: Myripristis murdjan, Fishes of Australia",
+        "url": "https://fishesofaustralia.net.au/home/species/4441"
+      },
+      {
+        "title": "Randall & Greenfield: Holocentridae, FAO western central Pacific guide, p.2242",
+        "url": "https://www.fao.org/4/x2400e/x2400e15.pdf"
+      },
+      {
+        "title": "Australian Museum: Crimson Soldierfish",
+        "url": "https://australian.museum/learn/animals/fishes/crimson-soldierfish-myripristis-murdjan-forsskal-1775/"
+      },
+      {
+        "title": "松永ほか 2025: 高知市春野漁港の魚類追加記録, Ichthy 55:52–62",
+        "url": "https://www.jstage.jst.go.jp/article/ichthy/55/0/55_52/_pdf"
+      },
+      {
+        "title": "NCBI Taxonomy: Myripristis murdjan, taxid 586833",
+        "url": "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=586833&lvl=0"
+      },
+      {
+        "title": "Didierlaurent & Lamare: Myripristis murdjan, DORIS/FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Myripristis-murdjan-Poisson-soldat-a-oeilleres-766"
+      },
+      {
+        "title": "FishBase: Myripristis murdjan species summary",
+        "url": "https://www.fishbase.se/Summary/SpeciesSummary.php?id=5408&lang=english"
+      }
+    ]
+  }
+}

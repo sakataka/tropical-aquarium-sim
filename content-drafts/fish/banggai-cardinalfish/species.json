@@ -1,0 +1,110 @@
+{
+  "id": "banggai-cardinalfish",
+  "displayName": "アマノガワテンジクダイ",
+  "realBodyLengthCm": 7,
+  "catalog": {
+    "scientificName": "Pterapogon kauderni",
+    "originRegionId": "southeast-asia",
+    "originRegionName": "東南アジア",
+    "origin": "インドネシア、中央スラウェシ沖のバンガイ諸島だけに分布します。原産地の外にも、人の手で持ち込まれた集団があります。",
+    "temperament": "若魚は、ガンガゼ類の長いとげの間やイソギンチャクのそばを隠れ場所にします。本水槽では、イソギンチャクのある岩のまわりで過ごします。",
+    "movement": "高い第1背びれと、長く伸びた第2背びれ・しりびれを広げています。本水槽では、岩やイソギンチャクのそばをゆっくり泳ぎます。",
+    "habitat": "波の穏やかな浅い海のサンゴ礁や海草藻場に暮らします。水深16mまでの記録があり、ふつうは水深1〜2mほどの浅い所で見られます。浅い沿岸の水温は、ふだん25〜31℃ほどです。",
+    "aliases": [
+      "Banggai cardinalfish",
+      "プテラポゴン・カウデルニー"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Perciformes",
+      "orderJa": "スズキ目",
+      "family": "Apogonidae",
+      "familyJa": "テンジクダイ科"
+    },
+    "adultSizeCm": 8,
+    "sizeNote": "典型的な成魚の大きさは確かめられていません。最大で全長8.6cm（雌）の記録があり、FAOの図鑑では全長8cmほどとされます。",
+    "distribution": "インドネシア、中央スラウェシ沖のバンガイ諸島の固有種です。原産地の外でも、人の手で持ち込まれた集団が見つかっています。",
+    "water": {
+      "salinity": "marine",
+      "temperatureC": [
+        25,
+        31
+      ]
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "EN",
+      "assessedYear": 2007,
+      "note": "米国の絶滅危惧種法では、2016年から絶滅のおそれのある種（Threatened）に指定されています。"
+    },
+    "highlights": [
+      "銀色の体に3本の黒い帯と、たくさんの白い斑点があります。",
+      "第1背びれが高く、第2背びれとしりびれは長く伸び、尾びれは深く二つに分かれます。",
+      "若魚は、ガンガゼ類のとげの間やイソギンチャクを隠れ場所にします。",
+      "飼育下での繁殖が記録されています。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.0
+  },
+  "visual": {
+    "fallbackColor": "#a9a094"
+  },
+  "sourceBodyBounds": {
+    "x": 209,
+    "y": 42,
+    "width": 1228,
+    "height": 931
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.35,
+    "maxY": 0.82
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.25,
+      "burst": 1.2
+    },
+    "turnRateRadPerSec": 2.4,
+    "restFraction": 0.4,
+    "depthRange": [
+      0.25,
+      0.8
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 1.6,
+      "cohesion": 0.4,
+      "polarization": 0.15
+    },
+    "structureAffinity": 0.8,
+    "habits": [],
+    "sources": [
+      {
+        "title": "FishBase: Pterapogon kauderni",
+        "url": "https://www.fishbase.se/summary/Pterapogon-kauderni.html"
+      },
+      {
+        "title": "NOAA Fisheries: Banggai Cardinalfish",
+        "url": "https://www.fisheries.noaa.gov/species/banggai-cardinalfish"
+      },
+      {
+        "title": "NOAA Fisheries: Banggai cardinalfish 5-year review (2021)",
+        "url": "https://www.fisheries.noaa.gov/s3/2021-10/Banggai%20cardinalfish%205%20year%20review.pdf"
+      },
+      {
+        "title": "FAO western central Pacific identification guide: Pterapogon kauderni",
+        "url": "https://www.fao.org/4/x2400e/x2400e47.pdf"
+      },
+      {
+        "title": "新潟市水族館 マリンピア日本海: プテラポゴン・カウデルニー",
+        "url": "https://www.marinepia.or.jp/picturebook/fish/entry-11778.html"
+      }
+    ]
+  }
+}

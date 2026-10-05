@@ -1,0 +1,116 @@
+{
+  "id": "lantana-pygmygoby",
+  "displayName": "トリマ・ランタナ",
+  "realBodyLengthCm": 2.5,
+  "catalog": {
+    "scientificName": "Trimma lantana",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "パラオ、インドネシア東部、パプアニューギニア、オーストラリア西部とグレートバリアリーフ、ソロモン諸島から知られています。新種として記載されたときの標本は、ソロモン諸島のガダルカナル島で採集されました。",
+    "temperament": "単独で暮らすとされます。本水槽では、岩陰の砂やサンゴのかけらの上で1尾ずつ過ごします。",
+    "movement": "砂やサンゴのかけらの底で休んでいることが多いとされます。泳ぐのは短い距離だけです。",
+    "habitat": "洞窟や岩棚の下の、砂やサンゴのかけらがたまった底に暮らします。水深5〜30mの記録があります。",
+    "aliases": [
+      "Lantana pygmygoby",
+      "Lantana dwarfgoby"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Gobiiformes",
+      "orderJa": "ハゼ目",
+      "family": "Gobiidae",
+      "familyJa": "ハゼ科"
+    },
+    "adultSizeCm": 2.2,
+    "sizeNote": "標準体長。記載の基になった雌の標本は2.08cm、図示された雄の標本は2.26cmでした。最大で2.9cmの記録があります。典型的な大きさは確かめられていません。",
+    "distribution": "西太平洋のパラオ、インドネシア東部、パプアニューギニア、ソロモン諸島と、オーストラリア西部、グレートバリアリーフから記録があります。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "rarelyDisplayed",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2015
+    },
+    "highlights": [
+      "灰色がかった青い吻から、橙赤色の胴、黄色い尾の付け根へと色が移り変わります。",
+      "目の下に橙赤色の帯と不規則な斑紋があります。",
+      "第1背びれの2本目のとげが長く伸び、第2背びれの付け根かその後ろまで届きます。",
+      "種小名は、頭の斑紋や体の色を、多くの色の花をつけるランタナになぞらえたものです。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 3.4
+  },
+  "visual": {
+    "fallbackColor": "#c27a52"
+  },
+  "sourceBodyBounds": {
+    "x": 118,
+    "y": 196,
+    "width": 1317,
+    "height": 601
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.72,
+    "maxY": 0.94
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.3,
+      "burst": 1.8
+    },
+    "turnRateRadPerSec": 2.9,
+    "restFraction": 0.6,
+    "depthRange": [
+      0.2,
+      0.8
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 3,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.8,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 2.5,
+        "durationSec": [
+          8,
+          30
+        ]
+      },
+      {
+        "type": "homeShelter",
+        "kind": "cave",
+        "rangeBodyLengths": 5,
+        "visitChancePerMin": 0.6,
+        "visitDurationSec": [
+          5,
+          15
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Fishes of Australia: Lantana Pygmygoby, Trimma lantana",
+        "url": "https://fishesofaustralia.net.au/home/species/490"
+      },
+      {
+        "title": "Winterbottom 2019: An illustrated key to the described valid species of Trimma",
+        "url": "https://www.researchgate.net/publication/386684996_Winterbottom_2019_additions_to_key_to_Trimma_JOSF_34_big"
+      },
+      {
+        "title": "FishBase: Trimma lantana species summary",
+        "url": "https://www.fishbase.se/summary/Trimma-lantana"
+      }
+    ]
+  }
+}

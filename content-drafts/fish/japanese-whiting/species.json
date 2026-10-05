@@ -1,0 +1,118 @@
+{
+  "id": "japanese-whiting",
+  "displayName": "シロギス",
+  "realBodyLengthCm": 20,
+  "catalog": {
+    "scientificName": "Sillago japonica",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "日本と朝鮮半島から、中国南部、ベトナム北部にかけての西太平洋に分布します。台湾にもいるとされます。",
+    "temperament": "ふだんは群れをつくると解説されます。水槽では、刺激を受けると頭から砂へ潜り、全身を隠すことが観察されています。",
+    "movement": "砂底の近くを泳ぎます。水温の変化に合わせて、浅場と深場のあいだを行き来すると解説されています。",
+    "habitat": "内湾を含む沿岸の、水深30mほどまでの浅い砂底をイメージしています。",
+    "aliases": [
+      "Japanese whiting",
+      "Japanese sillago",
+      "Shiro-gisu"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Perciformes",
+      "orderJa": "スズキ目",
+      "family": "Sillaginidae",
+      "familyJa": "キス科"
+    },
+    "adultSizeCm": 20,
+    "sizeNote": "典型的な成魚の大きさは確かめられておらず、ここでは約20cmとして表示しています。研究施設で産卵した成熟魚14尾の平均は体長約20cmでした（測り方の記載なし）。最大は標準体長22cmとする総説と、全長30cmとするデータベースがあります。",
+    "distribution": "ベトナム北部や中国南部から、朝鮮半島、日本までの西太平洋に分布します。台湾も分布域に含まれ、フィリピンにもいる可能性があります。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2009,
+      "note": "IUCN の区分は、FishBase に掲載された2009年の評価によります。"
+    },
+    "highlights": [
+      "細長くやや平たい体で、口先がとがり、2基の背びれが近接して並びます。",
+      "砂底のすぐ上を、細い銀色の体で群れになって泳ぎます。",
+      "飼育下の産卵では、数尾の雄が雌を追い、旋回しながら底から浮き上がって卵を産みます。卵は水に浮きます。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.4
+  },
+  "visual": {
+    "fallbackColor": "#a69d8b"
+  },
+  "sourceBodyBounds": {
+    "x": 73,
+    "y": 261,
+    "width": 1397,
+    "height": 484
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.55,
+    "maxY": 0.92
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.45,
+      "burst": 2.2
+    },
+    "turnRateRadPerSec": 2.3,
+    "restFraction": 0.12,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.8,
+      "cohesion": 0.5,
+      "polarization": 0.35
+    },
+    "structureAffinity": 0.15,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Sillago japonica",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=15253"
+      },
+      {
+        "title": "Kwun & Kim 2010: A Taxonomic Review of Four Sillaginid Fishes from the Adjacent Waters of Korea",
+        "url": "https://www.researchgate.net/publication/324827704_A_Taxonomic_Review_of_Four_Sillaginid_Fishes_Perciformes_from_the_Adjacent_Waters_of_Korea"
+      },
+      {
+        "title": "McKay 1992: FAO Species Catalogue 14 — Sillago japonica",
+        "url": "https://www.fao.org/4/t0538e/t0538e07.pdf"
+      },
+      {
+        "title": "Kawamura, Shinomiya & Kaminokado 1975: On the Burrowing Behaviour of Sillago sihama Observed Directly",
+        "url": "https://www.jstage.jst.go.jp/article/suisan1932/41/7/41_7_797/_pdf"
+      },
+      {
+        "title": "海洋生物環境研究所 — シロギス繁殖生態",
+        "url": "https://www.kaiseiken.or.jp/aquarium/aquarium.html"
+      },
+      {
+        "title": "Kashiwagi et al. 2000: Effects of Temperature and Salinity on Hatching Success of Japanese Whiting Eggs",
+        "url": "https://www.jstage.jst.go.jp/article/aquaculturesci1953/48/4/48_4_637/_pdf"
+      },
+      {
+        "title": "名古屋港水族館 — シロギス",
+        "url": "https://nagoyaaqua.jp/friends/south/1078/"
+      },
+      {
+        "title": "FishBase: Sillago japonica",
+        "url": "https://www.fishbase.se/summary/Sillago-japonica"
+      }
+    ]
+  }
+}

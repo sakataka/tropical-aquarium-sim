@@ -1,0 +1,132 @@
+{
+  "id": "pacific-spiny-lumpsucker",
+  "displayName": "イボダンゴ",
+  "realBodyLengthCm": 7,
+  "catalog": {
+    "scientificName": "Eumicrotremus orbis",
+    "originRegionId": "north-pacific",
+    "originRegionName": "北太平洋",
+    "origin": "北太平洋に分布し、チュクチ海やオホーツク海から北海道、アリューシャン列島を経て、米国ワシントン州まで見られます。",
+    "temperament": "小型の甲殻類や虫の仲間、貝類などを食べるとされます。繁殖期には、雄が狭い巣所に産み付けられた卵を守ります。本水槽では、それぞれ好きな岩や海藻に付いて過ごします。",
+    "movement": "腹の吸盤で岩やフジツボ、海藻などに付いて止まります。丸い体に小さなひれで、泳ぎは得意ではありません。",
+    "habitat": "海底近くの岩場や海藻の間に暮らし、深い潮だまりや岸近くの水中でも見られます。調査船の採集記録は水深25〜575mで、その半分あまりは水深50〜100mでした。",
+    "aliases": [
+      "Pacific spiny lumpsucker",
+      "Cyclopterus orbis"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Perciformes",
+      "orderJa": "スズキ目",
+      "family": "Cyclopteridae",
+      "familyJa": "ダンゴウオ科"
+    },
+    "adultSizeCm": 7,
+    "sizeNote": "雌の成魚の標本は全長7.0cm、別の成魚の標本は標準体長7.5cmでした。典型的な大きさは確かめられていません。最大で全長18cmの記録があります。",
+    "distribution": "北太平洋のチュクチ海、オホーツク海から北海道、アリューシャン列島、米国ワシントン州まで分布します。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2023,
+      "note": "カサゴ目に分類する資料もあります。"
+    },
+    "highlights": [
+      "雌は淡い緑色から褐色で、雄より大きな円錐形の突起が体中に密に並びます。",
+      "突起は歯と同じ仲間のつくりで、成長につれて先が枝分かれするように増えていきます。",
+      "腹びれが変化した吸盤で、岩などに体を付けて止まります。表面がざらざらしたものほど、しっかり付くことが実験で確かめられています。",
+      "水族館で繁殖させ、卵や仔魚をほかの水族館に分けた例があります。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.8,
+    "tailSweepRad": 0.3
+  },
+  "visual": {
+    "fallbackColor": "#8b8a5c"
+  },
+  "sourceBodyBounds": {
+    "x": 151,
+    "y": 187,
+    "width": 1272,
+    "height": 643
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.4,
+    "maxY": 0.92
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.25,
+      "burst": 1.0
+    },
+    "turnRateRadPerSec": 2.2,
+    "restFraction": 0.7,
+    "depthRange": [
+      0.1,
+      0.7
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.9,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 3,
+        "durationSec": [
+          15,
+          60
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "CAFF2018 Marine Fishes of the Arctic Region II: Eumicrotremus orbis pp.573,670",
+        "url": "https://oaarchive.arctic-council.org/bitstreams/e305d96e-1d8a-4d5d-8258-fbc469c15cc7/download"
+      },
+      {
+        "title": "Huie et al.2022: Sticky, stickier and stickiest—a comparison of adhesive performance in clingfish, lumpsuckers and snailfish",
+        "url": "https://www.dylanwainwright.com/uploads/2/6/4/8/2648240/huie_et_al._2022.pdf"
+      },
+      {
+        "title": "Woodruff et al.2022: Pacific Spiny Lumpsucker armor—Development, damage, and defense in the intertidal",
+        "url": "https://jonathanhuie.com/pubs/pdfs/Woodruff%20et%20al%202022%20-%20Allometry%20of%20lumpsucker%20armor.pdf"
+      },
+      {
+        "title": "Hoover et al.2023: It Pays to Be Bumpy: Drag Reducing Armor in the Pacific Spiny Lumpsucker",
+        "url": "https://jonathanhuie.com/pubs/pdfs/Hoover%20et%20al%202023%20-%20Lumpsucker%20armor%20and%20drag.pdf"
+      },
+      {
+        "title": "NOAA: Pacific spiny lumpsucker distribution account, printed p.68",
+        "url": "https://repository.library.noaa.gov/view/noaa/5807/noaa_5807_DS1.pdf"
+      },
+      {
+        "title": "NOAA AFSC Ichthyoplankton Information System: Eumicrotremus orbis Life History",
+        "url": "https://apps-afsc.fisheries.noaa.gov/ichthyo/LHDataLH.php?GSID=Eumicrotremus!orbis"
+      },
+      {
+        "title": "Birch Aquarium at Scripps 2024-07-24: Fascinating Fish—Pacific Spiny Lumpsuckers",
+        "url": "https://aquarium.ucsd.edu/newsroom/fascinating-fish-pacific-spiny-lumpsuckers"
+      },
+      {
+        "title": "Oregon Coast Aquarium: Pacific Spiny Lumpsuckers",
+        "url": "https://aquarium.org/animals/pacific-spiny-lumpsuckers/"
+      },
+      {
+        "title": "FishBase: Eumicrotremus orbis",
+        "url": "https://www.fishbase.se/summary/Eumicrotremus-orbis"
+      }
+    ]
+  }
+}

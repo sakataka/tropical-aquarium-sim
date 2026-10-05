@@ -1,0 +1,124 @@
+{
+  "id": "shuttles-hoppfish",
+  "displayName": "トビハゼ",
+  "realBodyLengthCm": 10,
+  "catalog": {
+    "scientificName": "Periophthalmus modestus",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "東京湾から九州の太平洋側、瀬戸内海、玄界灘の沿岸と、奄美から沖縄にかけて分布します。海外では朝鮮半島、中国、台湾にもいます。",
+    "temperament": "泥の表面にいる小さな動物を捕らえて食べます。繁殖期の雄は泥の中の産卵室で卵を守り、干潮のたびに口に含んだ空気を運び込みます。",
+    "movement": "干潮になると水から出て、泥の上を動き回ります。夏の繁殖期には、雄が跳びはねて雌を誘います。",
+    "habitat": "河口や川の下流にある汽水の泥干潟と、そのまわりのヨシ原をイメージしています。東京湾周辺では、およそ11月から3月まで泥の中でじっとして過ごします。",
+    "aliases": [
+      "Shuttles hoppfish",
+      "Periophthalmus cantonensis"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Gobiiformes",
+      "orderJa": "ハゼ目",
+      "family": "Oxudercidae",
+      "familyJa": "オクスデルクス科"
+    },
+    "adultSizeCm": 10,
+    "sizeNote": "全長約10cmと解説されます。典型的な成魚の大きさや最大値は確かめられていません。",
+    "distribution": "東京湾から九州の太平洋側、瀬戸内海、玄界灘の沿岸、奄美から沖縄に分布します。海外では朝鮮半島、中国、台湾に分布します。",
+    "water": {
+      "salinity": "brackish"
+    },
+    "keeping": "home",
+    "conservation": {
+      "note": "世界の IUCN 区分は確かめられていません。環境省レッドリスト2020では準絶滅危惧（NT）、静岡県のレッドデータブック（2019）では絶滅危惧IA類（CR）です。干潟の浚渫や護岸の整備で、ヨシ原や泥底が失われることが脅威とされています。"
+    },
+    "highlights": [
+      "左右の目が寄り合って頭の上に突き出し、左右の腹びれは膜でつながっています。",
+      "干潮になると水から出て、泥の上で餌を探します。",
+      "実験では、口や鰓の中の水が減ると、水に戻って補給することが確かめられています。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.6
+  },
+  "visual": {
+    "fallbackColor": "#83725f"
+  },
+  "sourceBodyBounds": {
+    "x": 120,
+    "y": 298,
+    "width": 1334,
+    "height": 404
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.8,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.2,
+      "burst": 2.4
+    },
+    "turnRateRadPerSec": 2.6,
+    "restFraction": 0.6,
+    "depthRange": [
+      0.15,
+      0.8
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.6,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 2.5,
+        "durationSec": [
+          8,
+          30
+        ]
+      },
+      {
+        "type": "airBreathing",
+        "breathsPerHour": [
+          6,
+          14
+        ],
+        "style": "dash"
+      }
+    ],
+    "sources": [
+      {
+        "title": "JAMSTEC BISMaL — Periophthalmus modestus",
+        "url": "https://www.godac.jamstec.go.jp/bismal/e/view/9015595"
+      },
+      {
+        "title": "静岡県レッドデータブック2019 動物編 — トビハゼ",
+        "url": "https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/686/2-5_fish01_rdbshiz2019ani.pdf"
+      },
+      {
+        "title": "Ishimatsu et al. (2007): Mudskippers brood their eggs in air but submerge them for hatching",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/17981862/"
+      },
+      {
+        "title": "葛西臨海水族園 (2010-01-13): 見やすくなった小さいトビハゼの展示水槽",
+        "url": "https://www.tokyo-zoo.net/topics/news/kasai/6812_13570_2010-01-13.html"
+      },
+      {
+        "title": "Katayama et al. (2018): Drinking by amphibious fish",
+        "url": "https://www.nature.com/articles/s41598-017-18611-4"
+      },
+      {
+        "title": "環境省レッドリスト2020 — 汽水・淡水魚類",
+        "url": "https://www.env.go.jp/content/900515981.pdf"
+      }
+    ]
+  }
+}

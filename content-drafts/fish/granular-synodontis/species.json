@@ -1,0 +1,111 @@
+{
+  "id": "granular-synodontis",
+  "displayName": "シノドンティス・グラニュロスス",
+  "realBodyLengthCm": 20,
+  "catalog": {
+    "scientificName": "Synodontis granulosus",
+    "originRegionId": "east-africa",
+    "originRegionName": "東アフリカ",
+    "origin": "東アフリカのタンガニーカ湖の固有種です。ブルンジ、コンゴ民主共和国、タンザニア、ザンビアの湖岸から記録があり、模式産地は湖の北端です。",
+    "temperament": "飼育では1匹で飼うのが基本とされ、同種の2匹の間で争いが起こることがあります。小さな魚や幼魚を食べるおそれがあるとも指摘されています。",
+    "movement": "湖底に近い層を泳ぎ、底のまわりで過ごす中大型のナマズです。",
+    "habitat": "湖の沿岸から深い湖底まで、貝殻や砂、泥の底にすみます。水深130mからの記録があり、ふだんは20〜40mほどにいるとする解説もあります。",
+    "aliases": [
+      "Synodontis granulosa",
+      "Granular synodontis",
+      "Granulosus catfish"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Siluriformes",
+      "orderJa": "ナマズ目",
+      "family": "Mochokidae",
+      "familyJa": "サカサナマズ科"
+    },
+    "adultSizeCm": 20,
+    "sizeNote": "記録上の最大は全長27cm（標準体長21.6cm）です。ふつうの成魚の大きさは確かめられていないため、展示では全長20cm前後を想定しています。",
+    "distribution": "タンガニーカ湖に固有で、ブルンジ、コンゴ民主共和国、タンザニア、ザンビアの湖岸から知られます。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2025,
+      "note": "局所的な土砂の堆積や、観賞魚としての採りすぎが懸念されています。"
+    },
+    "highlights": [
+      "成魚は灰色からオリーブがかった褐色で、大きな斑点がありません。幼魚には小さな黒い点が散ります。",
+      "背びれの後ろに、上の縁が丸く盛り上がった長い脂びれがあります。",
+      "口のまわりに白いひげが3対あり、体とひれの皮膚は細かな粒でおおわれています。種小名の granulosus は、この粒状の皮膚に由来します。",
+      "ひれの付け根は黒く、後ろの縁は白から淡い黄色です。尾びれは深く二つに分かれます。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 1.5
+  },
+  "visual": {
+    "fallbackColor": "#817464"
+  },
+  "sourceBodyBounds": {
+    "x": 38,
+    "y": 135,
+    "width": 1452,
+    "height": 688
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.55,
+    "maxY": 0.93
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.22,
+      "burst": 1.1
+    },
+    "turnRateRadPerSec": 1.6,
+    "restFraction": 0.35,
+    "depthRange": [
+      0.3,
+      0.9
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 3,
+      "cohesion": 0,
+      "polarization": 0.03
+    },
+    "structureAffinity": 0.6,
+    "habits": [
+      {
+        "type": "bottomForage"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Synodontis granulosus",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=47721"
+      },
+      {
+        "title": "Wright & Page (2006): Taxonomic revision of Lake Tanganyikan Synodontis",
+        "url": "https://www.researchgate.net/publication/236686392_Taxonomic_revision_of_Lake_Tanganyikan_Synodontis_Siluriformes_Mochokidae"
+      },
+      {
+        "title": "FishBase: Synodontis granulosus",
+        "url": "https://www.fishbase.se/summary/9567"
+      },
+      {
+        "title": "ScotCat Factsheet 270: Synodontis granulosus",
+        "url": "https://www.scotcat.com/factsheets/synodontis_granulosus.htm"
+      },
+      {
+        "title": "ScotCat: Synodontis granulosus",
+        "url": "https://www.scotcat.com/mochokidae/s_granulosus.htm"
+      }
+    ]
+  }
+}

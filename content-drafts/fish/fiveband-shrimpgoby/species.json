@@ -1,0 +1,115 @@
+{
+  "id": "fiveband-shrimpgoby",
+  "displayName": "キツネメネジリンボウ",
+  "realBodyLengthCm": 4,
+  "catalog": {
+    "scientificName": "Stonogobiops pentafasciatus",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "高知県大月町の柏島で見つかり、1994年に新種として記載されました。その後、奄美大島での写真記録や、伊豆半島での報告もあります。",
+    "temperament": "テッポウエビ類と巣穴を共にする共生ハゼです。柏島では、おもに Alpheus randalli と、まれに A. bellulus と一緒に見つかっています。ペアでいることもあります。",
+    "movement": "巣穴の入口から数cm上の水中に浮かび、その場にとどまるように泳ぎます。",
+    "habitat": "きれいな細かい砂の斜面に暮らします。柏島では水深18〜40m、おもに30mほどで観察されました。",
+    "aliases": [
+      "Fiveband shrimpgoby",
+      "Stonogobiops pentafasciata"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Gobiiformes",
+      "orderJa": "ハゼ目",
+      "family": "Gobiidae",
+      "familyJa": "ハゼ科"
+    },
+    "adultSizeCm": 3,
+    "sizeNote": "標準体長。新種として記載されたときの4標本は2.5〜3.3cmで、3.5cmを超えないとされました。典型的な大きさや最大値は、その後確かめられていません。",
+    "distribution": "高知県の柏島で記載され、奄美大島と伊豆半島からも記録があります。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "rarelyDisplayed",
+    "conservation": {
+      "note": "FishBase では IUCN の低懸念（LC、2023年評価）とされていますが、未評価とする資料もあり、評価は確かめられていません。"
+    },
+    "highlights": [
+      "白っぽい体に、目を通る帯を含めて5本の斜めの黒褐色の帯があります。種小名もこの5本の帯に由来します。",
+      "第1背びれは丸く透明で、長く伸びる糸はありません。腹びれは後ろの3分の2ほどが黒く見えます。",
+      "巣穴の入口の数cm上に浮かんで、その場にとどまります。",
+      "柏島では4〜10月に、お腹の大きな雌が観察されています。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 3.2
+  },
+  "visual": {
+    "fallbackColor": "#a8a096"
+  },
+  "sourceBodyBounds": {
+    "x": 103,
+    "y": 215,
+    "width": 1342,
+    "height": 536
+  },
+  "preferredZone": {
+    "minX": 0.1,
+    "maxX": 0.9,
+    "minY": 0.76,
+    "maxY": 0.94
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.15,
+      "burst": 2.0
+    },
+    "turnRateRadPerSec": 2.6,
+    "restFraction": 0.55,
+    "depthRange": [
+      0.15,
+      0.7
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 2,
+      "cohesion": 0.35,
+      "polarization": 0.05
+    },
+    "structureAffinity": 0.6,
+    "habits": [
+      {
+        "type": "homeShelter",
+        "kind": "burrow",
+        "rangeBodyLengths": 2,
+        "visitChancePerMin": 1.2,
+        "visitDurationSec": [
+          5,
+          20
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Iwata & Hirata 1994: A New Gobiid Fish, Stonogobiops pentafasciata, from Kashiwajima Island",
+        "url": "https://www.jstage.jst.go.jp/article/jji1950/41/2/41_2_189/_pdf/-char/ja"
+      },
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Stonogobiops pentafasciata, spid62321",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=62321"
+      },
+      {
+        "title": "Nakae et al. 2018: Annotated Checklist of Fishes of Amami-oshima Island",
+        "url": "https://www.kahaku.go.jp/albums/abm.php?d=2947&f=abm00003718.pdf&n=52_205.pdf"
+      },
+      {
+        "title": "Momose & Oyama 2026: Four gobioids from western Izu Peninsula, Table1",
+        "url": "https://www.researchgate.net/publication/401424040_Occurrences_of_four_gobioids_from_the_west_coast_of_the_Izu_Peninsula_Shizuoka_Prefecture_Honshu_Japan_including_first_Shizuoka_records_in_Japanese_with_English_abstract"
+      },
+      {
+        "title": "FishBase: Stonogobiops pentafasciatus, species27810",
+        "url": "https://www.fishbase.se/summary/27810"
+      }
+    ]
+  }
+}

@@ -1,0 +1,127 @@
+{
+  "id": "clown-loach",
+  "displayName": "クラウンローチ",
+  "realBodyLengthCm": 15,
+  "catalog": {
+    "scientificName": "Chromobotia macracanthus",
+    "originRegionId": "southeast-asia",
+    "originRegionName": "東南アジア",
+    "origin": "インドネシアのスマトラ島とボルネオ島（カリマンタン）に分布します。",
+    "temperament": "仲間と集まって暮らす魚です。飼育の指針では、5匹以上の群れで飼うよう勧められています。",
+    "movement": "底近くを泳ぎ、岩や流木の下のような物陰に入り込みます。口のまわりには4対のひげがあります。",
+    "habitat": "成魚は川の本流の底近くで、岩や流木の下、泥の中のくぼみを利用します。幼魚は氾濫原で見られます。スマトラ島のムシ川では、調査期間の水温が25〜31℃でした。",
+    "aliases": [
+      "Clown loach",
+      "Tiger botia",
+      "Botia macracanthus"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cypriniformes",
+      "orderJa": "コイ目",
+      "family": "Botiidae",
+      "familyJa": "ボティア科"
+    },
+    "adultSizeCm": 30,
+    "sizeNote": "動物園の解説では、成魚の大きさを30cmとしています。スマトラ島のムシ川で2006年に採集された2,300匹では、最大が全長30.5cmでした。典型的な成魚の大きさは分かっていません。展示は帯のはっきりした若魚の姿です。",
+    "distribution": "インドネシアのスマトラ島とボルネオ島（カリマンタン）の川に分布します。成魚は本流に、幼魚は氾濫原に暮らします。",
+    "water": {
+      "salinity": "freshwater",
+      "temperatureC": [
+        25,
+        31
+      ]
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2019,
+      "note": "IUCN の評価では、個体数は減少傾向とされています。水温はスマトラ島ムシ川の調査地の値です。科をドジョウ科（Cobitidae）に含める資料もあります。"
+    },
+    "highlights": [
+      "橙色の体に、太い黒い帯が3本入ります。",
+      "口のまわりに4対のひげがあり、底近くで暮らします。",
+      "岩や流木の下のような物陰に好んで寄ります。",
+      "仲間とゆるく集まって、底近くを行き来します。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.2,
+    "mouthAnchor": {
+      "x": 0.035,
+      "y": 0.6
+    }
+  },
+  "visual": {
+    "fallbackColor": "#d8772c"
+  },
+  "sourceBodyBounds": {
+    "x": 63,
+    "y": 172,
+    "width": 1423,
+    "height": 654
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.62,
+    "maxY": 0.94
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.35,
+      "burst": 1.8
+    },
+    "turnRateRadPerSec": 2.3,
+    "restFraction": 0.3,
+    "depthRange": [
+      0.35,
+      0.95
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 1.0,
+      "cohesion": 0.5,
+      "polarization": 0.15
+    },
+    "structureAffinity": 0.7,
+    "habits": [
+      {
+        "type": "bottomForage"
+      }
+    ],
+    "sources": [
+      {
+        "title": "FishBase — Chromobotia macracanthus",
+        "url": "https://www.fishbase.se/summary/Chromobotia-macracanthus.html"
+      },
+      {
+        "title": "ITIS TSN 687812 — Chromobotia macracanthus",
+        "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=687812"
+      },
+      {
+        "title": "Daniels 2020 — Chromobotia macracanthus, IUCN Red List",
+        "url": "https://doi.org/10.2305/IUCN.UK.2020-2.RLTS.T89807166A89807177.en"
+      },
+      {
+        "title": "Legendre et al. 2012 — Biology and culture of the clown loach, part 1",
+        "url": "https://horizon.documentation.ird.fr/exl-doc/pleins_textes/divers15-11/010057063.pdf"
+      },
+      {
+        "title": "Baras et al. 2012 — Biology and culture of the clown loach, part 3",
+        "url": "https://horizon.documentation.ird.fr/exl-doc/pleins_textes/divers15-11/010057064.pdf"
+      },
+      {
+        "title": "Auckland Zoo — Swamp forest field guide",
+        "url": "https://cdn.aucklandunlimited.com/zoo/assets/media/azoo-seajt-swamp-forest-field-guide-05-online.pdf"
+      },
+      {
+        "title": "FishBase reference 51539 — BMELF minimum holding guidance",
+        "url": "https://www.fishbase.se/references/FBRefSummary.php?ID=51539"
+      }
+    ]
+  }
+}

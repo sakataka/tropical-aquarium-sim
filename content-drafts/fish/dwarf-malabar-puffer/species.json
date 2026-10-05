@@ -1,0 +1,115 @@
+{
+  "id": "dwarf-malabar-puffer",
+  "displayName": "カリノテトラオドン・イミテーター",
+  "realBodyLengthCm": 2.5,
+  "catalog": {
+    "scientificName": "Carinotetraodon imitator",
+    "originRegionId": "south-asia",
+    "originRegionName": "南アジア",
+    "origin": "インド南西部の小型の淡水フグです。1999年の記載に使われたのは観賞魚として輸入された個体で、野外での確かな採集記録は2012年、カルナータカ州南部のクマラダーラ川で得られました。",
+    "temperament": "飼育下では、繁殖期の雄がほかの雄を威嚇して産卵場所を守ります。産卵中のペアを同種の魚が追い回し、産みたての卵を食べることも観察されています。",
+    "movement": "底近くから中層までを泳ぎます。産卵のときは、雄が雌と産卵場所の間を行き来し、体で押して雌を誘うことがあります。",
+    "habitat": "澄んだ中くらいの川の浅い場所で、砂や礫、石の底から採集されています。飼育下では、ウィローモスの茂みの間に卵を産みました。",
+    "aliases": [
+      "Dwarf Malabar puffer"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Tetraodontiformes",
+      "orderJa": "フグ目",
+      "family": "Tetraodontidae",
+      "familyJa": "フグ科"
+    },
+    "adultSizeCm": 2.5,
+    "sizeNote": "原記載の標本は、雌が標準体長1.9〜2.1cm、雄が最大2.65cmでした。標準体長2cmを少し超えるころには十分に成熟します。展示の雌は全長2.5cm前後を想定しています。",
+    "distribution": "インド南西部、西ガーツ山脈の地域に分布します。確かな野外記録はカルナータカ州のクマラダーラ川のもので、分布の全体はまだ分かっていません。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "DD",
+      "assessedYear": 2010,
+      "note": "情報不足（DD）は、危険が少ないという意味ではありません。"
+    },
+    "highlights": [
+      "雌は腹が白く、大きな斑の間に細かな黒い点がたくさん散ります。黒い点は頭と背中から体側にあり、腹にはありません。",
+      "よく似たアベニー・パファーとは、細かな黒い点の多さと大きな斑の様子、皮膚の小さなとげが少ないことを組み合わせて見分けます。",
+      "同じ個体でも、大きな斑がはっきり見えるときと、細かく分かれて淡く見えるときがあります。",
+      "飼育下では、産卵の準備ができた雌が雄のあとを追って産卵場所へ向かいます。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 3.2,
+    "tailSweepRad": 0.22
+  },
+  "visual": {
+    "fallbackColor": "#9b876b"
+  },
+  "sourceBodyBounds": {
+    "x": 133,
+    "y": 237,
+    "width": 1308,
+    "height": 512
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.35,
+    "maxY": 0.9
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.45,
+      "burst": 1.8
+    },
+    "turnRateRadPerSec": 3.0,
+    "restFraction": 0.2,
+    "depthRange": [
+      0.1,
+      0.75
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 3,
+      "cohesion": 0.15,
+      "polarization": 0.05
+    },
+    "structureAffinity": 0.45,
+    "habits": [
+      {
+        "type": "follow",
+        "chancePerMin": 0.3,
+        "durationSec": [
+          3,
+          8
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Carinotetraodon imitator",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=65698"
+      },
+      {
+        "title": "Britz & Kottelat (1999): Carinotetraodon imitator, a new freshwater pufferfish from India",
+        "url": "https://acquariofiliaconsapevole.it/sites/default/files/media/documenti/carinotetraodon-imitator-new-freshwater-puffer-britz-kottelat-1999.pdf"
+      },
+      {
+        "title": "Britz et al. (2012): First record from the wild of Carinotetraodon imitator in Peninsular India",
+        "url": "https://www.researchgate.net/publication/256202390_First_record_from_the_wild_of_Carinotetraodon_imitator_in_Peninsular_India_Teleostei_Tetraodontiformes_Tetraodontidae"
+      },
+      {
+        "title": "FishBase: Carinotetraodon imitator, India summary",
+        "url": "https://www.fishbase.se/country/CountrySpeciesSummary.php?c_code=356&id=59837"
+      },
+      {
+        "title": "Kerala Biodiversity Board / CMFRI: Red data book (Dwarf Malabar Puffer)",
+        "url": "https://keralabiodiversity.org/wp-content/uploads/2024/05/Red-data-book-CMFRI.pdf"
+      }
+    ]
+  }
+}

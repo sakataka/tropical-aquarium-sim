@@ -1,0 +1,145 @@
+{
+  "id": "pea-puffer",
+  "displayName": "アベニー・パファー",
+  "realBodyLengthCm": 2.5,
+  "catalog": {
+    "scientificName": "Carinotetraodon travancoricus",
+    "originRegionId": "south-asia",
+    "originRegionName": "南アジア",
+    "origin": "インド南西部のケーララ州にすむ小型の淡水フグです。パンバ川、チャラクディ川、ヴェンバナード湖とミーナチル川の水系などで記録されています。",
+    "temperament": "飼育下では、繁殖期の雄が雌を追い、産卵場所の近くからほかの雄を追い払います。複数で飼えるかどうかは相性しだいだと、水族館は説明しています。",
+    "movement": "水族館の展示では、飼育員の姿を見ると群れで集まり、くるくると回るように泳ぎます。アカムシの端をくわえて吸い込むように食べ、2匹で奪い合うこともあります。",
+    "habitat": "川や湖、それらをつなぐ水路にすみ、パンバ川の調査では大型の水草が茂る場所で繰り返し見られました。胃の中の砂粒やデトリタスから、底近くで餌をとると考えられています。",
+    "aliases": [
+      "Pea puffer",
+      "Dwarf pufferfish",
+      "Malabar pufferfish",
+      "アベニーパファー"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Tetraodontiformes",
+      "orderJa": "フグ目",
+      "family": "Tetraodontidae",
+      "familyJa": "フグ科"
+    },
+    "adultSizeCm": 2.5,
+    "sizeNote": "水族館の繁殖群では、成熟した雄が全長約2.5cmでした。パンバ川の調査では、雄の半数が成熟する大きさを全長1.83cmと推定しています。最大の大きさは資料によって食い違いがあります。",
+    "distribution": "インド南西部のケーララ州に分布します。スリランカを含める解説もありますが、確認できた研究の記録はインドのものです。",
+    "water": {
+      "salinity": "freshwater",
+      "temperatureC": [
+        23,
+        28.5
+      ],
+      "pH": [
+        6.08,
+        8.22
+      ]
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "VU",
+      "assessedYear": 2010,
+      "note": "ダムや森林の転用による生息地の変化と、観賞魚としての採集が脅威に挙げられています。2018年の洪水では、ペリヤール川下流の重要な生息地で岸辺の植生が損なわれました。"
+    },
+    "highlights": [
+      "成熟した雄は腹が鮮やかな黄色になり、目のまわりに青く光る細い線が入ります。",
+      "雄には腹の中央に暗い線があり、目の後ろに細かなしわのような模様があります。雌は雄より丸みのある体つきです。",
+      "近縁のカリノテトラオドン・イミテーターの雌は腹が白く、大きな斑の間に細かな黒い点がたくさん散る点で見分けられます。",
+      "飼育下では、雄が雌を追い、夕方に水草の間の狭い場所で産卵しました。産卵後は雄が戻って卵を守ります。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 3.2,
+    "tailSweepRad": 0.22
+  },
+  "visual": {
+    "fallbackColor": "#9d935e"
+  },
+  "sourceBodyBounds": {
+    "x": 232,
+    "y": 270,
+    "width": 1112,
+    "height": 447
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.3,
+    "maxY": 0.9
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.5,
+      "burst": 2.0
+    },
+    "turnRateRadPerSec": 3.2,
+    "restFraction": 0.18,
+    "depthRange": [
+      0.1,
+      0.75
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0.25,
+      "polarization": 0.05
+    },
+    "structureAffinity": 0.6,
+    "habits": [
+      {
+        "type": "bottomForage"
+      },
+      {
+        "type": "follow",
+        "chancePerMin": 0.5,
+        "durationSec": [
+          2,
+          6
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Britz & Kottelat (1999): Carinotetraodon imitator; reassessment of C. travancoricus",
+        "url": "https://acquariofiliaconsapevole.it/sites/default/files/media/documenti/carinotetraodon-imitator-new-freshwater-puffer-britz-kottelat-1999.pdf"
+      },
+      {
+        "title": "Anupama et al. (2019): Reproductive Biology of Malabar Pufferfish",
+        "url": "https://www.researchgate.net/publication/335583238_Reproductive_Biology_of_Malabar_Pufferfish_Carinotetraodon_travancoricus_Tetraodontidae"
+      },
+      {
+        "title": "Doi et al. (2015): Spawning of eight Southeast Asian brackish and freshwater puffers in captivity",
+        "url": "https://www.researchgate.net/profile/Harumi_Sakai/publication/276839648_Spawning_of_eight_Southeast_Asian_brackish_and_freshwater_puffers_of_the_genera_Tetraodon_and_Carinotetraodon_in_captivity/links/5b46ee280f7e9b4637cde2e6/Spawning-of-eight-Southeast-Asian-brackish-and-freshwater-puffers-of-the-genera-Tetraodon-and-Carinotetraodon-in-captivity.pdf?origin=publication_detail"
+      },
+      {
+        "title": "Renjithkumar et al. (2020): Feeding ecology of Carinotetraodon travancoricus",
+        "url": "https://ij-aquaticbiology.com/index.php/ijab/article/download/922/571"
+      },
+      {
+        "title": "KUFOS: Kerala flood impacts report to State Biodiversity Board",
+        "url": "https://sdma.kerala.gov.in/wp-content/uploads/2020/08/Dr_Rajeev_Raghavan_KUFOS.pdf"
+      },
+      {
+        "title": "FishBase: Carinotetraodon travancoricus",
+        "url": "https://www.fishbase.se/summary/Carinotetraodon-travancoricus.html"
+      },
+      {
+        "title": "海響館 — 淡水フグの魅力に迫る！",
+        "url": "https://www.kaikyokan.com/cms/cp_sealife/%E6%B7%A1%E6%B0%B4%E3%83%95%E3%82%B0%E3%81%AE%E9%AD%85%E5%8A%9B%E3%81%AB%E8%BF%AB%E3%82%8B%EF%BC%81/"
+      },
+      {
+        "title": "海響館 — No.009 アベニーパファー",
+        "url": "https://www.kaikyokan.com/cms/cp_sealife/fugumaniaabenipuffer/"
+      },
+      {
+        "title": "海響館 — アベニーパファー 種紹介",
+        "url": "https://www.kaikyokan.com/cms/cp_sealife/%E3%82%A2%E3%83%99%E3%83%8B%E3%83%BC%E3%83%91%E3%83%95%E3%82%A1%E3%83%BC/"
+      }
+    ]
+  }
+}

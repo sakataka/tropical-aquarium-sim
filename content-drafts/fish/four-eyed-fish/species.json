@@ -1,0 +1,110 @@
+{
+  "id": "four-eyed-fish",
+  "displayName": "ヨツメウオ",
+  "realBodyLengthCm": 20,
+  "catalog": {
+    "scientificName": "Anableps anableps",
+    "originRegionId": "south-america",
+    "originRegionName": "南米",
+    "origin": "南米北部のブラジル、フランス領ギアナ、ガイアナ、スリナム、ベネズエラと、トリニダード・トバゴに分布します。",
+    "temperament": "岸に沿って群れをつくります。潮で水に浸かった岸辺で、紅藻や昆虫、カニを食べます。",
+    "movement": "水面を泳ぎます。左右の眼はそれぞれ角膜と瞳孔が上下に分かれていて、その境目が水面の高さにそろいます。危険を感じると、潜って水中の障害物の下へ逃げます。",
+    "habitat": "潮の満ち引きで水に浸かったり干上がったりするマングローブの水路と、その岸辺にすみます。ブラジル北部の調査地では、上げ潮の始まりに支流へ入り、下げ潮の終わりに本流へ戻っていました。",
+    "aliases": [
+      "Four-eyed fish",
+      "Largescale foureyes",
+      "Cobitis anableps"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cyprinodontiformes",
+      "orderJa": "カダヤシ目",
+      "family": "Anablepidae",
+      "familyJa": "ヨツメウオ科"
+    },
+    "adultSizeCm": 21,
+    "sizeNote": "眼の発生を調べた研究で使われた成魚は、標準体長21cmでした。データベースの最大記録は全長30cmです。典型的な成魚の大きさは分かっていません。",
+    "distribution": "ブラジル、フランス領ギアナ、ガイアナ、スリナム、ベネズエラ、トリニダード・トバゴの、淡水域から汽水域に分布します。",
+    "water": {
+      "salinity": "brackish",
+      "temperatureC": [
+        25,
+        31
+      ]
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2020,
+      "note": "水温は、ブラジル北部パラー州のマングローブ水路での調査地の値です。この調査地の塩分は、雨季に5未満、乾季には35を超えることがあります。"
+    },
+    "highlights": [
+      "上下に分かれた眼の境目を水面に合わせて、水面を泳ぎます。",
+      "岸に沿って、仲間と群れて泳ぎます。",
+      "驚くと、水面を素早く横切って逃げます。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.2
+  },
+  "visual": {
+    "fallbackColor": "#99968b"
+  },
+  "sourceBodyBounds": {
+    "x": 132,
+    "y": 350,
+    "width": 1289,
+    "height": 320
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.02,
+    "maxY": 0.14
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.3,
+      "burst": 2.4
+    },
+    "turnRateRadPerSec": 2.2,
+    "restFraction": 0.25,
+    "depthRange": [
+      0.1,
+      0.75
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.6,
+      "cohesion": 0.5,
+      "polarization": 0.25
+    },
+    "structureAffinity": 0.25,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes — Anableps species",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?genus=Anableps&tbl=species"
+      },
+      {
+        "title": "California Academy of Sciences — Four-Eyed Fish",
+        "url": "https://www.calacademy.org/learn-explore/creature-closeups/four-eyed-fish"
+      },
+      {
+        "title": "Perez et al. 2017 — Eye development in Anableps anableps",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5394668/"
+      },
+      {
+        "title": "Brenner & Krumme 2007 — Tidal migration and patterns in feeding of the four-eyed fish",
+        "url": "https://epic.awi.de/id/eprint/15767/1/Bre2006p.pdf"
+      },
+      {
+        "title": "FishBase — Anableps anableps",
+        "url": "https://www.fishbase.se/summary/7379"
+      }
+    ]
+  }
+}

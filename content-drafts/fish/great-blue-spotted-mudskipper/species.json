@@ -1,0 +1,152 @@
+{
+  "id": "great-blue-spotted-mudskipper",
+  "displayName": "ムツゴロウ",
+  "realBodyLengthCm": 15,
+  "catalog": {
+    "scientificName": "Boleophthalmus pectinirostris",
+    "originRegionId": "east-asia",
+    "originRegionName": "東アジア",
+    "origin": "東アジアから東南アジアの干潟にすむハゼの仲間です。日本では有明海の干潟で見られます。",
+    "temperament": "干潮の間に干潟の上へ出て、泥の表面の藻類などを食べます。佐賀県の観察案内では、干潟での活動は3〜11月、特に5〜7月に目立つとされます。",
+    "movement": "胸びれを使って、底の上を歩くように移動します。夏の繁殖期には、雄が跳びはねて雌に求愛します。",
+    "habitat": "干潮で現れる泥の干潟にすみ、泥の中の巣穴を使います。冬は巣穴にこもって過ごします。香港湿地公園では、マングローブの湿地で見られます。",
+    "aliases": [
+      "Great blue-spotted mudskipper"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Gobiiformes",
+      "orderJa": "ハゼ目",
+      "family": "Oxudercidae",
+      "familyJa": "オクスデルクス科"
+    },
+    "adultSizeCm": 15,
+    "sizeNote": "水族館の解説では15〜20cmほどとされます。長さの測り方や雌雄の別は示されていません。展示では15cm前後を想定しています。",
+    "distribution": "日本、朝鮮半島、中国、台湾、マレーシア、インドネシアに分布します。日本では有明海の干潟にすみます。",
+    "water": {
+      "salinity": "brackish"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "VU",
+      "assessedYear": 2024,
+      "note": "日本では、環境省レッドリスト2020で絶滅危惧IB類（EN）とされています。"
+    },
+    "highlights": [
+      "頭や体に、青白い小さな斑点が散らばります。",
+      "胸びれを使って、底の上を歩くように移動します。",
+      "泥の中の巣穴を使い、雄の巣穴にも雌の巣穴にも空気がたまっていることが確かめられています。",
+      "夏の繁殖期には、雄が跳びはねて求愛します。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.2
+  },
+  "visual": {
+    "fallbackColor": "#766e5e"
+  },
+  "sourceBodyBounds": {
+    "x": 83,
+    "y": 157,
+    "width": 1371,
+    "height": 641
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.8,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.15,
+      "burst": 1.5
+    },
+    "turnRateRadPerSec": 2.4,
+    "restFraction": 0.65,
+    "depthRange": [
+      0.15,
+      0.8
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 3,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.5,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 2.5,
+        "durationSec": [
+          10,
+          35
+        ]
+      },
+      {
+        "type": "grazing",
+        "chancePerMin": 2,
+        "durationSec": [
+          6,
+          18
+        ]
+      },
+      {
+        "type": "homeShelter",
+        "kind": "burrow",
+        "rangeBodyLengths": 4,
+        "visitChancePerMin": 0.8,
+        "visitDurationSec": [
+          10,
+          40
+        ]
+      },
+      {
+        "type": "airBreathing",
+        "breathsPerHour": [
+          3,
+          8
+        ],
+        "style": "dash"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Boleophthalmus species records",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?genus=Boleophthalmus&tbl=species"
+      },
+      {
+        "title": "Hong Kong Wetland Park: Great Blue Spotted Mudskipper",
+        "url": "https://www.wetlandpark.gov.hk/en/biodiversity/beauty-of-wetlands/wildlife/boleophthalmus-pectinirostris"
+      },
+      {
+        "title": "マリンワールド海の中道 — 親子かな～？？？（2022-02-24）",
+        "url": "https://marine-world.jp/staff_blog/post-4626/"
+      },
+      {
+        "title": "Toba & Ishimatsu (2014): Roles of air stored in burrows of the mudskipper Boleophthalmus pectinirostris",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/24588642/"
+      },
+      {
+        "title": "環境省レッドリスト2020 — 汽水・淡水魚類",
+        "url": "https://www.env.go.jp/press/files/jp/114457.pdf"
+      },
+      {
+        "title": "FishBase: Boleophthalmus pectinirostris",
+        "url": "https://www.fishbase.se/summary/Boleophthalmus-pectinirostris"
+      },
+      {
+        "title": "佐賀県 — ムツゴロウのウォッチングカレンダー",
+        "url": "https://www.pref.saga.lg.jp/kiji00320300/index.html"
+      },
+      {
+        "title": "京都水族館 — 2013年企画展 公式資料",
+        "url": "https://www.kyoto-aquarium.com/wp/wp-content/uploads/2019/03/press_130710.pdf"
+      }
+    ]
+  }
+}

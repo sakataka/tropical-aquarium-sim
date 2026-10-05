@@ -1,0 +1,121 @@
+{
+  "id": "wakasagi",
+  "displayName": "ワカサギ",
+  "realBodyLengthCm": 8,
+  "catalog": {
+    "scientificName": "Hypomesus nipponensis",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "日本では、日本海側は島根県より北、太平洋側は千葉県より北と、北海道が本来の分布とされます。朝鮮半島やロシア極東にも分布し、朱鞠内湖など国内の湖や、アメリカのカリフォルニアへも移殖されています。",
+    "temperament": "主に動物プランクトンを食べます。海へ下って戻ってくる集団と、湖に残る集団があります。",
+    "movement": "泳ぐ層は季節や成長段階で変わります。冬の桧原湖では、湖底から数十cm〜1mほどの層を泳いでいる様子が魚群探知機で記録されています。",
+    "habitat": "北の冷たい湖をイメージしています。淡水の湖や川のほか、汽水湖や河口、沿岸の海で暮らす集団もいます。網走湖では春に流れ込む川へ向かって産卵し、場所によっては湖岸でも産卵します。卵は砂礫や水草に付きます。",
+    "aliases": [
+      "Japanese smelt",
+      "Wakasagi",
+      "Hypomesus transpacificus nipponensis"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Osmeriformes",
+      "orderJa": "キュウリウオ目",
+      "family": "Osmeridae",
+      "familyJa": "キュウリウオ科"
+    },
+    "adultSizeCm": 8,
+    "sizeNote": "典型的な成魚の大きさは確かめられておらず、ここでは約8cmとして表示しています。朱鞠内湖で冬に釣れた成熟魚の平均は、全長7.6cmと8.3cmでした（保存後の測定）。データベースの最大は全長17cmですが、標準体長19.45cmの標本も記録されています。",
+    "distribution": "日本、朝鮮半島、ロシア極東の沿岸の川や湖に分布します。日本では朱鞠内湖などの湖に移殖され、北米ではカリフォルニアの湖や河口に定着しています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "note": "IUCN の区分は、IUCN がまとめた淡水魚の一覧に載る評価（個体数は安定）によります。アメリカでは、持ち込まれると定着するおそれが高い魚とされています。"
+    },
+    "highlights": [
+      "背びれの後ろ、尾に近い背中に小さな脂びれがあります。",
+      "背は金褐色で、体側は半透明の銀白色です。背と体側には小さな黒い点が散らばります。",
+      "冬の湖では底近くも泳ぐなど、季節や成長段階によって泳ぐ層が変わります。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 3.0
+  },
+  "visual": {
+    "fallbackColor": "#a7a090"
+  },
+  "sourceBodyBounds": {
+    "x": 84,
+    "y": 260,
+    "width": 1386,
+    "height": 462
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.25,
+    "maxY": 0.88
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.65,
+      "burst": 3.0
+    },
+    "turnRateRadPerSec": 2.9,
+    "restFraction": 0.06,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.6,
+      "cohesion": 0.55,
+      "polarization": 0.45
+    },
+    "structureAffinity": 0.1,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Hypomesus transpacificus nipponensis",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=7833"
+      },
+      {
+        "title": "Saruwatari, Lopez & Pietsch 1997: A Revision of the Osmerid Genus Hypomesus",
+        "url": "https://www.jstage.jst.go.jp/article/specdiv/2/1/2_KJ00003742662/_pdf"
+      },
+      {
+        "title": "玉手剛2002 — 朱鞠内湖におけるワカサギの成熟齢および体サイズ",
+        "url": "https://eprints.lib.hokudai.ac.jp/repo/huscap/all/21479/59(2)_P99-102.pdf"
+      },
+      {
+        "title": "福島県内水面水産試験場 — 令和4年度事業概要報告書（湖沼の資源量計測）",
+        "url": "https://www.pref.fukushima.lg.jp/uploaded/life/660892_1974647_misc.pdf"
+      },
+      {
+        "title": "佐々木・猿渡・渡邊2006 — 岩手県閉伊川における遡河回遊型ワカサギの回遊履歴",
+        "url": "https://www.jstage.jst.go.jp/article/suisan/72/5/72_5_924/_pdf"
+      },
+      {
+        "title": "浅見大樹2004 — 網走湖産ワカサギの初期生活に関する生態学的研究",
+        "url": "https://www.hro.or.jp/upload/36323/wakasagi1.pdf"
+      },
+      {
+        "title": "北海道水産試験場 (1990): ワカサギの生態と資源動向について",
+        "url": "https://www.hro.or.jp/fisheries/publication/ima/o7u1kr0000002em4.html"
+      },
+      {
+        "title": "USFWS: Wakasagi Ecological Risk Screening Summary (2025)",
+        "url": "https://www.fws.gov/sites/default/files/documents/2025-12/ecological-risk-screening-summary-wakasagi-sept-2025.pdf"
+      },
+      {
+        "title": "IUCN SSC: Freshwater fishes of potential interest for inclusion in CMS",
+        "url": "https://iucn.org/sites/default/files/2024-01/freshwater-fishes-of-potential-interest-for-inclusion-in-cms-information-brief.pdf"
+      }
+    ]
+  }
+}

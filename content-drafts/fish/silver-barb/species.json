@@ -1,0 +1,122 @@
+{
+  "id": "silver-barb",
+  "displayName": "シルバーバーブ",
+  "realBodyLengthCm": 28,
+  "catalog": {
+    "scientificName": "Barbonymus gonionotus",
+    "originRegionId": "southeast-asia",
+    "originRegionName": "東南アジア",
+    "origin": "メコン川とチャオプラヤ川の水系、ジャワ島、スマトラ島など、東南アジアに分布します。各地に移殖されていて、台湾では西部と南部の川に定着しています。",
+    "temperament": "自然の中では大きな群れをつくります。水生昆虫、底の藻類、植物のかけらを食べる雑食性です。",
+    "movement": "中層から下層を活発に泳ぎます。背が高く平たい体は銀白色で、背側は淡い灰褐色です。",
+    "habitat": "川の流れの緩い所や下流、湖沼や池にすみます。雨季には支流や水路を通って氾濫原へ移り、水が引くと本流へ戻ります。",
+    "aliases": [
+      "Silver barb",
+      "Java barb",
+      "バルボニムス・ゴニオノトゥス",
+      "Barbodes gonionotus",
+      "Puntius gonionotus",
+      "Barbus gonionotus"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cypriniformes",
+      "orderJa": "コイ目",
+      "family": "Cyprinidae",
+      "familyJa": "コイ科"
+    },
+    "adultSizeCm": 30,
+    "sizeNote": "飼育の解説では標準体長30cmとされます。データベースの最大記録は全長43cmで、タイの貯水池で全長45cmの個体が釣られたという報告もあります。成魚の平均的な大きさは分かっていません。",
+    "distribution": "メコン川とチャオプラヤ川の水系、ジャワ島、スマトラ島を含む東南アジアが原産です。マレー半島については、原産とする資料と移入とする資料があります。台湾には移入され、曽文渓では自然に繁殖しています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2019,
+      "note": "原産地の外で定着した例があるため、飼育した魚を川や池に放さないよう呼びかけられています。"
+    },
+    "highlights": [
+      "背が高く平たい銀白色の体で、群れになって中層から下層を泳ぎます。",
+      "底の藻類や植物のかけらをついばむ雑食性です。",
+      "口に2対のひげがありますが、前のひげは短く目立ちません。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 1.9,
+    "mouthAnchor": {
+      "x": 0.008,
+      "y": 0.55
+    }
+  },
+  "visual": {
+    "fallbackColor": "#aa9e90"
+  },
+  "sourceBodyBounds": {
+    "x": 103,
+    "y": 130,
+    "width": 1373,
+    "height": 747
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.3,
+    "maxY": 0.85
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "steady",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.4,
+      "burst": 1.8
+    },
+    "turnRateRadPerSec": 1.9,
+    "restFraction": 0.08,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.4,
+      "cohesion": 0.6,
+      "polarization": 0.45
+    },
+    "structureAffinity": 0.2,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 0.8,
+        "durationSec": [
+          3,
+          7
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "臺灣魚類資料庫 — Barbonymus gonionotus",
+        "url": "https://fishdb.sinica.edu.tw/taxon/395479-fishdb"
+      },
+      {
+        "title": "NCBI Taxonomy — Barbonymus gonionotus",
+        "url": "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=381606"
+      },
+      {
+        "title": "Mekong River Commission — Barbodes gonionotus migration paths",
+        "url": "https://archive.iwlearn.net/mrcmekong.org/programmes/fisheries/mig_barbodes.htm"
+      },
+      {
+        "title": "Seriously Fish — Barbonymus gonionotus",
+        "url": "https://www.seriouslyfish.com/species/barbonymus-gonionotus/"
+      },
+      {
+        "title": "FishBase — Barbonymus gonionotus",
+        "url": "https://www.fishbase.se/summary/Barbonymus-gonionotus.html"
+      }
+    ]
+  }
+}

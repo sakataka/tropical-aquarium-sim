@@ -1,0 +1,129 @@
+{
+  "id": "ocellated-shell-dweller",
+  "displayName": "ネオランプロログス・オケラートゥス",
+  "realBodyLengthCm": 4,
+  "catalog": {
+    "scientificName": "Neolamprologus ocellatus",
+    "originRegionId": "east-africa",
+    "originRegionName": "東アフリカ",
+    "origin": "東アフリカのタンガニーカ湖の固有種です。1946〜1947年の調査では、テンブウェ湾やキゴマなどで採集されました。",
+    "temperament": "空の巻貝の殻と、そのまわりの小さな縄張りを守ります。威嚇するときは頭を下げてひれを広げ、えらぶたの斑を見せます。雌どうしも争います。",
+    "movement": "住みかの殻の近くで暮らします。口や体で砂を掘って殻を動かし、向きを整えてから砂をかぶせ、入口だけを残します。",
+    "habitat": "柔らかい泥底や、貝殻がたまった湖底にすみます。空の巻貝の殻を、隠れ場所にも産卵場所にも使います。ふだんは水深6〜12mにいるとされます。",
+    "aliases": [
+      "Lamprologus ocellatus",
+      "Ocellated shell-dweller",
+      "Julidochromis ocellatus",
+      "Lamprologus lestradei"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cichliformes",
+      "orderJa": "シクリッド目",
+      "family": "Cichlidae",
+      "familyJa": "シクリッド科"
+    },
+    "adultSizeCm": 4,
+    "sizeNote": "飼育下の研究では、成熟した雄の標準体長の中央値が3.4cm、雌が2.75cmで、雄のほうが大きくなります。記録上の最大は5.8cmです。展示では全長4cm前後を想定しています。",
+    "distribution": "タンガニーカ湖に固有です。1946〜1947年の調査では、水深5〜40mの範囲の曳網で採集されています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2025
+    },
+    "highlights": [
+      "えらぶたに、濃い青黒色の斑があります。",
+      "空の巻貝の殻を住みかにして、危ないときはその中に隠れます。",
+      "口と体で砂を掘って殻を動かし、入口を残して砂をかぶせます。殻の巻き方に合わせて、回す向きを変えることも報告されています。",
+      "雌は殻の中の卵に水を送り、孵化した仔魚を口で殻の奥へ運びます。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 3.0
+  },
+  "visual": {
+    "fallbackColor": "#8d7c65"
+  },
+  "sourceBodyBounds": {
+    "x": 97,
+    "y": 209,
+    "width": 1383,
+    "height": 620
+  },
+  "preferredZone": {
+    "minX": 0.1,
+    "maxX": 0.9,
+    "minY": 0.74,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.45,
+      "burst": 3.0
+    },
+    "turnRateRadPerSec": 3.0,
+    "restFraction": 0.3,
+    "depthRange": [
+      0.05,
+      0.55
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 3.5,
+      "cohesion": 0,
+      "polarization": 0.03
+    },
+    "structureAffinity": 0.8,
+    "habits": [
+      {
+        "type": "homeShelter",
+        "kind": "burrow",
+        "rangeBodyLengths": 5,
+        "visitChancePerMin": 1.8,
+        "visitDurationSec": [
+          3,
+          12
+        ]
+      },
+      {
+        "type": "bottomForage"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Julidochromis ocellatus",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=49978"
+      },
+      {
+        "title": "Poll (1956): Poissons Cichlidae, Lamprologus ocellatus, pp. 537–539",
+        "url": "https://biblio.naturalsciences.be/rbins-publications/scientific-results-from-the-hydrobiological-exploration-lake-tanganyika-1946-1947/vol-3-5b-1956-poissons-cichlidae/058cc0x-part3.pdf"
+      },
+      {
+        "title": "Walter & Trillmich (1994): Female aggression and male peace-keeping in Lamprologus ocellatus",
+        "url": "https://noah.nrw/ubbihs/download/pdf/5112166"
+      },
+      {
+        "title": "Ash Parker: Adaptations to the Brood Care Paradigm in the Shell-dwelling Cichlid Lamprologus ocellatus",
+        "url": "https://edoc.ub.uni-muenchen.de/35082/1/Parker_Ash.pdf"
+      },
+      {
+        "title": "Max Planck Institute press release (2026): Underwater architects",
+        "url": "https://idw-online.de/en/news868984"
+      },
+      {
+        "title": "FishBase: Lamprologus ocellatus",
+        "url": "https://www.fishbase.se/summary/lamprologus-ocellatus.html"
+      },
+      {
+        "title": "Seriously Fish: Lamprologus ocellatus",
+        "url": "https://www.seriouslyfish.com/species/lamprologus-ocellatus/"
+      }
+    ]
+  }
+}

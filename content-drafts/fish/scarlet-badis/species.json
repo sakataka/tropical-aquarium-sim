@@ -1,0 +1,107 @@
+{
+  "id": "scarlet-badis",
+  "displayName": "スカーレット・ジェム",
+  "realBodyLengthCm": 2,
+  "catalog": {
+    "scientificName": "Dario dario",
+    "originRegionId": "south-asia",
+    "originRegionName": "南アジア",
+    "origin": "インド北部のアッサム州と西ベンガル州を流れる、ブラマプトラ水系に分布します。",
+    "temperament": "雄は縄張りを持ち、狭い場所では雄どうしが激しく争います。小さな甲殻類や虫の幼生などを捕らえて食べます。",
+    "movement": "底近くの水中をゆっくり泳ぎ、物陰に隠れがちです。雄は赤い体に青く光る横帯が並び、成熟すると腹びれ、背びれ、しりびれが長く伸びます。",
+    "habitat": "砂や細かな礫の底に水草が密に茂る、透明で浅い小川にすみます。採集地の水深は30〜70cm、水温は約26℃と記録されています。",
+    "aliases": [
+      "Scarlet badis",
+      "スカーレットバディス",
+      "Badis dario",
+      "Badis bengalensis（旧流通名）"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Anabantiformes",
+      "orderJa": "キノボリウオ目",
+      "family": "Badidae",
+      "familyJa": "バディス科"
+    },
+    "adultSizeCm": 2,
+    "sizeNote": "飼育の解説では標準体長2cmとされます。データベースの最大記録は標準体長1.5cm（雌は1.2cm）です。典型的な成魚の大きさは分かっていません。",
+    "distribution": "インド北部のアッサム州と西ベンガル州の、ブラマプトラ水系に分布します。ブータンにもいる可能性がありますが、確かめられていません。ガンジス川の水系にはいないとする研究があります。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "DD",
+      "assessedYear": 2010,
+      "note": "評価に必要な情報が不足しています。森林の減少、土砂の堆積、観賞魚としての採集などの影響が指摘されています。"
+    },
+    "highlights": [
+      "雄は赤い体に、青く光る横帯が7本ほど並びます。",
+      "水草の茂みのような物陰に寄り、底近くをゆっくり泳ぎます。",
+      "雄は縄張りを持ち、ほかの雄とは離れて暮らします。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.6
+  },
+  "visual": {
+    "fallbackColor": "#a44e38"
+  },
+  "sourceBodyBounds": {
+    "x": 127,
+    "y": 213,
+    "width": 1373,
+    "height": 611
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.5,
+    "maxY": 0.92
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.45,
+      "burst": 3.0
+    },
+    "turnRateRadPerSec": 2.8,
+    "restFraction": 0.4,
+    "depthRange": [
+      0.3,
+      0.95
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 4,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.8,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes — Labrus dario",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=38995"
+      },
+      {
+        "title": "Britz & Chaudhry 2010 — Dario dario, IUCN Red List assessment (author copy)",
+        "url": "https://www.researchgate.net/publication/369203061_Dario_dario"
+      },
+      {
+        "title": "Seriously Fish — Dario dario",
+        "url": "https://www.seriouslyfish.com/species/dario-dario/"
+      },
+      {
+        "title": "FishBase — Dario dario",
+        "url": "https://www.fishbase.se/summary/dario-dario.html"
+      },
+      {
+        "title": "Britz & Kullander 2013 — Dario kajal, a new species of badid fish",
+        "url": "https://www.mapress.com/zootaxa/2013/f/zt03731p337.pdf"
+      }
+    ]
+  }
+}

@@ -1,0 +1,115 @@
+{
+  "id": "rainbow-snakehead",
+  "displayName": "レインボー・スネークヘッド",
+  "realBodyLengthCm": 13,
+  "catalog": {
+    "scientificName": "Channa bleheri",
+    "originRegionId": "south-asia",
+    "originRegionName": "南アジア",
+    "origin": "インド北東部のブラマプトラ水系に分布します。アッサム州とアルナーチャル・プラデーシュ州で標本が採集されています。",
+    "temperament": "飼育下の繁殖では雌雄がペアになり、水に浮く卵を守ります。危険が迫ると、卵や仔魚を口に入れて運ぶ様子も観察されています。",
+    "movement": "底近くから中層を泳ぎ、ときどき水面に上がって空気を吸います。空気を吸わずには生きられない魚です。腹びれがなく、頭はやや幅広く、尾びれは丸い形です。",
+    "habitat": "湿地や川、小川で採集されています。アッサム州の湿地で採った親魚を、飼育下で繁殖させた例も報告されています。",
+    "aliases": [
+      "Rainbow snakehead",
+      "Bluefinned snakehead",
+      "チャンナ・ブレヘリ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Anabantiformes",
+      "orderJa": "キノボリウオ目",
+      "family": "Channidae",
+      "familyJa": "タイワンドジョウ科"
+    },
+    "adultSizeCm": 14,
+    "sizeNote": "データベースの最大記録は全長14.4cmです。一方で、標準体長14.9cmの標本も記録されていて、最大の大きさは定まっていません。飼育下で繁殖した親魚は、雄が10.2〜14.2cm、雌が13.8〜14.2cmでした。典型的な成魚の大きさは分かっていません。",
+    "distribution": "インド北東部のブラマプトラ水系に分布します。アッサム州とアルナーチャル・プラデーシュ州で標本が採集されていますが、現在の分布の全体は確かめられていません。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "NT",
+      "assessedYear": 2010,
+      "note": "観賞魚の取引のための採集が、脅威として挙げられています。"
+    },
+    "highlights": [
+      "ときどき水面に上がって空気を吸います。",
+      "腹びれがなく、尾びれには赤から橙色の模様が入ります。",
+      "胸びれには、明るい帯と暗い帯が交互に並びます。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 1.4
+  },
+  "visual": {
+    "fallbackColor": "#826a5c"
+  },
+  "sourceBodyBounds": {
+    "x": 80,
+    "y": 333,
+    "width": 1388,
+    "height": 359
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.3,
+    "maxY": 0.9
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.2,
+      "burst": 1.5
+    },
+    "turnRateRadPerSec": 1.6,
+    "restFraction": 0.42,
+    "depthRange": [
+      0.25,
+      0.9
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 3,
+      "cohesion": 0,
+      "polarization": 0.03
+    },
+    "structureAffinity": 0.55,
+    "habits": [
+      {
+        "type": "airBreathing",
+        "breathsPerHour": [
+          6,
+          14
+        ],
+        "style": "rise"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes — Channa bleheri",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=60360"
+      },
+      {
+        "title": "NCBI Taxonomy — Channa bleheri",
+        "url": "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=304452&mode=Info"
+      },
+      {
+        "title": "Nayak et al. 2023 — Captive breeding and early development of Channa bleheri",
+        "url": "https://www.ajcb.in/journals/full_papers_july_2023/AJCB-Vol12-No1-77857_Nayak%20et%20al.pdf"
+      },
+      {
+        "title": "Vishwanath & Geetakumari 2009 — Diagnosis and interrelationships of fishes of the genus Channa",
+        "url": "https://threatenedtaxa.org/index.php/JoTT/article/download/316/484?inline=1"
+      },
+      {
+        "title": "FishBase — Channa bleheri",
+        "url": "https://www.fishbase.se/summary/channa-bleheri.html"
+      }
+    ]
+  }
+}
