@@ -21,6 +21,10 @@
 | `adoptions/<speciesId>.json` | Claude Code | 採否（`accepted`、修正を頼んで仮に使う `accepted-provisional`）と、採用した画像の path と sha256 |
 | `queue/state`・`queue/current`・`queue/results`・`drafts/`・`species/`・`vault-index.json` | dots | 状態、草案、種ごとの最新の草案 |
 
+## dots との連絡
+
+dots と Claude Code は直接やりとりできないので、保管庫で連絡する。保管庫を触る作業を始めるときは、`git pull` のあと、まず `notes/to-claude-code/`（dots からの連絡）を確認し、返事は `consumer/replies/` に同じファイル名で置く。dots は作業の記録を `docs/` にも残す。
+
 ## 生き物を取り込む流れ
 
 1. 草案を確かめる: 画像は自動検査（外接矩形、見切れ、離れたもや）とコンタクトシートの目視で判断し、`adoptions/` に記録する。直したいものは修正依頼にまとめる。
