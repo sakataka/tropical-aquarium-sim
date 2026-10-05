@@ -1,0 +1,113 @@
+{
+  "id": "amago",
+  "displayName": "アマゴ",
+  "realBodyLengthCm": 22,
+  "catalog": {
+    "scientificName": "Oncorhynchus masou ishikawae",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "神奈川県西部より西の本州太平洋側、四国、九州東部の一部にすむ日本固有のサケ類です。海へ下る型はサツキマスと呼ばれ、ここでは川に残る型を展示しています。",
+    "temperament": "複数いると体の大きさに応じた順位ができ、良い採餌場所をめぐって互いの間合いを取ります。本水槽では、ときどき仲間を追い払うように後を追います。",
+    "movement": "流れ込みや淵の出口で流れに向かって位置を保ち、流れてくる虫を待ち受けます。夜は深みで休みます。",
+    "habitat": "水温の低い渓流。本水槽では、岩盤と大岩に囲まれた山あいの淵をイメージしています。",
+    "aliases": [
+      "Red spotted masu salmon",
+      "Oncorhynchus ishikawae",
+      "サツキマス（降海型）"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Salmoniformes",
+      "orderJa": "サケ目",
+      "family": "Salmonidae",
+      "familyJa": "サケ科"
+    },
+    "adultSizeCm": 22,
+    "sizeNote": "川に残る型の全長は20〜25cmほどです。海へ下るサツキマスは全長25〜50cmになります。",
+    "distribution": "日本固有。神奈川県西部より西の本州太平洋側、四国、九州東部の一部に自然分布します。放流によって本来の範囲の外にも広がっています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "アマゴとしての世界の IUCN 評価は確かめられていません。環境省レッドリスト2020では、サツキマス（アマゴ）が準絶滅危惧（NT）です。独立種 O. ishikawae とする扱いもあります。"
+    },
+    "highlights": [
+      "体側のパーマークの間に散る朱色の点。朱点のないヤマメとの見分けどころです。",
+      "流れに向かって同じ場所に留まり、流れてくる餌を待ち受けます。",
+      "採餌場所をめぐって、体の大きさに応じた順位ができます。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.1
+  },
+  "visual": {
+    "fallbackColor": "#958d79"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.2,
+    "maxY": 0.72
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.42,
+      "burst": 1.9
+    },
+    "turnRateRadPerSec": 2.1,
+    "restFraction": 0.22,
+    "depthRange": [
+      0.15,
+      0.8
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 1.8,
+      "cohesion": 0.32,
+      "polarization": 0.15
+    },
+    "structureAffinity": 0.4,
+    "habits": [
+      {
+        "type": "follow",
+        "chancePerMin": 0.6,
+        "durationSec": [
+          3,
+          7
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "鳥羽水族館 生きもの図鑑 — アマゴ",
+        "url": "https://aquarium.co.jp/picturebook/oncorhynchus-masou-ishikawae.html"
+      },
+      {
+        "title": "国立科学博物館 淡水魚データベース — サツキマス（アマゴ）",
+        "url": "https://www.kahaku.go.jp/research/db/zoology/uodas_freshdb/area/salmonidae/057.html"
+      },
+      {
+        "title": "国土交通省 中国地方整備局 太田川河川事務所 — アマゴ（降海型はサツキマス）",
+        "url": "https://www.cgr.mlit.go.jp/ootagawa/Bio/fishes/index254.htm"
+      },
+      {
+        "title": "Eschmeyer's Catalog of Fishes — Oncorhynchus ishikawae, record 10581",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=10581"
+      },
+      {
+        "title": "環境省 — 第4次レッドリストからの新旧対照表（レッドリスト2020）",
+        "url": "https://www.env.go.jp/press/files/jp/114458.pdf"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 47,
+    "y": 212,
+    "width": 1461,
+    "height": 546
+  }
+}

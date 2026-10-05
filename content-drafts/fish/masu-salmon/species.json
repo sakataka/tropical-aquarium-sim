@@ -1,0 +1,101 @@
+{
+  "id": "masu-salmon",
+  "displayName": "ヤマメ",
+  "realBodyLengthCm": 24,
+  "catalog": {
+    "scientificName": "Oncorhynchus masou masou",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "サクラマスのうち、海へ下らずに川で一生を過ごす型です。北海道から九州までの川にすみ、海外ではカムチャツカ、サハリン、朝鮮半島東部にも分布します。",
+    "temperament": "本水槽では、同じくらいの大きさの仲間と間合いを取りながら、大型のサケ類の泳ぐ湖の流れ込みで暮らします。",
+    "movement": "淵と瀬が続く川の流れの中で暮らします。本水槽では、湖の流れ込みの中層を、向きを変えながら行き来します。",
+    "habitat": "大きな石や岩盤があり、淵と瀬、落ち込みが交互に続く川。本水槽では、北海道の湖へ注ぐ流れ込みをイメージしています。",
+    "aliases": [
+      "サクラマス（降海型）",
+      "ヤマベ",
+      "masu salmon",
+      "cherry salmon"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Salmoniformes",
+      "orderJa": "サケ目",
+      "family": "Salmonidae",
+      "familyJa": "サケ科"
+    },
+    "adultSizeCm": 30,
+    "sizeNote": "国立科学博物館は川に残る個体を全長30cmと示していますが、平均か最大かは示されていません。典型的な成魚の大きさは確かめられておらず、ここでは約24cmとして表示しています。",
+    "distribution": "北海道、本州の太平洋側では神奈川県以北、日本海側では山口県以北、九州に分布します。海外ではカムチャツカ、サハリン、朝鮮半島東部に分布します。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "ヤマメとしての世界の IUCN 評価は確かめられていません。環境省レッドリスト2020では、サクラマス（ヤマメ）が準絶滅危惧（NT）です。"
+    },
+    "highlights": [
+      "体側に並ぶ楕円形のパーマーク。川に残る個体では、大人になっても消えません。",
+      "アマゴとよく似ていますが、体側に朱色の点がありません。",
+      "海へ下る型はサクラマスと呼ばれ、川に残る型よりずっと大きく育ちます。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.1
+  },
+  "visual": {
+    "fallbackColor": "#9d927b"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.2,
+    "maxY": 0.7
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.44,
+      "burst": 2.0
+    },
+    "turnRateRadPerSec": 2.2,
+    "restFraction": 0.2,
+    "depthRange": [
+      0.15,
+      0.75
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 1.7,
+      "cohesion": 0.35,
+      "polarization": 0.16
+    },
+    "structureAffinity": 0.35,
+    "habits": [],
+    "sources": [
+      {
+        "title": "国立科学博物館 サクラマス（ヤマメ）",
+        "url": "https://www.kahaku.go.jp/research/db/zoology/uodas_freshdb/area/salmonidae/055.html"
+      },
+      {
+        "title": "国立環境研究所 侵入生物DB ヤマメ",
+        "url": "https://www.nies.go.jp/biodiversity/invasive/DB/detail/50830.html"
+      },
+      {
+        "title": "環境省レッドリスト2020 別添資料3 全リスト",
+        "url": "https://www.env.go.jp/content/900515981.pdf"
+      },
+      {
+        "title": "国土交通省 太田川河川事務所 アマゴ（降海型はサツキマス）",
+        "url": "https://www.cgr.mlit.go.jp/ootagawa/Bio/fishes/index254.htm"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 81,
+    "y": 215,
+    "width": 1386,
+    "height": 559
+  }
+}

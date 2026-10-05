@@ -1,0 +1,123 @@
+{
+  "id": "bowfin",
+  "displayName": "アミア・カルヴァ",
+  "realBodyLengthCm": 50,
+  "catalog": {
+    "scientificName": "Amia calva",
+    "originRegionId": "north-america",
+    "originRegionName": "北米",
+    "origin": "北米南東部のパール川流域からフロリダ半島と、ジョージア州からバージニア州の大西洋に注ぐ川に分布します。2022年の研究で、北米の広い範囲のアミアが別種 Amia ocellicauda に分けられ、本種の範囲は南東部に絞られました。",
+    "temperament": "魚やザリガニなどを食べます。繁殖期には雄が水草の茂みに巣をつくり、卵と仔魚を守ります。水族館では、物陰に隠れて同居のガーに餌を取られることがありました。",
+    "movement": "流木や水草の近くにとどまり、長い背びれを波打たせて進みます。水面で空気を飲み込み、うきぶくろを呼吸に使います。",
+    "habitat": "沼や湖、低地の川の淀みなど、流れの弱い淡水に暮らし、暖かく酸素の少ない水域にもいます。本水槽では、北米のバイユーの丸太や落ち葉の近くの底にいます。",
+    "aliases": [
+      "ボウフィン",
+      "アミア",
+      "bowfin",
+      "Ruddy bowfin"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Amiiformes",
+      "orderJa": "アミア目",
+      "family": "Amiidae",
+      "familyJa": "アミア科"
+    },
+    "adultSizeCm": 50,
+    "sizeNote": "2022年に分けられた狭い意味での本種について、典型的な大きさや最大の確かな資料は見つかっていません。数値は展示用の目安です。",
+    "distribution": "パール川流域からフロリダ半島、ジョージア・サウスカロライナ・ノースカロライナ・バージニア各州の大西洋流入河川に分布します。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "種が分けられる前の広い意味での Amia calva は2011年に低懸念（LC）と評価されましたが、狭い意味での本種の評価は確認できていません。"
+    },
+    "highlights": [
+      "長い背びれを波打たせて、ゆっくり進みます。",
+      "水面で空気を飲み込み、うきぶくろを呼吸に使います。",
+      "繁殖期の雄は水草の中に巣をつくり、卵を守ります。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 1.1,
+    "tailSweepRad": 0.28
+  },
+  "visual": {
+    "fallbackColor": "#807352"
+  },
+  "sourceBodyBounds": {
+    "x": 99,
+    "y": 298,
+    "width": 1352,
+    "height": 415
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.45,
+    "maxY": 0.92
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.14,
+      "burst": 0.6
+    },
+    "turnRateRadPerSec": 1.4,
+    "restFraction": 0.45,
+    "depthRange": [
+      0.35,
+      0.92
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2,
+      "cohesion": 0,
+      "polarization": 0.03
+    },
+    "structureAffinity": 0.65,
+    "habits": [
+      {
+        "type": "airBreathing",
+        "breathsPerHour": [
+          4,
+          10
+        ],
+        "style": "rise"
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.0,
+        "durationSec": [
+          10,
+          30
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Brownstein et al. 2022 — Hidden species diversity in an iconic living fossil vertebrate",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9709656/"
+      },
+      {
+        "title": "Florida Museum — Bowfin, Florida fishes gallery",
+        "url": "https://www.floridamuseum.ufl.edu/discover-fish/florida-fishes-gallery/bowfin/"
+      },
+      {
+        "title": "Florida Fish and Wildlife Conservation Commission — Bowfin",
+        "url": "https://myfwc.com/wildlifehabitats/profiles/freshwater/bowfin/"
+      },
+      {
+        "title": "須磨海浜水族園『うみと水ぞく』2017年12月、スマスイ生物図鑑Part31",
+        "url": "https://www.city.kobe.lg.jp/documents/33639/umisui201712.pdf"
+      },
+      {
+        "title": "South Carolina DNR — Bowfin species profile",
+        "url": "https://www.dnr.sc.gov/fish/species/bowfin.html"
+      }
+    ]
+  }
+}

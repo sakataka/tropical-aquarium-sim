@@ -1,0 +1,126 @@
+{
+  "id": "zebra-shark",
+  "displayName": "トラフザメ",
+  "realBodyLengthCm": 250,
+  "swim": {
+    "tailBeatHz": 0.55,
+    "bodyWaveStart": 0.28,
+    "waveCount": 1.05,
+    "tailSweepRad": 0.42,
+    "verticalFlex": 0.02,
+    "mouthAnchor": {
+      "x": 0.02,
+      "y": 0.5
+    }
+  },
+  "visual": {
+    "fallbackColor": "#b39d6e"
+  },
+  "sourceBodyBounds": {
+    "x": 75,
+    "y": 363,
+    "width": 1405,
+    "height": 373
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.62,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "undulate",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.14,
+      "burst": 0.4
+    },
+    "turnRateRadPerSec": 1.0,
+    "restFraction": 0.55,
+    "depthRange": [
+      0.2,
+      0.85
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0,
+      "polarization": 0.03
+    },
+    "structureAffinity": 0.4,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.2,
+        "durationSec": [
+          40,
+          150
+        ]
+      },
+      {
+        "type": "bottomForage"
+      }
+    ],
+    "sources": [
+      {
+        "title": "鴨川シーワールド Vol.196 トラフザメの模様",
+        "url": "https://www.kamogawa-seaworld.jp/animal/movie/vol_196/"
+      },
+      {
+        "title": "Dudgeon, Lanyon & Semmens 2013. Seasonality and site-fidelity of the zebra shark in southeast Queensland",
+        "url": "https://www.researchgate.net/publication/255687436_Seasonality_and_site-fidelity_of_the_zebra_shark_Stegostoma_fasciatum_in_southeast_Queensland_Australia"
+      },
+      {
+        "title": "Adams et al. 2022. Artificial Insemination and Parthenogenesis in the Zebra Shark Stegostoma tigrinum",
+        "url": "https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2022.886616/full"
+      },
+      {
+        "title": "FishBase: Stegostoma tigrinum",
+        "url": "https://www.fishbase.se/summary/Stegostoma-tigrinum.html"
+      },
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Stegostoma tigrinum",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=24077"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Stegostoma tigrinum",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "紅海とインド・西太平洋。東アフリカからマーシャル諸島やサモア、南日本からオーストラリアやニューカレドニアまで分布します。",
+    "temperament": "夜に活動するおとなしいサメです。オーストラリアの調査では、成魚が毎年同じ季節に同じ場所へ集まり、翌年も戻ってくることが分かっています。",
+    "movement": "昼間は海底でじっと休み、流れに頭を向けています。泳ぐときは長い尾をくねらせてゆっくり進み、礁の割れ目や溝に頭を入れて餌を探します。",
+    "habitat": "サンゴ礁の砂地や岩場。名前の由来の縞模様は幼魚のもので、成長すると黄褐色の地に黒い斑点の模様に変わります。",
+    "aliases": [
+      "Zebra shark",
+      "Stegostoma fasciatum",
+      "Leopard shark"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Orectolobiformes",
+      "orderJa": "テンジクザメ目",
+      "family": "Stegostomatidae",
+      "familyJa": "トラフザメ科"
+    },
+    "adultSizeCm": 350,
+    "sizeNote": "成長すると体長3.5mになると解説されています（測り方の記載なし）。最大の報告は全長354cmです。繁殖研究では、雌は全長169cm、雄は147cmを超えると成魚とみなしています。",
+    "distribution": "紅海からインド洋、西太平洋の熱帯・亜熱帯に分布します。日本では南日本で見られます。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "EN",
+      "assessedYear": 2023
+    },
+    "highlights": [
+      "昼間は砂底に横たわって休み、流れのほうへ頭を向ける",
+      "体の半分ほどもある長い尾をくねらせて、ゆっくり泳ぐ",
+      "幼魚の縞模様が、成長すると斑点模様に変わる",
+      "水族館では、雄がいなくても雌が子を産む単為生殖が確かめられている"
+    ]
+  }
+}

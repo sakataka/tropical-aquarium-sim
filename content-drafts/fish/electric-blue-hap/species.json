@@ -1,0 +1,99 @@
+{
+  "id": "electric-blue-hap",
+  "displayName": "スキアエノクロミス・フライエリー",
+  "realBodyLengthCm": 14,
+  "swim": {
+    "tailBeatHz": 1.9,
+    "tailSweepRad": 0.4
+  },
+  "visual": {
+    "fallbackColor": "#2c5bc0"
+  },
+  "sourceBodyBounds": {
+    "x": 195,
+    "y": 294,
+    "width": 1179,
+    "height": 461
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.25,
+    "maxY": 0.78
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "steady",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.32,
+      "burst": 1.5
+    },
+    "turnRateRadPerSec": 2,
+    "restFraction": 0.12,
+    "depthRange": [0.15, 0.85],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 3,
+      "cohesion": 0,
+      "polarization": 0.04
+    },
+    "structureAffinity": 0.4,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Sciaenochromis fryeri",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=67414"
+      },
+      {
+        "title": "Konings 1993: A revision of the genus Sciaenochromis",
+        "url": "https://www.researchgate.net/publication/237091705_A_revision_of_the_genus_Sciaenochromis_Eccles_Trewavas_1989_Pisces_Cichlidae"
+      },
+      {
+        "title": "FishBase: Sciaenochromis fryeri",
+        "url": "https://www.fishbase.se/summary/Sciaenochromis-fryeri.html"
+      },
+      {
+        "title": "Aquarium Industries: Electric Blue Cichlid care sheet (2013)",
+        "url": "https://www.aquariumindustries.com.au/wp-content/uploads/2015/03/Electric-Blue.pdf"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Sciaenochromis fryeri",
+    "originRegionId": "east-africa",
+    "originRegionName": "東アフリカ",
+    "origin": "マラウイ湖の固有種で、模式産地はンベンジ島です。観賞魚として「S. ahli」の名で呼ばれてきた魚が、1993年に別種として整理されました。",
+    "habitat": "岩礁と、岩と砂の移り変わる場所にすみ、水深10〜40mで観察されています。この展示では、白い砂と花崗岩の岩が点在する明るい湖底を泳ぎます。",
+    "temperament": "小型のシクリッドを捕らえて食べる魚食性です。野外では単独で巡回する姿が観察されています。雄は産卵のときに縄張りを守ります。",
+    "movement": "岩と砂の境目を一定の速さで巡回し、獲物を見つけると素早く向かいます。",
+    "aliases": [
+      "Electric blue hap",
+      "Electric Blue Cichlid",
+      "エレクトリックブルー・ハップ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cichliformes",
+      "orderJa": "シクリッド目",
+      "family": "Cichlidae",
+      "familyJa": "シクリッド科"
+    },
+    "adultSizeCm": 14,
+    "sizeNote": "原記載の雄のホロタイプは全長14.15cm（標準体長11.32cm）です。FishBase の最大は標準体長11.5cmです。雄の背びれと腹びれは雌より長く尖ります。",
+    "distribution": "東アフリカ、マラウイ湖の固有種。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2018
+    },
+    "highlights": [
+      "成熟した雄は全身があざやかな青になります。雌は褐色の縦帯があり、青みは弱めです。",
+      "単独で岩と砂の境目を巡回し、小型のシクリッドを狙います。",
+      "雌は卵と仔魚を口の中で守ります。"
+    ]
+  }
+}

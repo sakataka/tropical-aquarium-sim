@@ -1,0 +1,98 @@
+{
+  "id": "japanese-grenadier",
+  "displayName": "トウジン",
+  "realBodyLengthCm": 50,
+  "swim": {
+    "tailBeatHz": 1.2,
+    "bodyWaveStart": 0.3,
+    "waveCount": 0.9,
+    "tailSweepRad": 0.3,
+    "verticalFlex": 0.015
+  },
+  "visual": {
+    "fallbackColor": "#8f8780"
+  },
+  "sourceBodyBounds": {
+    "x": 76,
+    "y": 309,
+    "width": 1385,
+    "height": 402
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.55,
+    "maxY": 0.88
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.15,
+      "burst": 0.6
+    },
+    "turnRateRadPerSec": 1.3,
+    "restFraction": 0.35,
+    "depthRange": [
+      0.2,
+      0.85
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2,
+      "cohesion": 0,
+      "polarization": 0.03
+    },
+    "structureAffinity": 0.2,
+    "habits": [],
+    "sources": [
+      {
+        "title": "FAO (1990) Gadiform fishes of the world — Coelorinchus japonicus, pp.162–163",
+        "url": "https://www.fao.org/4/t0243e/T0243E18.pdf"
+      },
+      {
+        "title": "Honda et al. (2024) Revised Checklist of Fishes of Sagami Bay",
+        "url": "https://nh.kanagawa-museum.jp/assets/icp/contents/1706848414159/simple/Bull53_127-218_Honda.pdf"
+      },
+      {
+        "title": "WoRMS — Coelorinchus taxon list",
+        "url": "https://www.marinespecies.org/aphia.php?p=taxlist&tName=Coelorinchus"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Coelorinchus japonicus",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "日本南部の深海に分布し、相模湾でも記録があります。インド西太平洋に広く分布するという古い記録は、標本の裏付けが不十分とされています。",
+    "temperament": "オキアミやエビ、底生の魚、等脚類、ゴカイの仲間を食べると記録されています。群れ方や昼夜の活動は分かっていません。",
+    "movement": "海底近くの水層を泳ぐ深海魚です。長く尖った吻を前に向け、尾びれのない細長い尾を後ろへ伸ばしています。",
+    "habitat": "水深300〜1000mの海底付近にすみ、大きい個体ほど深いところにいると記載されています。トロール漁で漁獲されますが、生きた個体を長く展示した例は確認されていません。",
+    "aliases": [
+      "Japanese grenadier"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Gadiformes",
+      "orderJa": "タラ目",
+      "family": "Macrouridae",
+      "familyJa": "ソコダラ科"
+    },
+    "adultSizeCm": 50,
+    "sizeNote": "典型的な成魚の大きさは確定しておらず、ここでの値は展示用の目安です。FAOの資料では全長75cmに達するとされます。",
+    "distribution": "日本南部の水深300〜1000mの海底付近に分布します。台湾などの記録は、まだ十分に確かめられていません。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "rarelyDisplayed",
+    "conservation": {
+      "note": "IUCNの評価は、今回の調査では確認できていません。"
+    },
+    "highlights": [
+      "長く鋭く尖った吻と、頭の棘のような鱗が目立つ。",
+      "尾びれがなく、体の後ろがネズミの尾のように細く伸びる。",
+      "海底のすぐ上の水層で暮らし、エビやオキアミ、底生の小動物を食べる。"
+    ]
+  }
+}

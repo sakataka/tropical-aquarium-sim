@@ -1,0 +1,107 @@
+{
+  "id": "stuartgranti-peacock",
+  "displayName": "オーロノカラ・スチュアートグランティ",
+  "realBodyLengthCm": 11,
+  "swim": {
+    "tailBeatHz": 2,
+    "tailSweepRad": 0.38,
+    "mouthAnchor": {
+      "x": 0.005,
+      "y": 0.56
+    }
+  },
+  "visual": {
+    "fallbackColor": "#2f4fa6"
+  },
+  "sourceBodyBounds": {
+    "x": 219,
+    "y": 269,
+    "width": 1164,
+    "height": 512
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.4,
+    "maxY": 0.92
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.32,
+      "burst": 1.4
+    },
+    "turnRateRadPerSec": 2.1,
+    "restFraction": 0.2,
+    "depthRange": [0.15, 0.8],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 2.2,
+      "cohesion": 0.35,
+      "polarization": 0.12
+    },
+    "structureAffinity": 0.35,
+    "habits": [
+      {
+        "type": "bottomForage"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Aulonocara stuartgranti",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=8048"
+      },
+      {
+        "title": "FishBase: Aulonocara stuartgranti",
+        "url": "https://www.fishbase.se/summary/Aulonocara-stuartgranti"
+      },
+      {
+        "title": "Schwalbe, Bassett & Webb (2012): Feeding in the dark; doi:10.1242/jeb.065920",
+        "url": "https://journals.biologists.com/jeb/article/215/12/2060/10804/Feeding-in-the-dark-lateral-line-mediated-prey"
+      },
+      {
+        "title": "Seriously Fish: Aulonocara stuartgranti",
+        "url": "https://www.seriouslyfish.com/species/aulonocara-stuartgranti"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Aulonocara stuartgranti",
+    "originRegionId": "east-africa",
+    "originRegionName": "東アフリカ",
+    "origin": "マラウイ湖に分布し、模式産地はマラウイ側チルンバのムパンガ・ロックスです。雄の色は産地ごとに違い、青い型は主に湖の北部で見られます。",
+    "habitat": "岩の岸と開けた砂底の境目にすみ、砂底の小さな無脊椎動物を食べます。洞窟に隠れる個体もいれば、砂の上で大きな群れになる個体もいます。",
+    "temperament": "雄は似た色の魚に強く出ることがあります。雄は雌より大きく、色もあざやかです。",
+    "movement": "砂の上すれすれを、尾びれで短く進んでは滑るように進み、止まって餌を探します。明るいときは水中のあちこちも泳ぎます。",
+    "aliases": [
+      "Flavescent peacock cichlid",
+      "ピーコック",
+      "オーロノカラ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cichliformes",
+      "orderJa": "シクリッド目",
+      "family": "Cichlidae",
+      "familyJa": "シクリッド科"
+    },
+    "adultSizeCm": 11.8,
+    "sizeNote": "FishBase の最大は全長11.8cmで、飼育資料には標準体長13cmとする記載もあります。ふつうの雄の大きさは確かめられていません。",
+    "distribution": "東アフリカ、マラウイ湖。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2018
+    },
+    "highlights": [
+      "砂の上で、進む・滑る・止まるを繰り返しながら餌を探します。",
+      "頭の側線で獲物が起こすわずかな水の動きを感じ取り、暗がりでも砂の中の餌を捕らえます。",
+      "雄の体色は産地によって違い、青い型は主に湖の北部のものです。"
+    ]
+  }
+}

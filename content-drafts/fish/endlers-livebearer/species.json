@@ -1,0 +1,111 @@
+{
+  "id": "endlers-livebearer",
+  "displayName": "エンドラーズ・ライブベアラー",
+  "realBodyLengthCm": 2.5,
+  "swim": {
+    "tailBeatHz": 3.4,
+    "tailSweepRad": 0.55
+  },
+  "visual": {
+    "fallbackColor": "#b08a4c"
+  },
+  "sourceBodyBounds": {
+    "x": 199,
+    "y": 272,
+    "width": 1168,
+    "height": 423
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.1,
+    "maxY": 0.72
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.9,
+      "burst": 3.6
+    },
+    "turnRateRadPerSec": 3.2,
+    "restFraction": 0.06,
+    "depthRange": [0.1, 0.8],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.8,
+      "cohesion": 0.48,
+      "polarization": 0.22
+    },
+    "structureAffinity": 0.3,
+    "habits": [
+      {
+        "type": "follow",
+        "chancePerMin": 1.4,
+        "durationSec": [2, 5]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Poecilia wingei",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=68976"
+      },
+      {
+        "title": "Poeser, Kempkes & Isbrücker (2005), Description of Poecilia wingei",
+        "url": "https://repository.naturalis.nl/pub/214343/CtZ74_1-2_097-116.pdf"
+      },
+      {
+        "title": "Řežucha & Reichard (2014), The effect of social environment on alternative mating tactics in male Endler’s guppy",
+        "url": "https://reichardlab.eu/pdf/MR77.pdf"
+      },
+      {
+        "title": "Aquarium Co-Op: Care Guide for Endler’s Livebearers",
+        "url": "https://www.aquariumcoop.com/blogs/aquarium/endlers-livebearer-care-guide"
+      },
+      {
+        "title": "FishBase: Poecilia wingei field guide",
+        "url": "https://www.fishbase.se/FieldGuide/FieldGuideSummary.php?GenusName=Poecilia&SpeciesName=wingei&pda=1&sps="
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Poecilia wingei",
+    "originRegionId": "south-america",
+    "originRegionName": "南米",
+    "origin": "ベネズエラ北部、スクレ州パリア半島の沿岸の川に分布します。2005年に新種として記載されました。グッピーと交雑することがあります。",
+    "habitat": "澄んだ小川の岸寄りで観察されています。この展示では、水草の茂る明るい水槽を泳ぎます。",
+    "temperament": "温和な小型魚です。野外では雌雄の成魚と若魚が集まった群れで見られ、雌の群れの近くに雄が2〜3尾いることがあります。",
+    "movement": "水面から底まで、あちこちで餌を探して泳ぎます。雄は体をS字に曲げてひれを広げ、雌に体の側面を見せて求愛します。",
+    "aliases": [
+      "Endler’s livebearer",
+      "Endler’s guppy",
+      "Campoma guppy",
+      "エンドラーズ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cyprinodontiformes",
+      "orderJa": "カダヤシ目",
+      "family": "Poeciliidae",
+      "familyJa": "カダヤシ科"
+    },
+    "adultSizeCm": 2,
+    "sizeNote": "原記載で測られた雄5標本は標準体長1.88〜2.13cm（平均1.96cm）、雄のホロタイプは1.43cmです。",
+    "distribution": "ベネズエラ北部、パリア半島の沿岸の河川（カンポマ、ブエナビスタ周辺）。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "EN",
+      "assessedYear": 2021,
+      "note": "IUCN の基準 B1ab(iii,v) による評価です。飼育下ではよく流通しますが、グッピーとの交雑系統もこの名で売られています。"
+    },
+    "highlights": [
+      "雄は金属光沢のある多色の模様をもち、模様は一尾ずつ違います。",
+      "雄は体をS字に曲げてひれを広げ、雌に体の側面を見せて求愛します。",
+      "雄は求愛のほかに、こっそり近づいて交尾を試みる行動もとります。"
+    ]
+  }
+}

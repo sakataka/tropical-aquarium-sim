@@ -1,0 +1,115 @@
+{
+  "id": "topmouth-gudgeon",
+  "displayName": "モツゴ",
+  "realBodyLengthCm": 8,
+  "catalog": {
+    "scientificName": "Pseudorasbora parva",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "関東より西の本州、四国、九州と、中国、朝鮮半島、台湾などに分布します。自然分布の外へも広く持ち込まれ、ヨーロッパでは在来魚への影響が問題になっています。",
+    "temperament": "小さな虫やプランクトン、藻類などを食べます。繁殖期の雄は黒っぽくなり、石などの表面を掃除して産卵場所を整え、卵を守ります。",
+    "movement": "底近くから中層を泳ぎます。実験では、捕食者がいると昼に群れをつくることが増え、暗くなると群れがばらけました。",
+    "habitat": "池沼の岸辺や泥底、川の下流の緩い流れにすみます。コンクリート護岸の小川やため池でも暮らせます。",
+    "aliases": [
+      "Topmouth gudgeon",
+      "Stone moroko",
+      "クチボソ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cypriniformes",
+      "orderJa": "コイ目",
+      "family": "Gobionidae",
+      "familyJa": "カマツカ科"
+    },
+    "adultSizeCm": 8,
+    "sizeNote": "ふつうは全長8cmほどで、最大で12.5cmの記録があります。多くは1年で成熟します。",
+    "distribution": "関東より西の本州、四国、九州と、中国、朝鮮半島、台湾などに分布します。新潟県など自然分布の外や、ヨーロッパ各地にも定着しています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2020,
+      "note": "愛媛県のレッドリスト（2025）では準絶滅危惧（NT）です。"
+    },
+    "highlights": [
+      "小さく上を向いた口でひげはなく、体側に暗い帯が通ります。",
+      "繁殖期の雄は黒っぽくなり、口のまわりに追星が出ます。",
+      "水族館では、ガラス面に産み付けられた卵のそばで雄が見張っていた記録があります。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 3.0
+  },
+  "visual": {
+    "fallbackColor": "#8e897a"
+  },
+  "sourceBodyBounds": {
+    "x": 131,
+    "y": 261,
+    "width": 1291,
+    "height": 472
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.3,
+    "maxY": 0.85
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.6,
+      "burst": 2.8
+    },
+    "turnRateRadPerSec": 2.9,
+    "restFraction": 0.1,
+    "depthRange": [
+      0.1,
+      0.75
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.7,
+      "cohesion": 0.5,
+      "polarization": 0.4
+    },
+    "structureAffinity": 0.3,
+    "habits": [
+      {
+        "type": "follow",
+        "chancePerMin": 0.4,
+        "durationSec": [
+          1,
+          2.5
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "長野県水産試験場 — モツゴ",
+        "url": "https://www.pref.nagano.lg.jp/suisan/joho/sakanatachi/motsugo.html"
+      },
+      {
+        "title": "東山動植物園 — 大水槽ガラス面にある、なぞの卵塊",
+        "url": "https://www.higashiyama.city.nagoya.jp/blog/2017/01/post-2906.html"
+      },
+      {
+        "title": "大阪府立環境農林水産総合研究所 — モツゴ",
+        "url": "https://www.knsk-osaka.jp/zukan/zukan_database/tansui/8450b2c298b2683/2950b6ecfb2e175.html"
+      },
+      {
+        "title": "Sunardi, Asaeda & Manatunge 2005 — Foraging and behavioral flexibility in an artificial stream",
+        "url": "https://www.researchgate.net/publication/227039953_Foraging_of_a_Small_Planktivore_Pseudorasbora_parva_Cyprinidae_and_its_Behavioral_Flexibility_in_an_Artificial_Stream"
+      },
+      {
+        "title": "FishBase — Pseudorasbora parva",
+        "url": "https://www.fishbase.se/summary/Pseudorasbora-parva.html"
+      }
+    ]
+  }
+}

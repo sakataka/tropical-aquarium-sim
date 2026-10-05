@@ -1,0 +1,104 @@
+{
+  "id": "goblin-shark",
+  "displayName": "ミツクリザメ",
+  "realBodyLengthCm": 300,
+  "swim": {
+    "tailBeatHz": 0.6,
+    "tailSweepRad": 0.4
+  },
+  "visual": {
+    "fallbackColor": "#b39ba0"
+  },
+  "sourceBodyBounds": {
+    "x": 61,
+    "y": 364,
+    "width": 1417,
+    "height": 317
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.3,
+    "maxY": 0.85
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "steady",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.25,
+      "burst": 0.7
+    },
+    "turnRateRadPerSec": 1.0,
+    "restFraction": 0.15,
+    "depthRange": [
+      0.25,
+      0.9
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 3,
+      "cohesion": 0,
+      "polarization": 0.03
+    },
+    "structureAffinity": 0.15,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Australian Museum — Goblin Shark",
+        "url": "https://australian.museum/learn/animals/fishes/goblin-shark-mitsukurina-owstoni/"
+      },
+      {
+        "title": "Nakaya et al. 2016 — Slingshot feeding of the goblin shark",
+        "url": "https://www.nature.com/articles/srep27786"
+      },
+      {
+        "title": "Yano et al. 2007 — Biology of goblin sharks from Tokyo Submarine Canyon",
+        "url": "https://link.springer.com/article/10.1007/s10228-007-0414-2"
+      },
+      {
+        "title": "Australian Shark Report Card — Goblin Shark, 2019",
+        "url": "https://www.fish.gov.au/docs/SharkReport/FRDC_Mitsukurina_owstoni.pdf"
+      },
+      {
+        "title": "鴨川シーワールド — 深海ザメ標本と飼育の報告、2023-10-30",
+        "url": "https://www.kamogawa-seaworld.jp/release/10127/"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Mitsukurina owstoni",
+    "originRegionId": "worldwide",
+    "originRegionName": "世界の海",
+    "origin": "太平洋、大西洋、インド洋で散発的に記録されています。日本では東京海底谷など、太平洋岸の深海で未成熟の個体がよく採集されています。",
+    "temperament": "未成熟の個体の胃からは、魚やイカ、エビ・カニの仲間、等脚類が見つかっています。群れ方や昼夜の活動は分かっていません。",
+    "movement": "柔らかい体で、海底近くや中層を泳ぎます。獲物を捕らえるときは、上下の顎を一気に前へ突き出し、そのあと引き込みます。",
+    "habitat": "大陸棚の縁から斜面の、海底近くと中層にすみます。東京海底谷では水深100〜350mで未成熟の個体が採集されました。生きた個体の展示はまれで、鴨川シーワールドでも1週間ほどしか飼育できていません。",
+    "aliases": [
+      "Goblin shark"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Lamniformes",
+      "orderJa": "ネズミザメ目",
+      "family": "Mitsukurinidae",
+      "familyJa": "ミツクリザメ科"
+    },
+    "adultSizeCm": 300,
+    "sizeNote": "典型的な成魚の大きさは確定しておらず、ここでの値は展示用の目安です。雄は全長264cmほどで成熟するとされ、オーストラリアでは全長390cmの記録があります。写真から推定された5m以上の値は、実測ではありません。",
+    "distribution": "太平洋、大西洋、インド洋の大陸棚の縁から斜面にかけて、散発的に分布します。日本の太平洋岸でも記録があります。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "rarelyDisplayed",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2017
+    },
+    "highlights": [
+      "長く平たいへらのような吻と、細く尖った歯を持つ。",
+      "獲物を捕らえるとき、上下の顎を勢いよく前へ突き出す。撮影された個体では、全長の9%ほども前へ出た。",
+      "ふだんは顎を引き込み、吻の下に収めている。"
+    ]
+  }
+}

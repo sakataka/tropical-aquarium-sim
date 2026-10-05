@@ -1,0 +1,99 @@
+{
+  "id": "silver-dollar",
+  "displayName": "シルバーダラー",
+  "realBodyLengthCm": 13,
+  "swim": {
+    "tailBeatHz": 2.1,
+    "tailSweepRad": 0.42,
+    "bodyWaveStart": 0.48
+  },
+  "visual": {
+    "fallbackColor": "#b8bcb2"
+  },
+  "sourceBodyBounds": {
+    "x": 276,
+    "y": 135,
+    "width": 1031,
+    "height": 718
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.12,
+    "maxY": 0.58
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.42,
+      "burst": 1.7
+    },
+    "turnRateRadPerSec": 2,
+    "restFraction": 0.12,
+    "depthRange": [0.15, 0.82],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.4,
+      "cohesion": 0.55,
+      "polarization": 0.35
+    },
+    "structureAffinity": 0.25,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes — Metynnis hypsauchen",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=4062"
+      },
+      {
+        "title": "FishBase — Metynnis hypsauchen",
+        "url": "https://fishbase.se/summary/11937"
+      },
+      {
+        "title": "Seriously Fish — Metynnis hypsauchen",
+        "url": "https://www.seriouslyfish.com/species/metynnis-hypsauchen"
+      },
+      {
+        "title": "Ota, Rapp Py-Daniel & Jégu (2016), A new Silver Dollar species of Metynnis from Northwestern Brazil and Southern Venezuela",
+        "url": "https://www.scielo.br/j/ni/a/63HPSpTkjXNVy7c3R4vZHPS/?format=html"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Metynnis hypsauchen",
+    "originRegionId": "south-america",
+    "originRegionName": "南米",
+    "origin": "アマゾン川とパラグアイ川の流域、ギアナ高地北部の川に分布します。ブラジル、ペルー、コロンビア、ベネズエラ、ボリビア、ガイアナで記録があります。",
+    "habitat": "植物の多い川の支流にすみます。この展示では、水没した木の間の開けた中層を泳ぎます。",
+    "temperament": "温和な草食寄りのカラシンで、群れで暮らします。驚くと逃げやすい臆病さもあります。",
+    "movement": "円盤のような体で、中層から上層を群れでそろって泳ぎます。急に向きを変えて散り、またまとまります。",
+    "aliases": [
+      "Silver dollar",
+      "Myletes hypsauchen"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Characiformes",
+      "orderJa": "カラシン目",
+      "family": "Serrasalmidae",
+      "familyJa": "セラサルムス科"
+    },
+    "adultSizeCm": 13,
+    "sizeNote": "リオ・ネグロ産の比較標本1個体が標準体長13.1cm。報告されている最大は標準体長18cmです。ふつうの成魚の全長は確かめられていません。",
+    "distribution": "アマゾン川・パラグアイ川の流域と、ギアナ高地北部の河川。リオ・ネグロなどでは、よく似た M. melanogrammus と同じ場所にすみます。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2020
+    },
+    "highlights": [
+      "銀色の円い体の群れが、中層から上層をそろって泳ぎます。",
+      "植物質をよく食べ、飼育下では水草を食べてしまうこともあります。",
+      "シルバーダラーの名で売られる魚には、M. argenteus など近縁の別種も含まれます。"
+    ]
+  }
+}

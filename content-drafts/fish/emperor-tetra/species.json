@@ -1,0 +1,106 @@
+{
+  "id": "emperor-tetra",
+  "displayName": "エンペラーテトラ",
+  "realBodyLengthCm": 4.5,
+  "swim": {
+    "tailBeatHz": 2.7
+  },
+  "visual": {
+    "fallbackColor": "#8e8160"
+  },
+  "sourceBodyBounds": {
+    "x": 193,
+    "y": 232,
+    "width": 1216,
+    "height": 513
+  },
+  "preferredZone": {
+    "minX": 0.1,
+    "maxX": 0.9,
+    "minY": 0.26,
+    "maxY": 0.7
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.6,
+      "burst": 2.6
+    },
+    "turnRateRadPerSec": 2.7,
+    "restFraction": 0.18,
+    "depthRange": [0.15, 0.8],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 2.4,
+      "cohesion": 0.38,
+      "polarization": 0.15
+    },
+    "structureAffinity": 0.48,
+    "habits": [
+      {
+        "type": "follow",
+        "chancePerMin": 0.7,
+        "durationSec": [3, 9]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Nematobrycon palmeri",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=4340"
+      },
+      {
+        "title": "Weitzman & Fink 1971: A new species of characid fish of the genus Nematobrycon",
+        "url": "https://repository.naturalis.nl/pub/505176/BEAU1971019248001.pdf"
+      },
+      {
+        "title": "FishBase: Nematobrycon palmeri",
+        "url": "https://www.fishbase.se/summary/Nematobrycon-palmeri"
+      },
+      {
+        "title": "Peter Melady: Spawning the Emperor—Tetra That Is; The Darter March 2011, p5",
+        "url": "https://missouriaquariumsociety.com/TheDarter/Darter/2011/Darter%202011%2003.pdf"
+      },
+      {
+        "title": "Aquarium Glaser: Nematobrycon lacortei / Nematobrycon genus husbandry",
+        "url": "https://www.aquariumglaser.de/tag/nematobrycon/"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Nematobrycon palmeri",
+    "originRegionId": "south-america",
+    "originRegionName": "南米",
+    "origin": "南米コロンビア西部、太平洋側のアトラト川とサンフアン川の流域に由来します。アマゾン産ではありません。",
+    "temperament": "ふだんは穏やかですが、雄は一時的に縄張りを持ち、ほかの雄や雌を追い回すことがあります。追われた雌は物陰に隠れます。",
+    "movement": "中層を落ち着いて泳ぎ、水草の間を行き来します。雄どうしが出会うと、短い追いかけ合いになります。",
+    "habitat": "上流の、水草が茂る小さな池や淀みに暮らすと伝えられています。水草や流木で区切られた場所と、開けた泳ぎ場のある水槽が向いています。",
+    "aliases": [
+      "Emperor tetra"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Characiformes",
+      "orderJa": "カラシン目",
+      "family": "Acestrorhamphidae",
+      "familyJa": "アケストロランプス科"
+    },
+    "adultSizeCm": 3.5,
+    "sizeNote": "1971年に指定された雄の基準標本は標準体長3.5cmです。報告されている最大は標準体長4.2cmで、雄は尾びれの中央と背びれが伸びるため、全長はこれより長くなります。",
+    "distribution": "コロンビア西部のアトラト川とサンフアン川の流域に分布します。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "DD",
+      "assessedYear": 2014
+    },
+    "highlights": [
+      "雄は尾びれの中央と上下が伸び、三叉のほこのような形になる。",
+      "あごから尾びれの先まで黒い帯が走り、眼は青く光る。",
+      "雄は縄張りを持ち、ほかの雄を短く追い払う。"
+    ]
+  }
+}

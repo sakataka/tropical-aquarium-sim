@@ -1,0 +1,131 @@
+{
+  "id": "sailfin-sculpin",
+  "displayName": "セイルフィンスカルピン",
+  "realBodyLengthCm": 13,
+  "swim": {
+    "tailBeatHz": 2.0,
+    "tailSweepRad": 0.3
+  },
+  "visual": {
+    "fallbackColor": "#a88a62"
+  },
+  "sourceBodyBounds": {
+    "x": 175,
+    "y": 103,
+    "width": 1213,
+    "height": 748
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.7,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.15,
+      "burst": 0.9
+    },
+    "turnRateRadPerSec": 2.0,
+    "restFraction": 0.55,
+    "depthRange": [
+      0.4,
+      0.92
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2,
+      "cohesion": 0,
+      "polarization": 0.03
+    },
+    "structureAffinity": 0.8,
+    "habits": [
+      {
+        "type": "hideByDay",
+        "durationSec": [
+          60,
+          180
+        ]
+      },
+      {
+        "type": "homeShelter",
+        "kind": "crevice",
+        "rangeBodyLengths": 4,
+        "visitChancePerMin": 0.6,
+        "visitDurationSec": [
+          10,
+          30
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.5,
+        "durationSec": [
+          8,
+          25
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Love et al. (2021), Checklist of marine and estuarine fishes — Nautichthys oculofasciatus treatment",
+        "url": "https://zenodo.org/records/5605383"
+      },
+      {
+        "title": "Patten (1979), Observations of Fish On And Around An Artificial Reef In Puget Sound, Washington",
+        "url": "https://repository.library.noaa.gov/view/noaa/61066/noaa_61066_DS1.pdf"
+      },
+      {
+        "title": "NOAA Fisheries, A View From Inside the Kodiak Lab Aquarium — Post 3 (2021)",
+        "url": "https://www.fisheries.noaa.gov/science-blog/view-inside-kodiak-lab-aquarium-post-3"
+      },
+      {
+        "title": "Oregon Coast Aquarium — Sailfin sculpin",
+        "url": "https://aquarium.org/animals/sailfin-sculpin/"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Nautichthys oculofasciatus",
+    "originRegionId": "northeast-pacific",
+    "originRegionName": "北東太平洋",
+    "origin": "北東太平洋の沿岸。アラスカ湾西部のシュマギン諸島から南カリフォルニアのサンミゲル島まで分布します。標準的な和名はまだありません。",
+    "temperament": "単独で岩陰にひそみ、おもに小さな甲殻類を食べます。分類ではトクビレ科に含める体系と、ケムシカジカ科（Hemitripteridae）とする体系があります。",
+    "movement": "昼は岩の割れ目で光を避けてじっとしていて、夜になると出てきます。帆のような第1背びれを立てたり倒したり、流れに合わせて揺らしたりします。",
+    "habitat": "岩礁やケルプ、アマモの茂る海底に暮らします。この水景では、岩の割れ目を昼の隠れ家にしています。",
+    "aliases": [
+      "Sailfin sculpin",
+      "Sailfin sea raven"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Perciformes",
+      "orderJa": "スズキ目",
+      "family": "Agonidae",
+      "familyJa": "トクビレ科"
+    },
+    "adultSizeCm": 13,
+    "sizeNote": "典型的な成魚の大きさは分かっていません。最大で全長20.3cmの記録があります。",
+    "distribution": "アラスカ湾西部から南カリフォルニアまでの北東太平洋沿岸で、潮間帯から水深208mまで記録があります。ベーリング海からの報告には別種と再同定された標本があり、北限ははっきりしていません。",
+    "water": {
+      "salinity": "marine",
+      "temperatureC": [
+        4.4,
+        15.6
+      ]
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2020
+    },
+    "highlights": [
+      "帆のように高い第1背びれを、立てたり倒したりします。",
+      "昼は岩の割れ目に入ってじっとし、夜になると出てきます。",
+      "野外では、岩の割れ目の天井に逆さに張り付いていることがあります。"
+    ]
+  }
+}

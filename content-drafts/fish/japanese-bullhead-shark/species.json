@@ -1,0 +1,140 @@
+{
+  "id": "japanese-bullhead-shark",
+  "displayName": "ネコザメ",
+  "realBodyLengthCm": 70,
+  "swim": {
+    "tailBeatHz": 0.7,
+    "tailSweepRad": 0.42,
+    "mouthAnchor": {
+      "x": 0.03,
+      "y": 0.6
+    }
+  },
+  "visual": {
+    "fallbackColor": "#8d6e50"
+  },
+  "sourceBodyBounds": {
+    "x": 92,
+    "y": 280,
+    "width": 1377,
+    "height": 474
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.66,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "steady",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.14,
+      "burst": 0.42
+    },
+    "turnRateRadPerSec": 1.2,
+    "restFraction": 0.5,
+    "depthRange": [
+      0.35,
+      0.9
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0,
+      "polarization": 0.03
+    },
+    "structureAffinity": 0.75,
+    "habits": [
+      {
+        "type": "hideByDay",
+        "durationSec": [
+          90,
+          240
+        ]
+      },
+      {
+        "type": "homeShelter",
+        "kind": "crevice",
+        "rangeBodyLengths": 4,
+        "visitChancePerMin": 0.5,
+        "visitDurationSec": [
+          30,
+          90
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1,
+        "durationSec": [
+          20,
+          60
+        ]
+      },
+      {
+        "type": "bottomForage"
+      }
+    ],
+    "sources": [
+      {
+        "title": "マリンピア日本海・ネコザメ",
+        "url": "https://www.marinepia.or.jp/picturebook/fish/entry-11652.html"
+      },
+      {
+        "title": "海響館・隠れてます。",
+        "url": "https://www.kaikyokan.com/cms/cp_sealife/2020shitenkakurerunekozame/"
+      },
+      {
+        "title": "Compagno (2001), FAO Sharks of the World, volume 2, Heterodontus japonicus",
+        "url": "https://www.fao.org/4/x9293e/x9293e02.pdf"
+      },
+      {
+        "title": "環境省 (2017), 海洋生物レッドリスト・魚類",
+        "url": "https://www.env.go.jp/press/files/jp/106403.pdf"
+      },
+      {
+        "title": "FishBase: Heterodontus japonicus",
+        "url": "https://www.fishbase.se/summary/Heterodontus_japonicus.html"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Heterodontus japonicus",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "北西太平洋。日本の本州から九州のほか、韓国、ロシア、台湾、中国南東部に分布します。",
+    "temperament": "夜に活動し、昼間は岩の割れ目で休むおとなしいサメです。前の尖った歯で甲殻類や貝をつかみ、後ろの平たい歯で殻を砕いて食べます。",
+    "movement": "海底の近くをゆっくり泳ぎ、胸びれと腹びれで海底を歩くようにも進みます。水族館では、給餌のとき以外は奥の洞窟に隠れていることが多いと紹介されています。",
+    "habitat": "沿岸の岩礁や海藻の茂る海底。らせん状の帯がある卵を、岩の隙間に産み付けます。",
+    "aliases": [
+      "Japanese bullhead shark",
+      "サザエワリ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Heterodontiformes",
+      "orderJa": "ネコザメ目",
+      "family": "Heterodontidae",
+      "familyJa": "ネコザメ科"
+    },
+    "adultSizeCm": 69,
+    "sizeNote": "雄は全長69cmで成魚とされます。最大は全長約120cmです。",
+    "distribution": "北西太平洋の沿岸に分布します。日本では本州から九州で見られます。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2019,
+      "note": "環境省の海洋生物レッドリスト（2017）では情報不足（DD）です。"
+    },
+    "highlights": [
+      "昼は岩の隙間に隠れ、暗くなると出てくる",
+      "胸びれと腹びれで、海底を歩くように進む",
+      "前歯で餌をつかみ、奥の臼のような歯で貝や甲殻類の殻を砕く",
+      "2つの背びれの前に、それぞれ硬い棘がある"
+    ]
+  }
+}

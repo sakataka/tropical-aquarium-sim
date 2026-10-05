@@ -1,0 +1,107 @@
+{
+  "id": "giant-oarfish",
+  "displayName": "リュウグウノツカイ",
+  "realBodyLengthCm": 300,
+  "swim": {
+    "tailBeatHz": 0.5,
+    "tailSweepRad": 0.1,
+    "verticalFlex": 0.01
+  },
+  "visual": {
+    "fallbackColor": "#a9adb5"
+  },
+  "sourceBodyBounds": {
+    "x": 61,
+    "y": 231,
+    "width": 1423,
+    "height": 492
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.15,
+    "maxY": 0.8
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.05,
+      "burst": 0.15
+    },
+    "turnRateRadPerSec": 0.8,
+    "restFraction": 0.4,
+    "depthRange": [
+      0.25,
+      0.85
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 3,
+      "cohesion": 0,
+      "polarization": 0.02
+    },
+    "structureAffinity": 0,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Benfield et al. 2013. Five in situ observations of live oarfish Regalecus glesne",
+        "url": "https://onlinelibrary.wiley.com/doi/10.1111/jfb.12144"
+      },
+      {
+        "title": "Galasso et al. 2024. Where and when has the rare Fish Species Regalecus glesne been Found in the Mediterranean so far?",
+        "url": "https://link.springer.com/article/10.1007/s41208-024-00680-8"
+      },
+      {
+        "title": "Smithsonian STRI: Regalecus glesne",
+        "url": "https://biogeodb.stri.si.edu/caribbean/en/thefishes/species/4940"
+      },
+      {
+        "title": "FishBase: Regalecus glesne",
+        "url": "https://www.fishbase.se/summary/regalecus-glesne.html"
+      },
+      {
+        "title": "Hata, Fujii & Motomura 2018. 奄美大島から得られたリュウグウノツカイ",
+        "url": "https://journal.kagoshima-nature.org/archives/NK_045/045-022.pdf"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Regalecus glesne",
+    "originRegionId": "worldwide",
+    "originRegionName": "世界の海",
+    "origin": "世界の温帯の海に広く分布するとされ、メキシコ湾や地中海でも記録があります。日本で見つかるリュウグウノツカイは、近縁の別種 Regalecus russellii とされます。",
+    "temperament": "ペアや少数で見られた記録はありますが、群れで泳ぐ様子は確認されていません。突き出す口で、オキアミなどを水ごと吸い込んで食べます。",
+    "movement": "体をほぼまっすぐに保ち、長い背びれを波打たせて進みます。頭を上に向けて立つような姿勢でいることも知られています。",
+    "habitat": "外洋の表層から中深層を泳ぐ魚で、メキシコ湾では水深463〜492mでROVに撮影されました。生きた個体を長く展示した例は確認されていません。",
+    "aliases": [
+      "Giant oarfish",
+      "Oarfish",
+      "King of herrings"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Lampridiformes",
+      "orderJa": "アカマンボウ目",
+      "family": "Regalecidae",
+      "familyJa": "リュウグウノツカイ科"
+    },
+    "adultSizeCm": 300,
+    "sizeNote": "FishBaseでは、よく見られる大きさを全長300cmとしています。最大は全長8mと公表されていますが、体の後ろが切れた個体が多く、完全な体での最大は確かめられていません。17mという報告は未確認です。",
+    "distribution": "世界の温帯の海に広く分布するとされます。メキシコ湾北部や、地中海のイオニア海でも確認されています。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "rarelyDisplayed",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2013
+    },
+    "highlights": [
+      "銀色のリボンのような体に、紅色の冠のような背びれが立つ。",
+      "長い背びれを波打たせ、体をまっすぐ保ったまま進む。",
+      "頭を上に向けて立つように漂う姿が知られている。"
+    ]
+  }
+}

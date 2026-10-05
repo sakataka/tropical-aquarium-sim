@@ -1,0 +1,136 @@
+{
+  "id": "garibaldi",
+  "displayName": "ガリバルディ",
+  "realBodyLengthCm": 25,
+  "catalog": {
+    "scientificName": "Hypsypops rubicundus",
+    "originRegionId": "northeast-pacific",
+    "originRegionName": "北東太平洋",
+    "origin": "カリフォルニアのモントレー湾からバハ・カリフォルニア南部までの東太平洋に分布し、南カリフォルニアに多いスズメダイの仲間です。カリフォルニア州の州海水魚です。",
+    "temperament": "成魚は隠れ穴と採餌場所を含む縄張りを一年中守り、同種やほかの魚を追い払います。本水槽では、岩場の隙間を住みかにして、近づく魚を追います。",
+    "movement": "縄張りの岩の上で、海綿や藻類、管にすむゴカイ、コケムシなどをついばみます。求愛のときは、雄が輪を描くように泳いで雌を誘います。",
+    "habitat": "水深30mほどまでの岩礁とケルプの森。本水槽では、ジャイアントケルプの根元に広がる岩礁をイメージしています。",
+    "aliases": [
+      "garibaldi",
+      "garibaldi damselfish"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Perciformes",
+      "orderJa": "スズキ目",
+      "family": "Pomacentridae",
+      "familyJa": "スズメダイ科"
+    },
+    "adultSizeCm": 25,
+    "sizeNote": "成魚の代表的な大きさは確かめられておらず、ここでは約25cmとして表示しています。最大で標準体長30cm、水族館の解説では約36cmとされます。南カリフォルニアの調査では雄のほうが大きく育ち、最高齢は57歳でした。",
+    "distribution": "東太平洋のカリフォルニアからバハ・カリフォルニア南部に分布し、北はモントレー湾まで見られます。南カリフォルニアに多い魚です。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2007,
+      "note": "カリフォルニア州の遊漁規則では採ることが禁じられています（no-take）。"
+    },
+    "highlights": [
+      "成魚は全身があざやかな橙色で、幼魚には青く光る斑点があります。",
+      "縄張りを一年中守り、近づく魚を追い払います。",
+      "繁殖期の雄は紅藻の小さな茂みを手入れして巣にし、卵を守ります。同じ場所を何年も使う雄もいます。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.0,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.52
+    }
+  },
+  "visual": {
+    "fallbackColor": "#ee5f0c"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.45,
+    "maxY": 0.9
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.3,
+      "burst": 1.4
+    },
+    "turnRateRadPerSec": 2.3,
+    "restFraction": 0.24,
+    "depthRange": [
+      0.15,
+      0.75
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 3,
+      "cohesion": 0,
+      "polarization": 0.03
+    },
+    "structureAffinity": 0.8,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 1.6,
+        "durationSec": [
+          4,
+          12
+        ]
+      },
+      {
+        "type": "homeShelter",
+        "kind": "crevice",
+        "rangeBodyLengths": 5,
+        "visitChancePerMin": 0.6,
+        "visitDurationSec": [
+          6,
+          20
+        ]
+      },
+      {
+        "type": "follow",
+        "chancePerMin": 0.6,
+        "durationSec": [
+          2,
+          6
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Monterey Bay Aquarium: Garibaldi",
+        "url": "https://www.montereybayaquarium.org/animals-the-ocean/animals-a-to-z/garibaldi"
+      },
+      {
+        "title": "FishBase: Hypsypops rubicundus",
+        "url": "https://www.fishbase.se/summary/Hypsypops-rubicundus.html"
+      },
+      {
+        "title": "Williams et al. 2022: Habitat type and environmental conditions influence the age and growth of a temperate marine damselfish",
+        "url": "https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2022.988158/full"
+      },
+      {
+        "title": "Clarke 1970: Territorial Behavior and Population Dynamics of the Garibaldi",
+        "url": "https://esajournals.onlinelibrary.wiley.com/doi/10.2307/1942295"
+      },
+      {
+        "title": "California Department of Fish and Wildlife: Ocean Sport Fishing regulations index",
+        "url": "https://wildlife.ca.gov/Fishing/Ocean/Invertebrate-Regulations"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 267,
+    "y": 193,
+    "width": 1064,
+    "height": 631
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "id": "longhorn-cowfish",
+  "displayName": "コンゴウフグ",
+  "realBodyLengthCm": 40,
+  "swim": {
+    "tailBeatHz": 1.0,
+    "tailSweepRad": 0.2,
+    "mouthAnchor": {
+      "x": 0.12,
+      "y": 0.64
+    }
+  },
+  "visual": {
+    "fallbackColor": "#c9b53a"
+  },
+  "sourceBodyBounds": {
+    "x": 79,
+    "y": 280,
+    "width": 1370,
+    "height": 422
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.5,
+    "maxY": 0.9
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.15,
+      "burst": 0.6
+    },
+    "turnRateRadPerSec": 1.5,
+    "restFraction": 0.3,
+    "depthRange": [
+      0.3,
+      0.85
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 3,
+      "cohesion": 0,
+      "polarization": 0.03
+    },
+    "structureAffinity": 0.45,
+    "habits": [
+      {
+        "type": "bottomForage"
+      }
+    ],
+    "sources": [
+      {
+        "title": "FAO Western Central Pacific guide, K. Matsuura: Ostraciidae",
+        "url": "https://www.fao.org/4/y0870e/y0870e60.pdf"
+      },
+      {
+        "title": "National Aquarium: Longhorn Cowfish",
+        "url": "https://aqua.org/explore/animals/longhorn-cowfish"
+      },
+      {
+        "title": "海響館: コンゴウフグ",
+        "url": "https://www.kaikyokan.com/cms/cp_sealife/コンゴウフグ/"
+      },
+      {
+        "title": "FishBase: Lactoria cornuta",
+        "url": "https://www.fishbase.se/summary/Lactoria-cornuta.html"
+      },
+      {
+        "title": "国立科学博物館: Field Guide to Lombok Island, Lactoria cornuta",
+        "url": "https://www.kahaku.go.jp/research/db/zoology/FishGuide/data/fish322.html"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Lactoria cornuta",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "紅海南部からインド・西太平洋に分布します。東アフリカからマルケサス・ツアモツ諸島まで、北は日本中部・小笠原、南はロードハウ島に及びます。",
+    "temperament": "成魚はふつう単独で、幼魚は小さな群れになることがあります。体の表面から毒のある物質を出して身を守ります。",
+    "movement": "硬い甲羅のような体で、小さなひれを動かしてホバリングするように泳ぎます。砂に水を吹きつけ、埋もれたゴカイや貝、小さな甲殻類を掘り出して食べます。",
+    "habitat": "沿岸のサンゴ礁や岩礁、静かな湾や河口の砂泥底、藻場に暮らします。幼魚は、浅い泥底や河口の汽水域にも現れます。",
+    "aliases": [
+      "Longhorn cowfish"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Tetraodontiformes",
+      "orderJa": "フグ目",
+      "family": "Ostraciidae",
+      "familyJa": "ハコフグ科"
+    },
+    "adultSizeCm": 40,
+    "sizeNote": "ふつうの大きさを全長40cm、最大を全長46cmとする資料と、最大を全長50cmとする資料があります。長い尾びれは、甲羅の長さの半分から3分の2ほどあります。",
+    "distribution": "紅海南部・東アフリカからマルケサス・ツアモツ諸島まで。北は日本中部・小笠原、南はロードハウ島に及び、ふだんの生息水深は1〜50mです。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2023
+    },
+    "highlights": [
+      "頭の前と体の後ろに、それぞれ一対の角が突き出ています。",
+      "砂に水を吹きつけて、隠れた餌を掘り出します。",
+      "小さなひれで、ホバリングするようにゆっくり進みます。"
+    ]
+  }
+}

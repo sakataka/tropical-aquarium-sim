@@ -1,0 +1,122 @@
+{
+  "id": "banjo-catfish",
+  "displayName": "バンジョーキャット",
+  "realBodyLengthCm": 10,
+  "swim": {
+    "tailBeatHz": 1.8,
+    "bodyWaveStart": 0.5,
+    "tailSweepRad": 0.35,
+    "mouthAnchor": {
+      "x": 0.04,
+      "y": 0.55
+    }
+  },
+  "visual": {
+    "fallbackColor": "#8b6f4e"
+  },
+  "sourceBodyBounds": {
+    "x": 109,
+    "y": 325,
+    "width": 1339,
+    "height": 419
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.78,
+    "maxY": 0.96
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.14,
+      "burst": 0.7
+    },
+    "turnRateRadPerSec": 1.5,
+    "restFraction": 0.62,
+    "depthRange": [0.3, 0.9],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2,
+      "cohesion": 0,
+      "polarization": 0.02
+    },
+    "structureAffinity": 0.45,
+    "habits": [
+      {
+        "type": "hideByDay",
+        "durationSec": [60, 180]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.4,
+        "durationSec": [30, 120]
+      },
+      {
+        "type": "bottomForage"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eric Thomas (2016): Breeding the banjo catfish, Bunocephalus coracoideus",
+        "url": "https://www.planetcatfish.com/shanesworld/shanesworld.php?article_id=532"
+      },
+      {
+        "title": "Roberts (2015), Mimicry of a Bean Seed by Amaralia hypsiura, with Notes on Vegetative Camouflage by Fishes",
+        "url": "https://repository.si.edu/bitstream/handle/10088/26854/2015%20Roberts%20R%20Aqua%20Int%20Jl.%20Itch.pdf"
+      },
+      {
+        "title": "Frank Schäfer, Aquarium Glaser (2025-11-07): Bunocephalus coracoideus",
+        "url": "https://www.aquariumglaser.de/en/fisharchive/bunocephalus-coracoideus-6/"
+      },
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Bunocephalus coracoideus",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=5713"
+      },
+      {
+        "title": "ScotCat: Bunocephalus coracoideus factsheet (September 2003)",
+        "url": "https://www.scotcat.com/factsheets/bunocephalus_coracoideus.htm"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Bunocephalus coracoideus",
+    "originRegionId": "south-america",
+    "originRegionName": "南米",
+    "origin": "南米アマゾン川水系。ボリビア、ブラジル、エクアドル、ペルーに由来します。この名前で流通する魚には、別の種が混じることもあります。",
+    "temperament": "底で静かに暮らすナマズです。昼は砂に潜ってじっとしていることが多く、ほかの魚に関わることはあまりありません。",
+    "movement": "日中の大半を砂に潜って過ごし、眼や口先、尾の先だけをのぞかせます。暗くなると底を動き回って餌を探します。",
+    "habitat": "池や、植物のかけらが積もった森の小川の底に暮らします。潜れる砂底のある水槽で、枯れ葉のような体が底に紛れます。",
+    "aliases": [
+      "Banjo catfish",
+      "Guitarrita",
+      "Dysichthys coracoideus"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Siluriformes",
+      "orderJa": "ナマズ目",
+      "family": "Aspredinidae",
+      "familyJa": "アスプレド科"
+    },
+    "adultSizeCm": 11,
+    "sizeNote": "報告されている最大は標準体長11cmです。同定の確かな成魚の典型的な大きさは分かっていません。",
+    "distribution": "アマゾン川水系に分布し、ボリビア、ブラジル、エクアドル、ペルーで知られます。基準標本はペルーのナウタ産です。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2020
+    },
+    "highlights": [
+      "頭と体の前半が平たく幅広く、後ろは細長い尾になる、バンジョーのような形。",
+      "鱗がなく、こぶ状の突起が並ぶ褐色の体で、枯れ葉に紛れる。",
+      "昼は砂に潜り、暗くなってから底を動いて餌を探す。",
+      "飼育下の産卵では、雌雄が底から浮き上がって卵を放ち、卵は砂や水草に付着する。"
+    ]
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "id": "redtail-catfish",
+  "displayName": "レッドテールキャット",
+  "realBodyLengthCm": 100,
+  "swim": {
+    "tailBeatHz": 0.8,
+    "tailSweepRad": 0.42,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.6
+    }
+  },
+  "visual": {
+    "fallbackColor": "#45423e"
+  },
+  "sourceBodyBounds": {
+    "x": 64,
+    "y": 215,
+    "width": 1420,
+    "height": 563
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.62,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "steady",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.12,
+      "burst": 0.35
+    },
+    "turnRateRadPerSec": 1.1,
+    "restFraction": 0.55,
+    "depthRange": [0.3, 0.9],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0,
+      "polarization": 0.03
+    },
+    "structureAffinity": 0.45,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 0.9,
+        "durationSec": [20, 60]
+      },
+      {
+        "type": "bottomForage"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Phractocephalus hemioliopterus (13 Aug 2026)",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=47923"
+      },
+      {
+        "title": "FishBase: Phractocephalus hemioliopterus",
+        "url": "https://nrm-fishbaselinux01.nrm.se/summary/Phractocephalus_hemioliopterus.html"
+      },
+      {
+        "title": "Dallas World Aquarium: Red-tailed catfish",
+        "url": "https://dwazoo.com/animal/red-tailed-catfish/"
+      },
+      {
+        "title": "神戸須磨シーワールド (2026-02-22): レッドテールキャットフィッシュ",
+        "url": "https://www.kobesuma-seaworld.jp/future/display/8093/"
+      },
+      {
+        "title": "Guilherme et al. (2023), Feeding behaviour, locomotion rhythms and blood biochemistry of Phractocephalus hemioliopterus, J Fish Biol; PubMed 36648082",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/36648082/"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Phractocephalus hemioliopterus",
+    "originRegionId": "south-america",
+    "originRegionName": "南米",
+    "origin": "南米のアマゾン川とオリノコ川の水系に分布します。エセキボ川水系からも報告があります。",
+    "habitat": "大河やその支流、湖沼、氾濫原など、さまざまな水域の底で暮らします。この展示では、沈んだ巨木と根の絡む砂底の大河を再現しています。",
+    "temperament": "口に入る大きさの動物は食べてしまう大型の肉食ナマズです。縄張りをもつとされ、単独で過ごします。",
+    "movement": "昼はほとんど動かず、底付近でじっとしています。夕方から夜に動き出し、長いひげで底を探りながらゆっくり進みます。",
+    "aliases": [
+      "Redtail catfish",
+      "レッドテールキャットフィッシュ",
+      "Silurus hemioliopterus"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Siluriformes",
+      "orderJa": "ナマズ目",
+      "family": "Pimelodidae",
+      "familyJa": "ピメロドゥス科"
+    },
+    "adultSizeCm": 100,
+    "sizeNote": "体長100cmを超えるとされます。FishBase に載る最大は全長135cmで、全長1.5mになるとする水族館の解説もあります。",
+    "distribution": "南米のアマゾン川とオリノコ川の水系。エセキボ川水系の記録もあります。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2020,
+      "note": "大きく育つため家庭の水槽には向かず、飼いきれなくなった個体が水族館に引き取られた例があります。"
+    },
+    "highlights": [
+      "黒い背、白い腹側の帯、赤い尾びれの3色がはっきり分かれています。",
+      "長いひげを前後に動かし、底の餌を探します。",
+      "昼は底でほとんど動かず、夕方から夜に活発になります。"
+    ]
+  }
+}

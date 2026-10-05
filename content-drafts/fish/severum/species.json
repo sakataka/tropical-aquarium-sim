@@ -1,0 +1,112 @@
+{
+  "id": "severum",
+  "displayName": "セベラム",
+  "realBodyLengthCm": 16,
+  "swim": {
+    "tailBeatHz": 1.6,
+    "tailSweepRad": 0.38,
+    "bodyWaveStart": 0.5
+  },
+  "visual": {
+    "fallbackColor": "#a39d4e"
+  },
+  "sourceBodyBounds": {
+    "x": 250,
+    "y": 194,
+    "width": 1086,
+    "height": 622
+  },
+  "preferredZone": {
+    "minX": 0.1,
+    "maxX": 0.9,
+    "minY": 0.3,
+    "maxY": 0.8
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.24,
+      "burst": 1
+    },
+    "turnRateRadPerSec": 1.7,
+    "restFraction": 0.3,
+    "depthRange": [0.25, 0.85],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 2.6,
+      "cohesion": 0.35,
+      "polarization": 0.12
+    },
+    "structureAffinity": 0.75,
+    "habits": [
+      {
+        "type": "follow",
+        "chancePerMin": 0.5,
+        "durationSec": [4, 12]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes — Heros efasciatus",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=37562"
+      },
+      {
+        "title": "FishBase — Heros efasciatus",
+        "url": "https://www.fishbase.se/summary/Heros-efasciatus"
+      },
+      {
+        "title": "Favero, Pompeu & Prado-Valladares (2010), Biologia reprodutiva de Heros efasciatus na Reserva Amanã",
+        "url": "https://acta.inpa.gov.br/direcionador_link.php?numero=40-2&pdf=v40n2a15.pdf&sequencia=2409"
+      },
+      {
+        "title": "Staeck & Schindler (2015), Description of a new Heros species and notes on Heros severus",
+        "url": "https://www.researchgate.net/publication/307974258_Description_of_a_new_Heros_species_Teleostei_Cichlidae_from_the_Rio_Orinoco_drainage_and_notes_on_Heros_severus_Heckel_1840"
+      },
+      {
+        "title": "Maidenhead Aquatics / Fishkeeper — Green Severum",
+        "url": "https://www.fishkeeper.co.uk/fish/freshwater/cichlids/green-severum"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Heros efasciatus",
+    "originRegionId": "south-america",
+    "originRegionName": "南米",
+    "origin": "南米のアマゾン流域に分布します。ブラジル、ペルー、コロンビア、エクアドル、ボリビアで記録があります。",
+    "habitat": "流れの緩い川や氾濫域の、植物に覆われた岸辺にすみます。沈んだ枝が込み合う場所でよく見つかります。この展示では、水没した木の根のまわりを居場所にします。",
+    "temperament": "ふだんは比較的穏やかで、ペアや小さな群れで暮らします。繁殖中のペアは産卵場所を守り、他の魚に強く出ます。",
+    "movement": "体高のある体で、沈木や根の間をゆっくり抜けていきます。ペアの相手のあとについて泳ぐこともあります。",
+    "aliases": [
+      "Severum",
+      "Green severum",
+      "Cichlasoma severum",
+      "Heros severus（観賞魚での誤用）"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cichliformes",
+      "orderJa": "シクリッド目",
+      "family": "Cichlidae",
+      "familyJa": "シクリッド科"
+    },
+    "adultSizeCm": 17,
+    "sizeNote": "アマゾンのアマナン保護区の調査では、最大の個体が雄で標準体長17.4cm、雌で16.4cmでした。雌の半数が成熟する大きさは標準体長9.7cmです。最大体長は資料によって食い違います。",
+    "distribution": "アマゾン流域のブラジル、ペルー、コロンビア、エクアドル、ボリビア。パナマと香港には人の手で持ち込まれています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2020
+    },
+    "highlights": [
+      "沈んだ枝や根の込み合う場所を好み、その間をゆっくり抜けていきます。",
+      "果実の割合が大きい雑食性です。",
+      "ペアで平らな場所に卵を産み、卵と仔魚を両親で守ります。",
+      "観賞魚のセベラムの多くは本種で、オリノコ水系などの H. severus とは別種です。"
+    ]
+  }
+}

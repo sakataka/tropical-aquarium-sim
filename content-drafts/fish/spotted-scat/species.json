@@ -1,0 +1,117 @@
+{
+  "id": "spotted-scat",
+  "displayName": "スキャット",
+  "realBodyLengthCm": 20,
+  "catalog": {
+    "scientificName": "Scatophagus argus",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "紅海南部とペルシャ湾からソシエテ諸島までのインド西太平洋に広く分布します。北は日本中部や韓国、南はオーストラリア北部やニューカレドニアまで見られます。",
+    "temperament": "成魚はふつう群れで暮らします。藻類やデトリタス、小さな底生動物まで食べる雑食性です。ひれの強い棘には毒腺があります。",
+    "movement": "体高のある体で中層から底近くを群れで巡り、流木や根の表面の藻をつつきます。マングローブの底でも餌を探します。",
+    "habitat": "静かな湾や港、マングローブの水路、川の下流に暮らします。本水槽では、泥と落ち葉の底に根が下りるマングローブをイメージしています。",
+    "aliases": [
+      "クロホシマンジュウダイ",
+      "spotted scat",
+      "Scatophagus argus"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Perciformes",
+      "orderJa": "スズキ目",
+      "family": "Scatophagidae",
+      "familyJa": "クロホシマンジュウダイ科"
+    },
+    "adultSizeCm": 20,
+    "sizeNote": "タイの河口の調査で成魚とされた個体は8.5〜20cmでした。博物館の図鑑では標準体長33cmまで、FishBase では最大全長45cmとされます。",
+    "distribution": "紅海南部、ペルシャ湾からソシエテ諸島までのインド西太平洋に分布し、北は日本中部・韓国、南はオーストラリア北部・ニューカレドニアに達します。",
+    "water": {
+      "salinity": "brackish"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2009
+    },
+    "highlights": [
+      "群れで同じ場所に集まり、表面の藻をついばみます。",
+      "銀色から緑がかった体に、丸い黒い斑点が散らばります。",
+      "幼魚の帯模様は、成長すると斑点に変わります。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 1.8,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.58
+    }
+  },
+  "visual": {
+    "fallbackColor": "#807b6a"
+  },
+  "sourceBodyBounds": {
+    "x": 259,
+    "y": 150,
+    "width": 1063,
+    "height": 720
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.32,
+    "maxY": 0.86
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.32,
+      "burst": 1.3
+    },
+    "turnRateRadPerSec": 2.0,
+    "restFraction": 0.15,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "school",
+      "spacingBodyLengths": 1.4,
+      "cohesion": 0.7,
+      "polarization": 0.7
+    },
+    "structureAffinity": 0.45,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 1.2,
+        "durationSec": [
+          5,
+          14
+        ]
+      },
+      {
+        "type": "bottomForage"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Gomon & Bray 2021 — Scatophagus argus, Fishes of Australia",
+        "url": "https://fishesofaustralia.net.au/home/species/2212"
+      },
+      {
+        "title": "ニフレル 2026-05-13 — なんでも食べる、クロホシマンジュウダイ",
+        "url": "https://www.nifrel.jp/detail/matome/2026/05/post-1158.html"
+      },
+      {
+        "title": "Wongchinawit & Paphavasit 2009 — Ontogenetic Niche Shift in Spotted Scat",
+        "url": "https://li01.tci-thaijo.org/index.php/tnh/article/download/102949/82493/260195"
+      },
+      {
+        "title": "Eschmeyer's Catalog of Fishes — Scatophagus argus",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=19833"
+      }
+    ]
+  }
+}

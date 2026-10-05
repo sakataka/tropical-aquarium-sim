@@ -1,0 +1,124 @@
+{
+  "id": "marbled-rockfish",
+  "displayName": "カサゴ",
+  "realBodyLengthCm": 22,
+  "catalog": {
+    "scientificName": "Sebastiscus marmoratus",
+    "originRegionId": "west-pacific",
+    "originRegionName": "西太平洋",
+    "origin": "ベトナムからフィリピン、韓国、日本までの西太平洋に分布します。日本では北海道南部から九州の岩礁に暮らします。",
+    "temperament": "定着性が強く、決まった岩の隙間のまわりで暮らします。エビやカニ、小魚を大きな口で丸のみにします。ひれのとげには毒があり、取り扱いに注意が呼びかけられています。",
+    "movement": "岩陰や底でじっとしていることが多い一方、底の近くを行き来し、薄暗いときには少し上の層まで泳ぎ出ます。夜行性とされますが、昼にも活動します。",
+    "habitat": "岸近くの岩場と岩の隙間。本水槽では、北の岩礁の岩の割れ目を住みかにしています。",
+    "aliases": [
+      "marbled rockfish",
+      "false kelpfish",
+      "ガシラ（地方名）"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Perciformes",
+      "orderJa": "スズキ目",
+      "family": "Sebastidae",
+      "familyJa": "メバル科"
+    },
+    "adultSizeCm": 22,
+    "sizeNote": "成魚の代表的な大きさは確かめられておらず、ここでは約22cmとして表示しています。水族館の解説では体長約30cm、FishBase の最大記録は全長36.2cmです。神奈川県では満2歳、全長16.8cmで成熟します。",
+    "distribution": "西太平洋のベトナムからフィリピン、韓国、日本に分布します。日本では北海道南部から九州の岩礁域に見られます。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "NE",
+      "note": "IUCN では未評価です。神奈川県の資源評価（2026年1月）では、県内の資源は低い水準で減っていると判断されています。科をフサカサゴ科のメバル亜科とする分類もあります。"
+    },
+    "highlights": [
+      "大きな頭と口で、近づいたエビやカニ、小魚を丸のみにします。",
+      "深い所の個体ほど赤みが強く、浅い所では黒っぽくなる傾向があります。",
+      "岩の隙間や消波ブロックの間に身を収めて過ごします。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 1.8
+  },
+  "visual": {
+    "fallbackColor": "#8f5848"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.7,
+    "maxY": 0.93
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.15,
+      "burst": 0.95
+    },
+    "turnRateRadPerSec": 1.8,
+    "restFraction": 0.62,
+    "depthRange": [
+      0.25,
+      0.85
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.2,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.9,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 2.4,
+        "durationSec": [
+          15,
+          60
+        ]
+      },
+      {
+        "type": "homeShelter",
+        "kind": "crevice",
+        "rangeBodyLengths": 4,
+        "visitChancePerMin": 0.9,
+        "visitDurationSec": [
+          20,
+          80
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "マリンピア日本海: カサゴ",
+        "url": "https://www.marinepia.or.jp/picturebook/fish/entry-11171.html"
+      },
+      {
+        "title": "静岡県水産・海洋技術研究所: カサゴ",
+        "url": "https://fish-exp.pref.shizuoka.jp/04library/news/20050906.html"
+      },
+      {
+        "title": "田中智士・神原淳: 光条件の違いがカサゴの遊泳活動に及ぼす影響",
+        "url": "https://www.jstage.jst.go.jp/article/aquaculturesci/63/4/63_481/_pdf"
+      },
+      {
+        "title": "FishBase: Sebastiscus marmoratus",
+        "url": "https://www.fishbase.se/summary/Sebastiscus-marmoratus.html"
+      },
+      {
+        "title": "神奈川県: カサゴ資源評価 令和8年1月",
+        "url": "https://www.pref.kanagawa.jp/documents/133099/r7-19.pdf"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 164,
+    "y": 226,
+    "width": 1249,
+    "height": 570
+  }
+}

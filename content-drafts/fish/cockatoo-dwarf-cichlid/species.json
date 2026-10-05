@@ -1,0 +1,107 @@
+{
+  "id": "cockatoo-dwarf-cichlid",
+  "displayName": "アピストグラマ・カカトゥオイデス",
+  "realBodyLengthCm": 5.5,
+  "swim": {
+    "tailBeatHz": 2.5,
+    "bodyWaveStart": 0.45
+  },
+  "visual": {
+    "fallbackColor": "#a99a5e"
+  },
+  "sourceBodyBounds": {
+    "x": 171,
+    "y": 167,
+    "width": 1257,
+    "height": 677
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.64,
+    "maxY": 0.93
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.34,
+      "burst": 1.8
+    },
+    "turnRateRadPerSec": 2.5,
+    "restFraction": 0.34,
+    "depthRange": [0.25, 0.9],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 3.5,
+      "cohesion": 0.3,
+      "polarization": 0.1
+    },
+    "structureAffinity": 0.68,
+    "habits": [
+      {
+        "type": "homeShelter",
+        "kind": "cave",
+        "rangeBodyLengths": 9,
+        "visitChancePerMin": 0.6,
+        "visitDurationSec": [6, 20]
+      },
+      {
+        "type": "follow",
+        "chancePerMin": 0.5,
+        "durationSec": [3, 8]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Alves, Rojas & Romagosa (2009): Reprodução do ciclídeo-anão amazônico, Apistogramma cacatuoides, em laboratório. Boletim do Instituto de Pesca 35(4):587–596",
+        "url": "https://institutodepesca.org/index.php/bip/en/article/download/886/867/3148"
+      },
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Apistogramma cacatuoides",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=16397"
+      },
+      {
+        "title": "FishBase: Apistogramma cacatuoides",
+        "url": "https://www.fishbase.se/summary/apistogramma-cacatuoides.html"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Apistogramma cacatuoides",
+    "originRegionId": "south-america",
+    "originRegionName": "南米",
+    "origin": "南米アマゾン川の上流水系。ブラジル、コロンビア、ペルーに由来します。最初の記載では南米スリナム産とされましたが、のちに誤りと分かりました。",
+    "temperament": "雄は隠れ場所のまわりに縄張りをもち、ほかの雄を追い払います。飼育下では、つがいをつくる途中で雄が雌を激しく追い、けがをさせることもあります。",
+    "movement": "底近くで短く進んでは止まり、隠れ場所に出入りします。求愛では、雄が背びれと尾びれを大きく広げて体を小さく震わせます。",
+    "habitat": "主に白い濁り水や澄んだ水の小川で採集され、落ち葉や粘土の底の流れから採れた記録もあります。落ち葉と小さな洞穴のある水槽が似合います。",
+    "aliases": [
+      "Cockatoo dwarf cichlid",
+      "カカトゥオイデス"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cichliformes",
+      "orderJa": "シクリッド目",
+      "family": "Cichlidae",
+      "familyJa": "シクリッド科"
+    },
+    "adultSizeCm": 4.3,
+    "sizeNote": "飼育由来の12ペアの研究では、初めて繁殖した雄の平均が標準体長4.3cmでした。報告されている最大は標準体長5cmです。雄は背びれと尾びれの条が糸のように伸びます。",
+    "distribution": "ブラジル、コロンビア、ペルーのアマゾン川上流水系に分布します。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2020
+    },
+    "highlights": [
+      "雄は背びれの前の条がとさかのように伸び、尾びれの上下も長く伸びる。",
+      "求愛では、雄が背びれと尾びれを広げて小刻みに震える。",
+      "つがいが隠れ場所を掃除し、雌がその天井に卵を産みつける。産卵の後は雌が卵と仔魚を守り、雄を遠ざける。"
+    ]
+  }
+}

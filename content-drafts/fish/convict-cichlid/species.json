@@ -1,0 +1,119 @@
+{
+  "id": "convict-cichlid",
+  "displayName": "コンビクトシクリッド",
+  "realBodyLengthCm": 8.5,
+  "swim": {
+    "tailBeatHz": 2.2,
+    "tailSweepRad": 0.4
+  },
+  "visual": {
+    "fallbackColor": "#8f928f"
+  },
+  "sourceBodyBounds": {
+    "x": 192,
+    "y": 191,
+    "width": 1180,
+    "height": 640
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.45,
+    "maxY": 0.9
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.4,
+      "burst": 1.8
+    },
+    "turnRateRadPerSec": 2.3,
+    "restFraction": 0.22,
+    "depthRange": [0.2, 0.85],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 2.4,
+      "cohesion": 0.3,
+      "polarization": 0.1
+    },
+    "structureAffinity": 0.7,
+    "habits": [
+      {
+        "type": "homeShelter",
+        "kind": "cave",
+        "rangeBodyLengths": 6,
+        "visitChancePerMin": 0.7,
+        "visitDurationSec": [4, 14]
+      },
+      {
+        "type": "follow",
+        "chancePerMin": 0.6,
+        "durationSec": [2, 6]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes — species in Amatitlania",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?genus=Amatitlania&tbl=species"
+      },
+      {
+        "title": "FishBase — Amatitlania nigrofasciata",
+        "url": "https://www.fishbase.se/summary/Archocentrus_nigrofasciatus.html"
+      },
+      {
+        "title": "USFWS — Convict Cichlid Ecological Risk Screening Summary, 2025-06-12",
+        "url": "https://www.fws.gov/sites/default/files/documents/2025-06/ecological-risk-screening-summary-convict-cichlid-june-2025.pdf"
+      },
+      {
+        "title": "Hovey & Swift 2012 — First record of an established population of the convict cichlid in California",
+        "url": "https://nrm.dfg.ca.gov/FileHandler.ashx?DocumentID=67451"
+      },
+      {
+        "title": "LICG — Cichliden (vissengroep)",
+        "url": "https://www.licg.nl/aquariumdieren/cichliden-vissengroep/"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Amatitlania nigrofasciata",
+    "originRegionId": "central-america",
+    "originRegionName": "中央アメリカ",
+    "origin": "グアテマラ、エルサルバドル、ホンジュラスの太平洋側と大西洋側の川に分布します。模式産地はグアテマラのアマティトラン湖です。",
+    "habitat": "小川から大きな川の浅瀬まで、流れのある場所にすみ、岩の割れ目や根のまわりを使います。この展示では、平たい石の下の洞穴を住みかにします。",
+    "temperament": "繁殖するペアは縄張りをつくり、雄は他の魚に強く出ます。小さな魚や傷つきやすい魚との同居には向きません。",
+    "movement": "岩や石のまわりの中下層を短く泳ぎ、すぐに住みかへ戻ります。縄張りに入った相手を追い払う動きも見られます。",
+    "aliases": [
+      "Convict cichlid",
+      "コンビクト",
+      "Cichlasoma nigrofasciatum",
+      "Archocentrus nigrofasciatus",
+      "Cryptoheros nigrofasciatus"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cichliformes",
+      "orderJa": "シクリッド目",
+      "family": "Cichlidae",
+      "familyJa": "シクリッド科"
+    },
+    "adultSizeCm": 8.5,
+    "sizeNote": "FishBase のふつうの大きさは全長8.5cm、最大は標準体長10cmです。標準体長15cmまでとする資料もあり、最大値は資料によって違います。",
+    "distribution": "中米のグアテマラ、エルサルバドル、ホンジュラス。コスタリカやパナマまで含める資料もありますが、南の記録は近縁の別種とする見方があります。米国カリフォルニア州などに移入しています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "DD",
+      "assessedYear": 2019,
+      "note": "近縁種との境界がはっきりせず、分布の理解も資料によって異なります。"
+    },
+    "highlights": [
+      "灰色の体に、はっきりした黒い横帯が並びます。",
+      "暗い窪みや洞穴を産卵場所にし、両親で卵と稚魚を守ります。",
+      "親は卵に水を送り、仔魚を口にくわえて別の窪みへ運ぶことがあります。"
+    ]
+  }
+}

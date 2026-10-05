@@ -1,0 +1,121 @@
+{
+  "id": "demasoni",
+  "displayName": "シュードトロフェウス・デマソニ",
+  "realBodyLengthCm": 7,
+  "swim": {
+    "tailBeatHz": 2.4,
+    "tailSweepRad": 0.36,
+    "bodyWaveStart": 0.48,
+    "mouthAnchor": {
+      "x": 0.005,
+      "y": 0.54
+    }
+  },
+  "visual": {
+    "fallbackColor": "#3c5c9e"
+  },
+  "sourceBodyBounds": {
+    "x": 229,
+    "y": 291,
+    "width": 1115,
+    "height": 496
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.38,
+    "maxY": 0.85
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.45,
+      "burst": 2
+    },
+    "turnRateRadPerSec": 2.4,
+    "restFraction": 0.18,
+    "depthRange": [0.2, 0.75],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 2,
+      "cohesion": 0.3,
+      "polarization": 0.1
+    },
+    "structureAffinity": 0.8,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 1.5,
+        "durationSec": [2, 6]
+      },
+      {
+        "type": "follow",
+        "chancePerMin": 0.8,
+        "durationSec": [2, 5]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Li, Konings & Stauffer 2016: A revision of the Pseudotropheus elongatus species group",
+        "url": "https://ecosystems.psu.edu/research/labs/stauffer/publications/2010-present/0617li_proof2-1.pdf"
+      },
+      {
+        "title": "FishBase: Chindongo demasoni",
+        "url": "https://www.fishbase.se/summary/Pseudotropheus-demasoni"
+      },
+      {
+        "title": "Nordiska Ciklidsällskapet: Chindongo demasoni",
+        "url": "https://www.ciklid.org/artregister/art.php?ID=703"
+      },
+      {
+        "title": "Nederlandse Vereniging van Cichlidenliefhebbers: Chindongo demasoni",
+        "url": "https://www.nvcweb.nl/visbeschrijvingen/malawi/chindongo-demasoni-konings-1994"
+      },
+      {
+        "title": "Ilona Kormannshaus 2009: Pseudotropheus demasoni, DCG-Informationen 40(7):155–161",
+        "url": "https://www.dcg-encyclopedia.de/wp-content/uploads/2010/11/2009-07-Seite-155-161.pdf"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Chindongo demasoni",
+    "originRegionId": "east-africa",
+    "originRegionName": "東アフリカ",
+    "origin": "マラウイ湖のタンザニア側に分布します。知られている産地は、模式産地のポンボ・ロックスとンドゥンビ岬の周辺だけです。",
+    "habitat": "波の当たる岩礁の上部、水深4mほどまでの岩塊と隙間にすみます。雌は岩の割れ目に隠れることが多く、雄は大きな岩の上で見られます。",
+    "temperament": "野外では雄どうしの激しい争いは見られないとされますが、水槽の中では同種や他のシクリッドを強く追い回すことがあります。",
+    "movement": "岩のまわりを短く泳いでは、岩の表面の付着生物をついばみます。相手を追いかけて岩の間を抜けていくこともあります。",
+    "aliases": [
+      "Demasoni",
+      "デマソニ",
+      "Pseudotropheus demasoni",
+      "Pseudotropheus sp. \"dwarf pombo\""
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cichliformes",
+      "orderJa": "シクリッド目",
+      "family": "Cichlidae",
+      "familyJa": "シクリッド科"
+    },
+    "adultSizeCm": 7,
+    "sizeNote": "飼育報告では成魚は全長6〜8cmほどです。FishBase の最大は標準体長6.3cmで、飼育下で10cmになるとする資料もあります。",
+    "distribution": "マラウイ湖のタンザニア側、ポンボ・ロックスとンドゥンビ岬の周辺。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "VU",
+      "assessedYear": 2018,
+      "note": "IUCN の基準 D1+2 による評価です。2016年に Pseudotropheus 属から Chindongo 属に移されました。"
+    },
+    "highlights": [
+      "雄も雌も、青と黒のはっきりした縞模様をもちます。",
+      "岩の表面の付着生物を、藻類を中心についばみます。",
+      "雌は卵と仔魚を口の中で育てます。"
+    ]
+  }
+}

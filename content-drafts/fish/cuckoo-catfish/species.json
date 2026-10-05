@@ -1,0 +1,122 @@
+{
+  "id": "cuckoo-catfish",
+  "displayName": "シノドンティス・ムルティプンクタートゥス",
+  "realBodyLengthCm": 13,
+  "swim": {
+    "tailBeatHz": 2.0,
+    "mouthAnchor": {
+      "x": 0.12,
+      "y": 0.62
+    }
+  },
+  "visual": {
+    "fallbackColor": "#a89478"
+  },
+  "sourceBodyBounds": {
+    "x": 110,
+    "y": 196,
+    "width": 1317,
+    "height": 573
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.62,
+    "maxY": 0.94
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.3,
+      "burst": 1.3
+    },
+    "turnRateRadPerSec": 2.0,
+    "restFraction": 0.35,
+    "depthRange": [
+      0.3,
+      0.92
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 1.8,
+      "cohesion": 0.35,
+      "polarization": 0.1
+    },
+    "structureAffinity": 0.7,
+    "habits": [
+      {
+        "type": "bottomForage"
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 0.8,
+        "durationSec": [
+          10,
+          30
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Synodontis multipunctatus",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=49598"
+      },
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Synodontis grandiops synonym status",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=69381"
+      },
+      {
+        "title": "FishBase: Synodontis multipunctatus",
+        "url": "https://www.fishbase.se/Summary/SpeciesSummary.php?id=9596&lang=spanish"
+      },
+      {
+        "title": "Cohen et al. 2019: Early life-history features associated with brood parasitism in the cuckoo catfish",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6388042/"
+      },
+      {
+        "title": "Englmaier et al. 2024: Revised taxonomy of Synodontis catfishes from Lake Tanganyika",
+        "url": "https://academic.oup.com/zoolinnean/article/202/3/zlae130/7877276"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Synodontis multipunctatus",
+    "originRegionId": "east-africa",
+    "originRegionName": "東アフリカ",
+    "origin": "東アフリカのタンガニーカ湖の固有種です。ブルンジ、コンゴ民主共和国、タンザニア、ザンビアの湖岸に分布し、模式産地はスンブです。",
+    "habitat": "砂底に岩が点在する場所を利用し、古い記録では泥底の深場からも知られます。この展示では、岩場の底近くや岩の間を泳ぎます。",
+    "temperament": "単独か2〜6匹ほどで見られると報告されています。口の中で卵を守るシクリッドの産卵に紛れて自分の卵を産み、宿主に育てさせる托卵の習性で知られます。",
+    "movement": "底近くをひげで探りながら泳ぎ、岩の間を移動します。昼も岩の間を動き、夜には浅い場所でも見られると報告されています。",
+    "aliases": [
+      "Cuckoo catfish",
+      "Synodontis grandiops",
+      "ムルティプンクタートゥス"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Siluriformes",
+      "orderJa": "ナマズ目",
+      "family": "Mochokidae",
+      "familyJa": "サカサナマズ科"
+    },
+    "adultSizeCm": 13,
+    "sizeNote": "記録上の最大は全長27.5cmです（雄か性別不明の個体）。ふつうの成魚の大きさは確かめられていないため、展示では全長13cm前後を想定しています。",
+    "distribution": "タンガニーカ湖の固有種です。2006年に別種とされた S. grandiops は、2024年の見直しで本種と同じ種にまとめられました。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2025
+    },
+    "highlights": [
+      "口内保育をするシクリッドの卵に自分の卵を紛れ込ませる、托卵をする魚です。",
+      "宿主の口の中で先にかえった仔魚が、宿主の仔魚を食べて育つことが実験で確かめられています。",
+      "全身の黒い斑点と、白く縁取られた黒いひれが目立ちます。",
+      "底生の小動物などを幅広く食べ、魚卵だけに頼っているわけではないと報告されています。"
+    ]
+  }
+}

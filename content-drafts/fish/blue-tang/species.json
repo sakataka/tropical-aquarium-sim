@@ -1,0 +1,107 @@
+{
+  "id": "blue-tang",
+  "displayName": "ナンヨウハギ",
+  "realBodyLengthCm": 20,
+  "swim": {
+    "tailBeatHz": 1.8
+  },
+  "visual": {
+    "fallbackColor": "#2f5fe0"
+  },
+  "sourceBodyBounds": {
+    "x": 274,
+    "y": 243,
+    "width": 1086,
+    "height": 541
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.25,
+    "maxY": 0.75
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.45,
+      "burst": 2.0
+    },
+    "turnRateRadPerSec": 2.2,
+    "restFraction": 0.15,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.6,
+      "cohesion": 0.45,
+      "polarization": 0.3
+    },
+    "structureAffinity": 0.5,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Fishes of Australia: Paracanthurus hepatus",
+        "url": "https://fishesofaustralia.net.au/home/species/2203"
+      },
+      {
+        "title": "名古屋港水族館: 赤道の海 ナンヨウハギ",
+        "url": "https://nagoyaaqua.jp/friends/south/13480/"
+      },
+      {
+        "title": "東京動物園協会 2025-10-24 横になっているけど大丈夫？ 移動水族館のナンヨウハギ",
+        "url": "https://www.tokyo-zoo.net/topics/news/kasai/113_29382_2025-10-24.html"
+      },
+      {
+        "title": "海遊館 生きもの図鑑: ナンヨウハギ",
+        "url": "https://www.kaiyukan.com/connect/encyclopedia/38.html"
+      },
+      {
+        "title": "FishBase: Paracanthurus hepatus",
+        "url": "https://www.fishbase.se/summary/Paracanthurus-hepatus.html"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Paracanthurus hepatus",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "東アフリカ・西インド洋から西〜中部太平洋まで分布します。日本では南日本や小笠原で見られます。",
+    "temperament": "ゆるい群れをつくり、底から1〜2mほど上をまとまって泳ぐ姿が観察されています。動物プランクトンと藻類を食べます。",
+    "movement": "胸びれを羽ばたかせて小刻みに進み、薄い体でサンゴの間をすり抜けます。水族館では、夕方にサンゴの間へ入って横倒しの姿勢で休むことがあります。",
+    "habitat": "水が澄み、ほどよい流れのある外洋側の礁やリーフの水路に暮らします。危険なときや休むときは、サンゴの隙間へ体を横にして潜り込みます。",
+    "aliases": [
+      "Blue tang",
+      "Regal tang",
+      "Palette surgeonfish",
+      "Hippo tang",
+      "パレットサージョンフィッシュ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Acanthuriformes",
+      "orderJa": "ニザダイ目",
+      "family": "Acanthuridae",
+      "familyJa": "ニザダイ科"
+    },
+    "adultSizeCm": 20,
+    "sizeNote": "水族館の解説では体長約20cmとされますが、測り方は示されていません。最大で全長31cmの記録があります。",
+    "distribution": "東アフリカ・西インド洋からライン諸島まで。北は南日本・小笠原、南はオーストラリア北部やニューカレドニア、サモアに及びます。ハワイの記録は流れ着いた個体とされます。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2010
+    },
+    "highlights": [
+      "胸びれを羽ばたかせ、小刻みに進む泳ぎ方をします。",
+      "危険なときや休むときは、サンゴの隙間に体を横にして潜り込みます。",
+      "水族館では、レタスなどの野菜を食べる姿が見られることがあります。"
+    ]
+  }
+}

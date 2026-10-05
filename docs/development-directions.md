@@ -37,10 +37,10 @@
 
 コードの分岐を増やさず、`src/content/` にファイルを置いて足す。`bun run test` の `content.test.ts` が参照切れや置き忘れを検出する。
 
-1. 生き物: `fish/<id>/species.json`・`body.webp`（原画 `side.png` から `uv run scripts/build-fish-sprites.py` で作る）。入れる水槽の `tank.json` の `species` に足す（どの水槽にも入らない種はテストで失敗する）。住みかを持つ魚は `homeShelter` の `kind` を決め、その水槽の全水景に同じ `kind` の shelter を置く。魚以外なら `swim.bodyPlan` を指定する（新しい体のつくりが必要なら、先に core と描画の両方に足す）。
-2. 水景: `environment/scenes/<id>/scene.json`・`plate.webp`・`thumb.webp`（館内図の縮小版用。`uv run scripts/build-scene-thumbs.py` で作る）。地形・寄り道先・泡の位置はすべて背景画像に対する比率で、画像の輪郭に合わせて書く。水槽のガラスの縦横比が画像よりかなり横長なら `framing.plateBottom` を決め、テストの「画面と同じ切り取り方」でガラス内に収まることを確かめる。
+1. 生き物: `fish/<id>/species.json`・`body.webp`。新しい種は保管庫から取り込み、`content-drafts/fish/<id>/` で下書きしてから移す（[アセットの保管庫](asset-vault.md)）。既存35種は、手元の原画 `side.png` から `uv run scripts/build-fish-sprites.py` で `body.webp` を作る。入れる水槽の `tank.json` の `species` に足す（どの水槽にも入らない種はテストで失敗する）。住みかを持つ魚は `homeShelter` の `kind` を決め、その水槽の全水景に同じ `kind` の shelter を置く。魚以外なら `swim.bodyPlan` を指定する（新しい体のつくりが必要なら、先に core と描画の両方に足す）。
+2. 水景: `environment/scenes/<id>/scene.json`（見出し: 名前、説明、既定の照明、水の色、切り取り方）・`terrain.json`（寄り道先、泡の位置、地形。展示室に入るときに読む）・`plate.webp`・`thumb.webp`（館内図の縮小版用。`uv run scripts/build-scene-thumbs.py` で作る）。地形・寄り道先・泡の位置はすべて背景画像に対する比率で、画像の輪郭に合わせて書く。水槽のガラスの縦横比が画像よりかなり横長なら `framing.plateBottom` を決め、テストの「画面と同じ切り取り方」でガラス内に収まることを確かめる。
 3. 水槽: `tanks/<id>/tank.json`。展示室のJSONの `tanks` にガラス位置を足し、展示室の絵を描き直す（どの展示室にもない水槽はテストで失敗する）。
-4. 展示室: `room/<name>.json` と一枚絵。`id`・`order`・`displayName`・`shortName`・`image` を書く。置く場所は `museum/museum.json` の階の `halls` に同じ `id` の枠を書いて決める（準備中の枠があればその `id` に合わせる。どの枠にもない展示室はテストで失敗する）。館内図の縮小版とフロアガイドのカード、展示室の読み込みは自動で増える。新しい階は `museum.json` の `floors` に足し、館内図の断面図の絵の中の範囲を `mapArea` に書く（絵に階を描き足す必要があれば絵を作り直す）。
+4. 展示室: `room/<name>.json` と一枚絵、館内図用の小さな版（`uv run scripts/build-room-thumbs.py` で `room/thumbs/` に作る）。`id`・`order`・`displayName`・`shortName`・`image` を書く。置く場所は `museum/museum.json` の階の `halls` に同じ `id` の枠を書いて決める（準備中の枠があればその `id` に合わせる。どの枠にもない展示室はテストで失敗する）。館内図の縮小版とフロアガイドのカード、展示室の読み込みは自動で増える。新しい階は `museum.json` の `floors` に足し、館内図の断面図の絵の中の範囲を `mapArea` に書く（絵に階を描き足す必要があれば絵を作り直す）。
 5. `bun run test`・`bun run build`・`bun run verify:webview` で確かめ、生成画像は前後関係と420px幅をスクリーンショットで目視する。
 
 ## 検証方針

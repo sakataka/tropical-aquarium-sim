@@ -1,0 +1,131 @@
+{
+  "id": "coelacanth",
+  "displayName": "シーラカンス",
+  "realBodyLengthCm": 150,
+  "swim": {
+    "tailBeatHz": 0.6,
+    "bodyWaveStart": 0.5,
+    "tailSweepRad": 0.28,
+    "verticalFlex": 0.008
+  },
+  "visual": {
+    "fallbackColor": "#4f5d70"
+  },
+  "sourceBodyBounds": {
+    "x": 138,
+    "y": 210,
+    "width": 1338,
+    "height": 565
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.3,
+    "maxY": 0.85
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.1,
+      "burst": 0.35
+    },
+    "turnRateRadPerSec": 1.0,
+    "restFraction": 0.4,
+    "depthRange": [
+      0.35,
+      0.9
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 2,
+      "cohesion": 0.3,
+      "polarization": 0.1
+    },
+    "structureAffinity": 0.8,
+    "habits": [
+      {
+        "type": "homeShelter",
+        "kind": "cave",
+        "rangeBodyLengths": 8,
+        "visitChancePerMin": 0.4,
+        "visitDurationSec": [
+          40,
+          120
+        ]
+      },
+      {
+        "type": "hideByDay",
+        "durationSec": [
+          60,
+          180
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Fricke, Reinicke, Hofer & Nachtigall (1987): Locomotion of the coelacanth Latimeria chalumnae in its natural environment. Nature 329:331–333",
+        "url": "https://www.nature.com/articles/329331a0"
+      },
+      {
+        "title": "Fricke et al. (1991): Habitat and population size of the coelacanth Latimeria chalumnae at Grand Comoro. Environmental Biology of Fishes 32:287–300",
+        "url": "https://link.springer.com/article/10.1007/BF00007462"
+      },
+      {
+        "title": "Australian Museum: Coelacanth, Latimeria chalumnae Smith, 1939",
+        "url": "https://australian.museum/learn/animals/fishes/coelacanth-latimeria-chalumnae-smith-1939/"
+      },
+      {
+        "title": "NOAA Fisheries: African Coelacanth",
+        "url": "https://www.fisheries.noaa.gov/species/african-coelacanth"
+      },
+      {
+        "title": "FishBase: Latimeria chalumnae",
+        "url": "https://www.fishbase.se/summary/Latimeria-chalumnae.html"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Latimeria chalumnae",
+    "originRegionId": "western-indian-ocean",
+    "originRegionName": "西インド洋",
+    "origin": "南西インド洋。南アフリカ東部からモザンビーク、タンザニア、コモロ諸島、マダガスカルにかけて知られます。インドネシアのシーラカンスは別の種です。",
+    "temperament": "昼は洞窟の中に数匹がおとなしく集まりますが、揃って泳ぐ群れはつくりません。夜は1匹ずつ洞窟を出て、魚を探します。",
+    "movement": "胸びれと腹びれを交互に動かして姿勢を保ち、潮の流れに乗ってゆっくり漂います。大きな尾びれで素早く発進することもあります。ひれで海底を歩く姿は、野外の観察でも見られていません。",
+    "habitat": "コモロ諸島の調査では、水深150〜253mの急な溶岩の斜面にいて、昼は洞窟で過ごしていました。この水槽は、暗い溶岩の洞窟がある深い岩礁を表しています。生きた個体の展示例はなく、日本では冷凍標本や剥製が展示されています。",
+    "aliases": [
+      "West Indian Ocean coelacanth",
+      "African coelacanth",
+      "ラティメリア"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Coelacanthiformes",
+      "orderJa": "シーラカンス目",
+      "family": "Latimeriidae",
+      "familyJa": "ラティメリア科"
+    },
+    "adultSizeCm": 150,
+    "sizeNote": "典型的な成魚の大きさは確定しておらず、ここでの値は展示用の目安です。最大の記録は雌で全長200cm、雄または性別不明の個体で全長168cmとされます。",
+    "distribution": "南西インド洋の南アフリカ東部、モザンビーク、タンザニア、コモロ諸島、マダガスカルに分布します。",
+    "water": {
+      "salinity": "marine",
+      "temperatureC": [
+        16.5,
+        22.8
+      ]
+    },
+    "keeping": "rarelyDisplayed",
+    "conservation": {
+      "status": "CR",
+      "assessedYear": 2000,
+      "note": "ワシントン条約の附属書Iに掲載されています。米国の絶滅危惧種法では、タンザニアの個体群が Threatened に指定されています。"
+    },
+    "highlights": [
+      "肉質の柄を持つ胸びれと腹びれを交互に動かし、漂いながら姿勢を整える。",
+      "昼は溶岩の洞窟に数匹で集まり、夜は1匹ずつ斜面沿いを漂って魚を探す。",
+      "尾びれの中央にもう一つ小さな房があり、三つに分かれた尾に見える。"
+    ]
+  }
+}

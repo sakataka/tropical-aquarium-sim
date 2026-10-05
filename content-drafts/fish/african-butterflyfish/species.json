@@ -1,0 +1,101 @@
+{
+  "id": "african-butterflyfish",
+  "displayName": "バタフライフィッシュ",
+  "realBodyLengthCm": 10,
+  "catalog": {
+    "scientificName": "Pantodon buchholzi",
+    "originRegionId": "central-africa",
+    "originRegionName": "中部アフリカ",
+    "origin": "アフリカの西部から中部に分布します。最初の標本は、カメルーンの小さな川から得られました。",
+    "temperament": "水面に落ちた陸の昆虫や、水生昆虫の幼虫などを捕らえて食べます。隠れ場所があると、餌が近づくのをじっと待ちます。",
+    "movement": "大きな胸びれを広げて水面のすぐ下にとどまり、ほとんど動かずに漂います。驚くと胸びれで水を強くかいて、水面から跳び上がります。",
+    "habitat": "湿地や、川の流れの緩い所の水面近くに暮らします。この部屋の古代魚の水槽では、底のポリプテルスたちの上の水面を受け持ちます。",
+    "aliases": [
+      "パントドン",
+      "African butterflyfish"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Osteoglossiformes",
+      "orderJa": "アロワナ目",
+      "family": "Pantodontidae",
+      "familyJa": "パントドン科"
+    },
+    "adultSizeCm": 10,
+    "sizeNote": "研究で飼育された個体は全長7.5〜10.7cmでした。FishBase の最大記録は全長11.9cm、飼育下では全長15cmの記録もあります。",
+    "distribution": "アフリカの西部から中部に分布します。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2019
+    },
+    "highlights": [
+      "翼のような胸びれを水面近くで広げ、腹びれの長い糸を下へ垂らします。",
+      "水面に落ちた虫を、上向きの大きな口で待ち受けます。",
+      "驚くと胸びれで水を打って跳び上がります。滑空や羽ばたきではなく、跳躍です。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.2,
+    "tailSweepRad": 0.3
+  },
+  "visual": {
+    "fallbackColor": "#8b7d66"
+  },
+  "sourceBodyBounds": {
+    "x": 160,
+    "y": 300,
+    "width": 1319,
+    "height": 499
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.04,
+    "maxY": 0.2
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.22,
+      "burst": 3.5
+    },
+    "turnRateRadPerSec": 2.0,
+    "restFraction": 0.45,
+    "depthRange": [
+      0.1,
+      0.7
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2,
+      "cohesion": 0,
+      "polarization": 0.02
+    },
+    "structureAffinity": 0.4,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Dzanga Sangha Protected Areas Newsletter, October 2020, p.4",
+        "url": "https://dzanga-sangha.org/wp-content/uploads/2020/11/10_2020_Dzanga-Sangha-NL-October-2020.pdf"
+      },
+      {
+        "title": "Saidel et al. (2004), Characterization of the Aerial Escape Response of the African Butterfly Fish",
+        "url": "https://www.researchgate.net/publication/226390152_Characterization_of_the_Aerial_Escape_Response_of_the_African_Butterfly_Fish_Pantodon_buchholzi_Peters"
+      },
+      {
+        "title": "Yanwirsal (2013), Reproductive styles of Osteoglossomorpha, §§2.2.1 and 3.2",
+        "url": "https://edoc.hu-berlin.de/bitstream/handle/18452/17413/yanwirsal.pdf?isAllowed=y&sequence=1"
+      },
+      {
+        "title": "FishBase: Pantodon buchholzi",
+        "url": "https://www.fishbase.se/summary/Pantodon-buchholzi"
+      }
+    ]
+  }
+}

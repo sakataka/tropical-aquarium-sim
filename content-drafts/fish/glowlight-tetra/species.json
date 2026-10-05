@@ -1,0 +1,101 @@
+{
+  "id": "glowlight-tetra",
+  "displayName": "グローライトテトラ",
+  "realBodyLengthCm": 3.8,
+  "swim": {
+    "tailBeatHz": 2.9
+  },
+  "visual": {
+    "fallbackColor": "#c0b48c"
+  },
+  "sourceBodyBounds": {
+    "x": 199,
+    "y": 247,
+    "width": 1177,
+    "height": 501
+  },
+  "preferredZone": {
+    "minX": 0.1,
+    "maxX": 0.9,
+    "minY": 0.42,
+    "maxY": 0.8
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.7,
+      "burst": 2.8
+    },
+    "turnRateRadPerSec": 2.9,
+    "restFraction": 0.14,
+    "depthRange": [0.2, 0.85],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.6,
+      "cohesion": 0.58,
+      "polarization": 0.36
+    },
+    "structureAffinity": 0.3,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes — Hemigrammus erythrozonus",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?family=Acestrorhamphidae&tbl=species"
+      },
+      {
+        "title": "FishBase — Hemigrammus erythrozonus",
+        "url": "https://fishbase.se/summary/Hemigrammus_erythrozonus.html"
+      },
+      {
+        "title": "U.S. Fish and Wildlife Service — Glowlight tetra ERSS (2018)",
+        "url": "https://www.fws.gov/sites/default/files/documents/Ecological-Risk-Screening-Summary-Glowlight-Tetra.pdf"
+      },
+      {
+        "title": "OATA — How to look after tetras and pencilfish",
+        "url": "https://ornamentalfish.org/what-we-do/advice-information/care-sheets/caresheets-tropical-freshwater-fish/how-to-look-after-tetras-and-pencilfish/"
+      },
+      {
+        "title": "Aquarium Industries — Glolite Tetra",
+        "url": "https://www.aquariumindustries.com.au/product/glolite-tetra/"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Hemigrammus erythrozonus",
+    "originRegionId": "south-america",
+    "originRegionName": "南米",
+    "origin": "南米ガイアナのエセキボ川水系に由来します。",
+    "temperament": "穏やかな小型カラシンです。同じくらいの大きさのおとなしい魚と相性がよく、仲間とゆるくまとまって泳ぎます。",
+    "movement": "中層からやや下をゆるい群れで泳ぎ、短い加速と惰性を繰り返します。原産地での泳ぐ層や群れの大きさは、よく分かっていません。",
+    "habitat": "原産地の流れや水草の様子についての記録は乏しい魚です。水草の物陰と開けた泳ぎ場のある水槽で、体の中央の橙赤色の線が目立ちます。",
+    "aliases": [
+      "Glowlight tetra",
+      "Glolite tetra"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Characiformes",
+      "orderJa": "カラシン目",
+      "family": "Acestrorhamphidae",
+      "familyJa": "アケストロランプス科"
+    },
+    "adultSizeCm": 3.8,
+    "sizeNote": "繁殖研究に使われた30匹は全長3.5〜4cmでした。報告されている最大は全長4cmです。典型的な成魚の大きさを示す統計は見つかっていません。",
+    "distribution": "南米ガイアナのエセキボ川水系に分布します。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2020
+    },
+    "highlights": [
+      "半透明の体の中央を、鼻先から尾の付け根まで細い橙赤色の線が走る。名前に反して、自ら光るわけではない。",
+      "眼の上側と背びれにも赤みがあり、ひれの先は乳白色に縁どられる。",
+      "仲間とゆるい群れをつくって中層を泳ぐ。"
+    ]
+  }
+}

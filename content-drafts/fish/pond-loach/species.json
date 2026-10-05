@@ -1,0 +1,135 @@
+{
+  "id": "pond-loach",
+  "displayName": "ドジョウ",
+  "realBodyLengthCm": 12,
+  "catalog": {
+    "scientificName": "Misgurnus anguillicaudatus",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "田んぼや用水路でおなじみのドジョウです。日本には在来の系統と大陸から持ち込まれた系統がいて、分類の整理が今も続いています。",
+    "temperament": "泥の上で暮らす穏やかな魚です。春から夏に川から田んぼへ入り、秋に川へ戻る地域もあります。",
+    "movement": "細長い体で泥の上を泳ぎ回り、泥に潜ることもあります。ときどき水面へ上がって空気を吸い、すぐに底へ戻ります。",
+    "habitat": "水田、用水路、浅い池沼など、流れが緩く泥の底がある場所にすみます。寒い時期は泥に潜って過ごします。",
+    "aliases": [
+      "Pond loach",
+      "Oriental weatherfish",
+      "Weather loach",
+      "マドジョウ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cypriniformes",
+      "orderJa": "コイ目",
+      "family": "Cobitidae",
+      "familyJa": "ドジョウ科"
+    },
+    "adultSizeCm": 12,
+    "sizeNote": "雄は全長12cm、雌は18cmほどで、雌のほうが大きくなります。",
+    "distribution": "日本、朝鮮半島、中国などに広く分布するとされてきましたが、日本の集団には在来の系統と大陸由来の系統が含まれ、範囲の整理が続いています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2011,
+      "note": "環境省レッドリスト2020では準絶滅危惧（NT）です。兵庫県の武庫川では、在来の系統と大陸由来の系統の交雑が確認されています。"
+    },
+    "highlights": [
+      "水面で吸った空気を腸で使い、残りを肛門から泡にして出します。",
+      "口のまわりに5対、合わせて10本のひげがあります。",
+      "泥の上を泳ぎ回り、底の藻や泥の中の有機物を吸い込んで食べます。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 1.6,
+    "bodyWaveStart": 0.08,
+    "waveCount": 1.3,
+    "tailSweepRad": 0.32,
+    "verticalFlex": 0.06,
+    "mouthAnchor": {
+      "x": 0.06,
+      "y": 0.56
+    }
+  },
+  "visual": {
+    "fallbackColor": "#957f58"
+  },
+  "sourceBodyBounds": {
+    "x": 98,
+    "y": 347,
+    "width": 1333,
+    "height": 302
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.78,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "undulate",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.2,
+      "burst": 1.2
+    },
+    "turnRateRadPerSec": 2.0,
+    "restFraction": 0.35,
+    "depthRange": [
+      0.1,
+      0.7
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 1.0,
+      "cohesion": 0.4,
+      "polarization": 0.08
+    },
+    "structureAffinity": 0.45,
+    "habits": [
+      {
+        "type": "bottomForage"
+      },
+      {
+        "type": "airBreathing",
+        "breathsPerHour": [
+          3,
+          10
+        ],
+        "style": "dash"
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.5,
+        "durationSec": [
+          6,
+          20
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "長野県水産試験場 — ドジョウ",
+        "url": "https://www.pref.nagano.lg.jp/suisan/joho/sakanatachi/dojo.html"
+      },
+      {
+        "title": "国土交通省太田川河川事務所 — ドジョウ",
+        "url": "https://www.cgr.mlit.go.jp/ootagawa/Bio/fishes/index236.htm"
+      },
+      {
+        "title": "北海道水産林務部 — ドジョウ",
+        "url": "https://www.pref.hokkaido.lg.jp/sr/gid/fis009.html"
+      },
+      {
+        "title": "環境省レッドリスト2020 — 別添資料3",
+        "url": "https://www.env.go.jp/press/files/jp/114457.pdf"
+      },
+      {
+        "title": "兵庫県武庫川水系のドジョウにおける外来rag1アリルの検出（2026）",
+        "url": "https://www.jstage.jst.go.jp/article/hitotoshizen/36/0/36_16/_article/-char/ja"
+      }
+    ]
+  }
+}

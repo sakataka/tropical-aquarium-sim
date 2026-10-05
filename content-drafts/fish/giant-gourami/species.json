@@ -1,0 +1,113 @@
+{
+  "id": "giant-gourami",
+  "displayName": "ジャイアント・グラミー",
+  "realBodyLengthCm": 50,
+  "swim": {
+    "tailBeatHz": 1.0,
+    "bodyWaveStart": 0.48,
+    "tailSweepRad": 0.34
+  },
+  "visual": {
+    "fallbackColor": "#85766e"
+  },
+  "sourceBodyBounds": {
+    "x": 258,
+    "y": 181,
+    "width": 1087,
+    "height": 655
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.15,
+    "maxY": 0.7
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.14,
+      "burst": 0.45
+    },
+    "turnRateRadPerSec": 1.1,
+    "restFraction": 0.35,
+    "depthRange": [
+      0.2,
+      0.85
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0,
+      "polarization": 0.03
+    },
+    "structureAffinity": 0.4,
+    "habits": [
+      {
+        "type": "airBreathing",
+        "breathsPerHour": [
+          4,
+          10
+        ],
+        "style": "rise"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes — Osphronemus goramy",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=42028"
+      },
+      {
+        "title": "FishBase — Osphronemus goramy",
+        "url": "https://www.fishbase.se/summary/Osphronemus_goramy"
+      },
+      {
+        "title": "Kristanto et al. (2020) — Survey on egg and fry production of giant gourami",
+        "url": "https://onlinelibrary.wiley.com/doi/full/10.1111/jwas.12647"
+      },
+      {
+        "title": "鳥羽水族館 — オスフロネムスグラミー",
+        "url": "https://aquarium.co.jp/picturebook/osphronemus-goramy.html"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Osphronemus goramy",
+    "originRegionId": "southeast-asia",
+    "originRegionName": "東南アジア",
+    "origin": "東南アジア。スマトラ、ボルネオ、ジャワ、マレー半島、タイ、カンボジアに分布します。インドネシアでは食用に養殖されています。",
+    "temperament": "植物も動物も食べる雑食の大型魚です。養殖場では、雄どうしの争いを避けるために区画を分けることもあります。",
+    "movement": "大きな体で中層をゆったり進み、ときどき水面に上がって空気を吸います。腹びれの第1軟条は、糸のように長く伸びています。",
+    "habitat": "川や湖沼、湿地、流れの緩い水路、冠水林など、水生植物のある場所に暮らします。本展示では流木と根の絡まる大河を、ゆったり泳ぐ姿を見せています。",
+    "aliases": [
+      "オスフロネムスグラミー",
+      "オスフロネムス・グラミー",
+      "Giant gourami"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Anabantiformes",
+      "orderJa": "キノボリウオ目",
+      "family": "Osphronemidae",
+      "familyJa": "オスフロネムス科"
+    },
+    "adultSizeCm": 45,
+    "sizeNote": "ふつうの大きさは標準体長45cm、最大は標準体長70cmとされます。雌雄別の大きさは分かっていません。",
+    "distribution": "スマトラ、ボルネオ、ジャワ、マレー半島、タイ、カンボジアに分布します。ラオス、ベトナム、香港、フィリピン、マダガスカル、マスカリン諸島などには移入されています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2019
+    },
+    "highlights": [
+      "ときどき水面に上がって空気を吸う",
+      "腹びれの第1軟条が糸のように長く伸びる",
+      "成魚になると幼魚の縦帯が消え、雌雄とも地味な色になる",
+      "繁殖期には雄が植物の繊維で巣を作り、産卵後は巣を閉じて子を守るとされる"
+    ]
+  }
+}

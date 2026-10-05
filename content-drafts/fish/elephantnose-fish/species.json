@@ -1,0 +1,122 @@
+{
+  "id": "elephantnose-fish",
+  "displayName": "エレファントノーズ",
+  "realBodyLengthCm": 22,
+  "swim": {
+    "tailBeatHz": 1.4,
+    "tailSweepRad": 0.25,
+    "verticalFlex": 0.01,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.84
+    }
+  },
+  "visual": {
+    "fallbackColor": "#4f3f45"
+  },
+  "sourceBodyBounds": {
+    "x": 91,
+    "y": 264,
+    "width": 1371,
+    "height": 491
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.6,
+    "maxY": 0.94
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.25,
+      "burst": 1.2
+    },
+    "turnRateRadPerSec": 2.0,
+    "restFraction": 0.3,
+    "depthRange": [
+      0.4,
+      0.95
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 3,
+      "cohesion": 0,
+      "polarization": 0.03
+    },
+    "structureAffinity": 0.7,
+    "habits": [
+      {
+        "type": "hideByDay",
+        "durationSec": [
+          60,
+          180
+        ]
+      },
+      {
+        "type": "bottomForage"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Gnathonemus petersii",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=10170"
+      },
+      {
+        "title": "FishBase: Gnathonemus petersii",
+        "url": "https://www.fishbase.se/summary/Gnathonemus-petersii.html"
+      },
+      {
+        "title": "Zoo Frankfurt: Elefantenrüsselfisch",
+        "url": "https://www.zoo-frankfurt.de/de/tiere-von-a-z-detailansicht/animal/tiere-von-a-z-detailansicht/elefantenfisch"
+      },
+      {
+        "title": "Gottwald et al. 2018: Electric-Color Sensing in Weakly Electric Fish",
+        "url": "https://eeb.tamu.edu/wp-content/uploads/2018/11/Gottwald-et-al-2018-electric-color-sensing-in-weakly-electric-fish.pdf"
+      },
+      {
+        "title": "R. Bigorne: Mormyridae, West African fish fauna, pp. 134–135",
+        "url": "https://horizon.documentation.ird.fr/exl-doc/pleins_textes/pleins_textes_6/Fau_trop/34075.pdf"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Gnathonemus petersii",
+    "originRegionId": "west-africa",
+    "originRegionName": "西アフリカ",
+    "origin": "西アフリカのニジェール川から、中部アフリカのコンゴ川流域にかけて分布するとされます。模式産地はナイジェリアのオールド・カラバルです。",
+    "habitat": "アフリカの川の底近くにすみます。この展示では、砂底と流木の根のある川の底近くで暮らします。",
+    "temperament": "弱い電気を出して周囲を感じ取る弱電気魚です。同じ種どうしでは縄張りを主張し、攻撃的になることがあります。",
+    "movement": "主に夜に活動し、あごの先の長い突起で砂や泥を探って虫などの餌を見つけます。後ろ向きに泳いだり、ほとんど止まったまま周囲を探ったりします。",
+    "aliases": [
+      "Elephantnose fish",
+      "Mormyrus petersii"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Osteoglossiformes",
+      "orderJa": "アロワナ目",
+      "family": "Mormyridae",
+      "familyJa": "モルミルス科"
+    },
+    "adultSizeCm": 22,
+    "sizeNote": "西アフリカの魚類誌に記された最大は標準体長35cmです。ふつうの成魚の大きさは確かめられていないため、展示では全長22cm前後を想定しています。",
+    "distribution": "ニジェール川からコンゴ川流域にかけての広い範囲から記録されていますが、一部の地域の古い記録は別種の可能性が指摘されています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2019
+    },
+    "highlights": [
+      "あごの先が象の鼻のように伸びた突起で、砂の中の餌を探ります。",
+      "自分で出す弱い電場の乱れから、物の位置や性質を感じ取ります。",
+      "主に夜に餌を探す魚です。",
+      "後ろ向きに泳ぎながら物に近づき、確かめる動きが知られています。"
+    ]
+  }
+}

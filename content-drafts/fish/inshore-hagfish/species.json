@@ -1,0 +1,133 @@
+{
+  "id": "inshore-hagfish",
+  "displayName": "ヌタウナギ",
+  "realBodyLengthCm": 50,
+  "swim": {
+    "tailBeatHz": 1.4,
+    "bodyWaveStart": 0.08,
+    "waveCount": 1.5,
+    "tailSweepRad": 0.35,
+    "verticalFlex": 0.07
+  },
+  "visual": {
+    "fallbackColor": "#9a7a72"
+  },
+  "sourceBodyBounds": {
+    "x": 74,
+    "y": 408,
+    "width": 1388,
+    "height": 183
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.72,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "undulate",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.2,
+      "burst": 0.8
+    },
+    "turnRateRadPerSec": 1.8,
+    "restFraction": 0.6,
+    "depthRange": [
+      0.3,
+      0.9
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0,
+      "polarization": 0.02
+    },
+    "structureAffinity": 0.5,
+    "habits": [
+      {
+        "type": "hideByDay",
+        "durationSec": [
+          60,
+          180
+        ]
+      },
+      {
+        "type": "homeShelter",
+        "kind": "burrow",
+        "rangeBodyLengths": 4,
+        "visitChancePerMin": 0.6,
+        "visitDurationSec": [
+          30,
+          90
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.2,
+        "durationSec": [
+          20,
+          60
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Kabasawa et al. (1993), Photosensitivity of the Hagfish Represented by Entrainability of Locomotor Activity Rhythm",
+        "url": "https://www.jstage.jst.go.jp/article/suisan1932/59/6/59_6_963/_pdf/-char/en"
+      },
+      {
+        "title": "由木・石田・安木 (2003), 島根県海域におけるヌタウナギの生態と漁業実態",
+        "url": "https://www.pref.shimane.lg.jp/industry/suisan/shinkou/suigi/publish/kenkyuhou/kenkyu11/index.data/kenkyuhou011_1.pdf"
+      },
+      {
+        "title": "島根大学 (2025-06-24), ヌタウナギの成長・摂食・年齢研究発表",
+        "url": "https://www.shimane-u.ac.jp/_files/00388313/20250624pr.pdf"
+      },
+      {
+        "title": "韓国国立海洋生物資源館 MBRIS: Eptatretus burgeri",
+        "url": "https://www.mbris.kr/pub/marine/tsearch/tsearchDetail.do?spcTxnId=270000006214"
+      },
+      {
+        "title": "FishBase: Eptatretus burgeri",
+        "url": "https://www.fishbase.se/summary/Eptatretus_burgeri.html"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Eptatretus burgeri",
+    "originRegionId": "northwest-pacific",
+    "originRegionName": "北西太平洋",
+    "origin": "北西太平洋の台湾から韓国、日本の沿岸に分布します。日本では島根県の沿岸や相模湾などで研究されています。",
+    "temperament": "顎のない円口類です。飼育下では、食べたものを長い時間をかけて消化し、袋状の大きな糞を出すことが観察されています。群れ方はよく分かっていません。",
+    "movement": "細長い体をくねらせて泳ぎます。暗いあいだに活発に泳ぎ、昼は休む傾向があり、明暗の周期を逆にすると活動の時間帯もずれることが実験で確かめられています。",
+    "habitat": "沿岸の海底にすみ、泥底に潜ります。相模湾の研究では水深10〜50mで採集されました。この水槽では深海の泥底の仲間と並べていますが、本来はもっと浅い沿岸の生き物です。",
+    "aliases": [
+      "Inshore hagfish"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Myxiniformes",
+      "orderJa": "ヌタウナギ目",
+      "family": "Myxinidae",
+      "familyJa": "ヌタウナギ科"
+    },
+    "adultSizeCm": 50,
+    "sizeNote": "典型的な成魚の大きさは確定しておらず、ここでの値は展示用の目安です。島根県の調査では、全長70cmの雄と64cmの雌が記録されています。",
+    "distribution": "北西太平洋の台湾、韓国、日本の沿岸の海底に分布します。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "NT",
+      "assessedYear": 2009
+    },
+    "highlights": [
+      "顎がなく、背中の中央に白い線が走り、体の横には粘液を出す孔が並ぶ。",
+      "暗いあいだに泳ぎ回り、明るいあいだは泥底に潜ったり海底で休んだりする。",
+      "飼育個体の成長の記録から、50年以上生きる可能性が推定されている。"
+    ]
+  }
+}

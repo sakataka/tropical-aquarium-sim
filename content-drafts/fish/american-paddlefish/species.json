@@ -1,0 +1,101 @@
+{
+  "id": "american-paddlefish",
+  "displayName": "ヘラチョウザメ",
+  "realBodyLengthCm": 150,
+  "catalog": {
+    "scientificName": "Polyodon spathula",
+    "originRegionId": "north-america",
+    "originRegionName": "北米",
+    "origin": "北米のミシシッピ川水系と、アラバマ州のモービル湾からテキサス州のガルベストン湾までのメキシコ湾に注ぐ水系に分布します。かつては五大湖水系にもいましたが、今は見られません。",
+    "temperament": "水中の動物プランクトンを、えらの鰓耙でこし取って食べます。へら状の長い吻や頭で、ごく弱い電場を感じ取ります。",
+    "movement": "開けた水中を泳ぎ続け、餌をとるときは大きな口を開けたままゆっくり進みます。上の葉が長い尾びれで、一定の速さで巡ります。",
+    "habitat": "流れの比較的緩い大きな川や、深い所、貯水池に暮らします。春の増水期には川をさかのぼり、泥の少ない礫底で産卵します。本水槽では、丸い石と礫が広がる大河の、開けた水中を泳ぎます。",
+    "aliases": [
+      "パドルフィッシュ",
+      "American paddlefish",
+      "spoonbill"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Acipenseriformes",
+      "orderJa": "チョウザメ目",
+      "family": "Polyodontidae",
+      "familyJa": "ヘラチョウザメ科"
+    },
+    "adultSizeCm": 150,
+    "sizeNote": "米国魚類野生生物局の解説では、最大で約2.1m（7フィート）になります。典型的な成魚の大きさの資料は見つかっておらず、数値は展示用の目安です。",
+    "distribution": "ミシシッピ川水系と、モービル湾からガルベストン湾までのメキシコ湾岸の水系に分布します。五大湖水系からは姿を消しました。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "VU",
+      "note": "IUCN の区分は水族館の解説からの引用で、評価年は確認できていません。ワシントン条約の附属書IIに掲載されています。川の改変による回遊路や産卵場の分断と、獲りすぎが脅威とされます。"
+    },
+    "highlights": [
+      "へらのように長く伸びた吻をもち、成魚の大きな口には歯がありません。",
+      "口を大きく開けたまま泳ぎ、水中のプランクトンをこし取ります。",
+      "吻や頭で、ごく弱い電場を感じ取るとされます。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 0.8
+  },
+  "visual": {
+    "fallbackColor": "#7c7a7c"
+  },
+  "sourceBodyBounds": {
+    "x": 43,
+    "y": 292,
+    "width": 1465,
+    "height": 436
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.15,
+    "maxY": 0.7
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "steady",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.25,
+      "burst": 0.6
+    },
+    "turnRateRadPerSec": 1.1,
+    "restFraction": 0.05,
+    "depthRange": [
+      0.2,
+      0.85
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2,
+      "cohesion": 0,
+      "polarization": 0.05
+    },
+    "structureAffinity": 0.05,
+    "habits": [],
+    "sources": [
+      {
+        "title": "U.S. Fish & Wildlife Service — Paddlefish (Polyodon spathula)",
+        "url": "https://www.fws.gov/species/paddlefish-polyodon-spathula"
+      },
+      {
+        "title": "Missouri Department of Conservation — Paddlefish field guide",
+        "url": "https://mdc.mo.gov/discover-nature/field-guide/paddlefish"
+      },
+      {
+        "title": "Tennessee Aquarium — Paddlefish",
+        "url": "https://tnaqua.org/animal/paddlefish/"
+      },
+      {
+        "title": "U.S. Fish & Wildlife Service — CITES Appendices",
+        "url": "https://www.fws.gov/international-affairs/cites/cites-appendices"
+      }
+    ]
+  }
+}

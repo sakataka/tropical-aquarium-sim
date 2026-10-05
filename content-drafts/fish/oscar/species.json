@@ -1,0 +1,119 @@
+{
+  "id": "oscar",
+  "displayName": "オスカー",
+  "realBodyLengthCm": 23,
+  "swim": {
+    "tailBeatHz": 1.3,
+    "tailSweepRad": 0.4,
+    "bodyWaveStart": 0.46
+  },
+  "visual": {
+    "fallbackColor": "#5a4e3a"
+  },
+  "sourceBodyBounds": {
+    "x": 228,
+    "y": 245,
+    "width": 1114,
+    "height": 563
+  },
+  "preferredZone": {
+    "minX": 0.1,
+    "maxX": 0.9,
+    "minY": 0.35,
+    "maxY": 0.88
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.2,
+      "burst": 0.85
+    },
+    "turnRateRadPerSec": 1.5,
+    "restFraction": 0.35,
+    "depthRange": [0.25, 0.85],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 3,
+      "cohesion": 0.3,
+      "polarization": 0.1
+    },
+    "structureAffinity": 0.65,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 0.4,
+        "durationSec": [12, 40]
+      },
+      {
+        "type": "follow",
+        "chancePerMin": 0.35,
+        "durationSec": [4, 10]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Astronotus ocellatus",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?genus=Astronotus&species=ocellatus&tbl=species"
+      },
+      {
+        "title": "Florida Museum, Robert H. Robins: Oscar species profile",
+        "url": "https://www.floridamuseum.ufl.edu/discover-fish/species-profiles/oscar/"
+      },
+      {
+        "title": "Florida Museum: Oscar, Florida fishes gallery",
+        "url": "https://www.floridamuseum.ufl.edu/discover-fish/florida-fishes-gallery/oscar/"
+      },
+      {
+        "title": "Florida Fish and Wildlife Conservation Commission: Oscar",
+        "url": "https://myfwc.com/wildlifehabitats/profiles/freshwater/oscar/"
+      },
+      {
+        "title": "Trindade & Queiroz 2012: Feeding ecology and morphometry of Astronotus ocellatus",
+        "url": "https://www.mamiraua.org.br/pdf/ce5397d9eed5c99b6e39b4fc27ea729e.pdf"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Astronotus ocellatus",
+    "originRegionId": "south-america",
+    "originRegionName": "南米",
+    "origin": "南米のアマゾン川流域に分布します。ブラジル、ペルー、コロンビア、ボリビア、仏領ギアナで記録があります。",
+    "habitat": "流れの緩い水域を好み、浮き草の群落や沈木のまわりにすみます。この展示では、水没林の根や幹の陰を休み場にします。",
+    "temperament": "昆虫や魚を食べる大型のシクリッドです。雄どうしは縄張りや相手をめぐって口をぶつけ合うことがあり、繁殖期にはペアで卵と仔魚を守ります。",
+    "movement": "ふだんはゆっくり泳ぎ、獲物には短い距離を一気に突進します。沈木の陰で休み、夜は底でじっとしていることもあります。",
+    "aliases": [
+      "Oscar",
+      "アストロノータス",
+      "Lobotes ocellatus",
+      "acará-açu"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cichliformes",
+      "orderJa": "シクリッド目",
+      "family": "Cichlidae",
+      "familyJa": "シクリッド科"
+    },
+    "adultSizeCm": 23,
+    "sizeNote": "ブラジルのマミラウア保護区で採集された成魚20個体は、全長19.3〜26.6cm（平均22.8cm）、標準体長の平均18.2cmでした。飼育資料では40cm程度になるとも書かれています。",
+    "distribution": "アマゾン川流域。オリノコ川やラプラタ川まで含める資料もあり、範囲の扱いは資料によって違います。米国フロリダ州南部などに移入し、定着しています。",
+    "water": {
+      "salinity": "freshwater",
+      "temperatureC": [29.2, 33.6],
+      "pH": [6.5, 7]
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "note": "フロリダ州などで移入個体群が野外で繁殖しています。"
+    },
+    "highlights": [
+      "尾びれの付け根の上にある、橙色に縁どられた黒い眼状斑が目印です。",
+      "沈木や枝の陰で休み、夜は底でじっとしていることがあります。",
+      "獲物を見つけると、短い距離を一気に突進して捕らえます。",
+      "繁殖期には、ペアで平らな面を掃除して卵を産み、仔魚を守ります。"
+    ]
+  }
+}

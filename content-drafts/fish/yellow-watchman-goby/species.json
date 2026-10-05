@@ -1,0 +1,125 @@
+{
+  "id": "yellow-watchman-goby",
+  "displayName": "ギンガハゼ",
+  "realBodyLengthCm": 6,
+  "swim": {
+    "tailBeatHz": 2.8
+  },
+  "visual": {
+    "fallbackColor": "#e3c22a"
+  },
+  "sourceBodyBounds": {
+    "x": 137,
+    "y": 269,
+    "width": 1291,
+    "height": 490
+  },
+  "preferredZone": {
+    "minX": 0.1,
+    "maxX": 0.9,
+    "minY": 0.8,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.2,
+      "burst": 1.5
+    },
+    "turnRateRadPerSec": 2.7,
+    "restFraction": 0.6,
+    "depthRange": [
+      0.15,
+      0.7
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 1.2,
+      "cohesion": 0.45,
+      "polarization": 0.1
+    },
+    "structureAffinity": 0.7,
+    "habits": [
+      {
+        "type": "homeShelter",
+        "kind": "burrow",
+        "rangeBodyLengths": 2.5,
+        "visitChancePerMin": 1.3,
+        "visitDurationSec": [
+          8,
+          25
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 2.5,
+        "durationSec": [
+          10,
+          35
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Australian Museum: Yellow Shrimpgoby",
+        "url": "https://australian.museum/learn/animals/fishes/yellow-shrimpgoby-cryptocentrus-cinctus/"
+      },
+      {
+        "title": "Oregon Coast Aquarium: Yellow Watchman Goby",
+        "url": "https://aquarium.org/animals/yellow-watchman-goby/"
+      },
+      {
+        "title": "新江ノ島水族館 2016-06-09: まるでSP（セキュリティーポリス）",
+        "url": "https://www.enosui.com/diaryentry.php?eid=03852"
+      },
+      {
+        "title": "Oungern et al. 2021. Embryonic Development of Yellow Prawn-Goby, Cryptocentrus cinctus, in the Hatchery",
+        "url": "https://www.researchgate.net/publication/361636528_Embryonic_Development_of_Yellow_Prawn-Goby_Cryptocentrus_cinctus_Herre_1936_in_the_Hatchery"
+      },
+      {
+        "title": "FishBase: Cryptocentrus cinctus",
+        "url": "https://www.fishbase.se/summary/Cryptocentrus-cinctus.html"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Cryptocentrus cinctus",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "東インド洋から西太平洋。アンダマン海やインドネシアからカロリン諸島まで、北は八重山諸島、南は北オーストラリアまで分布します。",
+    "temperament": "テッポウエビ類が掘った巣穴を一緒に使う共生ハゼです。ハゼが見張り役になり、エビは触角でハゼに触れながら砂を運び出します。危険が近づくと、ハゼもエビも巣穴へ引っ込みます。",
+    "movement": "巣穴の入口に体を止め、顔を出して周りを見張ります。泳ぐのは短い距離だけで、すぐに巣穴の近くへ戻ります。",
+    "habitat": "海草帯や礁湖、波の穏やかなサンゴ礁の砂底。本水槽では、小さな岩の根元にある2つの巣穴を住みかにしています。",
+    "aliases": [
+      "Yellow watchman goby",
+      "Yellow shrimpgoby",
+      "イエロー・ウォッチマン・ゴビー"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Gobiiformes",
+      "orderJa": "ハゼ目",
+      "family": "Gobiidae",
+      "familyJa": "ハゼ科"
+    },
+    "adultSizeCm": 5.1,
+    "sizeNote": "飼育下の繁殖に使われた親魚10匹は、平均で全長5.14cm（標準体長4.21cm）でした。最大記録は標準体長10cmです。",
+    "distribution": "東インド洋から西太平洋の熱帯域に分布し、日本では八重山諸島で見られます。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2020
+    },
+    "highlights": [
+      "巣穴の入口から顔を出し、じっと周りを見張る",
+      "危険を感じると、すぐに巣穴へ飛び込む",
+      "テッポウエビ類が触角でハゼに触れ、合図を受け取りながら砂を運び出す",
+      "体色は黄色のほか、灰白色や暗い色の型もある"
+    ]
+  }
+}

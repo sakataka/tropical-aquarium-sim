@@ -1,0 +1,111 @@
+{
+  "id": "goldfish",
+  "displayName": "キンギョ",
+  "realBodyLengthCm": 16,
+  "catalog": {
+    "scientificName": "Carassius auratus",
+    "originRegionId": "east-asia",
+    "originRegionName": "東アジア",
+    "origin": "中国から伝わった金魚の系統を、日本で観賞用に受け継いできた品種です。和金は野生の魚ではなく、種としてのキンギョは世界各地に持ち込まれています。",
+    "temperament": "穏やかで、同じ水槽の仲間とゆるくまとまって泳ぎます。決まった数で揃って泳ぐ群れはつくりません。",
+    "movement": "フナに近い胴長の体で、中層から底近くまでをゆったり巡ります。水面の餌を吸い込んだり、底に沈んだ餌を拾ったりします。",
+    "habitat": "明るく澄んだ水、淡い色の砂利、水面から根を垂らす水草をそろえた、昔ながらの金魚の展示です。ここでは尾びれが一枚のフナ尾の和金を表現しています。",
+    "aliases": [
+      "goldfish",
+      "和金",
+      "ワキン",
+      "金魚"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cypriniformes",
+      "orderJa": "コイ目",
+      "family": "Cyprinidae",
+      "familyJa": "コイ科"
+    },
+    "adultSizeCm": 20,
+    "sizeNote": "大きな和金は体長20cmを超えると市の品種解説にあり、金魚一般では25cmほどになるとされます。和金に限った典型的な大きさや最大記録は分かっていません。",
+    "distribution": "種としてのキンギョは東アジアに由来し、各地へ広く持ち込まれています。和金は飼育下で固定された品種で、自然の分布はありません。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2013,
+      "note": "種 Carassius auratus としての評価で、和金という品種の評価ではありません。"
+    },
+    "highlights": [
+      "水面に浮いた餌も、底に沈んだ餌も拾って食べます。",
+      "胴長で頭が小さく、ひれが短い、フナに近い輪郭です。",
+      "和金にはフナ尾・三つ尾・四つ尾があり、ここではフナ尾の個体です。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.0,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.56
+    }
+  },
+  "visual": {
+    "fallbackColor": "#e96122"
+  },
+  "sourceBodyBounds": {
+    "x": 194,
+    "y": 209,
+    "width": 1215,
+    "height": 583
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.2,
+    "maxY": 0.86
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.4,
+      "burst": 1.6
+    },
+    "turnRateRadPerSec": 2.0,
+    "restFraction": 0.15,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.8,
+      "cohesion": 0.45,
+      "polarization": 0.25
+    },
+    "structureAffinity": 0.3,
+    "habits": [
+      {
+        "type": "bottomForage"
+      }
+    ],
+    "sources": [
+      {
+        "title": "大和郡山市 — 金魚の品種（古来中国より伝来）",
+        "url": "https://www.city.yamatokoriyama.lg.jp/kanko_bunka_sports/kingyo/kingyonokeitotohinshu/6266.html"
+      },
+      {
+        "title": "OATA — How to look after goldfish in an aquarium / fish tank",
+        "url": "https://ornamentalfish.org/what-we-do/advice-information/care-sheets/caresheets-coldwater-fish/how-to-look-after-goldfish-in-an-aquarium-fishtank/"
+      },
+      {
+        "title": "Chen et al. (2019) — Temperature modulation of feeding in goldfish",
+        "url": "https://www.frontiersin.org/journals/endocrinology/articles/10.3389/fendo.2019.00133/pdf"
+      },
+      {
+        "title": "Eschmeyer’s Catalog of Fishes — Carassius auratus",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?genus=Carassius&species=auratus&tbl=species"
+      }
+    ]
+  }
+}

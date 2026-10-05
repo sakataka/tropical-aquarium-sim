@@ -1,0 +1,101 @@
+{
+  "id": "lifalili-jewel-cichlid",
+  "displayName": "ヘミクロミス・リファリリ",
+  "realBodyLengthCm": 9,
+  "swim": {
+    "tailBeatHz": 2.2
+  },
+  "visual": {
+    "fallbackColor": "#b8322a"
+  },
+  "sourceBodyBounds": {
+    "x": 187,
+    "y": 236,
+    "width": 1217,
+    "height": 567
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.42,
+    "maxY": 0.86
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.35,
+      "burst": 1.7
+    },
+    "turnRateRadPerSec": 2.2,
+    "restFraction": 0.25,
+    "depthRange": [
+      0.2,
+      0.85
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 2.4,
+      "cohesion": 0.3,
+      "polarization": 0.1
+    },
+    "structureAffinity": 0.65,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Hemichromis lifalili, current 21 September 2026 version",
+        "url": "https://research.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=9349"
+      },
+      {
+        "title": "Royal Museum for Central Africa, CLOFFA/Faunafri: Rubricatochromis lifalili",
+        "url": "https://faunafri.africamuseum.be/cloffa/table/taxon2/view?idtaxon%3Aint=16060"
+      },
+      {
+        "title": "Aquarium Glaser: Rubricatochromis “lifalili” (formerly Hemichromis), 26 April 2023",
+        "url": "https://www.aquariumglaser.de/en/25-perchlike-fishes/rubricatochromis-lifalili-formerly-hemichromis/"
+      },
+      {
+        "title": "Lamboj & Koblmüller 2022/2023: Molecular phylogeny and taxonomic revision of Hemichromis",
+        "url": "https://link.springer.com/article/10.1007/s10750-022-05060-y"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Rubricatochromis stellifer",
+    "originRegionId": "central-africa",
+    "originRegionName": "中部アフリカ",
+    "origin": "中部アフリカのコンゴ盆地に由来します。Hemichromis lifalili として記載された魚で、模式産地はコンゴ民主共和国のトゥンバ湖です。2026年の分類の見直しで、R. stellifer と同じ種とされました。",
+    "habitat": "コンゴ盆地の川にすむとされますが、野外の生息環境はよく分かっていません。この展示では、流木と陰性水草のある川の中層から下層を泳ぎます。",
+    "temperament": "野外での行動を記した確かな資料は少ない魚です。リファリリの名で流通する魚には、近縁の R. guttatus や交雑で作られた系統も含まれます。",
+    "movement": "赤い体に青く光る点を散らし、流木のそばの中層から下層を泳ぎます。",
+    "aliases": [
+      "Hemichromis lifalili",
+      "Rubricatochromis lifalili",
+      "Blood-red jewel cichlid",
+      "ジュエルシクリッド"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cichliformes",
+      "orderJa": "シクリッド目",
+      "family": "Cichlidae",
+      "familyJa": "シクリッド科"
+    },
+    "adultSizeCm": 8,
+    "sizeNote": "旧 H. lifalili の博物館資料では標準体長8.15cmとされますが、性別や、最大値か典型値かは分かっていません。展示では全長9cm前後を想定しています。",
+    "distribution": "コンゴ民主共和国のコンゴ盆地。旧 H. lifalili は、シャバ（カタンガ）とカサイの地域を除く盆地から知られていました。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "note": "今回の資料では IUCN の評価を確かめられていません。2026年に R. stellifer の異名とされたため、評価の対象範囲も整理が必要です。"
+    },
+    "highlights": [
+      "赤い体と、頭からひれまで散らばる青く光る点が目を引きます。",
+      "青い点の多さだけでは、本来の lifalili かどうかは見分けられません。",
+      "2022年に Hemichromis 属から Rubricatochromis 属へ移され、2026年には R. stellifer と同じ種とされました。"
+    ]
+  }
+}

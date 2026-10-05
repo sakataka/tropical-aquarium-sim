@@ -1,0 +1,109 @@
+{
+  "id": "dwarf-neon-rainbowfish",
+  "displayName": "ネオン・ドワーフレインボー",
+  "realBodyLengthCm": 5,
+  "swim": {
+    "tailBeatHz": 3.0
+  },
+  "visual": {
+    "fallbackColor": "#3f72c4"
+  },
+  "sourceBodyBounds": {
+    "x": 170,
+    "y": 268,
+    "width": 1243,
+    "height": 466
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.2,
+    "maxY": 0.65
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "steady",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.8,
+      "burst": 3.2
+    },
+    "turnRateRadPerSec": 3.0,
+    "restFraction": 0.08,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.6,
+      "cohesion": 0.55,
+      "polarization": 0.45
+    },
+    "structureAffinity": 0.3,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Melanotaenia praecox",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=13880"
+      },
+      {
+        "title": "FishBase: Melanotaenia praecox",
+        "url": "https://www.fishbase.se/summary/Melanotaenia-praecox.html"
+      },
+      {
+        "title": "Adrian R. Tappin, Home of the Rainbowfish: Melanotaenia praecox",
+        "url": "https://rainbowfish.angfa.org.au/old_site/Praecox.htm"
+      },
+      {
+        "title": "Allen, Unmack & Hadiaty 2015: Melanotaenia rubrivittata, a new species of rainbowfish",
+        "url": "https://birdsheadseascape.com/download/research/biodiversity/Description%20of%20Melanotaenia%20rubrivittata%20rainbowfish.pdf"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Melanotaenia praecox",
+    "originRegionId": "oceania",
+    "originRegionName": "オセアニア",
+    "origin": "ニューギニア島のインドネシア領、マンベラモ川水系に由来します。",
+    "temperament": "群れで飼うことが勧められる魚です。レインボーフィッシュ類の飼育の手引きでは、5匹以上で、雄より雌を多くするよう勧められています。",
+    "movement": "ほかの多くのレインボーフィッシュと同じように、ゆるい群れで中層を泳ぎます。雄はネオンのような青い体に赤い背びれ・尻びれ・尾びれが映え、小さいながら体高が高くなります。",
+    "habitat": "雨林を流れる小さな支流などで採集されています。ティリ川の支流の例では、林冠に覆われた濁った流れが泥や礫、落ち葉の底をゆっくり流れ、深さは平均0.5m、淵で1.5mほどでした。本展示では明るい川の中層を群れで泳ぐ姿を見せています。",
+    "aliases": [
+      "Rhombatractus praecox",
+      "Dwarf rainbowfish",
+      "Neon rainbowfish"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Atheriniformes",
+      "orderJa": "トウゴロウイワシ目",
+      "family": "Melanotaeniidae",
+      "familyJa": "メラノタエニア科"
+    },
+    "adultSizeCm": 4,
+    "sizeNote": "ふつうの大きさは標準体長4cm、最大は標準体長5cmとされます（雄または性別不明）。",
+    "distribution": "ニューギニア島インドネシア領のマンベラモ川水系に分布します。西のワポガ川で本種とされていたものは、2015年に別種 Melanotaenia rubrivittata として記載されました。",
+    "water": {
+      "salinity": "freshwater",
+      "temperatureC": [
+        24,
+        29
+      ],
+      "pH": [
+        6.6,
+        8
+      ]
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2019
+    },
+    "highlights": [
+      "ネオンのような青い体と、赤い背びれ・尻びれ・尾びれ",
+      "小さくても体高のある雄の体つき",
+      "群れで中層を泳ぐ"
+    ]
+  }
+}

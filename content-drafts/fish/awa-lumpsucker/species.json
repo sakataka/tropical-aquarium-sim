@@ -1,0 +1,120 @@
+{
+  "id": "awa-lumpsucker",
+  "displayName": "ダンゴウオ",
+  "realBodyLengthCm": 2.5,
+  "catalog": {
+    "scientificName": "Eumicrotremus awae",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "本州の太平洋岸、千葉県から三重県にかけての浅い海に分布し、宮城県の志津川湾でも繁殖が調べられています。2017年の分類の見直しで、似た種が別に区別されました。",
+    "temperament": "小さな甲殻類を食べます。繁殖期には雄が巣の中で卵を守ります。本水槽では、それぞれ好きな石や海藻に付いて過ごします。",
+    "movement": "腹の吸盤で岩や海藻に付いて止まり、必要なときだけ短く泳ぎます。泳ぎは得意ではありません。",
+    "habitat": "浅い海の岩礁や海藻の間。志津川湾では水深7〜17mで卵を守る雄が見つかりました。本水槽では、赤や緑の海藻に覆われた石の小さなすき間をイメージしています。",
+    "aliases": [
+      "Japanese lumpsucker",
+      "Awa lumpsucker",
+      "Lethotremus awae"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Perciformes",
+      "orderJa": "スズキ目",
+      "family": "Cyclopteridae",
+      "familyJa": "ダンゴウオ科"
+    },
+    "adultSizeCm": 2.1,
+    "sizeNote": "標準体長。志津川湾で卵を守っていた雄5尾は1.8〜2.5cm（平均2.1cm）、雌3尾は2.0〜2.3cmでした。種としての典型的な大きさや最大値は確かめられていません。",
+    "distribution": "本州の太平洋岸、千葉県から三重県にかけて確認されています。宮城県志津川湾の記録もあります。日本海や黄海の古い記録は、近縁種の可能性があります。",
+    "water": {
+      "salinity": "marine",
+      "temperatureC": [
+        5,
+        24
+      ]
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2023,
+      "note": "水温は志津川湾の調査地点付近（水深5m）の年間の範囲です。カサゴ目に分類する資料もあります。"
+    },
+    "highlights": [
+      "腹びれが変化した吸盤で、岩や海藻に体を付けて止まります。",
+      "体の色は赤、緑、褐色など、個体によって大きく違います。",
+      "繁殖期の雄は、フジツボの空き殻や二枚貝が開けた穴を巣にして卵を守ります。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 3.0,
+    "tailSweepRad": 0.3
+  },
+  "visual": {
+    "fallbackColor": "#b05c45"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.4,
+    "maxY": 0.92
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.28,
+      "burst": 1.1
+    },
+    "turnRateRadPerSec": 2.3,
+    "restFraction": 0.7,
+    "depthRange": [
+      0.1,
+      0.7
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.9,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 3,
+        "durationSec": [
+          15,
+          60
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Lee et al. (2017), Taxonomic review of dwarf species of Eumicrotremus",
+        "url": "https://www.mapress.com/zt/article/view/zootaxa.4282.2.7"
+      },
+      {
+        "title": "阿部拓三・佐藤長明 (2009), 志津川湾のダンゴウオ繁殖生態",
+        "url": "https://www.jstage.jst.go.jp/article/jji/56/2/56_159/_pdf"
+      },
+      {
+        "title": "横浜八景島 (2026-07-03): ダンゴウオ成長段階別の新展示",
+        "url": "https://prtimes.jp/main/html/rd/p/000000949.000011571.html"
+      },
+      {
+        "title": "新江ノ島水族館 (2018-01-26), 今週のおすすめ",
+        "url": "https://www.enosui.com/diaryentry.php?eid=04446"
+      },
+      {
+        "title": "FishBase field guide: Eumicrotremus awae",
+        "url": "https://www.fishbase.se/Fieldguide/FieldGuideSummary.php?c_code=392&genusname=Eumicrotremus&speciesname=awae"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 398,
+    "y": 293,
+    "width": 806,
+    "height": 410
+  }
+}

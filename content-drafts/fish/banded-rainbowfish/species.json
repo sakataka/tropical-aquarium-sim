@@ -1,0 +1,109 @@
+{
+  "id": "banded-rainbowfish",
+  "displayName": "バンデッド・レインボーフィッシュ",
+  "realBodyLengthCm": 9,
+  "swim": {
+    "tailBeatHz": 2.2
+  },
+  "visual": {
+    "fallbackColor": "#9c9a78"
+  },
+  "sourceBodyBounds": {
+    "x": 83,
+    "y": 189,
+    "width": 1382,
+    "height": 593
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.3,
+    "maxY": 0.75
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "steady",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.48,
+      "burst": 2.1
+    },
+    "turnRateRadPerSec": 2.3,
+    "restFraction": 0.12,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.8,
+      "cohesion": 0.5,
+      "polarization": 0.38
+    },
+    "structureAffinity": 0.4,
+    "habits": [
+      {
+        "type": "follow",
+        "chancePerMin": 0.8,
+        "durationSec": [
+          3,
+          8
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Fishes of Australia Melanotaenia trifasciata",
+        "url": "https://fishesofaustralia.net.au/home/species/3048"
+      },
+      {
+        "title": "Australian Museum Banded Rainbowfish",
+        "url": "https://australian.museum/learn/animals/fishes/banded-rainbowfish-melanotaenia-trifasciata-rendahl-1922/"
+      },
+      {
+        "title": "Aquagreen Blyth River Banded Rainbowfish",
+        "url": "https://www.aquagreen.com.au/plant_data/Melanotaenia_trifasciata.html"
+      },
+      {
+        "title": "ANGFA Tappin 2013 Melanotaenia trifasciata",
+        "url": "https://rainbowfish.angfa.org.au/old_site/Trifas.htm"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Melanotaenia trifasciata",
+    "originRegionId": "oceania",
+    "originRegionName": "オセアニア",
+    "origin": "オーストラリア北部の固有種。ノーザンテリトリーからクイーンズランド北東部に分布します。",
+    "temperament": "飼育では5匹以上の群れで飼うことが勧められています。雄はひれを広げ、雌と体を横に並べて発色し、求愛します。",
+    "movement": "大きな個体は、水草の近くの中層に多いとされます。体側の暗い帯を見せながら、中層を一定の速さで泳ぎます。",
+    "habitat": "木陰があり植物の豊かな清流の、岩や砂礫の底に暮らします。乾季には落ち葉の積もった流れのない水たまりにもいます。本展示では明るい川の水草のそばと中層を泳ぐ姿を見せています。",
+    "aliases": [
+      "Rhombosoma trifasciata",
+      "Banded rainbowfish"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Atheriniformes",
+      "orderJa": "トウゴロウイワシ目",
+      "family": "Melanotaeniidae",
+      "familyJa": "メラノタエニア科"
+    },
+    "adultSizeCm": 8,
+    "sizeNote": "ふつうは8cmほどで、最大は標準体長13cmとされます。古い飼育解説にある15cmは、測り方が示されていません。",
+    "distribution": "オーストラリア北部のノーザンテリトリーからクイーンズランド北東部に分布する固有種です。産地によって色が大きく異なります。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2019
+    },
+    "highlights": [
+      "体側を走る暗い帯と、黄色から赤のひれ。色は産地によって大きく違う",
+      "雄がひれを広げ、体を並べて雌に求愛する",
+      "水草の近くの中層を泳ぐ"
+    ]
+  }
+}

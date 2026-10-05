@@ -1,0 +1,101 @@
+{
+  "id": "black-neon-tetra",
+  "displayName": "ブラックネオンテトラ",
+  "realBodyLengthCm": 3.6,
+  "swim": {
+    "tailBeatHz": 3.0
+  },
+  "visual": {
+    "fallbackColor": "#6f6a4c"
+  },
+  "sourceBodyBounds": {
+    "x": 251,
+    "y": 291,
+    "width": 1112,
+    "height": 450
+  },
+  "preferredZone": {
+    "minX": 0.1,
+    "maxX": 0.9,
+    "minY": 0.18,
+    "maxY": 0.58
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.8,
+      "burst": 3.0
+    },
+    "turnRateRadPerSec": 3.0,
+    "restFraction": 0.1,
+    "depthRange": [0.15, 0.8],
+    "social": {
+      "grouping": "school",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0.74,
+      "polarization": 0.76
+    },
+    "structureAffinity": 0.2,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Hyphessobrycon herbertaxelrodi",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=24804"
+      },
+      {
+        "title": "Gimeno et al. 2016. Differences in shoaling behavior in two species of freshwater fish",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/27512821/"
+      },
+      {
+        "title": "Tropical Fish Hobbyist: Hyphessobrycon herbertaxelrodi species profile",
+        "url": "https://www.tfhmagazine.com/articles/freshwater/hyphessobrycon-herbertaxelrodi"
+      },
+      {
+        "title": "鳥羽水族館 生きもの図鑑 ブラックネオンテトラ",
+        "url": "https://aquarium.co.jp/picturebook/hyphessobrycon-herbertaxelrodi.html"
+      },
+      {
+        "title": "ICMBio/SALVE: Hyphessobrycon herbertaxelrodi, published 2024",
+        "url": "https://salve.icmbio.gov.br/salve-api/api/fichaEspecie?cache=true&download=true&language=pt-br&sqFichaVersao=21761"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Hyphessobrycon herbertaxelrodi",
+    "originRegionId": "south-america",
+    "originRegionName": "南米",
+    "origin": "ブラジルとボリビアにまたがるパラグアイ川流域に由来します。ブラジルではパラナ川上流域からも報告があります。",
+    "temperament": "穏やかで、ほかの小型魚とも一緒に飼える群泳魚です。仲間と向きをそろえて泳ぐ傾向がはっきりしています。",
+    "movement": "中層から上層を群れで泳ぎ、小刻みな加速と惰性を繰り返します。泳ぐ角度によって、黒い帯の上の白い線の輝きが変わって見えます。",
+    "habitat": "浅く澄んだ小さな流れの、水草が茂る場所に暮らすとされます。水草のある水槽で、黒と白の帯が引き立ちます。",
+    "aliases": [
+      "Black neon tetra"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Characiformes",
+      "orderJa": "カラシン目",
+      "family": "Acestrorhamphidae",
+      "familyJa": "アケストロランプス科"
+    },
+    "adultSizeCm": 4,
+    "sizeNote": "飼育の専門誌では全長4cmとされます。報告されている最大は標準体長3.2cmで、尾びれを含みません。雌は雄より体つきが太めです。",
+    "distribution": "ブラジルとボリビアのパラグアイ川流域に分布し、ブラジルのパラナ川上流域にもいるとされます。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2018,
+      "note": "ブラジル国内の評価（ICMBio、2019年）でも低懸念とされています。"
+    },
+    "highlights": [
+      "白く光る線のすぐ下を、太い黒帯がえらぶたの後ろから尾まで走る。",
+      "眼の上半分が赤い。",
+      "群れで向きをそろえて泳ぐ。"
+    ]
+  }
+}

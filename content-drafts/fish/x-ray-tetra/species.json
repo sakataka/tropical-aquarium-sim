@@ -1,0 +1,101 @@
+{
+  "id": "x-ray-tetra",
+  "displayName": "プリステラ",
+  "realBodyLengthCm": 3.8,
+  "swim": {
+    "tailBeatHz": 2.8
+  },
+  "visual": {
+    "fallbackColor": "#c9c08a"
+  },
+  "sourceBodyBounds": {
+    "x": 231,
+    "y": 209,
+    "width": 1125,
+    "height": 562
+  },
+  "preferredZone": {
+    "minX": 0.1,
+    "maxX": 0.9,
+    "minY": 0.14,
+    "maxY": 0.55
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.75,
+      "burst": 2.9
+    },
+    "turnRateRadPerSec": 2.8,
+    "restFraction": 0.12,
+    "depthRange": [0.15, 0.85],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.7,
+      "cohesion": 0.6,
+      "polarization": 0.38
+    },
+    "structureAffinity": 0.18,
+    "habits": [],
+    "sources": [
+      {
+        "title": "須磨海浜水族園『もっと知ってスマスイ』2010年12月・スマスイ生物図鑑 プリステラ",
+        "url": "https://www.city.kobe.lg.jp/documents/33639/umisui201012.pdf"
+      },
+      {
+        "title": "FishBase: Pristella maxillaris",
+        "url": "https://www.fishbase.se/summary/Pristella-maxillaris.html"
+      },
+      {
+        "title": "Seriously Fish: Pristella maxillaris",
+        "url": "https://www.seriouslyfish.com/species/pristella-maxillaris"
+      },
+      {
+        "title": "Wilson et al. 2019. Conformity in the collective: differences in hunger affect individual and group behavior in a shoaling fish",
+        "url": "https://pure.plymouth.ac.uk/ws/portalfiles/portal/38925097/arz036.pdf"
+      },
+      {
+        "title": "Bian et al. 2019. Morphological Characteristics and Comparative Transcriptome Analysis of Three Different Phenotypes of Pristella maxillaris",
+        "url": "https://www.frontiersin.org/journals/genetics/articles/10.3389/fgene.2019.00698/full"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Pristella maxillaris",
+    "originRegionId": "south-america",
+    "originRegionName": "南米",
+    "origin": "南米のアマゾン川とオリノコ川の水系、ギアナ地方の沿岸の川に由来します。",
+    "temperament": "穏やかな群泳魚です。小型でおとなしい魚と相性がよく、仲間とまとまって泳ぎます。",
+    "movement": "群れで軽快に泳ぎ、小刻みに加速しては惰性で進みます。実験では、空腹の個体が多い群れほど速く泳ぎ、互いの間隔も広がりました。",
+    "habitat": "川の流れの緩い場所に暮らし、乾季は澄んだ小川や支流に、雨季は水につかったサバンナの草地に移るといわれます。水草や流木のある、明るすぎない水槽が似合います。",
+    "aliases": [
+      "X-ray tetra",
+      "Pristella riddlei"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Characiformes",
+      "orderJa": "カラシン目",
+      "family": "Acestrorhamphidae",
+      "familyJa": "アケストロランプス科"
+    },
+    "adultSizeCm": 3.5,
+    "sizeNote": "研究に使われた成魚の平均は3.5cmでした（全長か標準体長かは示されていません）。報告されている最大は全長4.5cmです。成熟した雌は雄より大きく、体が厚い傾向があります。",
+    "distribution": "南米のアマゾン川・オリノコ川水系と、ギアナ地方の沿岸河川に分布します。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2020
+    },
+    "highlights": [
+      "背びれと尻びれ、腹びれに、黄・黒・白の三段の模様が入る。",
+      "体は半透明で、えらぶたの後ろに小さな黒い点がある。",
+      "仲間とまとまって泳ぎ、群れの空腹の度合いで泳ぐ速さや間隔が変わる。"
+    ]
+  }
+}

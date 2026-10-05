@@ -1,0 +1,107 @@
+{
+  "id": "glass-catfish",
+  "displayName": "グラスキャット",
+  "realBodyLengthCm": 5.5,
+  "swim": {
+    "tailBeatHz": 2.6,
+    "tailSweepRad": 0.35
+  },
+  "visual": {
+    "fallbackColor": "#b9bcbc"
+  },
+  "sourceBodyBounds": {
+    "x": 67,
+    "y": 371,
+    "width": 1390,
+    "height": 302
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.25,
+    "maxY": 0.7
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.35,
+      "burst": 2.2
+    },
+    "turnRateRadPerSec": 2.4,
+    "restFraction": 0.3,
+    "depthRange": [
+      0.25,
+      0.85
+    ],
+    "social": {
+      "grouping": "school",
+      "spacingBodyLengths": 1.2,
+      "cohesion": 0.72,
+      "polarization": 0.75
+    },
+    "structureAffinity": 0.45,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Kryptopterus vitreolus",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=72676"
+      },
+      {
+        "title": "Ng and Kottelat 2013: After eighty years of misidentification, a name for the glass catfish",
+        "url": "https://www.mapress.com/zootaxa/2013/f/z03630p316f.pdf"
+      },
+      {
+        "title": "FishBase: Kryptopterus vitreolus",
+        "url": "https://www.fishbase.se/summary/Kryptopterus-vitreolus.html"
+      },
+      {
+        "title": "Light diffraction by sarcomeres produces iridescence in transmission in the transparent ghost catfish, PNAS 2023",
+        "url": "https://www.pnas.org/doi/10.1073/pnas.2219300120"
+      },
+      {
+        "title": "DCCEEW 2023: Assessment of the relevant impacts of Kryptopterus vitreolus on the Environment",
+        "url": "https://www.dcceew.gov.au/sites/default/files/documents/kryptopterus-vitreolus-risk-assessment.pdf"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Kryptopterus vitreolus",
+    "originRegionId": "southeast-asia",
+    "originRegionName": "東南アジア",
+    "origin": "東南アジアのマレー半島、タイ南部、カンボジアに分布します。模式産地はタイ東部のトラート県です。長く K. bicirrhis などと誤って同定されてきた魚で、2013年に新種として記載されました。",
+    "habitat": "流れの緩い、または止まった褐色や黒っぽい水の水域にすみ、小川や低地の水路の陰や根を隠れ場にするとされます。この展示では、泥炭湿地の池の中層に群れで浮かびます。",
+    "temperament": "群れで暮らし、縄張り意識や攻撃性は低いとされます。驚くと散り、そのあと群れに戻ります。",
+    "movement": "群れの皆が同じ方向を向き、流れに向かって中層にとどまります。泳ぐと、透明な体の中で虹色が揺らぎます。",
+    "aliases": [
+      "Glass catfish",
+      "Ghost catfish",
+      "グラスキャットフィッシュ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Siluriformes",
+      "orderJa": "ナマズ目",
+      "family": "Siluridae",
+      "familyJa": "ナマズ科"
+    },
+    "adultSizeCm": 5,
+    "sizeNote": "研究に使われた成魚の体長は約4〜5cmでした。記録上の最大は標準体長6.5cmで、ホロタイプは標準体長4.52cmです。",
+    "distribution": "マレー半島、タイ南部、カンボジアに分布します。タイ南部では、トラン、パッタルン、ナラティワートの集団が遺伝的に調べられています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2019,
+      "note": "タイ南部の遺伝的な調査は、集団ごとの管理の必要性を指摘しています。"
+    },
+    "highlights": [
+      "成魚になっても体が透明で、骨格や筋肉が透けて見えます。臓器は頭の後ろの暗い部分に集まっています。",
+      "体の虹色は、筋肉の細かな周期構造が透過光を回折させて生じるもので、自分で光っているわけではありません。",
+      "群れで同じ方向を向き、流れに向かって泳ぎます。"
+    ]
+  }
+}

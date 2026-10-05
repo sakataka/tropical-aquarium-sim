@@ -1,0 +1,122 @@
+{
+  "id": "zebra-pleco",
+  "displayName": "インペリアルゼブラプレコ",
+  "realBodyLengthCm": 6.5,
+  "swim": {
+    "tailBeatHz": 2.4,
+    "tailSweepRad": 0.38,
+    "mouthAnchor": {
+      "x": 0.03,
+      "y": 0.69
+    }
+  },
+  "visual": {
+    "fallbackColor": "#7d7d80"
+  },
+  "sourceBodyBounds": {
+    "x": 171,
+    "y": 236,
+    "width": 1231,
+    "height": 549
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.68,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.22,
+      "burst": 1.5
+    },
+    "turnRateRadPerSec": 2.0,
+    "restFraction": 0.6,
+    "depthRange": [0.45, 0.95],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0,
+      "polarization": 0.02
+    },
+    "structureAffinity": 0.9,
+    "habits": [
+      {
+        "type": "homeShelter",
+        "kind": "crevice",
+        "rangeBodyLengths": 5,
+        "visitChancePerMin": 1.4,
+        "visitDurationSec": [40, 150]
+      },
+      {
+        "type": "grazing",
+        "chancePerMin": 1.5,
+        "durationSec": [8, 25]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Sousa et al. 2021. Conservation and trade of the endangered Hypancistrus zebra",
+        "url": "https://www.researchgate.net/publication/350703274_Conservation_and_trade_of_the_endangered_Hypancistrus_zebra_Siluriformes_Loricariidae_the_most_trafficked_Brazilian_fish"
+      },
+      {
+        "title": "Ramos et al. 2013. Shelter selection in the Amazonian zebra pleco",
+        "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/980854/1/shelterB1.pdf"
+      },
+      {
+        "title": "Marenkov & Sarman 2026. Reproductive biology of Hypancistrus zebra under controlled conditions",
+        "url": "https://www.researchgate.net/publication/403488827_Reproductive_biology_of_Hypancistrus_zebra_Isbrucker_Nijssen_1991_Siluriformes_Loricariidae_under_controlled_conditions"
+      },
+      {
+        "title": "Netherlands Ministry of Foreign Affairs, Tractatenblad 2026, 100: CITES Appendices valid from 5 March 2026",
+        "url": "https://zoek.officielebekendmakingen.nl/trb-2026-100.html"
+      },
+      {
+        "title": "Brazil Ministry of Environment: Portaria MMA n.148, 7 June 2022",
+        "url": "https://www.gov.br/icmbio/pt-br/assuntos/centros-de-pesquisa/aves-silvestres/arquivos/portaria-148-2022.pdf/@@download/file"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Hypancistrus zebra",
+    "originRegionId": "south-america",
+    "originRegionName": "南米",
+    "origin": "ブラジルのシングー川水系だけに暮らす固有種です。知られている生息域は、川のおよそ150kmの区間に限られます。",
+    "temperament": "岩の隙間に隠れて暮らす、おとなしい底生のプレコです。繁殖の場所の近くでは、雄どうしが争うことがあります。",
+    "movement": "日中の大半を隙間の中で過ごし、周りが静かになると出てきて餌を探します。物音や動きがあると、すぐに隙間へ戻ります。",
+    "habitat": "本流の大きな岩が積み重なった場所の、流れが弱めの割れ目に潜みます。水深は1m未満から10mほどで、水温は28℃を超えます。",
+    "aliases": [
+      "Zebra pleco",
+      "L046",
+      "L46"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Siluriformes",
+      "orderJa": "ナマズ目",
+      "family": "Loricariidae",
+      "familyJa": "ロリカリア科"
+    },
+    "adultSizeCm": 6.5,
+    "sizeNote": "隠れ場所の実験に使われた5匹の平均は全長6.5cmでした。全長8.3cmの成魚の記録もあり、最大の大きさは確定していません。",
+    "distribution": "ブラジル・パラー州のシングー川水系に固有で、アルタミラ付近の流域に分布します。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "CR",
+      "assessedYear": 2018,
+      "note": "ブラジル国内でも2022年に絶滅寸前（CR）に指定されています。ワシントン条約の附属書IIに載り、商業目的の野生個体の輸出割当てはゼロです。ベロモンテ・ダムの影響域と生息域が重なります。"
+    },
+    "highlights": [
+      "白地に太い黒の縞が、頭から尾びれまで入る。",
+      "実験では、昼間の観察時間のおよそ8割を隠れ場所の中で過ごした。",
+      "野外では淡水カイメンと、そこにすむ小さな無脊椎動物を主に食べるとされる。",
+      "繁殖期の雄は洞の中で卵を守り、胸びれで水を送る。"
+    ]
+  }
+}

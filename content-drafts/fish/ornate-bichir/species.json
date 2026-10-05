@@ -1,0 +1,136 @@
+{
+  "id": "ornate-bichir",
+  "displayName": "ポリプテルス・オルナティピンニス",
+  "realBodyLengthCm": 40,
+  "catalog": {
+    "scientificName": "Polypterus ornatipinnis",
+    "originRegionId": "central-africa",
+    "originRegionName": "中部アフリカ",
+    "origin": "アフリカのコンゴ川水系と、タンガニーカ湖・エドワード湖へ流れ込む川に分布します。",
+    "temperament": "主に夜に活動する捕食者で、水底の甲殻類や小魚を食べます。ふつう群れはつくらず、単独で過ごします。",
+    "movement": "底近くで長い体をくねらせて進み、物陰や底で休みます。肺で空気を吸うため、ときどき水面へ上がって息をします。",
+    "habitat": "川や湿地の、流れの緩い所や止水に暮らします。この部屋の古代魚の水槽で、ほかのポリプテルスと底を分け合います。",
+    "aliases": [
+      "オルナティピンニス",
+      "ornate bichir"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Polypteriformes",
+      "orderJa": "ポリプテルス目",
+      "family": "Polypteridae",
+      "familyJa": "ポリプテルス科"
+    },
+    "adultSizeCm": 40,
+    "sizeNote": "飼育下の成魚では、全長39cm（約5歳の雌）や約50cmの例があります。最大は全長60cmとされます。典型的な大きさの統計はありません。",
+    "distribution": "コンゴ川水系と、タンガニーカ湖・エドワード湖への流入河川に分布します。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2009
+    },
+    "highlights": [
+      "背中に小さな背びれが9〜11枚、帆のように並びます。",
+      "体は厚い骨質の鱗に覆われ、頭には細かな網目模様があります。",
+      "肺で呼吸し、ときどき水面へ上がって空気を吸います。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 1.0,
+    "bodyWaveStart": 0.22,
+    "waveCount": 1.2,
+    "tailSweepRad": 0.14,
+    "verticalFlex": 0.028,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.5
+    }
+  },
+  "visual": {
+    "fallbackColor": "#7d6e53"
+  },
+  "sourceBodyBounds": {
+    "x": 85,
+    "y": 331,
+    "width": 1391,
+    "height": 379
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.64,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "undulate",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.16,
+      "burst": 0.7
+    },
+    "turnRateRadPerSec": 1.3,
+    "restFraction": 0.5,
+    "depthRange": [
+      0.35,
+      0.92
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.2,
+      "cohesion": 0,
+      "polarization": 0.03
+    },
+    "structureAffinity": 0.6,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.0,
+        "durationSec": [
+          10,
+          30
+        ]
+      },
+      {
+        "type": "airBreathing",
+        "breathsPerHour": [
+          6,
+          14
+        ],
+        "style": "dash"
+      },
+      {
+        "type": "hideByDay",
+        "durationSec": [
+          20,
+          60
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Zoo Frankfurt: Ornate bichir",
+        "url": "https://www.zoo-frankfurt.de/en/tiere-von-a-z-detailansicht/animal/tiere-von-a-z-detailansicht/schoenfloesselhecht"
+      },
+      {
+        "title": "Národná zoo Bojnice: Bichir ornamentový",
+        "url": "https://zoobojnice.sk/zviera/bichir-ornamentovy/"
+      },
+      {
+        "title": "ニフレル：ポリプテルス・オルナティピンニス",
+        "url": "https://www.nifrel.jp/area/zukan/15099.html"
+      },
+      {
+        "title": "Miller 2011: Polypterus breathing physiology, UC San Diego thesis",
+        "url": "https://escholarship.org/content/qt9rp8570g/qt9rp8570g.pdf"
+      },
+      {
+        "title": "FishBase: Polypterus ornatipinnis",
+        "url": "https://www.fishbase.se/summary/Polypterus-ornatipinnis.html"
+      }
+    ]
+  }
+}

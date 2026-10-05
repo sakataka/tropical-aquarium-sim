@@ -1,0 +1,122 @@
+{
+  "id": "splitfin-flashlightfish",
+  "displayName": "ヒカリキンメダイ",
+  "realBodyLengthCm": 15,
+  "swim": {
+    "tailBeatHz": 2.7
+  },
+  "visual": {
+    "fallbackColor": "#4b3f33"
+  },
+  "sourceBodyBounds": {
+    "x": 202,
+    "y": 267,
+    "width": 1175,
+    "height": 481
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.15,
+    "maxY": 0.8
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.65,
+      "burst": 2.6
+    },
+    "turnRateRadPerSec": 2.8,
+    "restFraction": 0.1,
+    "depthRange": [
+      0.3,
+      0.9
+    ],
+    "social": {
+      "grouping": "school",
+      "spacingBodyLengths": 1,
+      "cohesion": 0.75,
+      "polarization": 0.72
+    },
+    "structureAffinity": 0.6,
+    "habits": [
+      {
+        "type": "hideByDay",
+        "durationSec": [
+          120,
+          300
+        ]
+      },
+      {
+        "type": "homeShelter",
+        "kind": "cave",
+        "rangeBodyLengths": 12,
+        "visitChancePerMin": 0.4,
+        "visitDurationSec": [
+          15,
+          45
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Hellinger et al. 2017: The Flashlight Fish Anomalops katoptron Uses Bioluminescent Light to Detect Prey in the Dark",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5298212/"
+      },
+      {
+        "title": "Gruber et al. 2019: Bioluminescent flashes drive nighttime schooling behavior and synchronized swimming dynamics in flashlight fish",
+        "url": "https://repository.library.noaa.gov/view/noaa/55326/noaa_55326_DS1.pdf"
+      },
+      {
+        "title": "鳥羽水族館 生きもの図鑑：ヒカリキンメダイ",
+        "url": "https://aquarium.co.jp/picturebook/anomalops-katoptron.html"
+      },
+      {
+        "title": "鴨川シーワールド Vol.105 ヒカリキンメダイ（2017-12-13）",
+        "url": "https://www.kamogawa-seaworld.jp/animal/movie/vol_105/"
+      },
+      {
+        "title": "FishBase: Anomalops katoptron",
+        "url": "https://www.fishbase.se/summary/7184"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Anomalops katoptron",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "東インド洋から西太平洋。インドネシアからマリアナ諸島やツアモツ諸島、オーストラリア北部まで分布し、日本では琉球列島や八丈島、千葉県で記録があります。",
+    "temperament": "夜に群れで泳ぎます。野外では8〜50匹ほどの群れから、数百〜数千匹の大集団まで観察されています。人影や強い光に驚くと、散って隠れます。",
+    "movement": "昼は洞窟の奥でじっとし、暗くなると出てきて群れで泳ぎ回ります。ゆっくり動くときはまとまり、速く動くときは向きをそろえて泳ぎます。",
+    "habitat": "岩礁やサンゴ礁の洞窟や急な斜面の周り。新月の夜には、礁の外の水面近くまで群れで上がってくることがあります。",
+    "aliases": [
+      "Splitfin flashlightfish"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Trachichthyiformes",
+      "orderJa": "ヒウチダイ目",
+      "family": "Anomalopidae",
+      "familyJa": "ヒカリキンメダイ科"
+    },
+    "adultSizeCm": 15,
+    "sizeNote": "日本の資料では体長約15cmとされます（測り方の記載なし）。最大記録は全長35cmです。",
+    "distribution": "東インド洋から西太平洋の熱帯域に分布します。日本では琉球列島などで見られます。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2019
+    },
+    "highlights": [
+      "目の下にあるそら豆形の発光器が、暗がりで青緑色に光る。光は共生する発光細菌によるもの",
+      "発光器をくるりと裏返して光を隠し、点滅させる",
+      "昼は洞窟に隠れ、暗くなると群れで泳ぎ出す",
+      "光でプランクトンを見つけて食べることが、実験で確かめられている"
+    ]
+  }
+}

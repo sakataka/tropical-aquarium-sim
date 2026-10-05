@@ -1,0 +1,113 @@
+{
+  "id": "fairy-cichlid",
+  "displayName": "ネオランプロログス・ブリシャルディ",
+  "realBodyLengthCm": 8,
+  "swim": {
+    "tailBeatHz": 2.4
+  },
+  "visual": {
+    "fallbackColor": "#b8aa9c"
+  },
+  "sourceBodyBounds": {
+    "x": 202,
+    "y": 260,
+    "width": 1208,
+    "height": 506
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.3,
+    "maxY": 0.8
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.45,
+      "burst": 2.0
+    },
+    "turnRateRadPerSec": 2.4,
+    "restFraction": 0.2,
+    "depthRange": [
+      0.2,
+      0.85
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 1.6,
+      "cohesion": 0.5,
+      "polarization": 0.15
+    },
+    "structureAffinity": 0.7,
+    "habits": [
+      {
+        "type": "homeShelter",
+        "kind": "crevice",
+        "rangeBodyLengths": 5,
+        "visitChancePerMin": 0.6,
+        "visitDurationSec": [
+          4,
+          12
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "FishBase: Neolamprologus brichardi",
+        "url": "https://www.fishbase.se/summary/Neolamprologus-brichardi"
+      },
+      {
+        "title": "Bachmann et al. 2017: Real-time social selection maintains honesty of a dynamic visual signal",
+        "url": "https://academic.oup.com/evlett/article/1/5/269/6697437"
+      },
+      {
+        "title": "Greg Steeves 1998: Neolamprologus brichardi",
+        "url": "https://cichlidae.com/article.php?id=236"
+      },
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Neolamprologus brichardi",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=16533"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Neolamprologus brichardi",
+    "originRegionId": "east-africa",
+    "originRegionName": "東アフリカ",
+    "origin": "東アフリカのタンガニーカ湖北部の固有種とされます。近縁の N. pulcher と同じ種とみなす説もあり、分類はまだ議論が続いています。",
+    "habitat": "岩場に繁殖ペアの縄張りが集まり、群集をつくって暮らします。この展示では、岩組みの隙間の近くで小さな群れになって泳ぎます。",
+    "temperament": "繁殖ペアは縄張りを守り、稚魚を守る時期には攻撃的になることがあります。飼育下では、親以外の個体や前に生まれた子が稚魚の防衛に加わる様子が観察されています。",
+    "movement": "岩の近くの中層を小刻みに泳ぎ、プランクトンを食べます。白く縁取られた竪琴形の尾が、泳ぐたびに目立ちます。",
+    "aliases": [
+      "Fairy cichlid",
+      "Princess of Burundi",
+      "Lamprologus brichardi",
+      "ブリシャルディ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cichliformes",
+      "orderJa": "シクリッド目",
+      "family": "Cichlidae",
+      "familyJa": "シクリッド科"
+    },
+    "adultSizeCm": 8,
+    "sizeNote": "記録上の最大は全長9cmです（雄か性別不明の個体）。飼育案内には10〜12cmとするものもありますが、測り方が示されていません。展示では全長8cm前後を想定しています。",
+    "distribution": "タンガニーカ湖の北部に固有とされます。N. pulcher との関係が整理されておらず、湖全体の分布はこの種だけでは示せません。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2025
+    },
+    "highlights": [
+      "上下に長く伸び、白く縁取られた尾びれが目を引きます。",
+      "顔の黒い帯の濃さは、そのときの優劣や攻撃の意図によって変わることが実験で示されています。",
+      "ペアは洞窟の天井や側面に産卵し、群れの仲間も稚魚の防衛に加わります。"
+    ]
+  }
+}

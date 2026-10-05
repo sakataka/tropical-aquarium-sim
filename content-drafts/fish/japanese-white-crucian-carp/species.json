@@ -1,0 +1,105 @@
+{
+  "id": "japanese-white-crucian-carp",
+  "displayName": "ゲンゴロウブナ",
+  "realBodyLengthCm": 35,
+  "catalog": {
+    "scientificName": "Carassius cuvieri",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "琵琶湖・淀川水系にもともと暮らすフナです。釣り用に改良されたヘラブナ（カワチブナ）として、全国や韓国、中国、台湾にも持ち込まれています。",
+    "temperament": "沖合の表層から中層で群れをつくって泳ぎます。湖岸のヨシ帯などが産卵場所です。",
+    "movement": "体高の高い体で群れになって泳ぎ、水と一緒に吸い込んだ植物プランクトンを、細かく密な鰓耙でこし取って食べます。",
+    "habitat": "ヨシ帯と沈んだ枝、水草のある湖岸をイメージしています。琵琶湖では、繁殖期を南湖で過ごした個体が繁殖後に北湖へ移る傾向が追跡調査で示されています。",
+    "aliases": [
+      "Japanese white crucian carp",
+      "Gengoro-buna",
+      "ヘラブナ",
+      "カワチブナ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cypriniformes",
+      "orderJa": "コイ目",
+      "family": "Cyprinidae",
+      "familyJa": "コイ科"
+    },
+    "adultSizeCm": 35,
+    "sizeNote": "琵琶湖で成熟が確認された個体は体長28.5〜40.7cm、体重0.6〜2.05kgでした。特に大きなものは全長50cmになるとされます。",
+    "distribution": "琵琶湖・淀川水系の固有種です。改良品種のヘラブナが放流され、国内の広い地域と東アジア各地に定着しています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "IUCN の評価は確認できていません。環境省レッドリスト2020では絶滅危惧IB類（EN）です。産卵場所になるヨシ帯の減少や外来魚の影響が考えられています。"
+    },
+    "highlights": [
+      "頭の後ろから背中が大きく盛り上がり、目が頭の低い位置につく体つきです。",
+      "えらの鰓耙が細かく密に並び、水中の植物プランクトンをこし取って食べます。",
+      "沖合の表層から中層を、群れになって泳ぎます。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 1.4
+  },
+  "visual": {
+    "fallbackColor": "#a5a69c"
+  },
+  "sourceBodyBounds": {
+    "x": 272,
+    "y": 184,
+    "width": 1050,
+    "height": 637
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.12,
+    "maxY": 0.65
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "steady",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.28,
+      "burst": 1.1
+    },
+    "turnRateRadPerSec": 1.6,
+    "restFraction": 0.15,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.8,
+      "cohesion": 0.55,
+      "polarization": 0.45
+    },
+    "structureAffinity": 0.15,
+    "habits": [],
+    "sources": [
+      {
+        "title": "滋賀県立琵琶湖博物館（2023）：ゲンゴロウブナ～トンネル水槽の魚たち④～",
+        "url": "https://readyfor.jp/projects/biwahaku2023/announcements/301651"
+      },
+      {
+        "title": "国立環境研究所 侵入生物DB：ゲンゴロウブナ",
+        "url": "https://www.nies.go.jp/biodiversity/invasive/DB/detail/50540.html"
+      },
+      {
+        "title": "Kunimune & Mitsunaga (2018): Multiyear use for spawning sites by crucian carp in Lake Biwa, Japan",
+        "url": "https://www.jstage.jst.go.jp/article/amstec/24/2/24_19/_pdf/-char/en"
+      },
+      {
+        "title": "環境省：レッドリスト2020新旧対照表",
+        "url": "https://www.env.go.jp/press/files/jp/113633.pdf"
+      },
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Carassius cuvieri (13 August 2026)",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=2010"
+      }
+    ]
+  }
+}

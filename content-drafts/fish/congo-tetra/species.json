@@ -1,0 +1,100 @@
+{
+  "id": "congo-tetra",
+  "displayName": "コンゴテトラ",
+  "realBodyLengthCm": 7.5,
+  "swim": {
+    "tailBeatHz": 2.6
+  },
+  "visual": {
+    "fallbackColor": "#b79878"
+  },
+  "sourceBodyBounds": {
+    "x": 184,
+    "y": 223,
+    "width": 1233,
+    "height": 536
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.2,
+    "maxY": 0.6
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.6,
+      "burst": 2.4
+    },
+    "turnRateRadPerSec": 2.6,
+    "restFraction": 0.12,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.6,
+      "cohesion": 0.55,
+      "polarization": 0.35
+    },
+    "structureAffinity": 0.3,
+    "habits": [],
+    "sources": [
+      {
+        "title": "FishBase — Phenacogrammus interruptus",
+        "url": "https://www.fishbase.se/summary/Phenacogrammus-interruptus.html"
+      },
+      {
+        "title": "ニフレル キュレーターブログ『新しい仲間』2026-02-22",
+        "url": "https://www.nifrel.jp/detail/matome/2026/02/post-1133.html"
+      },
+      {
+        "title": "OATA — How to look after tetras and pencilfish",
+        "url": "https://ornamentalfish.org/what-we-do/advice-information/care-sheets/caresheets-tropical-freshwater-fish/how-to-look-after-tetras-and-pencilfish/"
+      },
+      {
+        "title": "Georgia Aquarium — Congo Tetra",
+        "url": "https://www.georgiaaquarium.org/animal/congo-tetra/"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Phenacogrammus interruptus",
+    "originRegionId": "central-africa",
+    "originRegionName": "中部アフリカ",
+    "origin": "中部アフリカのコンゴ川の中流から下流域、コンゴ民主共和国とコンゴ共和国に分布します。模式産地はマレボ湖（スタンレー・プール）です。",
+    "habitat": "水草や浮き草、沈んだ木のある川にすみます。この展示では、流木の根と陰性水草のある川の中層を泳ぎます。",
+    "temperament": "比較的温和で、小さな群れで暮らします。繁殖の時期には、雄が雌を活発に追います。",
+    "movement": "中層を群れで泳ぎます。光の当たり方で、体の金色の帯や青の輝きが変わって見えます。",
+    "aliases": [
+      "Congo tetra",
+      "Micralestes interruptus"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Characiformes",
+      "orderJa": "カラシン目",
+      "family": "Alestidae",
+      "familyJa": "アレステス科"
+    },
+    "adultSizeCm": 7.5,
+    "sizeNote": "記録上の最大は全長8cmです（雄か性別不明の個体）。成魚の雄のふつうの大きさは確かめられていないため、展示では全長7.5cm前後を想定しています。",
+    "distribution": "コンゴ川の中流・下流域に分布します。原産地の外では、プエルトリコに定着した記録があります。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2009
+    },
+    "highlights": [
+      "雄は背びれが長く伸び、尾びれの中央が房のように長く伸びます。",
+      "光の当たる角度で、体の金色の帯と青い輝きが変わって見えます。",
+      "中層を小さな群れで泳ぎます。"
+    ]
+  }
+}

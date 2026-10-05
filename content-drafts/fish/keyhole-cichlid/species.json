@@ -1,0 +1,107 @@
+{
+  "id": "keyhole-cichlid",
+  "displayName": "キーホールシクリッド",
+  "realBodyLengthCm": 7,
+  "swim": {
+    "tailBeatHz": 2.1,
+    "bodyWaveStart": 0.5,
+    "tailSweepRad": 0.36
+  },
+  "visual": {
+    "fallbackColor": "#c8b47e"
+  },
+  "sourceBodyBounds": {
+    "x": 251,
+    "y": 229,
+    "width": 1108,
+    "height": 583
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.42,
+    "maxY": 0.86
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.3,
+      "burst": 1.4
+    },
+    "turnRateRadPerSec": 2.0,
+    "restFraction": 0.3,
+    "depthRange": [
+      0.25,
+      0.85
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 2.2,
+      "cohesion": 0.45,
+      "polarization": 0.15
+    },
+    "structureAffinity": 0.58,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Deutsche Cichliden-Gesellschaft: Cleithracara maronii",
+        "url": "https://dcg-online.de/cleithracara-maronii-steindachner-1881/"
+      },
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Cleithracara maronii",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=39082"
+      },
+      {
+        "title": "Kullander 2003: Cichlidae, Check List of the Freshwater Fishes of South and Central America",
+        "url": "https://www.svenkullander.se/publications/Kullander_Cichlidae_2003.pdf"
+      },
+      {
+        "title": "Aquarium Glaser: Cleithracara maronii KOUROU, 12 January 2024",
+        "url": "https://www.aquariumglaser.de/en/25-perchlike-fishes/cleithracara-maronii-kourou-2/"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Cleithracara maronii",
+    "originRegionId": "south-america",
+    "originRegionName": "南米",
+    "origin": "南米北東部。フランス領ギアナ、ガイアナ、スリナム、ベネズエラ、ブラジル北東部のアマパー州などに由来します。",
+    "temperament": "穏やかなシクリッドで、野外では小さな群れで暮らします。飼育下でも底をあまり掘らず、水草を傷めにくいとされます。",
+    "movement": "落ち着いた泳ぎで中層から底近くを巡り、根や落ち葉のまわりで小さな餌を探します。",
+    "habitat": "主に澄んだ小川に暮らし、ときに黒い水にもいます。砂底に根や沈んだ木、落ち葉がある場所で、生息地の水はpH5.5ほどの酸性とされます。",
+    "aliases": [
+      "Keyhole cichlid",
+      "Aequidens maronii",
+      "Acara maronii"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cichliformes",
+      "orderJa": "シクリッド目",
+      "family": "Cichlidae",
+      "familyJa": "シクリッド科"
+    },
+    "adultSizeCm": 7.1,
+    "sizeNote": "2003年のチェックリストでは、最大で標準体長7.1cmとされます。典型的な成魚の全長は分かっていません。成熟すると背びれと尻びれの後ろの端が長くとがります。",
+    "distribution": "オリノコ川のデルタからギアナ地方の沿岸河川、ブラジル北東部にかけて分布します。トリニダード・トバゴの記録は、定着していないとする見方があります。",
+    "water": {
+      "salinity": "freshwater",
+      "temperatureC": [
+        26,
+        27
+      ]
+    },
+    "keeping": "home",
+    "conservation": {
+      "note": "IUCNの評価区分は、一次資料で確かめられていません。"
+    },
+    "highlights": [
+      "体側の上部に、鍵穴のような形の黒い斑紋がある。",
+      "眼を通る黒い帯が、うなじからほおまで走る。",
+      "野外では昆虫の幼虫や小さな甲殻類を食べる。",
+      "繁殖では石などの面に卵を産み、泳ぎ出した仔魚を両親で守る。"
+    ]
+  }
+}

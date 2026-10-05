@@ -1,0 +1,118 @@
+{
+  "id": "lumpfish",
+  "displayName": "ランプフィッシュ",
+  "realBodyLengthCm": 30,
+  "catalog": {
+    "scientificName": "Cyclopterus lumpus",
+    "originRegionId": "north-atlantic",
+    "originRegionName": "北大西洋",
+    "origin": "北大西洋とその北の北極域に分布します。西はハドソン湾やニューファンドランドからニュージャージー付近、東はスピッツベルゲンからポルトガル、アイスランドやグリーンランドの周りに見られます。",
+    "temperament": "成魚は主に外洋のプランクトンを食べます。産卵後は雄が卵塊を守り、水を送って世話をします。幼魚はサケ養殖で魚の寄生虫を食べる掃除役として使われています。",
+    "movement": "中層と底層を使う半浮魚性の魚です。腹の吸盤で岩などに付くことができます。雄は主に尾で、雌は主に胸びれで泳ぐと報告されています。",
+    "habitat": "成魚は外洋で暮らし、産卵のために沿岸の岩場へ移って卵塊を岩に付けます。本水槽では、北の冷たい岩礁で岩のそばに留まる姿を見せています。",
+    "aliases": [
+      "lumpfish",
+      "lumpsucker",
+      "ランプサッカー"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Perciformes",
+      "orderJa": "スズキ目",
+      "family": "Cyclopteridae",
+      "familyJa": "ダンゴウオ科"
+    },
+    "adultSizeCm": 30,
+    "sizeNote": "成魚の代表的な大きさは確かめられておらず、ここでは約30cmとして表示しています。最大で63cm（測り方の記載なし）とされ、成魚では雌のほうが大きくなります。",
+    "distribution": "北大西洋と周辺の北極域に分布し、白海や地中海の記録もあります。メイン湾では水深2〜393mで採れています。",
+    "water": {
+      "salinity": "marine",
+      "temperatureC": [
+        2,
+        17.6
+      ]
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "世界の IUCN 区分は確かめられていません。カナダの COSEWIC は2017年に絶滅危惧（Threatened）と評価しました。水温はメイン湾で採れた地点の底層水温です。カサゴ目に分類する資料もあります。"
+    },
+    "highlights": [
+      "丸く厚い体に並ぶこぶ状の突起と、厚い皮膚に覆われて盛り上がった背中。",
+      "腹びれが変化した吸盤で、岩などに体を付けます。",
+      "繁殖期の雄はひれや腹が赤から橙色になり、卵塊を守ります。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 1.6,
+    "tailSweepRad": 0.35
+  },
+  "visual": {
+    "fallbackColor": "#647068"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.35,
+    "maxY": 0.9
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.14,
+      "burst": 0.6
+    },
+    "turnRateRadPerSec": 1.4,
+    "restFraction": 0.45,
+    "depthRange": [
+      0.2,
+      0.85
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 1.8,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.45,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.2,
+        "durationSec": [
+          15,
+          60
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Institute of Marine Research: Lumpfish (updated 27 February 2025)",
+        "url": "https://www.hi.no/en/hi/temasider/species/lumpfish"
+      },
+      {
+        "title": "Fisheries and Oceans Canada: Lumpfish",
+        "url": "https://www.dfo-mpo.gc.ca/species-especes/profiles-profils/lumpfish-lompe-eng.html"
+      },
+      {
+        "title": "COSEWIC Assessment and Status Report on Lumpfish in Canada 2017",
+        "url": "https://www.canada.ca/en/environment-climate-change/services/species-risk-public-registry/cosewic-assessments-status-reports/lumpfish-2017.html"
+      },
+      {
+        "title": "Wulfing et al. 2024: Lumpfish distribution in the Gulf of Maine",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11330208/"
+      },
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Cyclopterus lumpus, updated 21 Sep 2026",
+        "url": "https://research.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=43373"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 227,
+    "y": 212,
+    "width": 1181,
+    "height": 584
+  }
+}

@@ -1,0 +1,126 @@
+{
+  "id": "copperband-butterflyfish",
+  "displayName": "ハシナガチョウチョウウオ",
+  "realBodyLengthCm": 15,
+  "swim": {
+    "tailBeatHz": 1.8,
+    "mouthAnchor": {
+      "x": 0.0,
+      "y": 0.57
+    }
+  },
+  "visual": {
+    "fallbackColor": "#d8b38a"
+  },
+  "sourceBodyBounds": {
+    "x": 211,
+    "y": 154,
+    "width": 1110,
+    "height": 697
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.4,
+    "maxY": 0.85
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.3,
+      "burst": 1.5
+    },
+    "turnRateRadPerSec": 2.4,
+    "restFraction": 0.2,
+    "depthRange": [
+      0.25,
+      0.85
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 2.0,
+      "cohesion": 0.35,
+      "polarization": 0.15
+    },
+    "structureAffinity": 0.75,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 3.5,
+        "durationSec": [
+          3,
+          8
+        ]
+      },
+      {
+        "type": "follow",
+        "chancePerMin": 0.5,
+        "durationSec": [
+          3,
+          8
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "FishBase — Chelmon rostratus",
+        "url": "https://www.fishbase.se/summary/chelmon-rostratus"
+      },
+      {
+        "title": "鳥羽水族館 生きもの図鑑 — ハシナガチョウチョウウオ",
+        "url": "https://aquarium.co.jp/picturebook/chelmon-rostratus.html"
+      },
+      {
+        "title": "Australian Museum — Beaked Coralfish, Chelmon rostratus; Mark McGrouther",
+        "url": "https://australian.museum/learn/animals/fishes/beaked-coralfish-chelmon-rostratus/"
+      },
+      {
+        "title": "サンシャイン水族館 いきものディスカバリー通信vol.15, 2022",
+        "url": "https://prtimes.jp/main/html/rd/p/000000683.000020364.html"
+      },
+      {
+        "title": "Ferry-Graham, Wainwright & Bellwood 2001 — Prey capture in long-jawed butterflyfishes",
+        "url": "https://fishlab.ucdavis.edu/wp-content/uploads/sites/397/2020/06/Ferry-Graham-et-al-2001c.pdf"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Chelmon rostratus",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "インド・西太平洋。アンダマン海から琉球列島、オーストラリアまで分布し、オーストラリアではグレートバリアリーフ北部からニューサウスウェールズ州中部の沿岸まで見られます。",
+    "temperament": "単独かペアで見られ、縄張りをもつとされます。繁殖期には成熟した個体がペアをつくります。",
+    "movement": "岩やサンゴのそばで止まりながら、細長い口先を隙間に差し入れて小さなエビやカニをついばみます。餌に近づくと胸びれで速度を落とし、口を突き出して吸い込みます。",
+    "habitat": "岩礁やサンゴ礁に暮らし、河口や泥の多い内湾の礁にも現れます。",
+    "aliases": [
+      "Copperband butterflyfish",
+      "Beaked coralfish",
+      "カッパーバンド・バタフライフィッシュ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Acanthuriformes",
+      "orderJa": "ニザダイ目",
+      "family": "Chaetodontidae",
+      "familyJa": "チョウチョウウオ科"
+    },
+    "adultSizeCm": 15,
+    "sizeNote": "典型的な成魚の大きさは分かっていません。最大で全長20cmの記録があります。成魚の長い吻は、稚魚が海底に定着したあとに伸びていきます。",
+    "distribution": "アンダマン海から琉球列島、オーストラリアまでのインド・西太平洋。資料によっては、西は東アフリカやモーリシャスまで含めています。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2009
+    },
+    "highlights": [
+      "銀白色の体に橙色の帯が4本あり、背びれの後ろに黒い目玉模様があります。",
+      "細長い口先を岩の隙間に差し入れて、小さな生き物をついばみます。",
+      "水族館では、水槽に増えた小さなイソギンチャクを食べた例があります。"
+    ]
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "id": "wolf-eel",
+  "displayName": "ウルフイール",
+  "realBodyLengthCm": 140,
+  "swim": {
+    "tailBeatHz": 0.8,
+    "bodyWaveStart": 0.2,
+    "waveCount": 1.2,
+    "tailSweepRad": 0.4,
+    "verticalFlex": 0.03
+  },
+  "visual": {
+    "fallbackColor": "#8e8a85"
+  },
+  "sourceBodyBounds": {
+    "x": 82,
+    "y": 346,
+    "width": 1386,
+    "height": 345
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.7,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "undulate",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.12,
+      "burst": 0.45
+    },
+    "turnRateRadPerSec": 1.1,
+    "restFraction": 0.6,
+    "depthRange": [
+      0.4,
+      0.95
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 1.0,
+      "cohesion": 0.3,
+      "polarization": 0.1
+    },
+    "structureAffinity": 0.85,
+    "habits": [
+      {
+        "type": "homeShelter",
+        "kind": "cave",
+        "rangeBodyLengths": 3,
+        "visitChancePerMin": 0.8,
+        "visitDurationSec": [
+          30,
+          120
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.0,
+        "durationSec": [
+          15,
+          45
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Monterey Bay Aquarium — Wolf-eel",
+        "url": "https://www.montereybayaquarium.org/animals-the-ocean/animals-a-to-z/wolf-eel"
+      },
+      {
+        "title": "Seattle Aquarium — Wolf eel",
+        "url": "https://www.seattleaquarium.org/animal/wolf-eel/"
+      },
+      {
+        "title": "Washington Department of Fish and Wildlife — 2004 TSC report, Wolf-eel Life History SCUBA Surveys",
+        "url": "https://old.psmfc.org/tsc-drafts/tsc04/2004-Wash-TSC.pdf"
+      },
+      {
+        "title": "FishBase — Anarrhichthys ocellatus",
+        "url": "https://www.fishbase.se/summary/Anarrhichthys-ocellatus.html"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Anarrhichthys ocellatus",
+    "originRegionId": "northeast-pacific",
+    "originRegionName": "北東太平洋",
+    "origin": "北東太平洋の沿岸。ベーリング海南東部・アリューシャン列島東部からバハ・カリフォルニア北部まで分布します。名前に「イール」とつきますが、ウナギではなくオオカミウオの仲間です。",
+    "temperament": "野外ではペアで巣穴を使うことが多いものの、相手や巣穴が生涯変わらないとは限りません。丈夫な顎と歯で、カニや貝、ウニなどの硬い餌を砕いて食べます。",
+    "movement": "長い体を大きなS字にうねらせて泳ぎます。ふだんは巣穴に体を収めて頭だけを出していることが多く、水族館では給餌のときに開けた場所へ出てきます。",
+    "habitat": "潮下帯の岩礁で、岩の裂け目や穴を巣穴にして暮らす底生魚です。この水景では、岩場の奥にある暗い巣穴を住みかにしています。",
+    "aliases": [
+      "Wolf eel",
+      "Wolf-eel"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Perciformes",
+      "orderJa": "スズキ目",
+      "family": "Anarhichadidae",
+      "familyJa": "オオカミウオ科"
+    },
+    "adultSizeCm": 140,
+    "sizeNote": "飼育下で成熟した個体の平均は、雌が全長140cm、雄が全長145.6cmと報告されています。最大で全長240cmの記録があります。雄は成長すると顎が厚くなり、額がふくらみます。",
+    "distribution": "ベーリング海南東部からバハ・カリフォルニア北部までの北東太平洋で、水深1〜226mの記録があります。北極海からも単発の記録があります。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2020
+    },
+    "highlights": [
+      "巣穴に後ろ向きに体を収め、頭だけを出して外をうかがいます。",
+      "長い体を大きくうねらせて、海底近くをゆっくり泳ぎます。",
+      "頭や体の斑点の並びには個体差があり、水族館では個体の見分けに使われます。",
+      "繁殖期には、雌雄が卵塊に体を巻きつけて守ります。"
+    ]
+  }
+}

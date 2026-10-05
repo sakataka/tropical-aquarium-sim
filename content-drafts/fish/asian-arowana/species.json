@@ -1,0 +1,102 @@
+{
+  "id": "asian-arowana",
+  "displayName": "アジアアロワナ",
+  "realBodyLengthCm": 55,
+  "catalog": {
+    "scientificName": "Scleropages formosus",
+    "originRegionId": "southeast-asia",
+    "originRegionName": "東南アジア",
+    "origin": "東南アジアの低地の川や湿地に分布します。この緑色の型は、カンボジアやボルネオ島、スマトラ島の川で採集された標本が知られています。",
+    "temperament": "小魚や昆虫などの無脊椎動物を捕らえて食べます。繁殖期には、雄が卵と仔魚を口の中で守ります。",
+    "movement": "大きな鱗に覆われた長い体で、ゆったりと進みます。水上の餌に跳びつくこともあり、若い魚は水面で昆虫を食べます。",
+    "habitat": "緑色の型は、本流に近い流れの緩い支流に暮らします。本水槽では、根や枝が上から垂れる熱帯の川の、開けた上層を泳ぎます。",
+    "aliases": [
+      "グリーンアロワナ",
+      "ドラゴンフィッシュ",
+      "Asian arowana"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Osteoglossiformes",
+      "orderJa": "アロワナ目",
+      "family": "Osteoglossidae",
+      "familyJa": "アロワナ科"
+    },
+    "adultSizeCm": 60,
+    "sizeNote": "緑色の型が全長60cmを超えることはまれとされます。広い意味での本種の最大は全長90cmと報告されています。",
+    "distribution": "東南アジアに分布します。緑色の型はカンボジア、ボルネオ島、スマトラ島の川から記録されています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "EN",
+      "assessedYear": 2019,
+      "note": "ワシントン条約の附属書Iに掲載され、日本国内で譲り渡すには個体ごとの登録票が必要です。生息地の消失や違法な取引が脅威とされます。"
+    },
+    "highlights": [
+      "大きな鱗と、下あごの先の1対のひげが目立ちます。",
+      "水上の餌に向かって跳びつくことがあります。",
+      "繁殖期には、雄が卵と仔魚を口の中で守ります。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 1.1
+  },
+  "visual": {
+    "fallbackColor": "#767652"
+  },
+  "sourceBodyBounds": {
+    "x": 107,
+    "y": 321,
+    "width": 1341,
+    "height": 393
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.07,
+    "maxY": 0.42
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.2,
+      "burst": 0.6
+    },
+    "turnRateRadPerSec": 1.4,
+    "restFraction": 0.2,
+    "depthRange": [
+      0.15,
+      0.8
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 3,
+      "cohesion": 0,
+      "polarization": 0.03
+    },
+    "structureAffinity": 0.3,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Pouyaud, Sudarto & Teugels (2003), Cybium 27(4):287–305",
+        "url": "https://horizon.documentation.ird.fr/exl-doc/pleins_textes/divers19-11/010033034.pdf"
+      },
+      {
+        "title": "Auckland Zoo: Asian arowana",
+        "url": "https://www.aucklandzoo.co.nz/animals/asian-arowana"
+      },
+      {
+        "title": "FishBase field guide: Scleropages formosus",
+        "url": "https://www.fishbase.se/FieldGuide/FieldGuideSummary.php?c_code=608&genusname=Scleropages&print=1&speciesname=formosus"
+      },
+      {
+        "title": "自然環境研究センター: 関税法に基づいて輸入された個体等の申請方法",
+        "url": "https://www.jwrc.or.jp/service/cites/regist/kotai/3.htm"
+      }
+    ]
+  }
+}

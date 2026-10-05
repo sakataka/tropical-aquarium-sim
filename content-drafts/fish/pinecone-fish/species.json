@@ -1,0 +1,125 @@
+{
+  "id": "pinecone-fish",
+  "displayName": "マツカサウオ",
+  "realBodyLengthCm": 12,
+  "swim": {
+    "tailBeatHz": 2.0,
+    "tailSweepRad": 0.25
+  },
+  "visual": {
+    "fallbackColor": "#c9a92a"
+  },
+  "sourceBodyBounds": {
+    "x": 287,
+    "y": 160,
+    "width": 989,
+    "height": 703
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.4,
+    "maxY": 0.9
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.18,
+      "burst": 0.7
+    },
+    "turnRateRadPerSec": 1.8,
+    "restFraction": 0.45,
+    "depthRange": [
+      0.35,
+      0.9
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.4,
+      "cohesion": 0.5,
+      "polarization": 0.25
+    },
+    "structureAffinity": 0.85,
+    "habits": [
+      {
+        "type": "hideByDay",
+        "durationSec": [
+          90,
+          240
+        ]
+      },
+      {
+        "type": "homeShelter",
+        "kind": "cave",
+        "rangeBodyLengths": 6,
+        "visitChancePerMin": 0.7,
+        "visitDurationSec": [
+          20,
+          60
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "新潟市水族館マリンピア日本海：マツカサウオ",
+        "url": "https://www.marinepia.or.jp/picturebook/fish/entry-11848.html"
+      },
+      {
+        "title": "鳥羽水族館：マツカサウオ",
+        "url": "https://aquarium.co.jp/picturebook/monocentris-japonica.html"
+      },
+      {
+        "title": "北九州市立いのちのたび博物館：マツカサウオ",
+        "url": "https://www.kmnh.jp/exhibition/Diversity3/D3-F081_Monocentris.html"
+      },
+      {
+        "title": "魚津水族博物館年報35号 2024/2025（2026年3月刊）、初記録魚類および共生発光細菌報告",
+        "url": "https://www.uozu-aquarium.jp/research/wp-content/uploads/sites/2/020393597763779babf1c2c6f1518edb-1.pdf"
+      },
+      {
+        "title": "FishBase: Monocentris japonica",
+        "url": "https://www.fishbase.se/summary/Monocentris-japonica"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Monocentris japonica",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "インド・西太平洋に分布し、日本では北海道の積丹半島より南の日本海側、青森県より南の太平洋側から九州、瀬戸内海、沖縄で見られます。",
+    "temperament": "夜行性の魚で、群れを作るとされます。2022年によく似た別種のヤマブキマツカサウオが記載され、水族館の飼育群に別種や交雑が疑われる個体が混じっていた例も報告されています。",
+    "movement": "昼間は岩陰などの暗い場所に隠れ、じっとしていることが多い魚です。暗くなると、硬い鱗に包まれた体でゆっくり泳ぎ出します。",
+    "habitat": "岩礁の張り出しや洞窟の陰。成魚は水深20〜200mで見られ、幼魚はもっと浅い場所にもいます。",
+    "aliases": [
+      "Pinecone fish",
+      "Japanese pineconefish",
+      "ヨロイウオ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Trachichthyiformes",
+      "orderJa": "ヒウチダイ目",
+      "family": "Monocentridae",
+      "familyJa": "マツカサウオ科"
+    },
+    "adultSizeCm": 12,
+    "sizeNote": "よく見られる大きさは標準体長12cmで、最大記録は全長17cmです。2022年の別種の記載より前の記録には、別種が含まれている可能性があります。",
+    "distribution": "インド・西太平洋に分布し、日本では北海道南部から沖縄までの沿岸で見られます。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2019,
+      "note": "この評価は、2022年によく似た別種が分けられる前に行われたものです。"
+    },
+    "highlights": [
+      "昼は岩陰にとどまり、ほとんど動かない",
+      "下あごの先にある1対の発光器が、暗い水槽で淡い青緑色に光る。光は共生する発光細菌によるもの",
+      "黄色い硬い鱗は1枚ずつ縁が黒く、全体が松かさのように見える"
+    ]
+  }
+}

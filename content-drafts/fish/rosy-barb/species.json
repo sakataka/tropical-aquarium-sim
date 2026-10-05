@@ -1,0 +1,109 @@
+{
+  "id": "rosy-barb",
+  "displayName": "ロージーバルブ",
+  "realBodyLengthCm": 7,
+  "swim": {
+    "tailBeatHz": 2.6,
+    "mouthAnchor": {
+      "x": 0.012,
+      "y": 0.57
+    }
+  },
+  "visual": {
+    "fallbackColor": "#cf5b4c"
+  },
+  "sourceBodyBounds": {
+    "x": 204,
+    "y": 207,
+    "width": 1151,
+    "height": 574
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.35,
+    "maxY": 0.8
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.62,
+      "burst": 2.6
+    },
+    "turnRateRadPerSec": 2.6,
+    "restFraction": 0.15,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.8,
+      "cohesion": 0.5,
+      "polarization": 0.3
+    },
+    "structureAffinity": 0.4,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 1.2,
+        "durationSec": [
+          3,
+          8
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "FishBase: Pethia conchonius",
+        "url": "https://www.fishbase.se/summary/Pethia-conchonius.html"
+      },
+      {
+        "title": "Maidenhead Aquatics / Fishkeeper: Rosy Barb",
+        "url": "https://www.fishkeeper.co.uk/fish/freshwater/cyprinids/rosy-barb"
+      },
+      {
+        "title": "US Fish and Wildlife Service (2017): Rosy Barb Ecological Risk Screening Summary",
+        "url": "https://www.fws.gov/sites/default/files/documents/Ecological-Risk-Screening-Summary-Rosy-Barb.pdf"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Pethia conchonius",
+    "originRegionId": "south-asia",
+    "originRegionName": "南アジア",
+    "origin": "南アジア。アフガニスタン、パキスタン、インド、ネパール、バングラデシュに分布します。",
+    "temperament": "同種の群れで活発に泳ぐ魚です。飼育の手引きでは、長いひれを持つ魚やおとなしい魚との同居は避けるよう勧められています。",
+    "movement": "中層から下層を活発に泳ぎ、ときどき石や水草の表面の藻をついばみます。雄はふだん銀色がかっていますが、繁殖期には赤みが強まり、ひれ先の黒が目立ちます。",
+    "habitat": "湖や、流れの速い丘陵の小川に暮らします。本展示では丸石の渓流で、水草のそばと開けた中層を行き来する姿を見せています。",
+    "aliases": [
+      "Puntius conchonius",
+      "Rosy barb"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cypriniformes",
+      "orderJa": "コイ目",
+      "family": "Cyprinidae",
+      "familyJa": "コイ科"
+    },
+    "adultSizeCm": 6.7,
+    "sizeNote": "典型的な成魚の大きさを示す資料は確認できていません。イギリスで採集された成熟雄とみられる1個体は全長6.7cm（標準体長5.1cm）でした。データベースの最大記録は全長14cmです。",
+    "distribution": "アフガニスタン、パキスタン、インド、ネパール、バングラデシュに自然分布します。オーストラリアには移入された個体群があり、イギリスの都市の池でも放流由来とみられる1個体が見つかっています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2010
+    },
+    "highlights": [
+      "石や水草の表面の藻をついばむ",
+      "尾の付け根の手前にある黒い斑点と、背びれの黒い先端",
+      "繁殖期の雄は体の赤みが強まる"
+    ]
+  }
+}

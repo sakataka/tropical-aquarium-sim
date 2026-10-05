@@ -1,0 +1,125 @@
+{
+  "id": "clarks-anemonefish",
+  "displayName": "クマノミ",
+  "realBodyLengthCm": 11,
+  "swim": {
+    "tailBeatHz": 2.6
+  },
+  "visual": {
+    "fallbackColor": "#3a2418"
+  },
+  "sourceBodyBounds": {
+    "x": 225,
+    "y": 202,
+    "width": 1154,
+    "height": 592
+  },
+  "preferredZone": {
+    "minX": 0.05,
+    "maxX": 0.95,
+    "minY": 0.3,
+    "maxY": 0.86
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.32,
+      "burst": 1.6
+    },
+    "turnRateRadPerSec": 2.6,
+    "restFraction": 0.24,
+    "depthRange": [
+      0.3,
+      0.8
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 1.6,
+      "cohesion": 0.5,
+      "polarization": 0.15
+    },
+    "structureAffinity": 0.85,
+    "habits": [
+      {
+        "type": "homeShelter",
+        "kind": "anemone",
+        "rangeBodyLengths": 2.8,
+        "visitChancePerMin": 1,
+        "visitDurationSec": [
+          5,
+          14
+        ]
+      },
+      {
+        "type": "follow",
+        "chancePerMin": 0.9,
+        "durationSec": [
+          3,
+          9
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "沖縄美ら海水族館・美ら海生き物図鑑「クマノミ」",
+        "url": "https://churaumi.okinawa/fishbook/00000344/"
+      },
+      {
+        "title": "Hattori (1994): Inter-group Movement and Mate Acquisition Tactics of the Protandrous Anemonefish, Amphiprion clarkii, on a Coral Reef, Okinawa",
+        "url": "https://www.jstage.jst.go.jp/article/jji1950/41/2/41_2_159/_article"
+      },
+      {
+        "title": "Moyer & Bell (1976): Reproductive Behavior of the Anemonefish Amphiprion clarkii at Miyake-Jima, Japan",
+        "url": "https://www.jstage.jst.go.jp/article/jji1950/23/1/23_1_23/_article/-char/en"
+      },
+      {
+        "title": "Kobayashi, Kondo, Kohda & Awata (2025): Active provisioning of food to host sea anemones by anemonefish. Scientific Reports 15:4115",
+        "url": "https://www.nature.com/articles/s41598-025-85767-9"
+      },
+      {
+        "title": "FishBase: Amphiprion clarkii",
+        "url": "https://www.fishbase.se/summary/Amphiprion_clarkii.html"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Amphiprion clarkii",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "ペルシャ湾からカロリン諸島・ツアモツ諸島まで、北は朝鮮半島や日本の中部まで分布します。日本では千葉県より南の海で見られます。",
+    "temperament": "宿主のイソギンチャクを拠点に、繁殖ペアを中心とした小さな群れで暮らします。雌がいなくなると雄が雌に性転換し、若い個体が雄になります。",
+    "movement": "イソギンチャクの周りを小刻みに泳ぎ、触手の間に出入りします。成魚がほかのイソギンチャクへ移ることはまれです。",
+    "habitat": "サンゴ礁や岩礁のイソギンチャクの周り。シライトイソギンチャクやハタゴイソギンチャクなど、いろいろなイソギンチャクを住みかにします。本水槽では岩棚と砂地に1つずつあるイソギンチャクを住みかにしています。",
+    "aliases": [
+      "Clark's anemonefish",
+      "Yellowtail clownfish",
+      "イヌビ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Perciformes",
+      "orderJa": "スズキ目",
+      "family": "Pomacentridae",
+      "familyJa": "スズメダイ科"
+    },
+    "adultSizeCm": 15,
+    "sizeNote": "最大で標準体長15cmです。ふつうの成魚の大きさは分かっていません。",
+    "distribution": "インド洋のペルシャ湾・オマーンから西太平洋に広く分布し、北は日本の中部、南はオーストラリア北部まで見られます。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2021
+    },
+    "highlights": [
+      "ペアでイソギンチャクの近くにとどまり、触手の間に出入りする",
+      "体の白い帯は太く、尾びれの色は地域や性別で異なる。沖縄では雄の尾びれの縁が黄色く、雌は白一色",
+      "卵の世話は主に雄がする",
+      "大きすぎる餌を宿主のイソギンチャクへ運ぶことがあると報告されている"
+    ]
+  }
+}

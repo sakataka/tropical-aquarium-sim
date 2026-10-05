@@ -1,0 +1,126 @@
+{
+  "id": "minami-numa-shrimp",
+  "displayName": "ミナミヌマエビ",
+  "realBodyLengthCm": 2.5,
+  "catalog": {
+    "scientificName": "Neocaridina denticulata",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "西日本の本州、四国、九州に暮らす小さな淡水エビです。海へ下らず、一生を淡水で過ごします。",
+    "temperament": "穏やかで、水草の間や底を少しずつ巡ります。小さな生き物や藻類、柔らかい水草を食べます。",
+    "movement": "水草や底の表面を細い脚で歩き、立ち止まってはついばみます。魚のように尾を振り続けて泳ぐことはありません。",
+    "habitat": "湖沼や川の中下流、流れの緩い水路やワンドの水草帯にすみます。ここでは田んぼの用水路の水草の間をイメージしています。",
+    "aliases": [
+      "Minami-numa shrimp",
+      "Neocaridina denticulata denticulata",
+      "エビ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Decapoda",
+      "orderJa": "十脚目",
+      "family": "Atyidae",
+      "familyJa": "ヌマエビ科"
+    },
+    "adultSizeCm": 2.8,
+    "sizeNote": "体長は雌で28mm未満、雄で20mm未満と、雌のほうが大きくなります。",
+    "distribution": "西日本の本州、四国、九州に分布します。各地に外来のヌマエビ類が持ち込まれ、見た目だけでは在来のものと見分けにくくなっています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "note": "京都府レッドデータブック（2015）では要注目種です。兵庫県の夢前川では、ダムの上流に在来の集団が残り、ほかの地点では外来の系統に置き換わっていました。"
+    },
+    "highlights": [
+      "暗い褐色から緑がかった体で、背中の中央にオリーブ色の筋が入る個体もいます。",
+      "藻類や小さな生き物、柔らかい水草を食べます。",
+      "在来のミナミヌマエビと外来の近縁種は、見た目ではほとんど区別できません。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "crustacean",
+    "headStart": 0.21,
+    "tailBeatHz": 0.6,
+    "bodyWaveStart": 0.85,
+    "tailSweepRad": 0,
+    "verticalFlex": 0,
+    "footAnchor": {
+      "x": 0.4,
+      "y": 0.95
+    }
+  },
+  "visual": {
+    "fallbackColor": "#93896a"
+  },
+  "sourceBodyBounds": {
+    "x": 123,
+    "y": 227,
+    "width": 1266,
+    "height": 575
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.84,
+    "maxY": 0.93
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.08,
+      "burst": 0.4
+    },
+    "turnRateRadPerSec": 1.3,
+    "restFraction": 0.6,
+    "depthRange": [
+      0.05,
+      0.4
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 1.2,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.8,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 4.5,
+        "durationSec": [
+          8,
+          22
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 2,
+        "durationSec": [
+          5,
+          14
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "京都府レッドデータブック2015 ミナミヌマエビ",
+        "url": "https://www.pref.kyoto.jp/kankyo/rdb/bio/db/cru0009.html"
+      },
+      {
+        "title": "国立遺伝学研究所 Dam prevents invasion of non-native freshwater shrimp",
+        "url": "https://www.nig.ac.jp/en/highlights/6939/"
+      },
+      {
+        "title": "羽村市動物公園 ミナミヌマエビ",
+        "url": "https://hamurazoo.jp/animals/detail.html?CN=336283"
+      },
+      {
+        "title": "Reply to Fuke: Clarifying taxonomic and biogeographic interpretations of Neocaridina",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12813609/"
+      }
+    ]
+  }
+}

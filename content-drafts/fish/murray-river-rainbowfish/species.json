@@ -1,0 +1,96 @@
+{
+  "id": "murray-river-rainbowfish",
+  "displayName": "マレーリバー・レインボーフィッシュ",
+  "realBodyLengthCm": 8,
+  "catalog": {
+    "scientificName": "Melanotaenia fluviatilis",
+    "originRegionId": "oceania",
+    "originRegionName": "オセアニア",
+    "origin": "オーストラリア南東部のマレー・ダーリング水系に分布し、クイーンズランド州からニューサウスウェールズ州、ビクトリア州、南オーストラリア州にかけて暮らします。",
+    "temperament": "表層近くを群れで泳ぐ魚です。水生や陸生の小さな無脊椎動物と糸状の藻を食べます。ここでは成熟した雄を展示しています。",
+    "movement": "水面のすぐ下の開けた水域や、岸辺の水草・小さな沈木のまわりを群れで泳ぎます。",
+    "habitat": "流れの緩い川や湿地、三日月湖（ビラボン）にすみます。水草は産卵場所と隠れ場所として大切です。",
+    "aliases": [
+      "Murray River rainbowfish",
+      "Aristeus fluviatilis",
+      "Melanotaenia neglecta"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Atheriniformes",
+      "orderJa": "トウゴロウイワシ目",
+      "family": "Melanotaeniidae",
+      "familyJa": "メラノタエニア科"
+    },
+    "adultSizeCm": 8.5,
+    "sizeNote": "ふつうは8.5cmほどで、最大で標準体長11cmになります。成熟した雄は第2背びれと尻びれの後ろの端が伸びます。",
+    "distribution": "オーストラリア南東部のマレー・ダーリング水系に分布します。1986年以前は近縁の M. duboulayi と区別されていなかったため、古い記録には注意が必要です。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "note": "IUCN の評価は確認できていません。ビクトリア州の2021年の評価では、絶滅危惧（EN）への指定が提案されています。水草の消失、外来魚、ダムからの冷たい放水などが脅威に挙げられています。"
+    },
+    "highlights": [
+      "銀緑色の体に赤みのある鰓蓋の斑があり、雄の背びれ・尻びれ・尾びれには赤い点が並びます。",
+      "繁殖期の雄はひれの縁が黒くなります。",
+      "水温が20℃を超える春から夏に、細い葉の水草などに粘りのある卵を産み付けます。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.8
+  },
+  "visual": {
+    "fallbackColor": "#9a947a"
+  },
+  "sourceBodyBounds": {
+    "x": 83,
+    "y": 202,
+    "width": 1401,
+    "height": 591
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.08,
+    "maxY": 0.45
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.75,
+      "burst": 3.2
+    },
+    "turnRateRadPerSec": 3.0,
+    "restFraction": 0.07,
+    "depthRange": [
+      0.1,
+      0.8
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.6,
+      "cohesion": 0.6,
+      "polarization": 0.5
+    },
+    "structureAffinity": 0.25,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Fishes of Australia Murray River Rainbowfish",
+        "url": "https://fishesofaustralia.net.au/home/species/2107"
+      },
+      {
+        "title": "ANGFA Melanotaenia fluviatilis",
+        "url": "https://rainbowfish.angfa.org.au/old_site/Fluviatilis.htm"
+      },
+      {
+        "title": "Victoria Threatened Species Assessment 2021",
+        "url": "https://bio-prd-naturekit-public-data.s3.ap-southeast-2.amazonaws.com/species_assessments/Melanotaenia_fluviatilis_4774.pdf"
+      }
+    ]
+  }
+}

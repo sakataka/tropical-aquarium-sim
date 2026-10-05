@@ -1,0 +1,123 @@
+{
+  "id": "thread-sail-filefish",
+  "displayName": "カワハギ",
+  "realBodyLengthCm": 20,
+  "swim": {
+    "tailBeatHz": 1.8,
+    "tailSweepRad": 0.22,
+    "mouthAnchor": {
+      "x": 0.0,
+      "y": 0.48
+    }
+  },
+  "visual": {
+    "fallbackColor": "#a08a6c"
+  },
+  "sourceBodyBounds": {
+    "x": 191,
+    "y": 186,
+    "width": 1193,
+    "height": 636
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.35,
+    "maxY": 0.9
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.24,
+      "burst": 0.95
+    },
+    "turnRateRadPerSec": 2.2,
+    "restFraction": 0.26,
+    "depthRange": [
+      0.15,
+      0.8
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0.3,
+      "polarization": 0.1
+    },
+    "structureAffinity": 0.6,
+    "habits": [
+      {
+        "type": "bottomForage"
+      },
+      {
+        "type": "grazing",
+        "chancePerMin": 2,
+        "durationSec": [
+          3,
+          8
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "桂浜水族館公式 (2025-07-12): カワハギ《展示動物解説》",
+        "url": "https://katurahama-aquarium.note.jp/n/n39ba669f0b0f"
+      },
+      {
+        "title": "名古屋港水族館: 日本の海 カワハギ",
+        "url": "https://nagoyaaqua.jp/friends/south/1135/"
+      },
+      {
+        "title": "新江ノ島水族館 岩崎 (2015-01-09): 今週のおすすめ",
+        "url": "https://www.enosui.com/diaryentry.php?eid=03331"
+      },
+      {
+        "title": "Hiroshi Kawase (2003): Reproductive Behavior of Filefishes at Tateyama Bay",
+        "url": "https://www.chiba-muse.or.jp/NATURAL/cms/wp-content/uploads/2024/01/journal_7-2_3kawase.pdf"
+      },
+      {
+        "title": "FishBase: Stephanolepis cirrhifer",
+        "url": "https://www.fishbase.se/summary/531"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Stephanolepis cirrhifer",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "日本、韓国南部、台湾、中国南部、ベトナムなど西太平洋に分布します。日本では青森県より南の太平洋岸から九州、日本海、瀬戸内海で見られます。",
+    "temperament": "餌があると数匹で集まってつつくことがありますが、決まった群れを作って泳ぐ魚ではありません。",
+    "movement": "背びれと尻びれを波打たせて、その場にとどまるように泳ぎます。小さな口で岩の上の餌をつつき、砂に水を吹きかけて中の小動物を掘り出します。夜は海藻の間で休むことがあります。",
+    "habitat": "沿岸の岩礁や砂泥底、浅い海藻の茂み。ゴカイやエビ・カニ、貝などを食べます。",
+    "aliases": [
+      "Thread-sail filefish",
+      "ハゲ",
+      "マルハゲ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Tetraodontiformes",
+      "orderJa": "フグ目",
+      "family": "Monacanthidae",
+      "familyJa": "カワハギ科"
+    },
+    "adultSizeCm": 20,
+    "sizeNote": "館山湾で産卵が観察された雌は全長約20cmでした。最大記録は全長24.5cm（FAO）と30cm（FishBase）の2つがあります。成熟した雄は第2背びれの前の軟条が糸のように伸びます。",
+    "distribution": "西太平洋の温帯域に分布します。日本では本州から九州の沿岸、日本海、瀬戸内海、東シナ海で見られます。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2017
+    },
+    "highlights": [
+      "背びれと尻びれを波打たせて、その場にとどまる",
+      "小さな口で岩の表面や底の餌をついばむ",
+      "砂に水を吹きかけ、中に隠れた小動物を掘り出す",
+      "成熟した雄は、第2背びれの軟条が糸のように伸びる"
+    ]
+  }
+}

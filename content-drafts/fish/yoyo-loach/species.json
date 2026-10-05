@@ -1,0 +1,109 @@
+{
+  "id": "yoyo-loach",
+  "displayName": "ヨーヨーローチ",
+  "realBodyLengthCm": 9,
+  "swim": {
+    "tailBeatHz": 2.2,
+    "mouthAnchor": {
+      "x": 0.02,
+      "y": 0.69
+    }
+  },
+  "visual": {
+    "fallbackColor": "#b0aa9c"
+  },
+  "sourceBodyBounds": {
+    "x": 141,
+    "y": 264,
+    "width": 1275,
+    "height": 471
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.68,
+    "maxY": 0.94
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.35,
+      "burst": 1.8
+    },
+    "turnRateRadPerSec": 2.3,
+    "restFraction": 0.3,
+    "depthRange": [
+      0.35,
+      0.95
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 1.0,
+      "cohesion": 0.45,
+      "polarization": 0.12
+    },
+    "structureAffinity": 0.7,
+    "habits": [
+      {
+        "type": "bottomForage"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes — Botia almorhae",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=3068"
+      },
+      {
+        "title": "FishBase — Botia almorhae",
+        "url": "https://www.fishbase.se/summary/24687"
+      },
+      {
+        "title": "Seriously Fish — Botia almorhae",
+        "url": "https://www.seriouslyfish.com/species/botia-almorhae"
+      },
+      {
+        "title": "Singh & Bisht 2017 — Comparative ultrastructural study of general body epidermis of hill-stream fishes",
+        "url": "https://ij-aquaticbiology.com/index.php/ijab/article/download/330/379/984"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Botia almorhae",
+    "originRegionId": "south-asia",
+    "originRegionName": "南アジア",
+    "origin": "南アジアのヒマラヤ山麓。分類のカタログはパキスタン、インド、ブータン、ネパールを挙げますが、狭い意味での本種をインド北部とネパールに限る見方もあります。",
+    "temperament": "飼育下では仲間とゆるく集まります。狭いすき間や物陰に入り込むのを好みます。流通するヨーヨーローチには、よく似た別種が混じることがあります。",
+    "movement": "下向きの口とひげで底を探りながら、石の間を短く進みます。物陰から出たり入ったりを繰り返します。",
+    "habitat": "丘陵の川の、岩や礫の底の淵に暮らす底生魚です。本展示では丸石と礫の渓流の底で、石のすき間を探る姿を見せています。",
+    "aliases": [
+      "Yo-Yo Loach",
+      "Almorha loach",
+      "Botia lohachata（流通上の混同）"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cypriniformes",
+      "orderJa": "コイ目",
+      "family": "Botiidae",
+      "familyJa": "ボティア科"
+    },
+    "adultSizeCm": 15,
+    "sizeNote": "インドのコシ川で採集された研究標本は全長12.7〜17.7cmでした。データベースの最大記録は標準体長15.5cmです。展示は帯模様のはっきりした若魚の姿で、若魚と成魚を分ける大きさは分かっていません。",
+    "distribution": "パキスタン、インド、ブータン、ネパールのヒマラヤ山麓の川に分布するとされます。インドのウッタラーカンド州クマウン地方では、産卵や生殖腺の季節変化が調べられています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2010
+    },
+    "highlights": [
+      "若い個体の体側に並ぶ、YやOの字のような帯模様。成長すると模様がつながって複雑になる",
+      "石のすき間や物陰に入り込み、底近くを探る",
+      "仲間とゆるく集まって底を行き来する"
+    ]
+  }
+}

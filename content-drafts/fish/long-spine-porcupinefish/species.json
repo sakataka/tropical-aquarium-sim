@@ -1,0 +1,132 @@
+{
+  "id": "long-spine-porcupinefish",
+  "displayName": "ハリセンボン",
+  "realBodyLengthCm": 25,
+  "swim": {
+    "tailBeatHz": 1.2,
+    "tailSweepRad": 0.18,
+    "mouthAnchor": {
+      "x": 0.0,
+      "y": 0.51
+    }
+  },
+  "visual": {
+    "fallbackColor": "#c7aa82"
+  },
+  "sourceBodyBounds": {
+    "x": 122,
+    "y": 289,
+    "width": 1323,
+    "height": 405
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.55,
+    "maxY": 0.92
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.15,
+      "burst": 0.7
+    },
+    "turnRateRadPerSec": 1.6,
+    "restFraction": 0.45,
+    "depthRange": [
+      0.35,
+      0.9
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 3,
+      "cohesion": 0,
+      "polarization": 0.03
+    },
+    "structureAffinity": 0.65,
+    "habits": [
+      {
+        "type": "hideByDay",
+        "durationSec": [
+          60,
+          180
+        ]
+      },
+      {
+        "type": "homeShelter",
+        "kind": "crevice",
+        "rangeBodyLengths": 6,
+        "visitChancePerMin": 0.5,
+        "visitDurationSec": [
+          15,
+          45
+        ]
+      },
+      {
+        "type": "bottomForage"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Australian Museum: Freckled Porcupinefish",
+        "url": "https://australian.museum/learn/animals/fishes/freckled-porcupinefish-diodon-holocanthus-linnaeus-1758/"
+      },
+      {
+        "title": "Florida Museum: Balloonfish",
+        "url": "https://www.floridamuseum.ufl.edu/discover-fish/species-profiles/balloonfish/"
+      },
+      {
+        "title": "マリンピア日本海 生物図鑑: ハリセンボン",
+        "url": "https://www.marinepia.or.jp/picturebook/fish/entry-11704.html"
+      },
+      {
+        "title": "OATA: How to look after puffers and boxfish",
+        "url": "https://ornamentalfish.org/what-we-do/advice-information/care-sheets/caresheets-marine-fish/how-to-look-after-puffers-and-boxfish/"
+      },
+      {
+        "title": "FishBase: Diodon holocanthus",
+        "url": "https://www.fishbase.se/summary/diodon-holocanthus.html"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Diodon holocanthus",
+    "originRegionId": "circumtropical",
+    "originRegionName": "世界の暖かい海",
+    "origin": "世界中の熱帯から暖温帯の海に分布します。日本海や紅海、カリブ海、メキシコ湾などにも見られます。",
+    "temperament": "ふつうは単独で暮らし、若い個体では小さな群れの記録もあります。夜に、巻貝やウニ、ヤドカリなどをくちばしのような歯で砕いて食べます。",
+    "movement": "胸びれ・背びれ・尻びれを動かして、海底近くをゆっくり進みます。危険を感じると水を吸い込んで体をふくらませます。",
+    "habitat": "浅い礁やマングローブのまわり、海草帯や岩の多い海底などの開けた場所に暮らします。昼は岩の裂け目などに隠れ、この水景では岩の大きな割れ目を隠れ家にしています。",
+    "aliases": [
+      "Long-spine porcupinefish",
+      "Balloonfish",
+      "Freckled porcupinefish"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Tetraodontiformes",
+      "orderJa": "フグ目",
+      "family": "Diodontidae",
+      "familyJa": "ハリセンボン科"
+    },
+    "adultSizeCm": 25,
+    "sizeNote": "フロリダの博物館の解説では20〜35cmほどとされますが、測り方は示されていません。最大で全長50cmの記録があります。",
+    "distribution": "世界の熱帯・暖温帯の海。オーストラリアでは、西オーストラリア州南西部から北部を回ってニューサウスウェールズ州南部まで分布します。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2011
+    },
+    "highlights": [
+      "ふだんは長い棘を後ろへ寝かせていて、体の大きな暗い斑で見分けられます。",
+      "小さなひれを動かして、海底近くをゆっくり移動します。",
+      "昼は岩の裂け目に隠れ、夜に出て貝やウニを探します。",
+      "体をふくらませるのはストレスへの反応で、見せるためにふくらませることはしません。"
+    ]
+  }
+}

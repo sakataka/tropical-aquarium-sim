@@ -1,0 +1,110 @@
+{
+  "id": "giraffe-cichlid",
+  "displayName": "ニンボクロミス・ヴェヌストゥス",
+  "realBodyLengthCm": 22.5,
+  "swim": {
+    "tailBeatHz": 1.4,
+    "tailSweepRad": 0.4
+  },
+  "visual": {
+    "fallbackColor": "#c1a250"
+  },
+  "sourceBodyBounds": {
+    "x": 139,
+    "y": 274,
+    "width": 1274,
+    "height": 473
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.45,
+    "maxY": 0.92
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.2,
+      "burst": 0.9
+    },
+    "turnRateRadPerSec": 1.6,
+    "restFraction": 0.35,
+    "depthRange": [0.2, 0.85],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 3,
+      "cohesion": 0,
+      "polarization": 0.04
+    },
+    "structureAffinity": 0.25,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 0.5,
+        "durationSec": [10, 35]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Nimbochromis venustus",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=37995"
+      },
+      {
+        "title": "FishBase: Nimbochromis venustus",
+        "url": "https://www.fishbase.se/summary/Nimbochromis-venustus.html"
+      },
+      {
+        "title": "Michael K. Oliver: Nimbochromis venustus",
+        "url": "https://malawicichlids.com/mw08068.htm"
+      },
+      {
+        "title": "Nordiska Ciklidsällskapet: Nimbochromis venustus",
+        "url": "https://ciklid.org/artregister/art.php?ID=734"
+      },
+      {
+        "title": "Anthony Davis 1998: Nimbochromis venustus breeding account",
+        "url": "https://cichlidae.com/article.php?id=244"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Nimbochromis venustus",
+    "originRegionId": "east-africa",
+    "originRegionName": "東アフリカ",
+    "origin": "マラウイ湖と、湖から流れ出るシーレ川に分布します。マロンベ湖にもいるとされます。",
+    "habitat": "成魚は深めの砂底で餌をとり、幼魚は浅い岩場の近くでも見られます。記録された水深は6〜23mです。この展示では、白い砂と花崗岩の岩が点在する湖底で暮らします。",
+    "temperament": "小魚や無脊椎動物を食べる捕食者です。近縁の N. livingstonii などと交雑することがあります。",
+    "movement": "底近くをゆっくり泳ぎ、砂の上で静かに止まります。若い個体は砂に少し体を埋めてじっとし、近づいた小魚を襲います。",
+    "aliases": [
+      "Giraffe cichlid",
+      "Giraffe hap",
+      "ヴェヌストゥス",
+      "Haplochromis venustus"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cichliformes",
+      "orderJa": "シクリッド目",
+      "family": "Cichlidae",
+      "familyJa": "シクリッド科"
+    },
+    "adultSizeCm": 22.5,
+    "sizeNote": "FishBase のふつうの大きさは全長22.5cm、最大は全長25cmです。",
+    "distribution": "東アフリカのマラウイ湖、シーレ川、マロンベ湖。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2018
+    },
+    "highlights": [
+      "黄色い地に、キリンのような茶色の斑が並びます。成熟した雄は黄色と青を帯び、斑が薄れます。",
+      "若い個体は砂に少し潜って動かずに待ち、小魚を待ち伏せします。近縁種のように横倒しにはなりません。",
+      "繁殖期のペアは砂を口で掘って運び、雌は卵を口の中で守ります。"
+    ]
+  }
+}

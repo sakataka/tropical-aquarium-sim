@@ -1,0 +1,117 @@
+{
+  "id": "yellow-boxfish",
+  "displayName": "ミナミハコフグ",
+  "realBodyLengthCm": 8,
+  "swim": {
+    "tailBeatHz": 2.2,
+    "tailSweepRad": 0.2
+  },
+  "visual": {
+    "fallbackColor": "#e8c21e"
+  },
+  "sourceBodyBounds": {
+    "x": 252,
+    "y": 272,
+    "width": 1106,
+    "height": 464
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.35,
+    "maxY": 0.8
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.32,
+      "burst": 1.1
+    },
+    "turnRateRadPerSec": 2.3,
+    "restFraction": 0.22,
+    "depthRange": [
+      0.2,
+      0.8
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 2.4,
+      "cohesion": 0.3,
+      "polarization": 0.1
+    },
+    "structureAffinity": 0.6,
+    "habits": [
+      {
+        "type": "homeShelter",
+        "kind": "crevice",
+        "rangeBodyLengths": 9,
+        "visitChancePerMin": 0.4,
+        "visitDurationSec": [
+          5,
+          15
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "沖縄美ら海水族館: ミナミハコフグ",
+        "url": "https://churaumi.okinawa/fishbook/00000449/"
+      },
+      {
+        "title": "Australian Museum: Yellow Boxfish",
+        "url": "https://australian.museum/learn/animals/fishes/yellow-boxfish-ostracion-cubicus/"
+      },
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Ostracion cubicus / current Ostracion cubicum",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=23455"
+      },
+      {
+        "title": "海遊館飼育員日記 2019-03-03: グレート・バリア・リーフ水槽の天使！？",
+        "url": "https://www.kaiyukan.com/connect/blog/2019/03/post-1702.html"
+      },
+      {
+        "title": "FishBase: Ostracion cubicum",
+        "url": "https://www.fishbase.se/summary/Ostracion-cubicus.html"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Ostracion cubicum",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "紅海からインド・西太平洋に広く分布し、日本では太平洋側の茨城県や小笠原諸島まで記録があります。",
+    "temperament": "成魚は単独でいることが多い一方、幼魚は小さな集まりで見られることがあります。興奮すると体表から毒のある粘液を出すため、混泳には注意が要ります。",
+    "movement": "硬い甲板に包まれた体はほとんど曲げず、胸びれや背びれ、尻びれを小刻みに動かして進みます。尾びれは向きを安定させたり、曲がったりするのに使います。",
+    "habitat": "波の穏やかなサンゴ礁や岩礁。小さな幼魚はサンゴの枝の間や細い割れ目に潜みます。本展示では黄色地に黒い斑点のある幼魚の姿を見せています。",
+    "aliases": [
+      "Ostracion cubicus",
+      "Yellow boxfish",
+      "Cubicus boxfish"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Tetraodontiformes",
+      "orderJa": "フグ目",
+      "family": "Ostraciidae",
+      "familyJa": "ハコフグ科"
+    },
+    "adultSizeCm": 40,
+    "sizeNote": "成長すると全長約40cmになります（最大記録は全長45cm）。展示の黄色い幼魚の一般的な大きさや、色が変わる大きさは分かっていません。",
+    "distribution": "紅海・インド洋から太平洋のツアモツ諸島まで、北は日本・韓国、南はオーストラリアまで分布します。東地中海の記録は紅海からの移入とされます。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2023
+    },
+    "highlights": [
+      "箱のような硬い体のまま、ひれを細かく動かして泳ぐ",
+      "黄色い地に黒い斑点が散る幼魚の色。成長すると色と斑点が変わる",
+      "岩の割れ目の近くを離れすぎずに行き来する"
+    ]
+  }
+}

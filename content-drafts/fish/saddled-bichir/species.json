@@ -1,0 +1,127 @@
+{
+  "id": "saddled-bichir",
+  "displayName": "ポリプテルス・エンドリケリー",
+  "realBodyLengthCm": 45,
+  "catalog": {
+    "scientificName": "Polypterus endlicherii",
+    "originRegionId": "west-africa",
+    "originRegionName": "西アフリカ",
+    "origin": "ナイル川、チャド湖、ニジェール川、ボルタ川の水系と、コートジボワールやベナンの沿岸の川や潟湖に分布します。",
+    "temperament": "主に魚を食べ、巻貝や甲殻類も口にする大型の捕食魚です。物陰や底でじっと獲物を待ち伏せます。",
+    "movement": "底近くに長くとどまり、ときどき体をくねらせて移動します。肺で空気を吸うため、ときおり水面まで泳ぎ上がります。",
+    "habitat": "沼や川に暮らし、乾季には縮んでいく水たまりでも生き延びる大型魚の一つです。この部屋の古代魚の水槽で、底を受け持ちます。",
+    "aliases": [
+      "エンドリケリー",
+      "saddled bichir",
+      "Polypterus endlicheri"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Polypteriformes",
+      "orderJa": "ポリプテルス目",
+      "family": "Polypteridae",
+      "familyJa": "ポリプテルス科"
+    },
+    "adultSizeCm": 50,
+    "sizeNote": "飼育の解説では50cmの個体を例にしています。FishBase の最大は標準体長65.5cm、改訂研究には標準体長78cmの標本があります。典型的な大きさの統計はありません。",
+    "distribution": "ナイル川、チャド湖、ニジェール川、ボルタ川の各水系と、コートジボワールの沿岸河川、ベナンのウエメ川沿岸の潟湖に分布します。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2019,
+      "note": "ベナンのペンジャリ国立公園周辺では、漁業の影響が大きい可能性が指摘されています。"
+    },
+    "highlights": [
+      "背中に幅の広い鞍のような帯が、ふつう4〜5本並びます。",
+      "大きな個体では、下あごが上あごより前に出ます。",
+      "底近くから水面へ上がり、空気を吸って戻ります。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 0.9,
+    "bodyWaveStart": 0.2,
+    "waveCount": 1.1,
+    "tailSweepRad": 0.15,
+    "verticalFlex": 0.022,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.52
+    }
+  },
+  "visual": {
+    "fallbackColor": "#957c59"
+  },
+  "sourceBodyBounds": {
+    "x": 76,
+    "y": 335,
+    "width": 1400,
+    "height": 382
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.66,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "undulate",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.12,
+      "burst": 0.8
+    },
+    "turnRateRadPerSec": 1.2,
+    "restFraction": 0.6,
+    "depthRange": [
+      0.25,
+      0.88
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0,
+      "polarization": 0.02
+    },
+    "structureAffinity": 0.5,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.3,
+        "durationSec": [
+          12,
+          36
+        ]
+      },
+      {
+        "type": "airBreathing",
+        "breathsPerHour": [
+          5,
+          12
+        ],
+        "style": "dash"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Moritz & Britz (2019), Revision of the extant Polypteridae, IEF-1094:1–96",
+        "url": "https://www.researchgate.net/publication/334989593_Revision_of_the_extant_Polypteridae_Actinopterygii_Cladistia"
+      },
+      {
+        "title": "FishBase: Polypterus endlicherii",
+        "url": "https://www.fishbase.se/summary/Polypterus-endlicherii.html"
+      },
+      {
+        "title": "Moritz & Lalèyè (2019), Fishes of the Pendjari National Park, Bulletin of Fish Biology 18:1–57",
+        "url": "https://www.ichthyologie.de/wp-content/uploads/2021/03/Moritz-Laleye-2019-Fishes-of-the-Pendjari-National-Park-Bull-Fish-Biol-18-S.-1-57.pdf"
+      },
+      {
+        "title": "東京アクアガーデン: ポリプテルス・エンドリケリーとは！特徴から飼育についてをご紹介",
+        "url": "https://t-aquagarden.live/column/polypterus_endlicheri"
+      }
+    ]
+  }
+}

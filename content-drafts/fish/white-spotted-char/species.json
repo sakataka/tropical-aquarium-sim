@@ -1,0 +1,109 @@
+{
+  "id": "white-spotted-char",
+  "displayName": "イワナ",
+  "realBodyLengthCm": 22,
+  "catalog": {
+    "scientificName": "Salvelinus leucomaenis",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "北海道と本州の山あいの川に自然分布するイワナ類です。種としては中国北部、朝鮮半島、ロシア、アラスカまでの北太平洋域に広がり、日本各地へ放流もされています。",
+    "temperament": "同じ淵に長くとどまる個体と、1kmを超えて移動する個体が同じ川に暮らします。本水槽では、物陰の近くで互いに間合いを取って過ごします。",
+    "movement": "淵の流れの中にとどまり、水生昆虫や水面に落ちた虫をねらって短く泳ぎ出ます。岩や木の根の陰と、その上の開けた水の間を行き来します。",
+    "habitat": "本流の上流域や支流の冷たい流れ。岩、木の根、倒木の下や淵を隠れ場所に使います。本水槽では、大きな丸石と岸の根がある源流の岩場をイメージしています。",
+    "aliases": [
+      "white-spotted char",
+      "Japanese char",
+      "ニッコウイワナ",
+      "ヤマトイワナ",
+      "ゴギ",
+      "アメマス"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Salmoniformes",
+      "orderJa": "サケ目",
+      "family": "Salmonidae",
+      "familyJa": "サケ科"
+    },
+    "adultSizeCm": 22,
+    "sizeNote": "木曽川水系で採捕した成熟雌38尾は標準体長15.5〜24.5cmでした。地域型や雌雄、環境によって大きさが違い、川に残る型の典型的な大きさや最大値は定まっていません。",
+    "distribution": "日本では北海道と本州に自然分布し、各地へ放流もされています。種全体では中国北部、朝鮮半島、ロシア、アラスカに分布します。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2020,
+      "note": "種全体の評価です。水系ごとに模様や遺伝的な違いがあり、別の川へ移さないよう呼びかけられています。"
+    },
+    "highlights": [
+      "背中から体側に散る白い斑点。地域によって白斑の目立ち方や橙色の斑の色が違います。",
+      "淵の中の決まった位置にとどまり、流れの中で餌をねらいます。",
+      "岩や木の根の下を隠れ場所に使います。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.0
+  },
+  "visual": {
+    "fallbackColor": "#8c7a52"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.3,
+    "maxY": 0.82
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.38,
+      "burst": 1.7
+    },
+    "turnRateRadPerSec": 2.0,
+    "restFraction": 0.3,
+    "depthRange": [
+      0.3,
+      0.9
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.4,
+      "cohesion": 0,
+      "polarization": 0.04
+    },
+    "structureAffinity": 0.7,
+    "habits": [],
+    "sources": [
+      {
+        "title": "国立環境研究所 侵入生物DB: イワナ",
+        "url": "https://www.nies.go.jp/biodiversity/invasive/DB/detail/50850.html"
+      },
+      {
+        "title": "長野県水産試験場 (2024-10-01): イワナ",
+        "url": "https://www.pref.nagano.lg.jp/suisan/joho/sakanatachi/iwana.html"
+      },
+      {
+        "title": "小原昌和ほか: 木曽川産イワナ野生魚の人工採卵、長野水試研報第3号",
+        "url": "https://www.pref.nagano.lg.jp/suisan/jigyokenkyu/documents/03a.pdf"
+      },
+      {
+        "title": "Nakamura, Maruyama & Watanabe (2002): Residency and movement of stream-dwelling Japanese charr",
+        "url": "https://onlinelibrary.wiley.com/doi/abs/10.1034/j.1600-0633.2002.00014.x"
+      },
+      {
+        "title": "FishBase: Salvelinus leucomaenis",
+        "url": "https://www.fishbase.se/summary/Salvelinus-leucomaenis.html"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 113,
+    "y": 264,
+    "width": 1338,
+    "height": 469
+  }
+}

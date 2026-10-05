@@ -1,0 +1,112 @@
+{
+  "id": "tiger-barb",
+  "displayName": "スマトラ",
+  "realBodyLengthCm": 6,
+  "swim": {
+    "tailBeatHz": 2.9
+  },
+  "visual": {
+    "fallbackColor": "#d4a03c"
+  },
+  "sourceBodyBounds": {
+    "x": 258,
+    "y": 188,
+    "width": 1044,
+    "height": 621
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.25,
+    "maxY": 0.72
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.75,
+      "burst": 3.2
+    },
+    "turnRateRadPerSec": 2.9,
+    "restFraction": 0.08,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0.5,
+      "polarization": 0.35
+    },
+    "structureAffinity": 0.3,
+    "habits": [
+      {
+        "type": "follow",
+        "chancePerMin": 1.0,
+        "durationSec": [
+          2,
+          6
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Seriously Fish: Puntigrus tetrazona",
+        "url": "https://www.seriouslyfish.com/species/puntigrus-tetrazona/"
+      },
+      {
+        "title": "Frank Schäfer, Aquarium Glaser (2022-02-22): Puntigrus tetrazona – die Echte Sumatrabarbe",
+        "url": "https://www.aquariumglaser.de/fischarchiv/puntigrus-tetrazona-die-echte-sumatrabarbe/"
+      },
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Puntigrus tetrazona",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=51825"
+      },
+      {
+        "title": "OATA: How to look after barbs",
+        "url": "https://ornamentalfish.org/what-we-do/advice-information/care-sheets/caresheets-tropical-freshwater-fish/how-to-look-after-barbs/"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Puntigrus tetrazona",
+    "originRegionId": "southeast-asia",
+    "originRegionName": "東南アジア",
+    "origin": "東南アジア。タイプ産地はインドネシアのスマトラ島です。流通する養殖のスマトラは、野生の本種とは区別すべきだという専門家の見方もあります。",
+    "temperament": "群れの中にゆるい順位があり、雄どうしが張り合います。ほかの魚のひれをかじることがあり、数が少ないときや狭い水槽で目立つとされます。",
+    "movement": "とても活発に泳ぎ回り、短く加速しては向きを変えます。群れの仲間を追いかける場面もあります。",
+    "habitat": "厳密に同定された本種の野外での生息環境は、まだよく分かっていません。本展示では丸石の渓流で、開けた中層を群れで泳ぐ姿を見せています。",
+    "aliases": [
+      "Puntius tetrazona",
+      "Capoeta tetrazona",
+      "Systomus tetrazona",
+      "Tiger barb",
+      "Sumatra barb"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cypriniformes",
+      "orderJa": "コイ目",
+      "family": "Cyprinidae",
+      "familyJa": "コイ科"
+    },
+    "adultSizeCm": 6,
+    "sizeNote": "飼育の解説では標準体長6cmとされます。データベースの最大記録は全長7cm、業界団体の手引きでは約8cm（測り方の記載なし）です。",
+    "distribution": "インドネシアのスマトラ島に分布し、中部のジャンビ州で採集された野生個体が輸入された例もあります。ボルネオ島を分布に含めるかは資料によって異なります。ほかの地域にも移入されています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2020
+    },
+    "highlights": [
+      "金色の体を横切る太い黒帯と、赤く縁取られた黒い背びれ",
+      "群れの中で雄どうしが追い合い、発色を競う",
+      "小刻みに加速して中層を泳ぎ回る"
+    ]
+  }
+}

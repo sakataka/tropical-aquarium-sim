@@ -1,0 +1,100 @@
+{
+  "id": "scissortail-rasbora",
+  "displayName": "シザーテール・ラスボラ",
+  "realBodyLengthCm": 7.5,
+  "swim": {
+    "tailBeatHz": 2.9
+  },
+  "visual": {
+    "fallbackColor": "#b0a47c"
+  },
+  "sourceBodyBounds": {
+    "x": 170,
+    "y": 249,
+    "width": 1264,
+    "height": 471
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.06,
+    "maxY": 0.4
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.8,
+      "burst": 3.2
+    },
+    "turnRateRadPerSec": 2.9,
+    "restFraction": 0.08,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0.6,
+      "polarization": 0.4
+    },
+    "structureAffinity": 0.15,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes — Rasbora trilineata",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=30864"
+      },
+      {
+        "title": "FishBase — Rasbora trilineata",
+        "url": "https://www.fishbase.se/summary/4771"
+      },
+      {
+        "title": "Kasamawut et al. (2025), Breeding and Ontogeny of the Aquarium-Traded Scissortail Rasbora",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12248566/"
+      },
+      {
+        "title": "Seriously Fish — Rasbora trilineata",
+        "url": "https://www.seriouslyfish.com/species/rasbora-trilineata"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Rasbora trilineata",
+    "originRegionId": "southeast-asia",
+    "originRegionName": "東南アジア",
+    "origin": "東南アジアのスンダランド、マレー半島と、メークロン川・チャオプラヤ川・メコン川の流域に分布します。",
+    "habitat": "湖沼や湿地、川の緩流域、低地の水路や貯水池にすみます。この展示では、泥炭湿地の池の水面近くを群れで泳ぎます。",
+    "temperament": "温和な群れの魚で、同じ種の仲間と一緒に泳ぎます。",
+    "movement": "よく泳ぐ魚で、水面近くで落ちてきた虫などを食べます。止まっているときも、尾びれを小刻みに動かします。",
+    "aliases": [
+      "Scissortail rasbora",
+      "Three-lined rasbora"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cypriniformes",
+      "orderJa": "コイ目",
+      "family": "Danionidae",
+      "familyJa": "ダニオ科"
+    },
+    "adultSizeCm": 7.5,
+    "sizeNote": "タイの貯水池で採集された成熟した親魚は、全長が雄で平均7.3cm、雌で平均8.0cmでした。記録上の最大は全長13cmです。雄は細身で、雌は体高があり腹が張ります。",
+    "distribution": "スンダランドとマレー半島、タイのメークロン川・チャオプラヤ川・メコン川流域に分布します。原産地の外にも持ち込まれています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2019
+    },
+    "highlights": [
+      "黒と白の帯が入った深く切れ込んだ尾びれを、止まっているときも小刻みに動かします。",
+      "水面近くで、水の外から落ちてきた虫などを食べます。",
+      "同じ種の群れで泳ぎます。"
+    ]
+  }
+}

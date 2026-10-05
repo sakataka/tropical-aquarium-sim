@@ -1,0 +1,100 @@
+{
+  "id": "japanese-red-rockfish",
+  "displayName": "アカメバル",
+  "realBodyLengthCm": 20,
+  "catalog": {
+    "scientificName": "Sebastes inermis",
+    "originRegionId": "northwest-pacific",
+    "originRegionName": "北西太平洋",
+    "origin": "北海道南部から九州、朝鮮半島南部の沿岸に分布します。かつて「メバル」と呼ばれた魚は、2008年にアカメバル、クロメバル、シロメバルの3種に分けられました。",
+    "temperament": "藻場で群れをつくるとされます。本水槽では、海藻の茂みや岩のそばに数尾で集まって過ごします。",
+    "movement": "種を分けた後のアカメバルとしての泳ぎ方や休み方は、まだよく調べられていません。本水槽では、海藻や岩のそばでゆったり漂い、ゆっくり向きを変えながら群れのまわりを行き来します。",
+    "habitat": "沿岸の藻場。沈船や魚礁のまわりでも見られます。本水槽では、短い海藻が茂る北の岩礁をイメージしています。",
+    "aliases": [
+      "Japanese rockfish",
+      "Dark Banded Rockfish",
+      "メバル"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Perciformes",
+      "orderJa": "スズキ目",
+      "family": "Sebastidae",
+      "familyJa": "メバル科"
+    },
+    "adultSizeCm": 20,
+    "sizeNote": "成魚の代表的な大きさや最大値は確かめられておらず、ここでは約20cmとして表示しています。佐渡で撮影された個体は18〜27cmでした（測り方は不明）。",
+    "distribution": "北海道南部から九州、朝鮮半島南部に分布します。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "3種に分けられた後のアカメバルとしての IUCN 区分や国内の評価は確かめられていません。科をフサカサゴ科のメバル亜科とする分類もあります。"
+    },
+    "highlights": [
+      "赤褐色の体と、とても大きな目。",
+      "胸びれを倒すと肛門より後ろまで届き、胸びれの軟条が15本あることが、近縁のクロメバルやシロメバルとの見分けどころです。",
+      "藻場で群れをつくって過ごします。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 1.9
+  },
+  "visual": {
+    "fallbackColor": "#a35c40"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.3,
+    "maxY": 0.8
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.24,
+      "burst": 1.1
+    },
+    "turnRateRadPerSec": 2.0,
+    "restFraction": 0.36,
+    "depthRange": [
+      0.2,
+      0.8
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.3,
+      "cohesion": 0.45,
+      "polarization": 0.24
+    },
+    "structureAffinity": 0.65,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Sebastes inermis (updated 7 July 2026)",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=7541"
+      },
+      {
+        "title": "Kai & Nakabo (2008): Taxonomic review of the Sebastes inermis species complex",
+        "url": "https://link.springer.com/article/10.1007/s10228-007-0029-7"
+      },
+      {
+        "title": "新潟大学佐渡臨海実験所：アカメバル",
+        "url": "https://www.sc.niigata-u.ac.jp/sc/sadomarine/marinelife/akamebaru.html"
+      },
+      {
+        "title": "マリンピア日本海：アカメバル",
+        "url": "https://www.marinepia.or.jp/picturebook/fish/entry-10969.html"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 186,
+    "y": 225,
+    "width": 1195,
+    "height": 570
+  }
+}

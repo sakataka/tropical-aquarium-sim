@@ -1,0 +1,141 @@
+{
+  "id": "california-sheephead",
+  "displayName": "カリフォルニアシープスヘッド",
+  "realBodyLengthCm": 40,
+  "catalog": {
+    "scientificName": "Bodianus pulcher",
+    "originRegionId": "northeast-pacific",
+    "originRegionName": "北東太平洋",
+    "origin": "カリフォルニア中部からバハ・カリフォルニア半島の南端まで、カリフォルニア湾とグアダルーペ島を含む東太平洋に分布する大型のベラです。ポイント・コンセプションより北では少なくなります。",
+    "temperament": "雌として成熟したあと、一部が雄に変わる雌性先熟の魚です。繁殖期の雄は産卵場所を守り、小さい雄を追い払います。本水槽では、雄が岩礁の広い範囲を見回ります。",
+    "movement": "昼は砂地、岩礁、ケルプの間を巡り、夜は岩場の隠れ場所へ戻ります。前に突き出た犬歯で、ウニや貝、カニなど硬い殻の生き物を岩から外して食べます。",
+    "habitat": "水深1〜150mの岩礁とケルプの森。本水槽では、ジャイアントケルプの根元に広がる岩礁と砂の通り道をイメージしています。",
+    "aliases": [
+      "California sheephead",
+      "Semicossyphus pulcher"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Perciformes",
+      "orderJa": "スズキ目",
+      "family": "Labridae",
+      "familyJa": "ベラ科"
+    },
+    "adultSizeCm": 40,
+    "sizeNote": "サンタカタリナ島の保護区で追跡した雄8尾は標準体長26.0〜35.5cmでした。最大記録は全長91cmです。雄成魚の典型的な大きさは定まっておらず、ここでは約40cmとして表示しています。",
+    "distribution": "東太平洋のカリフォルニア中部からバハ・カリフォルニア半島南端まで、カリフォルニア湾とグアダルーペ島を含めて分布します。",
+    "water": {
+      "salinity": "marine",
+      "temperatureC": [
+        12.5,
+        18.5
+      ]
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "VU",
+      "assessedYear": 2006,
+      "note": "水温はサンタカタリナ島の調査期間中に、魚のいた水柱の平均水温が変化した範囲です。"
+    },
+    "highlights": [
+      "雄は黒い頭と後半部、赤い胴、白い顎の三色に分かれ、額にこぶがあり、目は赤色です。雌はほぼ一様な淡い桃色です。",
+      "前に突き出た犬歯でウニや貝を岩から外し、顎とのどの歯でかみ砕きます。",
+      "昼は広く泳ぎ回り、夜は岩場の隠れ場所に戻って休みます。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 1.5,
+    "tailSweepRad": 0.4,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.55
+    }
+  },
+  "visual": {
+    "fallbackColor": "#7a3f40"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.4,
+    "maxY": 0.9
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.3,
+      "burst": 1.1
+    },
+    "turnRateRadPerSec": 1.8,
+    "restFraction": 0.18,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0,
+      "polarization": 0.04
+    },
+    "structureAffinity": 0.55,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 0.8,
+        "durationSec": [
+          3,
+          8
+        ]
+      },
+      {
+        "type": "homeShelter",
+        "kind": "crevice",
+        "rangeBodyLengths": 12,
+        "visitChancePerMin": 0.2,
+        "visitDurationSec": [
+          10,
+          30
+        ]
+      },
+      {
+        "type": "follow",
+        "chancePerMin": 0.4,
+        "durationSec": [
+          3,
+          8
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Labrus pulcher / valid Bodianus pulcher",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=17186"
+      },
+      {
+        "title": "Smithsonian Tropical Research Institute: Bodianus pulcher",
+        "url": "https://biogeodb.stri.si.edu/sftep/en/thefishes/species/1652"
+      },
+      {
+        "title": "Monterey Bay Aquarium: California sheephead",
+        "url": "https://www.montereybayaquarium.org/animals-the-ocean/animals-a-to-z/california-sheephead"
+      },
+      {
+        "title": "FishBase: Bodianus pulcher",
+        "url": "https://www.fishbase.se/summary/semicossyphus-pulcher"
+      },
+      {
+        "title": "Topping, Lowe & Caselle (2006): Site fidelity and seasonal movement patterns of adult California sheephead. MEPS 326:257–267",
+        "url": "https://labs.eemb.ucsb.edu/caselle/jennifer/sites/labs.eemb.ucsb.edu.caselle.jennifer/files/pubs/topping_sheephead_site_fidelity_meps.pdf"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 143,
+    "y": 230,
+    "width": 1285,
+    "height": 550
+  }
+}

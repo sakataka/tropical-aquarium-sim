@@ -1,0 +1,101 @@
+{
+  "id": "spotted-blue-eye",
+  "displayName": "ポポンデッタ・ゲルトルダエ",
+  "realBodyLengthCm": 4,
+  "swim": {
+    "tailBeatHz": 3.2
+  },
+  "visual": {
+    "fallbackColor": "#c2b37a"
+  },
+  "sourceBodyBounds": {
+    "x": 102,
+    "y": 163,
+    "width": 1357,
+    "height": 608
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.3,
+    "maxY": 0.7
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.6,
+      "burst": 3.0
+    },
+    "turnRateRadPerSec": 3.0,
+    "restFraction": 0.18,
+    "depthRange": [
+      0.25,
+      0.9
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.6,
+      "cohesion": 0.5,
+      "polarization": 0.25
+    },
+    "structureAffinity": 0.6,
+    "habits": [
+      {
+        "type": "follow",
+        "chancePerMin": 0.8,
+        "durationSec": [
+          2,
+          5
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Fishes of Australia Spotted Blue Eye",
+        "url": "https://fishesofaustralia.net.au/home/species/4093"
+      },
+      {
+        "title": "Aquagreen Spotted Blue-eye",
+        "url": "https://www.aquagreen.com.au/plant_data/Pseudomugil_gertrudae.html"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Pseudomugil gertrudae",
+    "originRegionId": "oceania",
+    "originRegionName": "オセアニア",
+    "origin": "オーストラリアのノーザンテリトリーとクイーンズランド北部の離れた地域、そしてニューギニアに分布します。",
+    "temperament": "植物のまわりに集まって暮らす小さな魚です。雄は発色を強め、ひれを立てて雌に求愛します。",
+    "movement": "水草の近くを小刻みに泳ぎ、微小な甲殻類や昆虫の幼虫を食べます。成熟した雄は、背びれ・尻びれ・腹びれの前の鰭条が長く伸びます。",
+    "habitat": "砂泥底の小河川、湿地、森林の小川、ラグーンや背水域に暮らし、水草や沈んだ木の多い場所に集まります。本展示では水草の茂みのそばを泳ぐ姿を見せています。",
+    "aliases": [
+      "Spotted blue-eye",
+      "Gertrude's blue-eye"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Atheriniformes",
+      "orderJa": "トウゴロウイワシ目",
+      "family": "Pseudomugilidae",
+      "familyJa": "シュードムギル科"
+    },
+    "adultSizeCm": 3.8,
+    "sizeNote": "最大は標準体長3.8cmとされます（同じ資料の要約では4cm）。雄の典型的な大きさは分かっていません。地域によって色、ひれの形、大きさが異なります。",
+    "distribution": "オーストラリアのノーザンテリトリーとクイーンズランド北部に分かれて分布し、ニューギニアにも分布します。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2019
+    },
+    "highlights": [
+      "青い眼と、黒い点の散る黄色いひれ",
+      "雄がひれを立てて雌に求愛する",
+      "水草や沈木のまわりに集まって泳ぐ"
+    ]
+  }
+}

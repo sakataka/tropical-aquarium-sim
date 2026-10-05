@@ -1,0 +1,114 @@
+{
+  "id": "dolly-varden",
+  "displayName": "オショロコマ",
+  "realBodyLengthCm": 18,
+  "catalog": {
+    "scientificName": "Salvelinus curilus",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "日本では北海道だけにすむイワナの仲間です。学名は Salvelinus malma の亜種とされてきましたが、近年は別種 S. curilus とする見解があります。",
+    "temperament": "淵では良い採餌場所をめぐって順位ができ、強い個体が淵の上手を占めることが多いとされます。本水槽では、ときどき仲間の後を追って位置を争います。",
+    "movement": "淵にとどまり、流れてくる水生昆虫や水面に落ちた虫を食べます。昼だけでなく夜にも餌をとることが分かっています。",
+    "habitat": "冷たい川の淵や流れ。川に残る型と海へ下る型があり、ここでは川に残る型を見せています。本水槽では、丸石の間に淵ができた北の源流をイメージしています。",
+    "aliases": [
+      "Dolly Varden",
+      "Salvelinus malma",
+      "Salvelinus malma krascheninnikovi",
+      "カラフトイワナ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Salmoniformes",
+      "orderJa": "サケ目",
+      "family": "Salmonidae",
+      "familyJa": "サケ科"
+    },
+    "adultSizeCm": 20,
+    "sizeNote": "国立科学博物館の図鑑では全長20cmとされています。川に残る型の典型的な大きさや最大値は確かめられていません。",
+    "distribution": "日本では北海道に分布します。S. curilus としては千島列島やサハリンから朝鮮半島にかけて知られます。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "世界の IUCN 区分は、分類の扱いが分かれていて確かめられていません。環境省レッドリスト2020では絶滅危惧II類（VU）です。"
+    },
+    "highlights": [
+      "体側に並ぶ楕円形のパーマークと、その間に散る赤い斑点。",
+      "淵の良い場所をめぐって順位があり、強い個体が上手に陣取ります。",
+      "産卵期には体側が赤や橙色を帯びます。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.2
+  },
+  "visual": {
+    "fallbackColor": "#9a7656"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.25,
+    "maxY": 0.78
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.45,
+      "burst": 1.9
+    },
+    "turnRateRadPerSec": 2.2,
+    "restFraction": 0.24,
+    "depthRange": [
+      0.2,
+      0.85
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 1.9,
+      "cohesion": 0.3,
+      "polarization": 0.12
+    },
+    "structureAffinity": 0.55,
+    "habits": [
+      {
+        "type": "follow",
+        "chancePerMin": 0.7,
+        "durationSec": [
+          3,
+          8
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes — Salvelinus curilus",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=10749"
+      },
+      {
+        "title": "国立科学博物館 淡水魚データベース — オショロコマ",
+        "url": "https://www.kahaku.go.jp/research/db/zoology/uodas_freshdb/area/salmonidae/029.html"
+      },
+      {
+        "title": "大阪府立環境農林水産総合研究所 — オショロコマ",
+        "url": "https://www.knsk-osaka.jp/zukan/zukan_database/tansui/2750b34e3c47c34/4750b6fcf71d03d.html"
+      },
+      {
+        "title": "環境省 レッドリスト2020新旧対照表 p9",
+        "url": "https://www.env.go.jp/press/files/jp/114458.pdf"
+      },
+      {
+        "title": "日本生態学会第59回全国大会（2012年）講演要旨 P2-275J",
+        "url": "https://www.esj.ne.jp/meeting/abst/59/P2-275J.html"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 145,
+    "y": 260,
+    "width": 1263,
+    "height": 452
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "id": "fat-greenling",
+  "displayName": "アイナメ",
+  "realBodyLengthCm": 40,
+  "catalog": {
+    "scientificName": "Hexagrammos otakii",
+    "originRegionId": "northwest-pacific",
+    "originRegionName": "北西太平洋",
+    "origin": "北海道から南の日本各地の沿岸と、朝鮮半島南部、黄海、沿海州の沿岸に分布します。",
+    "temperament": "甲殻類、ゴカイの仲間、小魚などを食べる肉食魚です。本水槽では、岩場のまわりで1尾ずつ過ごします。",
+    "movement": "底の近くを泳ぎ、岩のくぼみや隙間のそばで止まって休みます。昼に活動するとも夜に活動するともいわれ、資料によって分かれます。",
+    "habitat": "沿岸の岩礁、岸壁、転石のまわりで、岩に砂が混じる場所にも見られます。本水槽では、オホーツク海や北日本の冷たい岩礁をイメージしています。",
+    "aliases": [
+      "fat greenling",
+      "アブラコ（地方名）",
+      "アブラメ（地方名）",
+      "ネウ（地方名）"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Perciformes",
+      "orderJa": "スズキ目",
+      "family": "Hexagrammidae",
+      "familyJa": "アイナメ科"
+    },
+    "adultSizeCm": 40,
+    "sizeNote": "全長40cm前後のものが多く、60cmに達する例も知られます。FishBase の最大記録は全長57cm、2.4kgです。",
+    "distribution": "北西太平洋の日本、朝鮮半島南部、黄海、沿海州の沿岸に分布します。水深4〜155mの記録がありますが、主に浅い岩礁で見られます。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2023,
+      "note": "カサゴ目に分類する資料もあります。"
+    },
+    "highlights": [
+      "体の両側に5本ずつ走る側線と、不規則な褐色のまだら模様。",
+      "繁殖期の雄は黄色から黄金色に変わり、複数の雌が産んだ卵塊を守ります。",
+      "岩礁や防波堤の隙間を隠れ場所に使います。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 1.8
+  },
+  "visual": {
+    "fallbackColor": "#8e7255"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.55,
+    "maxY": 0.92
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.28,
+      "burst": 1.2
+    },
+    "turnRateRadPerSec": 1.9,
+    "restFraction": 0.42,
+    "depthRange": [
+      0.25,
+      0.85
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2,
+      "cohesion": 0,
+      "polarization": 0.03
+    },
+    "structureAffinity": 0.7,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.2,
+        "durationSec": [
+          10,
+          35
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "新潟大学佐渡臨海実験所: アイナメ",
+        "url": "https://www.sc.niigata-u.ac.jp/sc/sadomarine/marinelife/ainame.html"
+      },
+      {
+        "title": "宮城県水産技術総合センター: 南三陸のさかな図鑑 アイナメ",
+        "url": "https://www.pref.miyagi.jp/soshiki/mtsc/ainame.html"
+      },
+      {
+        "title": "大阪府立環境農林水産総合研究所: アイナメ",
+        "url": "https://www.knsk-osaka.jp/zukan/zukan_database/osakawanikimono/385c4e95fd0b200/225c4eabeca8207.html"
+      },
+      {
+        "title": "FishBase: Hexagrammos otakii",
+        "url": "https://www.fishbase.se/summary/Hexagrammos-otakii.html"
+      },
+      {
+        "title": "Kwak, Baeck & Klumpp 2005: Comparative Feeding Ecology of Two Sympatric Greenling Species",
+        "url": "https://link.springer.com/article/10.1007/s10641-005-7429-1"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 134,
+    "y": 269,
+    "width": 1268,
+    "height": 469
+  }
+}

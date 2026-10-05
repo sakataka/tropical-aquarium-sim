@@ -1,0 +1,104 @@
+{
+  "id": "ocean-sunfish",
+  "displayName": "マンボウ",
+  "realBodyLengthCm": 150,
+  "swim": {
+    "tailBeatHz": 0.7,
+    "bodyWaveStart": 0.7,
+    "tailSweepRad": 0.18,
+    "verticalFlex": 0.008
+  },
+  "visual": {
+    "fallbackColor": "#8b9298"
+  },
+  "sourceBodyBounds": {
+    "x": 422,
+    "y": 79,
+    "width": 708,
+    "height": 857
+  },
+  "preferredZone": {
+    "minX": 0.1,
+    "maxX": 0.9,
+    "minY": 0.12,
+    "maxY": 0.75
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.14,
+      "burst": 0.4
+    },
+    "turnRateRadPerSec": 1.0,
+    "restFraction": 0.3,
+    "depthRange": [0.25, 0.85],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0,
+      "polarization": 0.02
+    },
+    "structureAffinity": 0.05,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Nakamura, Goto & Sato 2015: Ocean sunfish rewarm at the surface after deep excursions",
+        "url": "https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/1365-2656.12346"
+      },
+      {
+        "title": "海遊館：マンボウ",
+        "url": "https://www.kaiyukan.com/connect/encyclopedia/82.html"
+      },
+      {
+        "title": "Australian Museum: Ocean Sunfish, Mola mola",
+        "url": "https://australian.museum/learn/animals/fishes/ocean-sunfish-mola-mola/"
+      },
+      {
+        "title": "Fishes of Australia, D.J. Bray 2020: Mola mola",
+        "url": "https://fishesofaustralia.net.au/home/species/785"
+      },
+      {
+        "title": "Monterey Bay Aquarium: Ocean sunfish",
+        "url": "https://www.montereybayaquarium.org/animals-the-ocean/animals-a-to-z/ocean-sunfish"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Mola mola",
+    "originRegionId": "worldwide",
+    "originRegionName": "世界の海",
+    "origin": "世界の熱帯から温帯の海に広く分布します。日本では岩手県や高知県の沖の定置網にも入ります。",
+    "temperament": "単独で見かけることの多い、おとなしい大型魚です。野外でどのくらいの数で集まるのかは、よく分かっていません。",
+    "movement": "尾びれの代わりに、背びれと尻びれを左右同時に振って進みます。後ろの縁の舵びれで向きを変え、餌の時間には意外に素早く泳ぐこともあります。",
+    "habitat": "主に外洋に暮らし、ときどき沿岸にも現れます。岩や物陰に頼らない魚なので、広く開けた大水槽の中層から上を悠々と漂います。",
+    "aliases": [
+      "Ocean sunfish",
+      "Tetraodon mola"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Tetraodontiformes",
+      "orderJa": "フグ目",
+      "family": "Molidae",
+      "familyJa": "マンボウ科"
+    },
+    "adultSizeCm": 150,
+    "sizeNote": "岩手県で標識された7個体は全長105〜200cmでした。かつてはウシマンボウなど近縁種の記録が混じっていたため、典型的な成魚の大きさや最大の大きさは確定していません。",
+    "distribution": "世界の熱帯から温帯の海に分布し、主に外洋で暮らします。日本近海にも現れます。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "VU",
+      "note": "漁網による混獲や海洋のプラスチックごみが脅威として挙げられています。"
+    },
+    "highlights": [
+      "背びれと尻びれを同時に振って進み、舵びれで向きを変える。",
+      "日中に深いところへ潜ってクラゲの仲間などを食べ、表層に戻って冷えた体を温める。",
+      "小さな口で餌を吸い込んでは吐き出し、細かくしてから食べる。"
+    ]
+  }
+}

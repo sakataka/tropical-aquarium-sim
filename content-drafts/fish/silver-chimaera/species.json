@@ -1,0 +1,108 @@
+{
+  "id": "silver-chimaera",
+  "displayName": "ギンザメ",
+  "realBodyLengthCm": 70,
+  "swim": {
+    "tailBeatHz": 0.8,
+    "bodyWaveStart": 0.45,
+    "tailSweepRad": 0.25,
+    "verticalFlex": 0.01,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.66
+    }
+  },
+  "visual": {
+    "fallbackColor": "#a7a29b"
+  },
+  "sourceBodyBounds": {
+    "x": 90,
+    "y": 243,
+    "width": 1390,
+    "height": 524
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.5,
+    "maxY": 0.9
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.18,
+      "burst": 0.6
+    },
+    "turnRateRadPerSec": 1.4,
+    "restFraction": 0.25,
+    "depthRange": [
+      0.2,
+      0.85
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0,
+      "polarization": 0.03
+    },
+    "structureAffinity": 0.2,
+    "habits": [
+      {
+        "type": "bottomForage"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Finucci, Semba, Yamaguchi & Tanaka (2020), Chimaera phantasma — IUCN Red List assessment",
+        "url": "https://www.researchgate.net/publication/351120915_Chimaera_phantasma_The_IUCN_Red_List_of_Threatened_Species_2020_eT60187A68617625"
+      },
+      {
+        "title": "鴨川シーワールド (2019-03-11), 長期の飼育が難しい深海魚、ギンザメの展示を開始",
+        "url": "https://www.kamogawa-seaworld.jp/animal/aquarium_info/1092/"
+      },
+      {
+        "title": "Malagrino, Takemura & Mizue (1981), Studies on Holocephali II — reproduction of Chimaera phantasma",
+        "url": "https://cir.nii.ac.jp/crid/1050287297251771008?lang=en"
+      },
+      {
+        "title": "FishBase field guide — Chimaera phantasma",
+        "url": "https://www.fishbase.se/Fieldguide/FieldGuideSummary.php?c_code=156A&genusname=Chimaera&speciesname=phantasma"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Chimaera phantasma",
+    "originRegionId": "northwest-pacific",
+    "originRegionName": "北西太平洋",
+    "origin": "西太平洋のボルネオからフィリピン、台湾を経て日本まで分布します。最初に記載された個体は東京湾で採集されました。",
+    "temperament": "海底の小さな動物を食べます。背びれの棘には毒があると水族館で解説されています。群れ方はよく分かっていません。",
+    "movement": "大きな胸びれを羽ばたかせるように動かして泳ぎ、鞭のように細い尾を後ろへなびかせます。",
+    "habitat": "大陸棚から大陸斜面の上部の海底付近にすみ、水深20〜962mの記録があります。多くは500mより浅いところで見つかります。サメやエイと同じ軟骨魚類ですが、ギンザメ目という別のグループです。"
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Chimaeriformes",
+      "orderJa": "ギンザメ目",
+      "family": "Chimaeridae",
+      "familyJa": "ギンザメ科"
+    },
+    "adultSizeCm": 70,
+    "sizeNote": "典型的な成魚の大きさは確定しておらず、ここでの値は展示用の目安です。長崎沿岸の研究では、雄は体長約51cm、雌は約63cmで成熟するとされ、全長110cm以上の記録もあります。",
+    "distribution": "北西太平洋から中西部太平洋にかけて、ボルネオ、フィリピン、台湾、日本、ロシアなどの大陸棚から斜面上部に分布します。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "VU",
+      "assessedYear": 2019,
+      "note": "漁業の影響で個体数が減っていると推定されています。"
+    },
+    "highlights": [
+      "大きな胸びれを羽ばたかせるように動かして泳ぐ。",
+      "大きな目と銀色の体を持ち、細い尾が鞭のように長く伸びる。",
+      "卵を一つずつ殻に包み、冬を中心に続けて産む。"
+    ]
+  }
+}

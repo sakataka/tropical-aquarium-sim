@@ -1,0 +1,129 @@
+{
+  "id": "kanehira-bitterling",
+  "displayName": "カネヒラ",
+  "realBodyLengthCm": 12,
+  "catalog": {
+    "scientificName": "Acheilognathus rhombeus",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "琵琶湖・淀川水系より西の本州、九州北西部と、朝鮮半島西岸に分布します。宮城県や霞ヶ浦周辺には持ち込まれた集団がいます。",
+    "temperament": "縄張り意識が強く、水槽ではほかの魚を追い回すことがあると解説されています。ここでは秋の婚姻色の雄を展示しています。",
+    "movement": "体高が高く、左右に平たい体で泳ぎます。成魚はオオカナダモなどの水草を積極的に食べます。",
+    "habitat": "流れの緩い川や水路、池沼にすみ、淡水の二枚貝に卵を産みます。秋に産卵するタナゴで、琵琶湖では9月中旬から11月下旬が産卵期です。",
+    "aliases": [
+      "Kanehira bitterling",
+      "Kanehira",
+      "カメンタ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cypriniformes",
+      "orderJa": "コイ目",
+      "family": "Acheilognathidae",
+      "familyJa": "タナゴ科"
+    },
+    "adultSizeCm": 12,
+    "sizeNote": "全長12cmほどです。最大で16cmほどになるとする解説もあります。",
+    "distribution": "琵琶湖・淀川水系より西の本州、九州北西部と、朝鮮半島西岸に分布します。宮城県や茨城県の霞ヶ浦周辺には移入されています。",
+    "water": {
+      "salinity": "freshwater",
+      "temperatureC": [
+        3.3,
+        30.2
+      ]
+    },
+    "keeping": "home",
+    "conservation": {
+      "note": "IUCN と環境省の現在の評価は確認できていません。福岡県レッドデータブック（2014）では準絶滅危惧で、川や水路の改変と産卵に使う二枚貝の減少が心配されています。"
+    },
+    "highlights": [
+      "繁殖期の雄は背が青緑に光り、頭の横から腹、背びれと尻びれの縁が淡い桃色になります。",
+      "繁殖期の雄の口先には追星が出ます。",
+      "縄張り意識が強く、ほかの魚を追いかけることがあります。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.0,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.55
+    }
+  },
+  "visual": {
+    "fallbackColor": "#a48296"
+  },
+  "sourceBodyBounds": {
+    "x": 236,
+    "y": 193,
+    "width": 1110,
+    "height": 600
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.2,
+    "maxY": 0.75
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.4,
+      "burst": 1.8
+    },
+    "turnRateRadPerSec": 2.1,
+    "restFraction": 0.18,
+    "depthRange": [
+      0.15,
+      0.8
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 2.6,
+      "cohesion": 0.3,
+      "polarization": 0.15
+    },
+    "structureAffinity": 0.45,
+    "habits": [
+      {
+        "type": "follow",
+        "chancePerMin": 1.0,
+        "durationSec": [
+          1.5,
+          4
+        ]
+      },
+      {
+        "type": "grazing",
+        "chancePerMin": 1.5,
+        "durationSec": [
+          3,
+          8
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "国立科学博物館 日本の淡水魚類：カネヒラ",
+        "url": "https://www.kahaku.go.jp/research/db/zoology/uodas_freshdb/area/cyprinnidae/acheilognathinae/acheilognathus/034.html"
+      },
+      {
+        "title": "国立環境研究所 侵入生物DB：カネヒラ",
+        "url": "https://www.nies.go.jp/biodiversity/invasive/DB/detail/50470.html"
+      },
+      {
+        "title": "岡山市環境学習センターめだかの学校：カネヒラ",
+        "url": "https://medakanogakko.jp/dictionary/kanehira/"
+      },
+      {
+        "title": "Ki, Kho & Lee (2019): Annual Reproductive Cycle of Acheilognathus rhombeus, in Korea",
+        "url": "https://www.ksdb.org/download/download_pdf?doi=10.12717/DR.2019.23.4.323"
+      },
+      {
+        "title": "福岡県レッドデータブック2014：カネヒラ",
+        "url": "https://biodiversity.pref.fukuoka.lg.jp/rdb/rdbs/detail/201400056"
+      }
+    ]
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "id": "okhotsk-atka-mackerel",
+  "displayName": "ホッケ",
+  "realBodyLengthCm": 30,
+  "catalog": {
+    "scientificName": "Pleurogrammus azonus",
+    "originRegionId": "northwest-pacific",
+    "originRegionName": "北西太平洋",
+    "origin": "オホーツク海南部と北千島沖から、日本海、黄海までの北西太平洋に分布します。キタノホッケ（シマホッケ）とは別の種です。",
+    "temperament": "繁殖期には、雄が岩の間の卵塊のまわりに縄張りを持ち、隣の雄や近づく魚を追い払います。本水槽では、ゆるい群れで泳ぎます。",
+    "movement": "成長すると岩礁域に落ち着きます。本水槽では、岩礁の上の開けた水を群れで行き来します。",
+    "habitat": "沿岸の岩礁域。産卵は石の多い斜面で行われます。本水槽では、オホーツク海や北日本の冷たい岩礁をイメージしています。",
+    "aliases": [
+      "Arabesque greenling",
+      "Okhotsk atka mackerel"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Perciformes",
+      "orderJa": "スズキ目",
+      "family": "Hexagrammidae",
+      "familyJa": "アイナメ科"
+    },
+    "adultSizeCm": 30,
+    "sizeNote": "体長（体の先端から尾びれの付け根まで）。道北の群れでは満3歳で28〜32cm、大きなものは60cmほどになるとされます。成魚一般の代表的な全長は確かめられていません。",
+    "distribution": "北西太平洋のオホーツク海南部、北千島沖から日本海、黄海に分布し、日本、ロシア、朝鮮半島、中国の沿岸で見られます。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "NE",
+      "note": "IUCN では評価されていません。水産庁の海洋生物の希少性評価（2017年）では、ランク外とされました。カサゴ目に分類する資料もあります。"
+    },
+    "highlights": [
+      "深く二つに分かれた尾びれと、背中の褐色のまだら模様。",
+      "繁殖期の雄は岩の間の卵塊を守り、口で水を吸ったり送ったりして世話をします。",
+      "ロシアの観察では、昼に求愛してつがいになり、産卵は日没後に行われました。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.0
+  },
+  "visual": {
+    "fallbackColor": "#8c887a"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.2,
+    "maxY": 0.75
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "steady",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.42,
+      "burst": 1.5
+    },
+    "turnRateRadPerSec": 2.0,
+    "restFraction": 0.14,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.2,
+      "cohesion": 0.55,
+      "polarization": 0.34
+    },
+    "structureAffinity": 0.3,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Pleurogrammus azonus (updated 21 September 2026)",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=42862"
+      },
+      {
+        "title": "北海道立総合研究機構：ホッケの分類、形態、生態",
+        "url": "https://www.hro.or.jp/fisheries/research/wakkanai/surveys-knowledge-of-fish/inpvt400000007sg/inpvt40000000878.html"
+      },
+      {
+        "title": "Munehara & Markevich 2003. Spawning Behavior of Japan Sea Greenling",
+        "url": "https://eprints.lib.hokudai.ac.jp/dspace/bitstream/2115/21985/1/54(3)_P67-72.pdf"
+      },
+      {
+        "title": "稚内市ノシャップ寒流水族館のみどころ",
+        "url": "https://www.city.wakkanai.hokkaido.jp/suizokukan/gaiyo/midokoro.html"
+      },
+      {
+        "title": "水産庁 2017 海洋生物の希少性評価：ホッケ",
+        "url": "https://www.jfa.maff.go.jp/j/sigen/attach/pdf/20170321redlist-39.pdf"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 130,
+    "y": 294,
+    "width": 1294,
+    "height": 423
+  }
+}

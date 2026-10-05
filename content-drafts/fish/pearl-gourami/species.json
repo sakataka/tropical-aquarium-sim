@@ -1,0 +1,111 @@
+{
+  "id": "pearl-gourami",
+  "displayName": "パールグラミー",
+  "realBodyLengthCm": 10,
+  "swim": {
+    "tailBeatHz": 1.7,
+    "tailSweepRad": 0.38
+  },
+  "visual": {
+    "fallbackColor": "#a8875f"
+  },
+  "sourceBodyBounds": {
+    "x": 222,
+    "y": 187,
+    "width": 1169,
+    "height": 687
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.12,
+    "maxY": 0.6
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.22,
+      "burst": 1.3
+    },
+    "turnRateRadPerSec": 1.6,
+    "restFraction": 0.35,
+    "depthRange": [
+      0.2,
+      0.85
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 2.8,
+      "cohesion": 0.22,
+      "polarization": 0.1
+    },
+    "structureAffinity": 0.65,
+    "habits": [
+      {
+        "type": "airBreathing",
+        "breathsPerHour": [
+          4,
+          10
+        ],
+        "style": "rise"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes — leerii 19476",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=19476"
+      },
+      {
+        "title": "Zoo Frankfurt — Pearl gourami",
+        "url": "https://www.zoo-frankfurt.de/en/tiere-von-a-z-detailansicht/animal/tiere-von-a-z-detailansicht/fadenfisch-mosaik"
+      },
+      {
+        "title": "OATA — Gouramis and paradise fish care",
+        "url": "https://ornamentalfish.org/what-we-do/advice-information/care-sheets/caresheets-tropical-freshwater-fish/how-to-look-after-gouramis-and-paradise-fish/"
+      },
+      {
+        "title": "FishBase — Trichopodus leerii",
+        "url": "https://www.fishbase.se/summary/Trichopodus-leerii.html"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Trichopodus leerii",
+    "originRegionId": "southeast-asia",
+    "originRegionName": "東南アジア",
+    "origin": "東南アジアのタイ、マレー半島、スマトラ島とボルネオ島に分布します。模式産地はスマトラ島のパレンバンです。この展示は成魚の雄です。",
+    "habitat": "植物が茂って日陰の多い、浅い緩流や止水にすみ、酸性の低地湿地からも知られます。この展示では、浮き草とクリプトコリネのある泥炭湿地の池を泳ぎます。",
+    "temperament": "小さな群れで比較的穏やかに暮らしますが、臆病で用心深い面もあります。繁殖期の雄は泡巣のまわりを縄張りとして守ります。",
+    "movement": "上層から中層をゆっくり進み、糸のように伸びた腹びれで周りを探ります。ときどき水面へ上がって空気を吸います。",
+    "aliases": [
+      "Pearl gourami",
+      "Trichogaster leerii",
+      "Trichopodus leeri"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Anabantiformes",
+      "orderJa": "キノボリウオ目",
+      "family": "Osphronemidae",
+      "familyJa": "オスフロネムス科"
+    },
+    "adultSizeCm": 10,
+    "sizeNote": "記録上の最大は全長12cmです（雄か性別不明の個体）。成魚の雄のふつうの大きさは確かめられていないため、展示では全長10cm前後を想定しています。",
+    "distribution": "タイ、マレー半島、スマトラ島、ボルネオ島に分布します。フィリピンには人の手で持ち込まれています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "NT",
+      "assessedYear": 2019
+    },
+    "highlights": [
+      "真珠のような細かい斑点が体とひれを覆い、雄は体の下側が赤く色づきます。",
+      "迷路器官を使い、水面で空気を吸って呼吸します。",
+      "繁殖期の雄は水面に泡巣を作り、卵を口で運んで巣に置きます。"
+    ]
+  }
+}

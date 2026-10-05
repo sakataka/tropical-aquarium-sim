@@ -1,0 +1,119 @@
+{
+  "id": "sailfin-molly",
+  "displayName": "セイルフィンモーリー",
+  "realBodyLengthCm": 7,
+  "swim": {
+    "tailBeatHz": 2.6,
+    "tailSweepRad": 0.48,
+    "mouthAnchor": {
+      "x": 0.005,
+      "y": 0.61
+    }
+  },
+  "visual": {
+    "fallbackColor": "#b3ab86"
+  },
+  "sourceBodyBounds": {
+    "x": 197,
+    "y": 174,
+    "width": 1205,
+    "height": 621
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.06,
+    "maxY": 0.48
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "steady",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.5,
+      "burst": 2
+    },
+    "turnRateRadPerSec": 2.4,
+    "restFraction": 0.14,
+    "depthRange": [0.1, 0.78],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 2,
+      "cohesion": 0.42,
+      "polarization": 0.2
+    },
+    "structureAffinity": 0.45,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 1.8,
+        "durationSec": [2, 5]
+      },
+      {
+        "type": "follow",
+        "chancePerMin": 0.6,
+        "durationSec": [3, 8]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Florida Museum: Florida Fishes Gallery, Sailfin Molly",
+        "url": "https://www.floridamuseum.ufl.edu/discover-fish/florida-fishes-gallery/sailfin-molly/"
+      },
+      {
+        "title": "Robert H. Robins, Florida Museum: Sailfin Molly species profile",
+        "url": "https://www.floridamuseum.ufl.edu/discover-fish/species-profiles/sailfin-molly/"
+      },
+      {
+        "title": "FishBase: Poecilia latipinna",
+        "url": "https://www.fishbase.se/summary/3226"
+      },
+      {
+        "title": "Hogan 2016, Clemson University thesis: Developmental Plasticity in Response to Salinity",
+        "url": "https://open.clemson.edu/all_theses/2467/"
+      },
+      {
+        "title": "Timmerman & Chapman 2004: Behavioral and Physiological Compensation for Chronic Hypoxia",
+        "url": "https://www.journals.uchicago.edu/doi/10.1086/421754"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Poecilia latipinna",
+    "originRegionId": "north-america",
+    "originRegionName": "北米",
+    "origin": "米国ノースカロライナ州のケープフィア川水系から、メキシコのベラクルス州まで、メキシコ湾と大西洋の沿岸に分布します。",
+    "habitat": "湖や池、湿地、小川の淀みなど流れの穏やかな水域から、汽水や沿岸の海水まですみます。浮き草の下や水中の構造物の近くに集まります。",
+    "temperament": "温和で、小さな集まりから大きな集まりまでつくります。大きな雄は帆のような背びれを広げて雌に求愛します。",
+    "movement": "浅い岸辺の水面近くをゆったり泳ぎ、水草や石の表面の藻をついばみます。",
+    "aliases": [
+      "Sailfin molly",
+      "Mollienesia latipinna",
+      "モーリー"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cyprinodontiformes",
+      "orderJa": "カダヤシ目",
+      "family": "Poeciliidae",
+      "familyJa": "カダヤシ科"
+    },
+    "adultSizeCm": 5,
+    "sizeNote": "1歳の雄は標準体長1.5〜5.1cmで、雄の成熟サイズや背びれの大きさは集団や環境によって変わります。報告されている最大は全長15cmです。",
+    "distribution": "米国南東部（ノースカロライナ州からフロリダ州）からメキシコのベラクルス州までの沿岸域。自然分布の外にも各地で移入・定着しています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2019,
+      "note": "淡水から汽水、沿岸の海水まですむ広塩性の魚です。流通するモーリーには、P. velifera など他種との雑種も含まれます。"
+    },
+    "highlights": [
+      "大きな雄は、橙色に縁どられた帆のような背びれを広げて求愛します。",
+      "藻や植物質を主に食べ、水草や石の表面をついばみます。",
+      "水中の酸素が少ないと、酸素の多い水面のすぐ下の水を使って呼吸します。"
+    ]
+  }
+}

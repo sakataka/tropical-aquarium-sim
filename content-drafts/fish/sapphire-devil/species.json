@@ -1,0 +1,101 @@
+{
+  "id": "sapphire-devil",
+  "displayName": "ルリスズメダイ",
+  "realBodyLengthCm": 6,
+  "swim": {
+    "tailBeatHz": 3.0
+  },
+  "visual": {
+    "fallbackColor": "#2d6fe6"
+  },
+  "sourceBodyBounds": {
+    "x": 280,
+    "y": 265,
+    "width": 1038,
+    "height": 495
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.55,
+    "maxY": 0.9
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.5,
+      "burst": 2.6
+    },
+    "turnRateRadPerSec": 3.0,
+    "restFraction": 0.2,
+    "depthRange": [
+      0.25,
+      0.8
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 1.8,
+      "cohesion": 0.4,
+      "polarization": 0.12
+    },
+    "structureAffinity": 0.7,
+    "habits": [],
+    "sources": [
+      {
+        "title": "新潟市水族館マリンピア日本海：ルリスズメダイ",
+        "url": "https://www.marinepia.or.jp/picturebook/fish/entry-11966.html"
+      },
+      {
+        "title": "男鹿水族館GAO：ルリスズメダイ",
+        "url": "https://www.gao-aqua.jp/animal/30302.html"
+      },
+      {
+        "title": "樋口・久木田・本村2022：九州から初めて記録されたルリスズメダイ",
+        "url": "https://www.museum.kagoshima-u.ac.jp/ichthy/INHFJ_2022_022_005.pdf"
+      },
+      {
+        "title": "Dianne J. Bray, Fishes of Australia: Chrysiptera cyanea",
+        "url": "https://fishesofaustralia.net.au/home/species/334"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Chrysiptera cyanea",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "東インド洋から西太平洋。バリ島からカロリン諸島・ソロモン諸島まで、北は九州、南はオーストラリア北部やニューカレドニアまで分布します。",
+    "temperament": "雄の縄張りに数尾の雌が集まる群れで暮らします。この展示の個体は雌型で、雌はかつて別種とされ「コバルトスズメ」と呼ばれていました。",
+    "movement": "サンゴ礁の底近くで、サンゴや岩のそばを小刻みに泳ぎ回ります。藻類や、水中を漂う小さな生き物を食べます。",
+    "habitat": "浅いサンゴ礁や岩礁、潮だまりに暮らします。外海から守られた礁湖や浅い礁原の、サンゴやがれきのまわりを好みます。",
+    "aliases": [
+      "Sapphire devil",
+      "Blue devil damselfish",
+      "コバルトスズメ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Perciformes",
+      "orderJa": "スズキ目",
+      "family": "Pomacentridae",
+      "familyJa": "スズメダイ科"
+    },
+    "adultSizeCm": 6,
+    "sizeNote": "水族館の解説では全長6cmほどとされ、最大で全長8.5cmの記録があります。雌は尾びれが透明で、背びれの後端の付け根に小さな黒い点があります。",
+    "distribution": "東インド洋・西太平洋の浅い海。日本では2019年に鹿児島県で雄が採集され、九州からの初めての記録として報告されました。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2021
+    },
+    "highlights": [
+      "鮮やかな青い体と、透明な尾びれの対比が目立ちます。",
+      "背びれの後端の付け根にある小さな黒い点が、雌の目印です。",
+      "サンゴや岩の近くの底層で、小さな群れをつくって暮らします。"
+    ]
+  }
+}

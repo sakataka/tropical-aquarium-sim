@@ -1,0 +1,110 @@
+{
+  "id": "green-swordtail",
+  "displayName": "ソードテール",
+  "realBodyLengthCm": 12,
+  "swim": {
+    "tailBeatHz": 2.8,
+    "tailSweepRad": 0.45
+  },
+  "visual": {
+    "fallbackColor": "#8f994e"
+  },
+  "sourceBodyBounds": {
+    "x": 142,
+    "y": 276,
+    "width": 1290,
+    "height": 416
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.18,
+    "maxY": 0.7
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.55,
+      "burst": 2.4
+    },
+    "turnRateRadPerSec": 2.7,
+    "restFraction": 0.08,
+    "depthRange": [0.12, 0.82],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 2.2,
+      "cohesion": 0.32,
+      "polarization": 0.18
+    },
+    "structureAffinity": 0.3,
+    "habits": [
+      {
+        "type": "follow",
+        "chancePerMin": 1,
+        "durationSec": [2, 6]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes — Xiphophorus hellerii",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=13936"
+      },
+      {
+        "title": "FishBase — Xiphophorus hellerii",
+        "url": "https://www.fishbase.se/summary/Xiphophorus-hellerii.html"
+      },
+      {
+        "title": "OATA — How to look after platies and swordtails",
+        "url": "https://ornamentalfish.org/what-we-do/advice-information/care-sheets/caresheets-tropical-freshwater-fish/how-to-look-after-platies-and-swordtails/"
+      },
+      {
+        "title": "Tamaru et al. (2001) — Manual for Commercial Production of Swordtail, CTSA 128",
+        "url": "https://repository.library.noaa.gov/view/noaa/35529/noaa_35529_DS1.pdf"
+      },
+      {
+        "title": "FishBase Field Guide — Xiphophorus hellerii",
+        "url": "https://www.fishbase.se/Fieldguide/FieldGuideSummary.php?c_code=710&genusname=Xiphophorus&speciesname=hellerii"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Xiphophorus hellerii",
+    "originRegionId": "central-america",
+    "originRegionName": "中央アメリカ",
+    "origin": "メキシコのベラクルス州からホンジュラス北西部まで、大西洋側の川に分布します。模式産地はメキシコのオリサバです。",
+    "habitat": "水草の多い、流れの速い川や小川を主にすみかとし、温泉の流れや池でも見られます。この展示では、水草の茂る明るい中米の小川を泳ぎます。",
+    "temperament": "活発な魚で、雄どうしは争うことがあります。大きな個体は臆病な魚を追い回すこともあります。決まったつがいはつくりません。",
+    "movement": "開けた中層を勢いよく泳ぎ回ります。雄はほかの個体のあとを追って泳ぐことがよくあります。",
+    "aliases": [
+      "Green swordtail",
+      "グリーンソードテール",
+      "Xiphophorus helleri"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cyprinodontiformes",
+      "orderJa": "カダヤシ目",
+      "family": "Poeciliidae",
+      "familyJa": "カダヤシ科"
+    },
+    "adultSizeCm": 14,
+    "sizeNote": "雄（または性別不明）の最大は全長14cm、雌の最大は全長16cmです。ふつうの成魚の大きさは確かめられていません。雄の剣を全長に含めるかどうかは資料によって違います。",
+    "distribution": "メキシコ、ベリーズ、グアテマラ、ホンジュラスの大西洋側。観賞魚として世界各地に持ち込まれ、ハワイのオアフ島などに移入しています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2018,
+      "note": "汽水域での記録もあります。オアフ島では、移入した本種と在来のイトトンボの減少との関わりが指摘されています。"
+    },
+    "highlights": [
+      "雄の尾びれは、下側の鰭条が長い剣のように伸びます。",
+      "体内で受精し、雌は稚魚を産みます。雄の臀びれは交尾のための器官に変わっています。",
+      "緑がかった体に、赤褐色の縦帯が1本走ります。帯や剣の色には産地による違いがあります。"
+    ]
+  }
+}

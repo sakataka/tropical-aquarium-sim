@@ -1,0 +1,106 @@
+{
+  "id": "silver-arowana",
+  "displayName": "シルバーアロワナ",
+  "realBodyLengthCm": 75,
+  "catalog": {
+    "scientificName": "Osteoglossum bicirrhosum",
+    "originRegionId": "south-america",
+    "originRegionName": "南米",
+    "origin": "南米のアマゾン水系と、ルプヌニ川、オヤポク川に分布します。ブラジル、ペルー、コロンビアなどの国にまたがります。",
+    "temperament": "水族館では比較的穏やかで、ほかの大型魚と一緒に展示されることが多い魚です。ただし狭い所では同種を攻撃することがあります。",
+    "movement": "水面近くを、長い背びれと尻びれをなびかせてゆっくり進みます。倒木に沿って身を隠して獲物に近づき、水上の虫に跳びつくこともあります。",
+    "habitat": "アマゾンの氾濫原に暮らし、増水期には水に浸かった森に入ります。本水槽では、根や枝が垂れる熱帯の川の、開けた上層を泳ぎます。",
+    "aliases": [
+      "アロワナ",
+      "silver arowana",
+      "Arawana"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Osteoglossiformes",
+      "orderJa": "アロワナ目",
+      "family": "Osteoglossidae",
+      "familyJa": "アロワナ科"
+    },
+    "adultSizeCm": 90,
+    "sizeNote": "FishBase の最大は全長90cmで、動物園の解説では1mを超えることがあるとされます。典型的な大きさの統計はありません。",
+    "distribution": "アマゾン水系、ルプヌニ川、オヤポク川に分布します。香港とフィリピンには持ち込まれた記録があります。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2020,
+      "note": "ペルーでは、観賞用の幼魚をとる際に子を守る雄が殺されることが、保全上の懸念とされました（2006年の調査）。"
+    },
+    "highlights": [
+      "大きな銀色の鱗、上向きの口、下あごの2本のひげが目立ちます。",
+      "水面近くの獲物を下から狙い、水上の虫に跳びつくこともあります。",
+      "雄は卵や仔魚を口の中で守ります。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 1.0
+  },
+  "visual": {
+    "fallbackColor": "#a6a6a4"
+  },
+  "sourceBodyBounds": {
+    "x": 80,
+    "y": 346,
+    "width": 1383,
+    "height": 323
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.05,
+    "maxY": 0.32
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.22,
+      "burst": 0.75
+    },
+    "turnRateRadPerSec": 1.3,
+    "restFraction": 0.15,
+    "depthRange": [
+      0.15,
+      0.8
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 3,
+      "cohesion": 0,
+      "polarization": 0.04
+    },
+    "structureAffinity": 0.35,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Smithsonian's National Zoo — Silver arowana",
+        "url": "https://nationalzoo.si.edu/animals/silver-arowana"
+      },
+      {
+        "title": "鳥羽水族館 生きもの図鑑 — シルバーアロワナ",
+        "url": "https://aquarium.co.jp/picturebook/osteoglossum-bicirrhosum.html"
+      },
+      {
+        "title": "DMMかりゆし水族館 いきもの図鑑 — シルバーアロワナ",
+        "url": "https://kariyushi-aquarium.com/animals/lists/?animals_category=types&id=31&page=4"
+      },
+      {
+        "title": "Seriously Fish — Osteoglossum bicirrhosum",
+        "url": "https://www.seriouslyfish.com/species/osteoglossum-bicirrhosum"
+      },
+      {
+        "title": "Moreau & Coomes 2006 — Potential threat of the international aquarium fish trade to silver arawana",
+        "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/0C97A1696C418182FC3EDFA0D4BB39D8/S0030605306000603a.pdf/potential_threat_of_the_international_aquarium_fish_trade_to_silver_arawana_osteoglossum_bicirrhosum_in_the_peruvian_amazon.pdf"
+      }
+    ]
+  }
+}

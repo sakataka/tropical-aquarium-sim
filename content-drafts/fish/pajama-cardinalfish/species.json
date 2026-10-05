@@ -1,0 +1,113 @@
+{
+  "id": "pajama-cardinalfish",
+  "displayName": "マンジュウイシモチ",
+  "realBodyLengthCm": 7,
+  "swim": {
+    "tailBeatHz": 2.2
+  },
+  "visual": {
+    "fallbackColor": "#c9b98a"
+  },
+  "sourceBodyBounds": {
+    "x": 267,
+    "y": 163,
+    "width": 1086,
+    "height": 665
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.4,
+    "maxY": 0.82
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.25,
+      "burst": 1.2
+    },
+    "turnRateRadPerSec": 2.5,
+    "restFraction": 0.45,
+    "depthRange": [
+      0.3,
+      0.85
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.2,
+      "cohesion": 0.5,
+      "polarization": 0.25
+    },
+    "structureAffinity": 0.85,
+    "habits": [
+      {
+        "type": "hideByDay",
+        "durationSec": [
+          40,
+          120
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "マリンピア日本海：マンジュウイシモチ",
+        "url": "https://www.marinepia.or.jp/picturebook/fish/entry-11866.html"
+      },
+      {
+        "title": "Oregon Coast Aquarium: Pajama Cardinalfish",
+        "url": "https://aquarium.org/animals/pajama-cardinalfish/"
+      },
+      {
+        "title": "Rueger et al. 2024: Strength of Sexual Selection and Sex Roles Vary between Social Groups",
+        "url": "https://eprints.whiterose.ac.uk/id/eprint/221858/1/731422.pdf"
+      },
+      {
+        "title": "Fishes of Australia, D.J. Bray 2019: Sphaeramia nematoptera",
+        "url": "https://fishesofaustralia.net.au/home/species/4237"
+      },
+      {
+        "title": "Reef Life Survey: Sphaeramia nematoptera",
+        "url": "https://reeflife.org/species/sphaeramia-nematoptera/"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Sphaeramia nematoptera",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "東インド洋から西太平洋。マレーシアやジャワからカロリン諸島・フィジーまで分布し、日本では八重山諸島に見られます。",
+    "temperament": "単独か、数尾のゆるい群れでサンゴのそばに集まります。群れの中にはペアがあり、追いかけたりかみついたりすることもあります。",
+    "movement": "昼は枝状サンゴの近くで、ほとんど動かずに浮かんでいます。夜になると散らばり、底近くで小さなエビやカニを探して食べます。",
+    "habitat": "波当たりの弱い沿岸の礁斜面や、サンゴの多い礁湖に暮らします。昼は枝状サンゴの中やそのすぐそばにとどまります。",
+    "aliases": [
+      "Pajama cardinalfish",
+      "Coral cardinalfish",
+      "パジャマカーディナル"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Perciformes",
+      "orderJa": "スズキ目",
+      "family": "Apogonidae",
+      "familyJa": "テンジクダイ科"
+    },
+    "adultSizeCm": 7,
+    "sizeNote": "典型的な成魚の大きさは分かっていません。最大で全長8.5cmの記録があり、飼育下では全長5.3cmほどで初めて成熟した雌が報告されています。野外では大きな雌ほど背びれの糸状の部分が長い傾向があります。",
+    "distribution": "東インド洋・西太平洋のマレーシア、ジャワからカロリン諸島、フィジーまで。南はオーストラリア北部とニューカレドニア、日本では八重山諸島に分布します。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2021
+    },
+    "highlights": [
+      "黄色っぽい頭、太い黒褐色の帯、体の後半の赤い水玉模様が目立ちます。",
+      "昼は枝状サンゴのそばで静かに浮かび、夜になると餌を探しに出ます。",
+      "雄が卵を口の中に入れて、ふ化するまで守ります。"
+    ]
+  }
+}

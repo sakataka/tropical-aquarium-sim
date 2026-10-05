@@ -1,0 +1,131 @@
+{
+  "id": "japanese-fluvial-sculpin",
+  "displayName": "カジカ",
+  "realBodyLengthCm": 10,
+  "catalog": {
+    "scientificName": "Cottus pollux",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "本州、四国、九州の一部の川にすむ日本固有のカジカです。一生を川で過ごす大卵型を指し、かつて同じカジカとされた小卵型や中卵型とは区別されます。",
+    "temperament": "昼や休むときは石の下に入り、決まった物陰の近くで暮らします。繁殖期の雄は石の下に産卵場所をつくり、卵がかえるまで守ります。",
+    "movement": "大きな胸びれを広げて川底に留まり、ときどき短く泳いで場所を移ります。夜は石の下から開けた砂地へ出て、水生昆虫などを捕らえます。",
+    "habitat": "河川上流域の礫底。本水槽では、源流の丸石の下にできた隙間を住みかにしています。",
+    "aliases": [
+      "Japanese fluvial sculpin",
+      "カジカ大卵型",
+      "ゴリ（地方名）"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Perciformes",
+      "orderJa": "スズキ目",
+      "family": "Cottidae",
+      "familyJa": "カジカ科"
+    },
+    "adultSizeCm": 10,
+    "sizeNote": "全長。飼育下で成熟を確かめた2歳魚は、雄8.8〜11.5cm、雌7.4〜9.3cmで、雄のほうが大きめでした。野外の典型的な大きさや最大値は確かめられていません。",
+    "distribution": "本州、四国、九州の一部に分布する日本固有の大卵型です。",
+    "water": {
+      "salinity": "freshwater",
+      "pH": [
+        7.3,
+        7.6
+      ]
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "世界の IUCN 区分は、評価の対象範囲が大卵型と一致するか確かめられていません。環境省レッドリスト2020ではカジカ大卵型が準絶滅危惧（NT）です。カサゴ目に分類する資料もあります。"
+    },
+    "highlights": [
+      "鱗のない体と、扇のように大きな胸びれで川底に留まります。",
+      "昼は石の下で休み、夜に開けた砂地へ出て餌をとります。",
+      "繁殖期の雄は石の下に産卵場所をつくり、卵を守ります。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.6,
+    "tailSweepRad": 0.42
+  },
+  "visual": {
+    "fallbackColor": "#7f6d57"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.8,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.2,
+      "burst": 1.0
+    },
+    "turnRateRadPerSec": 2.1,
+    "restFraction": 0.6,
+    "depthRange": [
+      0.3,
+      0.9
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.2,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.85,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 2.2,
+        "durationSec": [
+          12,
+          45
+        ]
+      },
+      {
+        "type": "hideByDay",
+        "durationSec": [
+          60,
+          240
+        ]
+      },
+      {
+        "type": "homeShelter",
+        "kind": "cave",
+        "rangeBodyLengths": 5,
+        "visitChancePerMin": 0.8,
+        "visitDurationSec": [
+          15,
+          60
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "大阪府立環境農林水産総合研究所：カジカ（大卵型）",
+        "url": "https://www.knsk-osaka.jp/zukan/zukan_database/tansui/2150b2c26b1c855/3950b5b58b4c629.html"
+      },
+      {
+        "title": "Takeshita et al. (2017): Water temperature, feeding and growth of Cottus pollux LE",
+        "url": "https://www.jstage.jst.go.jp/article/aquaculturesci/65/1/65_51/_pdf/-char/ja"
+      },
+      {
+        "title": "日本環境アセスメント協会 (2006)：HSIモデル カジカ大卵型",
+        "url": "https://jsia2002.sakura.ne.jp/HSIHP/file/kajika.pdf"
+      },
+      {
+        "title": "環境省レッドリスト2020 別添資料3",
+        "url": "https://www.env.go.jp/press/files/jp/114457.pdf"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 132,
+    "y": 282,
+    "width": 1320,
+    "height": 469
+  }
+}

@@ -1,0 +1,150 @@
+{
+  "id": "japanese-crayfish",
+  "displayName": "ニホンザリガニ",
+  "realBodyLengthCm": 5,
+  "catalog": {
+    "scientificName": "Cambaroides japonicus",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "北海道と東北地方北部にすむ日本固有のザリガニです。岩手と秋田の個体群は、人が持ち込んだ可能性も指摘されています。",
+    "temperament": "夜に活動し、昼は巣穴や物陰に入ります。本水槽では、石の下の隙間を住みかにして、その周りを歩き回ります。",
+    "movement": "砂礫底や石の上を脚で歩き、川底にたまった落ち葉や枝をはさみでつまみます。魚のように尾を振って泳ぎ続けることはありません。",
+    "habitat": "水温が低く、水のきれいな小川や湖沼。川岸に横向きの巣穴を掘ります。北海道の調査河川では、季節ごとの平均水温が冬2.6℃、夏17.2℃でした。本水槽では、源流の石の下の隙間を隠れ場所にしています。",
+    "aliases": [
+      "Japanese crayfish",
+      "ザリガニ（在来種）"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Decapoda",
+      "orderJa": "十脚目",
+      "family": "Cambaroididae",
+      "familyJa": "アジアザリガニ科"
+    },
+    "adultSizeCm": 5,
+    "sizeNote": "成体の代表的な全長は確かめられておらず、ここでは約5cmとして表示しています。最大で全長約8cmとされます。",
+    "distribution": "北海道と東北地方北部に分布する日本固有種です。本州の一部の個体群は、自然分布かどうかに議論があります。",
+    "water": {
+      "salinity": "freshwater",
+      "temperatureC": [
+        2.6,
+        17.2
+      ]
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "世界の IUCN 区分は確かめられていません。環境省レッドリストでは絶滅危惧II類（VU）で、2023年1月から特定第二種国内希少野生動植物種に指定されています。"
+    },
+    "highlights": [
+      "川岸に掘る巣穴は、水面近くに2つの出入口を持つ通路になっていることがあります。",
+      "夜に活動し、昼は巣穴や物陰に入って過ごします。",
+      "北海道の川では、川底で腐りかけた落ち葉や枝を食べていました。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "crustacean",
+    "headStart": 0.24,
+    "tailBeatHz": 0.6,
+    "bodyWaveStart": 0.85,
+    "tailSweepRad": 0,
+    "verticalFlex": 0,
+    "footAnchor": {
+      "x": 0.45,
+      "y": 0.95
+    }
+  },
+  "visual": {
+    "fallbackColor": "#8a7148"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.86,
+    "maxY": 0.94
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.06,
+      "burst": 0.4
+    },
+    "turnRateRadPerSec": 1.0,
+    "restFraction": 0.66,
+    "depthRange": [
+      0.35,
+      0.9
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.85,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 2.5,
+        "durationSec": [
+          10,
+          28
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.5,
+        "durationSec": [
+          10,
+          30
+        ]
+      },
+      {
+        "type": "hideByDay",
+        "durationSec": [
+          90,
+          300
+        ]
+      },
+      {
+        "type": "homeShelter",
+        "kind": "crevice",
+        "rangeBodyLengths": 4,
+        "visitChancePerMin": 0.8,
+        "visitDurationSec": [
+          20,
+          90
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "環境省：令和4年度新規指定候補種の概要",
+        "url": "https://www.env.go.jp/content/000091087.pdf"
+      },
+      {
+        "title": "Kawai (1992), Burrow of a Japanese crayfish",
+        "url": "https://www.jstage.jst.go.jp/article/rcustacea/21/0/21_KJ00003289268/_article/-char/en"
+      },
+      {
+        "title": "中田和義 (2007)：ザリガニ類の保全および増殖に関する研究",
+        "url": "https://www.jstage.jst.go.jp/article/suisan/73/4/73_4_664/_pdf/-char/ja"
+      },
+      {
+        "title": "Kawai et al. (1995), Feeding behaviour of Japanese crayfish in a Hokkaido stream",
+        "url": "https://www.jstage.jst.go.jp/article/fishsci1994/61/4/61_4_720/_pdf"
+      },
+      {
+        "title": "環境省：令和4年度の国内希少野生動植物種の指定について",
+        "url": "https://www.env.go.jp/council/content/12nature05/000105811.pdf"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 233,
+    "y": 356,
+    "width": 1127,
+    "height": 399
+  }
+}

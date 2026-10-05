@@ -1,0 +1,126 @@
+{
+  "id": "peacock-mantis-shrimp",
+  "displayName": "モンハナシャコ",
+  "realBodyLengthCm": 12,
+  "swim": {
+    "bodyPlan": "crustacean",
+    "headStart": 0.22,
+    "tailBeatHz": 0.6,
+    "bodyWaveStart": 0.85,
+    "tailSweepRad": 0,
+    "verticalFlex": 0,
+    "footAnchor": {
+      "x": 0.42,
+      "y": 0.93
+    }
+  },
+  "visual": {
+    "fallbackColor": "#5f8a3a"
+  },
+  "sourceBodyBounds": {
+    "x": 96,
+    "y": 316,
+    "width": 1345,
+    "height": 484
+  },
+  "preferredZone": {
+    "minX": 0.1,
+    "maxX": 0.9,
+    "minY": 0.78,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.12,
+      "burst": 0.6
+    },
+    "turnRateRadPerSec": 1.6,
+    "restFraction": 0.55,
+    "depthRange": [
+      0.15,
+      0.6
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 3,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.75,
+    "habits": [
+      {
+        "type": "homeShelter",
+        "kind": "burrow",
+        "rangeBodyLengths": 3,
+        "visitChancePerMin": 0.8,
+        "visitDurationSec": [
+          20,
+          60
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.6,
+        "durationSec": [
+          8,
+          25
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Ahyong, Chan & Liao (2008), A Catalog of the Mantis Shrimps of Taiwan, pp.29–30",
+        "url": "https://www.vliz.be/imisdocs/publications/ocrd/245752.pdf"
+      },
+      {
+        "title": "R.B. Manning, FAO species identification guide: Stomatopods, p.834",
+        "url": "https://www.fao.org/4/w7192e/w7192e12.pdf"
+      },
+      {
+        "title": "Patek & Caldwell (2005), Extreme impact and cavitation forces of a biological hammer, JEB 208:3655–3664",
+        "url": "https://ib.berkeley.edu/labs/patek/Publications/PatekandCaldwell2005JEB.pdf"
+      },
+      {
+        "title": "Chiu (2013), Odontodactylus scyllarus, Animal Diversity Web",
+        "url": "https://animaldiversity.org/accounts/Odontodactylus_scyllarus/"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Odontodactylus scyllarus",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "東アフリカから日本、台湾、ニューカレドニア、オーストラリア東部まで分布します。",
+    "temperament": "単独で暮らし、縄張りを持ちます。同居する生き物を攻撃したり、魚を捕まえて食べたりすることがあり、水槽のガラスを割った例も報告されています。",
+    "movement": "海底を歩き、巣穴を拠点に暮らします。巻貝を硬い面に置き、こん棒のような捕脚で殻を打ち割って食べます。昼に活動するという資料と、主に夜に餌をとるという資料があります。",
+    "habitat": "サンゴ礁や岩礁の浅い海底で、サンゴや岩の下に巣穴を作ります。本水槽では、岩の下にあるU字形の巣穴を住みかにしています。",
+    "aliases": [
+      "Peacock mantis shrimp"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Stomatopoda",
+      "orderJa": "口脚目",
+      "family": "Odontodactylidae",
+      "familyJa": "ハナシャコ科"
+    },
+    "adultSizeCm": 17.1,
+    "sizeNote": "最大で全長17.1cmとされます（額角の先から尾扇まで）。ふつうの成体の大きさは分かっていません。",
+    "distribution": "インド洋の東アフリカから西太平洋に分布し、北は日本・台湾、南はニューカレドニアやオーストラリア東部まで見られます。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "2013年の資料では未評価とされています。それより新しい評価は確認できていません。"
+    },
+    "highlights": [
+      "巣穴の入口の近くで、大きな複眼を動かして周りを見る",
+      "捕脚の一撃で巻貝の殻を割る。打撃の後には泡がつぶれる力も加わることが、実験で確かめられている",
+      "見分けどころは、甲の白く縁取られた斑紋と、青い尾肢に赤い縁毛"
+    ]
+  }
+}

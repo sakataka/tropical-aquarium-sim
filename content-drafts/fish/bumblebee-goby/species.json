@@ -1,0 +1,127 @@
+{
+  "id": "bumblebee-goby",
+  "displayName": "バンブルビー・ゴビー",
+  "realBodyLengthCm": 3.5,
+  "catalog": {
+    "scientificName": "Brachygobius doriae",
+    "originRegionId": "southeast-asia",
+    "originRegionName": "東南アジア",
+    "origin": "ボルネオ島とナツナ諸島に分布する小型のハゼです。流通名のバンブルビー・ゴビーには、よく似た別種が混ざることがあります。",
+    "temperament": "雄どうしは縄張りをもち、狭い範囲で張り合います。雄は小さな穴に産みつけられた卵を守ります。",
+    "movement": "底の砂や石の上に止まっては、短く跳ねるように移動します。中層を長く泳ぎ回ることはほとんどありません。",
+    "habitat": "低地の沿岸湿地や河口、潮の通う小川の、泥や砂に落ち葉や根、沈木が重なる場所に暮らします。本水槽では、小さな洞のある汽水の浅瀬の底にいます。",
+    "aliases": [
+      "bumblebee goby",
+      "Brachygobius doriae"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Gobiiformes",
+      "orderJa": "ハゼ目",
+      "family": "Oxudercidae",
+      "familyJa": "オクスデルクス科"
+    },
+    "adultSizeCm": 3.5,
+    "sizeNote": "飼育資料では標準体長35mmです。文献上の最大は全長4.2cmです。",
+    "distribution": "ボルネオ島とナツナ諸島に分布します。",
+    "water": {
+      "salinity": "brackish"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2018
+    },
+    "highlights": [
+      "黄色の地に太い黒帯が並ぶ、ハチのような模様です。",
+      "底の石や砂の上に止まり、短く跳ねるように移動します。",
+      "雄は小さな洞の近くに縄張りをもち、ほかの雄と張り合います。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 3.2
+  },
+  "visual": {
+    "fallbackColor": "#877544"
+  },
+  "sourceBodyBounds": {
+    "x": 222,
+    "y": 254,
+    "width": 1163,
+    "height": 497
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.74,
+    "maxY": 0.94
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.35,
+      "burst": 1.8
+    },
+    "turnRateRadPerSec": 2.9,
+    "restFraction": 0.5,
+    "depthRange": [
+      0.15,
+      0.75
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0.3,
+      "polarization": 0.1
+    },
+    "structureAffinity": 0.7,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 2.2,
+        "durationSec": [
+          5,
+          18
+        ]
+      },
+      {
+        "type": "homeShelter",
+        "kind": "cave",
+        "rangeBodyLengths": 7,
+        "visitChancePerMin": 0.6,
+        "visitDurationSec": [
+          4,
+          12
+        ]
+      },
+      {
+        "type": "follow",
+        "chancePerMin": 0.6,
+        "durationSec": [
+          2,
+          5
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes — Brachygobius doriae",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=20688"
+      },
+      {
+        "title": "Seriously Fish — Brachygobius doriae",
+        "url": "https://www.seriouslyfish.com/species/brachygobius-doriae"
+      },
+      {
+        "title": "FishBase — Brachygobius doriae",
+        "url": "https://fishbase.se/summary/Brachygobius_doriae.html"
+      },
+      {
+        "title": "Tan & Lim 2004 — Inland fishes from the Anambas and Natuna Islands",
+        "url": "https://www.science.nus.edu.sg/wp-content/uploads/sites/11/2024/05/s11rbz107-115.pdf"
+      }
+    ]
+  }
+}

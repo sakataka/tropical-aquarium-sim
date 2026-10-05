@@ -1,0 +1,104 @@
+{
+  "id": "red-seabream",
+  "displayName": "マダイ",
+  "realBodyLengthCm": 40,
+  "swim": {
+    "tailBeatHz": 1.5,
+    "bodyWaveStart": 0.48,
+    "tailSweepRad": 0.4
+  },
+  "visual": {
+    "fallbackColor": "#e0806c"
+  },
+  "sourceBodyBounds": {
+    "x": 169,
+    "y": 196,
+    "width": 1241,
+    "height": 614
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.45,
+    "maxY": 0.88
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.32,
+      "burst": 1.2
+    },
+    "turnRateRadPerSec": 1.7,
+    "restFraction": 0.16,
+    "depthRange": [0.2, 0.8],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 2.2,
+      "cohesion": 0.42,
+      "polarization": 0.22
+    },
+    "structureAffinity": 0.35,
+    "habits": [],
+    "sources": [
+      {
+        "title": "マリンピア日本海 — マダイ",
+        "url": "https://www.marinepia.or.jp/picturebook/fish/entry-11843.html"
+      },
+      {
+        "title": "葛西臨海水族園 笹沼伸一 — 大きく成長したマダイの展示とその体の中『タイ』, 2015-08-07",
+        "url": "https://www.tokyo-zoo.net/topics/news/kasai/4334_23085_2015-08-07.html"
+      },
+      {
+        "title": "FishBase — Pagrus major, species445",
+        "url": "https://www.fishbase.se/summary/445"
+      },
+      {
+        "title": "FRA-SA2025-RE04-18 — 令和6年度マダイ太平洋中部資源評価調査報告書",
+        "url": "https://abchan.fra.go.jp/wpt/wp-content/uploads/2025/03/trends_2024_112.pdf"
+      },
+      {
+        "title": "Franco Melendez, Kang & Shin 2015 — Preliminary Study about Behaviour Characteristics of Red Seabream and Black Rockfish ...",
+        "url": "https://scialert.net/fulltext/?doi=jfas.2015.132.145"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Pagrus major",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "日本を含む北西太平洋に分布します。ベトナム北部、中国、台湾から朝鮮半島、ロシア沿岸までの海に暮らします。",
+    "temperament": "海底近くで暮らす魚です。成魚が野外でどのくらいの群れをつくるのかは、よく分かっていません。水族館では、給餌のときにほかの大型魚と競って素早く餌を取る姿が記録されています。",
+    "movement": "普段はやや底寄りをゆったり泳ぎ、餌の時間には大きく素早く動きます。前歯で餌をくわえ、奥の丸い臼歯でエビやカニ、貝などを砕いて食べます。",
+    "habitat": "成長すると内湾から外洋側の深み、大陸棚へと暮らす場所を広げます。岩礁のまわりだけでなく、砂や泥の海底の近くも利用します。",
+    "aliases": [
+      "Red seabream",
+      "Chrysophrys major"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Perciformes",
+      "orderJa": "スズキ目",
+      "family": "Sparidae",
+      "familyJa": "タイ科"
+    },
+    "adultSizeCm": 37,
+    "sizeNote": "太平洋中部の資源評価では、4歳でおよそ尾叉長37cmとされます。報告されている最大は標準体長100cmで、葛西臨海水族園では全長約70cmまで育った個体が展示されました。",
+    "distribution": "北西太平洋に分布し、ベトナム北部から日本、朝鮮半島、ロシア沿岸に見られます。地中海の一部には養殖のために持ち込まれました。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2009,
+      "note": "日本では太平洋中部など海域ごとに資源評価が行われています。"
+    },
+    "highlights": [
+      "淡い紅色の体に、コバルト色の小さな点が散らばる。",
+      "尾びれの後ろの縁が黒く縁どられる。",
+      "海底寄りを泳ぎ、餌の時間には大きく素早く動く。"
+    ]
+  }
+}

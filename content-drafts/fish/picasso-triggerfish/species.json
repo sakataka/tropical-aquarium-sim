@@ -1,0 +1,134 @@
+{
+  "id": "picasso-triggerfish",
+  "displayName": "ムラサメモンガラ",
+  "realBodyLengthCm": 20,
+  "swim": {
+    "tailBeatHz": 1.7,
+    "tailSweepRad": 0.22,
+    "mouthAnchor": {
+      "x": 0.0,
+      "y": 0.52
+    }
+  },
+  "visual": {
+    "fallbackColor": "#c9b48e"
+  },
+  "sourceBodyBounds": {
+    "x": 225,
+    "y": 262,
+    "width": 1105,
+    "height": 506
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.45,
+    "maxY": 0.9
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.3,
+      "burst": 1.6
+    },
+    "turnRateRadPerSec": 2.1,
+    "restFraction": 0.25,
+    "depthRange": [
+      0.3,
+      0.85
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 3.0,
+      "cohesion": 0.3,
+      "polarization": 0.1
+    },
+    "structureAffinity": 0.6,
+    "habits": [
+      {
+        "type": "bottomForage"
+      },
+      {
+        "type": "homeShelter",
+        "kind": "crevice",
+        "rangeBodyLengths": 6,
+        "visitChancePerMin": 0.4,
+        "visitDurationSec": [
+          8,
+          25
+        ]
+      },
+      {
+        "type": "follow",
+        "chancePerMin": 0.5,
+        "durationSec": [
+          3,
+          8
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Australian Museum — Hawaiian Triggerfish",
+        "url": "https://australian.museum/learn/animals/fishes/hawaiian-triggerfish-rhinecanthus-aculeatus/"
+      },
+      {
+        "title": "Ziadi-Künzli & Tachihara2016 — Female defence polygyny",
+        "url": "https://www.researchgate.net/publication/290973283_Female_defence_polygyny_and_plasticity_in_the_mating_system_of_the_demersal_triggerfish_Rhinecanthus_aculeatus_Pisces_Balistidae_from_Okinawa_Island"
+      },
+      {
+        "title": "Korsmeyer et al.2002 — Swimming energetics of parrotfish and triggerfish",
+        "url": "https://www.vliz.be/imisdocs/publications/33891.pdf"
+      },
+      {
+        "title": "新江ノ島水族館 — 小窓水槽",
+        "url": "https://www.enosui.com/diaryentry.php?eid=02729"
+      },
+      {
+        "title": "名古屋港水族館 — なぜ…？（2023-10-29）",
+        "url": "https://nagoyaaqua.jp/study/column/20746/"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Rhinecanthus aculeatus",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "インド太平洋の広い範囲。東・南アフリカからピトケアン諸島、日本南部・小笠原からオーストラリアのニューサウスウェールズ州南部まで分布し、東部大西洋にも記録があります。",
+    "temperament": "雌はそれぞれ縄張りをもち、雄は1〜4尾の雌の縄張りを含む広い縄張りを守ります。繁殖期には雌が卵を守り、近づく人にかみつくことがあります。",
+    "movement": "ふだんは体をあまり曲げず、背びれと尻びれを波打たせて進みます。速く泳ぐときだけ体と尾びれを大きく使い、休むときは背びれの棘で岩などに体を固定します。",
+    "habitat": "浅いサンゴ礁やラグーンに暮らし、温帯側では岩礁も使います。縄張りの中には、塊状のサンゴやテーブルサンゴ、底の割れ目などの逃げ場があります。",
+    "aliases": [
+      "Picasso triggerfish",
+      "Lagoon triggerfish",
+      "Whitebanded triggerfish",
+      "ピカソトリガー"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Tetraodontiformes",
+      "orderJa": "フグ目",
+      "family": "Balistidae",
+      "familyJa": "モンガラカワハギ科"
+    },
+    "adultSizeCm": 20,
+    "sizeNote": "沖縄・瀬底島の研究では、縄張りをもつ雌は標準体長11.5〜17cm、雄は15〜21cmでした。最大で全長30cmの記録があります。",
+    "distribution": "東・南アフリカとインド洋の島々からピトケアン諸島まで。日本では南日本と小笠原に分布し、セネガルや南アフリカの東部大西洋からも記録があります。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2022
+    },
+    "highlights": [
+      "顔の青い線と口元の黄色い線、体の斜めの帯が目立ちます。",
+      "背びれと尻びれを波打たせて、体をまっすぐ保ったまま進みます。",
+      "休むときは背びれの棘を立てて、岩などに体を固定します。",
+      "繁殖期の雌は卵を守り、近づく相手を攻撃します。"
+    ]
+  }
+}

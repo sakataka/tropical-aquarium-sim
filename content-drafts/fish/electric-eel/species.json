@@ -1,0 +1,112 @@
+{
+  "id": "electric-eel",
+  "displayName": "デンキウナギ",
+  "realBodyLengthCm": 100,
+  "swim": {
+    "tailBeatHz": 0.8,
+    "tailSweepRad": 0.1,
+    "verticalFlex": 0.01
+  },
+  "visual": {
+    "fallbackColor": "#5c5236"
+  },
+  "sourceBodyBounds": {
+    "x": 84,
+    "y": 414,
+    "width": 1376,
+    "height": 191
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.65,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.1,
+      "burst": 0.35
+    },
+    "turnRateRadPerSec": 1,
+    "restFraction": 0.5,
+    "depthRange": [0.35, 0.92],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2,
+      "cohesion": 0,
+      "polarization": 0.02
+    },
+    "structureAffinity": 0.55,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 0.7,
+        "durationSec": [20, 60]
+      },
+      {
+        "type": "airBreathing",
+        "breathsPerHour": [4, 10],
+        "style": "rise"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Electrophorus electricus (2026-09-21)",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=6092"
+      },
+      {
+        "title": "de Santana et al. (2019), Unexpected species diversity in electric eels",
+        "url": "https://repositorio.museu-goeldi.br/server/api/core/bitstreams/709726b8-dfaf-4e3a-8b23-ad1e8a252b8e/content"
+      },
+      {
+        "title": "Smithsonian’s National Zoo: Electric eel",
+        "url": "https://nationalzoo.si.edu/animals/electric-eel"
+      },
+      {
+        "title": "FishBase: Electrophorus electricus summary",
+        "url": "https://fishbase.se/summary/4535"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Electrophorus electricus",
+    "originRegionId": "south-america",
+    "originRegionName": "南米",
+    "origin": "2019年の研究でデンキウナギは3種に分けられ、狭い意味の本種は南米北部のギアナ高地（ガイアナ、スリナム）に分布するとされました。",
+    "habitat": "ギアナ高地の川は岩盤や早瀬を含み、電気をほとんど通さない水が流れます。この展示では、濁った大河の砂底と沈木のまわりを居場所にします。",
+    "temperament": "単独で過ごします。強い放電で獲物を動けなくし、弱い放電でまわりの様子を探るとされます。",
+    "movement": "体はほとんど曲げず、腹側の長い臀びれを波打たせて、前にも後ろにも進み、その場に留まります。ときどき水面へ上がって空気を吸います。",
+    "aliases": [
+      "Electric eel",
+      "Gymnotus electricus"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Gymnotiformes",
+      "orderJa": "デンキウナギ目",
+      "family": "Electrophoridae",
+      "familyJa": "デンキウナギ科"
+    },
+    "adultSizeCm": 100,
+    "sizeNote": "2019年の研究で調べた標本の最大は全長100cmでした。種の最大値ではありません。ほかの種も含めて広い意味で扱った古い記録とは区別します。",
+    "distribution": "南米北部のギアナ高地（ガイアナ、スリナム）。アマゾン流域などのデンキウナギは、別種の E. voltai などとされます。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2020,
+      "note": "属の種の数は、2019年に3種とされたあとも議論が続いています。"
+    },
+    "highlights": [
+      "2019年の研究では、全長76cmの個体が480ボルトの放電を記録しました。",
+      "強い放電で獲物を捕らえ、弱い放電でまわりを探るとされます。",
+      "ときどき水面に上がり、空気を吸い込みます。",
+      "臀びれを波打たせて、前後に進んだりその場に留まったりします。"
+    ]
+  }
+}

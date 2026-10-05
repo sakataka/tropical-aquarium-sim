@@ -1,0 +1,125 @@
+{
+  "id": "warty-frogfish",
+  "displayName": "クマドリカエルアンコウ",
+  "realBodyLengthCm": 9,
+  "swim": {
+    "tailBeatHz": 1.6,
+    "tailSweepRad": 0.4
+  },
+  "visual": {
+    "fallbackColor": "#e9c9a4"
+  },
+  "sourceBodyBounds": {
+    "x": 244,
+    "y": 179,
+    "width": 1131,
+    "height": 642
+  },
+  "preferredZone": {
+    "minX": 0.1,
+    "maxX": 0.9,
+    "minY": 0.68,
+    "maxY": 0.94
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.08,
+      "burst": 0.7
+    },
+    "turnRateRadPerSec": 1.5,
+    "restFraction": 0.68,
+    "depthRange": [
+      0.3,
+      0.85
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 3,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.9,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 2.2,
+        "durationSec": [
+          30,
+          120
+        ]
+      },
+      {
+        "type": "homeShelter",
+        "kind": "crevice",
+        "rangeBodyLengths": 5,
+        "visitChancePerMin": 0.5,
+        "visitDurationSec": [
+          30,
+          90
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Fishes of Australia — Antennarius maculatus",
+        "url": "https://fishesofaustralia.net.au/home/species/3833"
+      },
+      {
+        "title": "葛西臨海水族園2012 — 水族園に歌舞伎役者!?",
+        "url": "https://www.tokyo-zoo.net/topics/news/kasai/5490_21243_2012-11-30.html"
+      },
+      {
+        "title": "DMMかりゆし水族館 — クマドリカエルアンコウ",
+        "url": "https://kariyushi-aquarium.com/animals/lists/?animals_category=kana&id=18"
+      },
+      {
+        "title": "FishBase — Antennarius maculatus",
+        "url": "https://www.fishbase.se/summary/Antennarius-maculatus.html"
+      },
+      {
+        "title": "Eschmeyer's Catalog of Fishes — Antennarius maculatus",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=48991"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Antennarius maculatus",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "紅海と東アフリカからハワイ、ソシエテ諸島まで。北は南日本、南はオーストラリア東岸やニューカレドニアまで分布します。",
+    "temperament": "単独で暮らす待ち伏せ型の捕食者です。じっとして疑似餌を振り、近づいた小魚や甲殻類を大きな口で一気に飲み込みます。",
+    "movement": "長くは泳がず、脚のような胸びれで海底を歩くように移動します。岩の間で胸びれを突っ張り、長いあいだ動かずにいます。",
+    "habitat": "沿岸の岩礁やサンゴ礁で、海藻やカイメン、ソフトコーラルの間に暮らします。成魚はカイメンの近くでよく見られます。",
+    "aliases": [
+      "Warty frogfish",
+      "Clown frogfish",
+      "Warty anglerfish"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Lophiiformes",
+      "orderJa": "アンコウ目",
+      "family": "Antennariidae",
+      "familyJa": "カエルアンコウ科"
+    },
+    "adultSizeCm": 9,
+    "sizeNote": "博物館の資料では9cmほどまでとされます（測り方の記載なし）。データベースの最大記録は全長15cmです。",
+    "distribution": "紅海・東アフリカからインド洋、太平洋のハワイやソシエテ諸島まで。日本では南日本で見られます。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2021
+    },
+    "highlights": [
+      "岩の間で胸びれを脚のように突っ張り、じっと動かない",
+      "吻の先の疑似餌（エスカ）を振って獲物をおびき寄せる",
+      "クリーム、黄、赤、黒など体色の変異が大きい。見分けるには、いぼ状の皮膚や太い第2背びれ棘を見る"
+    ]
+  }
+}

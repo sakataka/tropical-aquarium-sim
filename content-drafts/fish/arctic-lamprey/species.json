@@ -1,0 +1,123 @@
+{
+  "id": "arctic-lamprey",
+  "displayName": "カワヤツメ",
+  "realBodyLengthCm": 45,
+  "swim": {
+    "tailBeatHz": 1.6,
+    "bodyWaveStart": 0.1,
+    "waveCount": 1.3,
+    "tailSweepRad": 0.35,
+    "verticalFlex": 0.06,
+    "mouthAnchor": {
+      "x": 0.02,
+      "y": 0.71
+    }
+  },
+  "visual": {
+    "fallbackColor": "#868279"
+  },
+  "sourceBodyBounds": {
+    "x": 96,
+    "y": 379,
+    "width": 1370,
+    "height": 213
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.6,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "undulate",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.25,
+      "burst": 1.0
+    },
+    "turnRateRadPerSec": 1.8,
+    "restFraction": 0.4,
+    "depthRange": [
+      0.2,
+      0.85
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 1.2,
+      "cohesion": 0.3,
+      "polarization": 0.15
+    },
+    "structureAffinity": 0.6,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 0.9,
+        "durationSec": [
+          15,
+          45
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "北海道立総合研究機構：カワヤツメ（北のさかなたち、pp.46–47）",
+        "url": "https://www.hro.or.jp/upload/36093/o7u1kr00000006wh.pdf"
+      },
+      {
+        "title": "Alaska Department of Fish and Game: Arctic Lamprey Species Profile",
+        "url": "https://www.adfg.alaska.gov/index.cfm?adfg=arcticlamprey.main"
+      },
+      {
+        "title": "環境省レッドリスト2020、汽水・淡水魚類",
+        "url": "https://www.env.go.jp/press/files/jp/114457.pdf"
+      },
+      {
+        "title": "FishBase: Lethenteron camtschaticum",
+        "url": "https://www.fishbase.se/summary/Lethenteron-camtschaticum.html"
+      },
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Lethenteron camtschaticum",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=26188"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Lethenteron camtschaticum",
+    "originRegionId": "north-pacific",
+    "originRegionName": "北太平洋",
+    "origin": "北極海の沿岸から北太平洋にかけて分布します。日本では北海道と、おおむね茨城県・島根県より北の本州の川に遡上します。",
+    "temperament": "海では吸盤状の口でほかの魚に吸い付き、体の組織を食べて育ちます。産卵のために川を遡る成熟した個体は餌をとらず、集団で移動する傾向があります。",
+    "movement": "細長い体を大きくくねらせて泳ぎます。産卵期には、雌雄が口で小石を動かし、尾で砂利を払って産卵床をつくります。",
+    "habitat": "海で成長し、繁殖のために川を遡って、瀬の砂礫底で産卵します。この水槽は、滑らかな石と砂利が広がる冷たい川底を表しています。顎のない円口類で、ウナギの仲間ではありません。",
+    "aliases": [
+      "Arctic lamprey",
+      "ヤツメウナギ",
+      "Lethenteron japonicum"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Petromyzontiformes",
+      "orderJa": "ヤツメウナギ目",
+      "family": "Petromyzontidae",
+      "familyJa": "ヤツメウナギ科"
+    },
+    "adultSizeCm": 45,
+    "sizeNote": "北海道立総合研究機構の解説では、日本のカワヤツメの成体は全長40〜50cmです。最大の記録は全長63cmとされます。",
+    "distribution": "北極海の沿岸と北太平洋の周辺に分布し、日本では北海道と本州北部の川に見られます。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2022,
+      "note": "環境省レッドリスト2020では絶滅危惧II類（VU、掲載名 Lethenteron japonicum）です。"
+    },
+    "highlights": [
+      "吸盤状の口と、目の後ろに並ぶ7対のえら穴を持ち、顎も対になったひれもない。",
+      "産卵期には雌雄が口で小石を動かし、尾で砂利を払って産卵床をつくる。",
+      "川を遡る成熟した個体は餌をとらず、産卵を終えると一生を終える。"
+    ]
+  }
+}

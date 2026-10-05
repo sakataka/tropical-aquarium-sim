@@ -1,0 +1,131 @@
+{
+  "id": "mexican-tetra",
+  "displayName": "ブラインドケーブ・カラシン",
+  "realBodyLengthCm": 7,
+  "swim": {
+    "tailBeatHz": 2.6,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.57
+    }
+  },
+  "visual": {
+    "fallbackColor": "#dcbcae"
+  },
+  "sourceBodyBounds": {
+    "x": 172,
+    "y": 244,
+    "width": 1223,
+    "height": 505
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.2,
+    "maxY": 0.92
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.7,
+      "burst": 2.8
+    },
+    "turnRateRadPerSec": 2.8,
+    "restFraction": 0.1,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0.2,
+      "polarization": 0.05
+    },
+    "structureAffinity": 0.3,
+    "habits": [
+      {
+        "type": "bottomForage"
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 0.4,
+        "durationSec": [
+          5,
+          15
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Legendre et al. 2026: Water Parameters and Hydrodynamics in Rivers and Caves Hosting Astyanax mexicanus",
+        "url": "https://onlinelibrary.wiley.com/doi/10.1002/ece3.72970?af=R"
+      },
+      {
+        "title": "Simon et al. 2017: Comparing growth in surface and cave morphs",
+        "url": "https://link.springer.com/article/10.1186/s13227-017-0086-6"
+      },
+      {
+        "title": "Kuball et al. 2024: Blind cavefish evolved higher foraging responses to chemo- and mechanostimuli",
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0300793"
+      },
+      {
+        "title": "Patch et al. 2022: Kinematic analysis of social interactions deconstructs the evolved loss of schooling behavior",
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0265894"
+      },
+      {
+        "title": "Jaggard et al. 2017: The lateral line confers evolutionarily derived sleep loss",
+        "url": "https://journals.biologists.com/jeb/article/220/2/284/18611/The-lateral-line-confers-evolutionarily-derived"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Astyanax mexicanus",
+    "originRegionId": "central-america",
+    "originRegionName": "中央アメリカ",
+    "origin": "メキシコ北東部、サン・ルイス・ポトシ州とタマウリパス州の石灰岩地帯にある洞窟の地下水に暮らします。パチョン、ティナハ、モリノなど、洞窟ごとに別々の集団が知られています。",
+    "temperament": "地表の川にすむ同じ仲間は群れで泳ぎますが、洞窟の集団は揃って泳ぐことが少なく、仲間と距離を取る傾向が実験で示されています。",
+    "movement": "目がなく、側線や匂いで周りを感じ取ります。餌の匂いがすると、旋回しながら水面や底を探ります。地表の仲間より眠る時間が短いことも知られています。",
+    "habitat": "光の届かない石灰岩の洞窟の淵に暮らし、洞窟によっては雨季の洪水で外の水が入ります。この水槽は、植物のない洞窟の川を表しています。洞窟型を別種 Astyanax jordani とする分類もあります。",
+    "aliases": [
+      "Mexican tetra",
+      "blind Mexican cavefish",
+      "ブラインドケーブフィッシュ",
+      "メキシカンテトラ",
+      "Astyanax jordani",
+      "Anoptichthys jordani"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Characiformes",
+      "orderJa": "カラシン目",
+      "family": "Acestrorhamphidae",
+      "familyJa": "アケストロランプス科"
+    },
+    "adultSizeCm": 7,
+    "sizeNote": "パチョン洞窟に由来する飼育集団では、全長7cmほどで成長が緩やかになりました。例外的に全長10cmに達した6歳の個体もいます。洞窟の集団によって育つ大きさが違います。",
+    "distribution": "メキシコのサン・ルイス・ポトシ州とタマウリパス州の地下水系に、洞窟ごとの集団が分布します。",
+    "water": {
+      "salinity": "freshwater",
+      "temperatureC": [
+        16.8,
+        27.5
+      ],
+      "pH": [
+        5.95,
+        8.56
+      ]
+    },
+    "keeping": "home",
+    "conservation": {
+      "note": "洞窟型を含む分類の範囲に対応するIUCNの評価は、今回の調査では確認できていません。"
+    },
+    "highlights": [
+      "目と体の色素が退化し、ピンクがかった白い体に見える。",
+      "餌の匂いを感じると、旋回しながら水面や底を探る。",
+      "群れで揃って泳ぐことは少なく、仲間と少し距離を取る。"
+    ]
+  }
+}

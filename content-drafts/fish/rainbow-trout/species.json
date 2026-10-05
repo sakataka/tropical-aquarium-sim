@@ -1,0 +1,106 @@
+{
+  "id": "rainbow-trout",
+  "displayName": "ニジマス",
+  "realBodyLengthCm": 30,
+  "catalog": {
+    "scientificName": "Oncorhynchus mykiss",
+    "originRegionId": "north-pacific",
+    "originRegionName": "北太平洋",
+    "origin": "北米の太平洋岸とカムチャツカ半島が原産です。日本には1877年に卵が持ち込まれ、養殖や放流によって全国で見られるようになりました。",
+    "temperament": "飼育下では人に慣れやすい魚とされます。本水槽では、アマゴと同じ淵で、それぞれ流れの中に位置を取ります。",
+    "movement": "川底の礫や大きな石の上、流れが弱まる場所に定位します。岩の陰に寄る個体が多い一方で、開けた場所にもいます。",
+    "habitat": "夏も水温の低い川や湖。海へ下って育つ型はスチールヘッドと呼ばれます。本水槽では、岩盤と大岩のある山あいの淵をイメージしています。",
+    "aliases": [
+      "rainbow trout",
+      "steelhead（降海型）",
+      "Salmo gairdneri"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Salmoniformes",
+      "orderJa": "サケ目",
+      "family": "Salmonidae",
+      "familyJa": "サケ科"
+    },
+    "adultSizeCm": 30,
+    "sizeNote": "成魚の代表的な大きさは、生活型や系統、地域によって大きく違い、定まっていません。ここでは約30cmとして表示しています。種全体の最大記録は全長122cmです。",
+    "distribution": "北米の太平洋岸とカムチャツカ半島に自然分布します。養殖や遊漁のため世界各地に導入され、日本では放流でほぼ全国に見られ、北海道などの一部で定着しています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2020,
+      "note": "日本では生態系被害防止外来種リストの産業管理外来種です。定着した場所では在来種との競合が心配され、野外へ逃がさない管理が求められます。"
+    },
+    "highlights": [
+      "体側を走る桃色の帯と、背から尾びれまで散る小さな黒点。",
+      "流れの弱まる場所や大きな石の近くに留まります。",
+      "成長すると、水生昆虫だけでなく小魚なども食べるようになります。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 1.8
+  },
+  "visual": {
+    "fallbackColor": "#978a7c"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.25,
+    "maxY": 0.8
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.36,
+      "burst": 1.5
+    },
+    "turnRateRadPerSec": 1.9,
+    "restFraction": 0.2,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 2,
+      "cohesion": 0.3,
+      "polarization": 0.12
+    },
+    "structureAffinity": 0.45,
+    "habits": [],
+    "sources": [
+      {
+        "title": "長野県水産試験場 — ニジマス",
+        "url": "https://www.pref.nagano.lg.jp/suisan/joho/sakanatachi/nijimasu.html"
+      },
+      {
+        "title": "Alaska Department of Fish and Game — Steelhead / Rainbow Trout Species Profile",
+        "url": "https://www.adfg.alaska.gov/index.cfm?adfg=steelhead.main"
+      },
+      {
+        "title": "FishBase — Oncorhynchus mykiss（Salmo-gairdneri URL）",
+        "url": "https://www.fishbase.se/summary/Salmo-gairdneri.html"
+      },
+      {
+        "title": "Hoffman et al. 2002 — Instream Flow Incremental Methodology, Kootenai River, Montana, Final Report",
+        "url": "https://myfwp.mt.gov/getRepositoryFile?objectID=34123"
+      },
+      {
+        "title": "環境省・農林水産省 — 生態系被害防止外来種リスト第2版 動物 2026-09-11",
+        "url": "https://www.env.go.jp/nature/intro/2outline/list/list2_animals.pdf"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 176,
+    "y": 271,
+    "width": 1239,
+    "height": 450
+  }
+}

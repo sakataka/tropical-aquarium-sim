@@ -1,0 +1,103 @@
+{
+  "id": "amazon-leaffish",
+  "displayName": "リーフフィッシュ",
+  "realBodyLengthCm": 8,
+  "swim": {
+    "tailBeatHz": 1.6,
+    "tailSweepRad": 0.22,
+    "bodyWaveStart": 0.55
+  },
+  "visual": {
+    "fallbackColor": "#a6773e"
+  },
+  "sourceBodyBounds": {
+    "x": 199,
+    "y": 169,
+    "width": 1158,
+    "height": 680
+  },
+  "preferredZone": {
+    "minX": 0.1,
+    "maxX": 0.9,
+    "minY": 0.35,
+    "maxY": 0.82
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.08,
+      "burst": 1.4
+    },
+    "turnRateRadPerSec": 1.2,
+    "restFraction": 0.65,
+    "depthRange": [0.3, 0.9],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 3,
+      "cohesion": 0,
+      "polarization": 0.03
+    },
+    "structureAffinity": 0.85,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Catarino & Zuanon (2010), Feeding ecology of the leaf fish Monocirrhus polyacanthus",
+        "url": "https://www.researchgate.net/publication/250030223_Feeding_ecology_of_the_leaf_fish_Monocirrhus_polyacanthus_Perciformes_Polycentridae_in_a_terra_firme_stream_in_the_Brazilian_Amazon"
+      },
+      {
+        "title": "Roberts (2015), Mimicry of a Bean Seed by Amaralia hypsiura, with Notes on Vegetative Camouflage by Fishes",
+        "url": "https://repository.si.edu/bitstream/handle/10088/26854/2015%20Roberts%20R%20Aqua%20Int%20Jl.%20Itch.pdf"
+      },
+      {
+        "title": "Ramos et al., Efeito da condutividade na reprodução e oferta de alimento em juvenis de peixe-folha",
+        "url": "https://ppg.revistas.uema.br/index.php/REPESCA/article/download/1091/860/3038"
+      },
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Monocirrhus polyacanthus",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=19932"
+      },
+      {
+        "title": "FishBase: Monocirrhus polyacanthus",
+        "url": "https://www.fishbase.se/summary/Monocirrhus_polyacanthus.html"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Monocirrhus polyacanthus",
+    "originRegionId": "south-america",
+    "originRegionName": "南米",
+    "origin": "南米のアマゾン川とオリノコ川の水系。ブラジル、エクアドル、ボリビア、コロンビア、ペルー、ベネズエラに由来します。",
+    "temperament": "小魚を中心に食べる待ち伏せ型の捕食者です。飼育下では同種どうしの接触を避けて過ごします。",
+    "movement": "泳ぐしぐさをほとんど見せず、頭を下げた斜めの姿勢で水中に静止します。体の後ろの透明なひれだけを動かしているように見えます。口は大きく前へ突き出せます。",
+    "habitat": "浅い小川の岸辺で、岸の植物や水草のまわりに暮らします。枯れ葉が積もり、流木の枝が入り組んだ暗い水槽で、枯れ葉に紛れるように漂います。",
+    "aliases": [
+      "Amazon leaffish"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Perciformes",
+      "orderJa": "スズキ目",
+      "family": "Polycentridae",
+      "familyJa": "ポリケントルス科"
+    },
+    "adultSizeCm": 8,
+    "sizeNote": "データベースに載る最大は標準体長8cmですが、ブラジルの野外調査では標準体長8.2cmの個体も採られています。典型的な成魚の大きさは分かっていません。",
+    "distribution": "アマゾン川とオリノコ川の水系に広く分布し、ブラジルやペルーなど6か国で知られます。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2020
+    },
+    "highlights": [
+      "枯れ葉のような色と形をしていて、下あごの突起が葉柄のように見える。",
+      "頭を下げた斜めの姿勢で、ほとんど動かずに水中に浮かぶ。",
+      "野外では小魚を主に食べ、小さい個体は甲殻類や昆虫も食べる。",
+      "繁殖期には、雄が雌を産卵場所から追い払い、胸びれで卵に水を送る。"
+    ]
+  }
+}

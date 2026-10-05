@@ -1,0 +1,109 @@
+{
+  "id": "geophagus-altifrons",
+  "displayName": "ゲオファーガス・アルティフロンス",
+  "realBodyLengthCm": 20,
+  "swim": {
+    "tailBeatHz": 1.7,
+    "mouthAnchor": {
+      "x": 0.005,
+      "y": 0.59
+    }
+  },
+  "visual": {
+    "fallbackColor": "#a59e74"
+  },
+  "sourceBodyBounds": {
+    "x": 202,
+    "y": 217,
+    "width": 1177,
+    "height": 579
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.62,
+    "maxY": 0.93
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.28,
+      "burst": 1.2
+    },
+    "turnRateRadPerSec": 1.9,
+    "restFraction": 0.2,
+    "depthRange": [0.15, 0.8],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.8,
+      "cohesion": 0.45,
+      "polarization": 0.2
+    },
+    "structureAffinity": 0.3,
+    "habits": [
+      {
+        "type": "bottomForage"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes — Geophagus altifrons",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=20062"
+      },
+      {
+        "title": "Deprá et al. (2014) — A new colorful species of Geophagus",
+        "url": "https://www.scielo.br/j/ni/a/hXLmL77v4h6CnWssWfyXfXm/?lang=en"
+      },
+      {
+        "title": "Tan Heok Hui (2014) — Non-native fishes at inlet of Upper Seletar Reservoir",
+        "url": "https://lkcnhm.nus.edu.sg/app/uploads/2017/04/sbr2014-091-092.pdf"
+      },
+      {
+        "title": "FishBase — Geophagus altifrons 57713",
+        "url": "https://www.fishbase.se/summary/57713"
+      },
+      {
+        "title": "Seriously Fish — Geophagus altifrons",
+        "url": "https://www.seriouslyfish.com/species/geophagus-altifrons"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Geophagus altifrons",
+    "originRegionId": "south-america",
+    "originRegionName": "南米",
+    "origin": "南米のアマゾン川水系に分布し、ブラジルとエクアドルで記録があります。リオ・ネグロ水系やマデイラ川水系の標本が知られています。",
+    "habitat": "アマゾンの川の底近くで暮らします。この展示では、落ち葉の積もった砂底を探ります。",
+    "temperament": "繁殖期以外はゆるい群れで過ごし、群れの中に順位があるとされます。",
+    "movement": "底近くを進み、ときどき口で砂をすくい、餌を選り分けます。",
+    "aliases": [
+      "Longfin eartheater",
+      "ゲオファーガス・アルティフロンス"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cichliformes",
+      "orderJa": "シクリッド目",
+      "family": "Cichlidae",
+      "familyJa": "シクリッド科"
+    },
+    "adultSizeCm": 20,
+    "sizeNote": "シンガポールの移入先で観察された成魚は全長約20cmでした。報告されている最大は全長26.5cmです。",
+    "distribution": "アマゾン川水系（ブラジル、エクアドル）。シンガポールの貯水池には移入した個体群が見つかっています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2018
+    },
+    "highlights": [
+      "口で底の砂をすくい、餌を選り分けます。",
+      "体側の中央の黒い斑は、大きくなるにつれて小さくなり、消えることもあります。",
+      "卵の段階から口の中で子を守る口内保育魚です。"
+    ]
+  }
+}

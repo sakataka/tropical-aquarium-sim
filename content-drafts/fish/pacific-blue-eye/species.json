@@ -1,0 +1,104 @@
+{
+  "id": "pacific-blue-eye",
+  "displayName": "パシフィック・ブルーアイ",
+  "realBodyLengthCm": 4.5,
+  "swim": {
+    "tailBeatHz": 3.1
+  },
+  "visual": {
+    "fallbackColor": "#a3a594"
+  },
+  "sourceBodyBounds": {
+    "x": 60,
+    "y": 167,
+    "width": 1426,
+    "height": 685
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.1,
+    "maxY": 0.45
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.7,
+      "burst": 3.2
+    },
+    "turnRateRadPerSec": 3.0,
+    "restFraction": 0.12,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.8,
+      "cohesion": 0.45,
+      "polarization": 0.25
+    },
+    "structureAffinity": 0.35,
+    "habits": [
+      {
+        "type": "follow",
+        "chancePerMin": 1.0,
+        "durationSec": [
+          2,
+          5
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Australian Museum Pacific Blue Eye",
+        "url": "https://australian.museum/learn/animals/fishes/pacific-blue-eye-pseudomugil-signifer/"
+      },
+      {
+        "title": "ANGFA Pseudomugil signifer",
+        "url": "https://rainbowfish.angfa.org.au/blue_eye_species/pseudomugil_signifer.html"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Pseudomugil signifer",
+    "originRegionId": "oceania",
+    "originRegionName": "オセアニア",
+    "origin": "オーストラリア東岸。クイーンズランド北部からニューサウスウェールズ南部の沿岸の水系に分布します。",
+    "temperament": "同じくらいの大きさの魚と、小さな群れで飼うことが勧められます。北部の雄は縄張り意識が強く、劣位の雄を死なせてしまった飼育例もあります。",
+    "movement": "雄は体を前後に動かして胸びれを震わせ、ほかのひれを立てて雌に求愛します。ボウフラなどの昆虫を食べます。",
+    "habitat": "清流から河口のマングローブ域まで暮らし、淡水だけでなく汽水や海水域にも見られます。本展示では明るい川の上層を泳ぐ姿を見せています。",
+    "aliases": [
+      "Pacific blue-eye",
+      "Southern blue-eye"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Atheriniformes",
+      "orderJa": "トウゴロウイワシ目",
+      "family": "Pseudomugilidae",
+      "familyJa": "シュードムギル科"
+    },
+    "adultSizeCm": 4,
+    "sizeNote": "南部の個体群は4cmを超えることが少ないとされ、北部の個体群のほうが大きくなります（測り方は示されていません）。",
+    "distribution": "オーストラリア東岸、クイーンズランド北部からニューサウスウェールズ南部の沿岸水系に分布します。北部と南部の個体群は形や行動が大きく異なり、専門家は地域群を混ぜずに飼うよう勧めています。",
+    "water": {
+      "salinity": "freshwater",
+      "temperatureC": [
+        15,
+        28
+      ]
+    },
+    "keeping": "home",
+    "conservation": {
+      "note": "今回の調査では IUCN の評価を確認できていません。"
+    },
+    "highlights": [
+      "青い眼と、雄の糸のように伸びるひれ",
+      "雄が体を前後に動かし、ひれを立てて雌に求愛する",
+      "淡水から汽水まで、幅広い水に暮らす"
+    ]
+  }
+}

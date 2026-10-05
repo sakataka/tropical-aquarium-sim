@@ -1,0 +1,120 @@
+{
+  "id": "marliers-julie",
+  "displayName": "ジュリドクロミス・マルリエリ",
+  "realBodyLengthCm": 9,
+  "swim": {
+    "tailBeatHz": 2.2
+  },
+  "visual": {
+    "fallbackColor": "#a98a5c"
+  },
+  "sourceBodyBounds": {
+    "x": 133,
+    "y": 302,
+    "width": 1296,
+    "height": 432
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.48,
+    "maxY": 0.9
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.3,
+      "burst": 1.4
+    },
+    "turnRateRadPerSec": 2.1,
+    "restFraction": 0.3,
+    "depthRange": [
+      0.3,
+      0.9
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 2.0,
+      "cohesion": 0.35,
+      "polarization": 0.1
+    },
+    "structureAffinity": 0.85,
+    "habits": [
+      {
+        "type": "homeShelter",
+        "kind": "crevice",
+        "rangeBodyLengths": 3.5,
+        "visitChancePerMin": 1.0,
+        "visitDurationSec": [
+          6,
+          20
+        ]
+      },
+      {
+        "type": "grazing",
+        "chancePerMin": 1.8,
+        "durationSec": [
+          3,
+          9
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Julidochromis marlieri",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=25518"
+      },
+      {
+        "title": "Sunobe 2000: Social structure, nest guarding and interspecific relationships of Julidochromis marlieri",
+        "url": "https://www.researchgate.net/publication/32171026_Social_Structure_Nest_Guarding_and_Interspecific_Relationships_of_the_Cichild_Fish_Julidochromis_marlieri_in_Lake_Tanganyika"
+      },
+      {
+        "title": "Wood et al. 2014: Social reversal of sex-biased aggression and dominance",
+        "url": "https://www.reed.edu/biology/renn/assets/publications/Wood_etal_2014.pdf"
+      },
+      {
+        "title": "FishBase: Julidochromis marlieri",
+        "url": "https://www.fishbase.se/summary/Julidochromis-marlieri"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Julidochromis marlieri",
+    "originRegionId": "east-africa",
+    "originRegionName": "東アフリカ",
+    "origin": "東アフリカのタンガニーカ湖の固有種です。ブルンジのギタザの湖岸などで、野外の暮らしが調べられています。",
+    "habitat": "斜面に大小の石が積み重なる岩場にすみ、岩の下に巣を構えます。この展示では、平たい岩が重なる岩場の隙間を出入りして暮らします。",
+    "temperament": "巣を共有する小さな群れで暮らす個体と、単独の成魚がいます。巣に近づく稚魚の捕食者には近寄って追い払い、飼育下の研究ではペアや侵入者への追跡やかみつきも記録されています。",
+    "movement": "細長い円筒形の体で岩の表面に沿って泳ぎ、岩肌をつついて餌をとります。岩の隙間に入っては出てくる動きを繰り返します。",
+    "aliases": [
+      "Marlier's julie",
+      "マルリエリ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cichliformes",
+      "orderJa": "シクリッド目",
+      "family": "Cichlidae",
+      "familyJa": "シクリッド科"
+    },
+    "adultSizeCm": 9,
+    "sizeNote": "記録上の最大は全長13cmです。飼育下の研究ペアでは、雌の標準体長が平均7.6cm、雄が平均5.4cmで、ふつうは雌のほうが大きくなります。野外の成魚を代表する大きさは分かっていないため、展示では全長9cm前後を想定しています。",
+    "distribution": "タンガニーカ湖の固有種です。ブルンジ沿岸の調査では、水深3〜9mの転石帯で群れの構造が調べられました。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2025
+    },
+    "highlights": [
+      "岩の下の巣に出入りし、巣の近くにとどまります。",
+      "岩の表面をつついて餌をとります。",
+      "ペアでは体の大きいほうが攻撃的な役割を担い、雌雄の大小が入れ替わると役割の偏りも変わることが実験で示されています。",
+      "巣を共有する群れは、稚魚を狙う魚に近づいて追い払います。"
+    ]
+  }
+}

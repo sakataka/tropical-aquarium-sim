@@ -1,0 +1,106 @@
+{
+  "id": "whale-shark",
+  "displayName": "ジンベエザメ",
+  "realBodyLengthCm": 850,
+  "swim": {
+    "tailBeatHz": 0.4,
+    "tailSweepRad": 0.4
+  },
+  "visual": {
+    "fallbackColor": "#3e4c5c"
+  },
+  "sourceBodyBounds": {
+    "x": 108,
+    "y": 290,
+    "width": 1360,
+    "height": 464
+  },
+  "preferredZone": {
+    "minX": 0.06,
+    "maxX": 0.94,
+    "minY": 0.12,
+    "maxY": 0.75
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "steady",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.12,
+      "burst": 0.3
+    },
+    "turnRateRadPerSec": 0.7,
+    "restFraction": 0.02,
+    "depthRange": [
+      0.2,
+      0.85
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2,
+      "cohesion": 0,
+      "polarization": 0.05
+    },
+    "structureAffinity": 0.05,
+    "habits": [],
+    "sources": [
+      {
+        "title": "沖縄美ら海水族館: ジンベエザメ",
+        "url": "https://churaumi.okinawa/sp/fishbook/00000510/"
+      },
+      {
+        "title": "沖縄美ら海水族館 (2019-06-12): 雄ジンベエザメの性成熟過程",
+        "url": "https://churaumi.okinawa/ba/topics/1560065143/"
+      },
+      {
+        "title": "Western Australian Museum: Rhincodon typus",
+        "url": "https://museum.wa.gov.au/online-collections/names/rhincodon-typus"
+      },
+      {
+        "title": "Thums et al. (2013): Evidence for behavioural thermoregulation; doi:10.1098/rsif.2012.0477",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3565775/"
+      },
+      {
+        "title": "Australian DCCEEW: CITES CoP20 outcomes",
+        "url": "https://consult.dcceew.gov.au/cop20-cites-2025"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Rhincodon typus",
+    "originRegionId": "tropical-oceans",
+    "originRegionName": "世界の暖かい海",
+    "origin": "世界中の熱帯から暖温帯の海に分布します。沖縄本島では5〜6月ごろに目撃情報が多く寄せられます。",
+    "temperament": "単独で泳ぐこともあれば、餌の多い場所に100匹を超えて集まることもあります。プランクトンを食べるおとなしいサメです。",
+    "movement": "大きな尾びれをゆっくり振り、止まらずに泳ぎ続けます。口を開けたまま泳いで水ごとプランクトンをこし取るほか、水面近くで立ち泳ぎをしながら餌を吸い込むこともあります。",
+    "habitat": "外洋の表層を回遊します。追跡調査では、昼も夜も深く潜っては水面近くに戻ることを繰り返していました。",
+    "aliases": [
+      "Whale shark",
+      "ミズサバ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Orectolobiformes",
+      "orderJa": "テンジクザメ目",
+      "family": "Rhincodontidae",
+      "familyJa": "ジンベエザメ科"
+    },
+    "adultSizeCm": 1000,
+    "sizeNote": "成長すると10〜12mになると解説されています（測り方の記載なし）。飼育下では全長8.5mの雄で性成熟を確かめています。最大の報告は雄で全長17m、雌で全長20mですが、記録の確かさには留保があります。",
+    "distribution": "世界中の熱帯・暖温帯の海に分布します。地中海を分布域に含めるかどうかは、資料によって扱いが異なります。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "EN",
+      "assessedYear": 2025,
+      "note": "2026年3月5日から、ワシントン条約（CITES）附属書Iに掲載されています。"
+    },
+    "highlights": [
+      "大きな尾びれをゆっくり振り、水槽の中を止まらずに泳ぎ続ける",
+      "水面で立ち泳ぎをしながら大きな口を開け、餌を水ごと吸い込む",
+      "青灰色の体に白い点と線が並ぶ模様は、1匹ずつ違う"
+    ]
+  }
+}

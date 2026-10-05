@@ -1,0 +1,125 @@
+{
+  "id": "bristlenose-pleco",
+  "displayName": "ブッシープレコ",
+  "realBodyLengthCm": 12,
+  "swim": {
+    "tailBeatHz": 2.0,
+    "tailSweepRad": 0.4,
+    "mouthAnchor": {
+      "x": 0.1,
+      "y": 0.78
+    }
+  },
+  "visual": {
+    "fallbackColor": "#4a4033"
+  },
+  "sourceBodyBounds": {
+    "x": 101,
+    "y": 212,
+    "width": 1334,
+    "height": 570
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.58,
+    "maxY": 0.94
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.2,
+      "burst": 1.3
+    },
+    "turnRateRadPerSec": 1.8,
+    "restFraction": 0.5,
+    "depthRange": [
+      0.35,
+      0.95
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 3,
+      "cohesion": 0,
+      "polarization": 0.03
+    },
+    "structureAffinity": 0.8,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 2.5,
+        "durationSec": [
+          10,
+          40
+        ]
+      },
+      {
+        "type": "homeShelter",
+        "kind": "cave",
+        "rangeBodyLengths": 7,
+        "visitChancePerMin": 0.8,
+        "visitDurationSec": [
+          20,
+          90
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1,
+        "durationSec": [
+          15,
+          50
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Sabaj, Armbruster & Page (1999) Spawning in Ancistrus, with comments on larval mimicry",
+        "url": "https://webhome.auburn.edu/~armbrjw/Ancistrus.pdf"
+      },
+      {
+        "title": "OATA — How to look after tropical algae eaters, Bristlenose catfish section",
+        "url": "https://ornamentalfish.org/what-we-do/advice-information/care-sheets/caresheets-tropical-freshwater-fish/how-to-look-after-tropical-algae-eaters/"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Ancistrus sp.",
+    "originRegionId": "south-america",
+    "originRegionName": "南米",
+    "origin": "南米に広く分布するアンキストルス属の小型プレコ。観賞魚として広く流通する系統は、もとの種や採集地がはっきりしていません。",
+    "temperament": "物陰を好むおとなしいプレコです。繁殖期の雄は岩の穴などの巣を守り、とくにほかの雄を追い払います。",
+    "movement": "吸盤状の口で流木や石の表面に張り付き、藻などを少しずつはみながら移動します。泳ぐのは短い距離だけで、よく物陰で休みます。",
+    "habitat": "岩の隙間や穴、流木のある水槽が似合います。飼育では、藻に加えて植物性の餌も必要です。",
+    "aliases": [
+      "Bristlenose pleco",
+      "Bristlenose catfish",
+      "ブッシーナノーズ",
+      "Ancistrus cf. cirrhosus"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Siluriformes",
+      "orderJa": "ナマズ目",
+      "family": "Loricariidae",
+      "familyJa": "ロリカリア科"
+    },
+    "adultSizeCm": 15,
+    "sizeNote": "観賞魚業界団体OATAは、この仲間がおよそ15cmに育つとしています。全長か標準体長かは示されておらず、流通系統の雄の典型的な大きさは確かめられていません。",
+    "distribution": "アンキストルス属は南米の各地に分布しますが、流通系統がどの種のどの地域に由来するかは分かっていません。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "note": "種が特定されていないため、IUCNの評価区分を当てはめられません。観賞魚を野外に放さないよう呼びかけられています。"
+    },
+    "highlights": [
+      "成熟した雄は、吻の上に枝分かれした肉質の突起が密に並ぶ。雌や若い魚では少なく小さい。",
+      "流木や石の表面に口で張り付き、藻などをはむ。",
+      "繁殖期の雄は穴の巣で卵と仔魚を守り、胸びれであおいで水を送る。"
+    ]
+  }
+}

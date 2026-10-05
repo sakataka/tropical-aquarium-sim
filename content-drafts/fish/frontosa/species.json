@@ -1,0 +1,103 @@
+{
+  "id": "frontosa",
+  "displayName": "フロントーサ",
+  "realBodyLengthCm": 25,
+  "swim": {
+    "tailBeatHz": 1.2,
+    "bodyWaveStart": 0.48,
+    "tailSweepRad": 0.38
+  },
+  "visual": {
+    "fallbackColor": "#c9d2df"
+  },
+  "sourceBodyBounds": {
+    "x": 191,
+    "y": 189,
+    "width": 1180,
+    "height": 649
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.4,
+    "maxY": 0.88
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.15,
+      "burst": 0.7
+    },
+    "turnRateRadPerSec": 1.3,
+    "restFraction": 0.3,
+    "depthRange": [
+      0.25,
+      0.85
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0.4,
+      "polarization": 0.15
+    },
+    "structureAffinity": 0.55,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Cyphotilapia frontosa",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=56721"
+      },
+      {
+        "title": "FishBase: Cyphotilapia frontosa",
+        "url": "https://www.fishbase.se/summary/Cyphotilapia_frontosa.html"
+      },
+      {
+        "title": "Takahashi and Nakaya 2003: New Species of Cyphotilapia from Lake Tanganyika",
+        "url": "https://www.researchgate.net/publication/250067570_New_Species_of_Cyphotilapia_Perciformes_Cichlidae_from_Lake_Tanganyika_Africa"
+      },
+      {
+        "title": "Takahashi, Ngatunga and Snoeks 2007: Taxonomic status of the six-band morph of Cyphotilapia frontosa",
+        "url": "https://link.springer.com/article/10.1007/s10228-006-0374-y"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Cyphotilapia frontosa",
+    "originRegionId": "east-africa",
+    "originRegionName": "東アフリカ",
+    "origin": "東アフリカのタンガニーカ湖北部に分布します。模式産地はタンザニアのキゴマです。2003年に、南部の個体群が C. gibberosa として別種に分けられました。",
+    "habitat": "岩場の湖底近くから、その上の水中を泳ぎます。この展示では、大きな岩が深い青に消えていく斜面の、開けた水中を泳ぎます。",
+    "temperament": "岩場に集まって暮らすことがあります。巻貝や二枚貝、魚などを食べる大型のシクリッドです。",
+    "movement": "白地に太い黒帯の体で、底から少し離れた水中をゆったりと巡ります。",
+    "aliases": [
+      "Humphead cichlid",
+      "Paratilapia frontosa",
+      "Frontosa"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cichliformes",
+      "orderJa": "シクリッド目",
+      "family": "Cichlidae",
+      "familyJa": "シクリッド科"
+    },
+    "adultSizeCm": 25,
+    "sizeNote": "記録上の最大は全長33cmですが、2003年に南部の個体群が別種に分けられる前の資料による値です。ふつうの成魚の大きさは確かめられていないため、展示では全長25cm前後を想定しています。",
+    "distribution": "タンガニーカ湖の北半分に分布します。体の横帯が6本の型は湖の北部に広く、7本の型はキゴマ周辺の東岸に限られます。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "NT",
+      "assessedYear": 2025
+    },
+    "highlights": [
+      "白い体に太い黒帯が並び、成魚は額が大きく盛り上がります。",
+      "横帯が6本の型と7本の型があり、どちらも同じ種です。",
+      "雌が卵を口の中で守る口内保育をします。"
+    ]
+  }
+}

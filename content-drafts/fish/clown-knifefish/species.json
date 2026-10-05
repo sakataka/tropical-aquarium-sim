@@ -1,0 +1,124 @@
+{
+  "id": "clown-knifefish",
+  "displayName": "ナイフフィッシュ",
+  "realBodyLengthCm": 60,
+  "swim": {
+    "tailBeatHz": 0.9,
+    "tailSweepRad": 0.1,
+    "verticalFlex": 0.01
+  },
+  "visual": {
+    "fallbackColor": "#9a9384"
+  },
+  "sourceBodyBounds": {
+    "x": 103,
+    "y": 258,
+    "width": 1346,
+    "height": 452
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.35,
+    "maxY": 0.85
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.12,
+      "burst": 0.55
+    },
+    "turnRateRadPerSec": 1.2,
+    "restFraction": 0.45,
+    "depthRange": [
+      0.4,
+      0.95
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0,
+      "polarization": 0.03
+    },
+    "structureAffinity": 0.75,
+    "habits": [
+      {
+        "type": "hideByDay",
+        "durationSec": [
+          60,
+          180
+        ]
+      },
+      {
+        "type": "airBreathing",
+        "breathsPerHour": [
+          1,
+          4
+        ],
+        "style": "dash"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes — Chitala ornata",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=10122"
+      },
+      {
+        "title": "Naturalis Biodiversity Center — Chitala ornata taxonomic description",
+        "url": "https://mormyridae.linnaeus.naturalis.nl/linnaeus_ng/app/views/species/nsr_taxon.php?id=113190"
+      },
+      {
+        "title": "Mekong River Commission (2004), Technical Paper No.10, pp20 and39",
+        "url": "https://archive.iwlearn.net/mrcmekong.org/download/free_download/Technical_paper10.pdf"
+      },
+      {
+        "title": "Gam et al. (2020), Effects of temperature on acid–base regulation, gill ventilation and air breathing in the clown knifefish",
+        "url": "https://journals.biologists.com/jeb/article/223/4/jeb216481/223832/Effects-of-temperature-on-acid-base-regulation"
+      },
+      {
+        "title": "Emaar Aquarium — Clown Knifefish Care Guide and Characteristics (2025-12-24)",
+        "url": "https://emaarakvaryum.com/en/creatures/underwater-world-creatures/clown-knifefish-care-guide-and-characteristics/"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Chitala ornata",
+    "originRegionId": "southeast-asia",
+    "originRegionName": "東南アジア",
+    "origin": "東南アジアのメコン川、チャオプラヤ川、メークローン川の水系。ラオス、タイ、カンボジア、ベトナムに分布します。",
+    "temperament": "魚やエビ、昆虫を食べる肉食魚です。飼育下の成魚は単独を好み、同種には縄張りを主張します。口に入る小魚との同居は避けられます。",
+    "movement": "体をほとんど曲げず、腹側の長い尻びれを波打たせて、前にも後ろにも進みます。昼は物陰に隠れ、夕方から夜に活発になります。えらで呼吸しながら、ときどき空気も吸います。",
+    "habitat": "メコン本流の淵や瀬の、岩や水没した植物のある場所に暮らします。漁業者の話では、増水期に小さな支流や浸水域へ移り、水が引くと本流の淵へ戻ります。本展示では流木と根の絡まる大河の、暗い物陰の近くにいる姿を見せています。",
+    "aliases": [
+      "Notopterus ornatus",
+      "Clown featherback",
+      "Clown knifefish",
+      "クラウン・ナイフフィッシュ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Osteoglossiformes",
+      "orderJa": "アロワナ目",
+      "family": "Notopteridae",
+      "familyJa": "ナギナタナマズ科"
+    },
+    "adultSizeCm": 100,
+    "sizeNote": "最大で標準体長約100cmになるとされます。ふつうの成魚の大きさは分かっていません。小さいうちは縦帯があり、体長約8cmから眼状斑が現れます。",
+    "distribution": "メコン川、チャオプラヤ川、メークローン川の水系（ラオス、タイ、カンボジア、ベトナム）に分布します。ほかの地域にも移入されています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "今回の調査では IUCN の評価本文を確認できていません。"
+    },
+    "highlights": [
+      "尻びれを波打たせ、体をまっすぐ保ったまま前後に進む",
+      "体の後半に並ぶ、白く縁取られた黒い眼状斑",
+      "昼は物陰に隠れ、暗くなると動き出す",
+      "えらで呼吸しながら、ときどき水面で空気も吸う"
+    ]
+  }
+}

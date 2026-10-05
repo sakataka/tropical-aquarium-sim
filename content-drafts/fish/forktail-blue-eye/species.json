@@ -1,0 +1,117 @@
+{
+  "id": "forktail-blue-eye",
+  "displayName": "フォークテール・ブルーアイ",
+  "realBodyLengthCm": 5,
+  "swim": {
+    "tailBeatHz": 3.1
+  },
+  "visual": {
+    "fallbackColor": "#c4b55a"
+  },
+  "sourceBodyBounds": {
+    "x": 236,
+    "y": 299,
+    "width": 1111,
+    "height": 424
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.08,
+    "maxY": 0.42
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.75,
+      "burst": 3.4
+    },
+    "turnRateRadPerSec": 3.1,
+    "restFraction": 0.1,
+    "depthRange": [
+      0.1,
+      0.8
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.8,
+      "cohesion": 0.45,
+      "polarization": 0.3
+    },
+    "structureAffinity": 0.3,
+    "habits": [
+      {
+        "type": "follow",
+        "chancePerMin": 1.2,
+        "durationSec": [
+          2,
+          6
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "DCCEEW: Assessment of the Potential Impacts of 6 Species from the Genus Pseudomugil on the Environment",
+        "url": "https://www.dcceew.gov.au/sites/default/files/documents/pseudomugil-risk-assessment.pdf"
+      },
+      {
+        "title": "Aquarium Co-Op: Care Guide for Forktail Blue-Eye or Furcata Rainbowfish",
+        "url": "https://www.aquariumcoop.com/blogs/aquarium/forktail-rainbowfish"
+      },
+      {
+        "title": "FishBase: Pseudomugil furcatus field guide",
+        "url": "https://www.fishbase.se/Fieldguide/FieldGuideSummary.php?c_code=598&genusname=Pseudomugil&speciesname=furcatus"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Pseudomugil furcatus",
+    "originRegionId": "oceania",
+    "originRegionName": "オセアニア",
+    "origin": "パプアニューギニア東部の低地。クワギラ川とムサ川の流域から知られています。",
+    "temperament": "水草を植えた水槽で、穏やかな小型魚と一緒に飼われる魚です。雌がいると雄の発色が強まり、雄どうしは円を描くように泳いで誇示し合います。",
+    "movement": "水槽の上半分を活発に泳ぎます。青い眼と黄色いひれ、深く二叉した尾びれが目立ちます。",
+    "habitat": "水草の多い、澄んだ熱帯林の小河川に暮らします。比較的流れの速い川と記されています。本展示では明るい川の上層を泳ぐ姿を見せています。",
+    "aliases": [
+      "Popondetta furcata",
+      "Popondichthys furcatus",
+      "Forktail rainbowfish",
+      "Forktail blue-eye",
+      "フォークテール・レインボー"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Atheriniformes",
+      "orderJa": "トウゴロウイワシ目",
+      "family": "Pseudomugilidae",
+      "familyJa": "シュードムギル科"
+    },
+    "adultSizeCm": 5,
+    "sizeNote": "最大は標準体長5cm（雄または性別不明）、雌は標準体長4cmとされます。雄の典型的な大きさは分かっていません。",
+    "distribution": "パプアニューギニア東部の低地にあるクワギラ川とムサ川の流域から知られています。調査されていない地域にいないとは言い切れません。",
+    "water": {
+      "salinity": "freshwater",
+      "temperatureC": [
+        24,
+        28.5
+      ],
+      "pH": [
+        7,
+        8
+      ]
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "DD",
+      "assessedYear": 2020,
+      "note": "ムサ川流域の個体群は、森林伐採の影響を受けている可能性が指摘されています。"
+    },
+    "highlights": [
+      "青い眼と黄色いひれ、深く二叉した尾びれ",
+      "雄どうしが円を描くように泳いで誇示し合う",
+      "水槽の上半分を活発に泳ぐ"
+    ]
+  }
+}

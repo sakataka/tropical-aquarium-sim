@@ -1,0 +1,121 @@
+{
+  "id": "gigi-catfish",
+  "displayName": "ギギ",
+  "realBodyLengthCm": 20,
+  "catalog": {
+    "scientificName": "Tachysurus nudiceps",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "本州西部、四国、九州北東部の川や琵琶湖に分布します。福岡県の筑後川水系や神奈川県の鶴見川など、本来の分布域の外にも持ち込まれています。",
+    "temperament": "魚や甲殻類を食べる肉食性のナマズです。繁殖期には卵を守ります。",
+    "movement": "夜行性で、暗くなってから活発に動き出します。争うときには、胸びれのとげで音を立てます。",
+    "habitat": "流れの緩い川や水路、琵琶湖にすみます。岸の石組みの隙間や植物の根元に巣をつくります。",
+    "aliases": [
+      "Gigi catfish",
+      "Pelteobagrus nudiceps",
+      "Pseudobagrus nudiceps"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Siluriformes",
+      "orderJa": "ナマズ目",
+      "family": "Bagridae",
+      "familyJa": "ギギ科"
+    },
+    "adultSizeCm": 20,
+    "sizeNote": "福岡県の解説では体長20〜40cmとされます（全長か標準体長かは示されていません）。鶴見川で採集された4個体は標準体長14〜25cmでした。",
+    "distribution": "本州西部、四国、九州北東部に分布します。福岡県の筑後川水系や神奈川県では、持ち込まれた個体が見つかっています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "NE",
+      "note": "滋賀県のレッドリスト（2020）では絶滅危惧種です。一方、福岡県では筑後川水系の個体群が要対策外来種に選ばれています。"
+    },
+    "highlights": [
+      "胸びれのとげの付け根をこすり合わせて「ギーギー」と音を出し、これが名前の由来です。",
+      "口のまわりの4対のひげと、深く二つに分かれた尾びれが特徴です。",
+      "野外では、繁殖期に岸の石組みの隙間や植物の根元に巣をつくり、卵を守ります。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 1.8
+  },
+  "visual": {
+    "fallbackColor": "#6e5c40"
+  },
+  "sourceBodyBounds": {
+    "x": 74,
+    "y": 247,
+    "width": 1385,
+    "height": 483
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.6,
+    "maxY": 0.94
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.25,
+      "burst": 1.2
+    },
+    "turnRateRadPerSec": 1.9,
+    "restFraction": 0.35,
+    "depthRange": [
+      0.35,
+      0.95
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.0,
+      "cohesion": 0,
+      "polarization": 0.03
+    },
+    "structureAffinity": 0.7,
+    "habits": [
+      {
+        "type": "hideByDay",
+        "durationSec": [
+          40,
+          120
+        ]
+      },
+      {
+        "type": "follow",
+        "chancePerMin": 0.3,
+        "durationSec": [
+          1,
+          3
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "福岡県 — ギギ（外来個体群）",
+        "url": "https://biodiversity.pref.fukuoka.lg.jp/invasives/detail/8b4f7164-ff18-4f6b-af9b-974f688a1d72"
+      },
+      {
+        "title": "琵琶湖博物館 秋山廣光 — 水中の音の世界",
+        "url": "https://www.biwahaku.jp/publication/umindo/volume12/umind12e.html"
+      },
+      {
+        "title": "琵琶湖博物館 — 滋賀の生きもの図鑑 ギギ",
+        "url": "https://jmapps.ne.jp/ikimono/det.html?data_id=7963"
+      },
+      {
+        "title": "宇高・安原 2026 — ギギの鶴見川からの追加記録",
+        "url": "https://www.jstage.jst.go.jp/article/aquaticanimals/2026/0/2026_AA2026-25/_pdf/-char/ja"
+      },
+      {
+        "title": "Eschmeyer's Catalog of Fishes — nudiceps, spid 54685",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=54685"
+      }
+    ]
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "id": "firemouth-cichlid",
+  "displayName": "ファイヤーマウス",
+  "realBodyLengthCm": 12,
+  "swim": {
+    "tailBeatHz": 2,
+    "tailSweepRad": 0.4,
+    "mouthAnchor": {
+      "x": 0.005,
+      "y": 0.56
+    }
+  },
+  "visual": {
+    "fallbackColor": "#9a8170"
+  },
+  "sourceBodyBounds": {
+    "x": 221,
+    "y": 232,
+    "width": 1135,
+    "height": 566
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.5,
+    "maxY": 0.92
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.35,
+      "burst": 1.5
+    },
+    "turnRateRadPerSec": 2.1,
+    "restFraction": 0.2,
+    "depthRange": [0.15, 0.8],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 2.6,
+      "cohesion": 0.32,
+      "polarization": 0.12
+    },
+    "structureAffinity": 0.5,
+    "habits": [
+      {
+        "type": "bottomForage"
+      },
+      {
+        "type": "follow",
+        "chancePerMin": 0.5,
+        "durationSec": [2, 5]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Thorichthys meeki",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=16452"
+      },
+      {
+        "title": "FishBase: Thorichthys meeki",
+        "url": "https://www.fishbase.se/summary/Thorichthys-meeki.html"
+      },
+      {
+        "title": "US Fish and Wildlife Service: Firemouth Cichlid Ecological Risk Screening Summary",
+        "url": "https://www.fws.gov/sites/default/files/documents/Ecological-Risk-Screening-Summary-Firemouth-Cichlid.pdf"
+      },
+      {
+        "title": "Neil 1984: Field studies of the behavioral ecology and agonistic behavior of Cichlasoma meeki",
+        "url": "https://link.springer.com/article/10.1007/BF00001662"
+      },
+      {
+        "title": "Beeching 2017: Investigating the behavioral significance of color pattern in a cichlid fish",
+        "url": "https://www.researchgate.net/profile/Simon-Beeching-2/publication/311988546_Investigating_the_behavioral_significance_of_color_pattern_in_a_cichlid_fish_firemouths_Thorichthys_meeki_respond_differently_to_color-manipulated_video_and_dummy_conspecifics/links/5ba8f7f745851574f7e2dca4/Investigating-the-behavioral-significance-of-color-pattern-in-a-cichlid-fish-firemouths-Thorichthys-meeki-respond-differently-to-color-manipulated-video-and-dummy-conspecifics.pdf"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Thorichthys meeki",
+    "originRegionId": "central-america",
+    "originRegionName": "中央アメリカ",
+    "origin": "メキシコ南部、グアテマラ、ベリーズの大西洋側に分布します。模式産地はメキシコ・ユカタン半島のプログレソ付近です。",
+    "habitat": "浅い止水や流れの緩い場所、柔らかい底の池や水路にすみます。この展示では、丸い石と砂底の中米の小川で暮らします。",
+    "temperament": "繁殖期にはペア、または雄が単独で縄張りをつくります。同種どうしの争いは多いものの、喉や鰓ぶたを広げて見せ合う儀式的なもので、体がぶつかることはまれです。",
+    "movement": "底近くを泳ぎ、口に入れた砂から餌を選り分けます。縄張りに入った相手には、鰓ぶたを張って短く向かっていきます。",
+    "aliases": [
+      "Firemouth cichlid",
+      "Cichlasoma meeki",
+      "Thorichthys helleri meeki"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cichliformes",
+      "orderJa": "シクリッド目",
+      "family": "Cichlidae",
+      "familyJa": "シクリッド科"
+    },
+    "adultSizeCm": 17,
+    "sizeNote": "報告されている最大は全長17cmです。ふつうの成魚の大きさは確かめられていません。大きな雄は背びれと臀びれの後端が伸びます。",
+    "distribution": "メキシコ南部、グアテマラ、ベリーズの大西洋側。コロンビア、ハワイ、プエルトリコ、フロリダに移入しています。",
+    "water": {
+      "salinity": "freshwater",
+      "temperatureC": [22, 30]
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2018
+    },
+    "highlights": [
+      "赤橙色の喉と腹、鰓ぶたの下の黒い斑が目立ちます。赤い色は雌にもあります。",
+      "口に入れた底の砂から、餌を選り分けて食べます。",
+      "侵入者には喉と鰓ぶたを大きく広げて威嚇しますが、直接ぶつかることはまれです。"
+    ]
+  }
+}

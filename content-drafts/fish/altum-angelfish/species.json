@@ -1,0 +1,105 @@
+{
+  "id": "altum-angelfish",
+  "displayName": "アルタムエンゼル",
+  "realBodyLengthCm": 15,
+  "swim": {
+    "tailBeatHz": 1.3,
+    "bodyWaveStart": 0.52,
+    "tailSweepRad": 0.32
+  },
+  "visual": {
+    "fallbackColor": "#b8ab90"
+  },
+  "sourceBodyBounds": {
+    "x": 345,
+    "y": 17,
+    "width": 963,
+    "height": 983
+  },
+  "preferredZone": {
+    "minX": 0.1,
+    "maxX": 0.9,
+    "minY": 0.15,
+    "maxY": 0.7
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.15,
+      "burst": 0.8
+    },
+    "turnRateRadPerSec": 1.25,
+    "restFraction": 0.32,
+    "depthRange": [0.2, 0.8],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 2.8,
+      "cohesion": 0.3,
+      "polarization": 0.18
+    },
+    "structureAffinity": 0.62,
+    "habits": [
+      {
+        "type": "follow",
+        "chancePerMin": 0.3,
+        "durationSec": [4, 10]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Fornbäck 1994 — Towards a natural breeding out of an aquarium",
+        "url": "https://www.finarama.com/chronicles/fornback1994.htm"
+      },
+      {
+        "title": "Eschmeyer's Catalog of Fishes — Pterophyllum species records (updated 13 August 2026)",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?genus=Pterophyllum&tbl=species"
+      },
+      {
+        "title": "Schultz 1967 — Review of South American freshwater angelfishes, genus Pterophyllum",
+        "url": "https://repository.si.edu/bitstream/handle/10088/16933/1/USNMP-120_3555_1967.pdf"
+      },
+      {
+        "title": "FishBase — Pterophyllum altum species summary",
+        "url": "https://fishbase.se/summary/47075"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Pterophyllum altum",
+    "originRegionId": "south-america",
+    "originRegionName": "南米",
+    "origin": "南米コロンビアとベネズエラのオリノコ川水系に由来します。基準となった標本はアタバポ川で採られました。",
+    "temperament": "飼育下では、つがいが場所を占めてほかの個体を追い払うことが記録されています。ふだんの群れ方は、よく分かっていません。",
+    "movement": "背の高い体と長いひれを立てたまま、ゆっくり漂うように泳ぎます。流木の枝の間の縦に開けた空間を、静かに行き来します。",
+    "habitat": "アタバポ川やイニリダ川の支流の黒い水の中、水に沈んだ木や岩の岸辺で見つかっています。乾季の調査では水温30〜32℃、pH4.8という強い酸性の水でした。",
+    "aliases": [
+      "Altum angelfish"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cichliformes",
+      "orderJa": "シクリッド目",
+      "family": "Cichlidae",
+      "familyJa": "シクリッド科"
+    },
+    "adultSizeCm": 18,
+    "sizeNote": "報告されている最大は全長18cmです。典型的な成魚の大きさや、ひれを含めた高さの確かな値は分かっていません。",
+    "distribution": "コロンビアとベネズエラのオリノコ川水系に分布します。ネグロ川上流にもいるとする資料がありますが、確かめられていません。",
+    "water": {
+      "salinity": "freshwater",
+      "temperatureC": [30, 32]
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2020
+    },
+    "highlights": [
+      "背びれと尻びれが高く伸び、ひれまで含めると体長よりずっと背が高い。",
+      "水に沈んだ木の枝の間を、ゆっくり漂うように泳ぐ。",
+      "飼育下の繁殖では、雌雄で卵と仔魚を守り、仔魚を口にくわえて移す。"
+    ]
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "id": "japanese-dark-sleeper",
+  "displayName": "ドンコ",
+  "realBodyLengthCm": 16,
+  "catalog": {
+    "scientificName": "Odontobutis obscura",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "愛知県・新潟県より西の本州、四国、九州と韓国に分布し、一生を淡水で過ごします。関東には持ち込まれて定着した集団がいます。",
+    "temperament": "小魚や甲殻類、水生昆虫を食べる肉食魚です。巣に入ってくる相手には音を出して威嚇し、口を開けたり咬みついたりすることもあります。",
+    "movement": "夜行性で、昼は岩の下や石垣の隙間に潜み、その周りで暮らします。底にいる魚ですが泳ぐ力は弱く、大きな移動はあまりしません。",
+    "habitat": "川や水路の流れの緩い淵や淀み、湖沼にすみます。大きな岩の隙間や沈んだ木の下に、隠れ場所の多い暗い淵をイメージしています。",
+    "aliases": [
+      "Japanese dark sleeper",
+      "Odontobutis obscurus"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Gobiiformes",
+      "orderJa": "ハゼ目",
+      "family": "Odontobutidae",
+      "familyJa": "ドンコ科"
+    },
+    "adultSizeCm": 25,
+    "sizeNote": "大きなものは全長25cmになると解説されていますが、ふつうに見られる成魚の大きさは調査で確かめられていません。飼育下で孵化から1年たった群れは平均体長約9cmで、1歳で産卵しました。",
+    "distribution": "愛知県・新潟県より西の本州、四国、九州と韓国に分布します。関東では移植された集団が定着しています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "note": "IUCN の評価は確認できていません。農林水産省の解説資料では環境省レッドリストに掲載のない種とされ、河岸のコンクリート化で隠れ場所が失われることが心配されています。"
+    },
+    "highlights": [
+      "大きく平たい頭と大きな口、褐色のまだら模様が特徴です。",
+      "岩の隙間などの隠れ家を拠点に暮らし、近づく相手を音を出して威嚇します。",
+      "繁殖期の雄は巣の中の卵を守り、ひれで水を送って世話をします。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 1.6,
+    "tailSweepRad": 0.42
+  },
+  "visual": {
+    "fallbackColor": "#7f6649"
+  },
+  "sourceBodyBounds": {
+    "x": 107,
+    "y": 280,
+    "width": 1365,
+    "height": 474
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.74,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.12,
+      "burst": 1.4
+    },
+    "turnRateRadPerSec": 1.8,
+    "restFraction": 0.65,
+    "depthRange": [
+      0.3,
+      0.9
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.85,
+    "habits": [
+      {
+        "type": "homeShelter",
+        "kind": "crevice",
+        "rangeBodyLengths": 4,
+        "visitChancePerMin": 0.4,
+        "visitDurationSec": [
+          20,
+          60
+        ]
+      },
+      {
+        "type": "hideByDay",
+        "durationSec": [
+          40,
+          120
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.5,
+        "durationSec": [
+          10,
+          30
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "大阪府立環境農林水産総合研究所：ドンコ",
+        "url": "https://www.knsk-osaka.jp/zukan/zukan_database/tansui/3550b2c2834a2d4/7350b5a0336819f.html"
+      },
+      {
+        "title": "農林水産省：水田整備の生きもの解説 ドンコ p31",
+        "url": "https://www.maff.go.jp/j/nousin/keityo/kankyo/attach/pdf/suiden_seibi_kaisetu-11.pdf"
+      },
+      {
+        "title": "Takemura (1984): Acoustical behavior of the freshwater goby Odontobutis obscura",
+        "url": "https://www.jstage.jst.go.jp/article/suisan1932/50/4/50_4_561/_pdf/-char/en"
+      },
+      {
+        "title": "Mashiko (1976): Reproductive behavior of an eleotrid goby in aquaria",
+        "url": "https://www.jstage.jst.go.jp/article/jji1950/23/2/23_2_69/_article/-char/en"
+      },
+      {
+        "title": "益子・山岸 (1976)：ドンコの生長と行動の発現",
+        "url": "https://www.jstage.jst.go.jp/article/suisan1932/42/9/42_9_953/_pdf/-char/ja"
+      }
+    ]
+  }
+}

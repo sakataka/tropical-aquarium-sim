@@ -1,0 +1,113 @@
+{
+  "id": "eight-barbel-loach",
+  "displayName": "ホトケドジョウ",
+  "realBodyLengthCm": 5,
+  "catalog": {
+    "scientificName": "Lefua echigonia",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "本州に分布する日本固有のドジョウの仲間です。湧き水の流れ込む細流や湿地など、限られた場所に暮らします。",
+    "temperament": "水草の間や石の下、植物の根が入り組んだすき間に隠れます。繁殖期には、何匹もの雄が1匹の雌を追いかけて産卵します。",
+    "movement": "ドジョウの仲間ですが、底を這うだけでなく中層を泳いでいることが多い魚です。底にいる小さな生き物を探して食べます。",
+    "habitat": "澄んだ緩い流れの細流で、砂泥の底に水草が茂る場所をイメージしています。福井県の中池見湿地では、水深5cmほどの湧水池や水路に暮らしていました。",
+    "aliases": [
+      "Japanese eight-barbel loach",
+      "Lefua costata echigonia"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cypriniformes",
+      "orderJa": "コイ目",
+      "family": "Nemacheilidae",
+      "familyJa": "フクドジョウ科"
+    },
+    "adultSizeCm": 6,
+    "sizeNote": "成魚のふつうの大きさは調査で確かめられていません。中池見湿地の調査では、若い個体も含めて標準体長1.4〜6.3cmでした。",
+    "distribution": "本州に分布する日本固有種です。四国などの古い記録には近縁種が混じっている可能性があり、全体の分布は整理されていません。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "note": "環境省レッドリスト2020では絶滅危惧IB類（EN）です。IUCN の区分は Catalog of Fishes が紹介する2019年の評価によります。神奈川県では、飼育下で遺伝子を保存しながら生息地の復元を進めています。"
+    },
+    "highlights": [
+      "4対・8本のひげと、ほかのドジョウより太く短い体が特徴です。",
+      "中層を泳いでは、水草や石の陰へ出入りします。",
+      "背びれと尾びれに散らばる黒い斑点がよく目立ちます。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.6,
+    "tailSweepRad": 0.45,
+    "mouthAnchor": {
+      "x": 0.07,
+      "y": 0.59
+    }
+  },
+  "visual": {
+    "fallbackColor": "#9f8357"
+  },
+  "sourceBodyBounds": {
+    "x": 97,
+    "y": 270,
+    "width": 1348,
+    "height": 444
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.45,
+    "maxY": 0.93
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.35,
+      "burst": 2.0
+    },
+    "turnRateRadPerSec": 2.6,
+    "restFraction": 0.3,
+    "depthRange": [
+      0.2,
+      0.85
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0.35,
+      "polarization": 0.1
+    },
+    "structureAffinity": 0.65,
+    "habits": [
+      {
+        "type": "bottomForage"
+      }
+    ],
+    "sources": [
+      {
+        "title": "大阪府立環境農林水産総合研究所 — ホトケドジョウ",
+        "url": "https://www.knsk-osaka.jp/zukan/zukan_database/tansui/2750b34e3c47c34/1350b5a9a350d59.html"
+      },
+      {
+        "title": "北川ほか (2013), 福井県中池見湿地におけるホトケドジョウの生息現況, 魚類学雑誌60:27–33",
+        "url": "https://www.jstage.jst.go.jp/article/jji/60/1/60_27/_pdf/-char/ja"
+      },
+      {
+        "title": "環境省レッドリスト2020新旧対照表 — ホトケドジョウ p12",
+        "url": "https://www.env.go.jp/press/files/jp/114458.pdf"
+      },
+      {
+        "title": "神奈川県 淡水生態系（河川）への影響と適応策",
+        "url": "https://www.pref.kanagawa.jp/docs/b4f/tekiou/eikyou/seitaikei-kasen.html"
+      },
+      {
+        "title": "Eschmeyer’s Catalog of Fishes — Lefua echigonia",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=2300"
+      }
+    ]
+  }
+}

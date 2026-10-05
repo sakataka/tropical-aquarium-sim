@@ -1,0 +1,121 @@
+{
+  "id": "emperor-angelfish",
+  "displayName": "タテジマキンチャクダイ",
+  "realBodyLengthCm": 30,
+  "swim": {
+    "tailBeatHz": 1.4,
+    "mouthAnchor": {
+      "x": 0.0,
+      "y": 0.51
+    }
+  },
+  "visual": {
+    "fallbackColor": "#3b62b8"
+  },
+  "sourceBodyBounds": {
+    "x": 293,
+    "y": 226,
+    "width": 1049,
+    "height": 605
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.3,
+    "maxY": 0.85
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.25,
+      "burst": 1.2
+    },
+    "turnRateRadPerSec": 1.8,
+    "restFraction": 0.2,
+    "depthRange": [
+      0.25,
+      0.85
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 3,
+      "cohesion": 0,
+      "polarization": 0.03
+    },
+    "structureAffinity": 0.7,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 2,
+        "durationSec": [
+          4,
+          12
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Australian Museum: Emperor Angelfish",
+        "url": "https://australian.museum/learn/animals/fishes/emperor-angelfish-pomacanthus-imperator/"
+      },
+      {
+        "title": "FishBase: Pomacanthus imperator",
+        "url": "https://www.fishbase.se/summary/Pomacanthus-imperator.html"
+      },
+      {
+        "title": "National Aquarium: Emperor Angelfish",
+        "url": "https://aqua.org/explore/animals/emperor-angelfish"
+      },
+      {
+        "title": "Reef Life Survey: Pomacanthus imperator",
+        "url": "https://reeflife.org/species/pomacanthus-imperator/"
+      },
+      {
+        "title": "Konow, Fitzpatrick & Barnett 2006: Adult Emperor angelfish clean Giant sunfishes",
+        "url": "https://www.oceansunfish.org/2006_PomImperator_cleans_Mola.pdf"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Pomacanthus imperator",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "紅海・東アフリカから中部太平洋まで、インド太平洋に広く分布します。日本では南日本や小笠原で見られます。",
+    "temperament": "雄は複数の雌と使う生活域を守り、ほかの雄が入り込むと攻撃的になります。",
+    "movement": "岩やサンゴのまわりをゆったり泳ぎ、カイメンやホヤなど岩に付いた生き物をついばみます。",
+    "habitat": "サンゴの多い澄んだ礁湖や水路、外礁に暮らし、成魚は岩棚や洞窟のまわりを使います。",
+    "aliases": [
+      "Emperor angelfish",
+      "エンペラーエンゼル"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Acanthuriformes",
+      "orderJa": "ニザダイ目",
+      "family": "Pomacanthidae",
+      "familyJa": "キンチャクダイ科"
+    },
+    "adultSizeCm": 30,
+    "sizeNote": "典型的な成魚の大きさは分かっていません。最大で標準体長40cmの記録があります。幼魚は暗い地色に青白い輪の模様で、成魚とはまったく違って見えます。",
+    "distribution": "紅海・東アフリカからライン諸島・ツアモツ諸島まで。北は日本南部・小笠原、南はオーストラリアやニューカレドニアに及びます。ハワイの記録は、飼育個体が放されたものの可能性があります。",
+    "water": {
+      "salinity": "marine",
+      "temperatureC": [
+        22,
+        31.4
+      ]
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2009
+    },
+    "highlights": [
+      "青い体に黄色の細い縞が並び、目を覆う黒い帯がアイマスクのように見えます。",
+      "岩に付いたカイメンやホヤをついばみます。",
+      "インドネシアでは、成魚がマンボウ類の体の寄生虫を取り除く様子が記録されています。"
+    ]
+  }
+}

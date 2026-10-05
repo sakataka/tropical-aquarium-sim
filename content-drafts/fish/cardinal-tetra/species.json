@@ -1,0 +1,103 @@
+{
+  "id": "cardinal-tetra",
+  "displayName": "カージナルテトラ",
+  "realBodyLengthCm": 3,
+  "swim": {
+    "tailBeatHz": 3.2
+  },
+  "visual": {
+    "fallbackColor": "#e0342c"
+  },
+  "sourceBodyBounds": {
+    "x": 211,
+    "y": 282,
+    "width": 1144,
+    "height": 424
+  },
+  "preferredZone": {
+    "minX": 0.1,
+    "maxX": 0.9,
+    "minY": 0.3,
+    "maxY": 0.7
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.85,
+      "burst": 3.2
+    },
+    "turnRateRadPerSec": 3.2,
+    "restFraction": 0.1,
+    "depthRange": [0.15, 0.85],
+    "social": {
+      "grouping": "school",
+      "spacingBodyLengths": 1.3,
+      "cohesion": 0.78,
+      "polarization": 0.72
+    },
+    "structureAffinity": 0.3,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Walker (2004): The food spectrum of the cardinal-tetra in its natural habitat. Acta Amazonica 34(1):69–73",
+        "url": "https://acta.inpa.gov.br/fasciculos/34-1/BODY/v34n1a09.html"
+      },
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Cheirodon axelrodi / Paracheirodon axelrodi",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=4506"
+      },
+      {
+        "title": "Marshall et al. (2011): Water temperature differences in interfluvial palm swamp habitats. Ichthyological Exploration of Freshwaters 22:377–383, publisher abstract",
+        "url": "https://pfeil-verlag.de/wp-content/uploads/2015/05/ief22_4_09.pdf"
+      },
+      {
+        "title": "Rincón et al. (2023): Morphological study of the digestive tract of the cardinal tetra. Neotropical Ichthyology 21(1):e220092",
+        "url": "https://www.scielo.br/j/ni/a/qmrj3R8shgdwvRRFCv8B5dn/"
+      },
+      {
+        "title": "Aquarium Industries: Cardinal Tetra",
+        "url": "https://www.aquariumindustries.com.au/product/cardinal-tetra/"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Paracheirodon axelrodi",
+    "originRegionId": "south-america",
+    "originRegionName": "南米",
+    "origin": "南米のネグロ川水系とオリノコ川上流。ブラジル、コロンビア、ベネズエラの、森に囲まれた酸性の黒っぽい水に由来します。",
+    "temperament": "温和な小型カラシンです。野外では数十匹ほどの小さな群れで動き、同種と一緒にいるとまとまって泳ぎます。",
+    "movement": "主に中層を群れで進み、根や水草、沈んだ落ち葉のまわりで小さな餌をついばみます。短く加速しては惰性で進む泳ぎを繰り返します。",
+    "habitat": "小さな支流や冠水林の水たまりなど、根や落ち葉の多い場所に暮らします。水草と流木のある水槽で、頭の下まで続く赤い帯がよく映えます。",
+    "aliases": [
+      "Cardinal tetra",
+      "Cheirodon axelrodi"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Characiformes",
+      "orderJa": "カラシン目",
+      "family": "Acestrorhamphidae",
+      "familyJa": "アケストロランプス科"
+    },
+    "adultSizeCm": 2.6,
+    "sizeNote": "飼育下の成魚16匹の平均は全長2.6cm（標準体長2.1cm）でした。報告されている最大は標準体長3cmです。",
+    "distribution": "ブラジル、コロンビア、ベネズエラのネグロ川水系とオリノコ川上流に分布します。",
+    "water": {
+      "salinity": "freshwater",
+      "temperatureC": [25.1, 29.9],
+      "pH": [3.35, 5.82]
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2021
+    },
+    "highlights": [
+      "青く光る帯の下に、頭の下から尾の付け根まで赤い帯が続く。ネオンテトラは赤い帯が体の後ろ半分だけ。",
+      "群れで中層を泳ぎ、水草や根のまわりで小さな餌をついばむ。",
+      "野外では、ミジンコのような小さな甲殻類やユスリカの幼虫をよく食べている。"
+    ]
+  }
+}

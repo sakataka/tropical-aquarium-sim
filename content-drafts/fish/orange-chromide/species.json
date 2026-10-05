@@ -1,0 +1,109 @@
+{
+  "id": "orange-chromide",
+  "displayName": "オレンジクロミス",
+  "realBodyLengthCm": 7,
+  "catalog": {
+    "scientificName": "Pseudetroplus maculatus",
+    "originRegionId": "south-asia",
+    "originRegionName": "南アジア",
+    "origin": "インドとスリランカに分布するシクリッドです。インド南部ケララ州の汽水域などで採集されています。",
+    "temperament": "繁殖期にはペアをつくって縄張りを守ります。雌雄で産卵面を口先で掃除し、交代で卵を守ってひれで水を送ります。",
+    "movement": "ペアで寄り添い、中層から底近くをゆっくり巡ります。野外でどの層をどう泳ぐのかは、まだよく分かっていません。",
+    "habitat": "河口や潟湖、汽水の小川、川の下流に暮らします。本水槽では、小さな洞と石のある汽水の浅瀬をイメージしています。",
+    "aliases": [
+      "orange chromide",
+      "Etroplus maculatus"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cichliformes",
+      "orderJa": "カワスズメ目",
+      "family": "Cichlidae",
+      "familyJa": "カワスズメ科"
+    },
+    "adultSizeCm": 7,
+    "sizeNote": "繁殖研究に使われた成魚は全長5.2〜8.7cmでした。野生の成魚の典型的な大きさや最大は分かっていません。",
+    "distribution": "インドとスリランカに分布します。",
+    "water": {
+      "salinity": "brackish"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2019
+    },
+    "highlights": [
+      "黄色から橙色の体に、橙色の小点と体側の黒い斑が目立ちます。",
+      "ペアで寄り添うように泳ぎます。",
+      "繁殖期には雌雄が交代で卵を守り、ひれであおいで水を送ります。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.4
+  },
+  "visual": {
+    "fallbackColor": "#c18134"
+  },
+  "sourceBodyBounds": {
+    "x": 243,
+    "y": 206,
+    "width": 1093,
+    "height": 610
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.4,
+    "maxY": 0.86
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.4,
+      "burst": 1.8
+    },
+    "turnRateRadPerSec": 2.3,
+    "restFraction": 0.2,
+    "depthRange": [
+      0.15,
+      0.8
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 1.8,
+      "cohesion": 0.45,
+      "polarization": 0.15
+    },
+    "structureAffinity": 0.55,
+    "habits": [
+      {
+        "type": "follow",
+        "chancePerMin": 1.0,
+        "durationSec": [
+          3,
+          8
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Pseudetroplus maculatus",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=48988"
+      },
+      {
+        "title": "Padinhate Purayil et al. 2022. Orange Chromide: A Potential Euryhaline Fish Model",
+        "url": "https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2022.906491/full"
+      },
+      {
+        "title": "Shilta, Suresh Babu & Vinod 2016. Orange Chromide: A promising indigenous fish for marine aquariums",
+        "url": "https://eprints.cmfri.org.in/11369/1/MFIS%20227_2.pdf"
+      },
+      {
+        "title": "Pethiyagoda, Maduwage & Manamendra-Arachchi 2014. Validation of the South Asian cichlid genus Pseudetroplus",
+        "url": "https://mapress.com/zt/article/view/zootaxa.3838.5.9"
+      }
+    ]
+  }
+}

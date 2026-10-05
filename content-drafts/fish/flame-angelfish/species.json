@@ -1,0 +1,129 @@
+{
+  "id": "flame-angelfish",
+  "displayName": "フレームエンゼルフィッシュ",
+  "realBodyLengthCm": 8,
+  "swim": {
+    "tailBeatHz": 2.6,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.5
+    }
+  },
+  "visual": {
+    "fallbackColor": "#f2551e"
+  },
+  "sourceBodyBounds": {
+    "x": 269,
+    "y": 202,
+    "width": 1045,
+    "height": 627
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.5,
+    "maxY": 0.9
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.35,
+      "burst": 2.0
+    },
+    "turnRateRadPerSec": 2.8,
+    "restFraction": 0.25,
+    "depthRange": [
+      0.35,
+      0.85
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0.3,
+      "polarization": 0.1
+    },
+    "structureAffinity": 0.8,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 3,
+        "durationSec": [
+          3,
+          10
+        ]
+      },
+      {
+        "type": "homeShelter",
+        "kind": "cave",
+        "rangeBodyLengths": 4,
+        "visitChancePerMin": 0.6,
+        "visitDurationSec": [
+          5,
+          15
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Fishes of Australia: Centropyge loriculus, Bray 2022",
+        "url": "https://fishesofaustralia.net.au/Home/species/641"
+      },
+      {
+        "title": "FishBase: Centropyge loriculus",
+        "url": "https://www.fishbase.se/summary/Centropyge-loriculus.html"
+      },
+      {
+        "title": "OATA: How to look after dwarf angelfish",
+        "url": "https://ornamentalfish.org/what-we-do/advice-information/care-sheets/caresheets-marine-fish/how-to-look-after-dwarf-angelfish/"
+      },
+      {
+        "title": "Frank Baensch: Flame Angelfish Culture",
+        "url": "https://www.frankbaensch.com/marine-aquarium-fish-culture/my-research/flame-angelfish-culture/"
+      },
+      {
+        "title": "Sapolu 2005: Age-based demography and reproductive ontogeny of angelfishes",
+        "url": "https://researchonline.jcu.edu.au/1280/2/02whole.pdf"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Centropyge loriculus",
+    "originRegionId": "pacific",
+    "originRegionName": "太平洋",
+    "origin": "西部から中部太平洋のサンゴ礁に分布します。オーストラリアでは、グレートバリアリーフ北部とサンゴ海で見られます。",
+    "temperament": "野外では3〜7尾のハーレムで見られると報告されています。同種や似た種には強く当たることがあります。",
+    "movement": "隠れ場の近くを小刻みに泳ぎ、岩の表面の藻類などをついばみます。",
+    "habitat": "外洋側の礁やラグーンで、岩やサンゴの隠れ場のすぐ近くに暮らします。この水景では、岩の張り出しや小さな洞窟のまわりにいます。",
+    "aliases": [
+      "Centropyge loricula",
+      "Flame angelfish",
+      "Japanese pygmy angelfish",
+      "フレームエンゼル"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Acanthuriformes",
+      "orderJa": "ニザダイ目",
+      "family": "Pomacanthidae",
+      "familyJa": "キンチャクダイ科"
+    },
+    "adultSizeCm": 8,
+    "sizeNote": "典型的な成魚の大きさは分かっていません。最大で全長15cmの記録があり、キリバスで集めた153個体の研究では全長5.1〜8.1cmでした。背びれと尻びれの後ろの青黒い模様は、雄で強い傾向があります。",
+    "distribution": "西部から中部太平洋。ソシエテ諸島の標本で記載され、オーストラリアではグレートバリアリーフ北部とサンゴ海に分布します。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2009
+    },
+    "highlights": [
+      "鮮やかな橙赤色の体に黒い帯が数本入り、ひれの縁に青と黒の模様があります。",
+      "岩の隠れ場のそばを離れず、表面の藻類などをついばみます。",
+      "ほかの小型ヤッコより雑食性が強いとされます。"
+    ]
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "id": "painted-greenling",
+  "displayName": "ペインテッドグリーンリング",
+  "realBodyLengthCm": 15,
+  "swim": {
+    "tailBeatHz": 2.2
+  },
+  "visual": {
+    "fallbackColor": "#c49a88"
+  },
+  "sourceBodyBounds": {
+    "x": 110,
+    "y": 285,
+    "width": 1342,
+    "height": 446
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.62,
+    "maxY": 0.93
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.3,
+      "burst": 1.4
+    },
+    "turnRateRadPerSec": 2.2,
+    "restFraction": 0.45,
+    "depthRange": [
+      0.35,
+      0.9
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0,
+      "polarization": 0.03
+    },
+    "structureAffinity": 0.75,
+    "habits": [
+      {
+        "type": "homeShelter",
+        "kind": "crevice",
+        "rangeBodyLengths": 5,
+        "visitChancePerMin": 0.5,
+        "visitDurationSec": [
+          8,
+          25
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.2,
+        "durationSec": [
+          6,
+          20
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Orr & Jensen (2021) IUCN Red List: Oxylebius pictus",
+        "url": "https://www.iucnredlist.org/species/158882686/158883848"
+      },
+      {
+        "title": "Sitka Sound Science Center (2023-09-20): Painted Greenling",
+        "url": "https://sitkascience.org/painted-greenling-oxylebius-pictus/"
+      },
+      {
+        "title": "Elliott (1992) The role of sea anemones as refuges and feeding habitats for the temperate fish Oxylebius pictus",
+        "url": "https://link.springer.com/article/10.1007/BF00004991"
+      },
+      {
+        "title": "Mecklenburg & Eschmeyer (2003) Family Hexagrammidae, Annotated Checklists of Fishes 3",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/annotated/Checklists/Hexagrammidae.pdf"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Oxylebius pictus",
+    "originRegionId": "northeast-pacific",
+    "originRegionName": "北東太平洋",
+    "origin": "北東太平洋の沿岸。アラスカ湾北部からメキシコのバハ・カリフォルニア北部まで分布する、アイナメ科の小型魚です。",
+    "temperament": "単独で暮らし、狭い行動圏を守る縄張り性の魚です。繁殖期には雄が、複数の雌が産んだ卵塊を守ります。",
+    "movement": "海底近くで止まっては、岩の割れ目から割れ目へ素早く移ります。大きな成魚は岩の穴や割れ目に身を寄せて過ごします。",
+    "habitat": "岩礁やケルプの森、桟橋の杭のまわりの海底近くに暮らします。この水景では、岩の割れ目が多い海底を居場所にしています。",
+    "aliases": [
+      "Painted greenling"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Scorpaeniformes",
+      "orderJa": "カサゴ目",
+      "family": "Hexagrammidae",
+      "familyJa": "アイナメ科"
+    },
+    "adultSizeCm": 15,
+    "sizeNote": "典型的な成魚の大きさは分かっていません。野外研究では全長12cmを超える個体を成魚として扱っており、最大で全長25.4cmの記録があります。",
+    "distribution": "アラスカ湾北部からバハ・カリフォルニア北部までの北東太平洋沿岸。おもに水深50mほどまでの浅い岩場で見られます。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2020,
+      "note": "IUCNの評価では、個体数の動向は分かっておらず、大きな脅威は確認されていません。"
+    },
+    "highlights": [
+      "白っぽい体に赤褐色の太い帯が並び、目のまわりから暗い線が放射状に伸びます。",
+      "岩の割れ目から割れ目へ素早く移り、大きな成魚は岩の穴に身を寄せます。",
+      "野外では、小さな幼魚がイソギンチャクに寄り添って暮らすことが知られています。"
+    ]
+  }
+}

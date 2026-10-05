@@ -1,0 +1,116 @@
+{
+  "id": "pale-chub",
+  "displayName": "オイカワ",
+  "realBodyLengthCm": 14,
+  "catalog": {
+    "scientificName": "Opsariichthys platypus",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "関東より西の本州、四国の瀬戸内側、九州北部と、朝鮮半島・中国に分布します。アユの放流に混じって各地へ広がり、本来の分布域ははっきりしなくなっています。",
+    "temperament": "繁殖期の雄は良い産卵場所をめぐってひれを大きく広げて誇示し合い、激しくなると絡み合って争います。ここでは婚姻色の雄を展示しています。",
+    "movement": "細長く平たい体で、中層から上を軽快に泳ぎます。石の面の藻や水生昆虫、水面に落ちた虫をついばみます。",
+    "habitat": "川の中流から下流、湖沼にすみ、岸寄りの流れの緩い砂礫底で産卵します。ウグイより暖かく流れの緩やかな場所を好むとされます。",
+    "aliases": [
+      "Pale chub",
+      "Zacco platypus",
+      "ヤマベ",
+      "ハエ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cypriniformes",
+      "orderJa": "コイ目",
+      "family": "Xenocyprididae",
+      "familyJa": "クセノキプリス科"
+    },
+    "adultSizeCm": 15,
+    "sizeNote": "成魚は全長15cmほどです。国内の資料ではコイ科とされることが多く、属名も Zacco とする体系と併存しています。",
+    "distribution": "関東より西の本州、四国の瀬戸内側、九州北部と、朝鮮半島・中国に分布します。放流への混入で東日本などにも広がりました。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2023,
+      "note": "IUCN の区分は Zacco platypus としての評価を FishBase で確認したものです。"
+    },
+    "highlights": [
+      "繁殖期の雄は体側に赤と青緑の帯が並び、頭に白い追星が出ます。",
+      "雄の尻びれは長く伸び、雌や繁殖期以外の銀白色の姿とは大きく違います。",
+      "野外では、雄どうしがひれを広げて産卵場所を張り合う姿が見られます。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.7
+  },
+  "visual": {
+    "fallbackColor": "#c8806a"
+  },
+  "sourceBodyBounds": {
+    "x": 147,
+    "y": 251,
+    "width": 1266,
+    "height": 506
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.12,
+    "maxY": 0.62
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.7,
+      "burst": 3.0
+    },
+    "turnRateRadPerSec": 2.8,
+    "restFraction": 0.08,
+    "depthRange": [
+      0.1,
+      0.75
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 2.2,
+      "cohesion": 0.45,
+      "polarization": 0.35
+    },
+    "structureAffinity": 0.2,
+    "habits": [
+      {
+        "type": "follow",
+        "chancePerMin": 1.0,
+        "durationSec": [
+          1,
+          3
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "神奈川県水産技術センター — 淡水魚類図鑑 オイカワ",
+        "url": "https://www.pref.kanagawa.jp/docs/a4y/images/oikawa.html"
+      },
+      {
+        "title": "長野県水産試験場 — オイカワ",
+        "url": "https://www.pref.nagano.lg.jp/suisan/joho/sakanatachi/oikawa.html"
+      },
+      {
+        "title": "東京都島しょ農林水産総合センター — オイカワ",
+        "url": "https://www.ifarc.metro.tokyo.lg.jp/archive/27,939,55,225.html"
+      },
+      {
+        "title": "京都市動物園 — オイカワの婚姻色（2022-07-05）",
+        "url": "https://zoo.city.kyoto.lg.jp/zoo/enjoy/blog/breeder-blog/20220705-67259.html"
+      },
+      {
+        "title": "FishBase — Zacco platypus",
+        "url": "https://www.fishbase.se/summary/Zacco-platypus"
+      }
+    ]
+  }
+}

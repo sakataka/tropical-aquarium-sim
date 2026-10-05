@@ -1,0 +1,121 @@
+{
+  "id": "sparkling-gourami",
+  "displayName": "スパークリング・グラミー",
+  "realBodyLengthCm": 3.5,
+  "swim": {
+    "tailBeatHz": 2.8,
+    "tailSweepRad": 0.4
+  },
+  "visual": {
+    "fallbackColor": "#8f7f68"
+  },
+  "sourceBodyBounds": {
+    "x": 281,
+    "y": 281,
+    "width": 1040,
+    "height": 481
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.25,
+    "maxY": 0.75
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.4,
+      "burst": 2.2
+    },
+    "turnRateRadPerSec": 2.8,
+    "restFraction": 0.35,
+    "depthRange": [
+      0.25,
+      0.9
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 2.0,
+      "cohesion": 0.3,
+      "polarization": 0.1
+    },
+    "structureAffinity": 0.8,
+    "habits": [
+      {
+        "type": "airBreathing",
+        "breathsPerHour": [
+          3,
+          9
+        ],
+        "style": "rise"
+      },
+      {
+        "type": "follow",
+        "chancePerMin": 0.5,
+        "durationSec": [
+          2,
+          5
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Trichopsis pumila, species 52200",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=52200"
+      },
+      {
+        "title": "Liesch (2020), Sex-specific differences in sonic organs, agonistic behaviour and sound production in the Pygmy gourami, University of Vienna MSc thesis",
+        "url": "https://utheses.univie.ac.at/detail/54753"
+      },
+      {
+        "title": "Seriously Fish: Trichopsis pumila",
+        "url": "https://www.seriouslyfish.com/species/trichopsis-pumila"
+      },
+      {
+        "title": "FishBase: Trichopsis pumila",
+        "url": "https://www.fishbase.se/summary/Trichopsis_pumila.html"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Trichopsis pumila",
+    "originRegionId": "southeast-asia",
+    "originRegionName": "東南アジア",
+    "origin": "東南アジアのタイ、カンボジア、ベトナムに分布し、チャオプラヤ川とメコン川の下流域から知られます。模式産地はベトナム南部のサイゴンです。",
+    "habitat": "植物が密に茂る低地の止水や緩流、水路、小さな池、湿地、泥炭地にすみます。この展示では、クリプトコリネの茂みや浮き草の下を泳ぎます。",
+    "temperament": "小型で穏やかなグラミーですが、雄どうしは争うことがあります。争いでは体の側面を見せ合い、雄も雌も音を出します。",
+    "movement": "水草の間を小刻みに泳ぎ、茂みや物陰の近くでよく止まります。ときどき水面へ空気を吸いに上がります。",
+    "aliases": [
+      "Sparkling gourami",
+      "Pygmy gourami",
+      "Ctenops pumilus",
+      "ピグミーグラミー"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Anabantiformes",
+      "orderJa": "キノボリウオ目",
+      "family": "Osphronemidae",
+      "familyJa": "オスフロネムス科"
+    },
+    "adultSizeCm": 3.5,
+    "sizeNote": "記録上の最大は標準体長4cmです（雄か性別不明の個体）。ふつうの成魚の大きさは確かめられていないため、展示では全長3.5cm前後を想定しています。成熟した雄は雌よりひれが長く、色も濃くなります。",
+    "distribution": "タイ、カンボジア、ベトナムのチャオプラヤ川・メコン川下流域に分布します。ほかの国からの記録もありますが、分布の全体は確定していません。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2011
+    },
+    "highlights": [
+      "胸びれの強い腱をはじいて音を出し、争いのときには雄も雌も鳴きます。",
+      "体やひれに散る、青緑に光る小さな点が目を引きます。",
+      "繁殖期の雄は葉の下や水面近くの物陰に泡巣を作り、卵と仔魚を守ります。",
+      "迷路器官で空気呼吸をします。"
+    ]
+  }
+}

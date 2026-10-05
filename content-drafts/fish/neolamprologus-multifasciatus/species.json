@@ -1,0 +1,116 @@
+{
+  "id": "neolamprologus-multifasciatus",
+  "displayName": "ネオランプロログス・マルチファスキアトゥス",
+  "realBodyLengthCm": 3,
+  "swim": {
+    "tailBeatHz": 3.2
+  },
+  "visual": {
+    "fallbackColor": "#a89482"
+  },
+  "sourceBodyBounds": {
+    "x": 243,
+    "y": 320,
+    "width": 1085,
+    "height": 416
+  },
+  "preferredZone": {
+    "minX": 0.1,
+    "maxX": 0.9,
+    "minY": 0.74,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.5,
+      "burst": 3.0
+    },
+    "turnRateRadPerSec": 3.0,
+    "restFraction": 0.3,
+    "depthRange": [
+      0.05,
+      0.55
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0.45,
+      "polarization": 0.1
+    },
+    "structureAffinity": 0.8,
+    "habits": [
+      {
+        "type": "homeShelter",
+        "kind": "burrow",
+        "rangeBodyLengths": 6,
+        "visitChancePerMin": 2.0,
+        "visitDurationSec": [
+          3,
+          12
+        ]
+      },
+      {
+        "type": "bottomForage"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Bose et al. (2022) — Parentage analysis across age cohorts reveals sex differences in reproductive skew",
+        "url": "https://d-nb.info/1261740084/34"
+      },
+      {
+        "title": "Gübel, Bose & Jordan (2021) — Dryad study methods and abstract: Social and spatial conflict",
+        "url": "https://datadryad.org/dataset/doi:10.5061/dryad.j0zpc86cj"
+      },
+      {
+        "title": "Jordan et al. (2026; online 2025) — Societies of the shell-dwelling cichlid Neolamprologus multifasciatus",
+        "url": "https://research.slu.se/ws/portalfiles/portal/19153430/fulltext.pdf"
+      },
+      {
+        "title": "Zoo Frankfurt — Cichlid (Neolamprologus multifasciatus)",
+        "url": "https://www.zoo-frankfurt.de/en/tiere-von-a-z-detailansicht/animal/tiere-von-a-z-detailansicht/schneckenbuntbarsch"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Neolamprologus multifasciatus",
+    "originRegionId": "east-africa",
+    "originRegionName": "東アフリカ",
+    "origin": "東アフリカのタンガニーカ湖の固有種です。湖の南部、ザンビア側の湖底で、群れの構造が詳しく調べられています。",
+    "habitat": "砂底に空の巻貝の殻がたまった湖底にすみ、1匹ずつ自分の殻を住みかにします。この展示では、手前の砂地に散らばる貝殻のまわりで暮らします。",
+    "temperament": "雄・雌・幼魚からなる小さな群れが、殻の集まりを縄張りとして共有します。同性の侵入者には強く攻撃することが実験で示されています。",
+    "movement": "殻のまわりを短く行き来し、危険を感じると自分の殻に飛び込みます。口に砂を含んで吐き出し、殻を掘り出す行動もあります。",
+    "aliases": [
+      "Lamprologus multifasciatus",
+      "Multifasciatus shell-dweller",
+      "マルチ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cichliformes",
+      "orderJa": "シクリッド目",
+      "family": "Cichlidae",
+      "familyJa": "シクリッド科"
+    },
+    "adultSizeCm": 3,
+    "sizeNote": "ザンビア側の野外調査では、成魚の標準体長は雄が平均2.6cm、雌が平均2.0cmで、雄のほうが大きくなります。飼育下の研究個体はこれより大きく、雄の標準体長が平均3.5cm、雌が2.8cmでした。",
+    "distribution": "タンガニーカ湖の固有種です。ザンビア側の調査地は、水深9〜11mの殻が集まる砂底でした。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "note": "動物園の解説による区分で、IUCN の評価年は確かめられていません。"
+    },
+    "highlights": [
+      "危険を感じると、それぞれの住みかの貝殻に入って隠れます。",
+      "口で砂を運び、殻を掘り出します。",
+      "幼魚を含む1〜22匹の群れが、殻の集まりを縄張りとして共有します。",
+      "母親が殻の中で子を世話します。"
+    ]
+  }
+}

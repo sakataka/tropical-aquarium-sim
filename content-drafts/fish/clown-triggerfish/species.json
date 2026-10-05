@@ -1,0 +1,119 @@
+{
+  "id": "clown-triggerfish",
+  "displayName": "モンガラカワハギ",
+  "realBodyLengthCm": 30,
+  "swim": {
+    "tailBeatHz": 1.6,
+    "tailSweepRad": 0.2,
+    "mouthAnchor": {
+      "x": 0.0,
+      "y": 0.54
+    }
+  },
+  "visual": {
+    "fallbackColor": "#3a3a3a"
+  },
+  "sourceBodyBounds": {
+    "x": 225,
+    "y": 254,
+    "width": 1156,
+    "height": 505
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.25,
+    "maxY": 0.85
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.3,
+      "burst": 1.5
+    },
+    "turnRateRadPerSec": 2.0,
+    "restFraction": 0.2,
+    "depthRange": [
+      0.3,
+      0.9
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 3,
+      "cohesion": 0,
+      "polarization": 0.03
+    },
+    "structureAffinity": 0.55,
+    "habits": [
+      {
+        "type": "bottomForage"
+      },
+      {
+        "type": "homeShelter",
+        "kind": "crevice",
+        "rangeBodyLengths": 8,
+        "visitChancePerMin": 0.3,
+        "visitDurationSec": [
+          10,
+          30
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Waikīkī Aquarium: Clown Triggerfish",
+        "url": "https://www.waikikiaquarium.org/experience/animal-guide/fishes/triggerfishes/clown-triggerfish/"
+      },
+      {
+        "title": "桂浜水族館公式・飼育学芸員フジ「モンガラカワハギ《展示動物解説》」2025-07-12",
+        "url": "https://katurahama-aquarium.note.jp/n/ne5b748cf8007"
+      },
+      {
+        "title": "FishBase: Balistoides conspicillum",
+        "url": "https://www.fishbase.se/summary/Balistoides-conspicillum.html"
+      },
+      {
+        "title": "OATA (September 2022): How to care for triggerfish",
+        "url": "https://ornamentalfish.org/wp-content/uploads/Triggerfish-Sept-2022.pdf"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Balistoides conspicillum",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "東アフリカからサモアまでのインド太平洋。日本では相模湾以南の太平洋側、小笠原諸島や琉球列島で見られます。",
+    "temperament": "単独かペアで暮らし、縄張り意識が強い魚です。ほかの魚を攻撃したりかみついたりするため、飼育では1尾で飼うのが基本とされます。",
+    "movement": "背びれと尻びれを波打たせて進み、前にも後ろにも動けます。急ぐときは尾びれを使って隠れ場へ向かい、休むときは隙間で背びれの棘を立てて体を固定します。",
+    "habitat": "透明度の高い礁の外縁や、急な斜面に面したサンゴの多い場所に暮らします。この水景では、岩の大きな割れ目を夜の休み場にしています。",
+    "aliases": [
+      "Clown triggerfish"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Tetraodontiformes",
+      "orderJa": "フグ目",
+      "family": "Balistidae",
+      "familyJa": "モンガラカワハギ科"
+    },
+    "adultSizeCm": 30,
+    "sizeNote": "典型的な成魚の大きさは分かっていません。最大で全長50cmの記録があります。",
+    "distribution": "東アフリカからサモアまでのインド太平洋の礁で、水深1〜75mの記録があります。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2022
+    },
+    "highlights": [
+      "黒い体の下半分に大きな白い丸が並び、背中には黄色い網目模様があります。",
+      "背びれと尻びれを波打たせて、その場にとどまったり後ろへ下がったりします。",
+      "強い歯で、殻のあるエビやカニ、貝、ウニを砕いて食べます。",
+      "夜は礁の隙間で背びれの棘を立て、体を固定して休みます。"
+    ]
+  }
+}

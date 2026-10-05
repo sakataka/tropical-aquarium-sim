@@ -80,6 +80,32 @@ const ecologySchema = z.object({
   sources: z.array(z.object({ title: z.string().min(1), url: z.url() })).min(1),
 });
 
+const profileSchema = z.object({
+  taxonomy: z.object({
+    order: z.string().min(1),
+    orderJa: z.string().min(1),
+    family: z.string().min(1),
+    familyJa: z.string().min(1),
+  }),
+  adultSizeCm: z.number().finite().positive(),
+  sizeNote: z.string().min(1),
+  distribution: z.string().min(1),
+  water: z.object({
+    salinity: z.enum(["freshwater", "brackish", "marine"]),
+    temperatureC: z.tuple([z.number().finite(), z.number().finite()])
+      .refine(([min, max]) => min <= max, { message: "temperature minimum must be below maximum" }).optional(),
+    pH: z.tuple([z.number().finite().min(0).max(14), z.number().finite().min(0).max(14)])
+      .refine(([min, max]) => min <= max, { message: "pH minimum must be below maximum" }).optional(),
+  }),
+  keeping: z.enum(["home", "publicAquarium", "rarelyDisplayed"]),
+  conservation: z.object({
+    status: z.enum(["LC", "NT", "VU", "EN", "CR", "EW", "DD", "NE"]).optional(),
+    assessedYear: z.number().int().min(1990).max(2100).optional(),
+    note: z.string().min(1).optional(),
+  }),
+  highlights: z.array(z.string().min(1)).min(1),
+});
+
 const fishSpeciesDefinitionSchema = z.object({
   id: z.string().min(1),
   displayName: z.string().min(1),
@@ -94,6 +120,7 @@ const fishSpeciesDefinitionSchema = z.object({
     habitat: z.string().min(1),
     aliases: z.array(z.string().min(1)).optional(),
   }),
+  profile: profileSchema.optional(),
   swim: z.object({
     tailBeatHz: z.number().finite().positive().max(8),
     bodyWaveStart: z.number().finite().min(0).max(1),

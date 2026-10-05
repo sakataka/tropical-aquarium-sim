@@ -1,0 +1,120 @@
+{
+  "id": "sockeye-salmon",
+  "displayName": "ベニザケ",
+  "realBodyLengthCm": 60,
+  "catalog": {
+    "scientificName": "Oncorhynchus nerka",
+    "originRegionId": "north-pacific",
+    "originRegionName": "北太平洋",
+    "origin": "北太平洋と北極海、その周りの川や湖に分布します。海で育って生まれた川や湖へ戻る型と、一生を淡水で過ごす陸封型（ヒメマス）があります。",
+    "temperament": "産卵場では、群れて待機する魚、場所を守って他の雄を追い払う強い雄、離れて単独で留まる劣位の雄などが見られます。本水槽では、ときどき仲間の後を追います。",
+    "movement": "淵や産卵場の流れの中に群れで留まり、ゆっくり向きを変えます。産卵を終えると数週間のうちに一生を終えます。",
+    "habitat": "産卵は川や小川、湧き水のある湖岸で行います。本水槽では、礫の湖底と倒木のある北海道の湖の流れ込みをイメージしています。",
+    "aliases": [
+      "sockeye salmon",
+      "red salmon",
+      "ヒメマス（陸封型）",
+      "kokanee（陸封型）"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Salmoniformes",
+      "orderJa": "サケ目",
+      "family": "Salmonidae",
+      "familyJa": "サケ科"
+    },
+    "adultSizeCm": 60,
+    "sizeNote": "海へ下る型の大きさは1.5〜2.5フィート（約46〜76cm、測り方の指定なし）、体重4〜15ポンドとされます。十和田湖の陸封型ヒメマスは約4年で全長約30cmの親魚になります。",
+    "distribution": "北太平洋と北極海、その周りの河川と湖に分布します。日本の陸封型はチミケップ湖と阿寒湖が原産で、支笏湖や十和田湖へは移殖されました。",
+    "water": {
+      "salinity": "freshwater",
+      "temperatureC": [
+        8,
+        15
+      ]
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2010,
+      "note": "種全体の評価です。アラスカでは個体群ごとに減少・安定・増加とさまざまで、米国では一部の個体群が保護の対象です。水温はカナダの人工産卵水路で産卵期の野生魚が経験した範囲です。"
+    },
+    "highlights": [
+      "産卵期の雄は体が鮮やかな赤に、頭が緑になり、背が盛り上がって顎が鉤のように曲がります。",
+      "産卵場では強い雄が場所を守り、近づくほかの雄を追い払います。",
+      "産卵を終えると数週間のうちに死ぬ、一度だけ繁殖する魚です。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 1.2
+  },
+  "visual": {
+    "fallbackColor": "#b8322b"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.3,
+    "maxY": 0.85
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "steady",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.24,
+      "burst": 0.75
+    },
+    "turnRateRadPerSec": 1.4,
+    "restFraction": 0.32,
+    "depthRange": [
+      0.15,
+      0.8
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 1.4,
+      "cohesion": 0.45,
+      "polarization": 0.18
+    },
+    "structureAffinity": 0.25,
+    "habits": [
+      {
+        "type": "follow",
+        "chancePerMin": 1.0,
+        "durationSec": [
+          4,
+          10
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "NOAA Fisheries — Sockeye Salmon",
+        "url": "https://www.fisheries.noaa.gov/species/sockeye-salmon"
+      },
+      {
+        "title": "Alaska Department of Fish and Game — Sockeye Salmon Species Profile",
+        "url": "https://www.adfg.alaska.gov/index.cfm?ADFG=SockeyeSalmon.main"
+      },
+      {
+        "title": "青森県産業技術センター 内水面研究所 — ヒメマス",
+        "url": "https://www.aomori-itc.or.jp/soshiki/suisan_naisuimen/naisuimen/himemasu.html"
+      },
+      {
+        "title": "Prystay et al. 2020 — Cardiac Performance of Free-Swimming Wild Sockeye Salmon during the Reproductive Period",
+        "url": "https://academic.oup.com/iob/article/2/1/obz031/5698276"
+      },
+      {
+        "title": "FishBase — Oncorhynchus nerka",
+        "url": "https://www.fishbase.se/summary/Oncorhynchus-nerka.html"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 123,
+    "y": 240,
+    "width": 1310,
+    "height": 498
+  }
+}

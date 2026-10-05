@@ -1,0 +1,118 @@
+{
+  "id": "smooth-lumpsucker",
+  "displayName": "ホテイウオ",
+  "realBodyLengthCm": 26,
+  "catalog": {
+    "scientificName": "Aptocyclus ventricosus",
+    "originRegionId": "north-pacific",
+    "originRegionName": "北太平洋",
+    "origin": "韓国南部、日本海、相模湾からベーリング海、アラスカを経てカナダのブリティッシュコロンビアまでの北太平洋に分布します。",
+    "temperament": "クラゲやクシクラゲなどを、水といっしょに口へ吸い込んで食べます。繁殖期には雄が卵を守り、水を送って孵化まで世話をします。本水槽では、ほかの魚と距離を取って1尾ずつ過ごします。",
+    "movement": "沖合では中層と底近くの両方で見つかります。腹の吸盤で岩に付くことができ、飼育下の幼魚はほとんど動かずに岩に付いて過ごします。本水槽では、ゆっくり泳いでは岩のそばで止まります。",
+    "habitat": "沿岸から沖合の中層と底層で、繁殖期には深みから沿岸の浅い岩場へ移ります。本水槽では、オホーツク海や北日本の冷たい岩礁をイメージしています。",
+    "aliases": [
+      "smooth lumpsucker",
+      "ゴッコ（地方名）"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Perciformes",
+      "orderJa": "スズキ目",
+      "family": "Cyclopteridae",
+      "familyJa": "ダンゴウオ科"
+    },
+    "adultSizeCm": 26,
+    "sizeNote": "オホーツク海と南千島周辺で調べた産卵期の雌は、平均全長26.3cm、体重944gでした。雌雄を合わせた典型的な大きさは分かっていません。日本海北西部の底層で採れた最大の個体は全長45cmでした。",
+    "distribution": "北太平洋の韓国南部、日本海、相模湾からベーリング海、アラスカ、カナダのブリティッシュコロンビアまで分布します。日本海北西部では、水深400〜800mに多く見られました。",
+    "water": {
+      "salinity": "marine",
+      "temperatureC": [
+        -1.1,
+        12.2
+      ]
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "NE",
+      "note": "IUCN では未評価です。水温は日本海北西部の調査で見つかった範囲で、多くは-0.5〜1℃の冷たい水にいました。カサゴ目に分類する資料もあります。"
+    },
+    "highlights": [
+      "鱗もこぶもない、柔らかい球形の体。第1背びれは皮膚の下に埋もれています。",
+      "腹びれが変化した吸盤で、岩に体を付けることができます。",
+      "雌は産卵後に必ず死ぬと考えられてきましたが、何度か繁殖に加わることが分かりました。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 1.4,
+    "tailSweepRad": 0.3
+  },
+  "visual": {
+    "fallbackColor": "#5f5650"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.45,
+    "maxY": 0.92
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.12,
+      "burst": 0.42
+    },
+    "turnRateRadPerSec": 1.3,
+    "restFraction": 0.55,
+    "depthRange": [
+      0.2,
+      0.85
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 1.6,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.5,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.5,
+        "durationSec": [
+          20,
+          90
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Zhukova, Maznikova & Orlov (2018), Gonadal maturation of the female smooth lumpsucker, Fishery Bulletin 116:153–160",
+        "url": "https://spo.nmfs.noaa.gov/sites/default/files/pdf-content/fish-bull/zhukova.pdf"
+      },
+      {
+        "title": "Solomatov & Orlov (2018), Smooth lumpsucker Aptocyclus ventricosus in the northwestern Sea of Japan: distribution and some life history traits",
+        "url": "https://fal.infish.com.pl/index.php/FisheriesAndAquaticLife/article/view/531"
+      },
+      {
+        "title": "アクアマリンふくしま 生き物紹介 ホテイウオ",
+        "url": "https://www.aquamarine.or.jp/animals/smoothlumpsucker/"
+      },
+      {
+        "title": "FishBase: Aptocyclus ventricosus, summary 4177",
+        "url": "https://fishbase.se/summary/4177"
+      },
+      {
+        "title": "新潟市水族館マリンピア日本海 生物図鑑 ホテイウオ",
+        "url": "https://www.marinepia.or.jp/picturebook/fish/entry-11828.html"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 237,
+    "y": 287,
+    "width": 1122,
+    "height": 476
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "id": "blob-sculpin",
+  "displayName": "ニュウドウカジカ",
+  "realBodyLengthCm": 50,
+  "swim": {
+    "tailBeatHz": 0.9,
+    "tailSweepRad": 0.4,
+    "verticalFlex": 0.015
+  },
+  "visual": {
+    "fallbackColor": "#b39592"
+  },
+  "sourceBodyBounds": {
+    "x": 140,
+    "y": 251,
+    "width": 1266,
+    "height": 524
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.74,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.1,
+      "burst": 0.35
+    },
+    "turnRateRadPerSec": 1.2,
+    "restFraction": 0.6,
+    "depthRange": [
+      0.2,
+      0.8
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2,
+      "cohesion": 0,
+      "polarization": 0.02
+    },
+    "structureAffinity": 0.5,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.5,
+        "durationSec": [
+          30,
+          90
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "MBARI — Nurseries in the deep sea (2003)",
+        "url": "https://www.mbari.org/news/nurseries-in-the-deep-sea/"
+      },
+      {
+        "title": "アクアマリンふくしま — 深海生物展示開始（2024年）",
+        "url": "https://www.aquamarine.or.jp/new-animals/20240501deepsea/"
+      },
+      {
+        "title": "Fisheries and Oceans Canada — Biophysical and ecological overview of the Tuzo Wilson Seamount Complex (2025)",
+        "url": "https://publications.gc.ca/collections/collection_2025/mpo-dfo/fs97-6/Fs97-6-3689-eng.pdf"
+      },
+      {
+        "title": "FishBase — Psychrolutes phrictus",
+        "url": "https://www.fishbase.se/summary/11732"
+      },
+      {
+        "title": "JAMSTEC BISMaL — ニュウドウカジカ",
+        "url": "https://www.godac.jamstec.go.jp/bismal/j/view/9000373"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Psychrolutes phrictus",
+    "originRegionId": "north-pacific",
+    "originRegionName": "北太平洋",
+    "origin": "北太平洋に広く分布し、日本ではオホーツク海や本州の太平洋岸の深海に見られます。2024年には、北海道の知床沖で採集された個体が水族館で展示されました。",
+    "temperament": "ふだんの群れ方はよく分かっていません。北カリフォルニア沖の深海では、岩に産んだ卵を守る親魚が夏に集まっている様子が観察されています。",
+    "movement": "海底にじっと休み、ときどき海底のすぐ上を泳ぎます。ウミエラやカニ、貝の仲間を食べると記録されています。",
+    "habitat": "水深500〜2800mほどの深海の海底で記録があります。この水槽は、岩が点在する灰色の泥底を表しています。引き揚げで崩れた姿が知られていますが、生きているときは頭の丸い、オタマジャクシのような体です。",
+    "aliases": [
+      "blob sculpin",
+      "Blobfish",
+      "ブロブフィッシュ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Scorpaeniformes",
+      "orderJa": "カサゴ目",
+      "family": "Psychrolutidae",
+      "familyJa": "ウラナイカジカ科"
+    },
+    "adultSizeCm": 50,
+    "sizeNote": "典型的な成魚の大きさは確定しておらず、ここでの値は展示用の目安です。MBARIは約60cmと紹介し、最大の記録は全長70cm、体重9.5kgとされます。",
+    "distribution": "北太平洋のオホーツク海と本州の太平洋岸から、ベーリング海を経て南カリフォルニアまで分布します。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "rarelyDisplayed",
+    "conservation": {
+      "status": "NE",
+      "note": "FishBaseの表示では IUCN 未評価です。北カリフォルニア沖の繁殖場では、底曳網や延縄の影響が懸念されています。"
+    },
+    "highlights": [
+      "海底でじっと休み、ときどき底のすぐ上をゆっくり泳ぐ。",
+      "大きな頭に小さな目があり、顔には髭のような皮弁が多い。",
+      "岩に産みつけた卵の塊のそばで、親魚が卵を守る。"
+    ]
+  }
+}

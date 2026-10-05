@@ -1,0 +1,106 @@
+{
+  "id": "humpback-anglerfish",
+  "displayName": "ペリカンアンコウ",
+  "realBodyLengthCm": 12,
+  "swim": {
+    "tailBeatHz": 1.2,
+    "tailSweepRad": 0.35
+  },
+  "visual": {
+    "fallbackColor": "#3a2620"
+  },
+  "sourceBodyBounds": {
+    "x": 308,
+    "y": 164,
+    "width": 1031,
+    "height": 659
+  },
+  "preferredZone": {
+    "minX": 0.1,
+    "maxX": 0.9,
+    "minY": 0.4,
+    "maxY": 0.85
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.08,
+      "burst": 0.5
+    },
+    "turnRateRadPerSec": 1.2,
+    "restFraction": 0.7,
+    "depthRange": [
+      0.25,
+      0.85
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 3,
+      "cohesion": 0,
+      "polarization": 0.02
+    },
+    "structureAffinity": 0,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Australian Museum — Humpback Blackdevil",
+        "url": "https://australian.museum/learn/animals/fishes/humpback-blackdevil-melanocetus-johnsonii-gunther-1864/"
+      },
+      {
+        "title": "Pietsch & Van Duzer 1980 — Systematics of Melanocetidae",
+        "url": "https://spo.nmfs.noaa.gov/sites/default/files/pdf-content/1980/781/pietsch.pdf"
+      },
+      {
+        "title": "MBARI — Black seadevil observed in Monterey Bay, 2014-11-21",
+        "url": "https://www.mbari.org/news/amazing-black-sea-devil-anglerfish-observed-in-monterey-bay/"
+      },
+      {
+        "title": "Pietsch — Tree of Life: Melanocetus",
+        "url": "https://tolweb.org/Melanocetus/22003"
+      },
+      {
+        "title": "Freed et al. 2019 — Microbiome and bioluminescent symbionts of ceratioid anglerfishes",
+        "url": "https://scholars.nova.edu/ws/portalfiles/portal/41666144/Characterization%20of%20the%20microbiome%20and%20bioluminescent%20symbionts%20a.pdf"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Melanocetus johnsonii",
+    "originRegionId": "worldwide",
+    "originRegionName": "世界の海",
+    "origin": "太平洋、大西洋、インド洋の深海に分布します。よく似たペリカンアンコウモドキは別の種です。",
+    "temperament": "雌は頭の上にある釣り竿のような突起の先を光らせ、獲物を誘うと考えられています。光は共生する発光細菌によるものと報告されています。群れ方は分かっていません。",
+    "movement": "外洋の深い中層に浮かんで暮らし、海底で待ち伏せする浅い海のアンコウとは暮らし方が違います。泳ぐ速さや休むときの姿勢は、まだ測られていません。",
+    "habitat": "外洋の中深層から深層にすみ、モントレー湾では水深約580mで泳ぐ個体がROVで観察されました。生きた個体を長く飼育した例は確認されていません。",
+    "aliases": [
+      "Humpback anglerfish",
+      "Humpback blackdevil",
+      "Johnson's anglerfish"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Lophiiformes",
+      "orderJa": "アンコウ目",
+      "family": "Melanocetidae",
+      "familyJa": "ペリカンアンコウ科"
+    },
+    "adultSizeCm": 12,
+    "sizeNote": "典型的な成魚の大きさは確定しておらず、ここでの値は展示用の目安です。雌の最大は全長18cmとされます。分類研究で調べられた変態後の雌346標本は、標準体長1〜11.9cmでした。",
+    "distribution": "太平洋、大西洋、インド洋の外洋の中深層から深層に分布します。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "rarelyDisplayed",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2013
+    },
+    "highlights": [
+      "大きな口に、長く尖った歯が並ぶ。",
+      "頭の上の釣り竿のような突起の先が光り、獲物を誘うとされる。",
+      "この属の雄は、ほかの深海アンコウの一部のように雌の体に融合して寄生することはない。"
+    ]
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "id": "royal-gramma",
+  "displayName": "ロイヤルグラマ",
+  "realBodyLengthCm": 6,
+  "swim": {
+    "tailBeatHz": 3.0
+  },
+  "visual": {
+    "fallbackColor": "#8e3fc4"
+  },
+  "sourceBodyBounds": {
+    "x": 180,
+    "y": 251,
+    "width": 1216,
+    "height": 524
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.45,
+    "maxY": 0.85
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.4,
+      "burst": 2.4
+    },
+    "turnRateRadPerSec": 3.0,
+    "restFraction": 0.3,
+    "depthRange": [
+      0.4,
+      0.9
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 2.0,
+      "cohesion": 0.35,
+      "polarization": 0.1
+    },
+    "structureAffinity": 0.85,
+    "habits": [
+      {
+        "type": "homeShelter",
+        "kind": "cave",
+        "rangeBodyLengths": 3,
+        "visitChancePerMin": 1.0,
+        "visitDurationSec": [
+          5,
+          15
+        ]
+      },
+      {
+        "type": "follow",
+        "chancePerMin": 0.5,
+        "durationSec": [
+          2,
+          5
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Smithsonian Tropical Research Institute: Shorefishes, Gramma loreto",
+        "url": "https://biogeodb.stri.si.edu/caribbean/en/thefishes/species/3566"
+      },
+      {
+        "title": "FishBase: Gramma loreto",
+        "url": "https://www.fishbase.se/summary/Gramma-loreto.html"
+      },
+      {
+        "title": "Webster & Hixon 2000: Mechanisms and individual consequences of intraspecific competition",
+        "url": "https://www.researchgate.net/publication/332594425_Mechanisms_and_individual_consequences_of_intraspecific_competition_in_a_coral-reef_fish"
+      },
+      {
+        "title": "Asoh 1996: Reproductive Behavior and Mating System of Gramma loreto",
+        "url": "https://www.researchgate.net/publication/275941279_Reproductive_Behavior_and_Mating_System_of_the_Fairy_Basslet_Gramma_loreto"
+      },
+      {
+        "title": "Asoh & Yoshikawa 1996: Nesting Behavior, Male Parental Care, and Embryonic Development",
+        "url": "https://www.researchgate.net/publication/271792367_Nesting_Behavior_Male_Parental_Care_and_Embryonic_Development_in_the_Fairy_Basslet_Gramma_loreto"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Gramma loreto",
+    "originRegionId": "caribbean",
+    "originRegionName": "カリブ海",
+    "origin": "西部大西洋のカリブ海周辺に分布し、北はノースカロライナまでの記録があります。この水槽で唯一の大西洋の魚です。",
+    "temperament": "体の大きさで順位が決まる集まりをつくり、大きな個体が張り出しの外側のよい採餌場所を占めて小さな個体を追い払います。雌雄は別々で、性転換はしないと考えられています。",
+    "movement": "張り出しの近くに浮かび、流れてくるプランクトンをついばみます。腹を近くの岩に向けて泳ぐため、張り出しの下では逆さの姿勢になり、驚くと奥の隙間へ退きます。",
+    "habitat": "サンゴ礁や岩礁の張り出しの下や洞窟に集まります。この水景では、岩の張り出しと小さな洞窟を住みかにしています。",
+    "aliases": [
+      "Royal gramma",
+      "Fairy basslet"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Perciformes",
+      "orderJa": "スズキ目",
+      "family": "Grammatidae",
+      "familyJa": "グラマ科"
+    },
+    "adultSizeCm": 6,
+    "sizeNote": "典型的な成魚の大きさは分かっていません。最大で全長8cmの記録があります。",
+    "distribution": "カリブ海を中心とする西部大西洋のサンゴ礁・岩礁。記録された水深は資料によって幅があり、2〜130mとするものと1〜60mとするものがあります。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2011
+    },
+    "highlights": [
+      "体の前半が紫、後半が黄色で、背びれの前のほうに黒い斑があります。",
+      "張り出しの下では、腹を岩に向けて逆さの姿勢で浮かびます。",
+      "大きな個体が張り出しの外側の採餌場所を占め、小さな個体を追い払います。",
+      "繁殖期の雄は岩の小穴に巣をつくり、藻を運び入れて卵を守ります。"
+    ]
+  }
+}

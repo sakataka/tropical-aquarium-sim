@@ -1,0 +1,111 @@
+{
+  "id": "red-bellied-piranha",
+  "displayName": "ピラニア・ナッテリー",
+  "realBodyLengthCm": 24,
+  "swim": {
+    "tailBeatHz": 1.8,
+    "tailSweepRad": 0.45
+  },
+  "visual": {
+    "fallbackColor": "#8f7a62"
+  },
+  "sourceBodyBounds": {
+    "x": 271,
+    "y": 235,
+    "width": 1042,
+    "height": 539
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.28,
+    "maxY": 0.85
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.28,
+      "burst": 1.3
+    },
+    "turnRateRadPerSec": 2,
+    "restFraction": 0.35,
+    "depthRange": [0.15, 0.82],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.2,
+      "cohesion": 0.6,
+      "polarization": 0.3
+    },
+    "structureAffinity": 0.5,
+    "habits": [
+      {
+        "type": "hideByDay",
+        "durationSec": [20, 70]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes — Pygocentrus nattereri, spid 4524",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=4524"
+      },
+      {
+        "title": "Smithsonian National Zoo — Red-bellied piranha",
+        "url": "https://www.nationalzoo.si.edu/animals/red-bellied-piranha?qt-learn_more_about_the_animal=0"
+      },
+      {
+        "title": "桂浜水族館 飼育学芸員フジ — ピラニア・ナッテリー展示動物解説, 2025-07-18",
+        "url": "https://katurahama-aquarium.note.jp/n/n18480ca8f3ec"
+      },
+      {
+        "title": "Sazima & Machado 1990 — Underwater observations of piranhas in western Brazil",
+        "url": "https://www.researchgate.net/publication/227151216_Underwater_observation_of_piranhas_in_western_Brazil"
+      },
+      {
+        "title": "Queiroz & Magurran 2005 — Safety in numbers: shoaling behaviour of the Amazonian red-bellied piranha",
+        "url": "https://research-portal.st-andrews.ac.uk/en/publications/safety-in-numbers-shoaling-behaviour-of-the-amazonian-red-bellied/"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Pygocentrus nattereri",
+    "originRegionId": "south-america",
+    "originRegionName": "南米",
+    "origin": "アマゾン川、パラグアイ・パラナ川、エセキボ川の各水系と、ブラジル北東部の沿岸の川に分布します。",
+    "habitat": "低地の川で、流れのある場所にも止水域にもすみます。ブラジルのパンタナールでは、水草の多い池や小水路で観察されています。この展示では、根の絡む川岸の手前に開けた水があります。",
+    "temperament": "群れで暮らす肉食寄りの雑食魚です。群れは捕食者から身を守る働きをもつと考えられています。同種どうしでひれをかじり合うこともあります。",
+    "movement": "日中は群れで集まってじっとしていることが多く、夕方に活発になります。物音や水槽の作業に驚くと、群れごと端へ退きます。",
+    "aliases": [
+      "Red-bellied piranha",
+      "Red piranha",
+      "Serrasalmus nattereri",
+      "ナッテリー"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Characiformes",
+      "orderJa": "カラシン目",
+      "family": "Serrasalmidae",
+      "familyJa": "セラサルムス科"
+    },
+    "adultSizeCm": 20,
+    "sizeNote": "パンタナールの水中観察で大型とされた個体は標準体長15〜24cmでした。報告されている最大は標準体長50cm、体重3.9kgです。",
+    "distribution": "アマゾン、パラグアイ・パラナ、エセキボの各水系とブラジル北東部の沿岸河川。アルゼンチンからコロンビア、ガイアナまで9か国で記録があります。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2020,
+      "note": "ブラジル南東部やイタリア、ルーマニア、トルコに持ち込まれた記録があります。"
+    },
+    "highlights": [
+      "赤い腹と、銀色に光る細かな斑点が目立ちます。",
+      "大きな個体は日中、水草の中の決まった場所に群れで集まって休みます。",
+      "大きな個体は夕方から夜にかけて餌を探す傾向があります。",
+      "三角形の鋭い歯が上下でかみ合いますが、ふだんは厚い唇に隠れています。"
+    ]
+  }
+}

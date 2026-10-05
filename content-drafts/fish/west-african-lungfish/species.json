@@ -1,0 +1,126 @@
+{
+  "id": "west-african-lungfish",
+  "displayName": "プロトプテルス・アネクテンス",
+  "realBodyLengthCm": 60,
+  "swim": {
+    "tailBeatHz": 1.1,
+    "bodyWaveStart": 0.15,
+    "waveCount": 1.25,
+    "tailSweepRad": 0.3,
+    "verticalFlex": 0.04
+  },
+  "visual": {
+    "fallbackColor": "#83765e"
+  },
+  "sourceBodyBounds": {
+    "x": 120,
+    "y": 387,
+    "width": 1360,
+    "height": 337
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.64,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "undulate",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.16,
+      "burst": 0.65
+    },
+    "turnRateRadPerSec": 1.5,
+    "restFraction": 0.5,
+    "depthRange": [
+      0.3,
+      0.9
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0,
+      "polarization": 0.02
+    },
+    "structureAffinity": 0.5,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.0,
+        "durationSec": [
+          12,
+          40
+        ]
+      },
+      {
+        "type": "airBreathing",
+        "breathsPerHour": [
+          4,
+          6
+        ],
+        "style": "rise"
+      }
+    ],
+    "sources": [
+      {
+        "title": "FishBase — Protopterus annectens",
+        "url": "https://www.fishbase.se/summary/Protopterus-annectens.html"
+      },
+      {
+        "title": "Seriously Fish — Protopterus annectens annectens",
+        "url": "https://www.seriouslyfish.com/species/protopterus-annectens-annectens"
+      },
+      {
+        "title": "しまね海洋館アクアス — 太古からつながる海（2019）",
+        "url": "https://aquas.or.jp/eventnews/post-5409/"
+      },
+      {
+        "title": "King et al. 2011 — Behavioral evidence for the evolution of walking and bounding before terrestriality",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/22160688/"
+      },
+      {
+        "title": "Eschmeyer’s Catalog of Fishes — Protopteridae (2026-07-07本文)",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?family=Protopteridae&tbl=species"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Protopterus annectens",
+    "originRegionId": "west-africa",
+    "originRegionName": "西アフリカ",
+    "origin": "アフリカのセネガルから南スーダンにかけて分布します。南のコンゴ川やザンベジ川の水系の集団を、亜種 brieni として分けることがあります。",
+    "temperament": "貝や魚、カエルのほか、種子などの植物質も食べます。飼育では、ほかの魚と分けて単独で飼うことが勧められています。",
+    "movement": "細長い体をくねらせて底近くを泳ぎ、糸のような腹びれを水底について体を持ち上げ、歩くように進むこともあります。ときどき水面へ顔を出して空気を吸います。",
+    "habitat": "川や湖の岸辺の湿地、後背水域、季節的に干上がる氾濫原の底に暮らします。乾季には泥の中で粘液の繭をつくって夏眠します。この水槽は、落ち葉と沈木のある泥底の湿地を表しています。",
+    "aliases": [
+      "West African lungfish",
+      "アフリカハイギョ",
+      "アネクテンス"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Ceratodontiformes",
+      "orderJa": "ケラトドゥス目",
+      "family": "Protopteridae",
+      "familyJa": "プロトプテルス科"
+    },
+    "adultSizeCm": 60,
+    "sizeNote": "典型的な成魚の大きさは確認できず、ここでの値は展示用の目安です。最大の記録は全長100cm、体重4kgとされます。",
+    "distribution": "西アフリカのセネガルから南スーダンまでと、コンゴ川・ザンベジ川の水系に分布します。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2019
+    },
+    "highlights": [
+      "糸のような長い腹びれを水底について、歩くように進むことがある。",
+      "水面へ顔を出し、口から空気を吸う。しまね海洋館アクアスの展示では10〜15分おきが目安とされた。",
+      "乾季には泥の中に粘液の繭をつくり、夏眠して過ごす。"
+    ]
+  }
+}

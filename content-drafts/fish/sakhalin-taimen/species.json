@@ -1,0 +1,106 @@
+{
+  "id": "sakhalin-taimen",
+  "displayName": "イトウ",
+  "realBodyLengthCm": 80,
+  "catalog": {
+    "scientificName": "Parahucho perryi",
+    "originRegionId": "northwest-pacific",
+    "originRegionName": "北西太平洋",
+    "origin": "北海道、サハリン、南千島、ロシア沿海州の川と湖にすむ大型のサケ科魚類です。かつては Hucho 属に入れられていました。",
+    "temperament": "大きな個体ほど魚を多く食べる捕食者です。本水槽では、群れずに1尾ずつ広い水の中をゆったり巡ります。",
+    "movement": "北海道東部の追跡調査では、明け方と夕方によく移動し、中流では同じ場所に留まり、下流では周りの区間を日常的に行き来していました。飼育下では水面近くを泳ぐ姿も記録されています。",
+    "habitat": "河川の中流から下流、湖、汽水域。本水槽では、礫底が深みへ傾く北海道の湖と流れ込み、倒木の根元をイメージしています。",
+    "aliases": [
+      "Sakhalin taimen",
+      "Japanese huchen",
+      "Hucho perryi"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Salmoniformes",
+      "orderJa": "サケ目",
+      "family": "Salmonidae",
+      "familyJa": "サケ科"
+    },
+    "adultSizeCm": 80,
+    "sizeNote": "成魚の代表的な大きさは確かめられておらず、ここでは約80cmとして表示しています。最大記録は全長200cm、24kgとされますが、元の標本は検証されていません。",
+    "distribution": "北西太平洋とその周りの河川に分布し、ロシア沿海州、サハリン、南千島、北海道が主な生息地です。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "CR",
+      "assessedYear": 2006,
+      "note": "環境省レッドリスト2020では絶滅危惧IB類（EN）です。成魚が上流と下流を行き来できる、つながった川が保全に大切だとされます。"
+    },
+    "highlights": [
+      "大きな頭と、体に散る小さな黒い斑点。",
+      "明け方と夕方に動きが増えるという追跡結果があります。",
+      "大きな個体は魚を主に食べる捕食者です。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 0.9
+  },
+  "visual": {
+    "fallbackColor": "#857f74"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.12,
+    "maxY": 0.72
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "steady",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.16,
+      "burst": 0.45
+    },
+    "turnRateRadPerSec": 1.1,
+    "restFraction": 0.3,
+    "depthRange": [
+      0.2,
+      0.85
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 1.6,
+      "cohesion": 0,
+      "polarization": 0.05
+    },
+    "structureAffinity": 0.35,
+    "habits": [],
+    "sources": [
+      {
+        "title": "FishBase: Parahucho perryi",
+        "url": "https://www.fishbase.se/summary/9182"
+      },
+      {
+        "title": "Honda et al. 2012: Seasonal stream habitat of adult Sakhalin taimen",
+        "url": "https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1600-0633.2012.00585.x"
+      },
+      {
+        "title": "Honda et al. 2014: Movement patterns of adult Sakhalin taimen",
+        "url": "https://eprints.lib.hokudai.ac.jp/repo/huscap/all/58279/ICRE-D-13-00067_r.pdf"
+      },
+      {
+        "title": "環境省レッドリスト2020・別添資料3全分類群",
+        "url": "https://www.env.go.jp/press/files/jp/114457.pdf"
+      },
+      {
+        "title": "鳥羽水族館 飼育日記：伊藤とイトウ（2019-07-21）",
+        "url": "https://aquarium.co.jp/diary/2019/07/42868"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 100,
+    "y": 295,
+    "width": 1352,
+    "height": 411
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "id": "indian-glassy-fish",
+  "displayName": "インディアン・グラスフィッシュ",
+  "realBodyLengthCm": 6,
+  "swim": {
+    "tailBeatHz": 2.4
+  },
+  "visual": {
+    "fallbackColor": "#c9bd93"
+  },
+  "sourceBodyBounds": {
+    "x": 195,
+    "y": 195,
+    "width": 1202,
+    "height": 614
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.3,
+    "maxY": 0.75
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.3,
+      "burst": 2.0
+    },
+    "turnRateRadPerSec": 2.3,
+    "restFraction": 0.35,
+    "depthRange": [
+      0.3,
+      0.9
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 2.0,
+      "cohesion": 0.45,
+      "polarization": 0.2
+    },
+    "structureAffinity": 0.6,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Ambassidae, ranga entry",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?family=Ambassidae&tbl=species"
+      },
+      {
+        "title": "Seriously Fish: Parambassis ranga",
+        "url": "https://www.seriouslyfish.com/species/parambassis-ranga"
+      },
+      {
+        "title": "Heiko Bleher, Does the Glassfish, Parambassis ranga, need salt? (Practical Fishkeeping)",
+        "url": "https://www.practicalfishkeeping.co.uk/features/does-the-glassfish-parambassis-ranga-need-salt/"
+      },
+      {
+        "title": "FishBase field guide: Parambassis ranga",
+        "url": "https://www.fishbase.se/Fieldguide/FieldGuideSummary.php?c_code=116&genusname=Parambassis&speciesname=ranga"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Chanda ranga",
+    "originRegionId": "south-asia",
+    "originRegionName": "南アジア",
+    "origin": "南アジアから東南アジア。パキスタン、インド、ネパール、バングラデシュ、ミャンマー、タイ、マレーシアに分布します。",
+    "temperament": "穏やかな魚で、飼育では少なくとも6匹ほどの群れで飼うことが勧められています。活発すぎる魚や攻撃的な魚との同居は避けたほうがよいとされます。",
+    "movement": "水草や石の近くの中層を、ゆっくり向きを変えながら泳ぎます。透けた体を通して、背骨や内臓が見えます。",
+    "habitat": "止水や流れの緩い水域に暮らし、淡水のほか汽水にも見られます。インドのアッサム州の淡水湖やミャンマーのエーヤワディー川でも採集されています。本展示では渓流の水草のそばに集まる姿を見せています。人工的に着色した個体ではなく、自然の色です。",
+    "aliases": [
+      "Parambassis ranga",
+      "Pseudambassis ranga",
+      "Indian glassy fish",
+      "グラスフィッシュ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Perciformes",
+      "orderJa": "スズキ目",
+      "family": "Ambassidae",
+      "familyJa": "タカサゴイシモチ科"
+    },
+    "adultSizeCm": 6,
+    "sizeNote": "典型的な成魚の大きさは分かっていません。エーヤワディー川の漁獲試料8個体は全長5.4〜6.2cm、データベースの最大記録は全長9.5cmです。沖縄の移入集団では、標準体長2.58cmで半数が成熟していました。",
+    "distribution": "パキスタン、インド、ネパール、バングラデシュ、ミャンマー、タイ、マレーシアに分布します。日本の沖縄島の貯水池には、移入された集団がいます。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2011
+    },
+    "highlights": [
+      "骨格や内臓が透けて見える体",
+      "肩のあたりにある暗い斑点",
+      "水草のそばに仲間と集まり、ゆっくり泳ぐ"
+    ]
+  }
+}

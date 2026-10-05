@@ -1,0 +1,120 @@
+{
+  "id": "ribbon-eel",
+  "displayName": "ハナヒゲウツボ",
+  "realBodyLengthCm": 90,
+  "swim": {
+    "tailBeatHz": 0.9,
+    "bodyWaveStart": 0.1,
+    "waveCount": 1.45,
+    "tailSweepRad": 0.3,
+    "verticalFlex": 0.05
+  },
+  "visual": {
+    "fallbackColor": "#3d6fd0"
+  },
+  "sourceBodyBounds": {
+    "x": 97,
+    "y": 384,
+    "width": 1362,
+    "height": 231
+  },
+  "preferredZone": {
+    "minX": 0.04,
+    "maxX": 0.6,
+    "minY": 0.7,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "undulate",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.12,
+      "burst": 0.5
+    },
+    "turnRateRadPerSec": 1.5,
+    "restFraction": 0.6,
+    "depthRange": [
+      0.3,
+      0.85
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.85,
+    "habits": [
+      {
+        "type": "homeShelter",
+        "kind": "burrow",
+        "rangeBodyLengths": 1.2,
+        "visitChancePerMin": 1.5,
+        "visitDurationSec": [
+          30,
+          120
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Australian Museum: Ribbon Eel, Rhinomuraena quaesita (2021)",
+        "url": "https://australian.museum/learn/animals/fishes/ribbon-eel-rhinomuraena-quaesita/"
+      },
+      {
+        "title": "新江ノ島水族館 藤田 (2025-07-09): ウツボ好きトリーターのウツボの話25",
+        "url": "https://www.enosui.com/diaryentry.php?eid=07241"
+      },
+      {
+        "title": "Preininger et al. (2015), First observations of fertilized eggs and preleptocephalus larvae of Rhinomuraena quaesita in the Vienna Zoo",
+        "url": "https://onlinelibrary.wiley.com/doi/abs/10.1002/zoo.21184"
+      },
+      {
+        "title": "鳥羽水族館 (2025-01-24): 性別かえてみる？",
+        "url": "https://aquarium.co.jp/diary/2025/01/68657"
+      },
+      {
+        "title": "FishBase: Rhinomuraena quaesita",
+        "url": "https://www.fishbase.se/summary/8594"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Rhinomuraena quaesita",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "インド洋の東アフリカ側から太平洋の島々まで、北は日本の南部、南はオーストラリアまで分布します。",
+    "temperament": "砂や礫の中の巣穴に体を隠し、頭だけを出して小魚を待ち伏せします。群れの作り方や昼夜の活動の傾向は、よく分かっていません。",
+    "movement": "ふだんは巣穴から頭を出してじっとしています。泳ぐときは、リボンのように細い体全体を大きく波打たせます。",
+    "habitat": "サンゴ礁の近くの砂地や礫地。本水槽では、左の岩にある筒のような穴を巣穴にしています。",
+    "aliases": [
+      "Ribbon eel",
+      "Ribbon moray"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Anguilliformes",
+      "orderJa": "ウナギ目",
+      "family": "Muraenidae",
+      "familyJa": "ウツボ科"
+    },
+    "adultSizeCm": 130,
+    "sizeNote": "最大で全長130cmです。ふつうの成魚の大きさは分かっていません。",
+    "distribution": "インド洋から西太平洋のサンゴ礁域に分布します。日本では南部で見られます。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2009
+    },
+    "highlights": [
+      "巣穴から頭だけを出し、口を開けて周りをうかがう",
+      "吻の先には、葉のように広がった鼻孔がある",
+      "細い体を波打たせて泳ぐ",
+      "体の色は黒、青、黄へと変わるとされてきたが、飼育下では色だけで性別や成熟は判断できないと報告されている"
+    ]
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "id": "panda-corydoras",
+  "displayName": "コリドラス・パンダ",
+  "realBodyLengthCm": 5,
+  "swim": {
+    "tailBeatHz": 3,
+    "tailSweepRad": 0.42,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.66
+    }
+  },
+  "visual": {
+    "fallbackColor": "#d9c6b2"
+  },
+  "sourceBodyBounds": {
+    "x": 225,
+    "y": 196,
+    "width": 1190,
+    "height": 590
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.7,
+    "maxY": 0.94
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.45,
+      "burst": 2
+    },
+    "turnRateRadPerSec": 2.6,
+    "restFraction": 0.22,
+    "depthRange": [0.12, 0.8],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.3,
+      "cohesion": 0.55,
+      "polarization": 0.25
+    },
+    "structureAffinity": 0.4,
+    "habits": [
+      {
+        "type": "bottomForage"
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.3,
+        "durationSec": [6, 22]
+      },
+      {
+        "type": "airBreathing",
+        "breathsPerHour": [2, 6],
+        "style": "dash"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes — Corydoras panda record",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?genus=Corydoras&species=panda&tbl=species"
+      },
+      {
+        "title": "Nijssen & Isbrücker 1971 — Two new species of Corydoras",
+        "url": "https://www.corydorasworld.com/uploads/files/C__maculifer_and_C__%20panda.pdf"
+      },
+      {
+        "title": "須磨海浜水族園 — うみと水ぞく 2010年12月号 p.9",
+        "url": "https://www.city.kobe.lg.jp/documents/33639/umisui201012.pdf"
+      },
+      {
+        "title": "スペクトラム ブランズ ジャパン — おさかな図鑑 コリドラス・パンダ",
+        "url": "https://spectrumbrands.jp/fishes/freshwater06/"
+      },
+      {
+        "title": "OATA — How to look after freshwater catfish",
+        "url": "https://ornamentalfish.org/what-we-do/advice-information/care-sheets/caresheets-tropical-freshwater-fish/how-to-look-after-freshwater-catfish/"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Hoplisoma panda",
+    "originRegionId": "south-america",
+    "originRegionName": "南米",
+    "origin": "ペルーとエクアドルのアマゾン上流域に分布します。模式産地はペルーのウカヤリ水系、パチテア川の支流です。",
+    "habitat": "アマゾン上流の川にすむ底生の小型ナマズです。この展示では、岩と粗い砂の底で、プレコの仲間と同じ水槽に暮らします。",
+    "temperament": "温和な底ものです。同じ仲間が数匹いると落ち着くとされ、群れで底を探ります。",
+    "movement": "底を短く進んでは止まり、ひげで砂を探って餌を吸い込みます。ときどき水面へ素早く上がり、空気を吸って底へ戻ります。",
+    "aliases": [
+      "Corydoras panda",
+      "Panda corydoras",
+      "パンダコリドラス"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Siluriformes",
+      "orderJa": "ナマズ目",
+      "family": "Callichthyidae",
+      "familyJa": "カリクティス科"
+    },
+    "adultSizeCm": 5,
+    "sizeNote": "成魚は約5cm（飼育案内の値で、全長か標準体長かは示されていません）。原記載のホロタイプは標準体長41.9mmです。最大体長は資料の間で食い違い、確定していません。",
+    "distribution": "ペルーとエクアドルのアマゾン上流域。ウカヤリ水系を含む淡水域に分布します。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "NT",
+      "assessedYear": 2014,
+      "note": "FishBase に転記された IUCN の評価です。2024年の分類の見直しで、Corydoras 属から Hoplisoma 属に移されました。"
+    },
+    "highlights": [
+      "目を覆う黒い帯と、背びれ・尾の付け根の黒い斑がパンダの名の由来です。",
+      "ひげで底を探り、沈んだ餌を吸い込みます。",
+      "腸で空気呼吸をするため、ときどき水面へ上がります。"
+    ]
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "id": "yellow-tang",
+  "displayName": "キイロハギ",
+  "realBodyLengthCm": 15,
+  "swim": {
+    "tailBeatHz": 2.0,
+    "mouthAnchor": {
+      "x": 0.0,
+      "y": 0.61
+    }
+  },
+  "visual": {
+    "fallbackColor": "#f5d81f"
+  },
+  "sourceBodyBounds": {
+    "x": 349,
+    "y": 162,
+    "width": 886,
+    "height": 679
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.3,
+    "maxY": 0.85
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.4,
+      "burst": 1.8
+    },
+    "turnRateRadPerSec": 2.2,
+    "restFraction": 0.15,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 2.0,
+      "cohesion": 0.4,
+      "polarization": 0.2
+    },
+    "structureAffinity": 0.6,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 4,
+        "durationSec": [
+          4,
+          12
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "海遊館 生きもの図鑑: キイロハギ",
+        "url": "https://www.kaiyukan.com/connect/encyclopedia/198.html"
+      },
+      {
+        "title": "National Aquarium: Yellow Tang",
+        "url": "https://aqua.org/explore/animals/yellow-tang"
+      },
+      {
+        "title": "Claisse et al. 2011. Conventional tagging and acoustic telemetry of a small surgeonfish, Zebrasoma flavescens, in a structurally complex coral reef environment",
+        "url": "https://www.researchgate.net/publication/225699148_Conventional_tagging_and_acoustic_telemetry_of_a_small_surgeonfish_Zebrasoma_flavescens_in_a_structurally_complex_coral_reef_environment"
+      },
+      {
+        "title": "FishBase: Zebrasoma flavescens",
+        "url": "https://www.fishbase.se/summary/Zebrasoma-flavescens.html"
+      },
+      {
+        "title": "Hawaii Division of Aquatic Resources: Update on aquarium collecting",
+        "url": "https://dlnr.hawaii.gov/dar/announcements/update-on-aquarium-collecting/"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Zebrasoma flavescens",
+    "originRegionId": "pacific",
+    "originRegionName": "太平洋",
+    "origin": "西部から中部太平洋。ミクロネシアからハワイ、日本南部まで分布し、日本では小笠原諸島や琉球列島以南で見られます。",
+    "temperament": "単独か、ゆるい群れで見られます。日没前には、求愛と産卵のための集まりをつくることがあります。",
+    "movement": "岩の表面を何度もついばみ、藻類を食べながら泳ぎ回ります。同じ採餌場所を数週間から数か月にわたって使い続ける個体もいます。",
+    "habitat": "サンゴ礁や岩礁に暮らします。ハワイの研究では、成魚は昼に浅い転石帯や礁原で藻類を食べ、夕方に場所を移して、夜は別の隠れ場で過ごしていました。",
+    "aliases": [
+      "Yellow tang",
+      "Lemon sailfin",
+      "イエロータン"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Acanthuriformes",
+      "orderJa": "ニザダイ目",
+      "family": "Acanthuridae",
+      "familyJa": "ニザダイ科"
+    },
+    "adultSizeCm": 15,
+    "sizeNote": "ハワイ西部で標識された成魚126尾は、全長13.2〜20cmでした。最大で全長20cmの記録があります。",
+    "distribution": "ミクロネシアからハワイ、日本南部までの西部〜中部太平洋。西太平洋では、近縁の Zebrasoma scopas との交雑も記録されています。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2010,
+      "note": "ハワイでは裁判所の決定を受けて観賞魚の商業採集が閉鎖されており、2026年8月には州の観賞魚漁業規則案が再検討のため差し戻されました。"
+    },
+    "highlights": [
+      "全身が鮮やかなレモン色で、岩場の中でもよく目立ちます。",
+      "岩の表面を繰り返しついばんで、藻類を食べます。",
+      "野外では、昼の採餌場所と夜の隠れ場所を使い分けます。"
+    ]
+  }
+}

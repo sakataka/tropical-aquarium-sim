@@ -1,0 +1,115 @@
+{
+  "id": "figure-eight-puffer",
+  "displayName": "ハチノジフグ",
+  "realBodyLengthCm": 7.5,
+  "catalog": {
+    "scientificName": "Dichotomyctere ocellatus",
+    "originRegionId": "southeast-asia",
+    "originRegionName": "東南アジア",
+    "origin": "ボルネオ島とマレー半島からベトナムにかけて分布する小型のフグです。2024年にはシンガポールのマングローブの河口でも記録されました。",
+    "temperament": "よく泳ぐ活発なフグです。ほかの魚のひれをかじることがあるため、動きの遅い魚やひれの長い魚とは分けて展示します。",
+    "movement": "胸びれと小さな尾びれで、向きを細かく変えながら泳ぎます。底近くでは巻貝などの底生生物を探します。",
+    "habitat": "淡水と汽水の両方の記録があり、マングローブの根元の浅い汽水でも見つかっています。本水槽では、砂と小石の汽水の浅瀬を泳ぎます。",
+    "aliases": [
+      "figure-eight puffer",
+      "Eye-spot pufferfish",
+      "Tetraodon biocellatus"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Tetraodontiformes",
+      "orderJa": "フグ目",
+      "family": "Tetraodontidae",
+      "familyJa": "フグ科"
+    },
+    "adultSizeCm": 7.5,
+    "sizeNote": "水族館で繁殖した親魚は、雄が全長約8cm、雌が約7.5cmでした。文献上の最大も全長8cmです。",
+    "distribution": "ボルネオ島、マレー半島からベトナムにかけての東南アジアに分布します。",
+    "water": {
+      "salinity": "brackish"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "DD",
+      "assessedYear": 2019,
+      "note": "情報不足（DD）は、危険が少ないという意味ではありません。"
+    },
+    "highlights": [
+      "背中に、黄色い線が8の字のようにつながった模様があります。",
+      "向きを細かく変えながら、よく泳ぎ回ります。",
+      "底近くで巻貝などの餌を探します。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.6,
+    "tailSweepRad": 0.22,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.47
+    }
+  },
+  "visual": {
+    "fallbackColor": "#8f7f5f"
+  },
+  "sourceBodyBounds": {
+    "x": 229,
+    "y": 331,
+    "width": 1112,
+    "height": 351
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.35,
+    "maxY": 0.9
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.38,
+      "burst": 1.5
+    },
+    "turnRateRadPerSec": 2.7,
+    "restFraction": 0.18,
+    "depthRange": [
+      0.15,
+      0.8
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0,
+      "polarization": 0.03
+    },
+    "structureAffinity": 0.5,
+    "habits": [
+      {
+        "type": "bottomForage"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Dichotomyctere ocellatus",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=49968"
+      },
+      {
+        "title": "Ong (2025): Eye-spot pufferfish at Pasir Ris, Nature in Singapore 18:e2025003",
+        "url": "https://lkcnhm.nus.edu.sg/wp-content/uploads/sites/11/2025/01/NIS-2025-0003.pdf"
+      },
+      {
+        "title": "Doi et al. (2015): Spawning of eight Southeast Asian brackish and freshwater puffers in captivity",
+        "url": "https://www.researchgate.net/publication/276839648_Spawning_of_eight_Southeast_Asian_brackish_and_freshwater_puffers_of_the_genera_Tetraodon_and_Carinotetraodon_in_captivity"
+      },
+      {
+        "title": "Aquarium Co-Op: Figure Eight or Eyespot Puffer care section",
+        "url": "https://www.aquariumcoop.com/blogs/aquarium/top-10-pufferfish"
+      },
+      {
+        "title": "FishBase: Dichotomyctere ocellatus",
+        "url": "https://fishbase.se/summary/25175"
+      }
+    ]
+  }
+}

@@ -1,0 +1,141 @@
+{
+  "id": "australian-lungfish",
+  "displayName": "オーストラリアハイギョ",
+  "realBodyLengthCm": 100,
+  "swim": {
+    "tailBeatHz": 0.9,
+    "bodyWaveStart": 0.25,
+    "waveCount": 1.0,
+    "tailSweepRad": 0.25,
+    "verticalFlex": 0.02,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.47
+    }
+  },
+  "visual": {
+    "fallbackColor": "#7a6e52"
+  },
+  "sourceBodyBounds": {
+    "x": 72,
+    "y": 328,
+    "width": 1413,
+    "height": 398
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.56,
+    "maxY": 0.94
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "undulate",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.12,
+      "burst": 0.45
+    },
+    "turnRateRadPerSec": 1.1,
+    "restFraction": 0.5,
+    "depthRange": [
+      0.25,
+      0.85
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2,
+      "cohesion": 0,
+      "polarization": 0.03
+    },
+    "structureAffinity": 0.6,
+    "habits": [
+      {
+        "type": "hideByDay",
+        "durationSec": [
+          40,
+          120
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 0.8,
+        "durationSec": [
+          15,
+          45
+        ]
+      },
+      {
+        "type": "bottomForage"
+      },
+      {
+        "type": "airBreathing",
+        "breathsPerHour": [
+          2,
+          6
+        ],
+        "style": "rise"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Australian Museum: Australian Lungfish",
+        "url": "https://australian.museum/learn/animals/fishes/australian-lungfish-neoceratodus-forsteri-krefft-1870/"
+      },
+      {
+        "title": "Clement, Gomon & Bray (2023), Fishes of Australia: Neoceratodus forsteri",
+        "url": "https://fishesofaustralia.net.au/home/species/1988"
+      },
+      {
+        "title": "Grigg (1965), Aerial respiration in relation to habits",
+        "url": "https://www.publish.csiro.au/zo/zo9650413"
+      },
+      {
+        "title": "DCCEEW (2026), National Recovery Plan for the Australian Lungfish",
+        "url": "https://www.dcceew.gov.au/sites/default/files/documents/national-recovery-plan-australian-lungfish.pdf"
+      },
+      {
+        "title": "DCCEEW: Australian Lungfish fact sheet",
+        "url": "https://www.dcceew.gov.au/environment/biodiversity/threatened/publications/australian-lungfish-neoceratodus-forsteri"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Neoceratodus forsteri",
+    "originRegionId": "oceania",
+    "originRegionName": "オセアニア",
+    "origin": "オーストラリア東部、クイーンズランド州南東部のバーネット川とメアリー川の水系に自然分布します。ブリスベン周辺などの集団は、移入か在来かの議論が残っています。",
+    "temperament": "ゆっくり動く大型の肺魚で、甲殻類や貝、昆虫の幼虫、小魚を歯板で砕いて食べます。どのような群れ方をするのかは、よく分かっていません。",
+    "movement": "昼は沈木や岩、水草の陰で休み、夕方から淵を移動して餌を探します。ふだんはえらで呼吸し、活動するときなどに水面へ浮いて空気を吸います。",
+    "habitat": "流れの緩い、一年中水の絶えない深い淵に暮らします。アフリカや南米のハイギョと違い、泥にもぐって夏眠はしません。この水槽は、沈木と根、落ち葉の積もった泥底の緩い流れを表しています。",
+    "aliases": [
+      "Australian lungfish",
+      "Queensland lungfish",
+      "ネオケラトドゥス",
+      "クイーンズランドハイギョ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Ceratodontiformes",
+      "orderJa": "ケラトドゥス目",
+      "family": "Neoceratodontidae",
+      "familyJa": "ネオケラトドゥス科"
+    },
+    "adultSizeCm": 100,
+    "sizeNote": "典型的な成魚の大きさは確認できず、ここでの値は展示用の目安です。オーストラリア博物館は約1.5mまで育つとし、最大180cmの報告もありますが、全長か標準体長かは示されていません。",
+    "distribution": "オーストラリア・クイーンズランド州南東部のバーネット川とメアリー川の水系が、確実な自然分布です。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "EN",
+      "note": "IUCNの区分は、豪州政府の回復計画（2026年）が引用する2019年の評価によります。豪州の環境保護法とクイーンズランド州では Vulnerable、ワシントン条約では附属書IIです。"
+    },
+    "highlights": [
+      "幅の広いパドルのような胸びれと腹びれを持つ。",
+      "昼は沈木や岩の陰で休み、夕方から淵を動き回って餌を探す。",
+      "ときどき水面へゆっくり浮いて、空気を吸う。"
+    ]
+  }
+}

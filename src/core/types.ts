@@ -113,11 +113,41 @@ export type FishSwimStyle = {
   footAnchor: Vec2;
 };
 
+/** IUCN レッドリストの区分。NE は未評価。 */
+export type ConservationStatus = "LC" | "NT" | "VU" | "EN" | "CR" | "EW" | "DD" | "NE";
+
+/**
+ * 図鑑の項目。出典は ecology.sources と共通で、出典のない数値は書かない。
+ * 水温と pH は野外の生息地の値で、分かるものだけを持つ。
+ */
+export type FishProfile = {
+  taxonomy: { order: string; orderJa: string; family: string; familyJa: string };
+  /** 成体のふつうの大きさ (cm)。全長か標準体長か、雌雄差などは sizeNote に書く。 */
+  adultSizeCm: number;
+  sizeNote: string;
+  distribution: string;
+  water: {
+    salinity: "freshwater" | "brackish" | "marine";
+    temperatureC?: [number, number];
+    pH?: [number, number];
+  };
+  /** 家庭で飼育される / 主に公共水族館で展示される / 生体の展示がほとんどない。 */
+  keeping: "home" | "publicAquarium" | "rarelyDisplayed";
+  /**
+   * status は IUCN の区分。NE は「未評価」と確かめられたときだけ使い、
+   * 評価を確かめられていないときは status を書かず、note にその旨を書く。
+   */
+  conservation: { status?: ConservationStatus; assessedYear?: number; note?: string };
+  /** この展示で観察できる行動。ecology.habits と対応させる。 */
+  highlights: string[];
+};
+
 export type FishSpeciesDefinition = {
   id: string;
   displayName: string;
   realBodyLengthCm: number;
   catalog: FishCatalogInfo;
+  profile?: FishProfile;
   swim?: Partial<FishSwimStyle>;
   visual: { fallbackColor: string };
   sourceBodyBounds: { x: number; y: number; width: number; height: number };

@@ -1,0 +1,127 @@
+{
+  "id": "crystal-red-shrimp",
+  "displayName": "ビーシュリンプ",
+  "realBodyLengthCm": 2.5,
+  "swim": {
+    "bodyPlan": "crustacean",
+    "headStart": 0.2,
+    "tailBeatHz": 0.6,
+    "bodyWaveStart": 0.85,
+    "tailSweepRad": 0,
+    "verticalFlex": 0,
+    "footAnchor": {
+      "x": 0.41,
+      "y": 0.96
+    }
+  },
+  "visual": {
+    "fallbackColor": "#dcc2ba"
+  },
+  "sourceBodyBounds": {
+    "x": 129,
+    "y": 253,
+    "width": 1322,
+    "height": 555
+  },
+  "preferredZone": {
+    "minX": 0.12,
+    "maxX": 0.88,
+    "minY": 0.84,
+    "maxY": 0.93
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.08,
+      "burst": 0.36
+    },
+    "turnRateRadPerSec": 1.25,
+    "restFraction": 0.58,
+    "depthRange": [
+      0.1,
+      0.5
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 1.3,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.8,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 4,
+        "durationSec": [
+          8,
+          20
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.8,
+        "durationSec": [
+          6,
+          16
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Garnelenhaus — Bienengarnele care profile (Castellanos and Bauer)",
+        "url": "https://www.garnelenhaus.de/wiki/bienengarnele"
+      },
+      {
+        "title": "Garnelenhaus — Red Bee / Crystal Red Garnele",
+        "url": "https://www.garnelenhaus.de/wiki/red-bee-crystal-red-garnele"
+      },
+      {
+        "title": "SERA VIVO 2/2013, Maletschek and Untergasser, Shrimp breeding pp10–11",
+        "url": "https://www.sera.de/fileadmin/epapers/PDF/11148_VIVO_2-2013_US.pdf"
+      },
+      {
+        "title": "Seriously Fish — New shrimp from Hong Kong and southern China",
+        "url": "https://www.seriouslyfish.com/articles/new-shrimp-from-hong-kong-and-southern-china"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Caridina cantonensis",
+    "originRegionId": "east-asia",
+    "originRegionName": "東アジア",
+    "origin": "赤と白の模様を選び出して作られた観賞用の品種で、決まった原産地はありません。もとになったビーシュリンプの仲間は、中国南部や香港の山地の小川に暮らします。",
+    "temperament": "穏やかなエビで、飼育では複数で飼うことが勧められています。専門の飼育者は、エビだけの水槽で飼うことを勧めています。",
+    "movement": "底やモス、流木の上をゆっくり歩き、表面の付着物をついばみます。若いエビも、ろ材などの表面につく微生物を食べます。",
+    "habitat": "近縁の野生種 Caridina logemanni は、香港の山地の小川で、浅い落ち葉だまりや岩の間から採集されています。本展示ではモスと落ち葉のある水槽の底を歩く姿を見せています。",
+    "aliases": [
+      "Crystal Red",
+      "Red Bee",
+      "クリスタルレッドシュリンプ",
+      "Caridina cf. cantonensis",
+      "Caridina logemanni（流通での見方）"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Decapoda",
+      "orderJa": "十脚目",
+      "family": "Atyidae",
+      "familyJa": "ヌマエビ科"
+    },
+    "adultSizeCm": 3,
+    "sizeNote": "飼育の解説では約3cmとされますが、測り方や年齢が示されておらず、測定された典型値は確認できていません。",
+    "distribution": "飼育下で作られた品種で、自然の分布はありません。どの種の品種とするかには議論があり、流通では香港新界北東部の山地の小川から記載された Caridina logemanni の赤い品種とする見方もあります。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "note": "飼育品種には IUCN の評価がありません。関連する野生の Caridina logemanni では、狭い分布、採集圧、近縁種との交雑が保全上の課題とされます。"
+    },
+    "highlights": [
+      "赤と白の配置や白い部分の広さが、個体ごとに少しずつ違う",
+      "モスや流木の表面の付着物をついばむ"
+    ]
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "id": "upside-down-catfish",
+  "displayName": "シノドンティス・ニグリヴェントリス",
+  "realBodyLengthCm": 8,
+  "swim": {
+    "tailBeatHz": 2.4,
+    "mouthAnchor": {
+      "x": 0.15,
+      "y": 0.47
+    }
+  },
+  "visual": {
+    "fallbackColor": "#8a735e"
+  },
+  "sourceBodyBounds": {
+    "x": 65,
+    "y": 299,
+    "width": 1391,
+    "height": 461
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.12,
+    "maxY": 0.9
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.3,
+      "burst": 1.4
+    },
+    "turnRateRadPerSec": 2.0,
+    "restFraction": 0.4,
+    "depthRange": [
+      0.4,
+      0.95
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 1.2,
+      "cohesion": 0.45,
+      "polarization": 0.15
+    },
+    "structureAffinity": 0.8,
+    "habits": [
+      {
+        "type": "hideByDay",
+        "durationSec": [
+          60,
+          180
+        ]
+      },
+      {
+        "type": "bottomForage"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Synodontis nigriventris",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=52258"
+      },
+      {
+        "title": "FishBase: Synodontis nigriventris",
+        "url": "https://www.fishbase.se/summary/Synodontis-nigriventris"
+      },
+      {
+        "title": "Blake & Chan (2007): Swimming in the upside down catfish; doi:10.1242/jeb.006437",
+        "url": "https://www.researchgate.net/publication/6135861_Swimming_in_the_upside_down_catfish_Synodontis_nigriventris_it_matters_which_way_is_up"
+      },
+      {
+        "title": "Chapman, Kaufman & Chapman (1994): Why Swim Upside Down? Copeia 130–135",
+        "url": "https://static1.squarespace.com/static/579f7a82e3df28bd59b244eb/t/581221f3e6f2e19f6a663427/1477583350370/Why%2BSwim%2Bupside%2Bdown%2BA%2Bcomparative%2Bstudy.pdf"
+      },
+      {
+        "title": "Seriously Fish: Synodontis nigriventris",
+        "url": "https://www.seriouslyfish.com/species/synodontis-nigriventris"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Synodontis nigriventris",
+    "originRegionId": "central-africa",
+    "originRegionName": "中部アフリカ",
+    "origin": "中部アフリカのコンゴ川水系に分布します。模式産地はコンゴ民主共和国のブタです。",
+    "habitat": "植物の茂った川岸にすみます。この展示では、流木の根の下の小さな洞や、陰性水草の陰を隠れ家にします。",
+    "temperament": "温和な小型のナマズで、飼育では数匹で飼うことが勧められています。昼は隠れ家にいて、主に夜に餌を探します。",
+    "movement": "水面の餌をとるときや隠れ家の間を移るときは、腹を上にした逆さの姿勢で泳ぎます。底で餌を探すときは、背を上にした姿勢に戻ります。",
+    "aliases": [
+      "Upside-down catfish",
+      "Blotched upsidedown catfish",
+      "サカサナマズ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Siluriformes",
+      "orderJa": "ナマズ目",
+      "family": "Mochokidae",
+      "familyJa": "サカサナマズ科"
+    },
+    "adultSizeCm": 8,
+    "sizeNote": "記録上の最大は全長9.6cmです（雄か性別不明の個体）。飼育解説には標準体長10cmとするものもあります。ふつうの成魚の大きさは確かめられていないため、展示では全長8cm前後を想定しています。",
+    "distribution": "コンゴ民主共和国のコンゴ川水系に分布し、マレボ湖、カサイ川、ウバンギ川の水系からも報告があります。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2009
+    },
+    "highlights": [
+      "腹が背より暗い色をしていて、逆さに泳ぐ姿勢に合った体色です。",
+      "水面の餌は逆さの姿勢でとり、底では向きを戻して餌を探します。",
+      "隠れ家の間を逆さのまま移り、胸びれでブレーキをかけて止まります。",
+      "主に夜に活動する魚です。"
+    ]
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "id": "kelp-bass",
+  "displayName": "ケルプバス",
+  "realBodyLengthCm": 35,
+  "catalog": {
+    "scientificName": "Paralabrax clathratus",
+    "originRegionId": "northeast-pacific",
+    "originRegionName": "北東太平洋",
+    "origin": "米国ワシントン州からメキシコのバハ・カリフォルニア南部の太平洋岸に分布し、カリフォルニアのポイント・コンセプションより南に多いハタの仲間です。南カリフォルニアでは釣りの対象として親しまれています。",
+    "temperament": "ふだんは単独でいることが多い一方、小魚の群れを追うときには集まり、いくつもの方向から追い込みます。成魚は決まった場所に定着する傾向が強い魚です。",
+    "movement": "岩やケルプのまわりを泳ぎ、昼にも夜にも活動します。追跡調査では、昼のほうが広く動き回り、夜には急な加速が多く見られました。",
+    "habitat": "海面近くから水深46mほどまでの岩礁やケルプの森。沈船や人工の柱などの構造物にも付きます。本水槽では、ジャイアントケルプの柱の間をイメージしています。",
+    "aliases": [
+      "kelp bass",
+      "calico bass"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Perciformes",
+      "orderJa": "スズキ目",
+      "family": "Serranidae",
+      "familyJa": "ハタ科"
+    },
+    "adultSizeCm": 35,
+    "sizeNote": "成魚の典型的な大きさは確かめられておらず、ここでは約35cmとして表示しています。半数が成熟する全長は雄22cm、雌22.6cmです。最大記録は全長72.1cm、6.6kgとされます。",
+    "distribution": "北東太平洋の米国ワシントン州からバハ・カリフォルニア南部の太平洋岸に分布し、ポイント・コンセプションより南に多く見られます。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "IUCN の評価は確かめられていません。カリフォルニア州魚類野生生物局の2019年の報告時点では、南カリフォルニアの正式な資源評価は行われていませんでした。"
+    },
+    "highlights": [
+      "褐色の地に、四角い白いまだらが市松模様のように並びます。",
+      "成魚は主に魚を食べ、小魚の群れを仲間と囲むように追うことがあります。",
+      "夏の日没前後に、3尾から200尾を超える群れで産卵します。繁殖期の雄は顎が橙色になります。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 1.7
+  },
+  "visual": {
+    "fallbackColor": "#83775c"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.2,
+    "maxY": 0.8
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.32,
+      "burst": 1.4
+    },
+    "turnRateRadPerSec": 1.9,
+    "restFraction": 0.22,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.2,
+      "cohesion": 0,
+      "polarization": 0.05
+    },
+    "structureAffinity": 0.7,
+    "habits": [],
+    "sources": [
+      {
+        "title": "California Department of Fish and Wildlife: Nearshore Fishes, Kelp Bass",
+        "url": "https://wildlife.ca.gov/Conservation/Marine/Nearshore"
+      },
+      {
+        "title": "CDFW (June 2019): Kelp Bass Enhanced Status Report",
+        "url": "https://nrm.dfg.ca.gov/FileHandler.ashx?DocumentID=174760"
+      },
+      {
+        "title": "Lowe et al. (2003): Movement patterns, home range, and habitat utilization of adult kelp bass",
+        "url": "https://www.int-res.com/abstracts/meps/v256/meps256205"
+      },
+      {
+        "title": "McGarigal et al. (2022): Physiological and Behavioral Effects of Angling Stress on Kelp Bass",
+        "url": "https://onlinelibrary.wiley.com/doi/10.1002/mcf2.10224"
+      },
+      {
+        "title": "Monterey Bay Aquarium: Kelp bass",
+        "url": "https://www.montereybayaquarium.org/animals-the-ocean/animals-a-to-z/kelp-bass"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 141,
+    "y": 252,
+    "width": 1273,
+    "height": 522
+  }
+}

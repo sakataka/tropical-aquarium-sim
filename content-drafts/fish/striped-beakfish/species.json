@@ -1,0 +1,118 @@
+{
+  "id": "striped-beakfish",
+  "displayName": "イシダイ",
+  "realBodyLengthCm": 18,
+  "swim": {
+    "tailBeatHz": 2.0,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.58
+    }
+  },
+  "visual": {
+    "fallbackColor": "#b9b39c"
+  },
+  "sourceBodyBounds": {
+    "x": 257,
+    "y": 231,
+    "width": 1093,
+    "height": 574
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.2,
+    "maxY": 0.8
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.42,
+      "burst": 1.7
+    },
+    "turnRateRadPerSec": 2.1,
+    "restFraction": 0.14,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0.5,
+      "polarization": 0.3
+    },
+    "structureAffinity": 0.6,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 1,
+        "durationSec": [
+          2,
+          6
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "鳥羽水族館 生きもの図鑑 — イシダイ",
+        "url": "https://aquarium.co.jp/picturebook/oplegnathus-fasciatus.html"
+      },
+      {
+        "title": "新潟市水族館マリンピア日本海 — イシダイ",
+        "url": "https://www.marinepia.or.jp/picturebook/fish/entry-11027.html"
+      },
+      {
+        "title": "Tetsuya TAMAKI 1995 — 但馬沿岸におけるイシダイの行動",
+        "url": "https://www.jstage.jst.go.jp/article/fisheng/32/1/32_33/_pdf/-char/en"
+      },
+      {
+        "title": "新江ノ島水族館 北嶋 2011 — 潜水給餌の話",
+        "url": "https://www.enosui.com/diaryentry.php?category=33&eid=02092"
+      },
+      {
+        "title": "FishBase — Oplegnathus fasciatus",
+        "url": "https://www.fishbase.se/summary/Oplegnathus-fasciatus.html"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Oplegnathus fasciatus",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "日本、朝鮮半島から千島列島、小笠原諸島、ハワイ諸島まで、北西・中部太平洋に分布します。日本では北海道から九州の沿岸を中心に暮らしています。",
+    "temperament": "若魚は群れを作る傾向が強く、天然の岩礁では5匹以下の小さな群れが多く見られます。気が強く、ほかの魚の餌を横取りしたり、噛みついたりすることがあります。",
+    "movement": "岩礁の周りを群れで泳ぎ、硬い歯でウニや貝、ヤドカリなどを噛み砕いて食べます。給餌のときは真っ先に餌へ寄ってきます。",
+    "habitat": "沿岸の岩礁。若魚は防波堤や静かな港、海藻の周りも利用します。本展示では、黒い縞がはっきりした若魚〜亜成魚の姿を見せています。",
+    "aliases": [
+      "シマダイ",
+      "Striped beakfish",
+      "Barred knifejaw"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Perciformes",
+      "orderJa": "スズキ目",
+      "family": "Oplegnathidae",
+      "familyJa": "イシダイ科"
+    },
+    "adultSizeCm": 80,
+    "sizeNote": "最大で全長80cmになります。展示している縞のある若い個体の大きさは決まっておらず、野外調査では全長10〜25cmの若魚の群れが観察されています。",
+    "distribution": "日本、朝鮮半島、千島列島、小笠原諸島、ハワイ諸島に分布します。地中海のクロアチアやマルタにも持ち込まれた記録があります。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2023
+    },
+    "highlights": [
+      "若い個体には7本の黒い縞があり、成長すると縞が薄れる。年をとると口の周りが黒くなり「クチグロ」と呼ばれる",
+      "岩の表面をつつき、硬い歯で殻のある生き物を噛み砕く",
+      "給餌のときは、ほかの魚の餌まで横取りしようとする"
+    ]
+  }
+}

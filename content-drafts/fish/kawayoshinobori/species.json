@@ -1,0 +1,120 @@
+{
+  "id": "kawayoshinobori",
+  "displayName": "カワヨシノボリ",
+  "realBodyLengthCm": 6,
+  "catalog": {
+    "scientificName": "Rhinogobius flumineus",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "静岡県・富山県より西の本州、四国、九州に分布する日本固有のハゼです。海へ下らず、一生を川で過ごします。",
+    "temperament": "川底で暮らし、雄どうしは争い合います。繁殖期の雄は石の下に巣をつくり、孵化するまで卵を守ります。",
+    "movement": "川底の石の上に止まっては、短い距離を泳いで場所を移ります。",
+    "habitat": "川の中流から上流の平瀬など、石や礫の多い川底をイメージしています。水生昆虫や付着藻類を食べます。",
+    "aliases": [
+      "Kawayoshinobori goby",
+      "ヨシノボリ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Gobiiformes",
+      "orderJa": "ハゼ目",
+      "family": "Oxudercidae",
+      "familyJa": "オクスデルクス科"
+    },
+    "adultSizeCm": 6,
+    "sizeNote": "全長6cmほどです。国内の資料ではハゼ科に含めることが多く、ここでは Catalog of Fishes の体系に従っています。",
+    "distribution": "静岡県・富山県より西の本州、四国、九州に分布する日本固有種です。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "note": "IUCN と環境省の評価は確認できていません。小河川や水路の消失と環境の悪化が、生息を脅かすものとして挙げられています。"
+    },
+    "highlights": [
+      "体側に並ぶ7〜10個の褐色の斑と、頬の小さな黒点が見分けどころです。",
+      "雄は第1背びれが長く伸び、尻びれが赤みを帯びます。",
+      "産卵期の雄は全体に黒っぽくなり、雌は腹が黄色くなります。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 3.0
+  },
+  "visual": {
+    "fallbackColor": "#9e8a6c"
+  },
+  "sourceBodyBounds": {
+    "x": 142,
+    "y": 279,
+    "width": 1294,
+    "height": 432
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.8,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.25,
+      "burst": 2.6
+    },
+    "turnRateRadPerSec": 3.0,
+    "restFraction": 0.55,
+    "depthRange": [
+      0.1,
+      0.75
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.7,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 2.5,
+        "durationSec": [
+          6,
+          20
+        ]
+      },
+      {
+        "type": "follow",
+        "chancePerMin": 0.4,
+        "durationSec": [
+          1,
+          2.5
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "国立科学博物館 日本の淡水魚類：カワヨシノボリ",
+        "url": "https://www.kahaku.go.jp/research/db/zoology/uodas_freshdb/area/gobiidae/gobiinae/043.html"
+      },
+      {
+        "title": "国土交通省太田川河川事務所：カワヨシノボリ",
+        "url": "https://www.cgr.mlit.go.jp/ootagawa/Bio/fishes/index282.htm"
+      },
+      {
+        "title": "和歌山県立自然博物館：紀州の鯊6 カワヨシノボリ",
+        "url": "https://www.shizenhaku.wakayama-c.ed.jp/goby_kishu_exp/goby_kishu_exp_06.html"
+      },
+      {
+        "title": "Oto & Masuda (2019): Size-dependent habitat use in Rhinogobius flumineus",
+        "url": "https://link.springer.com/article/10.1007/s10228-019-00684-y"
+      },
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Rhinogobius flumineus",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=18988"
+      }
+    ]
+  }
+}

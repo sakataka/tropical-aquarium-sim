@@ -1,0 +1,121 @@
+{
+  "id": "numachichibu",
+  "displayName": "ヌマチチブ",
+  "realBodyLengthCm": 7,
+  "catalog": {
+    "scientificName": "Tridentiger brevispinis",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "北海道から九州と、朝鮮半島やロシアなど北西太平洋沿岸に分布します。海と川を行き来するもののほか、湖沼に閉じ込められて暮らす集団もいます。",
+    "temperament": "底で暮らすハゼで、繁殖期の雄は石の下に巣を構え、近づく同種に突進して追い払います。産卵後は雄がひれで卵の世話をします。",
+    "movement": "岩や杭など硬いものの上でじっと止まり、短く泳いで次の場所へ移ります。",
+    "habitat": "川の中流から下流、汽水域、湖沼やため池にすみます。泥底にもいますが、岩や倒木の周りを好みます。",
+    "aliases": [
+      "Numachichibu goby",
+      "ダボハゼ",
+      "Tridentiger obscurus brevispinis"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Gobiiformes",
+      "orderJa": "ハゼ目",
+      "family": "Oxudercidae",
+      "familyJa": "オクスデルクス科"
+    },
+    "adultSizeCm": 5.4,
+    "sizeNote": "茨城県北浦の成熟個体の平均は、標準体長で雄5.4cm、雌4.2cmです。図鑑では全長5〜15cmとされます。",
+    "distribution": "北海道から九州と、朝鮮半島、ロシアなど北西太平洋沿岸に分布します。東京都の奥多摩湖などには、ほかの水系から持ち込まれた集団がいます。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "note": "IUCN の評価は確認できていません。東京都の資料では、ほかの水系から持ち込まれた系統による遺伝的かく乱が心配されています。"
+    },
+    "highlights": [
+      "ずんぐりした体と丸く大きな頭、頬に散らばる白い点が特徴です。",
+      "岩の上に何匹かがじっと止まっている姿が見られます。",
+      "繁殖期の雄は口や尾で砂や小石を除けて巣を整え、卵を守ります。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.6
+  },
+  "visual": {
+    "fallbackColor": "#5a4e40"
+  },
+  "sourceBodyBounds": {
+    "x": 134,
+    "y": 270,
+    "width": 1307,
+    "height": 452
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.78,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.2,
+      "burst": 2.0
+    },
+    "turnRateRadPerSec": 2.6,
+    "restFraction": 0.6,
+    "depthRange": [
+      0.2,
+      0.85
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.0,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.8,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 2,
+        "durationSec": [
+          8,
+          25
+        ]
+      },
+      {
+        "type": "follow",
+        "chancePerMin": 0.3,
+        "durationSec": [
+          1,
+          2.5
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Mashiko & Yamane (1993) — Sexual Dimorphism in the Goby Tridentiger kuroiwae brevispinis",
+        "url": "https://www.jstage.jst.go.jp/article/jji1950/40/3/40_3_363/_pdf"
+      },
+      {
+        "title": "国土交通省 太田川河川事務所 — ヌマチチブ",
+        "url": "https://www.cgr.mlit.go.jp/ootagawa/Bio/fishes/index284.htm"
+      },
+      {
+        "title": "マリンピア日本海 — ヌマチチブ",
+        "url": "https://www.marinepia.or.jp/picturebook/fish/entry-11651.html"
+      },
+      {
+        "title": "千葉県立中央博物館 山のフィールドニュース (2017-07-28) — ヌマチチブ",
+        "url": "https://www.chiba-muse.or.jp/natural/special/yama/news/2017/170728Tridentiger.htm"
+      },
+      {
+        "title": "東京都レッドデータブック — 淡水魚類、ヌマチチブ解説",
+        "url": "https://www.kankyo.metro.tokyo.lg.jp/documents/d/kankyo/red_data_book-400100a20230424184941875-files-16_0913_07"
+      }
+    ]
+  }
+}

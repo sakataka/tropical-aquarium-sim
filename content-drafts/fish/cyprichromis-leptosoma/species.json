@@ -1,0 +1,105 @@
+{
+  "id": "cyprichromis-leptosoma",
+  "displayName": "サイプリクロミス・レプトソーマ",
+  "realBodyLengthCm": 9,
+  "swim": {
+    "tailBeatHz": 2.8
+  },
+  "visual": {
+    "fallbackColor": "#3d4a9a"
+  },
+  "sourceBodyBounds": {
+    "x": 173,
+    "y": 307,
+    "width": 1224,
+    "height": 416
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.1,
+    "maxY": 0.5
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.7,
+      "burst": 2.8
+    },
+    "turnRateRadPerSec": 2.8,
+    "restFraction": 0.12,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "school",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0.72,
+      "polarization": 0.65
+    },
+    "structureAffinity": 0.2,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes — Cyprichromis leptosoma",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=22061"
+      },
+      {
+        "title": "Nederlandse Vereniging van Cichlidenliefhebbers — Cyprichromis leptosoma",
+        "url": "https://www.nvcweb.nl/visbeschrijvingen/tanganjika/cyprichromis-leptosoma-boulenger-1898"
+      },
+      {
+        "title": "Seriously Fish — Cyprichromis leptosoma",
+        "url": "https://www.seriouslyfish.com/species/cyprichromis-leptosoma"
+      },
+      {
+        "title": "FishBase — Cyprichromis leptosoma country species summary",
+        "url": "https://fishbase.mnhn.fr/Country/CountrySpeciesSummary.php?c_code=180&id=8573&lang=german"
+      },
+      {
+        "title": "Wainwright et al. (2001), Evaluating the use of ram and suction during prey capture by cichlid fishes",
+        "url": "https://darrinhulsey.com/wp-content/uploads/2014/10/2001_wainwrightetal_jexpbiol1.pdf"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Cyprichromis leptosoma",
+    "originRegionId": "east-africa",
+    "originRegionName": "東アフリカ",
+    "origin": "東アフリカのタンガニーカ湖の固有種です。模式産地はムビティ・ロックスです。同じ産地の雄にも青い尾と黄色い尾の型がいて、この展示は黄色い尾の雄です。",
+    "habitat": "岩の斜面の沖にある、岩と砂が混じる場所の開けた水中にすみます。この展示では、深い岩場の上に広がる青い水中を泳ぎます。",
+    "temperament": "大きな群れで暮らすシクリッドです。雄は水中に縄張りを並べて構え、雄どうしで誇示し合い、短く追い払います。",
+    "movement": "細身の体で水槽の上のほうを群れで泳ぎ、小さな餌に口を突き出して吸い込みます。頭を低くした姿勢で水中に止まることもあります。",
+    "aliases": [
+      "Sardine cichlid",
+      "Paratilapia leptosoma"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cichliformes",
+      "orderJa": "シクリッド目",
+      "family": "Cichlidae",
+      "familyJa": "シクリッド科"
+    },
+    "adultSizeCm": 9,
+    "sizeNote": "記録上の最大は全長11cmです（雄か性別不明の個体）。成魚の雄のふつうの大きさは確かめられていないため、展示では全長9cm前後を想定しています。雌は灰色がかったベージュで、雄ほど鮮やかではありません。",
+    "distribution": "タンガニーカ湖の固有種です。ザンビア側の調査地では、青い尾と黄色い尾の雄が同じ場所で採集されています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2006
+    },
+    "highlights": [
+      "青紫の体と黄色い尾の対比が目を引く雄です。",
+      "群れで開けた水中を泳ぎ、雄は水中に自分の縄張りを構えます。",
+      "動物プランクトンを、口を前に突き出して吸い込むように食べます。",
+      "卵と仔魚は雌が口の中で守ります。"
+    ]
+  }
+}

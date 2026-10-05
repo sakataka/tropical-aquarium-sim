@@ -1,0 +1,117 @@
+{
+  "id": "ichimonji-bitterling",
+  "displayName": "イチモンジタナゴ",
+  "realBodyLengthCm": 6,
+  "catalog": {
+    "scientificName": "Acheilognathus cyanostigma",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "琵琶湖・淀川水系、紀ノ川水系、三方湖、濃尾平野など、日本の中部に分布するタナゴです。富山県や岡山県、四国などには持ち込まれた集団がいます。",
+    "temperament": "水草や藻の多い場所で、付着した藻類を食べて暮らします。野生の数が大きく減り、動物園や水族館で保全のための繁殖が行われています。",
+    "movement": "水草の多い場所を泳ぎ、茎や葉に付いた藻をついばみます。",
+    "habitat": "流れの緩い水路や湖沼、池にすみます。春から初夏に、淡水の二枚貝のえらの中に卵を産みます。",
+    "aliases": [
+      "Ichimonji bitterling",
+      "Striped bitterling",
+      "Acheilognathus brevianalis"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cypriniformes",
+      "orderJa": "コイ目",
+      "family": "Acheilognathidae",
+      "familyJa": "タナゴ科"
+    },
+    "adultSizeCm": 6,
+    "sizeNote": "琵琶湖博物館の資料では最大体長6.2cmです（測り方は示されていません）。成魚のふつうの全長は調査で確かめられていません。",
+    "distribution": "琵琶湖・淀川水系、紀ノ川水系、三方湖、濃尾平野など日本の中部に自然分布します。富山県、岡山県、熊本県、四国などへは移入されています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "IUCN の評価は確認できていません。環境省レッドリスト2020では絶滅危惧IA類（CR）です。"
+    },
+    "highlights": [
+      "繁殖期の雄は、体側に太く長い一文字の模様が浮かびます。",
+      "背びれに白い縦の帯が入り、口ひげはごく短い痕跡程度です。",
+      "雌は産卵管を二枚貝に差し入れて、えらの中に卵を産みます。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 3.0,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.55
+    }
+  },
+  "visual": {
+    "fallbackColor": "#9aa08a"
+  },
+  "sourceBodyBounds": {
+    "x": 206,
+    "y": 273,
+    "width": 1153,
+    "height": 465
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.32,
+    "maxY": 0.82
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.65,
+      "burst": 2.8
+    },
+    "turnRateRadPerSec": 2.9,
+    "restFraction": 0.12,
+    "depthRange": [
+      0.15,
+      0.8
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.8,
+      "cohesion": 0.45,
+      "polarization": 0.35
+    },
+    "structureAffinity": 0.5,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 2.0,
+        "durationSec": [
+          2,
+          6
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "琵琶湖博物館・イチモンジタナゴ（伊藤玄・川瀬成吾、2024）",
+        "url": "https://jmapps.ne.jp/ikimono/det.html?data_id=7068"
+      },
+      {
+        "title": "国立環境研究所・侵入生物データベース Acheilognathus cyanostigma",
+        "url": "https://www.nies.go.jp/biodiversity/invasive/DB/detail/50460e.html"
+      },
+      {
+        "title": "大阪府立環境農林水産総合研究所・イチモンジタナゴ",
+        "url": "https://www.knsk-osaka.jp/zukan/zukan_database/tansui/2550b2c26477834/6850b5ad35240fd.html"
+      },
+      {
+        "title": "Kitamura (2006), Reproductive ecology of the striped bitterling",
+        "url": "https://link.springer.com/article/10.1007/s10228-006-0336-4"
+      },
+      {
+        "title": "環境省レッドリスト2020・汽水淡水魚類",
+        "url": "https://www.env.go.jp/press/files/jp/114457.pdf"
+      }
+    ]
+  }
+}

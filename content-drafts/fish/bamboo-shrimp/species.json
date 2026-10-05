@@ -1,0 +1,119 @@
+{
+  "id": "bamboo-shrimp",
+  "displayName": "バンブーシュリンプ",
+  "realBodyLengthCm": 7,
+  "swim": {
+    "bodyPlan": "crustacean",
+    "headStart": 0.24,
+    "tailBeatHz": 0.6,
+    "bodyWaveStart": 0.85,
+    "tailSweepRad": 0,
+    "verticalFlex": 0,
+    "footAnchor": {
+      "x": 0.47,
+      "y": 0.96
+    }
+  },
+  "visual": {
+    "fallbackColor": "#a5653a"
+  },
+  "sourceBodyBounds": {
+    "x": 72,
+    "y": 221,
+    "width": 1380,
+    "height": 603
+  },
+  "preferredZone": {
+    "minX": 0.12,
+    "maxX": 0.88,
+    "minY": 0.8,
+    "maxY": 0.92
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.05,
+      "burst": 0.25
+    },
+    "turnRateRadPerSec": 0.9,
+    "restFraction": 0.75,
+    "depthRange": [
+      0.2,
+      0.6
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.7,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 3,
+        "durationSec": [
+          20,
+          60
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Cai, Ng & Choy (2007), Freshwater shrimps of the family Atyidae from peninsular Malaysia and Singapore",
+        "url": "https://lkcnhm.nus.edu.sg/app/uploads/2017/06/55rbz277-309.pdf"
+      },
+      {
+        "title": "Iwata et al. (2003), Shrimp abundance and habitat relationships in tropical rain-forest streams, Sarawak, Borneo",
+        "url": "https://www.researchgate.net/publication/231902403_Shrimp_abundance_and_habitat_relationships_in_tropical_rain-forest_streams_Sarawak_Borneo"
+      },
+      {
+        "title": "Hamasaki, Tanaka & Dan (2024), Larval performance of two amphidromous atyid shrimp species in the genus Atyopsis",
+        "url": "https://link.springer.com/article/10.1007/s10750-023-05438-6"
+      },
+      {
+        "title": "U.S. Fish & Wildlife Service (2017), Bamboo Shrimp Ecological Risk Screening Summary",
+        "url": "https://www.fws.gov/sites/default/files/documents/Ecological-Risk-Screening-Summary-Bamboo-shrimp.pdf"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Atyopsis moluccensis",
+    "originRegionId": "southeast-asia",
+    "originRegionName": "東南アジア",
+    "origin": "東南アジア。マレー半島、タイ南部、スマトラ、ボルネオで標本が確かめられています。フィリピンやスリランカの古い記録には、近縁種との混同が含まれます。",
+    "temperament": "群れや社会のつくりは分かっていません。石や流木につかまり、同じ場所に長くとどまるエビです。",
+    "movement": "石や流木につかまって流れに向き、前の2対の脚の先にある扇のような毛で、流れてくる有機物の粒をこし取って食べます。",
+    "habitat": "流れのある淡水の渓流で、岩や水没した根を利用して暮らします。ボルネオのサラワクの調査では、水深20〜40cm、流速毎秒20〜60cmほどの巨礫の多い場所を好んでいました。本展示では石や流木の上にとどまる姿を見せています。",
+    "aliases": [
+      "Atya moluccensis",
+      "Bamboo shrimp",
+      "Wood shrimp",
+      "Asian filter shrimp",
+      "フラワーシュリンプ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Decapoda",
+      "orderJa": "十脚目",
+      "family": "Atyidae",
+      "familyJa": "ヌマエビ科"
+    },
+    "adultSizeCm": 7,
+    "sizeNote": "野外の典型的な大きさは分かっていません。流通の資料では成体を5〜7.6cmとするものと8〜12cmとするものがあり、測り方は示されていません。スマトラの抱卵雌1個体の甲長は1.5cmでした。",
+    "distribution": "マレー半島、タイ南部、スマトラ、ボルネオで確かめられています。幼生期を汽水で過ごす両側回遊性のエビで、飼育実験では幼生は塩分17〜25.5pptで稚エビまで育ち、34pptでは育ちませんでした。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "note": "今回の調査では IUCN の評価本文を確認できていません。サラワクの調査では、二次林の流域で一次林の流域より生息密度が低くなっていました。"
+    },
+    "highlights": [
+      "前脚の扇のような毛を広げ、流れてくる粒をこし取る",
+      "石や流木につかまり、同じ場所に長くとどまる"
+    ]
+  }
+}

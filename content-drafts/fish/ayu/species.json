@@ -1,0 +1,128 @@
+{
+  "id": "ayu",
+  "displayName": "アユ",
+  "realBodyLengthCm": 20,
+  "catalog": {
+    "scientificName": "Plecoglossus altivelis altivelis",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "北海道西部から南の日本各地の川に暮らします。生まれた仔魚は海へ下り、若魚になると川をさかのぼります。",
+    "temperament": "良い餌場を見つけた個体は縄張りを持ち、近づく仲間を追い払うことがあります。いつも群れる魚とも、いつも単独の魚とも言い切れません。",
+    "movement": "流れの中を軽快に泳ぎ、石に近づいては口をこすりつけて藻を削ります。",
+    "habitat": "中流の瀬の、礫や石が並ぶ川底をイメージしています。石の表面に付いた藻類が主な餌です。",
+    "aliases": [
+      "Ayu sweetfish",
+      "sweetfish",
+      "香魚",
+      "Plecoglossus altivelis"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Osmeriformes",
+      "orderJa": "キュウリウオ目",
+      "family": "Plecoglossidae",
+      "familyJa": "アユ科"
+    },
+    "adultSizeCm": 20,
+    "sizeNote": "川で育った成魚は全長18〜30cmほどです。琵琶湖の中で育つ「コアユ」は体長約10cmのまま成魚になります。",
+    "distribution": "北海道西部から南の日本各地に分布します。種としては東アジアに広く分布し、琵琶湖には湖で一生を過ごす集団がいます。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "DD",
+      "assessedYear": 2010,
+      "note": "IUCN の評価は種 Plecoglossus altivelis 全体に対するものです。"
+    },
+    "highlights": [
+      "石の表面に口をこすりつけ、付いた藻を櫛のような歯で削り取ります。",
+      "胸びれの後ろの黄色い斑と、背中の小さな脂びれが目印です。",
+      "良い餌場を持つ個体が、近づく仲間を追い払うことがあります。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.2,
+    "mouthAnchor": {
+      "x": 0.005,
+      "y": 0.55
+    }
+  },
+  "visual": {
+    "fallbackColor": "#a6a173"
+  },
+  "sourceBodyBounds": {
+    "x": 130,
+    "y": 263,
+    "width": 1307,
+    "height": 460
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.3,
+    "maxY": 0.88
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.5,
+      "burst": 2.2
+    },
+    "turnRateRadPerSec": 2.3,
+    "restFraction": 0.1,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 2.4,
+      "cohesion": 0.4,
+      "polarization": 0.3
+    },
+    "structureAffinity": 0.45,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 2.5,
+        "durationSec": [
+          2,
+          6
+        ]
+      },
+      {
+        "type": "follow",
+        "chancePerMin": 0.6,
+        "durationSec": [
+          1.5,
+          4
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "国土交通省太田川河川事務所: アユ",
+        "url": "https://www.cgr.mlit.go.jp/ootagawa/Bio/fishes/index250.htm"
+      },
+      {
+        "title": "海遊館: アユ",
+        "url": "https://www.kaiyukan.com/connect/encyclopedia/123.html"
+      },
+      {
+        "title": "北の大地の水族館 (2024-08-22): アユの食べもの",
+        "url": "https://onneyu-aq.com/point/ayunotabemono/"
+      },
+      {
+        "title": "滋賀県: 琵琶湖の生きもの（コアユ）",
+        "url": "https://www.pref.shiga.lg.jp/biwako-system/18893.html"
+      },
+      {
+        "title": "FishBase: Plecoglossus altivelis",
+        "url": "https://fishbase.se/summary/Plecoglossus_altivelis.html"
+      }
+    ]
+  }
+}

@@ -1,0 +1,115 @@
+{
+  "id": "lyretail-anthias",
+  "displayName": "キンギョハナダイ",
+  "realBodyLengthCm": 10,
+  "swim": {
+    "tailBeatHz": 2.8
+  },
+  "visual": {
+    "fallbackColor": "#e8546e"
+  },
+  "sourceBodyBounds": {
+    "x": 183,
+    "y": 226,
+    "width": 1296,
+    "height": 554
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.15,
+    "maxY": 0.6
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.7,
+      "burst": 3.0
+    },
+    "turnRateRadPerSec": 3.0,
+    "restFraction": 0.12,
+    "depthRange": [
+      0.15,
+      0.8
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.4,
+      "cohesion": 0.55,
+      "polarization": 0.3
+    },
+    "structureAffinity": 0.5,
+    "habits": [
+      {
+        "type": "follow",
+        "chancePerMin": 0.6,
+        "durationSec": [
+          2,
+          6
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Pseudanthias squamipinnis",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=15838"
+      },
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Pseudanthias cheirospilos",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=34629"
+      },
+      {
+        "title": "黒潮生物研究所: キンギョハナダイ",
+        "url": "https://kuroshio.or.jp/creature/1896-2/"
+      },
+      {
+        "title": "CMFRI: Pseudanthias squamipinnis species profile",
+        "url": "https://eprints.cmfri.org.in/14992/1/Pseudanthias%20squamipinnis.pdf"
+      },
+      {
+        "title": "Anil et al. 2026: Captive breeding and seed production of lyretail anthias",
+        "url": "https://eprints.cmfri.org.in/19797/1/Indian%20Journal%20of%20Fisheries_2026_M%20K%20Anil.pdf"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Pseudanthias squamipinnis",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "現在の狭い意味では紅海と西インド洋に分布します。日本を含む東インド洋・西太平洋の群れは別種 Pseudanthias cheirospilos とされることがあり、キンギョハナダイの名は両者を合わせた旧来の広い意味で使われてきました。",
+    "temperament": "少数の大きな雄と多数の雌からなるハーレムで暮らします。雌から雄へ性転換する魚で、この展示の個体は雄です。",
+    "movement": "礁の上の中層に浮かぶように群れ、流れてくる餌をついばみます。繁殖期の雄は雌のまわりを泳ぎ、素早く突進するような動きを見せます。",
+    "habitat": "サンゴ礁や岩礁の斜面の上に群れて、動物プランクトンを食べます。夜は岩の割れ目に隠れます。",
+    "aliases": [
+      "Lyretail anthias",
+      "Sea goldie"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Perciformes",
+      "orderJa": "スズキ目",
+      "family": "Anthiadidae",
+      "familyJa": "ハナダイ科"
+    },
+    "adultSizeCm": 10,
+    "sizeNote": "水族館の解説では10cmほどとされますが、測り方は示されていません。最大で全長15cmの記録がありますが、これは別種を分ける前の広い意味での値です。",
+    "distribution": "狭い意味では、南アフリカ・東アフリカ周辺からラッカディブ諸島、モルディブ、チャゴス諸島までの紅海・西インド洋。旧来の資料では、インド洋から西太平洋までをまとめて扱っています。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2015,
+      "note": "2015年の評価の対象範囲が、現在の分類で分けられた範囲と同じかは確かめられていません。"
+    },
+    "highlights": [
+      "雄は背びれの第3棘が糸のように長く伸び、尾びれは三日月形です。",
+      "礁の上に群れて浮かび、流れてくるプランクトンをついばみます。",
+      "繁殖期の雄は、雌のまわりを泳いで素早く突進するように近づきます。",
+      "雄がいなくなると雌が性転換することが、飼育実験で研究されてきました。"
+    ]
+  }
+}

@@ -1,0 +1,115 @@
+{
+  "id": "red-tailed-black-shark",
+  "displayName": "レッドテール・ブラックシャーク",
+  "realBodyLengthCm": 11,
+  "swim": {
+    "tailBeatHz": 2.0,
+    "mouthAnchor": {
+      "x": 0.02,
+      "y": 0.62
+    }
+  },
+  "visual": {
+    "fallbackColor": "#2e2a2b"
+  },
+  "sourceBodyBounds": {
+    "x": 187,
+    "y": 260,
+    "width": 1219,
+    "height": 496
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.55,
+    "maxY": 0.92
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.35,
+      "burst": 1.8
+    },
+    "turnRateRadPerSec": 2.3,
+    "restFraction": 0.3,
+    "depthRange": [
+      0.3,
+      0.9
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 4,
+      "cohesion": 0,
+      "polarization": 0.02
+    },
+    "structureAffinity": 0.75,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 2.5,
+        "durationSec": [
+          5,
+          14
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "FishBase: Epalzeorhynchos bicolor",
+        "url": "https://www.fishbase.org/summary/10835"
+      },
+      {
+        "title": "Kulabtong et al. 2014: Rediscovery of Epalzeorhynchos bicolor from West Thailand",
+        "url": "https://www.biodiversityjournal.com/images/pubblicazioni/biodiversity-journal-2014/biodiversity-journal-2014-05-02/biodiversity-journal-2014-05-02_371-373.pdf"
+      },
+      {
+        "title": "V. K. Dey, MPEDA Newsletter April 2023: Sharks for Your Tank",
+        "url": "https://mpeda.gov.in/wp-content/uploads/2025/11/1_MNL_April_2023_FOR_WEB.pdf"
+      },
+      {
+        "title": "Seriously Fish: Epalzeorhynchos bicolor",
+        "url": "https://www.seriouslyfish.com/species/epalzeorhynchos-bicolor"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Epalzeorhynchos bicolor",
+    "originRegionId": "southeast-asia",
+    "originRegionName": "東南アジア",
+    "origin": "タイの固有種です。チャオプラヤ川下流、バンパコン川、メークロン川下流から知られ、2013年にはメークロン川下流で野生の個体が再発見されました。",
+    "habitat": "川の本流や氾濫原にすみます。再発見された場所は、大きな岩と砂底がある流れの速い川で、魚は岩の隙間にいました。この展示では、根や枝の多い湿地の池の底近くで暮らします。",
+    "temperament": "同じ種に対して縄張り意識が強く、成長すると他の魚を追い払うことがあります。飼育ではふつう1匹で飼われます。",
+    "movement": "底近くを泳ぎ、岩や流木の表面をついばんで、付着した藻や小さな生き物を食べます。慣れると中層にも餌を探しに出ます。",
+    "aliases": [
+      "Red-tailed black shark",
+      "Red-tailed labeo",
+      "Labeo bicolor"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cypriniformes",
+      "orderJa": "コイ目",
+      "family": "Cyprinidae",
+      "familyJa": "コイ科"
+    },
+    "adultSizeCm": 11,
+    "sizeNote": "記録上の最大は全長13cmです（雄か性別不明の個体）。再発見された野生の1標本は標準体長6.6cmでした。展示では全長11cm前後を想定しています。",
+    "distribution": "タイの固有種で、チャオプラヤ川下流、バンパコン川、メークロン川下流の流域から記録があります。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "CR",
+      "assessedYear": 2011,
+      "note": "観賞魚として流通している個体は、養殖されたものと報告されています。"
+    },
+    "highlights": [
+      "黒い体と、鮮やかな赤い尾びれの対比が目を引きます。",
+      "下向きの口で、岩や流木の表面の付着物をついばみます。",
+      "野生では絶滅寸前とされ、2013年にメークロン川下流で野生の個体が再発見されました。"
+    ]
+  }
+}

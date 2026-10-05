@@ -1,0 +1,107 @@
+{
+  "id": "glowlight-danio",
+  "displayName": "グローライト・ダニオ",
+  "realBodyLengthCm": 3.5,
+  "swim": {
+    "tailBeatHz": 3.3
+  },
+  "visual": {
+    "fallbackColor": "#d98a45"
+  },
+  "sourceBodyBounds": {
+    "x": 178,
+    "y": 279,
+    "width": 1248,
+    "height": 450
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.15,
+    "maxY": 0.6
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.9,
+      "burst": 3.8
+    },
+    "turnRateRadPerSec": 3.3,
+    "restFraction": 0.07,
+    "depthRange": [
+      0.15,
+      0.8
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0.6,
+      "polarization": 0.45
+    },
+    "structureAffinity": 0.15,
+    "habits": [
+      {
+        "type": "follow",
+        "chancePerMin": 0.8,
+        "durationSec": [
+          2,
+          5
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Kullander 2012 — Description of Danio flagrans and redescription of D. choprae",
+        "url": "https://svenkullander.se/publications/Kullander_choprae_2012.pdf"
+      },
+      {
+        "title": "Seriously Fish — Celestichthys choprae",
+        "url": "https://www.seriouslyfish.com/species/celestichthys-choprae/"
+      },
+      {
+        "title": "Aquarium Glaser — Danio choprae (= Danio choprai), 2024-04-12",
+        "url": "https://www.aquariumglaser.de/en/fisharchive/danio-choprae-danio-choprai-2/"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Danio choprae",
+    "originRegionId": "southeast-asia",
+    "originRegionName": "東南アジア",
+    "origin": "ミャンマー北部。上部エーヤワディー水系のモガウン川（Mogaung Chaung）流域から記録されています。",
+    "temperament": "群れで暮らす小型のダニオです。群れの中に順位ができ、同種どうしで追いかけ合ったり、ひれを傷つけたりすることがあります。",
+    "movement": "群れで水槽の中を活発に動き回ります。小刻みに加速しては向きを変え、仲間を追う場面もあります。",
+    "habitat": "丘陵のすそにある池のような水たまりと、そこから流れ出す細流で採集されています。採集地は泥底で水が澄み、水草はありませんでした。本展示では渓流の開けた中層を群れで泳ぐ姿を見せています。",
+    "aliases": [
+      "Celestichthys choprae",
+      "Danio choprai",
+      "Glowlight danio"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cypriniformes",
+      "orderJa": "コイ目",
+      "family": "Danionidae",
+      "familyJa": "ダニオ科"
+    },
+    "adultSizeCm": 3,
+    "sizeNote": "標準体長で、図示された成体の雌が2.99cm、雄が2.7cmです。同じ標本群の雌の最大は標準体長3.07cmでした。全長の典型値は分かっていません。",
+    "distribution": "ミャンマー北部、上部エーヤワディー水系のモガウン川流域に分布します。北のプータオ周辺のものは、2012年に別種 Danio flagrans として記載されました。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2010,
+      "note": "評価は Danio flagrans が別種として記載される前に行われました。"
+    },
+    "highlights": [
+      "体の前半の暗い横帯が、後半で縦縞に切り替わる模様",
+      "暗い縞の間にのぞく橙色",
+      "群れで水槽の中を活発に動き回り、ときどき仲間を追う"
+    ]
+  }
+}

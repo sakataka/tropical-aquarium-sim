@@ -1,0 +1,126 @@
+{
+  "id": "blunthead-cichlid",
+  "displayName": "トロフェウス・モーリー",
+  "realBodyLengthCm": 12,
+  "swim": {
+    "tailBeatHz": 2,
+    "tailSweepRad": 0.38,
+    "mouthAnchor": {
+      "x": 0.005,
+      "y": 0.56
+    }
+  },
+  "visual": {
+    "fallbackColor": "#4a3f2c"
+  },
+  "sourceBodyBounds": {
+    "x": 189,
+    "y": 224,
+    "width": 1219,
+    "height": 572
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.4,
+    "maxY": 0.88
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.35,
+      "burst": 1.5
+    },
+    "turnRateRadPerSec": 2.2,
+    "restFraction": 0.18,
+    "depthRange": [0.25, 0.85],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 3,
+      "cohesion": 0,
+      "polarization": 0.05
+    },
+    "structureAffinity": 0.85,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 2,
+        "durationSec": [3, 8]
+      },
+      {
+        "type": "homeShelter",
+        "kind": "crevice",
+        "rangeBodyLengths": 5,
+        "visitChancePerMin": 0.4,
+        "visitDurationSec": [3, 10]
+      },
+      {
+        "type": "follow",
+        "chancePerMin": 0.6,
+        "durationSec": [2, 5]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes — Tropheus moorii",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=21051"
+      },
+      {
+        "title": "FishBase — Tropheus moorii",
+        "url": "https://www.fishbase.se/summary/tropheus-moorii.html"
+      },
+      {
+        "title": "Yanagisawa & Nishida (1991) The Social and Mating System of the Maternal Mouthbrooder Tropheus moorii",
+        "url": "https://www.jstage.jst.go.jp/article/jji1950/38/3/38_3_271/_article/-char/en"
+      },
+      {
+        "title": "Van Steenberge et al. (2018) Delineating species along shifting shorelines",
+        "url": "https://www.vliz.be/imisdocs/publications/ocrd/321097.pdf"
+      },
+      {
+        "title": "Prusińska, Mamcarz & Kupren (2008) Early Ontogeny of Tropheus Moorii in Laboratory Conditions",
+        "url": "https://www.uwm.edu.pl/stas/wydawnictwo/04.02/polish23_4-2008.pdf"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Tropheus moorii",
+    "originRegionId": "east-africa",
+    "originRegionName": "東アフリカ",
+    "origin": "タンガニイカ湖の南部に分布し、模式産地はキニャムコロです。ここでは、黒い体に黄色い帯が入る「モバ」と呼ばれる色彩型を展示しています。",
+    "habitat": "岩の多い湖岸にすみ、岩の表面の藻類を食べます。この展示では、藻の膜がついた平たい岩の積み重なる岩場の隙間を居場所にします。",
+    "temperament": "雌雄とも、それぞれ自分の採餌の縄張りをもち、隣の個体と場所を分け合います。飼育下では同種どうしの攻撃が強く、順位関係ができます。",
+    "movement": "岩のまわりを短く泳いでは、岩の表面をつついて藻を食べます。同じ場所に長くとどまり、縄張りに入った相手を追い払います。",
+    "aliases": [
+      "Blunthead cichlid",
+      "トロフェウス・モーリー モバ",
+      "Moba"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cichliformes",
+      "orderJa": "シクリッド目",
+      "family": "Cichlidae",
+      "familyJa": "シクリッド科"
+    },
+    "adultSizeCm": 14.5,
+    "sizeNote": "種全体で報告されている最大は全長14.5cmです。モバ型のふつうの大きさは確かめられていません。",
+    "distribution": "東アフリカ、タンガニイカ湖の南部。湖岸に沿って多くの色彩型が知られ、色だけでは種の境界を判断できないとされます。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "NT",
+      "assessedYear": 2025,
+      "note": "IUCN の基準 B2b(iii) による種全体の評価で、モバ型を個別に評価したものではありません。"
+    },
+    "highlights": [
+      "岩の表面をつついて、付着した藻類を食べます。",
+      "それぞれが採餌の縄張りをもち、雄は同じ場所に何か月もとどまることがよくあります。",
+      "雌は卵と仔魚を口の中で育て、縄張りの持ち主がいない場所へ移ることが多いとされます。"
+    ]
+  }
+}

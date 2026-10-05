@@ -1,0 +1,111 @@
+{
+  "id": "ram-cichlid",
+  "displayName": "ラミレジィ",
+  "realBodyLengthCm": 5,
+  "swim": {
+    "tailBeatHz": 2.4,
+    "bodyWaveStart": 0.48,
+    "tailSweepRad": 0.38
+  },
+  "visual": {
+    "fallbackColor": "#8f8ab8"
+  },
+  "sourceBodyBounds": {
+    "x": 338,
+    "y": 175,
+    "width": 947,
+    "height": 653
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.6,
+    "maxY": 0.92
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.38,
+      "burst": 1.9
+    },
+    "turnRateRadPerSec": 2.4,
+    "restFraction": 0.3,
+    "depthRange": [0.15, 0.8],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 3,
+      "cohesion": 0.32,
+      "polarization": 0.1
+    },
+    "structureAffinity": 0.5,
+    "habits": [
+      {
+        "type": "follow",
+        "chancePerMin": 0.6,
+        "durationSec": [3, 8]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Practical Fishkeeping — How to breed the Ram, Mikrogeophagus ramirezi",
+        "url": "https://www.practicalfishkeeping.co.uk/features/articles/how-to-breed-the-ram-mikrogeophagus-ramirezi"
+      },
+      {
+        "title": "Frank Schäfer, Aquarium Glaser — Mikrogeophagus ramirezi wild, 2021-04-01",
+        "url": "https://www.aquariumglaser.de/en/25-perchlike-fishes/mikrogeophagus-ramirezi-wild-2/"
+      },
+      {
+        "title": "Eschmeyer's Catalog of Fishes — Mikrogeophagus ramirezi, species 22062",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=22062"
+      },
+      {
+        "title": "Tropical Fish Hobbyist — Mikrogeophagus ramirezi Species",
+        "url": "https://www.tfhmagazine.com/articles/freshwater/mikrogeophagus-ramirezi"
+      },
+      {
+        "title": "LaPlante & Delaney 2020 — Male mate choice for a female ornament in a monogamous cichlid fish, Mikrogeophagus ramirezi",
+        "url": "https://onlinelibrary.wiley.com/doi/abs/10.1111/jfb.14257"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Mikrogeophagus ramirezi",
+    "originRegionId": "south-america",
+    "originRegionName": "南米",
+    "origin": "南米コロンビアとベネズエラのオリノコ川流域。リャノと呼ばれるサバンナの水域に由来します。",
+    "temperament": "小型のシクリッドで、繁殖期は雌雄のつがいで過ごします。雄は縄張りをつくり、近づくほかの雄を追い払います。",
+    "movement": "水槽の底近くを短く進んでは止まり、物陰を出入りします。展示しているのは、背びれの前の数本が黒く伸びた雄です。",
+    "habitat": "浅く流れの弱い温かい水路などに暮らし、砂や泥の底に水草が生えることもあります。水草や物陰と、平らな石のある水槽が似合います。",
+    "aliases": [
+      "Ram cichlid",
+      "ラミレズィ",
+      "Apistogramma ramirezi",
+      "Papiliochromis ramirezi"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cichliformes",
+      "orderJa": "シクリッド目",
+      "family": "Cichlidae",
+      "familyJa": "シクリッド科"
+    },
+    "adultSizeCm": 4.2,
+    "sizeNote": "報告されている最大は標準体長4.2cmです。輸入業者の比較では、尾びれを除く体長が野生採集魚で2〜3cm、養殖魚で4〜5cmでした。雌は一般に雄より小さく、雄は背びれと尻びれの伸びた部分が長くなります。",
+    "distribution": "コロンビアとベネズエラのオリノコ川流域に分布します。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2020
+    },
+    "highlights": [
+      "つがいで平らな石を掃除し、雌が産んだ卵に雄が続いて受精させる。",
+      "雄も卵を守り、かえった仔魚に付き添う。",
+      "実験では、雄は腹がピンク色の雌の映像の近くに長くとどまった。"
+    ]
+  }
+}

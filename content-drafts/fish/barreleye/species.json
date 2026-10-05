@@ -1,0 +1,104 @@
+{
+  "id": "barreleye",
+  "displayName": "デメニギス",
+  "realBodyLengthCm": 10,
+  "swim": {
+    "tailBeatHz": 1.5,
+    "tailSweepRad": 0.3
+  },
+  "visual": {
+    "fallbackColor": "#4a4441"
+  },
+  "sourceBodyBounds": {
+    "x": 132,
+    "y": 281,
+    "width": 1320,
+    "height": 468
+  },
+  "preferredZone": {
+    "minX": 0.1,
+    "maxX": 0.9,
+    "minY": 0.25,
+    "maxY": 0.6
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.15,
+      "burst": 0.6
+    },
+    "turnRateRadPerSec": 1.6,
+    "restFraction": 0.6,
+    "depthRange": [
+      0.2,
+      0.8
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 3,
+      "cohesion": 0,
+      "polarization": 0.02
+    },
+    "structureAffinity": 0,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Robison & Reisenbichler (2008), Macropinna microstoma and the Paradox of Its Tubular Eyes",
+        "url": "https://www.researchgate.net/publication/213774267_Macropinna_microstoma_and_the_Paradox_of_Its_Tubular_Eyes"
+      },
+      {
+        "title": "MBARI (2009), Researchers solve mystery of deep-sea fish with tubular eyes and transparent head",
+        "url": "https://www.mbari.org/news/researchers-solve-mystery-of-deep-sea-fish-with-tubular-eyes-and-transparent-head/"
+      },
+      {
+        "title": "MBARI, Barreleye fish",
+        "url": "https://www.mbari.org/animal/barreleye-fish/"
+      },
+      {
+        "title": "Balanov et al. (2009), Fishes Collected by Commercial Size Midwater Trawls from the Pacific Coast off Northern Japan",
+        "url": "https://www.kahaku.go.jp/albums/abm.php?d=4913&f=abm00004081.pdf&n=p655-681.pdf"
+      },
+      {
+        "title": "FishBase, Macropinna microstoma summary",
+        "url": "https://www.fishbase.se/summary/Macropinna-microstoma.html"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Macropinna microstoma",
+    "originRegionId": "pacific",
+    "originRegionName": "太平洋",
+    "origin": "北日本と千島列島からベーリング海、アラスカ湾を経て、南米チリ沖までの太平洋に分布するとされます。",
+    "temperament": "単独で暮らすとされます。解剖された個体の胃からは刺胞動物のかけらが見つかり、管クラゲが捕らえた餌を横取りしているという説もあります。",
+    "movement": "ひれを広げ、ほぼ水平の姿勢で水中に静かにとどまります。ゆっくり進むときは尾びれと胸びれを使い、透明な頭の中で筒形の目を上から前へ向け直すことができます。",
+    "habitat": "深海の中層を漂って暮らし、カリフォルニア沖では水深600〜800mで観察されています。網で採集すると頭の透明なドームが壊れやすく、生きた個体の長期展示は確認されていません。",
+    "aliases": [
+      "Barreleye"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Argentiniformes",
+      "orderJa": "ニギス目",
+      "family": "Opisthoproctidae",
+      "familyJa": "デメニギス科"
+    },
+    "adultSizeCm": 10,
+    "sizeNote": "典型的な成魚の大きさは確定しておらず、ここでの値は展示用の目安です。最大の記録は全長15cmで、北日本沖で採集された4個体は標準体長4.3〜11.4cmでした。",
+    "distribution": "北日本、千島列島、ベーリング海、アラスカ湾から、東太平洋を南へチリ沖まで記録されています。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "rarelyDisplayed",
+    "conservation": {
+      "status": "NE",
+      "note": "FishBaseの表示では IUCN 未評価です。"
+    },
+    "highlights": [
+      "頭の上が透明なドームに覆われ、中に緑色のレンズを持つ筒形の目がある。",
+      "口の上にある、目のように見える2つの点は、においを感じる器官。",
+      "ひれを広げて水中に静止し、筒形の目を上から前へ回して向きを変える。"
+    ]
+  }
+}

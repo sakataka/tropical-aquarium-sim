@@ -1,0 +1,126 @@
+{
+  "id": "south-american-lungfish",
+  "displayName": "レピドシレン・パラドクサ",
+  "realBodyLengthCm": 80,
+  "swim": {
+    "tailBeatHz": 1.0,
+    "bodyWaveStart": 0.12,
+    "waveCount": 1.4,
+    "tailSweepRad": 0.3,
+    "verticalFlex": 0.05
+  },
+  "visual": {
+    "fallbackColor": "#5e5248"
+  },
+  "sourceBodyBounds": {
+    "x": 124,
+    "y": 440,
+    "width": 1301,
+    "height": 189
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.62,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "undulate",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.15,
+      "burst": 0.6
+    },
+    "turnRateRadPerSec": 1.4,
+    "restFraction": 0.5,
+    "depthRange": [
+      0.35,
+      0.95
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2,
+      "cohesion": 0,
+      "polarization": 0.03
+    },
+    "structureAffinity": 0.6,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 0.9,
+        "durationSec": [
+          15,
+          50
+        ]
+      },
+      {
+        "type": "airBreathing",
+        "breathsPerHour": [
+          4,
+          10
+        ],
+        "style": "rise"
+      }
+    ],
+    "sources": [
+      {
+        "title": "da Silva et al. (2017), Effects of aerial hypoxia and temperature on pulmonary breathing pattern and gas exchange in the South American lungfish",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/28263885/"
+      },
+      {
+        "title": "Aquarium tropical, Palais de la Porte Dorée: South American lungfish",
+        "url": "https://www.aquarium-tropical.fr/en/collections-vivantes/lepidosiren-paradoxa"
+      },
+      {
+        "title": "Shedd Aquarium: South American lungfish",
+        "url": "https://www.sheddaquarium.org/lungfish"
+      },
+      {
+        "title": "Seriously Fish: Lepidosiren paradoxa",
+        "url": "https://www.seriouslyfish.com/species/lepidosiren-paradoxa"
+      },
+      {
+        "title": "Elliott (2005), Lepidosiren paradoxa, Animal Diversity Web",
+        "url": "https://animaldiversity.org/accounts/Lepidosiren_paradoxa/"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Lepidosiren paradoxa",
+    "originRegionId": "south-america",
+    "originRegionName": "南米",
+    "origin": "南米のアマゾン川、オリノコ川、パラグアイ川、パラナ川下流の水系に分布します。",
+    "temperament": "単独で暮らすとされ、魚や貝、エビ、昆虫のほか植物質も食べます。口に入る大きさの魚は食べてしまうことがあります。",
+    "movement": "細長い体をくねらせ、底近くを滑るように泳ぎます。空気を吸わないと生きられない魚で、ときどき水面へ上がって息をします。",
+    "habitat": "流れが弱く植物の多い小川や湿地、氾濫原に暮らし、乾季には泥の巣穴に入って夏眠します。この水槽は、落ち葉と沈木のある泥底の湿地を表しています。",
+    "aliases": [
+      "South American lungfish",
+      "ミナミアメリカハイギョ",
+      "レピドシレン"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Lepidosireniformes",
+      "orderJa": "レピドシレン目",
+      "family": "Lepidosirenidae",
+      "familyJa": "レピドシレン科"
+    },
+    "adultSizeCm": 80,
+    "sizeNote": "典型的な成魚の大きさは確認できず、ここでの値は展示用の目安です。アルゼンチンで記録された標本は全長95cmで、シェッド水族館は1.3mに達するとしています（測り方は不明）。",
+    "distribution": "南米のアマゾン川、オリノコ川、パラグアイ川、パラナ川下流の水系に分布し、ブラジル、ペルー、ボリビア、パラグアイ、アルゼンチンなどにまたがります。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "note": "IUCNの区分は2022年の評価とされますが、今回の調査では原票を確認できていません。"
+    },
+    "highlights": [
+      "細長い体をくねらせ、底近くを滑るように泳ぐ。",
+      "左右一対の肺を持ち、ときどき水面へ上がって空気を吸う。",
+      "乾季には泥の巣穴で夏眠し、雨季には雄が巣で仔魚を守る。"
+    ]
+  }
+}

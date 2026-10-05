@@ -1,0 +1,101 @@
+{
+  "id": "denison-barb",
+  "displayName": "デニソニー",
+  "realBodyLengthCm": 12,
+  "swim": {
+    "tailBeatHz": 2.2
+  },
+  "visual": {
+    "fallbackColor": "#a9a27e"
+  },
+  "sourceBodyBounds": {
+    "x": 194,
+    "y": 268,
+    "width": 1215,
+    "height": 444
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.25,
+    "maxY": 0.7
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "steady",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.5,
+      "burst": 2.0
+    },
+    "turnRateRadPerSec": 2.2,
+    "restFraction": 0.1,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.6,
+      "cohesion": 0.55,
+      "polarization": 0.4
+    },
+    "structureAffinity": 0.25,
+    "habits": [],
+    "sources": [
+      {
+        "title": "FishBase: Dawkinsia denisonii",
+        "url": "https://www.fishbase.se/summary/Sahyadria-denisonii.html"
+      },
+      {
+        "title": "Raghavan et al. 2013: Sahyadria, a new genus of barbs",
+        "url": "https://threatenedtaxa.org/index.php/JoTT/article/download/1522/2790/2886?inline=1"
+      },
+      {
+        "title": "Adikari et al. 2018: Development of an Artificial Breeding and Hatchery Technique for Sahyadria denisonii",
+        "url": "https://www.pgia.ac.lk/files/Annual_congress/journel/v29/Journal-No%204/Poster/7-P-22A.M.A.N.Adikari-OK.pdf"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Dawkinsia denisonii",
+    "originRegionId": "south-asia",
+    "originRegionName": "南アジア",
+    "origin": "インド南部、西ガーツ山脈の川。主にケーララ州に分布し、カルナータカ州にも小さく分かれた個体群がいます。",
+    "temperament": "群れを作って暮らす魚です。飼育下の試験では、朝に雄が雌を追って活発に泳ぐ様子が観察されています。",
+    "movement": "細長い紡錘形の体で、中層を一定の速さで行き来します。吻から尾の付け根まで走る黒帯と、体の前半の赤い線が泳ぐ向きを際立たせます。",
+    "habitat": "流れの速い丘陵の川や渓流で、岸の植物が茂った岩の淵に群れで暮らします。本展示では丸石と礫の渓流の、開けた中層を泳ぐ姿を見せています。",
+    "aliases": [
+      "Sahyadria denisonii",
+      "Puntius denisonii",
+      "Denison barb",
+      "Red line torpedo barb",
+      "Miss Kerala",
+      "ロースラインバルブ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cypriniformes",
+      "orderJa": "コイ目",
+      "family": "Cyprinidae",
+      "familyJa": "コイ科"
+    },
+    "adultSizeCm": 14,
+    "sizeNote": "飼育下で成熟した群れの平均全長は、雌14.0cm、雄15.1cmと報告されています。データベースの最大記録は全長15cmです。野生の成魚の典型的な大きさは分かっていません。",
+    "distribution": "インド南部の西ガーツ地方に固有で、主にケーララ州、カルナータカ州にも分布します。よく似た近縁種と混同されてきたため、正確な生息河川の一覧は整理されていません。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "EN",
+      "assessedYear": 2010,
+      "note": "分布が限られ、個体数の減少と生息地の質の悪化が指摘されています。"
+    },
+    "highlights": [
+      "吻から尾の付け根まで走る黒帯と、体の前半にだけ入る赤い線",
+      "尾びれの上下の葉にある、黄色と黒の斜めの帯",
+      "同種で群れを作り、開けた中層を行き来する"
+    ]
+  }
+}

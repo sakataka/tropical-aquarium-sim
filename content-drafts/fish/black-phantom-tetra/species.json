@@ -1,0 +1,108 @@
+{
+  "id": "black-phantom-tetra",
+  "displayName": "ブラックファントムテトラ",
+  "realBodyLengthCm": 4,
+  "swim": {
+    "tailBeatHz": 2.6,
+    "bodyWaveStart": 0.45
+  },
+  "visual": {
+    "fallbackColor": "#7d7a70"
+  },
+  "sourceBodyBounds": {
+    "x": 265,
+    "y": 183,
+    "width": 1069,
+    "height": 642
+  },
+  "preferredZone": {
+    "minX": 0.1,
+    "maxX": 0.9,
+    "minY": 0.45,
+    "maxY": 0.82
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.5,
+      "burst": 2.2
+    },
+    "turnRateRadPerSec": 2.6,
+    "restFraction": 0.2,
+    "depthRange": [0.25, 0.9],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 2,
+      "cohesion": 0.45,
+      "polarization": 0.22
+    },
+    "structureAffinity": 0.5,
+    "habits": [
+      {
+        "type": "follow",
+        "chancePerMin": 0.6,
+        "durationSec": [4, 10]
+      }
+    ],
+    "sources": [
+      {
+        "title": "NCBI Taxonomy — Megalamphodus megalopterus",
+        "url": "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=272059&mode=Info"
+      },
+      {
+        "title": "FishBase — Megalamphodus megalopterus",
+        "url": "https://www.fishbase.org/summary/Megalamphodus_megalopterus.html"
+      },
+      {
+        "title": "Seriously Fish — Megalamphodus megalopterus",
+        "url": "https://www.seriouslyfish.com/species/megalamphodus-megalopterus"
+      },
+      {
+        "title": "Holger Patzelt (1994) Schwarzes Gold: Megalamphodus megalopterus",
+        "url": "https://www.aquarienfreunde-dachau.de/wp-content/uploads/2020/01/AFDK-Journal-1994.pdf"
+      },
+      {
+        "title": "my-fish — Schwarzer Phantomsalmler",
+        "url": "https://my-fish.org/my-fishothek/megalamphodus-megalopterus-schwarzer-phantomsalmler/"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Megalamphodus megalopterus",
+    "originRegionId": "south-america",
+    "originRegionName": "南米",
+    "origin": "南米のパラグアイ川上流とグアポレ川の水系。ボリビアとブラジルに由来します。",
+    "temperament": "穏やかな群れの魚です。群れの中では雄どうしが一時的な順位をつくり、並んでひれを広げ、互いのまわりをゆっくり回って張り合います。",
+    "movement": "飼育下では水槽の下のほうにいることが多く、ゆるい群れで泳ぎます。成熟した雄は、黒く大きな背びれと尻びれを立てて雌に求愛します。",
+    "habitat": "流れの弱い支流や入り江、池や小さな湖で、岸辺の植物や水に沈んだ根の近くに集まります。根や枝、水草の陰がある水槽が似合います。",
+    "aliases": [
+      "Black phantom tetra",
+      "Hyphessobrycon megalopterus"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Characiformes",
+      "orderJa": "カラシン目",
+      "family": "Acestrorhamphidae",
+      "familyJa": "アケストロランプス科"
+    },
+    "adultSizeCm": 3.6,
+    "sizeNote": "報告されている最大は標準体長3.6cmで、尾びれを含みません。雄の典型的な大きさを示す資料は見つかっていません。",
+    "distribution": "ボリビアとブラジルの、パラグアイ川上流とグアポレ川の水系に分布します。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2021
+    },
+    "highlights": [
+      "えらぶたの後ろに、淡い縁どりのある大きな黒斑がある。",
+      "雄は背びれ・尻びれ・腹びれが黒く大きく、広げて雌に求愛する。",
+      "雄どうしは並んでひれを広げ、ゆっくり回りながら張り合う。"
+    ]
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "id": "siamese-fighting-fish",
+  "displayName": "ベタ",
+  "realBodyLengthCm": 7,
+  "swim": {
+    "tailBeatHz": 1.6,
+    "tailSweepRad": 0.4
+  },
+  "visual": {
+    "fallbackColor": "#a3141a"
+  },
+  "sourceBodyBounds": {
+    "x": 370,
+    "y": 226,
+    "width": 907,
+    "height": 583
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.1,
+    "maxY": 0.6
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.2,
+      "burst": 1.3
+    },
+    "turnRateRadPerSec": 1.8,
+    "restFraction": 0.4,
+    "depthRange": [
+      0.15,
+      0.8
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.7,
+    "habits": [
+      {
+        "type": "airBreathing",
+        "breathsPerHour": [
+          6,
+          14
+        ],
+        "style": "rise"
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 0.6,
+        "durationSec": [
+          10,
+          30
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "FishBase: Betta splendens",
+        "url": "https://www.fishbase.se/summary/Betta-splendens.html"
+      },
+      {
+        "title": "RSPCA Australia, Dr Rob Jones: How should I care for my Siamese fighting fish?",
+        "url": "https://kb.rspca.org.au/categories/companion-animals/fish/how-should-i-care-for-my-siamese-fighting-fish"
+      },
+      {
+        "title": "Kwon et al. 2022: Genomic consequences of domestication of the Siamese fighting fish",
+        "url": "https://api.repository.cam.ac.uk/server/api/core/bitstreams/bda0af65-2fcf-4502-ac6f-6f47c1102462/content"
+      },
+      {
+        "title": "Oldfield & Murphy 2024: Life in a fishbowl",
+        "url": "https://www.cambridge.org/core/journals/animal-welfare/article/life-in-a-fishbowl-space-and-environmental-enrichment-affect-behaviour-of-betta-splendens/2A9DD22C6BC2D833EAC4F03508A8E3B4"
+      },
+      {
+        "title": "Clark-Shen et al. 2024: Life beyond a jar",
+        "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/001D7050503D7D31F937B5C72CCC668B/S0962728624000678a.pdf/life_beyond_a_jar_effects_of_tank_size_and_furnishings_on_the_behaviour_and_welfare_of_siamese_fighting_fish_betta_splendens.pdf"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Betta splendens",
+    "originRegionId": "southeast-asia",
+    "originRegionName": "東南アジア",
+    "origin": "祖先の野生種はタイを含む東南アジアに分布します。この展示の赤いベールテールは観賞用に改良された品種の雄で、遺伝的にも野生の集団とは区別されます。",
+    "habitat": "野生種は氾濫原や水路、水田などの止水域で、植物の多い浅い場所にすみます。この展示では、浮き草や葉の多い泥炭湿地の池の上層を泳ぎます。",
+    "temperament": "雄は別の雄に近づいて誇示し、攻撃します。飼育では雄どうしを同じ水槽に入れず、雄は1匹で飼います。",
+    "movement": "長いひれを揺らしながらゆっくり泳ぎ、底や水草の葉、物陰に体を寄せて休みます。ときどき水面へ上がって空気を吸います。",
+    "aliases": [
+      "Siamese fighting fish",
+      "ベタ・スプレンデンス",
+      "トラディショナルベタ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Anabantiformes",
+      "orderJa": "キノボリウオ目",
+      "family": "Osphronemidae",
+      "familyJa": "オスフロネムス科"
+    },
+    "adultSizeCm": 6,
+    "sizeNote": "野生種の記録上の最大は全長6.5cmです（雄か性別不明の個体）。長いひれを持つ観賞品種の体の大きさは確かめられていないため、展示では体長6cm前後、ひれを含めて7cm前後を想定しています。",
+    "distribution": "祖先種の B. splendens はタイを含む東南アジアに分布します。観賞品種には、近縁の B. imbellis や B. mahachaiensis の遺伝的な寄与も見られます。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "VU",
+      "assessedYear": 2011,
+      "note": "野生種の評価で、流通している観賞品種が希少という意味ではありません。野生の集団に観賞品種の遺伝子が入り込んでいることも分かっています。"
+    },
+    "highlights": [
+      "赤く大きなベール状の尾びれを、流すようにして泳ぎます。",
+      "迷路器官を使い、水面へ上がって空気を吸います。",
+      "長いひれの雄の研究では、午前によく泳ぎ、午後は底や葉に体を寄せて休む時間が多くなりました。",
+      "繁殖期の雄は水面に泡で巣を作り、守ります。"
+    ]
+  }
+}

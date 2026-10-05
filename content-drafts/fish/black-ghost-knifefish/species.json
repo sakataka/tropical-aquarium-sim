@@ -1,0 +1,109 @@
+{
+  "id": "black-ghost-knifefish",
+  "displayName": "ブラックゴースト",
+  "realBodyLengthCm": 20,
+  "swim": {
+    "tailBeatHz": 1.2,
+    "tailSweepRad": 0.1,
+    "verticalFlex": 0.01
+  },
+  "visual": {
+    "fallbackColor": "#26272b"
+  },
+  "sourceBodyBounds": {
+    "x": 135,
+    "y": 397,
+    "width": 1273,
+    "height": 263
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.45,
+    "maxY": 0.9
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.22,
+      "burst": 0.9
+    },
+    "turnRateRadPerSec": 1.8,
+    "restFraction": 0.35,
+    "depthRange": [0.45, 0.95],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 3,
+      "cohesion": 0,
+      "polarization": 0.02
+    },
+    "structureAffinity": 0.75,
+    "habits": [
+      {
+        "type": "hideByDay",
+        "durationSec": [60, 180]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Harvard MCZbase: Apteronotus albifrons",
+        "url": "https://mczbase.mcz.harvard.edu/name/Apteronotus%2Balbifrons"
+      },
+      {
+        "title": "de Santana 2003, A. albifrons species complex; Zootaxa 252 p.6 taxonomic treatment",
+        "url": "https://zenodo.org/records/6274474"
+      },
+      {
+        "title": "USFWS: Ecological Risk Screening Summary, Black Ghost Knifefish",
+        "url": "https://www.fws.gov/sites/default/files/documents/Ecological-Risk-Screening-Summary-Black-Ghost-Knifefish.pdf"
+      },
+      {
+        "title": "MacIver, Sharabash & Nelson 2001. Prey-capture behavior in gymnotid electric fish: motion analysis and effects of water conductivity",
+        "url": "https://marknelson.web.illinois.edu/pubs/MacIver_etal01.pdf"
+      },
+      {
+        "title": "Youngerman, Flammang & Lauder 2014. Locomotion of free-swimming ghost knifefish",
+        "url": "https://bpb-us-e1.wpmucdn.com/sites.harvard.edu/dist/6/58/files/2022/03/Youngerman.etal_.2014.pdf"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Apteronotus albifrons",
+    "originRegionId": "south-america",
+    "originRegionName": "南米",
+    "origin": "南米のベネズエラからパラグアイ・パラナ川水系、ペルーのアマゾン流域まで広く分布するとされます。ただし複数の種を含む可能性があり、分布の見直しが進んでいます。",
+    "habitat": "砂底で流れの速い小川から記録されています。この展示では、大河の沈木や根の陰を昼の隠れ場所にします。",
+    "temperament": "夜行性で、昼は物陰で過ごします。水生昆虫の幼虫など小さな動物を食べます。",
+    "movement": "体をほとんど曲げず、腹側の長い臀びれを波打たせて進みます。波の向きを変えて、前にも後ろにも、上下にも動き、その場に留まることもできます。",
+    "aliases": [
+      "Black ghost knifefish",
+      "ブラックゴーストナイフフィッシュ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Gymnotiformes",
+      "orderJa": "デンキウナギ目",
+      "family": "Apteronotidae",
+      "familyJa": "アプテロノトゥス科"
+    },
+    "adultSizeCm": 19,
+    "sizeNote": "泳ぎの実験に使われた3個体は平均全長18.9cmでした。報告されている最大は全長50cmです。",
+    "distribution": "南米。ベネズエラからパラグアイ・パラナ川水系、ペルーのアマゾン流域までとされますが、これは種群として広く捉えた場合の範囲です。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2020,
+      "note": "A. albifrons は複数の種を含む種群とする説があり、分類の見直しが続いています。"
+    },
+    "highlights": [
+      "体をまっすぐ保ったまま、臀びれの細かな波で前後にも上下にも進みます。",
+      "暗がりで小さな獲物を見つけるのに、電気を感じる感覚を使います。",
+      "黒い体に、吻の白い斑と尾の2本の白い帯が映えます。"
+    ]
+  }
+}

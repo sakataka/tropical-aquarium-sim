@@ -1,0 +1,130 @@
+{
+  "id": "raccoon-butterflyfish",
+  "displayName": "チョウハン",
+  "realBodyLengthCm": 15,
+  "swim": {
+    "tailBeatHz": 1.9,
+    "mouthAnchor": {
+      "x": 0.0,
+      "y": 0.63
+    }
+  },
+  "visual": {
+    "fallbackColor": "#f2c62b"
+  },
+  "sourceBodyBounds": {
+    "x": 340,
+    "y": 201,
+    "width": 919,
+    "height": 597
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.4,
+    "maxY": 0.88
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.3,
+      "burst": 1.5
+    },
+    "turnRateRadPerSec": 2.3,
+    "restFraction": 0.3,
+    "depthRange": [
+      0.25,
+      0.85
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0.45,
+      "polarization": 0.15
+    },
+    "structureAffinity": 0.6,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 2.5,
+        "durationSec": [
+          3,
+          8
+        ]
+      },
+      {
+        "type": "follow",
+        "chancePerMin": 0.8,
+        "durationSec": [
+          3,
+          8
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Fishes of Australia — Chaetodon lunula",
+        "url": "https://fishesofaustralia.net.au/home/species/421"
+      },
+      {
+        "title": "Smithsonian STRI — Shorefishes of the Eastern Pacific, Chaetodon lunula",
+        "url": "https://biogeodb.stri.si.edu/sftep/en/thefishes/species/1547"
+      },
+      {
+        "title": "Waikīkī Aquarium — Raccoon Butterflyfish",
+        "url": "https://www.waikikiaquarium.org/experience/animal-guide/fishes/butterflyfishes/raccoon-butterflyfish/"
+      },
+      {
+        "title": "Georgia Aquarium — Raccoon Butterflyfish",
+        "url": "https://www.georgiaaquarium.org/animal/raccoon-butterflyfish/"
+      },
+      {
+        "title": "Reef Life Survey — Chaetodon lunula",
+        "url": "https://reeflife.org/species/chaetodon-lunula/"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Chaetodon lunula",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "インド太平洋に広く分布します。東アフリカからハワイ・ポリネシアまで、北は日本南部に及びます。",
+    "temperament": "ペアか小さな群れで見られ、繁殖のときはペアになります。",
+    "movement": "おもに夜に活動し、イソギンチャクやゴカイ、ウミウシなど底の柔らかい生き物をついばみます。藻類やサンゴのポリプも食べます。",
+    "habitat": "成魚は礁湖や外洋側の浅い礁原に暮らし、礁の底近くを使います。幼魚は内側の礁原の岩の間や潮だまりで見られます。",
+    "aliases": [
+      "Raccoon butterflyfish",
+      "Halfmoon butterflyfish",
+      "ラクーン・バタフライフィッシュ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Acanthuriformes",
+      "orderJa": "ニザダイ目",
+      "family": "Chaetodontidae",
+      "familyJa": "チョウチョウウオ科"
+    },
+    "adultSizeCm": 15,
+    "sizeNote": "典型的な成魚の大きさは分かっていません。最大で全長20cmの記録があります。幼魚は背びれの後端に、縁どりのある目玉模様をもちます。",
+    "distribution": "東アフリカからハワイ・ポリネシアまで、北は日本南部、南はロードハウ島方面まで分布します。東太平洋のガラパゴスなどの記録は流れ着いた個体とされ、フロリダでは移入とみられる記録があります。",
+    "water": {
+      "salinity": "marine",
+      "temperatureC": [
+        21.4,
+        31.3
+      ]
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2009
+    },
+    "highlights": [
+      "目を通る黒い帯と、そのすぐ後ろの白い帯が、アライグマの顔のように見えます。",
+      "ペアや小さな群れで、仲間との間合いを保ちながら泳ぎます。",
+      "おもに夜に活動し、底の柔らかい生き物をついばみます。"
+    ]
+  }
+}

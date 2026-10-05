@@ -1,0 +1,105 @@
+{
+  "id": "boesemani-rainbowfish",
+  "displayName": "ボエセマニ・レインボー",
+  "realBodyLengthCm": 9,
+  "swim": {
+    "tailBeatHz": 2.2
+  },
+  "visual": {
+    "fallbackColor": "#b0805c"
+  },
+  "sourceBodyBounds": {
+    "x": 175,
+    "y": 260,
+    "width": 1236,
+    "height": 484
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.25,
+    "maxY": 0.7
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "steady",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.5,
+      "burst": 2.2
+    },
+    "turnRateRadPerSec": 2.3,
+    "restFraction": 0.12,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.8,
+      "cohesion": 0.5,
+      "polarization": 0.4
+    },
+    "structureAffinity": 0.25,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes — Melanotaenia boesemani",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=9266"
+      },
+      {
+        "title": "FishBase — Melanotaenia boesemani",
+        "url": "https://www.fishbase.se/summary/Melanotaenia-boesemani.html"
+      },
+      {
+        "title": "Allen & Cross (1980) Descriptions of five new rainbowfishes from New Guinea",
+        "url": "https://museum.wa.gov.au/sites/default/files/DESCRIPTION%20OF%20FIVE%20NEW%20RAINBOWFISHES%20(MELANOTAENIIDAE)%20FROM%20NEW%20GUINEA.pdf"
+      },
+      {
+        "title": "Kadarusman et al. (2010) Description of Melanotaenia fasinensis, with comparative collection stations",
+        "url": "https://birdsheadseascape.com/download/research/biodiversity/Description%20of%20Melanotaenia%20fasinensis%20rainbowfish.pdf"
+      },
+      {
+        "title": "Nugraha et al. (2018) Portrait of Hatchery Management Profile on Melanotaenia boesemani in Jakarta Area",
+        "url": "https://horizon.documentation.ird.fr/exl-doc/pleins_textes/divers21-02/010080810.pdf"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Melanotaenia boesemani",
+    "originRegionId": "oceania",
+    "originRegionName": "オセアニア",
+    "origin": "ニューギニア島西部、インドネシア領フォーゲルコップ半島のアヤマル湖群とアイティンジョ湖に由来します。",
+    "temperament": "飼育では5匹以上の群れで飼うことが勧められています。インドネシアの養殖場では、ホルモンを使わずに自然に繁殖させています。",
+    "movement": "体高のある体で、中層を一定の速さで泳ぎます。成熟した雄は体の前半が青灰色、後半が橙赤色に分かれ、背びれと尻びれの後ろが伸びて尖ります。",
+    "habitat": "湖と、その周りの支流で採集されています。アヤマル湖の北の支流は幅3〜4mで、澄んだ緩い流れに砂利や石灰岩の礫が敷かれ、ところどころに水草がありました。本展示では明るい川の開けた中層を泳ぐ姿を見せています。",
+    "aliases": [
+      "Boeseman's rainbowfish",
+      "ボエセマニ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Atheriniformes",
+      "orderJa": "トウゴロウイワシ目",
+      "family": "Melanotaeniidae",
+      "familyJa": "メラノタエニア科"
+    },
+    "adultSizeCm": 9,
+    "sizeNote": "最大記録は標準体長9cm（雄または性別不明）です。雄の典型的な全長は分かっていません。原記載では、雌は標準体長4〜4.2cmで成熟していました。",
+    "distribution": "インドネシア領ニューギニア島西部、フォーゲルコップ半島のアヤマル湖群とアイティンジョ湖、その周りの支流に分布します。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "EN",
+      "assessedYear": 2019,
+      "note": "分布域が狭く、生息地の質と成熟個体数の減少が評価の根拠とされています。"
+    },
+    "highlights": [
+      "成熟した雄の、前半の青灰色と後半の橙赤色の対比",
+      "体高のある輪郭と、後ろが伸びて尖る背びれと尻びれ",
+      "明るい中層を群れで泳ぐ"
+    ]
+  }
+}

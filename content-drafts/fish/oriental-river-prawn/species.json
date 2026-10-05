@@ -1,0 +1,133 @@
+{
+  "id": "oriental-river-prawn",
+  "displayName": "テナガエビ",
+  "realBodyLengthCm": 9,
+  "catalog": {
+    "scientificName": "Macrobrachium nipponense",
+    "originRegionId": "east-asia",
+    "originRegionName": "東アジア",
+    "origin": "日本（本州・四国・九州）、朝鮮半島、中国北部、台湾に分布する淡水エビです。川と海を行き来する個体群のほか、湖沼で一生を淡水で過ごす個体群もいます。",
+    "temperament": "雑食性で、小さな生き物や死骸を食べます。縄張りをもち、入ってきた相手とは長いはさみ脚で争うため、同種どうしの間隔は広めにとります。",
+    "movement": "昼は石の下やヨシ帯などの物陰にひそみ、夜になると底を歩いて餌を探します。体より長い雄のはさみ脚を前へ伸ばしたまま、ゆっくり進みます。",
+    "habitat": "低地の川や湖沼、河口の、流れの緩い砂泥底。本水槽では、ヨシ帯と沈んだ枝のある湖の岸辺をイメージしています。",
+    "aliases": [
+      "oriental river prawn",
+      "カワエビ",
+      "ざざえび"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Decapoda",
+      "orderJa": "十脚目",
+      "family": "Palaemonidae",
+      "familyJa": "テナガエビ科"
+    },
+    "adultSizeCm": 10,
+    "sizeNote": "図鑑では体長約10cmとされますが、性別や測り方の定義はありません。雄の第2胸脚（はさみ脚）は体長の約1.8倍に伸び、この長さは体長に含めません。",
+    "distribution": "日本の本州・四国・九州のほか、朝鮮半島、中国北部、台湾に分布します。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "note": "IUCN の評価本文は確認できていません。霞ヶ浦では、夏の底層の低酸素が生息上の問題として報告されています。"
+    },
+    "highlights": [
+      "雄は体より長いはさみ脚を前へ伸ばして歩きます。",
+      "昼は物陰にひそみ、夜に底を歩いて餌を探します。",
+      "縄張りに入った相手と、長いはさみ脚で争うことがあります。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "crustacean",
+    "headStart": 0.3,
+    "tailBeatHz": 0.6,
+    "bodyWaveStart": 0.85,
+    "tailSweepRad": 0,
+    "verticalFlex": 0,
+    "footAnchor": {
+      "x": 0.54,
+      "y": 0.93
+    }
+  },
+  "visual": {
+    "fallbackColor": "#968566"
+  },
+  "sourceBodyBounds": {
+    "x": 71,
+    "y": 229,
+    "width": 1432,
+    "height": 529
+  },
+  "preferredZone": {
+    "minX": 0.1,
+    "maxX": 0.9,
+    "minY": 0.84,
+    "maxY": 0.93
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.06,
+      "burst": 0.4
+    },
+    "turnRateRadPerSec": 1.1,
+    "restFraction": 0.55,
+    "depthRange": [
+      0.3,
+      0.85
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.75,
+    "habits": [
+      {
+        "type": "hideByDay",
+        "durationSec": [
+          60,
+          180
+        ]
+      },
+      {
+        "type": "grazing",
+        "chancePerMin": 2.5,
+        "durationSec": [
+          6,
+          16
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.5,
+        "durationSec": [
+          8,
+          20
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "国土交通省 太田川河川事務所：テナガエビ",
+        "url": "https://www.cgr.mlit.go.jp/ootagawa/Bio/shell/index310.htm"
+      },
+      {
+        "title": "岩崎順・荒山和則 (2011) いばらき魚顔帳：テナガエビ",
+        "url": "https://www.pref.ibaraki.jp/nourinsuisan/naisuishi/gyogancho/documents/083_tenagaebi.pdf"
+      },
+      {
+        "title": "岡山市環境学習センター めだかの学校：テナガエビ",
+        "url": "https://medakanogakko.jp/dictionary/tenagaebi/"
+      },
+      {
+        "title": "冨永敦 (2008) 親テナガエビが生存可能な溶存酸素濃度",
+        "url": "https://www.pref.ibaraki.jp/nourinsuisan/naisuishi/bullechin/documents/bull4103.pdf"
+      }
+    ]
+  }
+}

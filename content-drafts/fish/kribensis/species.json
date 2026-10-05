@@ -1,0 +1,125 @@
+{
+  "id": "kribensis",
+  "displayName": "ペルヴィカクロミス・プルケール",
+  "realBodyLengthCm": 6,
+  "swim": {
+    "tailBeatHz": 2.6,
+    "mouthAnchor": {
+      "x": 0.02,
+      "y": 0.46
+    }
+  },
+  "visual": {
+    "fallbackColor": "#8e6a52"
+  },
+  "sourceBodyBounds": {
+    "x": 179,
+    "y": 272,
+    "width": 1224,
+    "height": 507
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.6,
+    "maxY": 0.93
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.35,
+      "burst": 1.8
+    },
+    "turnRateRadPerSec": 2.4,
+    "restFraction": 0.3,
+    "depthRange": [
+      0.25,
+      0.9
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 2.2,
+      "cohesion": 0.35,
+      "polarization": 0.1
+    },
+    "structureAffinity": 0.75,
+    "habits": [
+      {
+        "type": "homeShelter",
+        "kind": "cave",
+        "rangeBodyLengths": 5,
+        "visitChancePerMin": 0.8,
+        "visitDurationSec": [
+          6,
+          20
+        ]
+      },
+      {
+        "type": "bottomForage"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes — Pelvicachromis pulcher",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=22179"
+      },
+      {
+        "title": "Lamboj & Stiassny — Pelvicachromis, Fishes of Lower Guinea (2007)",
+        "url": "https://horizon.documentation.ird.fr/exl-doc/pleins_textes/ed-06-08/010044422.pdf"
+      },
+      {
+        "title": "Gussone et al. (2023) — Impact of genetic relatedness on reproductive behavior",
+        "url": "https://link.springer.com/article/10.1007/s00114-023-01842-z"
+      },
+      {
+        "title": "Martin & Taborsky (1997) — Alternative male mating tactics in P. pulcher",
+        "url": "https://www.behav.iee.unibe.ch/e1010340/e1010392/e1012437/e1044378/e1210996/files1224767/Martin_BES1997_eng.pdf"
+      },
+      {
+        "title": "FishBase — Pelvicachromis pulcher",
+        "url": "https://www.fishbase.se/summary/Pelvicachromis-pulcher.html"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Pelvicachromis pulcher",
+    "originRegionId": "west-africa",
+    "originRegionName": "西アフリカ",
+    "origin": "西アフリカのベナン東部からナイジェリア南部、カメルーン西部にかけて分布します。模式産地はニジェール川のデルタです。この展示は成魚の雌です。",
+    "habitat": "ニジェール川水系などの川にすむ底生の小型シクリッドで、上流の冷たく酸性の軟水域からも見つかっています。この展示では、流木の根の下の小さな洞を巣にします。",
+    "temperament": "ペアで洞窟に産卵し、雌が卵と仔魚のそばにつき、雄がまわりを守る例が知られます。雌どうしで争うこともあり、半自然の水槽ではペアのほか、雄1匹と複数の雌の群れも観察されています。",
+    "movement": "底近くを短く泳いでは止まり、底の藻やデトリタスをついばみます。求愛のときには、雌が体を震わせて雄に見せます。",
+    "aliases": [
+      "Kribensis",
+      "Rainbow krib",
+      "Pelmatochromis pulcher",
+      "クリベンシス"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cichliformes",
+      "orderJa": "シクリッド目",
+      "family": "Cichlidae",
+      "familyJa": "シクリッド科"
+    },
+    "adultSizeCm": 6,
+    "sizeNote": "雌の全長は最大7cmとされ、雌は雄より小さくなります。飼育研究の雌は標準体長が平均3.7cmでした。雄や性別不明の個体の最大は全長11cmです。展示では全長6cm前後の雌を想定しています。",
+    "distribution": "ベナン東部、ナイジェリア南部とニジェール川の支流、クロス川流域、カメルーン西部に分布します。流通名のクリベンシスは、別の有効種 P. kribensis とは異なります。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2019
+    },
+    "highlights": [
+      "雌の胸から腹は赤から紫に色づき、雄より目立ちます。",
+      "雌は体を震わせて雄に求愛します。",
+      "ペアは洞窟の天井や壁に卵を産み付け、雌が卵のそばで世話をします。",
+      "底の藻やデトリタスをついばみます。"
+    ]
+  }
+}

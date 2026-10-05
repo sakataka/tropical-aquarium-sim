@@ -1,0 +1,106 @@
+{
+  "id": "pacific-blackdragon",
+  "displayName": "パシフィック・ブラックドラゴン",
+  "realBodyLengthCm": 40,
+  "swim": {
+    "tailBeatHz": 1.3,
+    "bodyWaveStart": 0.2,
+    "waveCount": 1.2,
+    "tailSweepRad": 0.3,
+    "verticalFlex": 0.04
+  },
+  "visual": {
+    "fallbackColor": "#221c1f"
+  },
+  "sourceBodyBounds": {
+    "x": 98,
+    "y": 416,
+    "width": 1353,
+    "height": 283
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.35,
+    "maxY": 0.9
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "undulate",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.15,
+      "burst": 0.8
+    },
+    "turnRateRadPerSec": 1.5,
+    "restFraction": 0.55,
+    "depthRange": [
+      0.25,
+      0.85
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 3,
+      "cohesion": 0,
+      "polarization": 0.02
+    },
+    "structureAffinity": 0,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Monterey Bay Aquarium Pacific blackdragon",
+        "url": "https://www.montereybayaquarium.org/animals-the-ocean/animals-a-to-z/pacific-blackdragon"
+      },
+      {
+        "title": "UCSB Love Lab Checklist of Fishes",
+        "url": "https://lovelab.msi.ucsb.edu/Checklist.pdf"
+      },
+      {
+        "title": "Davis et al. 2020 Ultra-black Camouflage in Deep-Sea Fishes",
+        "url": "https://repository.library.noaa.gov/view/noaa/60147/noaa_60147_DS1.pdf"
+      },
+      {
+        "title": "Smithsonian Scientists Find First Ultra-Black Color",
+        "url": "https://ocean.si.edu/ocean-life/fish/scientists-find-first-ultra-black-color-deep-sea-fishes"
+      },
+      {
+        "title": "MBARI Dragonfish",
+        "url": "https://www.mbari.org/animal/dragonfish/"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Idiacanthus antrostomus",
+    "originRegionId": "pacific",
+    "originRegionName": "太平洋",
+    "origin": "太平洋に分布し、日本と、北米オレゴン州の中部から南米チリまでの記録があります。カリフォルニアのモントレー湾の深海では、くり返し観察されています。",
+    "temperament": "雌は下顎から垂れる長いひげの先の発光器で獲物を誘い、鋭い歯で魚やエビの仲間を捕らえます。群れ方は分かっていません。",
+    "movement": "深海の中層を、細長い黒い体で泳ぎます。モントレーベイ水族館によると、夜も水深400mより深いところにいます。",
+    "habitat": "水深100〜1000mほどの深海の中層にすみます。皮膚のすぐ下に黒い色素の粒が密に詰まり、光をほとんど反射しない超黒色の体をしています。",
+    "aliases": [
+      "Pacific blackdragon"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Stomiiformes",
+      "orderJa": "ワニトカゲギス目",
+      "family": "Stomiidae",
+      "familyJa": "ワニトカゲギス科"
+    },
+    "adultSizeCm": 40,
+    "sizeNote": "典型的な成魚の大きさは確定しておらず、ここでの値は展示用の目安です。雌は標準体長40cmに達するとされ、モントレーベイ水族館は雌を61cmと紹介しています（測り方は不明）。雄は8cmほどです。",
+    "distribution": "太平洋の日本近海と、北米オレゴン州の中部から南米チリ沖までの、水深100〜1000mほどの中層に分布します。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "rarelyDisplayed",
+    "conservation": {
+      "note": "IUCNの評価は、今回の調査では確認できていません。"
+    },
+    "highlights": [
+      "下顎から垂れる長いひげの先が光り、獲物を誘う。",
+      "光をほとんど反射しない、超黒色の皮膚を持つ。",
+      "雌雄の差が大きく、雄は小さく褐色で、歯もひげも胃も持たないと解説されている。"
+    ]
+  }
+}

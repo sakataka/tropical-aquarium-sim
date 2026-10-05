@@ -1,0 +1,104 @@
+{
+  "id": "blacktip-reef-shark",
+  "displayName": "ツマグロ",
+  "realBodyLengthCm": 150,
+  "swim": {
+    "tailBeatHz": 0.8
+  },
+  "visual": {
+    "fallbackColor": "#8f877c"
+  },
+  "sourceBodyBounds": {
+    "x": 110,
+    "y": 264,
+    "width": 1344,
+    "height": 498
+  },
+  "preferredZone": {
+    "minX": 0.06,
+    "maxX": 0.94,
+    "minY": 0.18,
+    "maxY": 0.8
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "steady",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.38,
+      "burst": 1.1
+    },
+    "turnRateRadPerSec": 1.1,
+    "restFraction": 0.02,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 3,
+      "cohesion": 0.32,
+      "polarization": 0.15
+    },
+    "structureAffinity": 0.2,
+    "habits": [],
+    "sources": [
+      {
+        "title": "鳥羽水族館 生きもの図鑑 ツマグロ",
+        "url": "https://aquarium.co.jp/picturebook/carcharhinus-melanopterus.html"
+      },
+      {
+        "title": "Florida Museum: Blacktip Reef Shark species profile",
+        "url": "https://www.floridamuseum.ufl.edu/discover-fish/species-profiles/blacktip-reef-shark/"
+      },
+      {
+        "title": "Papastamatiou et al. 2015. Drivers of Daily Routines in an Ectothermic Marine Predator",
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0127807"
+      },
+      {
+        "title": "Mourier, Vercelloni & Planes 2012. Evidence of social communities in a spatially structured network of a free-ranging shark species",
+        "url": "https://researchers.mq.edu.au/en/publications/evidence-of-social-communities-in-a-spatially-structured-network-/"
+      },
+      {
+        "title": "FishBase: Carcharhinus melanopterus",
+        "url": "https://www.fishbase.se/summary/carcharhinus-melanopterus.html"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Carcharhinus melanopterus",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "紅海とインド洋から西部・中部太平洋の熱帯域。日本では南日本の太平洋岸と琉球列島に分布します。",
+    "temperament": "単独か小さな群れで見られます。野外では、決まった相手と長く一緒に過ごす社会的なつながりも確かめられています。",
+    "movement": "えらに水を通すため、休むときも泳ぎ続けます。調査地によっては夕方から夜にかけて活発になります。",
+    "habitat": "サンゴ礁周りの浅い海、砂地のリーフフラット、礁の斜面やマングローブの近く。幼魚は成魚より浅い場所にとどまる傾向があります。",
+    "aliases": [
+      "Blacktip reef shark"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Carcharhiniformes",
+      "orderJa": "メジロザメ目",
+      "family": "Carcharhinidae",
+      "familyJa": "メジロザメ科"
+    },
+    "adultSizeCm": 180,
+    "sizeNote": "全長180cm以上に達するとされ、最大の報告は全長200cmです。ふつうの成魚の大きさを示す資料は見つかっていません。",
+    "distribution": "紅海、インド洋から太平洋のハワイやピトケアン諸島まで、熱帯の海に広く分布します。地中海の記録は資料によって扱いが異なり、定着は確かめられていません。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "VU",
+      "assessedYear": 2020,
+      "note": "オーストラリアの地域評価では LC です。ワシントン条約（CITES）附属書IIに掲載されています。"
+    },
+    "highlights": [
+      "第一背びれや尾びれの先が黒く、泳いでいる姿でも見分けやすい",
+      "休むときも止まらず、水槽の中を一定の速さで泳ぎ続ける",
+      "単独で泳ぐ個体もいれば、数匹で近くを泳ぐこともある"
+    ]
+  }
+}

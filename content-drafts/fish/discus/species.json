@@ -1,0 +1,110 @@
+{
+  "id": "discus",
+  "displayName": "ディスカス",
+  "realBodyLengthCm": 13,
+  "swim": {
+    "tailBeatHz": 1.4,
+    "bodyWaveStart": 0.55,
+    "tailSweepRad": 0.3
+  },
+  "visual": {
+    "fallbackColor": "#94634a"
+  },
+  "sourceBodyBounds": {
+    "x": 422,
+    "y": 140,
+    "width": 728,
+    "height": 756
+  },
+  "preferredZone": {
+    "minX": 0.1,
+    "maxX": 0.9,
+    "minY": 0.25,
+    "maxY": 0.78
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.16,
+      "burst": 0.75
+    },
+    "turnRateRadPerSec": 1.3,
+    "restFraction": 0.34,
+    "depthRange": [0.2, 0.85],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 2.2,
+      "cohesion": 0.4,
+      "polarization": 0.12
+    },
+    "structureAffinity": 0.65,
+    "habits": [
+      {
+        "type": "follow",
+        "chancePerMin": 0.4,
+        "durationSec": [4, 12]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Mattos et al. 2016: Description of the reproductive behavior of Symphysodon aequifasciatus in captivity",
+        "url": "https://www.scielo.br/j/aa/a/j84ySNt5BT9cdhyLcW77hwh/?format=html&lang=en&ilang=en"
+      },
+      {
+        "title": "Amado et al. 2011: A Molecular Perspective on Systematics, Taxonomy and Classification Amazonian Discus Fishes",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3147135/"
+      },
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Symphysodon aequifasciatus",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=16602"
+      },
+      {
+        "title": "OATA: How to look after discus",
+        "url": "https://ornamentalfish.org/what-we-do/advice-information/care-sheets/caresheets-tropical-freshwater-fish/how-to-look-after-discus/"
+      },
+      {
+        "title": "FishBase: Symphysodon aequifasciatus",
+        "url": "https://www.fishbase.se/summary/Symphysodon_aequifasciatus.html"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Symphysodon aequifasciatus",
+    "originRegionId": "south-america",
+    "originRegionName": "南米",
+    "origin": "南米アマゾン水系の東部。2011年の分類研究では、ネグロ川とソリモンエス川の合流点より東のアマゾン下流と支流に暮らす褐色の系統をこの種としています。",
+    "temperament": "群れで暮らしますが、群れの中では優劣や追いかけ合いが起こります。つがいができると、二匹で群れを離れて選んだ場所を守ります。",
+    "movement": "円盤形の体で、中層をゆったりと泳ぎます。流木の陰から出てきては、群れで周囲を探ります。",
+    "habitat": "大河につながる流れの穏やかな水域に暮らし、根や岩の隙間を隠れ場所にするとされます。流木の枝が立ち並び、光の弱いブラックウォーターの水槽が似合います。",
+    "aliases": [
+      "Discus",
+      "ブラウンディスカス"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cichliformes",
+      "orderJa": "シクリッド目",
+      "family": "Cichlidae",
+      "familyJa": "シクリッド科"
+    },
+    "adultSizeCm": 13,
+    "sizeNote": "飼育下の成魚42匹の平均は全長13.1cm、体高10.4cmでした。報告されている最大は標準体長13.7cmです。野生の典型的な大きさは確かめられていません。",
+    "distribution": "アマゾン水系の東部に分布します。ディスカスの仲間は分類が難しく、青や緑の系統を別の種とする見方もあります。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2018
+    },
+    "highlights": [
+      "つがいが産卵する面を、口で何度も掃除する。",
+      "親が胸びれや口を使って、卵のまわりに水を送る。",
+      "かえった仔魚は親の体の表面の粘液を食べて育ち、親は交代で世話をする。",
+      "群れの中で追いかけ合い、つがいは自分たちの場所を守る。"
+    ]
+  }
+}

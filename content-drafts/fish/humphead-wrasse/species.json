@@ -1,0 +1,115 @@
+{
+  "id": "humphead-wrasse",
+  "displayName": "メガネモチノウオ",
+  "realBodyLengthCm": 100,
+  "swim": {
+    "tailBeatHz": 0.9,
+    "tailSweepRad": 0.38,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.57
+    }
+  },
+  "visual": {
+    "fallbackColor": "#3f8f86"
+  },
+  "sourceBodyBounds": {
+    "x": 156,
+    "y": 240,
+    "width": 1236,
+    "height": 558
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.28,
+    "maxY": 0.86
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "steady",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.2,
+      "burst": 0.55
+    },
+    "turnRateRadPerSec": 1.2,
+    "restFraction": 0.22,
+    "depthRange": [
+      0.1,
+      0.8
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2,
+      "cohesion": 0,
+      "polarization": 0.04
+    },
+    "structureAffinity": 0.5,
+    "habits": [
+      {
+        "type": "bottomForage"
+      }
+    ],
+    "sources": [
+      {
+        "title": "NOAA (2015), Status review report: humphead wrasse",
+        "url": "https://repository.library.noaa.gov/view/noaa/9052/noaa_9052_DS1.pdf"
+      },
+      {
+        "title": "葛西臨海水族園 (2026-04-24), 個性豊かなメガネモチノウオ",
+        "url": "https://www.tokyo-zoo.net/kasai/blog/11182/index.html"
+      },
+      {
+        "title": "水産総合研究センター・平成22年度 メガネモチノウオ親魚養成・採卵研究",
+        "url": "https://www.maff.go.jp/j/budget/yosan_kansi/sikkou/tokutei_keihi/seika_h22/suisan_ippan/pdf/60100145_02.pdf"
+      },
+      {
+        "title": "Colin (2010), Aggregation and spawning of the humphead wrasse",
+        "url": "https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1095-8649.2010.02553.x"
+      },
+      {
+        "title": "FishBase: Cheilinus undulatus",
+        "url": "https://www.fishbase.se/summary/Cheilinus_undulatus.html"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Cheilinus undulatus",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "紅海や南アフリカからトゥアモトゥ諸島まで、北は琉球列島、南はニューカレドニアまでのサンゴ礁に分布します。",
+    "temperament": "ふだんは単独かペアで暮らします。産卵の時期には決まった場所に集まります。展示では、観覧通路の近くに出てくる個体と岩陰にいる個体がいるなど、個体ごとの違いが見られます。",
+    "movement": "大きな体で、礁の周りをゆったりと泳ぎます。昼に海底の無脊椎動物や小魚を探して食べ、夜は洞窟や岩の裂け目で休みます。",
+    "habitat": "外礁の斜面や礁の縁、水路、礁湖のサンゴ礁。大型個体ほど額のこぶと厚い唇が目立ちます。",
+    "aliases": [
+      "ナポレオンフィッシュ",
+      "Humphead wrasse",
+      "Napoleon wrasse"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Perciformes",
+      "orderJa": "スズキ目",
+      "family": "Labridae",
+      "familyJa": "ベラ科"
+    },
+    "adultSizeCm": 100,
+    "sizeNote": "飼育下の研究では全長96cmと101cmの雄で成熟を確かめています。歴史的な最大報告は全長229cmですが、確かな記録かどうかには疑問も残ります。ふつうの成魚の大きさは分かっていません。",
+    "distribution": "インド太平洋の熱帯域に広く分布します。紅海・南アフリカから太平洋のトゥアモトゥ諸島まで、日本では琉球列島で見られます。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "EN",
+      "assessedYear": 2024,
+      "note": "ワシントン条約（CITES）附属書IIに掲載されています。"
+    },
+    "highlights": [
+      "大きな体でゆったり泳ぎ、底の近くで餌を探す",
+      "大きくなるほど額のこぶと厚い唇が目立つ",
+      "人の近くに寄ってくるか、岩陰にとどまるかは個体によって違う"
+    ]
+  }
+}

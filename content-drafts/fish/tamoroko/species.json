@@ -1,0 +1,105 @@
+{
+  "id": "tamoroko",
+  "displayName": "タモロコ",
+  "realBodyLengthCm": 9,
+  "catalog": {
+    "scientificName": "Gnathopogon elongatus elongatus",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "関東より西の本州と四国に分布します。東北地方や九州には、ほかの地域から持ち込まれて定着しています。",
+    "temperament": "岸辺に沈んだヨシの根や地下茎のまわりに群れて暮らします。動物質に偏った雑食性です。",
+    "movement": "中層から底近くを泳ぎます。成熟すると頭を中心に細かな追星が出ますが、婚姻色はあまり目立ちません。",
+    "habitat": "川の中流から下流、細流、池や湖沼の流れの緩い所にすみ、田んぼの用水路や排水路でも見られます。春に冠水した岸の植物に卵を産み付けます。",
+    "aliases": [
+      "Tamoroko",
+      "Field gudgeon",
+      "Gnathopogon elongatus"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cypriniformes",
+      "orderJa": "コイ目",
+      "family": "Gobionidae",
+      "familyJa": "カマツカ科"
+    },
+    "adultSizeCm": 10,
+    "sizeNote": "全長約10cmと解説されます。体長12cmほどとする資料もあります。",
+    "distribution": "関東より西の本州と四国に分布します。東北地方や九州などには、移植によって広がりました。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "NE",
+      "note": "愛媛県のレッドリスト（2025）では準絶滅危惧（NT）です。"
+    },
+    "highlights": [
+      "体側の中央を通る太い暗色の帯と、口の端の短い1対のひげが見分けどころです。",
+      "ヨシの根元など、岸辺の植物のまわりに集まる性質があります。",
+      "野外では、春に水に浸かった岸の植物の茎や葉に卵を産みます。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.8
+  },
+  "visual": {
+    "fallbackColor": "#ad966a"
+  },
+  "sourceBodyBounds": {
+    "x": 120,
+    "y": 262,
+    "width": 1351,
+    "height": 471
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.4,
+    "maxY": 0.88
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.55,
+      "burst": 2.6
+    },
+    "turnRateRadPerSec": 2.8,
+    "restFraction": 0.12,
+    "depthRange": [
+      0.15,
+      0.8
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.6,
+      "cohesion": 0.55,
+      "polarization": 0.35
+    },
+    "structureAffinity": 0.45,
+    "habits": [],
+    "sources": [
+      {
+        "title": "国立環境研究所 侵入生物DB — タモロコ",
+        "url": "https://www.nies.go.jp/biodiversity/invasive/DB/detail/50570.html"
+      },
+      {
+        "title": "吹田市 まちなか水族館 — タモロコ",
+        "url": "https://www.city.suita.osaka.jp/sangyo/1018079/1018112/1018508/1018509/1018510/1002330.html"
+      },
+      {
+        "title": "マリンピア日本海 — タモロコ",
+        "url": "https://www.marinepia.or.jp/picturebook/fish/entry-11519.html"
+      },
+      {
+        "title": "田中ほか2016 — 香流川の一時的水域におけるタモロコの産卵時期・成育・環境",
+        "url": "https://www.jstage.jst.go.jp/article/biodiversity/3/0/3_1/_pdf"
+      },
+      {
+        "title": "愛媛県RL2025 全分類群一覧",
+        "url": "https://www.pref.ehime.jp/uploaded/attachment/172713.pdf"
+      }
+    ]
+  }
+}

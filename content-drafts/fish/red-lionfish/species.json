@@ -1,0 +1,118 @@
+{
+  "id": "red-lionfish",
+  "displayName": "ハナミノカサゴ",
+  "realBodyLengthCm": 30,
+  "swim": {
+    "tailBeatHz": 1.3,
+    "tailSweepRad": 0.35
+  },
+  "visual": {
+    "fallbackColor": "#b4593a"
+  },
+  "sourceBodyBounds": {
+    "x": 201,
+    "y": 128,
+    "width": 1192,
+    "height": 765
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.38,
+    "maxY": 0.85
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.14,
+      "burst": 0.6
+    },
+    "turnRateRadPerSec": 1.3,
+    "restFraction": 0.42,
+    "depthRange": [
+      0.3,
+      0.85
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0,
+      "polarization": 0.02
+    },
+    "structureAffinity": 0.75,
+    "habits": [
+      {
+        "type": "homeShelter",
+        "kind": "cave",
+        "rangeBodyLengths": 6,
+        "visitChancePerMin": 0.3,
+        "visitDurationSec": [
+          20,
+          60
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "葛西臨海水族園 飼育展示係 戸田遥香 — ゆったり泳ぐハナミノカサゴ, 2021-12-03",
+        "url": "https://www.tokyo-zoo.net/topics/news/kasai/1603_27146_2021-12-03.html"
+      },
+      {
+        "title": "マリンピア日本海 — ハナミノカサゴ",
+        "url": "https://www.marinepia.or.jp/picturebook/fish/entry-11694.html"
+      },
+      {
+        "title": "Australian Museum, Mark McGrouther — Common Lionfish",
+        "url": "https://australian.museum/learn/animals/fishes/common-lionfish-pterois-volitans/"
+      },
+      {
+        "title": "Florida Museum — Red Lionfish",
+        "url": "https://www.floridamuseum.ufl.edu/discover-fish/species-profiles/red-lionfish/"
+      },
+      {
+        "title": "FishBase — Pterois volitans",
+        "url": "https://www.fishbase.se/summary/Pterois_volitans.html"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Pterois volitans",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "東インド洋から西・中部太平洋の原産で、日本近海にもいます。西大西洋やカリブ海では外来種として広がり、在来の魚を食べることが問題になっています。",
+    "temperament": "単独で獲物を狙う肉食魚です。背びれ・腹びれ・尻びれの棘に毒があり、脅かされると背びれの棘を相手に向けて威嚇します。",
+    "movement": "長いひれを広げ、底から少し離れたところをゆっくり漂います。ふだんは静かですが、餌をとるときは急に素早く動きます。",
+    "habitat": "浅い岩礁やサンゴ礁。昼間は岩棚の下や洞窟、隙間に入り、頭を少し下げてじっとしていることがあります。",
+    "aliases": [
+      "Red lionfish",
+      "Common lionfish"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Scorpaeniformes",
+      "orderJa": "カサゴ目",
+      "family": "Scorpaenidae",
+      "familyJa": "フサカサゴ科"
+    },
+    "adultSizeCm": 30,
+    "sizeNote": "全長約30cm。最大記録は全長45.7cmです。目の上の皮弁は成魚で葉のような形になり、大きさや形には個体差があります。",
+    "distribution": "東インド洋のクリスマス島から太平洋のマルケサス諸島、日本からオーストラリア沿岸まで分布します。フロリダからブラジル南部、メキシコ湾、カリブ海には人の手で持ち込まれました。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2015,
+      "note": "大西洋では侵入種として在来の生態系への影響が懸念されています。"
+    },
+    "highlights": [
+      "大きな胸びれと長い背びれを広げ、岩の近くをゆったり漂う",
+      "岩棚の下で、頭を少し下げてじっと休む",
+      "ふだんの静かな泳ぎから一転して、餌に素早く飛びつく",
+      "見分けどころは、下あごから腹にかけての模様と、尾びれの斑点"
+    ]
+  }
+}

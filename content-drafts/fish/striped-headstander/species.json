@@ -1,0 +1,109 @@
+{
+  "id": "striped-headstander",
+  "displayName": "アノストムス・アノストムス",
+  "realBodyLengthCm": 13,
+  "swim": {
+    "tailBeatHz": 2.4,
+    "mouthAnchor": {
+      "x": 0.005,
+      "y": 0.54
+    }
+  },
+  "visual": {
+    "fallbackColor": "#9a8450"
+  },
+  "sourceBodyBounds": {
+    "x": 156,
+    "y": 229,
+    "width": 1248,
+    "height": 512
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.35,
+    "maxY": 0.85
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.38,
+      "burst": 1.7
+    },
+    "turnRateRadPerSec": 2.2,
+    "restFraction": 0.24,
+    "depthRange": [0.25, 0.85],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 2.2,
+      "cohesion": 0.4,
+      "polarization": 0.2
+    },
+    "structureAffinity": 0.65,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 1.6,
+        "durationSec": [3, 9]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Anostomus anostomus",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=4136"
+      },
+      {
+        "title": "須磨海浜水族園広報誌『うみと水ぞく』2012年3月：アノストマス",
+        "url": "https://www.city.kobe.lg.jp/documents/33639/umisui201203.pdf"
+      },
+      {
+        "title": "Seriously Fish: Anostomus anostomus",
+        "url": "https://www.seriouslyfish.com/species/anostomus-anostomus"
+      },
+      {
+        "title": "FishBase: Anostomus anostomus",
+        "url": "https://www.fishbase.se/summary/Anostomus-anostomus"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Anostomus anostomus",
+    "originRegionId": "south-america",
+    "originRegionName": "南米",
+    "origin": "アマゾン川とオリノコ川の流域に分布します。ブラジル、コロンビア、ペルー、エクアドル、ガイアナ、スリナムで記録があります。",
+    "habitat": "流れの速い川の、岩の多い岸沿いにすみます。この展示では、水没した幹や根のまわりで表面をついばみます。",
+    "temperament": "野外では群れをつくりますが、少ない数の同種どうしでは争いやすい魚です。他の魚のひれをつつくこともあります。",
+    "movement": "頭を斜め下に傾けた姿勢のまま、前後左右に向きを変えます。流木や岩の表面に上向きの口を当て、藻や小さな生き物をついばみます。",
+    "aliases": [
+      "Striped headstander",
+      "アノストムス",
+      "アノストマス",
+      "Salmo anostomus"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Characiformes",
+      "orderJa": "カラシン目",
+      "family": "Anostomidae",
+      "familyJa": "アノストムス科"
+    },
+    "adultSizeCm": 16,
+    "sizeNote": "FishBase の最大全長は16cmです。飼育資料には標準体長20cmとする記載もあり、ふつうの成魚の大きさは確かめられていません。成熟した雌は雄よりやや大きくなる傾向があります。",
+    "distribution": "南米のアマゾン川・オリノコ川流域。フィリピンに観賞用として持ち込まれた記録がありますが、定着は確認されていません。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2020
+    },
+    "highlights": [
+      "頭を下げた斜めの姿勢で、上向きの小さな口を使います。",
+      "岩や流木の表面から、藻や小さな生き物をついばみます。",
+      "黒と金色の縦帯が、細長い体を頭から尾まで走ります。"
+    ]
+  }
+}

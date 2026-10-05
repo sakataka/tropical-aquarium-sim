@@ -1,0 +1,110 @@
+{
+  "id": "bleeding-heart-tetra",
+  "displayName": "ブリーディングハートテトラ",
+  "realBodyLengthCm": 7,
+  "swim": {
+    "tailBeatHz": 2.4,
+    "bodyWaveStart": 0.45
+  },
+  "visual": {
+    "fallbackColor": "#c9a490"
+  },
+  "sourceBodyBounds": {
+    "x": 281,
+    "y": 207,
+    "width": 1025,
+    "height": 562
+  },
+  "preferredZone": {
+    "minX": 0.1,
+    "maxX": 0.9,
+    "minY": 0.3,
+    "maxY": 0.72
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.45,
+      "burst": 2.0
+    },
+    "turnRateRadPerSec": 2.4,
+    "restFraction": 0.2,
+    "depthRange": [0.2, 0.85],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.9,
+      "cohesion": 0.48,
+      "polarization": 0.25
+    },
+    "structureAffinity": 0.45,
+    "habits": [
+      {
+        "type": "follow",
+        "chancePerMin": 0.5,
+        "durationSec": [4, 10]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes — erythrostigma, Hemigrammus",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=29115"
+      },
+      {
+        "title": "Frank Schäfer / Aquarium Glaser (2023-04-14) Hyphessobrycon erythrostigma",
+        "url": "https://www.aquariumglaser.de/en/09-characoids-tetra-relationship/hyphessobrycon-erythrostigma-2/"
+      },
+      {
+        "title": "Seriously Fish — Hyphessobrycon erythrostigma",
+        "url": "https://www.seriouslyfish.com/species/hyphessobrycon-erythrostigma"
+      },
+      {
+        "title": "FishBase — Megalamphodus erythrostigma",
+        "url": "https://www.fishbase.se/summary/10651"
+      },
+      {
+        "title": "Castro Paz, Batista & Porto (2014) DNA Barcodes of Rosy Tetras",
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0098603"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Megalamphodus erythrostigma",
+    "originRegionId": "south-america",
+    "originRegionName": "南米",
+    "origin": "南米アマゾン川の上流域。ブラジル、エクアドル、コロンビア、ペルーに由来します。",
+    "temperament": "おおむね穏やかな群れの魚です。成熟した雄はいくらか縄張りを持ち、雌や順位をめぐって発色して張り合います。",
+    "movement": "体高のある体で中層をゆるやかに群れて泳ぎます。雄どうしが向き合い、ひれを広げて競う姿が見られます。",
+    "habitat": "流れの緩い支流や森の中の湖で、沈んだ木や根、岸辺の植物の近くに暮らします。薄暗く水草の茂った水槽で、肩の赤い斑点が目を引きます。",
+    "aliases": [
+      "Bleeding heart tetra",
+      "Hyphessobrycon erythrostigma",
+      "Hemigrammus erythrostigma",
+      "Hyphessobrycon rubrostigma"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Characiformes",
+      "orderJa": "カラシン目",
+      "family": "Acestrorhamphidae",
+      "familyJa": "アケストロランプス科"
+    },
+    "adultSizeCm": 8,
+    "sizeNote": "輸入業者の専門家は、成魚を全長約8cmとし、雄のほうが大きいとしています。データベースに載る最大は標準体長6.1cmです。",
+    "distribution": "アマゾン川上流域に分布し、ブラジル、エクアドル、コロンビア、ペルーで知られます。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2021
+    },
+    "highlights": [
+      "えらぶたの後ろに、血のしずくのような赤い斑点がある。同じ赤い斑点をもつ近縁種が2種いる。",
+      "雄は背びれが長く伸び、雌は短い。",
+      "雄どうしがひれを広げて発色し、張り合う。"
+    ]
+  }
+}

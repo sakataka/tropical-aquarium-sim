@@ -1,0 +1,115 @@
+{
+  "id": "altolamprologus-calvus",
+  "displayName": "アルトランプロログス・カルブス",
+  "realBodyLengthCm": 11,
+  "swim": {
+    "tailBeatHz": 1.6,
+    "tailSweepRad": 0.4
+  },
+  "visual": {
+    "fallbackColor": "#3b3432"
+  },
+  "sourceBodyBounds": {
+    "x": 189,
+    "y": 192,
+    "width": 1215,
+    "height": 635
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.4,
+    "maxY": 0.88
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.2,
+      "burst": 1.1
+    },
+    "turnRateRadPerSec": 1.6,
+    "restFraction": 0.35,
+    "depthRange": [
+      0.3,
+      0.9
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 3,
+      "cohesion": 0,
+      "polarization": 0.03
+    },
+    "structureAffinity": 0.85,
+    "habits": [
+      {
+        "type": "homeShelter",
+        "kind": "crevice",
+        "rangeBodyLengths": 3,
+        "visitChancePerMin": 0.8,
+        "visitDurationSec": [
+          8,
+          25
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Altolamprologus calvus",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=9542"
+      },
+      {
+        "title": "FishBase: Altolamprologus calvus",
+        "url": "https://www.fishbase.se/summary/Altolamprologus-calvus"
+      },
+      {
+        "title": "Nederlandse Vereniging van Cichlidenliefhebbers: Altolamprologus calvus",
+        "url": "https://www.nvcweb.nl/visbeschrijvingen/tanganjika/altolamprologus-calvus-poll-1978"
+      },
+      {
+        "title": "Koblmüller et al. (2017), Phylogeny and phylogeography of Altolamprologus",
+        "url": "https://link.springer.com/article/10.1007/s10750-016-2896-2"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Altolamprologus calvus",
+    "originRegionId": "east-africa",
+    "originRegionName": "東アフリカ",
+    "origin": "東アフリカのタンガニーカ湖南西部の固有種です。模式産地はザンビアの湖岸のチピンビです。この展示の黒色型は、産地を特定していません。",
+    "habitat": "岩の多い湖岸にすみ、薄い体で狭い岩の割れ目や浅い洞穴に入り込みます。この展示では、平たい岩が重なる岩場の隙間を使います。",
+    "temperament": "縄張りを持つ肉食のシクリッドで、主にエビなどの甲殻類を食べます。襲われると体を曲げ、硬い鱗のある体の側面を相手に向けて身を守るとされます。",
+    "movement": "岩場をゆっくり巡り、獲物に忍び寄ります。岩の割れ目に入っては、また出てきます。",
+    "aliases": [
+      "Lamprologus calvus",
+      "Tanganyika blackfin",
+      "カルブス"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cichliformes",
+      "orderJa": "シクリッド目",
+      "family": "Cichlidae",
+      "familyJa": "シクリッド科"
+    },
+    "adultSizeCm": 11,
+    "sizeNote": "記録上の最大は全長13.5cmです（雄か性別不明の個体）。ふつうの成魚の大きさは確かめられていないため、展示では全長11cm前後を想定しています。",
+    "distribution": "タンガニーカ湖の南西部に固有です。近縁の A. compressiceps とは、体高や頭の形の違いで区別されます。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "NT",
+      "assessedYear": 2025,
+      "note": "種全体の評価で、黒色型だけを対象にしたものではありません。"
+    },
+    "highlights": [
+      "黒い体に白い点が縦の列に並び、ひれにも点が続きます。",
+      "強く側扁した薄い体で、狭い岩の割れ目に出入りします。",
+      "底から少し離れた岩場をゆっくり泳ぎ、獲物に近づきます。",
+      "雌が洞穴などの隠れた場所に産卵し、卵を守るとされます。"
+    ]
+  }
+}

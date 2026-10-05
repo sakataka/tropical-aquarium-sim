@@ -1,0 +1,124 @@
+{
+  "id": "rachows-nothobranch",
+  "displayName": "ノソブランキウス・ラコビ",
+  "realBodyLengthCm": 4.5,
+  "swim": {
+    "tailBeatHz": 3.2
+  },
+  "visual": {
+    "fallbackColor": "#5d6ab8"
+  },
+  "sourceBodyBounds": {
+    "x": 176,
+    "y": 259,
+    "width": 1228,
+    "height": 495
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.4,
+    "maxY": 0.88
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.5,
+      "burst": 2.6
+    },
+    "turnRateRadPerSec": 3.0,
+    "restFraction": 0.25,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 1.8,
+      "cohesion": 0.35,
+      "polarization": 0.1
+    },
+    "structureAffinity": 0.4,
+    "habits": [
+      {
+        "type": "follow",
+        "chancePerMin": 0.8,
+        "durationSec": [
+          2,
+          6
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Nothobranchius rachovii, spid 13698",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=13698"
+      },
+      {
+        "title": "Shidlovskiy, Watters & Wildekamp (2010), Notes on Nothobranchius rachovii, Zootaxa 2724:37–57",
+        "url": "https://www.mapress.com/zootaxa/2010/f/z02724p057f.pdf"
+      },
+      {
+        "title": "FishBase field guide: Nothobranchius rachovii",
+        "url": "https://www.fishbase.se/Fieldguide/FieldGuideSummary.php?c_code=508&genusname=Nothobranchius&speciesname=rachovii"
+      },
+      {
+        "title": "Nagy & Watters (2019), IUCN assessment of Nothobranchius rachovii",
+        "url": "https://www.iucnredlist.org/species/141973907/58311523"
+      },
+      {
+        "title": "Bulavkina et al., Multifaceted Nothobranchius, Biochemistry (Moscow) 87:1563–1578 (2022; online 2023)",
+        "url": "https://link.springer.com/article/10.1134/S0006297922120136"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Nothobranchius rachovii",
+    "originRegionId": "east-africa",
+    "originRegionName": "東アフリカ",
+    "origin": "アフリカ南東部のモザンビークとマラウイ南部に分布します。模式産地はモザンビークのベイラです。この展示は成魚の雄です。",
+    "habitat": "雨期にできる小さな水たまりや湿地にすむ一年魚です。底は膨らむ粘土を含む黒い泥で、水はふつう濁っています。この展示では、キリフィッシュの水槽でオーストラーレと一緒に泳ぎます。",
+    "temperament": "雄どうしは順位をつくり、飼育下の群れでは攻撃によるけがも観察されています。順位の高い雄ほど大きく、色も鮮やかになります。",
+    "movement": "底近くから中層を小刻みに泳ぎます。雄どうしで追いかけ合うことがあります。",
+    "aliases": [
+      "Rachow's nothobranch",
+      "Bluefin notho",
+      "Rainbow killifish",
+      "ラコビ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cyprinodontiformes",
+      "orderJa": "カダヤシ目",
+      "family": "Nothobranchiidae",
+      "familyJa": "ノソブランキウス科"
+    },
+    "adultSizeCm": 4.5,
+    "sizeNote": "記録上の最大は全長6cmです（雄か性別不明の個体）。標本の雄では標準体長3.34cmが最大でした。展示では全長4.5cm前後を想定しています。",
+    "distribution": "モザンビークのプングウェ川・ザンベジ川の下流域と、マラウイ南部のシレ川下流域に分布します。2010年に、かつて本種とされた一部の個体群が別種に分けられました。",
+    "water": {
+      "salinity": "freshwater",
+      "temperatureC": [
+        26,
+        30
+      ],
+      "pH": [
+        5.8,
+        6.9
+      ]
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2019,
+      "note": "個体数の動向は不明で、生息地の面積や質の低下が報告されています。"
+    },
+    "highlights": [
+      "青い体に赤橙の網目模様が入り、尾びれは黒く縁取られます。",
+      "雨期の水たまりにすみ、卵は泥の中で乾季を越して、次の雨でかえります。",
+      "雄どうしは順位をつくり、上位の雄ほど大きく鮮やかになります。"
+    ]
+  }
+}

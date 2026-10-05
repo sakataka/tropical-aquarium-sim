@@ -1,0 +1,126 @@
+{
+  "id": "slender-bitterling",
+  "displayName": "ヤリタナゴ",
+  "realBodyLengthCm": 9,
+  "catalog": {
+    "scientificName": "Tanakia lanceolata",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "北海道と南九州を除く日本各地と、朝鮮半島西岸に分布します。千葉県の一部などには、ほかの地域から持ち込まれた集団もいます。",
+    "temperament": "繁殖期の雄は、成熟した雌がいると二枚貝のまわりを守り、近づくほかの雄を追い払います。ただし縄張りの雄が繁殖を独り占めできるわけではありません。",
+    "movement": "タナゴの中では細身の体つきです。繁殖期の雄は体を弓なりにして貝をのぞき込み、雌の腹を軽くつついて貝へ誘います。",
+    "habitat": "平野の小川や農業用水路の緩い流れ、湖岸の石や杭のまわりにすみます。マツカサガイなどの生きた二枚貝に卵を産みます。ここでは繁殖期の雄を展示しています。",
+    "aliases": [
+      "Slender bitterling",
+      "Yari-tanago",
+      "Acheilognathus lanceolatus",
+      "ボテジャコ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cypriniformes",
+      "orderJa": "コイ目",
+      "family": "Acheilognathidae",
+      "familyJa": "タナゴ科"
+    },
+    "adultSizeCm": 10,
+    "sizeNote": "全長10cmほどで、最大で全長13.1cmの記録があります。雄だけの典型的な大きさは確かめられていません。",
+    "distribution": "北海道と南九州を除く日本各地と、朝鮮半島西岸に分布します。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "note": "環境省レッドリスト2020では準絶滅危惧（NT）です。産卵に使う二枚貝の減少や外来種の侵入が心配されています。"
+    },
+    "highlights": [
+      "口の端に長い1対のひげがあり、タナゴの仲間では細身の体つきです。",
+      "繁殖期の雄は体の前半が赤みを帯び、背びれと尻びれの朱色が強くなります。",
+      "雄が二枚貝のまわりを守り、近づくほかの雄を追い払うことがあります。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.8,
+    "mouthAnchor": {
+      "x": 0.02,
+      "y": 0.58
+    }
+  },
+  "visual": {
+    "fallbackColor": "#8c9a86"
+  },
+  "sourceBodyBounds": {
+    "x": 148,
+    "y": 282,
+    "width": 1263,
+    "height": 447
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.3,
+    "maxY": 0.82
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.6,
+      "burst": 2.6
+    },
+    "turnRateRadPerSec": 2.7,
+    "restFraction": 0.12,
+    "depthRange": [
+      0.15,
+      0.8
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 2.0,
+      "cohesion": 0.4,
+      "polarization": 0.3
+    },
+    "structureAffinity": 0.35,
+    "habits": [
+      {
+        "type": "follow",
+        "chancePerMin": 0.8,
+        "durationSec": [
+          1,
+          3
+        ]
+      },
+      {
+        "type": "grazing",
+        "chancePerMin": 0.8,
+        "durationSec": [
+          2,
+          5
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "国立環境研究所 侵入生物DB — ヤリタナゴ",
+        "url": "https://www.nies.go.jp/biodiversity/invasive/DB/detail/50690.html"
+      },
+      {
+        "title": "石鍋壽寛・望月賢二・山下金義 1993 — 千葉県産ヤリタナゴの水槽中の繁殖行動",
+        "url": "https://www.chiba-muse.or.jp/NATURAL/cms/wp-content/uploads/2024/01/journal_02-2_05ishinabe.pdf"
+      },
+      {
+        "title": "2012 — Life History of Tanakia lanceolata in Irrigation Channel Network of the Iwaki River Basin in Northern Japan",
+        "url": "https://www.jstage.jst.go.jp/article/jsidre/80/3/80_233/_article/-char/en"
+      },
+      {
+        "title": "環境省レッドリスト2020 — 汽水・淡水魚類",
+        "url": "https://www.env.go.jp/press/files/jp/114457.pdf"
+      },
+      {
+        "title": "FishBase — Tanakia lanceolata",
+        "url": "https://www.fishbase.se/summary/Tanakia-lanceolata.html"
+      }
+    ]
+  }
+}

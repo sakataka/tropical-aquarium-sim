@@ -1,0 +1,108 @@
+{
+  "id": "japanese-dace",
+  "displayName": "ウグイ",
+  "realBodyLengthCm": 24,
+  "catalog": {
+    "scientificName": "Pseudaspius hakonensis",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "日本、朝鮮半島、サハリンなど東アジアの川と湖に分布します。一生を淡水で過ごすものに加え、河口や沿岸の海へ下る降海型もいます。",
+    "temperament": "雑食性で、水生昆虫の幼虫や藻類など何でも食べます。春の繁殖期には、川の砂礫底の瀬に大きな群れで集まって産卵します。",
+    "movement": "流線形の体で中層から底近くまでを広く泳ぎます。ここでは婚姻色の出ていない、ふだんの銀色の姿を展示しています。",
+    "habitat": "川の上流から下流、湖沼まで幅広い環境にすみます。強い酸性の湖に適応した集団が知られるなど、環境への順応の幅が大きい魚です。",
+    "aliases": [
+      "Japanese dace",
+      "Big-scaled redfin",
+      "Tribolodon hakonensis",
+      "ハヤ",
+      "アカハラ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cypriniformes",
+      "orderJa": "コイ目",
+      "family": "Leuciscidae",
+      "familyJa": "ウグイ科"
+    },
+    "adultSizeCm": 50,
+    "sizeNote": "最大で全長約50cmになると報告されていますが、ふつうに見られる成魚の大きさは調査で確かめられていません。表示の体長は展示用の目安です。",
+    "distribution": "日本、朝鮮半島、サハリンを含む東アジアの川、湖、沿岸に分布します。日本国内には移入された集団もいます。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2020,
+      "note": "神奈川県のレッドリストでは準絶滅危惧種とされています。"
+    },
+    "highlights": [
+      "暗い背と銀白色の腹をもつ、すらりとした紡錘形の体が見どころです。",
+      "繁殖期には体に3本の赤い縦帯が現れ、雄の頭には白い追星が出ます。",
+      "川に残るものと海へ下るものがいる、生活の幅の広い魚です。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.0
+  },
+  "visual": {
+    "fallbackColor": "#949688"
+  },
+  "sourceBodyBounds": {
+    "x": 160,
+    "y": 309,
+    "width": 1251,
+    "height": 442
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.22,
+    "maxY": 0.82
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.42,
+      "burst": 1.9
+    },
+    "turnRateRadPerSec": 2.1,
+    "restFraction": 0.12,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 2.0,
+      "cohesion": 0.5,
+      "polarization": 0.4
+    },
+    "structureAffinity": 0.2,
+    "habits": [],
+    "sources": [
+      {
+        "title": "神奈川県：淡水魚類図鑑 ウグイ",
+        "url": "https://www.pref.kanagawa.jp/docs/a4y/images/ugui.html"
+      },
+      {
+        "title": "マリンピア日本海：ウグイ",
+        "url": "https://www.marinepia.or.jp/picturebook/fish/entry-11063.html"
+      },
+      {
+        "title": "FishBase: Pseudaspius hakonensis",
+        "url": "https://www.fishbase.se/summary/Pseudaspius_hakonensis.html"
+      },
+      {
+        "title": "広瀬・平田・江嵜 (2006)：酸性湖とアルカリ湖にすむ魚の適応戦略",
+        "url": "https://www.jstage.jst.go.jp/article/jjse/5/2/5_2_69/_pdf"
+      },
+      {
+        "title": "森の中の水族館 (2026-06-16)：季節を体の変化で②",
+        "url": "https://morinonakanosuizokukan.kikyouya.co.jp/2026/06/16/%E5%AD%A3%E7%AF%80%E3%82%92%E4%BD%93%E3%81%AE%E5%A4%89%E5%8C%96%E3%81%A7%E2%91%A1/"
+      }
+    ]
+  }
+}

@@ -1,0 +1,126 @@
+{
+  "id": "bering-wolffish",
+  "displayName": "オオカミウオ",
+  "realBodyLengthCm": 80,
+  "catalog": {
+    "scientificName": "Anarhichas orientalis",
+    "originRegionId": "north-pacific",
+    "originRegionName": "北太平洋",
+    "origin": "日本北部からオホーツク海、ベーリング海、北極海の西部まで分布します。日本では新潟県と茨城県より北で見られます。",
+    "temperament": "岩場の底で暮らし、岩陰に体を隠して顔だけを出している姿が観察されています。本水槽では、岩場の大きな穴を住みかにして、そのまわりで過ごします。",
+    "movement": "泳ぎ方を詳しく調べた記録は見つかっていません。本水槽では、底近くを体をゆるくくねらせて進み、住みかの岩陰に戻って休みます。",
+    "habitat": "水深100mより浅い岩礁の海底。本水槽では、オホーツク海や北日本の岩礁にある大きな岩穴をイメージしています。",
+    "aliases": [
+      "Bering wolffish"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Perciformes",
+      "orderJa": "スズキ目",
+      "family": "Anarhichadidae",
+      "familyJa": "オオカミウオ科"
+    },
+    "adultSizeCm": 80,
+    "sizeNote": "アクアマリンふくしまの展示個体は体長約80cmで、野外では1mを超える個体もいます。FishBase の最大記録は全長112cmです。代表的な大きさは確かめられていません。",
+    "distribution": "北太平洋の日本北部、オホーツク海、ベーリング海から北極海西部に分布します。分布は連続しているとは限らず、北極海での記録は多くありません。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "NE",
+      "note": "IUCN では未評価です。カナダの COSEWIC は2002年にデータ不足（Data Deficient）と評価しています。"
+    },
+    "highlights": [
+      "岩陰から顔だけを出して過ごす姿。",
+      "大きな犬歯で、カニや巻貝など硬い殻をもつ生き物を食べます。",
+      "背びれとしりびれが長く、尾の付け根近くまで続きます。腹びれはありません。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 0.9,
+    "bodyWaveStart": 0.25,
+    "waveCount": 0.95,
+    "tailSweepRad": 0.38,
+    "verticalFlex": 0.02
+  },
+  "visual": {
+    "fallbackColor": "#6f645d"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.72,
+    "maxY": 0.94
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "undulate",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.12,
+      "burst": 0.4
+    },
+    "turnRateRadPerSec": 1.1,
+    "restFraction": 0.6,
+    "depthRange": [
+      0.35,
+      0.9
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.85,
+    "habits": [
+      {
+        "type": "homeShelter",
+        "kind": "cave",
+        "rangeBodyLengths": 3,
+        "visitChancePerMin": 1.0,
+        "visitDurationSec": [
+          30,
+          120
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.4,
+        "durationSec": [
+          20,
+          60
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "WoRMS: Anarhichas orientalis Pallas, 1814",
+        "url": "https://www.marinespecies.org/aphia.php?id=254511&p=taxdetails"
+      },
+      {
+        "title": "鳥羽水族館: オオカミウオ",
+        "url": "https://aquarium.co.jp/picturebook/anarhichas-orientalis.html"
+      },
+      {
+        "title": "アクアマリンふくしま: オオカミウオ",
+        "url": "https://www.aquamarine.or.jp/animals/wolffish/"
+      },
+      {
+        "title": "COSEWIC (2002): Assessment and Update Status Report on the Bering Wolffish in Canada",
+        "url": "https://wildlife-species.canada.ca/species-risk-registry/virtual_sara/files/cosewic/sr_bering_wolffish_e.pdf"
+      },
+      {
+        "title": "FishBase: Anarhichas orientalis",
+        "url": "https://www.fishbase.org/summary/3812"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 115,
+    "y": 275,
+    "width": 1342,
+    "height": 452
+  }
+}

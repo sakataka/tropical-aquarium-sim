@@ -1,0 +1,109 @@
+{
+  "id": "splash-tetra",
+  "displayName": "コペラ・アーノルディ",
+  "realBodyLengthCm": 4.5,
+  "swim": {
+    "tailBeatHz": 2.8
+  },
+  "visual": {
+    "fallbackColor": "#b98a4e"
+  },
+  "sourceBodyBounds": {
+    "x": 142,
+    "y": 217,
+    "width": 1298,
+    "height": 517
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.06,
+    "maxY": 0.3
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.55,
+      "burst": 2.6
+    },
+    "turnRateRadPerSec": 2.7,
+    "restFraction": 0.2,
+    "depthRange": [0.1, 0.75],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 2.2,
+      "cohesion": 0.42,
+      "polarization": 0.2
+    },
+    "structureAffinity": 0.35,
+    "habits": [
+      {
+        "type": "follow",
+        "chancePerMin": 0.6,
+        "durationSec": [3, 8]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Marinho & Menezes (2017), Taxonomic review of Copella with an identification key for the species",
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0183069"
+      },
+      {
+        "title": "Farias et al. (2025), Reproductive biology of Copella arnoldi, a terrestrial-spawning fish from the Amazon",
+        "url": "https://www.scielo.br/j/ni/a/QJQDyGdRhZ3zRH47nB7VQ3n/?lang=en"
+      },
+      {
+        "title": "U.S. Fish & Wildlife Service (2019 revision), Splash Tetra Ecological Risk Screening Summary",
+        "url": "https://www.fws.gov/sites/default/files/documents/Ecological-Risk-Screening-Summary-Splash-Tetra.pdf"
+      },
+      {
+        "title": "Seriously Fish: Copella arnoldi",
+        "url": "https://www.seriouslyfish.com/species/copella-arnoldi"
+      },
+      {
+        "title": "FishBase: Copella arnoldi",
+        "url": "https://www.fishbase.se/summary/copella-arnoldi.html"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Copella arnoldi",
+    "originRegionId": "south-america",
+    "originRegionName": "南米",
+    "origin": "南米のアマゾン川下流、ギアナ地方の沿岸の川、オリノコ川河口からベネズエラ北東岸に由来します。",
+    "temperament": "小型で穏やかな魚です。雄どうしは、大きい雄がほかの雄を追ったり、並んでひれと口を開いて誇示したりします。",
+    "movement": "水面近くを泳ぎ、落ちてきた小さな虫や動物プランクトンを食べます。ここでは成熟した雄を展示しています。",
+    "habitat": "小川や支流の岸沿い、増水期の浸水林に暮らし、水面に張り出した岸辺の植物の下を好みます。浮葉植物や、水面の上に張り出す葉のある水槽が似合います。",
+    "aliases": [
+      "Splash tetra",
+      "スプラッシュテトラ",
+      "Copeina arnoldi",
+      "Copella carsevennensis"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Characiformes",
+      "orderJa": "カラシン目",
+      "family": "Lebiasinidae",
+      "familyJa": "レビアシナ科"
+    },
+    "adultSizeCm": 4.2,
+    "sizeNote": "分類の再検討で調べられた雄の最大は標準体長4.2cmです。アマゾン下流の調査では、未成熟を含む雄80匹の平均が標準体長2.1cmでした。典型的な成魚の大きさは確定していません。",
+    "distribution": "アマゾン川下流、ギアナ地方の沿岸流域、オリノコ川河口、ベネズエラ北東岸に分布します。トリニダード・トバゴには持ち込まれた記録があります。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2020
+    },
+    "highlights": [
+      "雌雄がいっしょに水面から跳び上がり、水上の葉の裏に卵を産みつける。",
+      "雄は水中から尾びれで水をはね上げ、水上の卵が乾かないよう湿らせる。",
+      "雄は背びれや尻びれが長く、尾びれの上葉が下葉より長い。"
+    ]
+  }
+}

@@ -1,0 +1,115 @@
+{
+  "id": "sterlet",
+  "displayName": "コチョウザメ",
+  "realBodyLengthCm": 60,
+  "catalog": {
+    "scientificName": "Acipenser ruthenus",
+    "originRegionId": "eurasia",
+    "originRegionName": "ユーラシア",
+    "origin": "黒海、アゾフ海、カスピ海へ流れ込む川と、シベリアの川に分布します。ヴォルガ川、ドナウ川、オビ川、エニセイ川などが知られます。",
+    "temperament": "川や湖の底で暮らし、無脊椎動物を食べます。チョウザメの仲間では小型で、オオチョウザメとの交雑種ベステルの親としても知られます。",
+    "movement": "底近くをゆったり泳ぎ、口の前のひげで泥の中の獲物を探します。",
+    "habitat": "主に流れのある川に暮らします。本水槽では、丸い石と礫が続く冷たい大河の底をイメージしています。",
+    "aliases": [
+      "ステルレット",
+      "sterlet",
+      "Huso ruthenus",
+      "Sterletus ruthenus"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Acipenseriformes",
+      "orderJa": "チョウザメ目",
+      "family": "Acipenseridae",
+      "familyJa": "チョウザメ科"
+    },
+    "adultSizeCm": 60,
+    "sizeNote": "ドイツの飼育資料では、最終的に100cmほどまで育つとされます。典型的な成魚の大きさの資料は見つかっておらず、数値は展示用の目安です。寿命は20年以上とされます。",
+    "distribution": "黒海・アゾフ海・カスピ海に注ぐ川と、シベリアの河川系に分布します。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "EN",
+      "assessedYear": 2022,
+      "note": "2010年の危急（VU）から、2022年に絶滅危惧（EN）へ引き上げられました。ワシントン条約の附属書IIに掲載されています。"
+    },
+    "highlights": [
+      "吻の下のひげで、底の泥の中の餌を探ります。",
+      "体の側面に、50枚を超える骨板が一列に並びます。",
+      "底近くをゆったりと泳ぎ続けます。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 1.0,
+    "mouthAnchor": {
+      "x": 0.09,
+      "y": 0.76
+    }
+  },
+  "visual": {
+    "fallbackColor": "#897f71"
+  },
+  "sourceBodyBounds": {
+    "x": 67,
+    "y": 326,
+    "width": 1414,
+    "height": 330
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.7,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "steady",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.18,
+      "burst": 0.55
+    },
+    "turnRateRadPerSec": 1.2,
+    "restFraction": 0.2,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0.4,
+      "polarization": 0.25
+    },
+    "structureAffinity": 0.15,
+    "habits": [
+      {
+        "type": "bottomForage"
+      }
+    ],
+    "sources": [
+      {
+        "title": "鳥羽水族館：コチョウザメ",
+        "url": "https://aquarium.co.jp/picturebook/acipenser-ruthenus.html"
+      },
+      {
+        "title": "FAO: Sturgeon Hatchery Manual",
+        "url": "https://www.fao.org/docrep/017/i2144e/i2144e.pdf"
+      },
+      {
+        "title": "Bayerische Landesanstalt für Landwirtschaft: Sterlet husbandry sheet",
+        "url": "https://www.lfl.bayern.de/mam/cms07/ifi/dateien/dbl_sterlet.pdf"
+      },
+      {
+        "title": "North American Sturgeon and Paddlefish Society: IUCN Assessment 2022",
+        "url": "https://nasps-sturgeon.org/iucn-assessment-2022/"
+      },
+      {
+        "title": "Zoo Frankfurt: Sterlet",
+        "url": "https://www.zoo-frankfurt.de/de/tiere-von-a-z-detailansicht/animal/tiere-von-a-z-detailansicht/sterlet"
+      }
+    ]
+  }
+}

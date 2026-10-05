@@ -1,0 +1,118 @@
+{
+  "id": "spotted-gar",
+  "displayName": "スポッテッドガー",
+  "realBodyLengthCm": 60,
+  "catalog": {
+    "scientificName": "Lepisosteus oculatus",
+    "originRegionId": "north-america",
+    "originRegionName": "北米",
+    "origin": "北米のエリー湖・ミシガン湖南部の水系からミシシッピ川流域を経て、フロリダ西部からテキサスのメキシコ湾に注ぐ川まで分布します。",
+    "temperament": "魚や甲殻類を待ち伏せて捕らえます。繁殖期には、浅い草地で何匹かの雄が大きな雌を追います。",
+    "movement": "ふだんはゆっくり動き、獲物には横向きに素早く突進します。夜によく動き、暖かい日は水面近くにとどまることがあります。",
+    "habitat": "流れの弱い澄んだ後背水域や湖沼、湿地の、水草の多い所に暮らします。岸沿いの沈んだ枝の周りを好みます。本水槽では、北米のバイユーの丸太の近くにいます。",
+    "aliases": [
+      "spotted gar",
+      "ガー"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Lepisosteiformes",
+      "orderJa": "ガー目",
+      "family": "Lepisosteidae",
+      "familyJa": "ガー科"
+    },
+    "adultSizeCm": 60,
+    "sizeNote": "カナダで追跡された成魚37匹は全長51.5〜74.5cmでした。最大の報告値は資料によって大きく異なり、確かな最大は分かっていません。",
+    "distribution": "エリー湖とミシガン湖南部の水系からミシシッピ川流域、フロリダ西部からテキサスのメキシコ湾流入河川に分布します。",
+    "water": {
+      "salinity": "freshwater",
+      "temperatureC": [
+        11.4,
+        31.3
+      ]
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2018,
+      "note": "カナダでは2019年に絶滅危惧（Endangered）に引き上げられました。日本ではガー科全種が特定外来生物に指定されています（2018年4月から）。"
+    },
+    "highlights": [
+      "頭、体、ひれに黒い斑点が散らばり、体は硬い菱形の鱗に覆われます。",
+      "静かに止まった姿勢から、横向きに素早く突進して獲物を捕らえます。",
+      "水面で空気を取り込んで呼吸します。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 1.0
+  },
+  "visual": {
+    "fallbackColor": "#897e61"
+  },
+  "sourceBodyBounds": {
+    "x": 91,
+    "y": 335,
+    "width": 1360,
+    "height": 344
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.12,
+    "maxY": 0.75
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.13,
+      "burst": 0.5
+    },
+    "turnRateRadPerSec": 1.3,
+    "restFraction": 0.5,
+    "depthRange": [
+      0.3,
+      0.9
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 1.8,
+      "cohesion": 0,
+      "polarization": 0.04
+    },
+    "structureAffinity": 0.6,
+    "habits": [
+      {
+        "type": "airBreathing",
+        "breathsPerHour": [
+          4,
+          10
+        ],
+        "style": "rise"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Texas Parks and Wildlife: Spotted Gar",
+        "url": "https://tpwd.texas.gov/huntwild/wild/species/spottedgar/"
+      },
+      {
+        "title": "Fisheries and Oceans Canada 2024: Recovery Strategy and Action Plan for the Spotted Gar",
+        "url": "https://www.canada.ca/en/environment-climate-change/services/species-risk-public-registry/recovery-strategies/spotted-gar-2024.html"
+      },
+      {
+        "title": "Snedden, Kelso & Rutherford 1999: Diel and seasonal patterns of spotted gar movement and habitat use",
+        "url": "https://hero.epa.gov/reference/7972555/"
+      },
+      {
+        "title": "FishBase: Lepisosteus oculatus",
+        "url": "https://www.fishbase.se/summary/lepisosteus-oculatus.html"
+      },
+      {
+        "title": "環境省北海道地方環境事務所：平成30年4月1日からガーパイクの飼育や販売が規制されます",
+        "url": "https://hokkaido.env.go.jp/to_2018/30.html"
+      }
+    ]
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "id": "salmon-red-rainbowfish",
+  "displayName": "サーモンレッド・レインボーフィッシュ",
+  "realBodyLengthCm": 11,
+  "swim": {
+    "tailBeatHz": 2.0
+  },
+  "visual": {
+    "fallbackColor": "#c8553a"
+  },
+  "sourceBodyBounds": {
+    "x": 106,
+    "y": 189,
+    "width": 1371,
+    "height": 633
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.2,
+    "maxY": 0.7
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "steady",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.42,
+      "burst": 1.9
+    },
+    "turnRateRadPerSec": 2.1,
+    "restFraction": 0.14,
+    "depthRange": [
+      0.2,
+      0.85
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.9,
+      "cohesion": 0.5,
+      "polarization": 0.35
+    },
+    "structureAffinity": 0.4,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Eschmeyer Catalog Glossolepis incisa",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=14034"
+      },
+      {
+        "title": "ANGFA Glossolepis incisus",
+        "url": "https://rainbowfish.angfa.org.au/rainbowfish_species/glossolepis/glossolepis_incisus.html"
+      },
+      {
+        "title": "Siby et al. 2009 reproductive biology in Sentani Lake",
+        "url": "https://www.jurnal-iktiologi.org/index.php/jii/article/download/201/182"
+      },
+      {
+        "title": "Aquagreen Salmon Red Rainbowfish",
+        "url": "https://www.aquagreen.com.au/plant_data/Glossolepis_incisus.html"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Glossolepis incisa",
+    "originRegionId": "oceania",
+    "originRegionName": "オセアニア",
+    "origin": "インドネシア、西パプアのセンタニ湖に由来します。",
+    "temperament": "水草などのまわりに集まって暮らします。飼育では5匹以上で飼うことが勧められています。",
+    "movement": "体高のある体で、中層をゆったり泳ぎます。雄は成長とともに体とひれが鮮やかな赤になり、飼育下では朝に発色が強まる様子が見られるとされます。",
+    "habitat": "湖岸の水草や沈木のまわりに集まります。2023年の訪問では、水面近くを泳ぐ個体が見られました。本展示では明るい川の中層を群れで泳ぐ姿を見せています。",
+    "aliases": [
+      "Glossolepis incisus",
+      "Salmon-red rainbowfish",
+      "Red rainbowfish"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Atheriniformes",
+      "orderJa": "トウゴロウイワシ目",
+      "family": "Melanotaeniidae",
+      "familyJa": "メラノタエニア科"
+    },
+    "adultSizeCm": 12,
+    "sizeNote": "専門の資料では、雄の最大を15cm、雌はふつう12cm未満としています（全長か標準体長かは示されていません）。センタニ湖で卵の数を調べた成熟雌は、全長9.5〜12cmでした。",
+    "distribution": "インドネシア、西パプアのセンタニ湖に分布します。",
+    "water": {
+      "salinity": "freshwater",
+      "temperatureC": [
+        29,
+        32
+      ],
+      "pH": [
+        6.2,
+        6.8
+      ]
+    },
+    "keeping": "home",
+    "conservation": {
+      "note": "今回の調査では IUCN の評価本文を確認できていません。湖の汚染と移入魚が脅威として報告されています。"
+    },
+    "highlights": [
+      "成熟した雄の、鮮やかなサーモンレッドの体とひれ",
+      "雌は黄色がかったオリーブ色で、雄との色の違いがはっきりしている",
+      "水草や沈木のまわりに集まって泳ぐ"
+    ]
+  }
+}

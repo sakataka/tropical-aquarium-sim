@@ -1,0 +1,108 @@
+{
+  "id": "frilled-shark",
+  "displayName": "ラブカ",
+  "realBodyLengthCm": 150,
+  "swim": {
+    "tailBeatHz": 0.8,
+    "bodyWaveStart": 0.2,
+    "waveCount": 1.1,
+    "tailSweepRad": 0.35,
+    "verticalFlex": 0.03
+  },
+  "visual": {
+    "fallbackColor": "#5b4c46"
+  },
+  "sourceBodyBounds": {
+    "x": 60,
+    "y": 385,
+    "width": 1438,
+    "height": 240
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.35,
+    "maxY": 0.88
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "undulate",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.2,
+      "burst": 0.7
+    },
+    "turnRateRadPerSec": 1.2,
+    "restFraction": 0.25,
+    "depthRange": [
+      0.25,
+      0.9
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 3,
+      "cohesion": 0,
+      "polarization": 0.03
+    },
+    "structureAffinity": 0.2,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Australian Museum — Frill Shark",
+        "url": "https://australian.museum/learn/animals/fishes/frill-shark-chlamydoselachus-anguineus-garman-1884/"
+      },
+      {
+        "title": "Tanaka et al. (1990) — Reproductive biology from Suruga Bay",
+        "url": "https://www.jstage.jst.go.jp/article/jji1950/37/3/37_3_273/_article/-char/en"
+      },
+      {
+        "title": "Kubota, Shiobara & Kubodera (1991) — Food habits from Suruga Bay",
+        "url": "https://www.jstage.jst.go.jp/article/suisan1932/57/1/57_1_15/_article/-char/en"
+      },
+      {
+        "title": "アクアマリンふくしま — 深海ザメ ラブカの胎仔を展示しました",
+        "url": "https://www.aquamarine.or.jp/new-animals/frilled_shark180427/"
+      },
+      {
+        "title": "Eschmeyer's Catalog of Fishes — Chlamydoselachus anguineus",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=6555"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Chlamydoselachus anguineus",
+    "originRegionId": "worldwide",
+    "originRegionName": "世界の海",
+    "origin": "世界の海で、とびとびに記録されています。日本では駿河湾で多く研究されてきました。南アフリカのものは別の種とされています。",
+    "temperament": "胃の内容物の調査から、イカの仲間と魚を食べることが分かっています。群れ方や昼夜の活動は、よく分かっていません。",
+    "movement": "細長いウナギのような体に、6対のえら穴と、下葉のない尾びれを持ちます。健康な個体がどのように泳ぐかはまだよく調べられておらず、この展示では細長い体をゆるやかにくねらせる姿で表しています。",
+    "habitat": "沖合の大陸棚の縁から大陸斜面の上部にすみ、水深120〜1500mの記録があり、多くは500〜1000mで見つかります。生きた個体の展示はまれで、長く飼育するのはとても難しいとされます。",
+    "aliases": [
+      "Frilled shark",
+      "Frill-gilled shark"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Hexanchiformes",
+      "orderJa": "カグラザメ目",
+      "family": "Chlamydoselachidae",
+      "familyJa": "ラブカ科"
+    },
+    "adultSizeCm": 150,
+    "sizeNote": "典型的な成魚の大きさは確定しておらず、ここでの値は展示用の目安です。駿河湾の研究では、雄は全長110cm未満で成熟し、雌は140〜150cmで成熟します。最大は全長約196cmとされます。",
+    "distribution": "世界の海に断続的に分布します。日本では駿河湾の深海でよく研究されています。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "rarelyDisplayed",
+    "conservation": {
+      "status": "LC",
+      "note": "駿河湾では、サクラエビ漁の網や底刺網で混獲された記録があります。"
+    },
+    "highlights": [
+      "細長い体に、縁がひだのようになった6対のえら穴が並ぶ。",
+      "3本の長い尖りを持つ歯が並び、イカの仲間や魚を食べる。",
+      "妊娠期間は少なくとも3年半ほどと推定されている。"
+    ]
+  }
+}

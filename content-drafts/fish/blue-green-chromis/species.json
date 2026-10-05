@@ -1,0 +1,105 @@
+{
+  "id": "blue-green-chromis",
+  "displayName": "デバスズメダイ",
+  "realBodyLengthCm": 7,
+  "swim": {
+    "tailBeatHz": 3.2
+  },
+  "visual": {
+    "fallbackColor": "#4fd0c4"
+  },
+  "sourceBodyBounds": {
+    "x": 231,
+    "y": 240,
+    "width": 1186,
+    "height": 532
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.18,
+    "maxY": 0.6
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.8,
+      "burst": 3.2
+    },
+    "turnRateRadPerSec": 3.2,
+    "restFraction": 0.1,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "school",
+      "spacingBodyLengths": 1.2,
+      "cohesion": 0.75,
+      "polarization": 0.7
+    },
+    "structureAffinity": 0.45,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Fishes of Australia: Chromis viridis",
+        "url": "https://fishesofaustralia.net.au/home/species/329"
+      },
+      {
+        "title": "新潟市水族館マリンピア日本海: デバスズメダイ",
+        "url": "https://www.marinepia.or.jp/picturebook/fish/entry-11552.html"
+      },
+      {
+        "title": "沖縄美ら海水族館 2019-05-12 みんなでカウントダウンしました",
+        "url": "https://churaumi.okinawa/blog/1557624070/"
+      },
+      {
+        "title": "Habary et al. Adapt, move or die – how will tropical coral reef fishes cope with ocean warming?",
+        "url": "https://www.mbl.ku.dk/JFSteffensen/Publications/GCB_2016_Habary.pdf"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Chromis viridis",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "紅海・東アフリカから中部太平洋まで、インド太平洋に広く分布します。日本では南日本や琉球列島で見られます。",
+    "temperament": "枝状サンゴの上に数尾から数百尾の群れをつくり、水中の動物プランクトンを食べます。繁殖期には雄が砂礫に巣をつくり、卵を守ります。",
+    "movement": "サンゴの上の中層を群れでそろって泳ぎ、群れは細長く伸びたり、まとまったりと形を変えます。危険を感じると一斉にサンゴの枝の間へ隠れます。",
+    "habitat": "波の穏やかな礁湖や沿岸の礁で、枝状のミドリイシ類の上に群れます。この水景では、ミドリイシの茂みが隠れ家です。",
+    "aliases": [
+      "Blue-green chromis",
+      "Green chromis",
+      "オービカー"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Perciformes",
+      "orderJa": "スズキ目",
+      "family": "Pomacentridae",
+      "familyJa": "スズメダイ科"
+    },
+    "adultSizeCm": 7,
+    "sizeNote": "水族館の解説では全長7cmほどとされ、最大で全長10cmの報告があります。繁殖期には黄色から橙色を帯びる個体がいます。",
+    "distribution": "紅海・東アフリカからマルケサス諸島やツアモツ諸島まで。北は南日本・琉球列島、南はニューカレドニアやトンガに及びます。",
+    "water": {
+      "salinity": "marine",
+      "temperatureC": [
+        23.5,
+        30
+      ]
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2021
+    },
+    "highlights": [
+      "枝状サンゴの上で群れをつくり、群れの形が伸びたり縮んだりします。",
+      "危険を感じると、群れが一斉にサンゴの枝の間へ逃げ込みます。",
+      "光の当たり方で、体が青緑色にも銀色にも見えます。"
+    ]
+  }
+}

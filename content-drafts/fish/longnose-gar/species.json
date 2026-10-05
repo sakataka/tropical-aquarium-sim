@@ -1,0 +1,120 @@
+{
+  "id": "longnose-gar",
+  "displayName": "ロングノーズガー",
+  "realBodyLengthCm": 85,
+  "catalog": {
+    "scientificName": "Lepisosteus osseus",
+    "originRegionId": "north-america",
+    "originRegionName": "北米",
+    "origin": "北米東部に分布し、カナダのケベック州南部からアメリカ東部とミシシッピ水系を経て、リオグランデ水系のメキシコ北部まで見られます。",
+    "temperament": "成魚は主に魚を食べます。獲物を待ち伏せるか、ゆっくり近づいて横からくわえ、頭から飲み込みます。",
+    "movement": "流れの緩い淵で、水面近くに浮かぶように止まっていることがあります。昼も夜も餌をとり、夜によく動くとされます。水族館では、長い吻で底の小さな餌を拾う姿も見られます。",
+    "habitat": "大きな川の緩い淵や後背水域、三日月湖、貯水池に暮らし、河口の汽水にも入ります。本水槽では、沈んだ丸太とウキクサのある北米のバイユーをイメージしています。",
+    "aliases": [
+      "longnose gar",
+      "Needlenose Gar",
+      "ガー"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Lepisosteiformes",
+      "orderJa": "ガー目",
+      "family": "Lepisosteidae",
+      "familyJa": "ガー科"
+    },
+    "adultSizeCm": 90,
+    "sizeNote": "ミズーリ州の解説では、ふつう全長約90cm（3フィート）までです。サウスカロライナ州の調査では、半数が成熟する全長は雄で約30cm、雌で約51cmでした。",
+    "distribution": "カナダのケベック州南部からアメリカ東部、ミシシッピ水系を経て、メキシコ北部のリオグランデ水系まで分布します。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "IUCN の評価本文は確認できていません。日本ではガー科全種が特定外来生物に指定されています（2018年4月から）。"
+    },
+    "highlights": [
+      "吻の長さは、いちばん細い所の幅のおよそ15〜20倍あります。",
+      "長い吻で、底に落ちた小さな餌を拾います。",
+      "水面で空気を取り込み、うきぶくろを呼吸に使います。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 0.9,
+    "mouthAnchor": {
+      "x": 0.0,
+      "y": 0.4
+    }
+  },
+  "visual": {
+    "fallbackColor": "#8b8166"
+  },
+  "sourceBodyBounds": {
+    "x": 41,
+    "y": 356,
+    "width": 1458,
+    "height": 318
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.12,
+    "maxY": 0.8
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.12,
+      "burst": 0.45
+    },
+    "turnRateRadPerSec": 1.2,
+    "restFraction": 0.45,
+    "depthRange": [
+      0.2,
+      0.85
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 1.6,
+      "cohesion": 0,
+      "polarization": 0.05
+    },
+    "structureAffinity": 0.35,
+    "habits": [
+      {
+        "type": "airBreathing",
+        "breathsPerHour": [
+          4,
+          10
+        ],
+        "style": "rise"
+      },
+      {
+        "type": "bottomForage"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Florida Museum: Longnose Gar",
+        "url": "https://www.floridamuseum.ufl.edu/discover-fish/species-profiles/longnose-gar/"
+      },
+      {
+        "title": "Missouri Department of Conservation: Longnose Gar",
+        "url": "https://mdc.mo.gov/discover-nature/field-guide/longnose-gar"
+      },
+      {
+        "title": "Age, Growth, and Reproduction in Two Coastal Populations of Longnose Gars, 2016",
+        "url": "https://academic.oup.com/tafs/article/145/1/120/7819503"
+      },
+      {
+        "title": "National Aquarium: Longnose Gar",
+        "url": "https://aqua.org/explore/animals/longnose-gar"
+      },
+      {
+        "title": "環境省：特定外来生物等一覧",
+        "url": "https://www.env.go.jp/nature/intro/2outline/list.html"
+      }
+    ]
+  }
+}

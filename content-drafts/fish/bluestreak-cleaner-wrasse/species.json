@@ -1,0 +1,117 @@
+{
+  "id": "bluestreak-cleaner-wrasse",
+  "displayName": "ホンソメワケベラ",
+  "realBodyLengthCm": 10,
+  "swim": {
+    "tailBeatHz": 3.0
+  },
+  "visual": {
+    "fallbackColor": "#4f86c4"
+  },
+  "sourceBodyBounds": {
+    "x": 130,
+    "y": 357,
+    "width": 1305,
+    "height": 351
+  },
+  "preferredZone": {
+    "minX": 0.12,
+    "maxX": 0.88,
+    "minY": 0.3,
+    "maxY": 0.8
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.5,
+      "burst": 2
+    },
+    "turnRateRadPerSec": 2.9,
+    "restFraction": 0.12,
+    "depthRange": [
+      0.2,
+      0.75
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 2,
+      "cohesion": 0.35,
+      "polarization": 0.1
+    },
+    "structureAffinity": 0.8,
+    "habits": [
+      {
+        "type": "homeShelter",
+        "kind": "cave",
+        "rangeBodyLengths": 5,
+        "visitChancePerMin": 0.8,
+        "visitDurationSec": [
+          6,
+          16
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Australian Museum: Common Cleanerfish, Labroides dimidiatus",
+        "url": "https://australian.museum/learn/animals/fishes/common-cleanerfish-labroides-dimidiatus/"
+      },
+      {
+        "title": "名古屋港水族館: 水槽に浮かぶ物体の謎を追え！",
+        "url": "https://nagoyaaqua.jp/study/column/29839/"
+      },
+      {
+        "title": "Reef Life Survey: Labroides dimidiatus",
+        "url": "https://reeflife.org/species/labroides-dimidiatus/"
+      },
+      {
+        "title": "Dunkley et al. 2020. To clean or not to clean: Cleaning mutualism breakdown in a tidal environment",
+        "url": "https://orca.cardiff.ac.uk/id/eprint/129269/2/To%20clean%20or%20not%20to%20clean%20published%20version.pdf"
+      },
+      {
+        "title": "FishBase: Labroides dimidiatus",
+        "url": "https://www.fishbase.se/summary/Labroides-dimidiatus.html"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Labroides dimidiatus",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "紅海・東アフリカから太平洋のマルケサス諸島まで、北は南日本、南はロード・ハウ島まで、インド太平洋の熱帯から一部温帯の海に分布します。",
+    "temperament": "ほかの魚の体表や口の中、えらに付いた寄生虫をついばむ掃除魚です。粘液を食べることもあります。ペアや、1匹の雄と複数の雌の群れなどで暮らします。",
+    "movement": "体を上下に揺らすような独特の泳ぎで、訪れた魚を呼び寄せます。夜は口から出した粘液で体を包んで眠ります。",
+    "habitat": "岩礁やサンゴ礁。洞窟や岩の張り出しの下に「クリーニングステーション」を構えます。本水槽では、陰になった岩の張り出しを掃除場所にしています。",
+    "aliases": [
+      "Bluestreak cleaner wrasse",
+      "Common cleanerfish"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Perciformes",
+      "orderJa": "スズキ目",
+      "family": "Labridae",
+      "familyJa": "ベラ科"
+    },
+    "adultSizeCm": 11.5,
+    "sizeNote": "博物館の資料では11.5cmに成長するとされます（全長か標準体長かの記載なし）。最大記録は全長14cmです。",
+    "distribution": "紅海・東アフリカからマルケサス諸島などの太平洋の島々まで、インド太平洋に広く分布します。日本では南日本で見られます。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2008,
+      "note": "飼育環境に慣れにくい種と指摘されたことがあります。掃除魚を取り除いた小さな礁では、ほかの魚の種数や数が減ったという実験結果もあります。"
+    },
+    "highlights": [
+      "岩の張り出しの下の掃除場所を拠点に、その周りを行き来する",
+      "体を上下に揺らすダンスのような泳ぎで、ほかの魚を呼び寄せる",
+      "眠るときは、口から出した粘液の袋で体を包む",
+      "口は吻の先端にある。よく似たニセクロスジギンポは、口が吻の下面にある"
+    ]
+  }
+}

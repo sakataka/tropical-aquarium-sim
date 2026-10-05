@@ -1,0 +1,117 @@
+{
+  "id": "moorish-idol",
+  "displayName": "ツノダシ",
+  "realBodyLengthCm": 18,
+  "swim": {
+    "tailBeatHz": 1.6,
+    "mouthAnchor": {
+      "x": 0.0,
+      "y": 0.56
+    }
+  },
+  "visual": {
+    "fallbackColor": "#d9d2b0"
+  },
+  "sourceBodyBounds": {
+    "x": 314,
+    "y": 121,
+    "width": 1154,
+    "height": 771
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.35,
+    "maxY": 0.85
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.3,
+      "burst": 1.4
+    },
+    "turnRateRadPerSec": 2.0,
+    "restFraction": 0.15,
+    "depthRange": [
+      0.2,
+      0.85
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.6,
+      "cohesion": 0.5,
+      "polarization": 0.3
+    },
+    "structureAffinity": 0.6,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 2.5,
+        "durationSec": [
+          3,
+          8
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Zanclus cornutus",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=19834"
+      },
+      {
+        "title": "Australian Museum, Mark McGrouther: Moorish Idol",
+        "url": "https://australian.museum/learn/animals/fishes/moorish-idol-zanclus-cornutus-linnaeus-1758/"
+      },
+      {
+        "title": "マリンピア日本海：ツノダシ",
+        "url": "https://www.marinepia.or.jp/picturebook/fish/entry-11540.html"
+      },
+      {
+        "title": "海遊館：これは誰のエサ？（2026-01-13）",
+        "url": "https://www.kaiyukan.com/connect/notes/post-142.html"
+      },
+      {
+        "title": "FishBase: Zanclus cornutus summary 5950",
+        "url": "https://fishbase.se/summary/5950"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Zanclus cornutus",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "インド太平洋と東部太平洋に広く分布します。東アフリカからハワイ・イースター島まで、日本では南日本や小笠原で見られます。",
+    "temperament": "単独、ペア、ときには大きな群れと、状況によって集まり方が変わります。ツノダシ科の現生種はこの1種だけです。",
+    "movement": "長い吻を岩の割れ目に差し入れ、カイメンや石灰藻をつつくように食べます。水族館の水槽では、底寄りに群れることがあります。",
+    "habitat": "内湾の濁った礁湖からリーフフラット、外洋側の澄んだ岩礁やサンゴ礁まで、さまざまな礁に暮らします。",
+    "aliases": [
+      "Moorish idol",
+      "Zanclus canescens"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Acanthuriformes",
+      "orderJa": "ニザダイ目",
+      "family": "Zanclidae",
+      "familyJa": "ツノダシ科"
+    },
+    "adultSizeCm": 18,
+    "sizeNote": "典型的な成魚の大きさは分かっていません。最大で全長23cmの記録があります。成魚は目の前に小さな骨質の突起があり、雄のほうが大きいとされます。",
+    "distribution": "東アフリカからハワイ、イースター島まで。東部太平洋ではバハ・カリフォルニア南端からペルーまで分布します。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2015
+    },
+    "highlights": [
+      "白く長い鎌のような背びれと、太い黒い帯が目立ちます。",
+      "細長い口で、岩の表面をつつくように食べます。",
+      "飼育下で長く維持するのは難しいとされ、おもに公共の水族館で展示されます。"
+    ]
+  }
+}

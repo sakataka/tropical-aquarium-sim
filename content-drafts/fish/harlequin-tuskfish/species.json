@@ -1,0 +1,120 @@
+{
+  "id": "harlequin-tuskfish",
+  "displayName": "シチセンベラ",
+  "realBodyLengthCm": 20,
+  "swim": {
+    "tailBeatHz": 1.8,
+    "mouthAnchor": {
+      "x": 0.0,
+      "y": 0.53
+    }
+  },
+  "visual": {
+    "fallbackColor": "#e8693a"
+  },
+  "sourceBodyBounds": {
+    "x": 180,
+    "y": 229,
+    "width": 1217,
+    "height": 575
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.5,
+    "maxY": 0.9
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.35,
+      "burst": 1.6
+    },
+    "turnRateRadPerSec": 2.1,
+    "restFraction": 0.25,
+    "depthRange": [
+      0.25,
+      0.85
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 3,
+      "cohesion": 0,
+      "polarization": 0.03
+    },
+    "structureAffinity": 0.6,
+    "habits": [
+      {
+        "type": "bottomForage"
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 0.5,
+        "durationSec": [
+          10,
+          30
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Australian Museum — Harlequin Tuskfish",
+        "url": "https://australian.museum/learn/animals/fishes/harlequin-tuskfish-choerodon-fasciatus/"
+      },
+      {
+        "title": "Fishes of Australia — Choerodon fasciatus",
+        "url": "https://fishesofaustralia.net.au/home/species/1923"
+      },
+      {
+        "title": "JAMSTEC BISMaL — Lienardella fasciata accepted as Choerodon fasciatus",
+        "url": "https://www.godac.jamstec.go.jp/bismal/j/view/9024124"
+      },
+      {
+        "title": "Bob Goemans — Wrasses in My Aquarium, TFH",
+        "url": "https://www.tfhmagazine.com/articles/saltwater/wrasses-in-my-aquarium"
+      },
+      {
+        "title": "FishBase — Choerodon fasciatus",
+        "url": "https://www.fishbase.se/summary/Choerodon-fasciatus.html"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Choerodon fasciatus",
+    "originRegionId": "pacific",
+    "originRegionName": "太平洋",
+    "origin": "西太平洋。フィリピンからパプアニューギニア、北は台湾や日本南部、南はオーストラリア東部やニューカレドニアまで分布します。",
+    "temperament": "単独で縄張りをもつとする記述と、ペアで暮らすとする記述があり、社会のしくみははっきりしていません。飼育下では、近づいた魚を追うことがあります。",
+    "movement": "海底近くを泳ぎ回って、底の生き物を探します。飼育例では、水槽の隅の底で休む姿も記録されています。",
+    "habitat": "サンゴ礁に暮らし、貝やエビ・カニ、ゴカイ、ウニなどの底の生き物を食べます。",
+    "aliases": [
+      "Harlequin tuskfish",
+      "Lienardella fasciata"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Perciformes",
+      "orderJa": "スズキ目",
+      "family": "Labridae",
+      "familyJa": "ベラ科"
+    },
+    "adultSizeCm": 20,
+    "sizeNote": "典型的な成魚の大きさは分かっていません。最大で全長30cmの記録があります。成長すると体の後ろ半分が暗くなり、幼魚は褐色の帯と、背びれ・尻びれの目玉模様をもちます。",
+    "distribution": "フィリピンからパプアニューギニア、台湾、日本南部、オーストラリア東部、ロードハウ島、ニューカレドニアまでの西太平洋。日本では奄美大島に標本の記録があります。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2008
+    },
+    "highlights": [
+      "青い縁どりのある橙色の帯が8本あり、口元に青い牙が見えます。",
+      "海底近くで、貝やエビなどの底の生き物を探します。",
+      "ときどき、底に体をつけて休みます。"
+    ]
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "id": "threadfin-rainbowfish",
+  "displayName": "ニューギニア・レインボー",
+  "realBodyLengthCm": 6,
+  "swim": {
+    "tailBeatHz": 3.0
+  },
+  "visual": {
+    "fallbackColor": "#b39a5c"
+  },
+  "sourceBodyBounds": {
+    "x": 267,
+    "y": 286,
+    "width": 1183,
+    "height": 453
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.2,
+    "maxY": 0.6
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.45,
+      "burst": 2.8
+    },
+    "turnRateRadPerSec": 2.8,
+    "restFraction": 0.25,
+    "depthRange": [
+      0.2,
+      0.85
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 2.0,
+      "cohesion": 0.45,
+      "polarization": 0.25
+    },
+    "structureAffinity": 0.55,
+    "habits": [
+      {
+        "type": "follow",
+        "chancePerMin": 1.0,
+        "durationSec": [
+          3,
+          8
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Fishes of Australia — Iriatherina werneri",
+        "url": "https://fishesofaustralia.net.au/home/species/3639"
+      },
+      {
+        "title": "Adrian R. Tappin / ANGFA — Iriatherina werneri",
+        "url": "https://rainbowfish.angfa.org.au/old_site/Werneri.htm"
+      },
+      {
+        "title": "Seriously Fish — Iriatherina werneri",
+        "url": "https://www.seriouslyfish.com/species/iriatherina-werneri"
+      },
+      {
+        "title": "Trappett et al. 2013 — Extravagant ornaments of male threadfin rainbowfish are not costly for swimming",
+        "url": "https://besjournals.onlinelibrary.wiley.com/doi/10.1111/1365-2435.12097"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Iriatherina werneri",
+    "originRegionId": "oceania",
+    "originRegionName": "オセアニア",
+    "origin": "ニューギニア島南部とオーストラリア北部。オーストラリアではケープヨーク半島の川とノーザンテリトリーに、ニューギニアではメラウケ川からフライ川周辺の沿岸の川や氾濫原に分布します。",
+    "temperament": "雌や若い魚がまとまって泳ぐそばで、成熟した雄がひれを広げて誇示します。餌を素早く取る魚や、ひれをかじる魚との同居は避けたほうがよいとされます。",
+    "movement": "雄は扇のような第1背びれを立て、第2背びれと尻びれの糸のように長い鰭条をなびかせて雌に見せます。飼育実験では、長いひれを短くしても突進の速さに差は出ませんでした。",
+    "habitat": "植物の茂った緩やかな小川や、湿地の池、ビラボン（三日月湖）に暮らします。水深0.5〜1.25mほどの、植物の塊からあまり離れない開けた水面でよく見られます。本展示では水草の茂みのそばを泳ぐ姿を見せています。",
+    "aliases": [
+      "スレッドフィン・レインボー",
+      "ニューギニアレインボー",
+      "Threadfin rainbowfish",
+      "Featherfin rainbowfish"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Atheriniformes",
+      "orderJa": "トウゴロウイワシ目",
+      "family": "Melanotaeniidae",
+      "familyJa": "メラノタエニア科"
+    },
+    "adultSizeCm": 4,
+    "sizeNote": "最大は標準体長4cmとされます。北オーストラリアで採集された群れを使った実験では、雄80個体が標準体長2.6〜4.0cmでした。ひれの先まで含めた長さは分かっていません。",
+    "distribution": "ニューギニア島南部のメラウケ川からフライ川周辺と、オーストラリア北部のケープヨーク半島とノーザンテリトリーに分布します。",
+    "water": {
+      "salinity": "freshwater",
+      "temperatureC": [
+        23,
+        28
+      ],
+      "pH": [
+        5.2,
+        7.5
+      ]
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2019
+    },
+    "highlights": [
+      "雄が扇のような背びれを立て、長い鰭条をなびかせて雌に見せる",
+      "雄の長いひれは雌の注目を集める一方、泳ぎの速さはほとんど妨げないという研究がある",
+      "水草の茂みの近くを泳ぐ"
+    ]
+  }
+}

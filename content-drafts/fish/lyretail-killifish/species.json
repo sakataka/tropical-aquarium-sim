@@ -1,0 +1,110 @@
+{
+  "id": "lyretail-killifish",
+  "displayName": "アフィオセミオン・オーストラーレ",
+  "realBodyLengthCm": 4.5,
+  "swim": {
+    "tailBeatHz": 3.0
+  },
+  "visual": {
+    "fallbackColor": "#b8703e"
+  },
+  "sourceBodyBounds": {
+    "x": 150,
+    "y": 279,
+    "width": 1286,
+    "height": 421
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.15,
+    "maxY": 0.65
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.5,
+      "burst": 2.8
+    },
+    "turnRateRadPerSec": 3.0,
+    "restFraction": 0.3,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 2.0,
+      "cohesion": 0.3,
+      "polarization": 0.1
+    },
+    "structureAffinity": 0.65,
+    "habits": [
+      {
+        "type": "follow",
+        "chancePerMin": 0.6,
+        "durationSec": [
+          2,
+          5
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Haplochilus calliurus var. australis / Aphyosemion australe",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=60590"
+      },
+      {
+        "title": "van der Zee et al. 2007, Aplocheilidae chapter, The Fresh and Brackish Water Fishes of Lower Guinea, pp.229–231",
+        "url": "https://horizon.documentation.ird.fr/exl-doc/pleins_textes/ed-06-08/010044418.pdf"
+      },
+      {
+        "title": "American Killifish Association: The AKA Beginners Guide",
+        "url": "https://aka.org/aka-public-library/the-aka-beginners-guide/"
+      },
+      {
+        "title": "Tony Pinto: Admiring Aphyosemion australe, Tropical Fish Hobbyist",
+        "url": "https://www.tfhmagazine.com/articles/freshwater/admiring-aphyosemion-australe-full-article"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Aphyosemion australe",
+    "originRegionId": "central-africa",
+    "originRegionName": "中部アフリカ",
+    "origin": "中部アフリカの大西洋岸、ガボンからコンゴ共和国、アンゴラのカビンダにかけて分布します。模式産地はガボン北西部のカップ・ジャンティです。この展示は野生型の色の雄です。",
+    "habitat": "海岸近くの湿地や小川、熱帯雨林の冠水した場所にすみます。この展示では、落ち葉とモスのある森の小川を泳ぎます。",
+    "temperament": "同じくらいの大きさの穏やかな魚とは争いにくいとされます。飼育下では、大きな雄が小さな雄を追う様子が観察されています。",
+    "movement": "水草のまわりを小刻みに泳ぎ、ときどき止まります。飼育下では、餌を待って前面に寄り、ひれを広げて見せることがあります。",
+    "aliases": [
+      "Lyretail killifish",
+      "Cape Lopez lyretail",
+      "オーストラーレ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cyprinodontiformes",
+      "orderJa": "カダヤシ目",
+      "family": "Nothobranchiidae",
+      "familyJa": "ノソブランキウス科"
+    },
+    "adultSizeCm": 4.5,
+    "sizeNote": "地域の魚類誌に記された最大は全長5cmです。雄のふつうの大きさは確かめられていないため、展示では全長4.5cm前後を想定しています。雌は色が淡く、ひれも雄ほど伸びません。",
+    "distribution": "オゴウェ川の河口付近からカビンダにかけての、中部アフリカ大西洋岸の低地に分布します。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "note": "キリフィッシュの愛好団体の資料には LC とありますが、IUCN の評価そのものは確かめられていません。"
+    },
+    "highlights": [
+      "雄の尾びれは上下が白く長く伸びた竪琴の形になります。",
+      "赤褐色の体に赤い点が散り、体の前半は緑に光ります。",
+      "大きな雄が小さな雄を追い払うことがあります。",
+      "金色やオレンジの個体は、飼育下で作られた色の系統です。"
+    ]
+  }
+}

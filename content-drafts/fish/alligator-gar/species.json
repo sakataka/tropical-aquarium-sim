@@ -1,0 +1,113 @@
+{
+  "id": "alligator-gar",
+  "displayName": "アリゲーターガー",
+  "realBodyLengthCm": 180,
+  "catalog": {
+    "scientificName": "Atractosteus spatula",
+    "originRegionId": "north-america",
+    "originRegionName": "北米",
+    "origin": "アメリカのメキシコ湾岸からメキシコのベラクルス州まで分布します。かつてはミシシッピ川水系を、ミズーリ川やオハイオ川の下流までさかのぼっていました。",
+    "temperament": "成魚は主に魚を食べる大型の捕食魚です。ふだんは水中で静止して獲物を待ち、魚に一気に近づいて捕らえます。",
+    "movement": "水面近くにじっと浮かぶように止まり、ときどき短く突進します。水面で空気を飲み込み、うきぶくろを呼吸にも使います。",
+    "habitat": "大きな川や貯水池、沿岸の湾に暮らし、汽水にも入ります。本水槽では、沈んだ丸太とウキクサのある北米のバイユー（入り江の沼地）をイメージしています。",
+    "aliases": [
+      "alligator gar",
+      "gator gar",
+      "ガー"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Lepisosteiformes",
+      "orderJa": "ガー目",
+      "family": "Lepisosteidae",
+      "familyJa": "ガー科"
+    },
+    "adultSizeCm": 200,
+    "sizeNote": "博物館の解説では、大きな成魚は約2mになるとされます。2011年にミシシッピ州で捕獲された個体は約257cm、約148kgでした。183cmを超える個体の多くは雌です。",
+    "distribution": "アメリカのメキシコ湾岸からメキシコのベラクルス州に分布します。日本では野外で見つかった例はありますが、定着はしていないとされます。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "IUCN の評価（2019年）はありますが、区分の本文は確認できていません。原産地では、洪水域の変化や獲りすぎで減った地域があります。日本ではガー科全種が特定外来生物に指定されています（2018年4月から）。"
+    },
+    "highlights": [
+      "水中で静止して獲物を待ち、短く突進して捕らえます。",
+      "水面に上がって空気を飲み込み、呼吸に使います。",
+      "幅広く短い吻をもち、成魚の上あごには大きな歯が左右2列ずつ並びます。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 0.7
+  },
+  "visual": {
+    "fallbackColor": "#8b7f67"
+  },
+  "sourceBodyBounds": {
+    "x": 30,
+    "y": 295,
+    "width": 1481,
+    "height": 440
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.1,
+    "maxY": 0.62
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.1,
+      "burst": 0.3
+    },
+    "turnRateRadPerSec": 1.0,
+    "restFraction": 0.55,
+    "depthRange": [
+      0.3,
+      0.9
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0,
+      "polarization": 0.04
+    },
+    "structureAffinity": 0.3,
+    "habits": [
+      {
+        "type": "airBreathing",
+        "breathsPerHour": [
+          4,
+          10
+        ],
+        "style": "rise"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Texas Parks and Wildlife — Alligator Gar (Atractosteus spatula)",
+        "url": "https://tpwd.texas.gov/huntwild/wild/species/alg/"
+      },
+      {
+        "title": "Texas Parks and Wildlife — Unique Management for a Unique Fish",
+        "url": "https://tpwd.texas.gov/fishboat/fish/management/alligator-gar/unique-fish.phtml"
+      },
+      {
+        "title": "Florida Museum of Natural History — Alligator Gar",
+        "url": "https://www.floridamuseum.ufl.edu/discover-fish/species-profiles/alligator-gar/"
+      },
+      {
+        "title": "National Mississippi River Museum & Aquarium — Alligator Gar",
+        "url": "https://www.rivermuseum.org/animals/alligator-gar"
+      },
+      {
+        "title": "環境省 — 特定外来生物等一覧（魚類）",
+        "url": "https://www.env.go.jp/nature/intro/2outline/list.html"
+      }
+    ]
+  }
+}

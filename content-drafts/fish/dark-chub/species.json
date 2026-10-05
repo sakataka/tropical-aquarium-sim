@@ -1,0 +1,111 @@
+{
+  "id": "dark-chub",
+  "displayName": "カワムツ",
+  "realBodyLengthCm": 15,
+  "catalog": {
+    "scientificName": "Nipponocypris temminckii",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "中部地方より西の本州、四国、九州と朝鮮半島に分布します。新潟県などでは、琵琶湖産アユの放流に混じって持ち込まれ、定着しています。",
+    "temperament": "雄どうしには縄張りや順位があると報告されています。驚くと岩の間や岸のヤナギの下へ隠れます。",
+    "movement": "主に日中に活動し、中層をすばやく泳ぎます。大きな個体は淵にとどまり、流れてくる虫や落ちてくる虫を待つことがあります。",
+    "habitat": "淵や平瀬、流れの緩い所、水路などにすみ、ヤナギやツルヨシが茂る岸辺に多い魚です。",
+    "aliases": [
+      "Dark chub",
+      "Zacco temminckii",
+      "Candidia temminckii",
+      "ハエ",
+      "モツ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cypriniformes",
+      "orderJa": "コイ目",
+      "family": "Xenocyprididae",
+      "familyJa": "クセノキプリス科"
+    },
+    "adultSizeCm": 15,
+    "sizeNote": "資料により全長15cm、約20cmなどとされます。琵琶湖博物館の標本の最大は体長16.9cmです。",
+    "distribution": "中部地方より西の本州、四国、九州と朝鮮半島に分布します。地域によっては放流に混じって持ち込まれた集団がいます。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "note": "IUCN の評価は確認できていません。静岡県のレッドデータブック（2019）では、分布上注目種（要注目種 N-II）とされています。"
+    },
+    "highlights": [
+      "体側を通る太い暗青色の一本線と、胸びれ・腹びれの前の縁の薄い黄色が見分けどころです。",
+      "驚くと岩陰や岸の植物の陰へすばやく隠れます。",
+      "繁殖期の雄は頭の下面と腹が赤くなり、頭に追星が出ます。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.4
+  },
+  "visual": {
+    "fallbackColor": "#a29a6c"
+  },
+  "sourceBodyBounds": {
+    "x": 165,
+    "y": 250,
+    "width": 1238,
+    "height": 489
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.18,
+    "maxY": 0.7
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.5,
+      "burst": 2.4
+    },
+    "turnRateRadPerSec": 2.5,
+    "restFraction": 0.16,
+    "depthRange": [
+      0.25,
+      0.9
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 2.4,
+      "cohesion": 0.4,
+      "polarization": 0.25
+    },
+    "structureAffinity": 0.55,
+    "habits": [
+      {
+        "type": "follow",
+        "chancePerMin": 0.6,
+        "durationSec": [
+          1.5,
+          3.5
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "静岡県レッドデータブック2019 動物編：カワムツ（板井隆彦）p.209",
+        "url": "https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/686/2-5_fish02_rdbshiz2019ani.pdf"
+      },
+      {
+        "title": "琵琶湖博物館電子図鑑：カワムツ、伊藤玄・川瀬成吾",
+        "url": "https://jmapps.ne.jp/ikimono/det.html?data_id=7922"
+      },
+      {
+        "title": "国立環境研究所 侵入生物DB：カワムツ",
+        "url": "https://www.nies.go.jp/biodiversity/invasive/DB/detail/50720.html"
+      },
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Nipponocypris temminckii",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=51779"
+      }
+    ]
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "id": "pacific-hatchetfish",
+  "displayName": "ナガムネエソ",
+  "realBodyLengthCm": 7,
+  "swim": {
+    "tailBeatHz": 2.6,
+    "tailSweepRad": 0.3,
+    "verticalFlex": 0.01
+  },
+  "visual": {
+    "fallbackColor": "#8e979e"
+  },
+  "sourceBodyBounds": {
+    "x": 238,
+    "y": 229,
+    "width": 1136,
+    "height": 563
+  },
+  "preferredZone": {
+    "minX": 0.1,
+    "maxX": 0.9,
+    "minY": 0.1,
+    "maxY": 0.5
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.4,
+      "burst": 2.0
+    },
+    "turnRateRadPerSec": 2.4,
+    "restFraction": 0.35,
+    "depthRange": [
+      0.15,
+      0.8
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0.3,
+      "polarization": 0.1
+    },
+    "structureAffinity": 0,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Argyropelecus affinis",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=10968"
+      },
+      {
+        "title": "宮崎大学水産科学講座：魚類名一覧",
+        "url": "https://www.cc.miyazaki-u.ac.jp/yuk/research/onegai20080201.html"
+      },
+      {
+        "title": "NAFO, Fahay: Early Stages of Fishes in the Western North Atlantic Ocean, p.288–289",
+        "url": "https://www.nafo.int/Portals/0/PDFs/fahay/p252-305.pdf?ver=2016-02-19-060546-060"
+      },
+      {
+        "title": "FishBase field guide: Argyropelecus affinis",
+        "url": "https://www.fishbase.se/Fieldguide/FieldGuideSummary.php?c_code=192&genusname=Argyropelecus&speciesname=affinis"
+      },
+      {
+        "title": "McFall-Ngai et al. (1986) Patterns of pigmentation in the eye lens of Argyropelecus affinis",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/3806437/"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Argyropelecus affinis",
+    "originRegionId": "worldwide",
+    "originRegionName": "世界の海",
+    "origin": "世界の熱帯から亜熱帯の外洋に分布し、大西洋、インド洋、太平洋で記録されています。北西大西洋では、カナダのノバスコシア沖からカリブ海まで知られます。",
+    "temperament": "小さな個体はカイアシ類や貝形虫を、大きな個体はオキアミやサルパ、ヤムシの仲間を食べると記載されています。群れ方は分かっていません。",
+    "movement": "外洋の中層を泳ぎ、短い距離の日周鉛直移動をすることがあります。北西大西洋では、昼は水深300〜600m、夜は100〜300mで記録されています。",
+    "habitat": "外洋の中深層にすみ、平たく薄い体の腹側に発光器が並びます。よく似た名前のテンガンムネエソは、近縁の Argyropelecus hemigymnus の和名です。",
+    "aliases": [
+      "Pacific hatchetfish",
+      "Deepsea hatchetfish",
+      "Slender hatchetfish"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Stomiiformes",
+      "orderJa": "ワニトカゲギス目",
+      "family": "Sternoptychidae",
+      "familyJa": "ムネエソ科"
+    },
+    "adultSizeCm": 7,
+    "sizeNote": "典型的な成魚の大きさは確定しておらず、ここでの値は展示用の目安です。研究に使われた45標本は標準体長1.1〜8.8cmで、FishBaseでは最大で標準体長8.4cmとされます。",
+    "distribution": "大西洋、インド洋、太平洋の熱帯から亜熱帯の外洋の中深層に分布します。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "rarelyDisplayed",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2014
+    },
+    "highlights": [
+      "腹の縁に、下を向いた発光器が並ぶ。",
+      "頭の上に、上を向いた筒形の目を持つ。",
+      "昼と夜で泳ぐ深さを変えることがある。"
+    ]
+  }
+}

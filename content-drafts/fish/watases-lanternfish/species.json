@@ -1,0 +1,103 @@
+{
+  "id": "watases-lanternfish",
+  "displayName": "ハダカイワシ",
+  "realBodyLengthCm": 13,
+  "swim": {
+    "tailBeatHz": 2.2
+  },
+  "visual": {
+    "fallbackColor": "#7c7a72"
+  },
+  "sourceBodyBounds": {
+    "x": 171,
+    "y": 294,
+    "width": 1244,
+    "height": 432
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.55,
+    "maxY": 0.9
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.5,
+      "burst": 2.0
+    },
+    "turnRateRadPerSec": 2.2,
+    "restFraction": 0.2,
+    "depthRange": [
+      0.2,
+      0.85
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 2,
+      "cohesion": 0.35,
+      "polarization": 0.15
+    },
+    "structureAffinity": 0,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Zhang & Guo2024 — Age, growth and feeding habit of Watases lanternfish",
+        "url": "https://www.researchgate.net/publication/381286862_Age_growth_and_feeding_habit_of_Watases_lanternfish_Diaphus_watasei_Pisces_Myctophidae_in_the_East_China_Sea"
+      },
+      {
+        "title": "Gong et al.2018 — Fishery-relevant biology in northern South China Sea",
+        "url": "https://www.researchgate.net/publication/328489038_A_preliminary_study_on_the_fishery-relevant_biology_of_Diaphus_watasei_in_the_continental_slope_of_the_northern_South_China_Sea"
+      },
+      {
+        "title": "Paitio et al.2020 — Photophore reflector in Diaphus watasei",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/31706576/"
+      },
+      {
+        "title": "久保田正・佐藤武 — 駿河湾の深海魚21 ハダカイワシその1",
+        "url": "https://spmnh.jp/news/news74/74p11.pdf"
+      },
+      {
+        "title": "東京都島しょ農林水産総合センター — 珍魚採集報告126",
+        "url": "https://www.ifarc.metro.tokyo.lg.jp/archive/27,15192,55,228.html"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Diaphus watasei",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "インド西太平洋に分布し、東アフリカやマダガスカルから、台湾、日本の南部、東シナ海や南シナ海、インドネシアまで記録があります。",
+    "temperament": "大きな個体は魚をよく食べ、東シナ海の調査ではキュウリエソと同定された小魚が胃の中身の多くを占めていました。頭足類や甲殻類も食べます。群れ方は分かっていません。",
+    "movement": "南シナ海の研究では、成長した個体は主に海底近くで暮らし、昼と夜で大きく深さを変える移動はしないとされています。駿河湾では、夜に浅いところへ上がるという解説もあります。",
+    "habitat": "大陸棚から斜面の上の、中深層から海底近くにすみ、東シナ海では水深200〜500mで採集されました。和名のハダカイワシは、科全体の呼び名としても使われます。生きた個体の長期展示は確認されていません。",
+    "aliases": [
+      "Watase's lanternfish"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Myctophiformes",
+      "orderJa": "ハダカイワシ目",
+      "family": "Myctophidae",
+      "familyJa": "ハダカイワシ科"
+    },
+    "adultSizeCm": 13,
+    "sizeNote": "東シナ海で採集された成魚452個体は標準体長9.1〜14.7cmでした。八丈島周辺で採集された標本は全長14.2cmで、最大の記録は標準体長17cmとされます。",
+    "distribution": "インド西太平洋の東アフリカ、マダガスカルから、台湾、日本南部、東シナ海、南シナ海、インドネシア、オーストラリア北西部まで分布します。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "rarelyDisplayed",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2018
+    },
+    "highlights": [
+      "腹側と体側に、真珠のような発光器が並ぶ。",
+      "発光器の内側にはグアニンの結晶でできた反射層があり、光を腹側へ向ける。",
+      "成長すると海底近くで暮らし、魚を多く食べるようになる。"
+    ]
+  }
+}

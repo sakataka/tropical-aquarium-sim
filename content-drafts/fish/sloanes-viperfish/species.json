@@ -1,0 +1,108 @@
+{
+  "id": "sloanes-viperfish",
+  "displayName": "ホウライエソ",
+  "realBodyLengthCm": 25,
+  "swim": {
+    "tailBeatHz": 1.8
+  },
+  "visual": {
+    "fallbackColor": "#5f666e"
+  },
+  "sourceBodyBounds": {
+    "x": 132,
+    "y": 306,
+    "width": 1300,
+    "height": 414
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.35,
+    "maxY": 0.85
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.12,
+      "burst": 1.0
+    },
+    "turnRateRadPerSec": 1.6,
+    "restFraction": 0.5,
+    "depthRange": [
+      0.25,
+      0.85
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 3,
+      "cohesion": 0,
+      "polarization": 0.02
+    },
+    "structureAffinity": 0,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Eduardo et al. (2020), Trophic ecology, habitat, and migratory behaviour of the viperfish Chauliodus sloani reveal a key mesopelagic player",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7710699/"
+      },
+      {
+        "title": "Bray (2023), Chauliodus sloani, Fishes of Australia",
+        "url": "https://fishesofaustralia.net.au/home/species/1808"
+      },
+      {
+        "title": "Australian Museum: Sloane's Viperfish",
+        "url": "https://australian.museum/learn/animals/fishes/sloanes-viperfish-chauliodus-sloani/"
+      },
+      {
+        "title": "Comitato Italiano IUCN: Chauliodus sloani, Lista Rossa 2017",
+        "url": "https://www.iucn.it/scheda.php?id=285123366"
+      },
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Chauliodus sloani, species 11153",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=11153"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Chauliodus sloani",
+    "originRegionId": "worldwide",
+    "originRegionName": "世界の海",
+    "origin": "地中海や紅海を含む、世界の熱帯から温帯の海に分布します。",
+    "temperament": "大きな口と長い牙で、魚や甲殻類を捕らえます。ブラジル沖の調査では、胃の中身は主にハダカイワシ類などの魚でした。背びれの長い軟条の先の発光器で、獲物を誘う可能性も考えられています。",
+    "movement": "外洋の深い中層を泳ぎます。ブラジル沖では、昼は水深700〜900m、夜は600〜700mに多く、夜に浅いところへ上がるのは一部の個体だけと考えられています。",
+    "habitat": "外洋の中深層から漸深層にすみ、ブラジル沖の調査では水深400〜1000m、水温5〜12℃のところで採集されました。生きた個体を長く飼育した例は確認されていません。",
+    "aliases": [
+      "Sloane's viperfish",
+      "Manylight viperfish"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Stomiiformes",
+      "orderJa": "ワニトカゲギス目",
+      "family": "Stomiidae",
+      "familyJa": "ワニトカゲギス科"
+    },
+    "adultSizeCm": 25,
+    "sizeNote": "典型的な成魚の大きさは確定しておらず、ここでの値は展示用の目安です。最大は標準体長35cmとされ、ブラジル沖の調査で分析された大型の10個体は標準体長の平均が18.1cmでした。",
+    "distribution": "地中海と紅海を含む、世界の熱帯から温帯の海の中深層から漸深層に分布します。",
+    "water": {
+      "salinity": "marine",
+      "temperatureC": [
+        5,
+        12
+      ]
+    },
+    "keeping": "rarelyDisplayed",
+    "conservation": {
+      "status": "LC",
+      "note": "2015年に公表された評価によります。イタリアの地域評価（2017年）でもLCです。"
+    },
+    "highlights": [
+      "口を閉じても外にはみ出すほど、長い牙を持つ。",
+      "背びれの最初の軟条が長く伸び、先端に発光器がある。",
+      "体の横に、発光器を含む六角形の模様が並ぶ。"
+    ]
+  }
+}

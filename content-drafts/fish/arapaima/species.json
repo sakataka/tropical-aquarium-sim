@@ -1,0 +1,116 @@
+{
+  "id": "arapaima",
+  "displayName": "ピラルク",
+  "realBodyLengthCm": 220,
+  "catalog": {
+    "scientificName": "Arapaima gigas",
+    "originRegionId": "south-america",
+    "originRegionName": "南米",
+    "origin": "南米アマゾン川水系のブラジル、コロンビア、エクアドル、ペルーに分布します。ピラルクの仲間を複数種に分ける見解もあり、種の範囲はまだ議論が続いています。",
+    "temperament": "主に魚を食べる大型魚です。大きな口を一気に開き、近くの餌を水ごと吸い込みます。",
+    "movement": "広い水中を、大きな体でゆっくり巡ります。うきぶくろで空気を吸うため、ときどき水面に口を出して息をし、また沈んでいきます。",
+    "habitat": "アマゾンの氾濫原の、流れが緩く酸素の少ない水域に暮らし、増水期には水に浸かった森へ入ることもあります。本水槽では、沈んだ大木のある広い氾濫原の湖をイメージしています。",
+    "aliases": [
+      "ピラルクー",
+      "パイシェ",
+      "pirarucu",
+      "paiche"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Osteoglossiformes",
+      "orderJa": "アロワナ目",
+      "family": "Arapaimidae",
+      "familyJa": "アラパイマ科"
+    },
+    "adultSizeCm": 230,
+    "sizeNote": "動物園の解説では、よく見られるのは2.2〜2.4m、最大で3mとされます。全長か標準体長かは示されていません。",
+    "distribution": "アマゾン川水系のブラジル、コロンビア、エクアドル、ペルーに分布します。ブラジル国内でも、もともといなかった水系に持ち込まれた所があります。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "DD",
+      "assessedYear": 1996,
+      "note": "ワシントン条約の附属書IIに掲載されています。IUCN の区分は分類台帳の引用で、評価の原文は確認できていません。"
+    },
+    "highlights": [
+      "ときどき水面に口を出して、空気を取り込みます。",
+      "大きな口を開いて、水ごと餌を吸い込みます。",
+      "頭は銅色がかった緑で、体の後ろと尾に赤みが出ます。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 0.6
+  },
+  "visual": {
+    "fallbackColor": "#715445"
+  },
+  "sourceBodyBounds": {
+    "x": 77,
+    "y": 348,
+    "width": 1393,
+    "height": 331
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.18,
+    "maxY": 0.85
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "steady",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.12,
+      "burst": 0.35
+    },
+    "turnRateRadPerSec": 1.0,
+    "restFraction": 0.3,
+    "depthRange": [
+      0.2,
+      0.85
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0,
+      "polarization": 0.02
+    },
+    "structureAffinity": 0.3,
+    "habits": [
+      {
+        "type": "airBreathing",
+        "breathsPerHour": [
+          4,
+          10
+        ],
+        "style": "rise"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Smithsonian National Zoo — Arapaima",
+        "url": "https://nationalzoo.si.edu/animals/arapaima"
+      },
+      {
+        "title": "海遊館 生きもの図鑑 — ピラルク",
+        "url": "https://www.kaiyukan.com/connect/encyclopedia/192.html"
+      },
+      {
+        "title": "Eschmeyer's Catalog of Fishes — Arapaima species records",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?genus=Arapaima&tbl=species"
+      },
+      {
+        "title": "Magalhães et al. 2026 — Integrative taxonomy data are reconciled around Arapaima gigas for the Brazilian Amazon",
+        "url": "https://www.scielo.br/j/ni/a/cDjT7VPC5m4yxnnLpBW95vw/?format=html&lang=en&ilang=en"
+      },
+      {
+        "title": "Ibama 2026-03-23 — Autorizada pesca do pirarucu fora de área de ocorrência natural para controle populacional",
+        "url": "https://www.gov.br/ibama/pt-br/assuntos/notas/2026/autorizada-pesca-do-pirarucu-fora-de-area-de-ocorrencia-natural-para-controle-populacional"
+      }
+    ]
+  }
+}
