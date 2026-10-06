@@ -46,6 +46,14 @@
       {
         "title": "Seriously Fish: Epiplatys annulatus",
         "url": "https://www.seriouslyfish.com/species/epiplatys-annulatus/"
+      },
+      {
+        "title": "FishBase: Epiplatys annulatus (Banded panchax)",
+        "url": "https://fishbase.se/summary/9821"
+      },
+      {
+        "title": "Wikipedia: Clown killi",
+        "url": "https://en.wikipedia.org/wiki/Clown_killi"
       }
     ]
   },
@@ -62,6 +70,31 @@
       "Clown Killifish",
       "ロケットキリー",
       "Pseudepiplatys annulatus"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cyprinodontiformes",
+      "orderJa": "カダヤシ目",
+      "family": "Nothobranchiidae",
+      "familyJa": "ノソブランキウス科"
+    },
+    "adultSizeCm": 3.5,
+    "sizeNote": "最大は標準体長35mmとされます。FishBase では最大全長4.0cmです。雄は雌より大きく、ひれも長く伸びます。",
+    "distribution": "西アフリカの沿岸低地に分布します。ギニア南部とシエラレオネから、リベリア北西部（モンロビア周辺）までです。タイプ産地はシエラレオネ南部のモカ川水系です。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2020
+    },
+    "highlights": [
+      "黄みがかった地色に、幅の広い黒い横帯が4本入ります。",
+      "雄は雌より色が鮮やかで、ひれが長く伸びます。",
+      "雄どうしは優位を争って頻繁に張り合いますが、相手を傷つけることはほとんどありません。",
+      "ある程度まとまって暮らす魚で、水草の多い浅い水辺にすみます。"
     ]
   }
 }

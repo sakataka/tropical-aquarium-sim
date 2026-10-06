@@ -16,6 +16,40 @@
       "Pseudotropheus saulosi"
     ]
   },
+  "profile": {
+    "taxonomy": {
+      "order": "Cichliformes",
+      "orderJa": "シクリッド目",
+      "family": "Cichlidae",
+      "familyJa": "シクリッド科"
+    },
+    "adultSizeCm": 8.6,
+    "sizeNote": "FishBase、Wikipedia とも最大全長8.6cm（FishBase では雄または性別不明）です。",
+    "distribution": "マラウイ湖の固有種で、湖内のタイワン・リーフ（Taiwan Reef）にのみ分布します。",
+    "water": {
+      "salinity": "freshwater",
+      "temperatureC": [
+        23,
+        27
+      ],
+      "pH": [
+        7.4,
+        8.4
+      ]
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "CR",
+      "assessedYear": 2018,
+      "note": "評価年は FishBase の記載（2018年5月22日）です。IUCN 公式サイトは直接取得できませんでした。"
+    },
+    "highlights": [
+      "雄は青い体に黒い縦縞が入ります。雌と幼魚は黄色です。",
+      "堆積物の少ない岩場の、流れの強い上部に大きな群れを作り、岩の表面の付着物をついばみます。",
+      "雌が卵を口の中で守るマウスブルーダーで、稚魚が泳げるようになるまで13〜18日ほどかかります。",
+      "優位でない雄は淡い青で、雌のような色をしたまま群れに加わることがあります。"
+    ]
+  },
   "swim": {
     "tailBeatHz": 2.3,
     "bodyWaveStart": 0.5,
@@ -59,13 +93,20 @@
       {
         "type": "grazing",
         "chancePerMin": 1.2,
-        "durationSec": [3, 7]
+        "durationSec": [
+          3,
+          7
+        ]
       }
     ],
     "sources": [
       {
         "title": "FishBase: Chindongo saulosi",
         "url": "https://www.fishbase.se/summary/Chindongo-saulosi.html"
+      },
+      {
+        "title": "Wikipedia: Pseudotropheus saulosi",
+        "url": "https://en.wikipedia.org/wiki/Pseudotropheus_saulosi"
       }
     ]
   },

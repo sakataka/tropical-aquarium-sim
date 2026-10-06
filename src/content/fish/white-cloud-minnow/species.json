@@ -29,7 +29,10 @@
     },
     "turnRateRadPerSec": 3.2,
     "restFraction": 0.06,
-    "depthRange": [0.1, 0.8],
+    "depthRange": [
+      0.1,
+      0.8
+    ],
     "social": {
       "grouping": "shoal",
       "spacingBodyLengths": 1.8,
@@ -41,7 +44,10 @@
       {
         "type": "follow",
         "chancePerMin": 0.8,
-        "durationSec": [1.2, 2.8]
+        "durationSec": [
+          1.2,
+          2.8
+        ]
       }
     ],
     "sources": [
@@ -52,6 +58,18 @@
       {
         "title": "Seriously Fish: Tanichthys albonubes",
         "url": "https://www.seriouslyfish.com/species/tanichthys-albonubes/"
+      },
+      {
+        "title": "Wikipedia: White Cloud Mountain minnow",
+        "url": "https://en.wikipedia.org/wiki/White_Cloud_Mountain_minnow"
+      },
+      {
+        "title": "Wikipedia: Tanichthys",
+        "url": "https://en.wikipedia.org/wiki/Tanichthys"
+      },
+      {
+        "title": "Chan & Chen 2009 — Discovery of Tanichthys albonubes Lin 1932 on Hainan Island, and Notes on Its Ecology (Zoological Research)",
+        "url": "https://www.zoores.ac.cn/en/article/doi/10.3724/SP.J.1141.2009.02209"
       }
     ]
   },
@@ -66,6 +84,31 @@
     "aliases": [
       "white-cloud-minnow",
       "Tanichthys albonubes"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cypriniformes",
+      "orderJa": "コイ目",
+      "family": "Tanichthyidae",
+      "familyJa": "タニクチス科"
+    },
+    "adultSizeCm": 4,
+    "sizeNote": "標準体長の最大は4cm（Seriously Fish）で、FishBase でも最大全長4.0cmです。成熟した雌は腹が丸く、雄より少し大きいことが多いとされます。",
+    "distribution": "中国南部（広東省、海南島）とベトナム北東部に自然分布します。基準産地は広州近郊の白雲山で、本種は珠江デルタ周辺に限られると考えられています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "DD",
+      "assessedYear": 2010,
+      "note": "中国では国家二級保護動物とされ、野生では白雲山で絶えたとみられた後、各地で小さな個体群が再発見されました。2022年の研究で、従来の本種は複数種に分けられています。"
+    },
+    "highlights": [
+      "銀緑色の体に、赤い尾びれが目を引く小さな魚です。",
+      "低い水温に強く、5℃まで耐えるとされます。",
+      "野生では小さな昆虫や甲殻類、動物プランクトンを食べていることが胃の内容から確かめられています。"
     ]
   }
 }

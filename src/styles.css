@@ -318,6 +318,24 @@ button:focus-visible, input:focus-visible, select:focus-visible {
   background: rgba(4, 19, 21, 0.6);
   backdrop-filter: blur(10px);
 }
+.map-zukan {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  margin-top: 16px;
+  padding: 0 18px 0 14px;
+  border: 1px solid rgba(214, 192, 143, 0.4);
+  border-radius: 999px;
+  background: rgba(214, 192, 143, 0.08);
+  color: var(--ink);
+  font-size: 13.5px;
+  letter-spacing: 0.1em;
+  transition: background 0.3s, border-color 0.3s;
+}
+.map-zukan .icon { color: var(--brass); }
+.map-zukan small { color: var(--muted); font-size: 11.5px; letter-spacing: 0.04em; }
+.map-zukan:hover { background: rgba(214, 192, 143, 0.16); border-color: rgba(214, 192, 143, 0.7); }
 /* 狭い画面では建物のあたりだけを切り出して大きく見せる。 */
 @media (max-width: 900px) {
   .map-layout {
@@ -1307,16 +1325,19 @@ button:focus-visible, input:focus-visible, select:focus-visible {
   gap: 8px;
   margin-top: 2px;
 }
-.fish-card-footer .origin {
-  min-width: 0;
-  margin: 0;
-  overflow: hidden;
-  color: var(--faint);
-  font-size: 11px;
+.fish-card-footer .zukan-link {
+  min-height: 32px;
+  padding: 0 2px;
+  border: 0;
+  background: none;
+  color: var(--accent);
+  font-size: 12px;
   letter-spacing: 0.06em;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  text-decoration: underline;
+  text-decoration-color: rgba(143, 220, 211, 0.4);
+  text-underline-offset: 3px;
 }
+.fish-card-footer .zukan-link:hover { text-decoration-color: var(--accent); }
 .count-control {
   flex: none;
   display: flex;

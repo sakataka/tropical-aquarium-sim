@@ -70,6 +70,18 @@
       {
         "title": "Polypterus senegalus species reference",
         "url": "https://www.fishbase.se/summary/5024"
+      },
+      {
+        "title": "FishBase: Polypterus senegalus",
+        "url": "https://www.fishbase.se/summary/Polypterus-senegalus.html"
+      },
+      {
+        "title": "Seriously Fish: Polypterus senegalus senegalus",
+        "url": "https://seriouslyfish.com/species/polypterus-senegalus-senegalus"
+      },
+      {
+        "title": "Wikipedia: Polypterus senegalus",
+        "url": "https://en.wikipedia.org/wiki/Polypterus_senegalus"
       }
     ]
   },
@@ -81,5 +93,39 @@
     "temperament": "小魚などを食べる肉食性の古代魚です。小型の群泳魚とは分け、この部屋の古代魚専用水槽に配置します。",
     "movement": "底近くで休み、長い体をゆっくりくねらせて移動します。ときどき水面へ上がり、空気を吸って底へ戻ります。",
     "habitat": "開けた砂底、低い流木と陰のある西アフリカの緩流域をイメージしています。表示体長は代表的な観賞サイズで、最大体長ではありません。"
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Polypteriformes",
+      "orderJa": "ポリプテルス目",
+      "family": "Polypteridae",
+      "familyJa": "ポリプテルス科"
+    },
+    "adultSizeCm": 35.5,
+    "sizeNote": "Wikipedia では一般に約35.5cmとされます。最大は資料で異なり、FishBase は標準体長70cm、Seriously Fish は基亜種で標準体長50cmです。Wikipedia は基亜種が飼育下48cm、野生70cmまでとしています。",
+    "distribution": "アフリカの少なくとも26か国に分布します。西アフリカのセネガル川、ガンビア川、ニジェール川、ボルタ川、チャド湖の水系から、ナイル川水系、トゥルカナ湖、アルバート湖にまで及びます。コンゴ川水系には亜種が分布します。",
+    "water": {
+      "salinity": "freshwater",
+      "temperatureC": [
+        24,
+        28
+      ],
+      "pH": [
+        6.2,
+        7.8
+      ]
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2019,
+      "note": "評価年は FishBase の記載（2019年6月7日）です。Wikipedia は2020年としています。"
+    },
+    "highlights": [
+      "一対の原始的な肺を持ち、ときどき水面で空気を吸います。",
+      "幼魚には外鰓があり、成長すると消えます。",
+      "夜行性で、視力は弱く、においで餌を探します。",
+      "胸びれを使って陸上を歩く研究があり、体が湿っていれば水の外でも長く過ごせます。"
+    ]
   }
 }

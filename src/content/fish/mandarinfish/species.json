@@ -87,6 +87,18 @@
       {
         "title": "Synchiropus splendidus species reference",
         "url": "https://www.aquariumofpacific.org/onlinelearningcenter/species/mandarin_goby"
+      },
+      {
+        "title": "FishBase — Synchiropus splendidus",
+        "url": "https://www.fishbase.se/summary/Synchiropus-splendidus.html"
+      },
+      {
+        "title": "Wikipedia — Synchiropus splendidus",
+        "url": "https://en.wikipedia.org/wiki/Synchiropus_splendidus"
+      },
+      {
+        "title": "Wikipedia（日本語） — ニシキテグリ",
+        "url": "https://ja.wikipedia.org/wiki/ニシキテグリ"
       }
     ]
   },
@@ -98,5 +110,31 @@
     "temperament": "岩や砂の上の小さな甲殻類を一日中ついばむ、底生のネズッポ科の魚です。",
     "movement": "胸びれで小さく進んでは止まり、岩の表面をついばみます。長く滑るようには泳がず、夜は岩の隙間に入って休みます。",
     "habitat": "低い岩組みと砂底のあるサンゴ礁のラグーン。餌になる小さな生き物が多い岩の根元を好みます。"
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Callionymiformes",
+      "orderJa": "ネズッポ目",
+      "family": "Callionymidae",
+      "familyJa": "ネズッポ科"
+    },
+    "adultSizeCm": 6,
+    "sizeNote": "FishBase では最大全長7.0cmです。Aquarium of the Pacific は体長6〜9cmで雄がやや大きいとし、日本語版 Wikipedia は5〜7.5cm としています。雄は背びれの棘が雌より長くなります。",
+    "distribution": "琉球諸島からオーストラリアにかけての西太平洋に分布します。フィリピン、インドネシア、マレーシア、グレートバリアリーフなど、コーラルトライアングルの海域で見られます。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2018,
+      "note": "水族館用の採集が、とくに大きな雄を中心に野生の個体群へ影響し始めているとされます。"
+    },
+    "highlights": [
+      "青い地に橙色の渦巻く縞が走る派手な体です。青色は色素細胞によるもので、脊椎動物では珍しいとされます。",
+      "うろこがなく、体は粘液の層で覆われています。粘液は病気を防ぎ、天敵を遠ざけるとみられています。",
+      "昼のあいだ、サンゴや岩の表面にいる小さな甲殻類や多毛類をついばんで食べ、底の上を腹びれで休みます。",
+      "繁殖は夕方に行われ、雄は長い背びれを見せつけます。"
+    ]
   }
 }

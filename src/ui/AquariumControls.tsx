@@ -31,6 +31,8 @@ export const LIGHTING_OPTIONS: { id: LightingId; label: string; note: string }[]
 
 type AquariumControlsProps = {
   speciesList: FishSpeciesDefinition[];
+  /** その種の図鑑のページを開く。 */
+  onOpenZukan: (speciesId: string) => void;
   tank: TankDefinition;
   customization: AquariumCustomization;
   preferences: AquariumPreferences;
@@ -45,6 +47,7 @@ type AquariumControlsProps = {
 
 export function AquariumControls({
   speciesList,
+  onOpenZukan,
   tank,
   customization,
   preferences,
@@ -142,7 +145,9 @@ export function AquariumControls({
                       </ul>
                       <p className="movement">{species.catalog.movement}</p>
                       <div className="fish-card-footer">
-                        <p className="origin">{species.catalog.originRegionName}</p>
+                        <button className="zukan-link" onClick={() => onOpenZukan(species.id)} type="button">
+                          図鑑で見る
+                        </button>
                         <div className="count-control" role="group" aria-label={`${species.displayName}の匹数`}>
                           <button
                             aria-label={`${species.displayName}を1匹減らす`}

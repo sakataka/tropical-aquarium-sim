@@ -29,7 +29,10 @@
     },
     "turnRateRadPerSec": 3.6,
     "restFraction": 0.03,
-    "depthRange": [0.05, 0.6],
+    "depthRange": [
+      0.05,
+      0.6
+    ],
     "social": {
       "grouping": "shoal",
       "spacingBodyLengths": 1.6,
@@ -41,7 +44,10 @@
       {
         "type": "follow",
         "chancePerMin": 1.2,
-        "durationSec": [1, 2.5]
+        "durationSec": [
+          1,
+          2.5
+        ]
       }
     ],
     "sources": [
@@ -52,6 +58,14 @@
       {
         "title": "Wikipedia: Zebrafish",
         "url": "https://en.wikipedia.org/wiki/Zebrafish"
+      },
+      {
+        "title": "Parichy 2015 — Advancing biology through a deeper understanding of zebrafish ecology and evolution (eLife)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4373672"
+      },
+      {
+        "title": "FishBase: Danio rerio",
+        "url": "https://www.fishbase.se/summary/Danio-rerio.html"
       }
     ]
   },
@@ -67,6 +81,38 @@
       "zebra-danio",
       "Danio rerio",
       "ゼブラフィッシュ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cypriniformes",
+      "orderJa": "コイ目",
+      "family": "Danionidae",
+      "familyJa": "ダニオ科"
+    },
+    "adultSizeCm": 4.5,
+    "sizeNote": "成魚は4〜5cmほどとされます（Parichy 2015）。標準体長の最大は FishBase が3.8cm、Seriously Fish が5.0cmです。成熟した雌は腹が丸く、雄よりやや大きくなります。",
+    "distribution": "南アジアの原産で、インド、バングラデシュ、ネパール、パキスタン、ミャンマーなどから報告されます。ただし誤同定や生息地の悪化のため、現在確かな分布はもっと狭いと考えられています。水槽から逃げた魚が、コロンビアなどで見つかっています。",
+    "water": {
+      "salinity": "freshwater",
+      "temperatureC": [
+        12,
+        39
+      ],
+      "pH": [
+        5.9,
+        9.8
+      ]
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2009
+    },
+    "highlights": [
+      "体側に走る5本ほどの青い横縞が名前の由来です。雄は縞の間が金色、雌は銀色です。",
+      "野生では、モンスーンの時期にできる流れの脇の浅い水たまりや水田にすみます。",
+      "胚が透明で成長が速いため、発生生物学のモデル生物として世界中で研究に使われています。"
     ]
   }
 }

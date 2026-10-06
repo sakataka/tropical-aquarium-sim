@@ -16,6 +16,31 @@
       "エビ"
     ]
   },
+  "profile": {
+    "taxonomy": {
+      "order": "Decapoda",
+      "orderJa": "十脚目",
+      "family": "Atyidae",
+      "familyJa": "ヌマエビ科"
+    },
+    "adultSizeCm": 4,
+    "sizeNote": "体長は35〜45mm（山口県レッドリスト2018）、40mm（兵庫県レッドリスト）とされます。雌のほうが大きく、50mmを超えることもあります。",
+    "distribution": "日本と台湾に自然分布します。国内では日本海側で鳥取県以南、太平洋側で千葉県以南の河川に見られます。フィジーやマダガスカルの記録は、IUCN の評価では誤りとされています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2013,
+      "note": "IUCN の評価は軽度懸念（LC）です。環境省レッドリストには掲載されていません。山口県レッドリスト2018では準絶滅危惧（NT）、兵庫県レッドリストではBランクです。"
+    },
+    "highlights": [
+      "体の側面に、暗赤色の点が並びます。",
+      "卵からかえった幼生は川を下って海で育ち、稚エビになると川を遡上します。",
+      "付着藻類や底の有機物を食べ、胸の脚が強いので川の上流まで遡上できます。"
+    ]
+  },
   "swim": {
     "bodyPlan": "crustacean",
     "headStart": 0.3,
@@ -83,6 +108,26 @@
       {
         "title": "Fluval: Species Spotlight — Amano Shrimp (surface grazing)",
         "url": "https://fluvalaquatics.com/uk/wp-content/uploads/2022/02/Species-Spotlight_Amano-Shrimp_EN.pdf"
+      },
+      {
+        "title": "山口県レッドリスト2018 甲殻類（ヤマトヌマエビ）",
+        "url": "https://www.pref.yamaguchi.lg.jp/uploaded/attachment/53755.pdf"
+      },
+      {
+        "title": "兵庫県版レッドリスト 甲殻類（ヤマトヌマエビ）",
+        "url": "https://www.kankyo.pref.hyogo.lg.jp/download_file/view/23104/22050"
+      },
+      {
+        "title": "Wikipedia（日本語）: ヤマトヌマエビ",
+        "url": "https://ja.wikipedia.org/wiki/ヤマトヌマエビ"
+      },
+      {
+        "title": "U.S. Fish and Wildlife Service: Ecological Risk Screening Summary, Clean shrimp (Caridina multidentata; quotes De Grave et al. 2013, IUCN)",
+        "url": "https://fws.gov/sites/default/files/documents/Ecological-Risk-Screening-Summary-Clean-shrimp.pdf"
+      },
+      {
+        "title": "GBIF API: IUCN Red List category, Caridina multidentata (iucnTaxonID 198258)",
+        "url": "https://api.gbif.org/v1/species/5863054/iucnRedListCategory"
       }
     ]
   },

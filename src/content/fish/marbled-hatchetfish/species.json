@@ -31,7 +31,10 @@
     },
     "turnRateRadPerSec": 2.4,
     "restFraction": 0.3,
-    "depthRange": [0, 0.2],
+    "depthRange": [
+      0,
+      0.2
+    ],
     "social": {
       "grouping": "shoal",
       "spacingBodyLengths": 1.8,
@@ -48,6 +51,10 @@
       {
         "title": "Wikipedia: Marbled hatchetfish",
         "url": "https://en.wikipedia.org/wiki/Marbled_hatchetfish"
+      },
+      {
+        "title": "FishBase — Carnegiella strigata",
+        "url": "https://www.fishbase.se/summary/Carnegiella-strigata.html"
       }
     ]
   },
@@ -63,6 +70,39 @@
       "marbled-hatchetfish",
       "Carnegiella strigata",
       "ハチェット"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Characiformes",
+      "orderJa": "カラシン目",
+      "family": "Gasteropelecidae",
+      "familyJa": "ガステロペレクス科"
+    },
+    "adultSizeCm": 3.5,
+    "sizeNote": "標準体長です。Seriously Fish、FishBase、Wikipedia のいずれも最大3.5cm SL としています。雌は雄より腹が大きくなります。",
+    "distribution": "アマゾン川とオリノコ川の水系に広く分布し、ブラジル、ボリビア、ペルー、コロンビア、ベネズエラ、ガイアナ、スリナムなどで記録されています。水槽に入る個体の多くは、ブラジルのネグロ川水系の産です。",
+    "water": {
+      "salinity": "freshwater",
+      "temperatureC": [
+        20,
+        28
+      ],
+      "pH": [
+        4.0,
+        7.0
+      ]
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2020,
+      "note": "水族館用の採集の圧力があるとされます。"
+    },
+    "highlights": [
+      "三角形の体に、暗い褐色の大理石模様と、頭から尾へ向かう淡い帯があります。",
+      "ほとんどの時間を水面かその近くで過ごし、群れで暮らします。",
+      "水面から跳ぶのは、脅されたときの反応とされます。水槽では、実際にはあまり跳びません。"
     ]
   }
 }

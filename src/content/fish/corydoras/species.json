@@ -30,7 +30,10 @@
     },
     "turnRateRadPerSec": 2.2,
     "restFraction": 0.2,
-    "depthRange": [0.15, 0.85],
+    "depthRange": [
+      0.15,
+      0.85
+    ],
     "social": {
       "grouping": "shoal",
       "spacingBodyLengths": 1.5,
@@ -45,11 +48,17 @@
       {
         "type": "bottomRest",
         "chancePerMin": 1.5,
-        "durationSec": [8, 30]
+        "durationSec": [
+          8,
+          30
+        ]
       },
       {
         "type": "airBreathing",
-        "breathsPerHour": [3, 8],
+        "breathsPerHour": [
+          3,
+          8
+        ],
         "style": "dash"
       }
     ],
@@ -69,6 +78,14 @@
       {
         "title": "Wikipedia: Corydoras",
         "url": "https://en.wikipedia.org/wiki/Corydoras"
+      },
+      {
+        "title": "FishBase: Osteogaster aenea (Bronze corydoras)",
+        "url": "https://fishbase.se/summary/7777"
+      },
+      {
+        "title": "Wikipedia: Bronze corydoras",
+        "url": "https://en.wikipedia.org/wiki/Bronze_corydoras"
       }
     ]
   },
@@ -86,6 +103,30 @@
       "Corydoras aeneus",
       "ブロンズ・コリドラス",
       "赤コリ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Siluriformes",
+      "orderJa": "ナマズ目",
+      "family": "Callichthyidae",
+      "familyJa": "カリクティス科"
+    },
+    "adultSizeCm": 6.5,
+    "sizeNote": "FishBase では最大標準体長7.5cmです。解説では、雄は平均6.5cm、雌は7cmほどとされます。",
+    "distribution": "南米のアンデス山脈より東に分布し、コロンビアとトリニダード島からラプラタ川水系までの広い範囲が示されています。ただし、いくつかの似た種をまとめた種群として扱われています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "note": "FishBase は IUCN の軽度懸念（LC、2018年評価）と記していますが、この種は複数の種を含む種群として扱われています。評価がどの範囲を指すか確かめられていないため、区分は付けていません。"
+    },
+    "highlights": [
+      "水底が柔らかい静かな浅場を好み、20〜30匹ほどの群れで暮らすとされます。",
+      "水中の酸素が減ると水面へ上がって空気を吸い、腸でも酸素を取り込みます。",
+      "水が十分に酸素を含む環境では、空気呼吸をしなくても生きられます。",
+      "頭の背びれの手前に、褐色がかった橙色の斑があります。"
     ]
   }
 }

@@ -61,6 +61,26 @@
       {
         "title": "国立環境研究所: シマドジョウ",
         "url": "https://www.nies.go.jp/biodiversity/invasive/DB/detail/50740.html"
+      },
+      {
+        "title": "FishBase — Cobitis biwae",
+        "url": "https://www.fishbase.se/summary/Cobitis-biwae.html"
+      },
+      {
+        "title": "愛知県レッドデータブック — ニシシマドジョウ (Cobitis sp. BIWAE type B)",
+        "url": "https://kankyojoho.pref.aichi.jp/rdb/pdf/animals/species/tansuigyo/%E3%83%8B%E3%82%B7%E3%82%B7%E3%83%9E%E3%83%89%E3%82%B8%E3%83%A7%E3%82%A6.pdf"
+      },
+      {
+        "title": "環境省 — 第4次レッドリストからの新旧対照表（レッドリスト2020）",
+        "url": "https://www.env.go.jp/press/files/jp/114458.pdf"
+      },
+      {
+        "title": "静岡県版 淡水魚類レッドリスト2020（ヒガシシマドジョウ Cobitis sp. BIWAE type C、シマドジョウ種群）",
+        "url": "https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/683/07_fish_rlshiz_2020.pdf"
+      },
+      {
+        "title": "Wikipedia（日本語） — シマドジョウ属",
+        "url": "https://ja.wikipedia.org/wiki/シマドジョウ"
       }
     ]
   },
@@ -75,6 +95,29 @@
     "aliases": [
       "Japanese spined loach",
       "ドジョウ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cypriniformes",
+      "orderJa": "コイ目",
+      "family": "Cobitidae",
+      "familyJa": "ドジョウ科"
+    },
+    "adultSizeCm": 10,
+    "sizeNote": "国立環境研究所のデータベースでは全長6〜14cmです。FishBase では最大標準体長10.9cm、愛知県のレッドデータブックではニシシマドジョウの体長を約10cmとしています。雄は胸びれが雌より長くなります。",
+    "distribution": "日本固有です。従来のシマドジョウは山口県西部を除く本州、四国、大分県に分布するとされ、栃木県の中禅寺湖と静岡県東部には移入されています。現在はシマドジョウ種群として扱われ、中島ほか(2012)によって細分されました。オオシマドジョウ（type A）、ニシシマドジョウ（type B）、ヒガシシマドジョウ（type C）、トサシマドジョウ（type D）などの和名が使われ、種ごとに分布が異なります。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "note": "シマドジョウ種群は細分されており、種群全体に当てはまる IUCN の評価はありません。FishBase では Cobitis biwae は未評価（NE）です。環境省レッドリスト2020では、分割後のトサシマドジョウ（Cobitis sp. BIWAE type D）が絶滅危惧II類（VU）に掲載されています。ニシシマドジョウは愛知県で絶滅危惧II類とされますが、環境省のリストの対象外とされています。"
+    },
+    "highlights": [
+      "砂にもぐる習性があり、砂ごと口に含んで、中の小さな生き物やデトリタスをこし取って食べます。",
+      "体側の中央に、黒い斑紋が点線のように並びます。斑紋の形には地域差があります。",
+      "成熟した雄は、胸びれの付け根に骨質の板ができます。目の下には棘があり、口ひげは6本です。"
     ]
   }
 }

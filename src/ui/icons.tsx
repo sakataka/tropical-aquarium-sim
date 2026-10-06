@@ -42,6 +42,9 @@ export const CollapseIcon = () => (
 export const FitIcon = () => (
   <Icon><rect height="12" rx="2" width="16" x="4" y="6" /></Icon>
 );
+export const BookIcon = () => (
+  <Icon><path d="M12 6.5C10.4 5.3 8.2 4.8 5 5v13c3.2-.2 5.4.3 7 1.5 1.6-1.2 3.8-1.7 7-1.5V5c-3.2-.2-5.4.3-7 1.5zM12 6.5v13" /></Icon>
+);
 export const CheckIcon = () => <Icon><path d="M5 12.5l4.5 4.5L19 7.5" /></Icon>;
 // 館内図。階を重ねた断面の記号。
 export const MapIcon = () => (

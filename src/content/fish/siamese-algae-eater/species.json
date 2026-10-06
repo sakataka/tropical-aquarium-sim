@@ -34,7 +34,10 @@
     },
     "turnRateRadPerSec": 2.6,
     "restFraction": 0.25,
-    "depthRange": [0.3, 0.95],
+    "depthRange": [
+      0.3,
+      0.95
+    ],
     "social": {
       "grouping": "solitary",
       "spacingBodyLengths": 3,
@@ -46,12 +49,18 @@
       {
         "type": "grazing",
         "chancePerMin": 3,
-        "durationSec": [3, 8]
+        "durationSec": [
+          3,
+          8
+        ]
       },
       {
         "type": "bottomRest",
         "chancePerMin": 0.8,
-        "durationSec": [5, 15]
+        "durationSec": [
+          5,
+          15
+        ]
       }
     ],
     "sources": [
@@ -66,6 +75,18 @@
       {
         "title": "Wikipedia: Siamese algae-eater",
         "url": "https://en.wikipedia.org/wiki/Siamese_algae-eater"
+      },
+      {
+        "title": "Seriously Fish: Crossocheilus langei",
+        "url": "https://seriouslyfish.com/species/crossocheilus-langei"
+      },
+      {
+        "title": "FishBase: Crossocheilus oblongus (summary 12063)",
+        "url": "https://fishbase.se/summary/12063"
+      },
+      {
+        "title": "Aqualog: Two of the best algae eaters… – but who knows their names?",
+        "url": "https://www.aqualog.de/?p=200619"
       }
     ]
   },
@@ -82,6 +103,29 @@
       "Crossocheilus oblongus",
       "Crossocheilus siamensis",
       "SAE"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cypriniformes",
+      "orderJa": "コイ目",
+      "family": "Cyprinidae",
+      "familyJa": "コイ科"
+    },
+    "adultSizeCm": 15,
+    "sizeNote": "標準体長の最大は、Seriously Fish が Crossocheilus langei で150mm、FishBase が C. oblongus で16cmとしています。ウィキペディアは、飼育下で2年ほどで15cm前後に育つとしています。",
+    "distribution": "流通名「サイアミーズ・アルジーイーター」には近縁の複数種が含まれ、産地は種によって異なります。流通名の中で最も有力とされる C. langei は、ボルネオ、マレー半島、タイ南部と西部に分布し、ミャンマー南部にもいる可能性があります。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "note": "流通名が指す種が定まっていないため、IUCN の評価は確かめられていません。FishBase が C. oblongus に記す低懸念（LC、2018年）は、流通する魚とは別種とされる種の評価です。"
+    },
+    "highlights": [
+      "体の中央を走る黒い縦帯が、口もとから尾びれの先近くまで伸びます。",
+      "下向きの口で石や流木の表面をこすり、バイオフィルムや藻類を食べます。",
+      "流れのある川にすむ魚で、野生では群れで暮らすとされます。"
     ]
   }
 }

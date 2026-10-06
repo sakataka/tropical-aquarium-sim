@@ -63,6 +63,14 @@
       {
         "title": "Nemateleotris magnifica species reference",
         "url": "https://australian.museum/learn/animals/fishes/nemateleotris-magnifica-fowler-1938/"
+      },
+      {
+        "title": "FishBase — Nemateleotris magnifica (Fire goby)",
+        "url": "https://www.fishbase.se/summary/Nemateleotris-magnifica.html"
+      },
+      {
+        "title": "Eschmeyer's Catalog of Fishes — Nemateleotris magnifica",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?tbl=species&genus=Nemateleotris&species=magnifica"
       }
     ]
   },
@@ -74,5 +82,29 @@
     "temperament": "砂礫の巣穴を住みかにする臆病なハゼの仲間です。危険を感じるとすぐ巣穴へ飛び込みます。",
     "movement": "巣穴の少し上で頭を流れに向けて静止し、長い第一背びれを立てたり倒したりします。ときどき素早く巣穴へ戻り、夜はその中で休みます。",
     "habitat": "サンゴ礁の外側の斜面に近い砂礫底。この水景では右の根元の砂に巣穴があります。"
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Gobiiformes",
+      "orderJa": "ハゼ目",
+      "family": "Microdesmidae",
+      "familyJa": "クロユリハゼ科"
+    },
+    "adultSizeCm": 8,
+    "sizeNote": "全長8cmまで成長するとされます（オーストラリア博物館）。FishBase では最大全長9.0cm（雌雄不明）です。",
+    "distribution": "東アフリカからハワイ諸島、マルケサス諸島、ピトケアン諸島までのインド太平洋に分布します。北は琉球列島、南はニューカレドニアとオーストラル諸島に達します。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2023
+    },
+    "highlights": [
+      "長く伸びた第一背びれを立て、前後に動かす姿が見られます。",
+      "海底から0.5m以内の高さに浮かび、流れに向かって餌を待ち受けます。",
+      "岩礁斜面の穴を隠れ家にし、成魚は雌雄のペアか単独で巣穴を使います。"
+    ]
   }
 }

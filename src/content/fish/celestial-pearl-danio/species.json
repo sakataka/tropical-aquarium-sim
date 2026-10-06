@@ -29,7 +29,10 @@
     },
     "turnRateRadPerSec": 3.2,
     "restFraction": 0.15,
-    "depthRange": [0.35, 0.9],
+    "depthRange": [
+      0.35,
+      0.9
+    ],
     "social": {
       "grouping": "shoal",
       "spacingBodyLengths": 2.2,
@@ -41,7 +44,10 @@
       {
         "type": "follow",
         "chancePerMin": 0.6,
-        "durationSec": [1, 2.5]
+        "durationSec": [
+          1,
+          2.5
+        ]
       }
     ],
     "sources": [
@@ -52,6 +58,18 @@
       {
         "title": "Wikipedia: Celestial pearl danio",
         "url": "https://en.wikipedia.org/wiki/Celestial_pearl_danio"
+      },
+      {
+        "title": "FishBase: Danio margaritatus, Galaxy rasbora",
+        "url": "https://www.fishbase.se/summary/63298"
+      },
+      {
+        "title": "Eschmeyer's Catalog of Fishes — Danio margaritatus",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?tbl=species&genus=Danio&species=margaritatus"
+      },
+      {
+        "title": "GBIF API: IUCN Red List category, Danio margaritatus",
+        "url": "https://api.gbif.org/v1/species/2362708/iucnRedListCategory"
       }
     ]
   },
@@ -68,6 +86,31 @@
       "Danio margaritatus",
       "ハナビ",
       "セレスティアルパールダニオ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cypriniformes",
+      "orderJa": "コイ目",
+      "family": "Danionidae",
+      "familyJa": "ダニオ科"
+    },
+    "adultSizeCm": 2.1,
+    "sizeNote": "最大で標準体長21mm（Seriously Fish）です。雌は雄より少し大きく、体が丸みを帯びます。FishBase でも雌雄とも標準体長2.1cmとされます。",
+    "distribution": "ミャンマー東部シャン州のサルウィン（タンルウィン）川水系に分布します。模式産地はホーポン町近くの標高1,040mの池で、その後シャン州南部やタイ北部でも見つかっています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "DD",
+      "assessedYear": 2010,
+      "note": "IUCN の評価は情報不足（DD）です。2007年にミャンマーが輸出を禁止しましたが、その後の調査で新たに5か所の生息地が見つかりました。"
+    },
+    "highlights": [
+      "雄は鋼色から濃い青の体に、赤と黒の縞が入ったひれを持ちます。",
+      "体には真珠のような白〜クリーム色の斑点が散ります。",
+      "雄どうしは日中に頻繁に小競り合いをし、そのとき赤みが強くなります。"
     ]
   }
 }

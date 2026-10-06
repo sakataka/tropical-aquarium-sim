@@ -120,7 +120,7 @@ const fishSpeciesDefinitionSchema = z.object({
     habitat: z.string().min(1),
     aliases: z.array(z.string().min(1)).optional(),
   }),
-  profile: profileSchema.optional(),
+  profile: profileSchema,
   swim: z.object({
     tailBeatHz: z.number().finite().positive().max(8),
     bodyWaveStart: z.number().finite().min(0).max(1),

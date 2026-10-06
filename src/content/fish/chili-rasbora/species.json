@@ -46,6 +46,18 @@
       {
         "title": "Seriously Fish: Boraras brigittae",
         "url": "https://www.seriouslyfish.com/species/boraras-brigittae/"
+      },
+      {
+        "title": "FishBase: Boraras brigittae",
+        "url": "https://www.fishbase.se/summary/Boraras-brigittae.html"
+      },
+      {
+        "title": "Eschmeyer's Catalog of Fishes — Boraras brigittae",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?tbl=species&genus=Boraras&species=brigittae"
+      },
+      {
+        "title": "GBIF API: IUCN Red List category, Boraras brigittae",
+        "url": "https://api.gbif.org/v1/species/2366587/iucnRedListCategory"
       }
     ]
   },
@@ -62,6 +74,31 @@
       "Chili Rasbora",
       "チリラスボラ",
       "ブリジッタエ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cypriniformes",
+      "orderJa": "コイ目",
+      "family": "Danionidae",
+      "familyJa": "ダニオ科"
+    },
+    "adultSizeCm": 2,
+    "sizeNote": "最大で標準体長20mm（Seriously Fish）です。成熟した雌は腹が丸く、雄よりやや大きいことがあります。FishBase には全長3.5cmとありますが、他の出典と食い違います。",
+    "distribution": "ボルネオ島南西部の固有種とみられますが、記録は少ないです。模式産地は南カリマンタン州のバンジャルマシンで、西はスカマラ近くのジュライ・ビラ川流域まで分布するとされます。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "DD",
+      "assessedYear": 2019,
+      "note": "IUCN の評価は情報不足（DD）です。分布する泥炭湿地林の水域は、プランテーションや開発の脅威にさらされていると Seriously Fish は述べています。"
+    },
+    "highlights": [
+      "野生では、落ち葉や枝が沈む、茶色に染まった泥炭湿地林のブラックウォーターにすみます。",
+      "体は全体に明るく均一な赤色で、体側の黒い縞は短く、途切れることがよくあります。",
+      "自然界では小さな昆虫や甲殻類を食べる小型の捕食者で、卵をばらまいて産み、親は世話をしません。"
     ]
   }
 }

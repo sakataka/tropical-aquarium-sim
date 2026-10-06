@@ -147,7 +147,7 @@ export type FishSpeciesDefinition = {
   displayName: string;
   realBodyLengthCm: number;
   catalog: FishCatalogInfo;
-  profile?: FishProfile;
+  profile: FishProfile;
   swim?: Partial<FishSwimStyle>;
   visual: { fallbackColor: string };
   sourceBodyBounds: { x: number; y: number; width: number; height: number };

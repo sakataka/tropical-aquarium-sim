@@ -31,7 +31,10 @@
     },
     "turnRateRadPerSec": 2.9,
     "restFraction": 0.05,
-    "depthRange": [0.1, 0.8],
+    "depthRange": [
+      0.1,
+      0.8
+    ],
     "social": {
       "grouping": "group",
       "spacingBodyLengths": 2.5,
@@ -43,7 +46,10 @@
       {
         "type": "follow",
         "chancePerMin": 1.5,
-        "durationSec": [3, 7]
+        "durationSec": [
+          3,
+          7
+        ]
       }
     ],
     "sources": [
@@ -54,6 +60,18 @@
       {
         "title": "Plasticity in male courtship behaviour as a function of light intensity in guppies (Behav Ecol Sociobiol)",
         "url": "https://link.springer.com/article/10.1007/s00265-009-0796-4"
+      },
+      {
+        "title": "FishBase — Poecilia reticulata (Guppy)",
+        "url": "https://www.fishbase.se/summary/Poecilia-reticulata.html"
+      },
+      {
+        "title": "Eschmeyer's Catalog of Fishes — Poecilia reticulata",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?tbl=species&genus=Poecilia&species=reticulata"
+      },
+      {
+        "title": "国立環境研究所 侵入生物データベース — Poecilia reticulata",
+        "url": "https://www.nies.go.jp/biodiversity/invasive/DB/detail/50240e.html"
       }
     ]
   },
@@ -68,6 +86,31 @@
     "aliases": [
       "guppy",
       "Poecilia reticulata"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cyprinodontiformes",
+      "orderJa": "カダヤシ目",
+      "family": "Poeciliidae",
+      "familyJa": "カダヤシ科"
+    },
+    "adultSizeCm": 5,
+    "sizeNote": "最大は雄で標準体長5.0cm、雌で6.0cmです（FishBase）。Seriously Fish は標準体長6cmとし、雌のほうが大きくふっくらしているとしています。",
+    "distribution": "南米北東部、オリノコ川河口からエセキボ川河口の間の沿岸水系と、ベネズエラ沖の島々、トリニダード・トバゴなどに自然分布します。蚊の駆除などを目的に世界各地へ放流され、日本でも温泉地や沖縄、小笠原の水路に定着しています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2020
+    },
+    "highlights": [
+      "雄は鮮やかな模様と長いひれを持ち、雌は雄より大きくて地味な体色です。",
+      "卵ではなく仔魚を産む胎生で、妊娠期間は4〜6週間ほどです。",
+      "雄は絶えず雌を追いかけ、求愛します。",
+      "野生の個体は主に昆虫を食べます。"
     ]
   }
 }

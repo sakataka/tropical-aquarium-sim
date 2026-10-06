@@ -15,6 +15,30 @@
       "Japanese rosy bitterling"
     ]
   },
+  "profile": {
+    "taxonomy": {
+      "order": "Cypriniformes",
+      "orderJa": "コイ目",
+      "family": "Acheilognathidae",
+      "familyJa": "タナゴ科"
+    },
+    "adultSizeCm": 5,
+    "sizeNote": "全長5cm程度です（環境省）。京都府レッドデータブックは体長約4cmとしています。",
+    "distribution": "日本固有の亜種です。もとは琵琶湖・淀川水系以西の本州、四国北東部、九州北西部に分布しました。現在、比較的大きな個体群が残るのは九州北部で、ほかに大阪府、奈良県、兵庫県、岡山県、香川県の一部に限られます。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "亜種のため IUCN の評価は確認していません。環境省レッドリスト2020では絶滅危惧IA類（CR）です。1942年に中国から導入されたタイリクバラタナゴと容易に交雑し、各地で純系の個体群が失われたとされます。"
+    },
+    "highlights": [
+      "繁殖期の雄は体が赤褐色の婚姻色になり、腹の縁と腹びれが黒くなります。",
+      "雌は産卵管が伸び、体長の2倍に達することがあります。",
+      "3〜9月の産卵期に、ドブガイ類などイシガイ科の二枚貝の中に卵を産みます。",
+      "ため池や水路など流れの緩い水域の、水草のある場所に暮らします。"
+    ]
+  },
   "swim": {
     "tailBeatHz": 2.8,
     "bodyWaveStart": 0.45,
@@ -55,6 +79,26 @@
       {
         "title": "環境省: ニッポンバラタナゴ",
         "url": "https://www.env.go.jp/content/000187000.pdf"
+      },
+      {
+        "title": "環境省 — 第4次レッドリストからの新旧対照表（レッドリスト2020）",
+        "url": "https://www.env.go.jp/press/files/jp/114458.pdf"
+      },
+      {
+        "title": "京都府レッドデータブック2015 — ニッポンバラタナゴ",
+        "url": "https://www.pref.kyoto.jp/kankyo/rdb/bio/db/fis0001.html"
+      },
+      {
+        "title": "ひょうご北摂タナゴ研究会（人と自然の博物館 共生のひろば）— 三田で生き残った絶滅危惧種ニッポンバラタナゴ",
+        "url": "https://hitohaku.jp/publication/book/kyousei20-11.pdf"
+      },
+      {
+        "title": "Genetic Introgression by the Rose Bitterling, Rhodeus ocellatus ocellatus, into the Japanese Rose Bitterling, R. o. kurumeus (Zoological Science 18)",
+        "url": "https://bioone.org/journals/Zoological-Science/volume-18/issue-7/zsj.18.1027/Genetic-Introgression-by-the-Rose-Bitterling-Rhodeus-ocellatus-ocellatus-into/10.2108/zsj.18.1027.full"
+      },
+      {
+        "title": "Eschmeyer's Catalog of Fishes — Rhodeus ocellatus",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?tbl=species&genus=Rhodeus&species=ocellatus"
       }
     ]
   },

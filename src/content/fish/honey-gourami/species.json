@@ -55,6 +55,14 @@
       {
         "title": "Seriously Fish: Trichogaster chuna",
         "url": "https://www.seriouslyfish.com/species/trichogaster-chuna/"
+      },
+      {
+        "title": "FishBase — Trichogaster chuna (Honey gourami)",
+        "url": "https://www.fishbase.se/summary/Trichogaster-chuna.html"
+      },
+      {
+        "title": "Eschmeyer's Catalog of Fishes — Trichogaster chuna",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?tbl=species&genus=Trichogaster&species=chuna"
       }
     ]
   },
@@ -70,6 +78,31 @@
       "honey-gourami",
       "Honey Gourami",
       "ゴールデンハニーグラミー"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Anabantiformes",
+      "orderJa": "キノボリウオ目",
+      "family": "Osphronemidae",
+      "familyJa": "オスフロネムス科"
+    },
+    "adultSizeCm": 5.5,
+    "sizeNote": "最大は標準体長55mmとされます（Seriously Fish）。雌は雄よりはっきり大きくなります。",
+    "distribution": "インド北部のガンジス川とそのバングラデシュのデルタ、ブラマプトラ川水系、ネパールに分布します。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2009
+    },
+    "highlights": [
+      "水面の空気を吸える補助呼吸器官（迷路器官）を持ちます。",
+      "雄は泡で巣を作ります。巣は小さめで、広い葉の下などに作られます。",
+      "繁殖期の雄は体が明るいオレンジ色になり、頭と尻びれの棘条が濃い青から黒になります。",
+      "動きがゆっくりした魚で、数匹の群れで飼うと落ち着いて見られます。"
     ]
   }
 }

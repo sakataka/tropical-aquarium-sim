@@ -30,7 +30,10 @@
     },
     "turnRateRadPerSec": 1.6,
     "restFraction": 0.35,
-    "depthRange": [0.15, 0.8],
+    "depthRange": [
+      0.15,
+      0.8
+    ],
     "social": {
       "grouping": "solitary",
       "spacingBodyLengths": 4,
@@ -41,7 +44,10 @@
     "habits": [
       {
         "type": "airBreathing",
-        "breathsPerHour": [4, 12],
+        "breathsPerHour": [
+          4,
+          12
+        ],
         "style": "rise"
       }
     ],
@@ -53,6 +59,14 @@
       {
         "title": "Wikipedia: Dwarf gourami",
         "url": "https://en.wikipedia.org/wiki/Dwarf_gourami"
+      },
+      {
+        "title": "FishBase: Trichogaster lalius (Dwarf gourami)",
+        "url": "https://www.fishbase.se/summary/Colisa-lalia.html"
+      },
+      {
+        "title": "Eschmeyer's Catalog of Fishes: lalius, Trichopodus (spid 41991)",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=41991"
       }
     ]
   },
@@ -67,6 +81,32 @@
     "aliases": [
       "dwarf-gourami",
       "Trichogaster lalius"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Anabantiformes",
+      "orderJa": "キノボリウオ目",
+      "family": "Osphronemidae",
+      "familyJa": "オスフロネムス科"
+    },
+    "adultSizeCm": 8.8,
+    "sizeNote": "最大は標準体長88mmとされ、雄は雌より大きくなります。FishBase では最大全長9.5cmです。",
+    "distribution": "南アジアのパキスタン、インド北部、バングラデシュに広く分布します。シンガポール、アメリカ合衆国、コロンビアには野生化した個体群があります。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2010,
+      "note": "この評価は Trichogaster lalius の名で行われています。Eschmeyer's Catalog は Knight ほか（2022）に基づき、この名を Trichogaster fasciata の新参シノニムとしています。"
+    },
+    "highlights": [
+      "雄は色が鮮やかで、背びれと尻びれが長く伸びます。雌は銀色で地味です。",
+      "水面近くで空気を吸える補助の呼吸器官（ラビリンス器官）を持ちます。",
+      "雄は泡で巣を作り、水草の切れ端も混ぜて補強します。",
+      "水草の茂る池、湿地、水路などの流れの緩やかな場所にすみます。"
     ]
   }
 }

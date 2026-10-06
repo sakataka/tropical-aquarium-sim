@@ -29,7 +29,10 @@
     },
     "turnRateRadPerSec": 3.4,
     "restFraction": 0.08,
-    "depthRange": [0.15, 0.85],
+    "depthRange": [
+      0.15,
+      0.85
+    ],
     "social": {
       "grouping": "school",
       "spacingBodyLengths": 1.4,
@@ -46,6 +49,18 @@
       {
         "title": "Selective social interactions and speed-induced leadership in schooling fish (arXiv:2305.17108)",
         "url": "https://arxiv.org/abs/2305.17108"
+      },
+      {
+        "title": "FishBase: Paracheirodon innesi",
+        "url": "https://www.fishbase.se/summary/Paracheirodon-innesi.html"
+      },
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Paracheirodon innesi",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?tbl=species&genus=Paracheirodon&species=innesi"
+      },
+      {
+        "title": "Wikipedia: Neon tetra",
+        "url": "https://en.wikipedia.org/wiki/Neon_tetra"
       }
     ]
   },
@@ -60,6 +75,40 @@
     "aliases": [
       "neon-tetra",
       "Paracheirodon innesi"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Characiformes",
+      "orderJa": "カラシン目",
+      "family": "Acestrorhamphidae",
+      "familyJa": "アケストロランプス科"
+    },
+    "adultSizeCm": 3,
+    "sizeNote": "最大で標準体長30mm（Seriously Fish）です。FishBase では雌雄不明の個体で標準体長2.5cmとされます。全長では約4cmという記述もあります。",
+    "distribution": "南アメリカ、アマゾン川上流部の西側に分布します。コロンビア、ブラジル、ペルーで記録があり、ソリモンエス川の支流の黒水・澄水の小川にすみます。",
+    "water": {
+      "salinity": "freshwater",
+      "temperatureC": [
+        21,
+        25
+      ],
+      "pH": [
+        4.0,
+        7.5
+      ]
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2021,
+      "note": "IUCN の評価は軽度懸念（LC）で、FishBase が評価日を2021年3月4日と記しています。飼育用には商業繁殖された個体が多く流通しますが、野生で採集される個体もいます。"
+    },
+    "highlights": [
+      "体側の鼻先から背びれの後ろまで青く光る帯が走り、体の後半には赤い帯があります。",
+      "夜は青や赤が灰色や黒に変わり、朝に活動を始めると戻ります。",
+      "森林の小川や支流の、落ち葉や枝の多い茶色い水にすみ、群れで暮らします。",
+      "単独では落ち着かず、8〜10匹以上の群れで飼うと、自然な行動が見られます。"
     ]
   }
 }

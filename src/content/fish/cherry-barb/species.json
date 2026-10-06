@@ -32,7 +32,10 @@
     },
     "turnRateRadPerSec": 2.6,
     "restFraction": 0.15,
-    "depthRange": [0.25, 0.9],
+    "depthRange": [
+      0.25,
+      0.9
+    ],
     "social": {
       "grouping": "shoal",
       "spacingBodyLengths": 2.2,
@@ -44,7 +47,10 @@
       {
         "type": "grazing",
         "chancePerMin": 0.8,
-        "durationSec": [1.5, 3.5]
+        "durationSec": [
+          1.5,
+          3.5
+        ]
       }
     ],
     "sources": [
@@ -55,6 +61,18 @@
       {
         "title": "Seriously Fish: Puntius titteya",
         "url": "https://www.seriouslyfish.com/species/puntius-titteya/"
+      },
+      {
+        "title": "FishBase: Puntius titteya, Cherry barb",
+        "url": "https://www.fishbase.se/summary/6147"
+      },
+      {
+        "title": "Eschmeyer's Catalog of Fishes — Rohanella titteya",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?tbl=species&genus=Rohanella&species=titteya"
+      },
+      {
+        "title": "GBIF API: IUCN Red List category, Puntius titteya",
+        "url": "https://api.gbif.org/v1/species/2364223/iucnRedListCategory"
       }
     ]
   },
@@ -70,6 +88,31 @@
       "cherry-barb",
       "Rohanella titteya",
       "Puntius titteya"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cypriniformes",
+      "orderJa": "コイ目",
+      "family": "Cyprinidae",
+      "familyJa": "コイ科"
+    },
+    "adultSizeCm": 5,
+    "sizeNote": "最大で標準体長50mm（Seriously Fish）、全長5.0cm（FishBase）です。雄は雌より小さく、細身で、色が鮮やかです。",
+    "distribution": "スリランカ固有種です。南西部の湿潤地帯にあるケラニ川とニルワラ川の流域、およびその間の小さな水系に分布します。香港とメキシコへの導入記録があります。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "VU",
+      "assessedYear": 2019,
+      "note": "IUCN の評価は危急（VU）です。野生個体のスリランカからの輸出は禁止されていますが、採集は続いているようです。市販個体の大半は養殖です。"
+    },
+    "highlights": [
+      "雄は、赤みの強い体に幅広い赤っぽい縞が走ります。",
+      "野生では、木々に覆われて暗い小川の、落ち葉や枝が積もる砂底にすみます。",
+      "市販されるほとんどは養殖個体で、アルビノや「スーパーレッド」などの品種もつくられています。"
     ]
   }
 }

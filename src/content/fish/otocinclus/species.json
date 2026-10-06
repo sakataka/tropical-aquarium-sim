@@ -34,7 +34,10 @@
     },
     "turnRateRadPerSec": 2.2,
     "restFraction": 0.45,
-    "depthRange": [0.25, 0.95],
+    "depthRange": [
+      0.25,
+      0.95
+    ],
     "social": {
       "grouping": "group",
       "spacingBodyLengths": 1.5,
@@ -46,12 +49,18 @@
       {
         "type": "grazing",
         "chancePerMin": 3.5,
-        "durationSec": [6, 18]
+        "durationSec": [
+          6,
+          18
+        ]
       },
       {
         "type": "bottomRest",
         "chancePerMin": 1,
-        "durationSec": [8, 25]
+        "durationSec": [
+          8,
+          25
+        ]
       }
     ],
     "sources": [
@@ -62,6 +71,22 @@
       {
         "title": "Wikipedia: Otocinclus",
         "url": "https://en.wikipedia.org/wiki/Otocinclus"
+      },
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Otocinclus vittatus",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?tbl=species&genus=Otocinclus&species=vittatus"
+      },
+      {
+        "title": "Wikipedia: Otocinclus vittatus",
+        "url": "https://en.wikipedia.org/wiki/Otocinclus_vittatus"
+      },
+      {
+        "title": "Scotcat: Otocinclus vittatus",
+        "url": "https://www.scotcat.com/loricariidae/otocinclus_vittatus.htm"
+      },
+      {
+        "title": "Scotcat factsheet: Otocinclus affinis",
+        "url": "https://scotcat.com/factsheets/otocinclus_affinis.htm"
       }
     ]
   },
@@ -77,6 +102,32 @@
       "otocinclus",
       "Otocinclus vittatus",
       "オトシン"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Siluriformes",
+      "orderJa": "ナマズ目",
+      "family": "Loricariidae",
+      "familyJa": "ロリカリア科"
+    },
+    "adultSizeCm": 3.3,
+    "sizeNote": "最大で全長3.3cmです（FishBase）。飼育向けの解説では約4cmとされることもあります。",
+    "distribution": "南アメリカのアマゾン川、オリノコ川、パラナ・パラグアイ川、シングー川、トカンチンス川の水系に分布します。アルゼンチン、ボリビア、ブラジル、コロンビア、パラグアイ、ペルー、ベネズエラで記録があります。タイプ産地はブラジルのパラグアイ川水系です。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2020,
+      "note": "IUCN の評価は軽度懸念（LC）で、FishBase が評価日を2020年10月21日と記しています。Wikipedia は2023年としており、評価年は食い違っています。"
+    },
+    "highlights": [
+      "体側に暗い縦の帯があり、種小名 vittatus は「縞のある」という意味です。",
+      "藻類やバイオフィルムを食べ、水草を傷めずにコケ取りをします。",
+      "空気呼吸もできるとされる、小さなナマズです。",
+      "かつては本種が Otocinclus affinis の名で流通していたと考えられています。"
     ]
   }
 }

@@ -46,6 +46,14 @@
       {
         "title": "Seriously Fish: Hyphessobrycon amandae",
         "url": "https://www.seriouslyfish.com/species/hyphessobrycon-amandae/"
+      },
+      {
+        "title": "FishBase: Hyphessobrycon amandae (Ember tetra)",
+        "url": "https://fishbase.se/summary/12376"
+      },
+      {
+        "title": "Wikipedia: Ember tetra",
+        "url": "https://en.wikipedia.org/wiki/Ember_tetra"
       }
     ]
   },
@@ -62,6 +70,32 @@
       "Ember Tetra",
       "ファイヤーテトラ",
       "アマンダエ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Characiformes",
+      "orderJa": "カラシン目",
+      "family": "Acestrorhamphidae",
+      "familyJa": "アケストロランプス科"
+    },
+    "adultSizeCm": 2,
+    "sizeNote": "最大は標準体長20mm（2cm）ほどです。テトラの中でも特に小さい部類です。",
+    "distribution": "ブラジル中部、アラグアイア川水系のリオ・ダス・モルテス（マットグロッソ州）が基準産地で、アラグアイア川流域に分布します。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2018,
+      "note": "FishBase は2018年11月7日の評価と記しています。Wikipedia が引く IUCN の記録は2022-2版で、評価年が食い違います。"
+    },
+    "highlights": [
+      "体は透けるような橙色で、雄は特に産卵期に色が濃くなります。",
+      "雌は雄より体が丸みを帯びます。",
+      "とても穏やかで、群れで暮らします。",
+      "野生では、落ち葉や枝が積もった小さな支流、よどみ、三日月湖にすむとみられています。"
     ]
   }
 }

@@ -20,6 +20,8 @@ for await (const path of new Bun.Glob("src/content/tanks/*/tank.json").scan()) {
   const tank = await Bun.file(path).json() as TankJson;
   TANKS.set(tank.id, tank);
 }
+let SPECIES_COUNT = 0;
+for await (const _ of new Bun.Glob("src/content/fish/*/species.json").scan()) SPECIES_COUNT++;
 const tankName = (id: string) => TANKS.get(id)!.displayName;
 const roomOf = (tankId: string) => ROOMS.find((room) => room.tanks.some((tank) => tank.tankId === tankId))!;
 const defaultTotal = (id: string) => TANKS.get(id)!.defaultStock.reduce((sum, entry) => sum + entry.count, 0);
@@ -29,6 +31,7 @@ type Result = {
   title: string;
   map: { floors: number; halls: string[]; soonHalls: number; previews: number; firstLastHall: boolean; overflowWidth: number };
   history: string[];
+  zukan: string[];
   roomTanks: number;
   enteredTank: string;
   asiaCards: number;
@@ -446,8 +449,9 @@ async function main() {
     const expandedScenes = await verifyExpandedScenes(consoleErrors);
     const halls = await verifyHalls(consoleErrors);
     const history = await verifyHistory(consoleErrors);
+    const zukan = await verifyZukan(consoleErrors);
     const result: Result = {
-      title, map, history, roomTanks, enteredTank, asiaCards, harlequinCount, rejectedSpecies, newSpeciesChecked, addedTanksPreserved, arrangementPreserved, scenesVisited, japanScenes,
+      title, map, history, zukan, roomTanks, enteredTank, asiaCards, harlequinCount, rejectedSpecies, newSpeciesChecked, addedTanksPreserved, arrangementPreserved, scenesVisited, japanScenes,
       viewingOnEntry, viewingStageWidth, editingOpened, editingStageWidth, closedToViewing, backToRoom, cubeCards, cubeStageRatio, amazonCards, adjacentTanks,
       restored, migrated, desktop, mobile, landscape, removedCopyAbsent, consoleErrors, expandedScenes, halls,
     };
@@ -458,6 +462,9 @@ async function main() {
     assert(map.floors === museumJson.floors.length && JSON.stringify(map.halls) === JSON.stringify(ROOMS.map((room) => room.displayName))
       && map.soonHalls === HALL_ORDER.length - ROOMS.length && map.previews === ROOMS.length && !map.firstLastHall && map.overflowWidth === 0);
     assert(history.length === 6);
+    assert(JSON.stringify(zukan) === JSON.stringify([
+      "1440x960 ?tank=amazon-90 tank", "1440x960 closed ", "420x912 ?tank=amazon-90 tank", "420x912 closed ",
+    ]));
     assert(roomTanks === ASIA_HALL.tanks.length);
     assert(enteredTank === tankName("asia-60"));
     assert(asiaCards === 9 && harlequinCount === 12 && rejectedSpecies);
@@ -733,6 +740,48 @@ async function verifyHistory(consoleErrors: string[]) {
   await view.navigate(`${BASE_URL}?hall=${reef.id}`);
   await sleep(2500);
   assert(await view.evaluate(`document.querySelector('.room-scroll.ready')?.dataset.room === ${JSON.stringify(reef.id)}`));
+  return steps;
+}
+
+// 図鑑: 館内図から開き、検索して1種の解説を開き、見られる水槽へ移り、戻る・閉じるで元の画面へ戻る。
+async function verifyZukan(consoleErrors: string[]) {
+  const steps: string[] = [];
+  for (const [width, height] of [[1440, 960], [420, 912]]) {
+    await using view = new Bun.WebView({ width, height, backend: "webkit",
+      console: (type, ...args) => { if (type === "error") consoleErrors.push(`zukan: ${args.map(String).join(" ")}`); } });
+    const size = `${width}x${height}`;
+    await view.navigate(BASE_URL);
+    await sleep(2000);
+    await view.evaluate(`document.querySelector(".map-zukan")?.click()`);
+    await sleep(1500);
+    const cards = Number(await view.evaluate(`document.querySelectorAll(".zukan-card").length`));
+    assert(cards === SPECIES_COUNT);
+    assert(Number(await view.evaluate(`document.querySelector(".zukan-list").scrollWidth - document.querySelector(".zukan-list").clientWidth`)) <= 0);
+    await Bun.write(`${SCREENSHOT_DIR}/zukan-${size}.png`, await view.screenshot({ format: "png" }));
+    await view.evaluate(`(() => {
+      const input = document.querySelector(".zukan-search");
+      Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, "value").set.call(input, "ねおんてとら");
+      input.dispatchEvent(new Event("input", { bubbles: true }));
+    })()`);
+    await sleep(400);
+    await view.evaluate(`[...document.querySelectorAll(".zukan-card")].find((card) => card.textContent.includes("Paracheirodon innesi"))?.click()`);
+    await sleep(1500);
+    assert(await view.evaluate(`location.search === "?zukan=neon-tetra" && document.querySelectorAll(".zukan-facts > div").length === 6`));
+    await Bun.write(`${SCREENSHOT_DIR}/zukan-detail-${size}.png`, await view.screenshot({ format: "png" }));
+    await view.evaluate(`document.querySelector(".zukan-exhibits button")?.click()`);
+    await sleep(3500);
+    steps.push(`${size} ${await view.evaluate(`location.search + (document.querySelector(".tank-screen.visible") ? " tank" : " ?")`)}`);
+    await view.evaluate(`history.back()`);
+    await sleep(1200);
+    assert(await view.evaluate(`location.search === "?zukan=neon-tetra" && !!document.querySelector("#zukan-detail-name")`));
+    // Esc で解説から一覧へ、一覧から閉じる。
+    await view.evaluate(`window.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape" }))`);
+    await sleep(600);
+    assert(await view.evaluate(`!!document.querySelector(".zukan-list") && !document.querySelector(".zukan-detail")`));
+    await view.evaluate(`window.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape" }))`);
+    await sleep(1500);
+    steps.push(`${size} closed ${await view.evaluate(`location.search + (document.querySelector(".zukan") ? " open" : "")`)}`);
+  }
   return steps;
 }
 

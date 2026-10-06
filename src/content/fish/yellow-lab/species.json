@@ -15,6 +15,31 @@
       "ラビドクロミス・カエルレウス"
     ]
   },
+  "profile": {
+    "taxonomy": {
+      "order": "Cichliformes",
+      "orderJa": "シクリッド目",
+      "family": "Cichlidae",
+      "familyJa": "シクリッド科"
+    },
+    "adultSizeCm": 8,
+    "sizeNote": "標準体長は最大で、FishBase が8.1cm、Seriously Fish が10cmとしています。雄は雌より少し大きくなる傾向があります。",
+    "distribution": "マラウイ湖の固有種で、湖の北西岸に限られます。分布はカイザー岬からルンド、チルンボ岬からチャロの間とされ、飼育で人気の黄色い型は、そのうちチャロからライオンズ・コーブの間に限られます。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2018,
+      "note": "IUCN の評価は FishBase の記載から確認しました。ウィキペディアは2021年としており、年が食い違います。"
+    },
+    "highlights": [
+      "飼育で人気の黄色い型は、自然では少ない色の型です。",
+      "岩場と、ヴァリスネリアが茂る場所の2種類の環境にすみます。",
+      "雌が卵を口の中で育てる、マウスブルーダーです。"
+    ]
+  },
   "swim": {
     "tailBeatHz": 1.8,
     "bodyWaveStart": 0.5,
@@ -55,6 +80,14 @@
       {
         "title": "Seriously Fish: Labidochromis caeruleus",
         "url": "https://www.seriouslyfish.com/species/labidochromis-caeruleus/"
+      },
+      {
+        "title": "FishBase: Labidochromis caeruleus",
+        "url": "https://www.fishbase.se/summary/Labidochromis-caeruleus.html"
+      },
+      {
+        "title": "Wikipedia: Labidochromis caeruleus",
+        "url": "https://en.wikipedia.org/wiki/Labidochromis_caeruleus"
       }
     ]
   },

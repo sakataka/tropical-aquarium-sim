@@ -71,6 +71,18 @@
       {
         "title": "Amphiprion ocellaris species reference",
         "url": "https://www.aquariumofpacific.org/onlinelearningcenter/species/clown_anemonefish"
+      },
+      {
+        "title": "FishBase: Amphiprion ocellaris",
+        "url": "https://www.fishbase.se/summary/Amphiprion-ocellaris.html"
+      },
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Amphiprion ocellaris",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?tbl=species&genus=Amphiprion&species=ocellaris"
+      },
+      {
+        "title": "Wikipedia: Ocellaris clownfish",
+        "url": "https://en.wikipedia.org/wiki/Ocellaris_clownfish"
       }
     ]
   },
@@ -82,5 +94,31 @@
     "temperament": "ペアで宿主のイソギンチャクを住みかにし、その周りの小さな範囲を守ります。",
     "movement": "胸びれを小刻みに動かし、イソギンチャクから1〜2体長ほどの範囲を行き来します。ときどき触手の間に体をうずめ、夜はそこで休みます。",
     "habitat": "浅いサンゴ礁のラグーン。左の岩場のイソギンチャクを住みかにしています。刺胞や粘液による共生の仕組みまでは再現していません。"
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Perciformes",
+      "orderJa": "スズキ目",
+      "family": "Pomacentridae",
+      "familyJa": "スズメダイ科"
+    },
+    "adultSizeCm": 8,
+    "sizeNote": "水族館の解説では、ふつう全長8cmほどで、最大で11cmとされます。FishBase も最大全長を11.0cmとしています。雌のほうが雄より大きくなります。",
+    "distribution": "東インド洋から西太平洋に分布します。アンダマン海、マレーシア、インドネシアからフィリピンまで、北は日本中部、南はオーストラリア北西部です。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2021,
+      "note": "IUCN の評価は軽度懸念（LC）で、FishBase が評価日を2021年2月3日と記しています。"
+    },
+    "highlights": [
+      "オレンジ色の体に、黒い縁取りのある白い帯が3本入ります。",
+      "3種の大型イソギンチャクを住みかとし、粘液の層で刺されないとされます。",
+      "みな雄として成熟し、群れで最も大きい個体が雌になります。雌が死ぬと、優位の雄が雌に変わります。",
+      "卵は雄が見守り、6〜7日でふ化します。"
+    ]
   }
 }

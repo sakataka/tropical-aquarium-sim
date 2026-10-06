@@ -32,7 +32,10 @@
     },
     "turnRateRadPerSec": 2.5,
     "restFraction": 0.1,
-    "depthRange": [0.1, 0.85],
+    "depthRange": [
+      0.1,
+      0.85
+    ],
     "social": {
       "grouping": "group",
       "spacingBodyLengths": 2.5,
@@ -44,12 +47,18 @@
       {
         "type": "grazing",
         "chancePerMin": 2.0,
-        "durationSec": [1.5, 4]
+        "durationSec": [
+          1.5,
+          4
+        ]
       },
       {
         "type": "follow",
         "chancePerMin": 0.4,
-        "durationSec": [2, 5]
+        "durationSec": [
+          2,
+          5
+        ]
       }
     ],
     "sources": [
@@ -64,6 +73,14 @@
       {
         "title": "The Aquarium Wiki: Platy",
         "url": "https://www.theaquariumwiki.com/wiki/Platy"
+      },
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Xiphophorus maculatus",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?tbl=species&genus=Xiphophorus&species=maculatus"
+      },
+      {
+        "title": "Wikipedia: Southern platyfish",
+        "url": "https://en.wikipedia.org/wiki/Southern_platyfish"
       }
     ]
   },
@@ -78,6 +95,32 @@
     "aliases": [
       "platy",
       "Xiphophorus maculatus"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cyprinodontiformes",
+      "orderJa": "カダヤシ目",
+      "family": "Poeciliidae",
+      "familyJa": "カダヤシ科"
+    },
+    "adultSizeCm": 5,
+    "sizeNote": "標準体長は約50mm（Seriously Fish）です。雌のほうが大きく、FishBase では最大全長が雌6.0cm、雄4.0cmとされます。",
+    "distribution": "メキシコ大西洋側のベラクルス市周辺からベリーズ北部まで分布します。主に小川や川にすみます。観賞魚として広く持ち込まれ、米国の複数の州やハワイなどに定着しています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "DD",
+      "assessedYear": 2018,
+      "note": "IUCN の評価はデータ不足（DD）で、FishBase が評価日を2018年4月3日と記しています。観賞魚の品種は野生個体と大きく異なり、野生の個体が飼育店に出ることはほとんどありません。"
+    },
+    "highlights": [
+      "卵胎生の魚で、1回に20〜80匹ほどの稚魚を産みます。",
+      "雄の尻びれは棒状の生殖器（ゴノポジウム）になり、雌では扇形です。",
+      "観賞魚では橙、赤、黄、黒などの品種が作られています。野生の個体の色はもっと控えめです。",
+      "温和な魚で、多くの熱帯魚と同じ水槽で飼えます。"
     ]
   }
 }

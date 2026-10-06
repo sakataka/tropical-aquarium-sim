@@ -1,0 +1,236 @@
+/* ───────── 図鑑 ─────────
+   館内図と同じ暗い水の色の上に、標本棚のような一覧と、1種ずつの解説を重ねる。
+   図鑑を開いたときだけ読む。 */
+
+.zukan {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  color: var(--ink);
+  background:
+    radial-gradient(70% 40% at 20% 0%, rgba(214, 192, 143, 0.08), transparent 60%),
+    linear-gradient(180deg, #0a2224 0%, #041619 50%, #01080a 100%);
+  animation: zukan-in 0.35s var(--ease-out) both;
+}
+@keyframes zukan-in { from { opacity: 0; } }
+
+.zukan-list {
+  height: 100%;
+  overflow-y: auto;
+  padding: var(--safe-top) var(--safe-right) calc(var(--safe-bottom) + 24px) var(--safe-left);
+}
+.zukan-inner { max-width: 1180px; margin: 0 auto; }
+
+.zukan-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 0 18px;
+}
+.zukan-eyebrow {
+  margin: 0;
+  color: var(--brass);
+  font-family: var(--font-latin);
+  font-size: 17px;
+  font-style: italic;
+  letter-spacing: 0.02em;
+}
+.zukan-header h1 {
+  margin: 2px 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3vw, 38px);
+  font-weight: 500;
+  letter-spacing: 0.2em;
+}
+.zukan-count { margin: 8px 0 0; color: var(--muted); font-size: 12.5px; letter-spacing: 0.06em; }
+.zukan-count strong { color: var(--ink); font-weight: 500; }
+
+.zukan-tools {
+  position: sticky;
+  top: calc(var(--safe-top) * -1);
+  z-index: 2;
+  display: grid;
+  gap: 10px;
+  margin-bottom: 8px;
+  padding: 12px 0;
+  background: linear-gradient(180deg, #071c1f 75%, rgba(7, 28, 31, 0));
+}
+.zukan-search {
+  width: 100%;
+  min-height: 44px;
+  padding: 0 16px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  font-size: 16px; /* iPhone で入力時に拡大されない大きさ */
+}
+.zukan-search::placeholder { color: var(--faint); }
+.zukan-filters { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; }
+.zukan-segment { display: inline-flex; padding: 3px; border: 1px solid var(--line); border-radius: 999px; }
+.zukan-segment button {
+  min-height: 34px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 999px;
+  background: none;
+  color: var(--muted);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+}
+.zukan-segment button[aria-pressed="true"] { background: var(--accent-soft); color: var(--ink); }
+.zukan-sort { display: inline-flex; align-items: center; gap: 8px; color: var(--muted); font-size: 12.5px; }
+.zukan-sort select {
+  min-height: 36px;
+  padding: 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #0a2224;
+  font-size: 13px;
+}
+
+.zukan-hits, .zukan-empty { color: var(--muted); font-size: 13px; letter-spacing: 0.04em; }
+.zukan-empty { padding: 32px 0; text-align: center; }
+
+.zukan-group { margin-top: 22px; }
+.zukan-group h2 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 12px;
+  margin: 0 0 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+}
+.zukan-group h2 small { color: var(--faint); font-family: var(--font-sans); font-size: 11.5px; letter-spacing: 0.04em; }
+
+.zukan-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(176px, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.zukan-card {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  align-content: start;
+  gap: 3px;
+  padding: 10px 12px 12px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+  text-align: left;
+  transition: background 0.25s, border-color 0.25s;
+}
+.zukan-card:hover { background: var(--surface-strong); border-color: var(--line-strong); }
+.zukan-thumb {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 16 / 9;
+  margin-bottom: 6px;
+  border-radius: 9px;
+  background: radial-gradient(80% 90% at 50% 45%, rgba(143, 220, 211, 0.1), transparent 70%);
+}
+.zukan-thumb img { max-width: 92%; max-height: 86%; object-fit: contain; }
+.zukan-card-name { font-size: 14px; font-weight: 600; letter-spacing: 0.04em; }
+.zukan-card-sci { color: var(--muted); font-family: var(--font-latin); font-size: 14px; font-style: italic; overflow-wrap: anywhere; }
+.zukan-card-meta { color: var(--faint); font-size: 11.5px; letter-spacing: 0.03em; }
+
+/* 解説は一覧の上に重ね、閉じると一覧のスクロール位置に戻る。 */
+.zukan-detail {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  overflow-y: auto;
+  padding: var(--safe-top) var(--safe-right) calc(var(--safe-bottom) + 32px) var(--safe-left);
+  background: linear-gradient(180deg, #0a2224 0%, #041619 55%, #01080a 100%);
+  animation: zukan-in 0.3s var(--ease-out) both;
+}
+.zukan-detail .zukan-inner { max-width: 760px; }
+.zukan-detail-bar { display: flex; justify-content: space-between; padding: 16px 0 8px; }
+.zukan-figure {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 2 / 1;
+  margin-top: 4px;
+  margin-bottom: 8px;
+  border-radius: 18px;
+  background: radial-gradient(70% 80% at 50% 50%, rgba(143, 220, 211, 0.12), transparent 70%);
+}
+.zukan-figure img { max-width: 88%; max-height: 82%; object-fit: contain; }
+.zukan-detail-head h2 {
+  margin: 4px 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(26px, 4vw, 34px);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+}
+.zukan-detail-head h2:focus { outline: none; }
+.zukan-sci { margin: 4px 0 0; color: var(--muted); font-family: var(--font-latin); font-size: 19px; font-style: italic; }
+.zukan-aliases { margin: 6px 0 0; color: var(--faint); font-size: 12px; line-height: 1.7; }
+
+.zukan-highlights {
+  display: grid;
+  gap: 8px;
+  margin: 22px 0 0;
+  padding: 16px 18px;
+  border-left: 2px solid var(--brass);
+  border-radius: 0 12px 12px 0;
+  background: rgba(214, 192, 143, 0.06);
+  list-style: none;
+  font-size: 14px;
+  line-height: 1.8;
+}
+.zukan-facts { display: grid; gap: 0; margin: 22px 0 0; }
+.zukan-facts > div {
+  display: grid;
+  grid-template-columns: 6.5em 1fr;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+.zukan-facts dt { color: var(--muted); font-size: 12.5px; letter-spacing: 0.08em; }
+.zukan-facts dd { margin: 0; font-size: 13.5px; line-height: 1.8; }
+
+.zukan-section { margin-top: 26px; }
+.zukan-section h3 { margin: 0 0 10px; color: var(--brass); font-size: 13px; font-weight: 500; letter-spacing: 0.14em; }
+.zukan-section p { margin: 0 0 8px; color: var(--ink); font-size: 13.5px; line-height: 1.85; }
+.zukan-exhibits { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.zukan-exhibits button {
+  display: grid;
+  width: 100%;
+  gap: 2px;
+  padding: 12px 16px;
+  border: 1px solid var(--line-strong);
+  border-radius: 12px;
+  background: var(--accent-soft);
+  text-align: left;
+  transition: background 0.25s;
+}
+.zukan-exhibits button:hover { background: rgba(143, 220, 211, 0.22); }
+.zukan-exhibits button span { font-size: 14px; font-weight: 600; letter-spacing: 0.04em; }
+.zukan-exhibits button span::after { content: " →"; color: var(--accent); }
+.zukan-exhibits button small { color: var(--muted); font-size: 12px; }
+.zukan-sources ul { margin: 0; padding-left: 1.2em; color: var(--muted); font-size: 12px; line-height: 1.8; }
+.zukan-sources a { color: var(--muted); overflow-wrap: anywhere; }
+.zukan-sources a:hover { color: var(--accent); }
+
+@media (max-width: 600px) {
+  .zukan-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .zukan-card { padding: 8px 9px 10px; }
+  .zukan-card-name { font-size: 13px; }
+  .zukan-card-sci { font-size: 13px; }
+  .zukan-segment button { padding: 0 11px; }
+  .zukan-facts > div { grid-template-columns: 1fr; gap: 2px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zukan, .zukan-detail { animation: none; }
+}

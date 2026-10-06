@@ -46,6 +46,18 @@
       {
         "title": "Seriously Fish: Hyphessobrycon pulchripinnis",
         "url": "https://www.seriouslyfish.com/species/hyphessobrycon-pulchripinnis/"
+      },
+      {
+        "title": "FishBase — Hyphessobrycon pulchripinnis",
+        "url": "https://www.fishbase.se/summary/Hyphessobrycon-pulchripinnis.html"
+      },
+      {
+        "title": "Eschmeyer's Catalog of Fishes — Hyphessobrycon pulchripinnis",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=29160"
+      },
+      {
+        "title": "Wikipedia — Lemon tetra",
+        "url": "https://en.wikipedia.org/wiki/Lemon_tetra"
       }
     ]
   },
@@ -60,6 +72,39 @@
     "aliases": [
       "lemon-tetra",
       "Lemon Tetra"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Characiformes",
+      "orderJa": "カラシン目",
+      "family": "Acestrorhamphidae",
+      "familyJa": "アケストロランプス科"
+    },
+    "adultSizeCm": 4,
+    "sizeNote": "標準体長です。FishBase では最大で雄3.8cm、雌3.6cmです。Seriously Fish は最大40mm SL とし、雄は雌よりやや小さく、体高も低いとしています。",
+    "distribution": "ブラジル中部のタパジョス川水系が主な産地で、シングー川水系にもいる可能性があります。記録はパラ州のタパジョス川の中流と下流、マットグロッソ州の支流にあります。原記載は水槽の個体に基づき、タイプ産地は不確かです。",
+    "water": {
+      "salinity": "freshwater",
+      "temperatureC": [
+        20,
+        28
+      ],
+      "pH": [
+        5.0,
+        7.5
+      ]
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2018
+    },
+    "highlights": [
+      "半透明の黄色い体で、尻びれの前の数本が鮮やかなレモン色です。尻びれの縁は黒く縁取られます。",
+      "目の上半分が赤く、体調の指標になるとされます。",
+      "雄は尻びれの黒い縁が幅広く、雌では細い線のようです。",
+      "8〜10匹以上の群れで飼うと、色が冴え、行動も面白くなるとされます。群れの中には一時的な順位ができます。"
     ]
   }
 }

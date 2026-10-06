@@ -15,6 +15,40 @@
       "イオドトロフェウス・スプレンゲラエ"
     ]
   },
+  "profile": {
+    "taxonomy": {
+      "order": "Cichliformes",
+      "orderJa": "シクリッド目",
+      "family": "Cichlidae",
+      "familyJa": "シクリッド科"
+    },
+    "adultSizeCm": 10,
+    "sizeNote": "Seriously Fish では最大標準体長100mmです。FishBase では雄または性別不明で最大標準体長10.8cmです。雄は雌より大きくなる傾向があります。",
+    "distribution": "マラウイ湖の固有種です。湖南部のボアズル島、チニャンクウィ島、チニャムウェジ島の周辺に分布します。",
+    "water": {
+      "salinity": "freshwater",
+      "temperatureC": [
+        25,
+        29
+      ],
+      "pH": [
+        7.5,
+        8.8
+      ]
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "NT",
+      "assessedYear": 2018,
+      "note": "評価年は FishBase の記載（2018年6月22日）です。IUCN 公式サイトは直接取得できませんでした。"
+    },
+    "highlights": [
+      "雄は成熟すると淡いラベンダー色（薄紫）になります。雌と幼魚は赤褐色です。",
+      "雌が受精卵と稚魚を口の中で育てるマウスブルーダーです。",
+      "雄は産卵場所のまわりに緩い縄張りを持ち、体色を濃くして体を震わせて雌を誘います。",
+      "ムブナと呼ばれる岩場の仲間の中では、攻撃性が低いほうです。"
+    ]
+  },
   "swim": {
     "tailBeatHz": 1.8,
     "bodyWaveStart": 0.5,
@@ -55,6 +89,14 @@
       {
         "title": "Seriously Fish: Iodotropheus sprengerae",
         "url": "https://www.seriouslyfish.com/species/iodotropheus-sprengerae/"
+      },
+      {
+        "title": "FishBase: Iodotropheus sprengerae",
+        "url": "https://www.fishbase.se/summary/Iodotropheus-sprengerae.html"
+      },
+      {
+        "title": "Wikipedia: Iodotropheus sprengerae",
+        "url": "https://en.wikipedia.org/wiki/Iodotropheus_sprengerae"
       }
     ]
   },

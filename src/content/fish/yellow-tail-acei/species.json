@@ -16,6 +16,29 @@
       "アフリカンシクリッド"
     ]
   },
+  "profile": {
+    "taxonomy": {
+      "order": "Cichliformes",
+      "orderJa": "シクリッド目",
+      "family": "Cichlidae",
+      "familyJa": "シクリッド科"
+    },
+    "adultSizeCm": 12.5,
+    "sizeNote": "標準体長の最大は125mmで、繁殖期には雄のほうが大きく、色も濃くなります（Seriously Fish）。ウィキペディアは全長15cmほどとしています。",
+    "distribution": "マラウイ湖の固有で、湖の西側にあるンカタ湾、センガ湾、ンガラ、ルアルウェ、バンダウェ、カロンガ、サウス・ルクル川などに分布します。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "note": "記載されていない種のため、IUCN の評価は確かめられていません。"
+    },
+    "highlights": [
+      "青い体に黄色い尾びれを持つ型で、尾びれが白い型は「ホワイトテール・アセイ」と呼ばれます。",
+      "沈んだ流木の表面につく藻類を食べる、ほぼ唯一のムブナとされます。",
+      "野生では流木の近くに群れをつくり、ムブナの仲間では穏やかな魚とされます。"
+    ]
+  },
   "swim": {
     "tailBeatHz": 1.7,
     "bodyWaveStart": 0.42,
@@ -56,6 +79,10 @@
       {
         "title": "Seriously Fish: Pseudotropheus sp. 'acei'",
         "url": "https://www.seriouslyfish.com/species/pseudotropheus-sp-acei/"
+      },
+      {
+        "title": "Wikipedia: Pseudotropheus sp. \"acei\"",
+        "url": "https://en.wikipedia.org/wiki/Pseudotropheus_sp._%22acei%22"
       }
     ]
   },

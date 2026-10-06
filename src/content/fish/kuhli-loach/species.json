@@ -33,7 +33,10 @@
     },
     "turnRateRadPerSec": 2.2,
     "restFraction": 0.2,
-    "depthRange": [0.55, 0.95],
+    "depthRange": [
+      0.55,
+      0.95
+    ],
     "social": {
       "grouping": "group",
       "spacingBodyLengths": 0.8,
@@ -44,7 +47,10 @@
     "habits": [
       {
         "type": "hideByDay",
-        "durationSec": [40, 120]
+        "durationSec": [
+          40,
+          120
+        ]
       },
       {
         "type": "bottomForage"
@@ -62,6 +68,22 @@
       {
         "title": "Shrimp and Snail Breeder: Kuhli Loach detailed guide",
         "url": "https://aquariumbreeder.com/the-kuhli-loach-detailed-guide-care-diet-and-breeding/"
+      },
+      {
+        "title": "Seriously Fish — Pangio semicincta",
+        "url": "https://www.seriouslyfish.com/species/pangio-semicincta/"
+      },
+      {
+        "title": "Seriously Fish — Pangio kuhlii",
+        "url": "https://www.seriouslyfish.com/species/pangio-kuhlii/"
+      },
+      {
+        "title": "FishBase — Pangio semicincta",
+        "url": "https://www.fishbase.se/summary/Pangio-semicincta.html"
+      },
+      {
+        "title": "FishBase — Pangio kuhlii",
+        "url": "https://www.fishbase.se/summary/Pangio-kuhlii.html"
       }
     ]
   },
@@ -76,6 +98,33 @@
     "aliases": [
       "kuhli-loach",
       "Pangio kuhlii"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cypriniformes",
+      "orderJa": "コイ目",
+      "family": "Cobitidae",
+      "familyJa": "ドジョウ科"
+    },
+    "adultSizeCm": 10,
+    "sizeNote": "Seriously Fish では Pangio semicincta の最大サイズを標準体長100mmとしています。FishBase では Pangio kuhlii の最大全長を12.0cmとしています。流通個体の種が特定できないため、サイズは幅のある目安です。",
+    "distribution": "流通するクーリーローチは、Pangio kuhlii の名で売られていても、多くはマレー半島、スマトラ島、ボルネオ島に分布する P. semicincta か、その近縁種とされます。本来の P. kuhlii はジャワ島の固有種と考えられ、流通したことがない可能性もあります。",
+    "water": {
+      "salinity": "freshwater",
+      "temperatureC": [
+        21,
+        26
+      ]
+    },
+    "keeping": "home",
+    "conservation": {
+      "note": "クーリーローチの名で流通する魚は複数の Pangio 属の種を含むとみられ、特定の種に確定できないため、IUCN の区分は付けていません。個別の種では、FishBase が引用する IUCN の評価で P. semicincta は軽度懸念（LC、2019年）、P. kuhlii は軽度懸念（LC、2019年）です。"
+    },
+    "highlights": [
+      "森の細流や湿地の、落ち葉がたまった浅い場所にすみます。夜行性で、休むときは1つの隙間や洞穴に何匹も詰まって入ります。",
+      "細長い体をくねらせて、底や物陰を進みます。",
+      "必要に応じて空気呼吸もできるとされます。"
     ]
   }
 }

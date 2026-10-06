@@ -29,7 +29,10 @@
     },
     "turnRateRadPerSec": 3,
     "restFraction": 0.04,
-    "depthRange": [0.2, 0.8],
+    "depthRange": [
+      0.2,
+      0.8
+    ],
     "social": {
       "grouping": "school",
       "spacingBodyLengths": 1.1,
@@ -46,6 +49,14 @@
       {
         "title": "Wikipedia: Rummy-nose tetra",
         "url": "https://en.wikipedia.org/wiki/Rummy-nose_tetra"
+      },
+      {
+        "title": "Seriously Fish: Hemigrammus rhodostomus",
+        "url": "https://seriouslyfish.com/species/hemigrammus-rhodostomus"
+      },
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Petitella rhodostoma",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=55018"
       }
     ]
   },
@@ -62,6 +73,39 @@
       "Petitella rhodostoma",
       "Hemigrammus rhodostomus",
       "ラミーノーズ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Characiformes",
+      "orderJa": "カラシン目",
+      "family": "Acestrorhamphidae",
+      "familyJa": "アケストロランプス科"
+    },
+    "adultSizeCm": 5,
+    "sizeNote": "FishBase では最大全長5.0cm（雄または性別不明）です。Seriously Fish は最大標準体長50mmとしています。",
+    "distribution": "南米のアマゾン川下流域とオリノコ川水系に分布します。Eschmeyer の魚類カタログでは、ブラジル、コロンビア、ベネズエラとされ、タイプ産地はブラジルのパラ州サンタレン近くのタパジョス川です。",
+    "water": {
+      "salinity": "freshwater",
+      "temperatureC": [
+        24,
+        27
+      ],
+      "pH": [
+        5.5,
+        7.0
+      ]
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "NE",
+      "note": "FishBase（2025-2版）の IUCN 欄は未評価（Not Evaluated）です。IUCN 公式サイトは直接取得できませんでした。"
+    },
+    "highlights": [
+      "鼻先から鰓ぶたにかけての頭部が赤く、尾びれには黒と白の横縞が入ります。",
+      "密にまとまった群れで泳ぎます。5匹以上、できれば10匹以上で飼うよう勧められています。",
+      "水質が悪化すると、頭の赤色が薄くなることが知られています。",
+      "頭の赤い範囲と尾の斑点の違いで、似たファイヤーヘッド・テトラなどと見分けます。ラミーノーズの名で流通するのは別種が多いとされます。"
     ]
   }
 }

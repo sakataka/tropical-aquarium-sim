@@ -51,6 +51,22 @@
       {
         "title": "Wikipedia: Pterophyllum",
         "url": "https://en.wikipedia.org/wiki/Pterophyllum"
+      },
+      {
+        "title": "Seriously Fish: Pterophyllum \"scalare\"",
+        "url": "https://www.seriouslyfish.com/species/pterophyllum-scalare/"
+      },
+      {
+        "title": "FishBase: Pterophyllum scalare, Freshwater angelfish",
+        "url": "https://www.fishbase.se/summary/4717"
+      },
+      {
+        "title": "Eschmeyer's Catalog of Fishes — Pterophyllum scalare",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?tbl=species&genus=Pterophyllum&species=scalare"
+      },
+      {
+        "title": "GBIF API: IUCN Red List category, Pterophyllum scalare",
+        "url": "https://api.gbif.org/v1/species/5208518/iucnRedListCategory"
       }
     ]
   },
@@ -65,6 +81,31 @@
     "aliases": [
       "angelfish",
       "Pterophyllum scalare"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cichliformes",
+      "orderJa": "カワスズメ目",
+      "family": "Cichlidae",
+      "familyJa": "シクリッド科"
+    },
+    "adultSizeCm": 15,
+    "sizeNote": "Seriously Fish は標準体長15cm、体高20cm以上としています。FishBase は雄または雌雄不明の個体で全長10.5cm、別の文献で全長15cmと記しています。",
+    "distribution": "南米のアマゾン川流域（ブラジル、コロンビア、ペルーなど）に分布します。Seriously Fish は、フランス領ギアナのオヤポック川やガイアナのエセキボ川、ブラジルのアマパ州の河川も範囲に含めています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2020,
+      "note": "IUCN の評価は軽度懸念（LC）です。FishBase によれば評価日は2020年11月20日です。"
+    },
+    "highlights": [
+      "体高が高く、左右に平たい体で、成魚は体長より体高のほうが大きくなります。",
+      "野生では、水草や岸辺の植物が密な沼地や冠水した場所にすみます。",
+      "ペアは、スレートや幅の広い葉などの垂直な面に産卵し、卵とふ化した稚魚を親が守ります。"
     ]
   }
 }

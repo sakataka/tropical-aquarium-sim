@@ -16,6 +16,32 @@
       "ミナミメダカ"
     ]
   },
+  "profile": {
+    "taxonomy": {
+      "order": "Beloniformes",
+      "orderJa": "ダツ目",
+      "family": "Adrianichthyidae",
+      "familyJa": "メダカ科"
+    },
+    "adultSizeCm": 3.5,
+    "sizeNote": "環境省の資料では3.5cmほどの小型淡水魚とされています。最大では標準体長が、Seriously Fish で36mm、FishBase で40mmです。雄は背びれと尻びれが雌より長く大きくなります。",
+    "distribution": "日本のメダカは2012年にキタノメダカ（Oryzias sakaizumii）とミナミメダカ（O. latipes）の2種に分けられました。キタノメダカは青森県から兵庫県までの日本海側に、ミナミメダカは日本の南部・南東部（太平洋側）と朝鮮半島にすむとされます。2種が接する境界域には、遺伝的に独自の集団がいます。このアプリで表すのはミナミメダカです。分割前の資料には中国大陸やベトナムまで含む広い分布が書かれており、外国へは持ち込みによって広がった地域もあります。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2018,
+      "note": "IUCN の評価は軽度懸念（LC）で、FishBase が評価日を2018年3月1日と記しています。環境省レッドリスト2020では、ミナミメダカ（Oryzias latipes）もキタノメダカ（Oryzias sakaizumii）も絶滅危惧II類（VU）です。"
+    },
+    "highlights": [
+      "平野の浅い池や水田、水路の水面近くを、日中は群れで泳ぎます。",
+      "雄は背びれと尻びれが大きく、尻びれの形が雌雄の見分けどころです。",
+      "雌は卵を水草につけます。",
+      "1990年代半ばに宇宙で交尾した、最初の脊椎動物とされています。"
+    ]
+  },
   "swim": {
     "tailBeatHz": 2.8,
     "bodyWaveStart": 0.45,
@@ -60,6 +86,38 @@
       {
         "title": "Seriously Fish: Oryzias latipes",
         "url": "https://www.seriouslyfish.com/species/oryzias-latipes/"
+      },
+      {
+        "title": "FishBase: Oryzias latipes",
+        "url": "https://www.fishbase.se/summary/Oryzias-latipes.html"
+      },
+      {
+        "title": "FishBase: Oryzias sakaizumii",
+        "url": "https://fishbase.net.br/summary/66418"
+      },
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Oryzias latipes",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?tbl=species&genus=Oryzias&species=latipes"
+      },
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Oryzias sakaizumii",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?tbl=species&genus=Oryzias&species=sakaizumii"
+      },
+      {
+        "title": "環境省 — 第4次レッドリストからの新旧対照表（レッドリスト2020）",
+        "url": "https://www.env.go.jp/press/files/jp/114458.pdf"
+      },
+      {
+        "title": "環境省 — メダカ（生息域外保全の事例）",
+        "url": "https://www.env.go.jp/nature/yasei/ex-situ/instance10.html"
+      },
+      {
+        "title": "神奈川県 — 淡水魚類図鑑 ミナミメダカ",
+        "url": "https://www.pref.kanagawa.jp/docs/a4y/images/minamimedaka.html"
+      },
+      {
+        "title": "Zoological Science 33(2): Origin of Boundary Populations in Medaka (Oryzias latipes) Species Complex",
+        "url": "https://complete.bioone.org/journals/zoological-science/volume-33/issue-2/zs150144/Origin-of-Boundary-Populations-in-Medaka-Oryzias-latipesSpecies-Complex/10.2108/zs150144.full"
       }
     ]
   },

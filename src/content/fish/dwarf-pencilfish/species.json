@@ -46,6 +46,10 @@
       {
         "title": "Seriously Fish: Nannostomus marginatus",
         "url": "https://www.seriouslyfish.com/species/nannostomus-marginatus/"
+      },
+      {
+        "title": "FishBase: Nannostomus marginatus",
+        "url": "https://fishbase.se/summary/SpeciesSummary.php?id=11919"
       }
     ]
   },
@@ -61,6 +65,34 @@
       "dwarf-pencilfish",
       "Dwarf Pencilfish",
       "ナノストムス・マルギナータス"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Characiformes",
+      "orderJa": "カラシン目",
+      "family": "Lebiasinidae",
+      "familyJa": "レビアシナ科"
+    },
+    "adultSizeCm": 2.5,
+    "sizeNote": "最大は標準体長25mmとされます。FishBase では最大全長3.5cmです。",
+    "distribution": "南米のガイアナ、スリナム、アマゾン川中・下流域に分布します。ペルー、コロンビア、ブラジルのほか、FishBase はベネズエラも挙げています。",
+    "water": {
+      "salinity": "freshwater",
+      "pH": [
+        4.0,
+        6.0
+      ]
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2020
+    },
+    "highlights": [
+      "体側に3本の暗い縦縞が走ります。産地によっては、中央の縞の上に赤い模様が出ます。",
+      "夜は淡い隠蔽色に変わり、縦縞が消えて背びれの後ろに斜めの帯が2本見えます。",
+      "水草が茂り、沈んだ木や落ち葉のある、流れの緩やかな場所にすみます。"
     ]
   }
 }

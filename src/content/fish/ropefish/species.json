@@ -73,6 +73,22 @@
       {
         "title": "Erpetoichthys calabaricus species reference",
         "url": "https://www.fishbase.se/summary/erpetoichthys-calabaricus.html"
+      },
+      {
+        "title": "FishBase: Erpetoichthys calabaricus",
+        "url": "https://www.fishbase.se/summary/Erpetoichthys-calabaricus.html"
+      },
+      {
+        "title": "Seriously Fish: Erpetoichthys calabaricus",
+        "url": "https://www.seriouslyfish.com/species/erpetoichthys-calabaricus/"
+      },
+      {
+        "title": "Wikipedia: Reedfish",
+        "url": "https://en.wikipedia.org/wiki/Reedfish"
+      },
+      {
+        "title": "Animal Diversity Web: Erpetoichthys calabaricus",
+        "url": "https://animaldiversity.org/accounts/Erpetoichthys_calabaricus/"
       }
     ]
   },
@@ -84,5 +100,39 @@
     "temperament": "細長い体を持つポリプテルス科の魚です。主に夜に小さな動物を探し、昼は陰で休む傾向があります。",
     "movement": "胴体全体を蛇のようにくねらせて底近くを進みます。夜は動きが増え、ときどき空気呼吸のために水面へ上がります。",
     "habitat": "砂底と流木、植生の陰がある古代魚専用の水景に配置します。名前にウナギとありますが、ウナギ科の魚ではありません。"
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Polypteriformes",
+      "orderJa": "ポリプテルス目",
+      "family": "Polypteridae",
+      "familyJa": "ポリプテルス科"
+    },
+    "adultSizeCm": 37,
+    "sizeNote": "FishBase では最大標準体長37cmです。Wikipedia は最大37cm、野生で41.4cmを超える個体はまれとしています。Seriously Fish は標準体長900mmと記しており、数値が大きく食い違います。",
+    "distribution": "西アフリカから中部アフリカの河口域に分布します。FishBase では、ベナンのウエメ川からカメルーンのサナガ川までとされます。",
+    "water": {
+      "salinity": "freshwater",
+      "temperatureC": [
+        23,
+        30
+      ],
+      "pH": [
+        6.0,
+        7.5
+      ]
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "NT",
+      "assessedYear": 2019,
+      "note": "IUCN の評価日は FishBase の記載（2019年6月7日）です。Wikipedia は IUCN 3.1 の2020年版として掲載しています。脅威は、アブラヤシ農園などの農地開発、湿地の排水、都市開発による生息地の消失です。"
+    },
+    "highlights": [
+      "細長い体を蛇のようにくねらせて進みます。",
+      "一対の肺を持ち、水面で空気を吸います。空気に触れられないと溺れることもあります。",
+      "夜行性で、においを頼りに小さな動物を探します。",
+      "他のポリプテルスの仲間と違い、陸に上がって蛇のように這うことが知られています。"
+    ]
   }
 }

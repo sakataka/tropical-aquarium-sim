@@ -29,7 +29,10 @@
     },
     "turnRateRadPerSec": 3.0,
     "restFraction": 0.06,
-    "depthRange": [0.2, 0.85],
+    "depthRange": [
+      0.2,
+      0.85
+    ],
     "social": {
       "grouping": "school",
       "spacingBodyLengths": 1.2,
@@ -46,6 +49,18 @@
       {
         "title": "Seriously Fish: Trigonostigma heteromorpha",
         "url": "https://www.seriouslyfish.com/species/trigonostigma-heteromorpha/"
+      },
+      {
+        "title": "FishBase — Trigonostigma heteromorpha (Harlequin rasbora)",
+        "url": "https://www.fishbase.se/summary/Trigonostigma-heteromorpha.html"
+      },
+      {
+        "title": "Eschmeyer's Catalog of Fishes — Trigonostigma heteromorpha",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?tbl=species&genus=Trigonostigma&species=heteromorpha"
+      },
+      {
+        "title": "Tan (2020) Trigonostigma truncata, a new species of harlequin rasbora (Zenodo copy of Raffles Bull. Zool. 68: 421-433)",
+        "url": "https://zenodo.org/records/4577323"
       }
     ]
   },
@@ -60,6 +75,31 @@
     "aliases": [
       "harlequin-rasbora",
       "Trigonostigma heteromorpha"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cypriniformes",
+      "orderJa": "コイ目",
+      "family": "Danionidae",
+      "familyJa": "ダニオ科"
+    },
+    "adultSizeCm": 3.5,
+    "sizeNote": "野生個体の成魚は標準体長35mmまでとされます（Tan 2020）。Seriously Fish は最大標準体長45mm、FishBase は最大全長5.0cmとしています。雌は雄より少し大きく腹が丸みを帯びます。",
+    "distribution": "マレー半島（ペラ、スランゴール、ヌグリ・スンビラン、ジョホール、パハン）、シンガポール、スマトラ島北部（北スマトラ州とリアウ州）に分布します。リアウ諸島のバタム島、ビンタン島、リンガ島と、バンカ島、ブリトゥン島にもいます。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2019
+    },
+    "highlights": [
+      "体側の後半にある大きな黒い三角形の斑紋は、この仲間の目印です。",
+      "森の中の緩やかな流れや泥炭湿地など、落ち葉の成分で茶色に染まった酸性寄りの水に暮らします。",
+      "群れで暮らす魚で、数が少ないと落ち着かなくなります。",
+      "卵は広い葉の裏側に産みつけられます。"
     ]
   }
 }

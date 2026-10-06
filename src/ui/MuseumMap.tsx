@@ -5,6 +5,7 @@ import type { FishRoomDefinition } from "../core/room";
 import { playSfx } from "../audio/sfx";
 import { getMuseumMapImageUrl } from "../render/assetUrls";
 import { HallPreview } from "./HallPreview";
+import { BookIcon } from "./icons";
 import { SoundToggle } from "./SoundToggle";
 
 const mapImageUrl = getMuseumMapImageUrl(museum.map.image);
@@ -20,6 +21,7 @@ export function MuseumMap({
   soundEnabled,
   tanks,
   onEnterHall,
+  onOpenZukan,
   onToggleSound,
 }: {
   /** 前回見ていた展示室。目印を付ける。 */
@@ -28,6 +30,7 @@ export function MuseumMap({
   /** 水槽ごとの今の設定。縮小版に今の水景を映す。 */
   tanks: Record<string, AquariumCustomization>;
   onEnterHall: (hallId: string) => void;
+  onOpenZukan: () => void;
   onToggleSound: () => void;
 }) {
   const [active, setActive] = useState<Active>();
@@ -54,6 +57,9 @@ export function MuseumMap({
           <p className="map-eyebrow">{museum.exhibitName}</p>
           <h1>{museum.displayName}</h1>
           <p className="map-lede">{museum.lede}</p>
+          <button className="map-zukan" onClick={onOpenZukan} type="button">
+            <BookIcon /><span>図鑑</span><small>館の生き物を調べる</small>
+          </button>
         </header>
         <figure className="map-plate" style={plateStyle}>
           <div className="map-canvas">
