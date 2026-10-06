@@ -4,6 +4,7 @@ import { sampleSurface } from "./surfaceMotion";
 import { chooseTerrainGoal, insideTerrain, resolveTerrainGoal } from "./terrainMotion";
 import type { AquariumScene, FishInstance, FishSpeciesDefinition, SurfaceFrame, TankDefinition, Vec2 } from "./types";
 import { clamp, normalize } from "./math";
+import { getWaterColumn, waterCeilingCm, waterY } from "./waterColumn";
 
 export type StartleInput = {
   fish: FishInstance[];
@@ -69,11 +70,13 @@ function dart(fish: FishInstance, species: FishSpeciesDefinition, tank: TankDefi
   const spread = (random() - 0.5) * 0.6;
   const direction = normalize({ x: away.x - away.y * spread, y: away.y + away.x * spread }, { x: fish.facing, y: 0 });
   const margin = tank.safeMarginCm * 1.5;
+  const water = getWaterColumn(tank, input.scene, input.frame);
   let target = {
     x: clamp(fish.position.x + direction.x * run, margin, tank.widthCm - margin),
     y: clamp(fish.position.y + direction.y * run,
-      Math.max(margin, tank.heightCm * Math.max(0, zone.minY - 0.1)),
-      Math.min(tank.heightCm - margin, tank.heightCm * Math.min(1, zone.maxY + 0.1))),
+      Math.max(waterCeilingCm(water, tank, fish.depth) + tank.safeMarginCm * 0.5,
+        waterY(water, Math.max(0, zone.minY - 0.1), fish.depth)),
+      Math.min(tank.heightCm - margin, waterY(water, Math.min(1, zone.maxY + 0.1), fish.depth))),
   };
   // 壁際で逃げ場がないときは、壁に沿って横へ逃げる。
   if (Math.hypot(target.x - fish.position.x, target.y - fish.position.y) < species.realBodyLengthCm * 2) {

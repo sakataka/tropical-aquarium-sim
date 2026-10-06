@@ -7,5 +7,9 @@
   "waterColor": "#5a6236",
   "framing": {
     "plateBottom": 0.786
+  },
+  "waterLine": {
+    "front": 0.43,
+    "back": 0.34
   }
 }

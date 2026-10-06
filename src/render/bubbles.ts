@@ -106,13 +106,16 @@ export class FloatingMotes {
     }
   }
 
-  /** opacity は全体の濃さ（0〜1）。切り替え直後は0から少しずつ出す。 */
-  update(width: number, height: number, timeSec: number, deltaSec: number, opacity = 1) {
+  /**
+   * opacity は全体の濃さ（0〜1）。切り替え直後は0から少しずつ出す。
+   * waterTop は手前の水面の高さ（ガラスに対する比率）。水面より上の空気には漂わせない。
+   */
+  update(width: number, height: number, timeSec: number, deltaSec: number, opacity = 1, waterTop = 0) {
     for (const mote of this.motes) {
       mote.x = wrap(mote.x + (mote.vx + Math.sin(timeSec * 0.2 + mote.seed) * 0.002) * deltaSec);
       mote.y = 0.08 + wrap((mote.y - 0.08 + mote.vy * deltaSec) / 0.86) * 0.86;
       const size = 0.0012 + (mote.seed % 1) * 0.0014;
-      mote.sprite.position.set(mote.x * width, mote.y * height);
+      mote.sprite.position.set(mote.x * width, (waterTop + mote.y * (1 - waterTop)) * height);
       mote.sprite.scale.set((width * size) / mote.sprite.texture.width);
       mote.sprite.alpha = (0.1 + 0.08 * Math.sin(timeSec * 0.5 + mote.seed * 3)) * opacity;
     }

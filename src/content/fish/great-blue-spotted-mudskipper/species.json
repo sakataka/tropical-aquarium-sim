@@ -55,7 +55,7 @@
   "preferredZone": {
     "minX": 0.08,
     "maxX": 0.92,
-    "minY": 0.42,
+    "minY": 0.8,
     "maxY": 0.95
   },
   "ecology": {
@@ -68,7 +68,7 @@
     "turnRateRadPerSec": 2.4,
     "restFraction": 0.65,
     "depthRange": [
-      0.3,
+      0.15,
       0.8
     ],
     "social": {
@@ -104,6 +104,14 @@
           10,
           40
         ]
+      },
+      {
+        "type": "airBreathing",
+        "breathsPerHour": [
+          3,
+          8
+        ],
+        "style": "dash"
       }
     ],
     "sources": [

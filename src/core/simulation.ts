@@ -17,6 +17,7 @@ import { findHabit } from "./habits";
 import { getStructurePoints } from "./plateFraming";
 import { FULL_SURFACE_FRAME, stepSurfaceWalker, worldPoint } from "./surfaceMotion";
 import { chooseTerrainGoal, constrainTerrainDepth, constrainTerrainStep, findHomeShelter, insideTerrain, resolveTerrainGoal, routeTerrainTarget, terrainAvoidance } from "./terrainMotion";
+import { getWaterColumn, waterCeilingCm, waterY, type WaterColumn } from "./waterColumn";
 import { add, addMany, clamp, length, lerp, normalize, scale, subtract } from "./math";
 
 const FORWARD_TARGET_CHANCE = 0.86;
@@ -59,6 +60,7 @@ export function stepSimulation(input: SimulationInput): SimulationOutput {
   const frame = input.surfaceFrame ?? FULL_SURFACE_FRAME;
   const structurePoints = input.structurePoints ??
     (input.scene ? getStructurePoints(input.tank, input.scene, frame) : []);
+  const water = getWaterColumn(input.tank, input.scene, frame);
   return {
     fish: input.fish.map((fish) => {
       const species = input.species[fish.speciesId];
@@ -67,6 +69,8 @@ export function stepSimulation(input: SimulationInput): SimulationOutput {
         return stepSurfaceWalker(fish, species, input.tank, input.scene,
           frame, deltaSec, getActivityLevel(species, lighting));
       }
+      // 生まれたばかりの魚（まだ一度も動いていない）は、水槽全体に対する高さを水の部分へ当て直す。
+      if (fish.legTimeSec === undefined) fish = placeInWater(fish, input.tank, water);
       return stepFish({
         fish: fish.surfaceMotion ? { ...fish, surfaceMotion: undefined, target: undefined,
           targetKind: "openWater", behaviorMode: "coast", behaviorTimeRemainingSec: 0 } : fish,
@@ -75,6 +79,7 @@ export function stepSimulation(input: SimulationInput): SimulationOutput {
         tankmates: input.fish,
         catalog: input.species,
         tank: input.tank,
+        water,
         structurePoints,
         scene: input.scene,
         frame,
@@ -93,12 +98,18 @@ type StepContext = {
   tankmates: FishInstance[];
   catalog: Record<string, FishSpeciesDefinition>;
   tank: TankDefinition;
+  water: WaterColumn;
   structurePoints: Vec2[];
   scene?: AquariumScene;
   frame: SurfaceFrame;
   activity: number;
   deltaSec: number;
 };
+
+function placeInWater(fish: FishInstance, tank: TankDefinition, water: WaterColumn): FishInstance {
+  const place = (point: Vec2) => ({ x: point.x, y: waterY(water, point.y / tank.heightCm, fish.depth) });
+  return { ...fish, position: place(fish.position), target: fish.target && place(fish.target) };
+}
 
 /** 住みかを持つ魚の、住みかの位置と離れる範囲 (cm)。 */
 type HomeRange = { position: Vec2; rangeCm: number };
@@ -108,7 +119,7 @@ function stepFish(context: StepContext): FishInstance {
     context = { ...context, fish: { ...context.fish, terrainGoal: undefined, target: undefined,
       targetKind: "openWater", behaviorMode: "coast", behaviorTimeRemainingSec: 0, habitTimeSec: undefined, terrainRoute: undefined } };
   }
-  const { fish, species, school, tank, structurePoints, activity, deltaSec } = context;
+  const { fish, species, school, tank, water, structurePoints, activity, deltaSec } = context;
   const personality = fish.personality;
   const terrain = context.scene?.terrain ? { scene: context.scene, tank, species, frame: context.frame } : undefined;
   const rng = createRng(fish.seed);
@@ -146,7 +157,7 @@ function stepFish(context: StepContext): FishInstance {
   const startOpenWater = () => {
     mode = "coast";
     remaining = lerp(gait.kickIntervalSec[0], gait.kickIntervalSec[1], random()) * 0.5 * personality.restfulness;
-    const choice = chooseTarget(fish, species, school, tank, structurePoints, random, home, isFree, activity);
+    const choice = chooseTarget(fish, species, school, tank, water, structurePoints, random, home, isFree, activity);
     target = choice.position;
     targetKind = choice.kind;
     legTimeSec = 0;
@@ -207,7 +218,7 @@ function stepFish(context: StepContext): FishInstance {
         const zone = species.preferredZone;
         target = {
           x: clamp(fish.position.x + fish.facing * lerp(2, 6, random()), tank.safeMarginCm, tank.widthCm - tank.safeMarginCm),
-          y: tank.heightCm * lerp(zone.minY, zone.maxY, 0.4 + random() * 0.6),
+          y: waterY(water, lerp(zone.minY, zone.maxY, 0.4 + random() * 0.6), fish.depth),
         };
         targetKind = "descend";
         if (airBreathing?.style === "rise") {
@@ -226,14 +237,15 @@ function stepFish(context: StepContext): FishInstance {
         startOpenWater();
       } else {
         const leaderHeading = normalize(leader.velocity);
-        target = keepInTank(subtract(leader.position, scale(leaderHeading, bodyLength * 1.1)), tank);
+        target = keepInTank(subtract(leader.position, scale(leaderHeading, bodyLength * 1.1)), tank,
+          waterCeilingCm(water, tank, fish.depth));
       }
       break;
     }
     default:
       // 目的地に着いたら、通り過ぎて引き返す前に次の目的地へ切り替える。
       if (reached) {
-        const choice = chooseTarget(fish, species, school, tank, structurePoints, random, home, isFree, activity);
+        const choice = chooseTarget(fish, species, school, tank, water, structurePoints, random, home, isFree, activity);
         target = choice.position;
         targetKind = choice.kind;
         legTimeSec = 0;
@@ -262,8 +274,9 @@ function stepFish(context: StepContext): FishInstance {
 
   // 3. キック・惰性・停止のリズム。
   if ((mode === "kick" || mode === "coast" || mode === "pause") && remaining <= 0) {
-    // 息継ぎ・追いかけ・休み場所への移動は、途中で止まらずに向かう。
-    const inTrip = targetKind !== "openWater" && targetKind !== "structure";
+    // 息継ぎ・追いかけ・休み場所への移動と、水の外の巣穴から水へ戻る間は、途中で止まらずに向かう。
+    const inTrip = (targetKind !== "openWater" && targetKind !== "structure") ||
+      (!terrainGoal && fish.position.y < waterCeilingCm(water, tank, fish.depth));
     if (mode === "kick") {
       mode = "coast";
       remaining = lerp(gait.kickIntervalSec[0], gait.kickIntervalSec[1], random()) * (inTrip ? 0.3 : 1);
@@ -276,7 +289,7 @@ function stepFish(context: StepContext): FishInstance {
       // 目的地はキックごとに選び直さず、着いたか長く向かい続けたときだけ変える。
       if ((targetKind === "openWater" || targetKind === "structure") &&
         (!target || legTimeSec > getLegLimitSec(targetKind, random))) {
-        const choice = chooseTarget(fish, species, school, tank, structurePoints, random, home, isFree, activity);
+        const choice = chooseTarget(fish, species, school, tank, water, structurePoints, random, home, isFree, activity);
         target = choice.position;
         targetKind = choice.kind;
         legTimeSec = 0;
@@ -297,12 +310,15 @@ function stepFish(context: StepContext): FishInstance {
     mode,
     deltaSec,
   );
-  let position = keepInTank(add(fish.position, scale(velocity, deltaSec)), tank);
+  // 水面より上へは出ない。巣穴など地形の目的地へ向かう間と、そこから水へ戻る間は、上がらないだけにする。
+  const ceiling = terrainGoal ? tank.safeMarginCm : Math.min(fish.position.y, waterCeilingCm(water, tank, fish.depth));
+  let position = keepInTank(add(fish.position, scale(velocity, deltaSec)), tank, ceiling);
   let route = navigation.route;
   let depth = fish.depth;
   let depthMotion = fish.depthMotion;
   if (terrain && deltaSec > 0) {
     const proposed = position;
+    // 岩を水面より優先する。水面のすぐ下まで岩があるところでは、押し上げられた分だけ水面へ出てよい。
     position = keepInTank(constrainTerrainStep(fish.position, position, depth, terrain), tank);
     // 衝突後も岩へ押す速度を残さない。初期配置の補正は移動速度として扱わない。
     if (!insideTerrain(fish.position, depth, terrain) && length(subtract(position, proposed)) > 1e-8) {
@@ -397,8 +413,9 @@ function pickHabit(
   random: () => number,
   nextBreathSec: number | undefined,
 ): HabitStart | undefined {
-  const { fish, species, school, tank, structurePoints, activity, deltaSec } = context;
+  const { fish, species, school, tank, water, structurePoints, activity, deltaSec } = context;
   const bottomY = tank.heightCm - tank.safeMarginCm;
+  const ceiling = waterCeilingCm(water, tank, fish.depth);
   const perStep = (chancePerMin: number) => random() < (chancePerMin / 60) * deltaSec;
   const homeKind = findHabit(species, "homeShelter")?.kind;
   const terrainHabit = (kind: "hide" | "rest" | "forage"): HabitStart | undefined => {
@@ -417,7 +434,7 @@ function pickHabit(
             kind: "surfaceVisit",
             target: {
               x: keepX(fish.position.x + fish.facing * lerp(1, 4, random()), tank),
-              y: tank.safeMarginCm + 0.3,
+              y: ceiling + 0.3,
             },
           };
         }
@@ -437,7 +454,7 @@ function pickHabit(
         }
         break;
       case "bottomRest": {
-        const nearBottom = fish.position.y > tank.heightCm * 0.72;
+        const nearBottom = fish.position.y > waterY(water, 0.72, fish.depth);
         if (nearBottom && perStep(habit.chancePerMin * fish.personality.restfulness / Math.max(activity, 0.3))) {
           const terrain = terrainHabit("rest");
           if (terrain) return terrain;
@@ -462,7 +479,7 @@ function pickHabit(
               x: keepX(point.x + lerp(-4, 4, random()), tank),
               y: getBodyPlan(species).bottomDweller
                 ? bottomY
-                : clamp(point.y + lerp(-2, 2, random()), tank.safeMarginCm, bottomY),
+                : clamp(point.y + lerp(-2, 2, random()), ceiling, bottomY),
             },
           };
         }
@@ -499,15 +516,17 @@ function chooseTarget(
   species: FishSpeciesDefinition,
   school: FishInstance[],
   tank: TankDefinition,
+  water: WaterColumn,
   structurePoints: Vec2[],
   random: () => number,
   home?: HomeRange,
   isFree: (point: Vec2) => boolean = () => true,
   activity = 1,
 ): { position: Vec2; kind: "openWater" | "structure" } {
+  const zoneMinY = Math.max(waterCeilingCm(water, tank, fish.depth), waterY(water, species.preferredZone.minY, fish.depth));
+  const zoneMaxY = Math.min(tank.heightCm - tank.safeMarginCm, waterY(water, species.preferredZone.maxY, fish.depth));
   // 住みかを持つ魚は、住みかを中心にした範囲の中で泳ぐ先を選ぶ（岩の内側は避ける）。
   if (home && !getBodyPlan(species).bottomDweller) {
-    const zone = species.preferredZone;
     let position = home.position;
     for (let attempt = 0; attempt < 6; attempt++) {
       const angle = random() * Math.PI * 2;
@@ -515,9 +534,7 @@ function chooseTarget(
       position = {
         x: clamp(home.position.x + Math.cos(angle) * radius, tank.safeMarginCm, tank.widthCm - tank.safeMarginCm),
         // 住みかの真下へは潜り込まず、少し上の水中を中心にする。
-        y: clamp(home.position.y - home.rangeCm * 0.2 + Math.sin(angle) * radius * 0.6,
-          Math.max(tank.safeMarginCm, tank.heightCm * zone.minY),
-          Math.min(tank.heightCm - tank.safeMarginCm, tank.heightCm * zone.maxY)),
+        y: clamp(home.position.y - home.rangeCm * 0.2 + Math.sin(angle) * radius * 0.6, zoneMinY, zoneMaxY),
       };
       if (isFree(position)) break;
     }
@@ -532,7 +549,7 @@ function chooseTarget(
   if (getBodyPlan(species).bottomDweller) {
     return {
       kind: "openWater",
-      position: { ...chooseOpenWaterTarget(fish, fish.facing, species, tank, random), y: tank.heightCm - tank.safeMarginCm },
+      position: { ...chooseOpenWaterTarget(fish, fish.facing, species, tank, water, random), y: tank.heightCm - tank.safeMarginCm },
     };
   }
   if (point && random() < Math.min(1, species.ecology.structureAffinity * fish.personality.exploration) * (behind ? 0.3 : 1)) {
@@ -541,16 +558,14 @@ function chooseTarget(
       position: {
         x: clamp(point.x + lerp(-5, 5, random()), tank.safeMarginCm, tank.widthCm - tank.safeMarginCm),
         // 日常の寄り道でも上層魚・底魚の生活層を保つ。息継ぎなどは別の習性行動で扱う。
-        y: clamp(point.y + lerp(-4, 3, random()),
-          Math.max(tank.safeMarginCm, tank.heightCm * species.preferredZone.minY),
-          Math.min(tank.heightCm - tank.safeMarginCm, tank.heightCm * species.preferredZone.maxY)),
+        y: clamp(point.y + lerp(-4, 3, random()), zoneMinY, zoneMaxY),
       },
     };
   }
   const heading = getSchoolHeading(fish, species, school);
   return {
     kind: "openWater",
-    position: chooseOpenWaterTarget(fish, heading, species, tank, random, activity),
+    position: chooseOpenWaterTarget(fish, heading, species, tank, water, random, activity),
   };
 }
 
@@ -568,14 +583,15 @@ function chooseOpenWaterTarget(
   heading: -1 | 1,
   species: FishSpeciesDefinition,
   tank: TankDefinition,
+  water: WaterColumn,
   random: () => number,
   activity = 1,
 ): Vec2 {
   const zone = getActiveZone(species, activity);
   const minX = tank.widthCm * zone.minX;
   const maxX = tank.widthCm * zone.maxX;
-  const minY = tank.heightCm * zone.minY;
-  const maxY = tank.heightCm * zone.maxY;
+  const minY = waterY(water, zone.minY, fish.depth);
+  const maxY = waterY(water, zone.maxY, fish.depth);
   const room = heading === 1 ? maxX - fish.position.x : fish.position.x - minX;
   const minLeg = Math.max(species.realBodyLengthCm * 2, tank.widthCm * 0.15);
   const keepGoing = room > minLeg && random() < FORWARD_TARGET_CHANCE;
@@ -586,7 +602,8 @@ function chooseOpenWaterTarget(
   const distance = Math.min(available, lerp(minLeg, tank.widthCm * 0.6, random()));
   return {
     x: clamp(fish.position.x + direction * distance, minX, maxX),
-    y: clamp(fish.position.y + lerp(-0.16, 0.16, random()) * tank.heightCm * fish.personality.exploration, minY, maxY),
+    y: clamp(fish.position.y + lerp(-0.16, 0.16, random()) * (tank.heightCm - water.topCm(fish.depth)) * fish.personality.exploration,
+      minY, maxY),
   };
 }
 
@@ -614,7 +631,7 @@ function getDesiredVelocity(context: StepContext & {
   target: Vec2 | undefined;
   targetKind: NonNullable<FishInstance["targetKind"]>;
 }): Vec2 {
-  const { fish, species, school, tank, activity, mode, target, targetKind } = context;
+  const { fish, species, school, tank, water, activity, mode, target, targetKind } = context;
   if (mode === "pause") return scale(fish.velocity, 0.12);
   if (mode === "rest" && !fish.terrainGoal) return { x: 0, y: 0 };
 
@@ -635,10 +652,12 @@ function getDesiredVelocity(context: StepContext & {
   const inHabit = targetKind !== "openWater" && targetKind !== "structure";
   const targetDirection = normalize(subtract(target ?? tankCenter(tank), fish.position));
   const bodyPlan = getBodyPlan(species);
-  const boundary = boundaryVector(fish.position, tank,
+  // 水の外にある巣穴などへ向かう間は、水面で押し戻さない。
+  const boundary = boundaryVector(fish.position, tank, fish.terrainGoal ? 0 : water.topCm(fish.depth),
     targetKind === "surfaceVisit" || species.preferredZone.maxY <= 0.25,
     bodyPlan.bottomDweller);
-  const zone = inHabit || bodyPlan.bottomDweller ? { x: 0, y: 0 } : zoneVector(fish.position, tank, species, activity);
+  const zone = inHabit || bodyPlan.bottomDweller ? { x: 0, y: 0 }
+    : zoneVector(fish.position, fish.depth, water, species, activity);
   const rawFlock = inHabit ? { x: 0, y: 0 } : schoolingVector(fish, school, species, tank);
   // 群れの引力で後ろ向きに引き戻されると、頻繁に向きが入れ替わってしまう。
   const flock = rawFlock.x * fish.facing < 0
@@ -765,7 +784,8 @@ function crowdingVector(
   return { x, y };
 }
 
-function boundaryVector(position: Vec2, tank: TankDefinition, allowSurface: boolean, allowBottom = false): Vec2 {
+function boundaryVector(position: Vec2, tank: TankDefinition, surfaceCm: number, allowSurface: boolean,
+  allowBottom = false): Vec2 {
   const margin = tank.safeMarginCm * 3.2;
   const strength = WALL_AVOIDANCE_STRENGTH * 0.16;
   return {
@@ -774,8 +794,8 @@ function boundaryVector(position: Vec2, tank: TankDefinition, allowSurface: bool
       : position.x > tank.widthCm - margin
         ? -(position.x - (tank.widthCm - margin)) * strength
         : 0,
-    y: position.y < margin && !allowSurface
-      ? (margin - position.y) * strength
+    y: position.y < surfaceCm + margin && !allowSurface
+      ? (surfaceCm + margin - position.y) * strength
       : position.y > tank.heightCm - margin && !allowBottom
         ? -(position.y - (tank.heightCm - margin)) * strength * 0.3
         : 0,
@@ -784,13 +804,14 @@ function boundaryVector(position: Vec2, tank: TankDefinition, allowSurface: bool
 
 function zoneVector(
   position: Vec2,
-  tank: TankDefinition,
+  depth: number,
+  water: WaterColumn,
   species: FishSpeciesDefinition,
   activity: number,
 ): Vec2 {
   const active = getActiveZone(species, activity);
-  const minY = tank.heightCm * active.minY;
-  const maxY = tank.heightCm * active.maxY;
+  const minY = waterY(water, active.minY, depth);
+  const maxY = waterY(water, active.maxY, depth);
   const y = position.y < minY ? minY - position.y : position.y > maxY ? maxY - position.y : 0;
   return { x: 0, y: y * ZONE_HOLD_STRENGTH * 0.18 };
 }
@@ -881,10 +902,10 @@ function findNearest(fish: FishInstance, school: FishInstance[], maxDistance: nu
   return nearest;
 }
 
-function keepInTank(position: Vec2, tank: TankDefinition): Vec2 {
+function keepInTank(position: Vec2, tank: TankDefinition, ceilingCm = tank.safeMarginCm): Vec2 {
   return {
     x: clamp(position.x, tank.safeMarginCm, tank.widthCm - tank.safeMarginCm),
-    y: clamp(position.y, tank.safeMarginCm, tank.heightCm - tank.safeMarginCm),
+    y: clamp(position.y, Math.max(tank.safeMarginCm, ceilingCm), tank.heightCm - tank.safeMarginCm),
   };
 }
 

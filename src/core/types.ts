@@ -272,6 +272,11 @@ export type AquariumScene = {
   bubbleSources: Vec2[];
   /** 画像のどの高さ（0〜1）をガラスの下端に合わせるか。超横長の水槽で水の層を残すために使う。 */
   framing?: { plateBottom: number };
+  /**
+   * 水面の上の空気まで見える水景の、水面の高さ。背景画像に対する0〜1の比率で、
+   * front はガラス側（奥行き0）、back は奥（奥行き1）で水面が見える高さ。省略時は全体が水中。
+   */
+  waterLine?: { front: number; back: number };
   terrain: SceneTerrain;
 };
 

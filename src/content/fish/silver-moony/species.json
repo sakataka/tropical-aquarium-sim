@@ -57,8 +57,8 @@
   "preferredZone": {
     "minX": 0.08,
     "maxX": 0.92,
-    "minY": 0.5,
-    "maxY": 0.82
+    "minY": 0.2,
+    "maxY": 0.68
   },
   "ecology": {
     "activityPeriod": "diurnal",

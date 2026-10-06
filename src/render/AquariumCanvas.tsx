@@ -241,7 +241,11 @@ export function AquariumCanvas({
           activeRef.current,
         );
         bubbles?.update(glass.width, glass.height, deltaSec, revealedAtSec !== undefined);
-        motes?.update(glass.width, glass.height, elapsedSec, deltaSec, effects);
+        const waterLine = activeScene?.waterLine;
+        const waterTop = scenePlate && waterLine
+          ? clamp(imageToGlass({ x: 0, y: waterLine.front }, getSurfaceFrame(scenePlate, { x: 0, y: 0, ...glass })).y, 0, 1)
+          : 0;
+        motes?.update(glass.width, glass.height, elapsedSec, deltaSec, effects, waterTop);
         underwater.setLighting(revealedAtSec === undefined ? null : layoutRef.current.lighting);
         underwater.update(elapsedSec % 3600, deltaSec);
         // 魚まで描き終えた2フレーム目から見せる。

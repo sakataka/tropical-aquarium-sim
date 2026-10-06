@@ -42,6 +42,9 @@ const sceneHeaderSchema = z.object({
   defaultLighting: z.enum(["natural", "cool", "evening", "night"]),
   waterColor: z.string().regex(/^#[0-9a-fA-F]{6}$/),
   framing: z.object({ plateBottom: unit.gt(0) }).optional(),
+  waterLine: z.object({ front: unit, back: unit }).refine((line) => line.back <= line.front, {
+    message: "waterLine.back must not be below waterLine.front",
+  }).optional(),
 }) satisfies z.ZodType<SceneHeader>;
 
 const sceneTerrainSchema = z.object({
