@@ -2,9 +2,9 @@
   "id": "tanganyika-deep-240",
   "order": 146,
   "displayName": "深い青と大岩の谷",
-  "description": "苔の付いた大岩が左右に積み重なり、白い砂底が奥の深い青へ続く湖底。手前の砂にも岩が転がり、上は広く開けた青い水です。",
+  "description": "暗い青に沈む湖の深場。苔の付いた大岩が左右に積み重なり、奥ほど暗い青へ消えていきます。底に届く光はなく、白い砂の上にも岩が転がります。",
   "defaultLighting": "cool",
-  "waterColor": "#22599a",
+  "waterColor": "#173f73",
   "framing": {
     "plateBottom": 0.903
   }
