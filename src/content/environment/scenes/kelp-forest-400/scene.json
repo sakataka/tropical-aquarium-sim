@@ -1,0 +1,11 @@
+{
+  "id": "kelp-forest-400",
+  "order": 106,
+  "displayName": "ジャイアントケルプの森",
+  "description": "金褐色のジャイアントケルプが水面までそびえ、光の筋が差し込む森。左の岩礁には暗い岩穴が口を開け、紫の石灰藻に覆われた岩のあいだを白い砂の通り道が奥へ続きます。",
+  "defaultLighting": "natural",
+  "waterColor": "#078db0",
+  "framing": {
+    "plateBottom": 0.956
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "id": "mudflat-120",
+  "order": 167,
+  "displayName": "有明海の干潟水槽",
+  "exhibitName": "Ariake Tidal Flat",
+  "category": "有明海の干潟",
+  "description": "有明海の干潟を、泥の岸と浅い水で再現した120cm水槽。ムツゴロウは岸の巣穴を住みかにして、水際の泥の上で餌を探します。トビハゼは水際と浅い水を行き来し、泥の底でひと休みします。",
+  "widthCm": 120,
+  "heightCm": 39,
+  "depthCm": 60,
+  "maxTotalFish": 8,
+  "sceneIds": [
+    "mudflat-120"
+  ],
+  "species": [
+    {
+      "speciesId": "great-blue-spotted-mudskipper",
+      "maxCount": 3
+    },
+    {
+      "speciesId": "shuttles-hoppfish",
+      "maxCount": 5
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "great-blue-spotted-mudskipper",
+      "count": 2
+    },
+    {
+      "speciesId": "shuttles-hoppfish",
+      "count": 4
+    }
+  ]
+}

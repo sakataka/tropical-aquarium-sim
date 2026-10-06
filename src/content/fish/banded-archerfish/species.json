@@ -1,0 +1,101 @@
+{
+  "id": "banded-archerfish",
+  "displayName": "テッポウウオ",
+  "realBodyLengthCm": 20,
+  "catalog": {
+    "scientificName": "Toxotes jaculatrix",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "インド洋東部から西太平洋に分布し、北は琉球列島、南はオーストラリア北部やバヌアツまで見られます。",
+    "temperament": "単独でいることも、20匹ほどまでの群れをつくることもあります。同じ汽水の水槽では、水面近くを受け持つ魚です。",
+    "movement": "水面のすぐ下に位置取り、水上の虫を狙います。口から水を吹きかけて虫を落とし、水面で食べることで知られます。",
+    "habitat": "マングローブと河口の汽水域が中心で、淡水に入ることもあります。本水槽では、根が水面から垂れ下がる琉球列島のマングローブをイメージしています。",
+    "aliases": [
+      "banded archerfish",
+      "Toxotes jaculatrix"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Perciformes",
+      "orderJa": "スズキ目",
+      "family": "Toxotidae",
+      "familyJa": "テッポウウオ科"
+    },
+    "adultSizeCm": 20,
+    "sizeNote": "FishBase のよく見られる大きさは全長20cm です。報告されている最大は全長30cmです。",
+    "distribution": "インド洋東部から西太平洋。北は琉球列島、南はオーストラリア北部とバヌアツまで分布します。",
+    "water": {
+      "salinity": "brackish"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2011,
+      "note": "環境省レッドリスト2020では絶滅危惧IA類（CR）です。"
+    },
+    "highlights": [
+      "水面のすぐ下に位置取り、水上の餌を狙います。",
+      "口から水を吹きかけて、枝や葉にとまった虫を水面へ落とすことで知られます。",
+      "銀白色の体の上半分に、太い黒帯が4〜5本並びます。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.0
+  },
+  "visual": {
+    "fallbackColor": "#8c8b7c"
+  },
+  "sourceBodyBounds": {
+    "x": 140,
+    "y": 221,
+    "width": 1254,
+    "height": 561
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.47,
+    "maxY": 0.66
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.3,
+      "burst": 1.6
+    },
+    "turnRateRadPerSec": 2.1,
+    "restFraction": 0.28,
+    "depthRange": [
+      0.15,
+      0.75
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 2,
+      "cohesion": 0.35,
+      "polarization": 0.15
+    },
+    "structureAffinity": 0.35,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Australian Museum: Banded Archerfish",
+        "url": "https://australian.museum/learn/animals/fishes/banded-archerfish-toxotes-jaculatrix/"
+      },
+      {
+        "title": "Gomon & Bray, Fishes of Australia: Toxotes jaculatrix",
+        "url": "https://fishesofaustralia.net.au/home/species/682"
+      },
+      {
+        "title": "Vailati, Zinnato & Cerbino (2012): Hydrodynamic Instability of a Pulsed Jet in Toxotes jaculatrix",
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0047867"
+      },
+      {
+        "title": "環境省レッドリスト2020新旧対照表",
+        "url": "https://www.env.go.jp/press/files/jp/114458.pdf"
+      }
+    ]
+  }
+}

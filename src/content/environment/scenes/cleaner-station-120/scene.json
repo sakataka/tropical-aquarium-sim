@@ -1,0 +1,11 @@
+{
+  "id": "cleaner-station-120",
+  "order": 115,
+  "displayName": "岩の張り出しと掃除場",
+  "description": "左の大きな岩が張り出し、その下に暗い洞が開いています。岩の上にはテーブルサンゴが棚のように伸び、手前にはノウサンゴ、右には枝サンゴの岩場があり、あいだに白い砂地が開けています。",
+  "defaultLighting": "natural",
+  "waterColor": "#2a89ae",
+  "framing": {
+    "plateBottom": 0.909
+  }
+}

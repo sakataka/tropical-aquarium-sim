@@ -1,0 +1,27 @@
+{
+  "id": "sand-eels-120",
+  "order": 118,
+  "displayName": "砂地とウツボの水槽",
+  "exhibitName": "Sand Flat & Eels",
+  "category": "サンゴ礁のラグーン",
+  "description": "広い白砂の上に岩をひとつ置いた240cmの水槽。ハナヒゲウツボは岩の穴や岩場の根元を住みかにして、ほとんどの時間をその近くで過ごし、ときおり体をくねらせて砂地の上を泳ぎます。",
+  "widthCm": 240,
+  "heightCm": 98,
+  "depthCm": 120,
+  "maxTotalFish": 2,
+  "sceneIds": [
+    "sand-eels-120"
+  ],
+  "species": [
+    {
+      "speciesId": "ribbon-eel",
+      "maxCount": 2
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "ribbon-eel",
+      "count": 2
+    }
+  ]
+}

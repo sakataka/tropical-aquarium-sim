@@ -1,0 +1,27 @@
+{
+  "id": "macro-reef-30",
+  "order": 131,
+  "displayName": "サンゴ礁の岩陰水槽",
+  "exhibitName": "Tiny Reef Dwellers",
+  "category": "インド太平洋のサンゴ礁",
+  "description": "ヤギやソフトコーラルが茂るサンゴ礁の岩陰を、間近に眺める30cm水槽。体長2.5cmほどのトリマ・ランタナが、サンゴのかけらが積もった岩陰を住みかにして、白い砂の上でじっと休みます。",
+  "widthCm": 30,
+  "heightCm": 29,
+  "depthCm": 30,
+  "maxTotalFish": 3,
+  "sceneIds": [
+    "macro-reef-30"
+  ],
+  "species": [
+    {
+      "speciesId": "lantana-pygmygoby",
+      "maxCount": 3
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "lantana-pygmygoby",
+      "count": 2
+    }
+  ]
+}

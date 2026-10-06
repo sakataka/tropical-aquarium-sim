@@ -1,0 +1,35 @@
+{
+  "id": "deep-giants-1000",
+  "order": 181,
+  "displayName": "深海の中層水槽",
+  "exhibitName": "Giants of the Deep",
+  "category": "外洋の中深層",
+  "description": "底の見えない外洋の深い中層を再現した10mの大水槽。リュウグウノツカイは体をまっすぐに保ち、長い背びれを波打たせてゆっくり漂い、フクロウナギは細い尾を引いて暗い水の中を漂うように泳ぎます。",
+  "widthCm": 1000,
+  "heightCm": 358,
+  "depthCm": 300,
+  "maxTotalFish": 4,
+  "sceneIds": [
+    "deep-giants-1000"
+  ],
+  "species": [
+    {
+      "speciesId": "giant-oarfish",
+      "maxCount": 2
+    },
+    {
+      "speciesId": "pelican-eel",
+      "maxCount": 3
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "giant-oarfish",
+      "count": 1
+    },
+    {
+      "speciesId": "pelican-eel",
+      "count": 2
+    }
+  ]
+}

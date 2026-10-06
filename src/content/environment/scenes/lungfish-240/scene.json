@@ -1,0 +1,11 @@
+{
+  "id": "lungfish-240",
+  "order": 173,
+  "displayName": "倒木の根と泥の底",
+  "description": "左に根を張る倒木、右に苔むした石と細い根が沈む、緑がかった褐色の沼。水草の茂みの奥から光の筋が差し、落ち葉の散る泥底が広がります。",
+  "defaultLighting": "evening",
+  "waterColor": "#5b6439",
+  "framing": {
+    "plateBottom": 0.814
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "id": "rocky-shore-180",
+  "order": 121,
+  "displayName": "日本の磯水槽",
+  "exhibitName": "Japanese Rocky Shore",
+  "category": "日本の磯",
+  "description": "海藻の茂る岩と暗い岩穴を再現した、日本の磯の240cm水槽。イシダイとカワハギは岩肌をついばみ、ウツボは岩穴を住みかにして出入りします。夜行性のネコザメとイセエビは、明るい照明では岩穴に隠れて休み、暗くなると底を歩き回ります。",
+  "widthCm": 240,
+  "heightCm": 73,
+  "depthCm": 80,
+  "maxTotalFish": 14,
+  "sceneIds": [
+    "rocky-shore-180"
+  ],
+  "species": [
+    {
+      "speciesId": "striped-beakfish",
+      "maxCount": 6
+    },
+    {
+      "speciesId": "thread-sail-filefish",
+      "maxCount": 4
+    },
+    {
+      "speciesId": "kidako-moray",
+      "maxCount": 2
+    },
+    {
+      "speciesId": "japanese-bullhead-shark",
+      "maxCount": 2
+    },
+    {
+      "speciesId": "japanese-spiny-lobster",
+      "maxCount": 3
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "striped-beakfish",
+      "count": 4
+    },
+    {
+      "speciesId": "thread-sail-filefish",
+      "count": 3
+    },
+    {
+      "speciesId": "kidako-moray",
+      "count": 1
+    },
+    {
+      "speciesId": "japanese-bullhead-shark",
+      "count": 1
+    },
+    {
+      "speciesId": "japanese-spiny-lobster",
+      "count": 2
+    }
+  ]
+}

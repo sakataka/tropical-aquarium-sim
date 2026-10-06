@@ -1,0 +1,11 @@
+{
+  "id": "northern-lake-400",
+  "order": 102,
+  "displayName": "倒木と丸石の湖岸",
+  "description": "左に根を広げた倒木が横たわり、苔むした丸石が両側に並ぶ北の湖の岸辺。細い水草がそよぐ奥へ、明るい砂利底が青く霞んでいきます。",
+  "defaultLighting": "natural",
+  "waterColor": "#146a80",
+  "framing": {
+    "plateBottom": 0.823
+  }
+}

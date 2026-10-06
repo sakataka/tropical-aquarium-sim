@@ -1,0 +1,11 @@
+{
+  "id": "northern-reef-240",
+  "order": 103,
+  "displayName": "石灰藻の岩礁と岩穴",
+  "description": "紅色の石灰藻をまとった岩が左右に重なり、右奥の岩には大きな岩穴が口を開ける冷たい海。岩に白いイソギンチャクが付き、褐色の海藻とアオサが揺れ、中央には貝殻まじりの砂底が続きます。",
+  "defaultLighting": "cool",
+  "waterColor": "#1d6066",
+  "framing": {
+    "plateBottom": 0.862
+  }
+}

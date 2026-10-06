@@ -1,0 +1,27 @@
+{
+  "id": "sand-flats-180",
+  "order": 125,
+  "displayName": "沿岸の砂地水槽",
+  "exhibitName": "Coastal Sand Flats",
+  "category": "日本の沿岸の砂地",
+  "description": "波の跡が残る平らな砂地を再現した180cm水槽。シロギスの群れが、砂底の近くを連れ立って泳ぎ回ります。",
+  "widthCm": 180,
+  "heightCm": 57,
+  "depthCm": 90,
+  "maxTotalFish": 12,
+  "sceneIds": [
+    "sand-flats-180"
+  ],
+  "species": [
+    {
+      "speciesId": "japanese-whiting",
+      "maxCount": 12
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "japanese-whiting",
+      "count": 8
+    }
+  ]
+}

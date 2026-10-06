@@ -1,0 +1,8 @@
+{
+  "id": "lumpsucker-45",
+  "order": 128,
+  "displayName": "海藻とイソギンチャクの岩",
+  "description": "紅藻と緑藻がそよぐ冷たい海の岩場。左の大きな岩には桃色の石灰藻と小さなイソギンチャクが付き、岩のあいだを小石まじりの砂利底が奥へ続きます。",
+  "defaultLighting": "cool",
+  "waterColor": "#1d8cc0"
+}

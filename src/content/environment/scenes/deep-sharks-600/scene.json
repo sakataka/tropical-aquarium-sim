@@ -1,0 +1,11 @@
+{
+  "id": "deep-sharks-600",
+  "order": 179,
+  "displayName": "大陸斜面の岩の谷",
+  "description": "黒っぽい岩の崖が両側に迫る深海の斜面。岩の転がる谷底が暗い奥へ下り、青い闇にマリンスノーが舞います。",
+  "defaultLighting": "cool",
+  "waterColor": "#0c3350",
+  "framing": {
+    "plateBottom": 0.826
+  }
+}

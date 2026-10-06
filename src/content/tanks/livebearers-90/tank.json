@@ -1,14 +1,14 @@
 {
   "id": "livebearers-90",
   "order": 116,
-  "displayName": "卵胎生魚の水草水槽",
+  "displayName": "卵胎生魚の水槽",
   "exhibitName": "Livebearers",
   "category": "中米の小川",
-  "description": "中米の小川を思わせる、明るい90cmの水草水槽。ソードテールとセイルフィンモーリーが水草のあいだを泳ぎ、モーリーは流木や石の表面をついばみます。小さなエンドラーズは群れて水草の前を行き交います。",
+  "description": "中米の小川を思わせる、明るい90cmの水草水槽。ソードテールとセイルフィンモーリーが水草のあいだを泳ぎ、モーリーは流木や石の表面をついばみます。小さなエンドラーズは群れて水草の前を行き交います。南米の河口にすむヨツメウオも卵胎生の仲間で、水面に眼の境目をそろえて泳ぎます。",
   "widthCm": 90,
   "heightCm": 42,
   "depthCm": 45,
-  "maxTotalFish": 30,
+  "maxTotalFish": 33,
   "sceneIds": [
     "livebearers-90"
   ],
@@ -24,6 +24,10 @@
     {
       "speciesId": "endlers-livebearer",
       "maxCount": 20
+    },
+    {
+      "speciesId": "four-eyed-fish",
+      "maxCount": 3
     }
   ],
   "defaultStock": [
@@ -38,6 +42,10 @@
     {
       "speciesId": "endlers-livebearer",
       "count": 12
+    },
+    {
+      "speciesId": "four-eyed-fish",
+      "count": 2
     }
   ]
 }

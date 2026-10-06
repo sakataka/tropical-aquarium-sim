@@ -1,0 +1,11 @@
+{
+  "id": "night-sea-90",
+  "order": 121,
+  "displayName": "月明かりの岩穴",
+  "description": "水面からかすかな光が差す、暗い青の夜の岩礁。左右の岩に大きな洞穴が口を開け、枝分かれしたソフトコーラルが点々と付いています。中央の白い砂地は奥の闇へ続きます。",
+  "defaultLighting": "evening",
+  "waterColor": "#0a2750",
+  "framing": {
+    "plateBottom": 0.903
+  }
+}

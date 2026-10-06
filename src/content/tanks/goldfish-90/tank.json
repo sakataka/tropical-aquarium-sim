@@ -1,0 +1,27 @@
+{
+  "id": "goldfish-90",
+  "order": 164,
+  "displayName": "金魚の水草水槽",
+  "exhibitName": "Goldfish",
+  "category": "日本の観賞魚",
+  "description": "流木と水草の明るい水景で金魚を見せる90cm水槽。金魚はゆるい群れで中層をゆったり泳ぎ、ときどき砂利の底をつついて餌を探します。",
+  "widthCm": 90,
+  "heightCm": 53,
+  "depthCm": 45,
+  "maxTotalFish": 7,
+  "sceneIds": [
+    "goldfish-90"
+  ],
+  "species": [
+    {
+      "speciesId": "goldfish",
+      "maxCount": 7
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "goldfish",
+      "count": 5
+    }
+  ]
+}

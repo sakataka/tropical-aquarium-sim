@@ -1,0 +1,43 @@
+{
+  "id": "northern-lake-400",
+  "order": 103,
+  "displayName": "北の湖と遡上水槽",
+  "exhibitName": "Northern Lake & Salmon Run",
+  "category": "北海道の湖",
+  "description": "倒木と丸石が沈む北海道の冷たい湖を再現した400cm水槽。大きなイトウがゆったりと泳ぎ、ベニザケは小さな群れで中層を回ります。開けた水の中を、ワカサギの大きな群れがそろって行き交います。",
+  "widthCm": 400,
+  "heightCm": 129,
+  "depthCm": 150,
+  "maxTotalFish": 48,
+  "sceneIds": [
+    "northern-lake-400"
+  ],
+  "species": [
+    {
+      "speciesId": "sakhalin-taimen",
+      "maxCount": 2
+    },
+    {
+      "speciesId": "sockeye-salmon",
+      "maxCount": 6
+    },
+    {
+      "speciesId": "wakasagi",
+      "maxCount": 40
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "sakhalin-taimen",
+      "count": 2
+    },
+    {
+      "speciesId": "sockeye-salmon",
+      "count": 4
+    },
+    {
+      "speciesId": "wakasagi",
+      "count": 30
+    }
+  ]
+}

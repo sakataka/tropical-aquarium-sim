@@ -1,0 +1,27 @@
+{
+  "id": "cave-60",
+  "order": 178,
+  "displayName": "洞窟の川水槽",
+  "exhibitName": "Cave River",
+  "category": "石灰岩の洞窟",
+  "description": "鍾乳石の垂れる石灰岩の洞窟を、ごく弱い光で再現した60cm水槽。目のないブラインドケーブ・カラシンの小さな群れが、側線や匂いを頼りに白い沈泥の上を探り回り、ときどき底で休みます。",
+  "widthCm": 60,
+  "heightCm": 33,
+  "depthCm": 36,
+  "maxTotalFish": 10,
+  "sceneIds": [
+    "cave-60"
+  ],
+  "species": [
+    {
+      "speciesId": "mexican-tetra",
+      "maxCount": 10
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "mexican-tetra",
+      "count": 7
+    }
+  ]
+}

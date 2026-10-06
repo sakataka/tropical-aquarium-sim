@@ -1,0 +1,11 @@
+{
+  "id": "deep-floor-240",
+  "order": 178,
+  "displayName": "深海の泥底と岩",
+  "description": "上からかすかな光が届くだけの深海の底。灰色の柔らかな泥にごつごつした岩が点々と転がり、暗い水にマリンスノーが漂います。",
+  "defaultLighting": "cool",
+  "waterColor": "#0a2446",
+  "framing": {
+    "plateBottom": 0.826
+  }
+}

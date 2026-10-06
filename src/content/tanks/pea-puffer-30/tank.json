@@ -1,0 +1,35 @@
+{
+  "id": "pea-puffer-30",
+  "order": 128,
+  "displayName": "アベニー・パファーの小川水槽",
+  "exhibitName": "Pea Puffers",
+  "category": "インド南西部の小川",
+  "description": "水草が茂るインド南西部の小川を再現した30cmキューブ水槽。体長2.5cmほどのアベニー・パファーが小さな群れで中層から底を行き来し、砂利の底をつついて餌を探します。カリノテトラオドン・イミテーターは底近くから中層をゆっくり泳ぎ、ときどき仲間のあとを追います。",
+  "widthCm": 30,
+  "heightCm": 30,
+  "depthCm": 30,
+  "maxTotalFish": 8,
+  "sceneIds": [
+    "pea-puffer-30"
+  ],
+  "species": [
+    {
+      "speciesId": "pea-puffer",
+      "maxCount": 6
+    },
+    {
+      "speciesId": "dwarf-malabar-puffer",
+      "maxCount": 4
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "pea-puffer",
+      "count": 4
+    },
+    {
+      "speciesId": "dwarf-malabar-puffer",
+      "count": 2
+    }
+  ]
+}

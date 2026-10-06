@@ -1,0 +1,11 @@
+{
+  "id": "sand-flats-180",
+  "order": 124,
+  "displayName": "波の跡が残る砂地",
+  "description": "細かな砂に波の跡が続く、平らな砂地。ところどころに丸い石が転がり、その上に青緑の水が広がります。",
+  "defaultLighting": "natural",
+  "waterColor": "#127ca2",
+  "framing": {
+    "plateBottom": 0.815
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "id": "brackish-45",
+  "order": 166,
+  "displayName": "汽水の浅瀬水槽",
+  "exhibitName": "Brackish Shallows",
+  "category": "熱帯アジアの汽水域",
+  "description": "マングローブの根が張り出す河口の浅瀬を再現した45cm水槽。バンブルビー・ゴビーは根の下の暗い陰を住みかにして底で休み、ハチノジフグは底を探りながらゆっくり泳ぎます。オレンジクロミスは仲間と連れ立って中層を行き交います。",
+  "widthCm": 45,
+  "heightCm": 25,
+  "depthCm": 30,
+  "maxTotalFish": 12,
+  "sceneIds": [
+    "brackish-45"
+  ],
+  "species": [
+    {
+      "speciesId": "bumblebee-goby",
+      "maxCount": 8
+    },
+    {
+      "speciesId": "figure-eight-puffer",
+      "maxCount": 2
+    },
+    {
+      "speciesId": "orange-chromide",
+      "maxCount": 4
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "bumblebee-goby",
+      "count": 6
+    },
+    {
+      "speciesId": "figure-eight-puffer",
+      "count": 1
+    },
+    {
+      "speciesId": "orange-chromide",
+      "count": 3
+    }
+  ]
+}

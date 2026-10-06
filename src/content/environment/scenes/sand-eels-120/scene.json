@@ -1,0 +1,11 @@
+{
+  "id": "sand-eels-120",
+  "order": 117,
+  "displayName": "白い砂地と岩の穴",
+  "description": "波紋の残る白い砂地が大きく広がり、ところどころに海草が生えています。左の岩には筒のような穴が開き、右の奥には枝サンゴの岩場があります。",
+  "defaultLighting": "natural",
+  "waterColor": "#2a8db0",
+  "framing": {
+    "plateBottom": 0.907
+  }
+}

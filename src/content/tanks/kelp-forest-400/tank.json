@@ -1,0 +1,67 @@
+{
+  "id": "kelp-forest-400",
+  "order": 107,
+  "displayName": "ケルプの森水槽",
+  "exhibitName": "Kelp Forest",
+  "category": "カリフォルニアのケルプの森",
+  "description": "そびえるジャイアントケルプの森を再現した400cmの大水槽。ケルプバスが中層をゆったり巡り、オレンジ色のガリバルディとカリフォルニアシープスヘッドは岩をついばみながら隙間の住みかへ戻ります。左の岩穴にはウルフイールが暮らし、ペインテッドグリーンリングは岩の根元で休み、セイルフィンスカルピンは昼のあいだ岩の隙間に隠れます。",
+  "widthCm": 400,
+  "heightCm": 205,
+  "depthCm": 200,
+  "maxTotalFish": 16,
+  "sceneIds": [
+    "kelp-forest-400"
+  ],
+  "species": [
+    {
+      "speciesId": "garibaldi",
+      "maxCount": 3
+    },
+    {
+      "speciesId": "california-sheephead",
+      "maxCount": 3
+    },
+    {
+      "speciesId": "kelp-bass",
+      "maxCount": 5
+    },
+    {
+      "speciesId": "painted-greenling",
+      "maxCount": 3
+    },
+    {
+      "speciesId": "sailfin-sculpin",
+      "maxCount": 3
+    },
+    {
+      "speciesId": "wolf-eel",
+      "maxCount": 2
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "garibaldi",
+      "count": 2
+    },
+    {
+      "speciesId": "california-sheephead",
+      "count": 2
+    },
+    {
+      "speciesId": "kelp-bass",
+      "count": 3
+    },
+    {
+      "speciesId": "painted-greenling",
+      "count": 2
+    },
+    {
+      "speciesId": "sailfin-sculpin",
+      "count": 2
+    },
+    {
+      "speciesId": "wolf-eel",
+      "count": 2
+    }
+  ]
+}

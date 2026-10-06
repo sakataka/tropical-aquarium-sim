@@ -1,0 +1,11 @@
+{
+  "id": "stream-pool-120",
+  "order": 101,
+  "displayName": "岩棚と沈み枝の淵",
+  "description": "左に苔むした岩盤の岸がせり出し、右奥に枯れ枝が沈む渓流の淵。落ち葉の散る砂利底へ、水面から光の筋が差し込みます。",
+  "defaultLighting": "natural",
+  "waterColor": "#1a6f88",
+  "framing": {
+    "plateBottom": 0.882
+  }
+}

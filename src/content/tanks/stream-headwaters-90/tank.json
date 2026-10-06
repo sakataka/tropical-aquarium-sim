@@ -1,0 +1,51 @@
+{
+  "id": "stream-headwaters-90",
+  "order": 101,
+  "displayName": "源流の岩場水槽",
+  "exhibitName": "Headwater Boulders",
+  "category": "日本の渓流の源流",
+  "description": "苔むした大岩が重なる冷たい源流を再現した90cm水槽。イワナとオショロコマは岩のそばをゆっくり泳ぎ、カジカは右の大岩の下の暗がりを住みかにします。カジカとニホンザリガニは夜行性で、明るいうちは岩陰に隠れて休みます。",
+  "widthCm": 90,
+  "heightCm": 39,
+  "depthCm": 45,
+  "maxTotalFish": 10,
+  "sceneIds": [
+    "stream-headwaters-90"
+  ],
+  "species": [
+    {
+      "speciesId": "white-spotted-char",
+      "maxCount": 2
+    },
+    {
+      "speciesId": "dolly-varden",
+      "maxCount": 4
+    },
+    {
+      "speciesId": "japanese-fluvial-sculpin",
+      "maxCount": 2
+    },
+    {
+      "speciesId": "japanese-crayfish",
+      "maxCount": 3
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "white-spotted-char",
+      "count": 2
+    },
+    {
+      "speciesId": "dolly-varden",
+      "count": 3
+    },
+    {
+      "speciesId": "japanese-fluvial-sculpin",
+      "count": 1
+    },
+    {
+      "speciesId": "japanese-crayfish",
+      "count": 2
+    }
+  ]
+}

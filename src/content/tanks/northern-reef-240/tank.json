@@ -1,0 +1,75 @@
+{
+  "id": "northern-reef-240",
+  "order": 104,
+  "displayName": "北の岩礁水槽",
+  "exhibitName": "Northern Rocky Reef",
+  "category": "北の海の岩礁",
+  "description": "冷たい北の海の岩礁を再現した240cmの水槽。ホッケの群れとアカメバルが岩の上の開けた水を行き交い、アイナメとカサゴは岩の隙間のそばで休みます。右奥の岩穴にはオオカミウオが潜み、丸い体のホテイウオとランプフィッシュはゆっくり泳いでは砂の上で止まります。",
+  "widthCm": 240,
+  "heightCm": 87,
+  "depthCm": 90,
+  "maxTotalFish": 18,
+  "sceneIds": [
+    "northern-reef-240"
+  ],
+  "species": [
+    {
+      "speciesId": "fat-greenling",
+      "maxCount": 2
+    },
+    {
+      "speciesId": "marbled-rockfish",
+      "maxCount": 3
+    },
+    {
+      "speciesId": "japanese-red-rockfish",
+      "maxCount": 6
+    },
+    {
+      "speciesId": "bering-wolffish",
+      "maxCount": 1
+    },
+    {
+      "speciesId": "okhotsk-atka-mackerel",
+      "maxCount": 6
+    },
+    {
+      "speciesId": "smooth-lumpsucker",
+      "maxCount": 2
+    },
+    {
+      "speciesId": "lumpfish",
+      "maxCount": 2
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "fat-greenling",
+      "count": 1
+    },
+    {
+      "speciesId": "marbled-rockfish",
+      "count": 2
+    },
+    {
+      "speciesId": "japanese-red-rockfish",
+      "count": 4
+    },
+    {
+      "speciesId": "bering-wolffish",
+      "count": 1
+    },
+    {
+      "speciesId": "okhotsk-atka-mackerel",
+      "count": 4
+    },
+    {
+      "speciesId": "smooth-lumpsucker",
+      "count": 1
+    },
+    {
+      "speciesId": "lumpfish",
+      "count": 1
+    }
+  ]
+}

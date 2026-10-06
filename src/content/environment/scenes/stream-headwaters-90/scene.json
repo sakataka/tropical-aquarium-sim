@@ -1,0 +1,11 @@
+{
+  "id": "stream-headwaters-90",
+  "order": 100,
+  "displayName": "苔石と木の根の源流",
+  "description": "苔に覆われた丸い大岩が両岸に重なり、右の岩の下に暗い隙間がのぞく源流。右上から岸辺の木の根が垂れ、中央の砂礫に光の筋が差し込みます。",
+  "defaultLighting": "evening",
+  "waterColor": "#2a8197",
+  "framing": {
+    "plateBottom": 0.935
+  }
+}

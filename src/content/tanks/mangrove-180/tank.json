@@ -1,0 +1,43 @@
+{
+  "id": "mangrove-180",
+  "order": 165,
+  "displayName": "マングローブの入り江水槽",
+  "exhibitName": "Mangrove Inlet",
+  "category": "琉球のマングローブ",
+  "description": "支柱根が並ぶ琉球のマングローブの入り江を再現した180cm水槽。テッポウウオは水面のすぐ下を仲間と巡り、モノダクティルスの銀色の群れが中層を泳ぎます。スキャットは群れで低い層を回り、支柱根の表面や底をついばみます。",
+  "widthCm": 180,
+  "heightCm": 51,
+  "depthCm": 60,
+  "maxTotalFish": 20,
+  "sceneIds": [
+    "mangrove-180"
+  ],
+  "species": [
+    {
+      "speciesId": "banded-archerfish",
+      "maxCount": 6
+    },
+    {
+      "speciesId": "spotted-scat",
+      "maxCount": 6
+    },
+    {
+      "speciesId": "silver-moony",
+      "maxCount": 8
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "banded-archerfish",
+      "count": 4
+    },
+    {
+      "speciesId": "spotted-scat",
+      "count": 4
+    },
+    {
+      "speciesId": "silver-moony",
+      "count": 6
+    }
+  ]
+}

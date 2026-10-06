@@ -33,9 +33,8 @@ describe("depth-aware terrain across habitats", () => {
     let grazing = false, hiding = false, changedDepth = false;
     for (const tank of aquariumTanks) for (const sceneId of tank.sceneIds) {
       const scene = getSceneById(sceneId)!;
+      // 回避領域と隠れ場所は、岩も底もない中層の水景にはない。住みかが要る魚の隠れ場所は content.test で確かめる。
       expect(scene.terrain?.surfaces.length).toBeGreaterThan(0);
-      expect(scene.terrain?.obstacles?.length).toBeGreaterThan(0);
-      expect(scene.terrain?.shelters?.length).toBeGreaterThan(0);
       // 最も縦方向が切り取られるワイド水槽と、正方形の背景の両方を確認する。
       const frame = tank.id === "cube-30" ? { x: -.02, y: -.02, width: 1.04, height: 1.02 }
         : { x: -.02, y: -.52, width: 1.04, height: 1.52 };

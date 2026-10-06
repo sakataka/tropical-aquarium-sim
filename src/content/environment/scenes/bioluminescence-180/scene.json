@@ -1,0 +1,11 @@
+{
+  "id": "bioluminescence-180",
+  "order": 181,
+  "displayName": "マリンスノーの漂う中層",
+  "description": "底の見えない、黒に近い青の深海の中層。マリンスノーがかすかに漂い、ところどころに小さな青い光が瞬きます。",
+  "defaultLighting": "cool",
+  "waterColor": "#041a36",
+  "framing": {
+    "plateBottom": 0.89
+  }
+}

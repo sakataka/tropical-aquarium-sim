@@ -1,0 +1,51 @@
+{
+  "id": "deep-floor-240",
+  "order": 179,
+  "displayName": "深海の泥底水槽",
+  "exhibitName": "Deep Sea Floor",
+  "category": "日本近海の深海底",
+  "description": "灰色の泥に岩が点在する深海の海底を再現した240cm水槽。ニュウドウカジカは泥の上でじっと休み、トウジンは尖った吻を前に向けて海底すれすれを進み、ギンザメは大きな胸びれを羽ばたかせて底の餌を探します。ヌタウナギは泥の巣穴を住みかにして、暗くなると泳ぎ出します。",
+  "widthCm": 240,
+  "heightCm": 78,
+  "depthCm": 120,
+  "maxTotalFish": 6,
+  "sceneIds": [
+    "deep-floor-240"
+  ],
+  "species": [
+    {
+      "speciesId": "blob-sculpin",
+      "maxCount": 2
+    },
+    {
+      "speciesId": "japanese-grenadier",
+      "maxCount": 2
+    },
+    {
+      "speciesId": "silver-chimaera",
+      "maxCount": 2
+    },
+    {
+      "speciesId": "inshore-hagfish",
+      "maxCount": 3
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "blob-sculpin",
+      "count": 1
+    },
+    {
+      "speciesId": "japanese-grenadier",
+      "count": 1
+    },
+    {
+      "speciesId": "silver-chimaera",
+      "count": 1
+    },
+    {
+      "speciesId": "inshore-hagfish",
+      "count": 2
+    }
+  ]
+}

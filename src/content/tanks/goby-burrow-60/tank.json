@@ -1,0 +1,35 @@
+{
+  "id": "goby-burrow-60",
+  "order": 117,
+  "displayName": "ハゼの巣穴水槽",
+  "exhibitName": "Goby Burrows",
+  "category": "サンゴ礁の砂地",
+  "description": "岩の根元に巣穴がある砂地を再現した60cmの水槽。ギンガハゼとキツネメネジリンボウは巣穴の入口近くに浮かんだり砂の上に止まったりして、遠くへは泳ぎ出しません。ときどき巣穴に戻って身を潜めます。",
+  "widthCm": 60,
+  "heightCm": 42,
+  "depthCm": 45,
+  "maxTotalFish": 6,
+  "sceneIds": [
+    "goby-burrow-60"
+  ],
+  "species": [
+    {
+      "speciesId": "yellow-watchman-goby",
+      "maxCount": 3
+    },
+    {
+      "speciesId": "fiveband-shrimpgoby",
+      "maxCount": 3
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "yellow-watchman-goby",
+      "count": 2
+    },
+    {
+      "speciesId": "fiveband-shrimpgoby",
+      "count": 2
+    }
+  ]
+}

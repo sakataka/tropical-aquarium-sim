@@ -1,0 +1,11 @@
+{
+  "id": "lamprey-90",
+  "order": 174,
+  "displayName": "苔むす丸石の川底",
+  "description": "藻に覆われた丸石が左右に寄り、間に砂と小石の筋が奥へ延びる冷たい川底。澄んだ水面から光の筋が差し、岸辺には細かな水草が揺れます。",
+  "defaultLighting": "cool",
+  "waterColor": "#2181a2",
+  "framing": {
+    "plateBottom": 0.933
+  }
+}

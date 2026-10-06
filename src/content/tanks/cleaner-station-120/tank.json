@@ -1,0 +1,35 @@
+{
+  "id": "cleaner-station-120",
+  "order": 116,
+  "displayName": "掃除屋のいる岩の水槽",
+  "exhibitName": "Cleaning Station",
+  "category": "インド太平洋のサンゴ礁",
+  "description": "張り出した岩の下の洞を、ほかの魚が体を掃除してもらいに来る「掃除場」に見立てた120cmの水槽。ホンソメワケベラは洞の入口のまわりを行き来し、アカシマシラヒゲエビは洞の床やサンゴの上を歩いて、ときどき立ち止まって岩をついばみます。",
+  "widthCm": 120,
+  "heightCm": 55,
+  "depthCm": 50,
+  "maxTotalFish": 9,
+  "sceneIds": [
+    "cleaner-station-120"
+  ],
+  "species": [
+    {
+      "speciesId": "bluestreak-cleaner-wrasse",
+      "maxCount": 3
+    },
+    {
+      "speciesId": "skunk-cleaner-shrimp",
+      "maxCount": 6
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "bluestreak-cleaner-wrasse",
+      "count": 2
+    },
+    {
+      "speciesId": "skunk-cleaner-shrimp",
+      "count": 4
+    }
+  ]
+}

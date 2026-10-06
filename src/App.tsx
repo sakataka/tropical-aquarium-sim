@@ -3,7 +3,6 @@ import {
   Suspense,
   useCallback,
   useEffect,
-  useMemo,
   useRef,
   useState,
   type MutableRefObject,
@@ -90,7 +89,8 @@ export default function App() {
   const [phase, setPhase] = useState<Phase>(initial.phase);
   // 魚の位置は毎フレーム描画側で進めるため、React の state には載せない。
   // 部屋の画面と水槽画面で同じ魚を泳がせ続ける。魚は、その展示室の魚種を読み込んでから生まれる。
-  const fishRefs = useMemo<FishRefs>(() => ({}), []);
+  // useMemo だと開発時の差し替え（Fast Refresh）で作り直され、読み込み済みの展示室の魚が消えるので useRef で持つ。
+  const fishRefs = useRef<FishRefs>({}).current;
   const [loadedHalls, setLoadedHalls] = useState<ReadonlySet<string>>(() => new Set());
   const stateRef = useRef(state);
   stateRef.current = state;

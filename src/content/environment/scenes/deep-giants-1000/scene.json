@@ -1,0 +1,11 @@
+{
+  "id": "deep-giants-1000",
+  "order": 180,
+  "displayName": "底の見えない深い中層",
+  "description": "上から落ちるかすかな青い光が、下へ行くほど闇に溶けていく外洋の中層。底は見えず、どこまでも続く水にマリンスノーが漂います。",
+  "defaultLighting": "cool",
+  "waterColor": "#0b3a73",
+  "framing": {
+    "plateBottom": 0.858
+  }
+}

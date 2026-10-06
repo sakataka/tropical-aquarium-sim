@@ -1,0 +1,11 @@
+{
+  "id": "rocky-shore-180",
+  "order": 120,
+  "displayName": "海藻と岩穴の磯",
+  "description": "ホンダワラやカジメの茂る黒い岩が左右に重なり、どちらの岩にも暗い穴とイソギンチャクがあります。そのあいだを、小石と貝殻の散る砂地が明るい沖へ続きます。",
+  "defaultLighting": "natural",
+  "waterColor": "#11679a",
+  "framing": {
+    "plateBottom": 0.805
+  }
+}

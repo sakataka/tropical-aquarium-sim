@@ -1,0 +1,43 @@
+{
+  "id": "stream-pool-120",
+  "order": 102,
+  "displayName": "渓流の淵水槽",
+  "exhibitName": "Stream Pool",
+  "category": "日本の渓流の淵",
+  "description": "岩盤の岸と沈んだ枝に囲まれた、渓流の深い淵を再現した120cm水槽。ヤマメ、アマゴ、ニジマスがそれぞれ小さな群れをつくり、開けた中層を悠々と行き交います。",
+  "widthCm": 120,
+  "heightCm": 46,
+  "depthCm": 45,
+  "maxTotalFish": 10,
+  "sceneIds": [
+    "stream-pool-120"
+  ],
+  "species": [
+    {
+      "speciesId": "masu-salmon",
+      "maxCount": 4
+    },
+    {
+      "speciesId": "amago",
+      "maxCount": 4
+    },
+    {
+      "speciesId": "rainbow-trout",
+      "maxCount": 3
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "masu-salmon",
+      "count": 3
+    },
+    {
+      "speciesId": "amago",
+      "count": 3
+    },
+    {
+      "speciesId": "rainbow-trout",
+      "count": 2
+    }
+  ]
+}

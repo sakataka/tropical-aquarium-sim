@@ -1,0 +1,11 @@
+{
+  "id": "japan-lake-150",
+  "order": 162,
+  "displayName": "沈み枝とヨシの湖岸",
+  "description": "ヨシの茂る岸辺から古い枝や倒木が泥底へ沈み、クロモが一面に立ち上がる湖の浅場。水面にはヒシの葉が浮き、緑がかった水に柔らかな光が届きます。",
+  "defaultLighting": "natural",
+  "waterColor": "#566b4c",
+  "framing": {
+    "plateBottom": 0.842
+  }
+}

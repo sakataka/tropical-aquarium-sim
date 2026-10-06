@@ -1,0 +1,11 @@
+{
+  "id": "coelacanth-300",
+  "order": 172,
+  "displayName": "溶岩の岩壁と洞窟",
+  "description": "黒い溶岩の岩が左右に迫り、奥に大きな岩のアーチが口を開ける深い海底。上からかすかな光が届き、瓦礫の積もる底は暗い青に沈んでいます。",
+  "defaultLighting": "evening",
+  "waterColor": "#0b2c4f",
+  "framing": {
+    "plateBottom": 0.973
+  }
+}

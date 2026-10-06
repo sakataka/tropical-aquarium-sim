@@ -4,11 +4,11 @@
   "displayName": "東南アジアの湿地水槽",
   "exhibitName": "Southeast Asian Swamp",
   "category": "東南アジアの湿地林",
-  "description": "紅茶色の水に木の根とクリプトコリネが沈む、東南アジアの泥炭湿地林を再現した90cm水槽。シザーテール・ラスボラは水面近くを群れで行き交い、グラスキャットは透きとおった体を並べて中層に漂います。パールグラミー、スパークリング・グラミー、ベタはときどき水面へ息を吸いに上がり、レッドテール・ブラックシャークは底近くで根や岩の表面をついばみます。",
+  "description": "紅茶色の水に木の根とクリプトコリネが沈む、東南アジアの泥炭湿地林を再現した90cm水槽。シザーテール・ラスボラは水面近くを群れで行き交い、グラスキャットは透きとおった体を並べて中層に漂います。パールグラミー、スパークリング・グラミー、ベタはときどき水面へ息を吸いに上がり、レッドテール・ブラックシャークは底近くで根や岩の表面をついばみます。レインボー・スネークヘッドも、ときどき水面へ上がって空気を吸います。",
   "widthCm": 90,
   "heightCm": 39,
   "depthCm": 45,
-  "maxTotalFish": 36,
+  "maxTotalFish": 37,
   "sceneIds": [
     "se-asia-swamp-90"
   ],
@@ -36,6 +36,10 @@
     {
       "speciesId": "siamese-fighting-fish",
       "maxCount": 1
+    },
+    {
+      "speciesId": "rainbow-snakehead",
+      "maxCount": 1
     }
   ],
   "defaultStock": [
@@ -61,6 +65,10 @@
     },
     {
       "speciesId": "red-tailed-black-shark",
+      "count": 1
+    },
+    {
+      "speciesId": "rainbow-snakehead",
       "count": 1
     }
   ]

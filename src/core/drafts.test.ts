@@ -6,8 +6,12 @@ import { parseFishSpeciesDefinition } from "./schema";
 const drafts = import.meta.glob<{ default: unknown }>("../../content-drafts/fish/*/species.json", { eager: true });
 const images = import.meta.glob("../../content-drafts/fish/*/body.webp");
 
+const entries = Object.entries(drafts).map(([path, module]) => [path.split("/").slice(-2)[0]!, module.default] as const);
+
 describe("species drafts", () => {
-  test.each(Object.entries(drafts).map(([path, module]) => [path.split("/").slice(-2)[0]!, module.default] as const))(
+  // 下書きがすべて展示室へ移ったあとも、このテストファイルを空にしない。
+  if (entries.length === 0) test("no drafts are waiting for a hall", () => expect(entries).toEqual([]));
+  test.each(entries)(
     "%s is a complete species definition",
     (id, value) => {
       const species = parseFishSpeciesDefinition(value);

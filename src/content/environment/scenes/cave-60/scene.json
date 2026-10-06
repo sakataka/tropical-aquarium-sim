@@ -1,0 +1,11 @@
+{
+  "id": "cave-60",
+  "order": 177,
+  "displayName": "鍾乳石の洞窟と白い沈泥",
+  "description": "天井から鍾乳石が垂れる石灰岩の洞窟。白っぽい岩の間を、細かな沈泥の道が暗い奥へ続いています。",
+  "defaultLighting": "cool",
+  "waterColor": "#0f3a5e",
+  "framing": {
+    "plateBottom": 0.985
+  }
+}

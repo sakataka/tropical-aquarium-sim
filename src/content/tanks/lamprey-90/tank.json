@@ -1,0 +1,27 @@
+{
+  "id": "lamprey-90",
+  "order": 175,
+  "displayName": "ヤツメウナギの川底水槽",
+  "exhibitName": "Lamprey Riverbed",
+  "category": "北日本の冷たい川",
+  "description": "藻の付いた丸石と砂利の川底を、カワヤツメが細長い体を大きくくねらせて泳ぎ、ときどき砂の上で休む120cmの水槽です。",
+  "widthCm": 120,
+  "heightCm": 52,
+  "depthCm": 60,
+  "maxTotalFish": 4,
+  "sceneIds": [
+    "lamprey-90"
+  ],
+  "species": [
+    {
+      "speciesId": "arctic-lamprey",
+      "maxCount": 4
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "arctic-lamprey",
+      "count": 3
+    }
+  ]
+}

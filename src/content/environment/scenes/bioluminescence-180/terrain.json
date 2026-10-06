@@ -1,0 +1,38 @@
+{
+  "structurePoints": [],
+  "bubbleSources": [],
+  "terrain": {
+    "surfaces": [
+      {
+        "id": "lower-water",
+        "material": "sand",
+        "points": [
+          {
+            "x": 0.15,
+            "y": 0.86,
+            "depth": 0.5
+          },
+          {
+            "x": 0.5,
+            "y": 0.86,
+            "depth": 0.5
+          },
+          {
+            "x": 0.85,
+            "y": 0.86,
+            "depth": 0.5
+          }
+        ]
+      }
+    ],
+    "occluders": [],
+    "shelters": [
+      {
+        "id": "dark-water",
+        "x": 0.08,
+        "y": 0.8,
+        "depth": 0.8
+      }
+    ]
+  }
+}

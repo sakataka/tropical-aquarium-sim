@@ -1,0 +1,11 @@
+{
+  "id": "mudflat-120",
+  "order": 166,
+  "displayName": "巣穴の泥岸と浅い水",
+  "description": "巣穴がいくつも開いた泥の岸が水際まで続き、手前には浅い水がたまる干潟。左手には根が絡み、水の中の泥底にも光が揺れます。",
+  "defaultLighting": "natural",
+  "waterColor": "#6e6a36",
+  "framing": {
+    "plateBottom": 0.822
+  }
+}

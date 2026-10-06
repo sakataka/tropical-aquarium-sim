@@ -1,0 +1,51 @@
+{
+  "id": "kuroshio-2250",
+  "order": 123,
+  "displayName": "黒潮の大水槽",
+  "exhibitName": "Kuroshio Sea",
+  "category": "黒潮の外洋",
+  "description": "幅22.5mのアクリル越しに、外洋の青を見渡す大水槽。ジンベエザメとマンボウがゆったりと行き来し、ブリの群れが中層から上層を回ります。マダイの群れは底に近い層を泳ぎます。",
+  "widthCm": 2250,
+  "heightCm": 628,
+  "depthCm": 1000,
+  "maxTotalFish": 30,
+  "sceneIds": [
+    "kuroshio-2250"
+  ],
+  "species": [
+    {
+      "speciesId": "whale-shark",
+      "maxCount": 2
+    },
+    {
+      "speciesId": "ocean-sunfish",
+      "maxCount": 2
+    },
+    {
+      "speciesId": "japanese-amberjack",
+      "maxCount": 20
+    },
+    {
+      "speciesId": "red-seabream",
+      "maxCount": 12
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "whale-shark",
+      "count": 1
+    },
+    {
+      "speciesId": "ocean-sunfish",
+      "count": 1
+    },
+    {
+      "speciesId": "japanese-amberjack",
+      "count": 12
+    },
+    {
+      "speciesId": "red-seabream",
+      "count": 8
+    }
+  ]
+}

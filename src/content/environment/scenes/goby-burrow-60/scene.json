@@ -1,0 +1,8 @@
+{
+  "id": "goby-burrow-60",
+  "order": 116,
+  "displayName": "巣穴のある砂礫底",
+  "description": "サンゴのかけらが散らばる明るい砂地。左右の低い岩場の根元に、暗い巣穴が口を開けています。中央の砂地は奥の青い礁まで続きます。",
+  "defaultLighting": "natural",
+  "waterColor": "#2a98b8"
+}

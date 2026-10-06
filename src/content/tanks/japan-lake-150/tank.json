@@ -1,0 +1,51 @@
+{
+  "id": "japan-lake-150",
+  "order": 163,
+  "displayName": "湖の岸辺水槽",
+  "exhibitName": "Lakeshore Shallows",
+  "category": "日本の湖",
+  "description": "沈んだ枝とヨシの岸辺を再現した150cm水槽。ホンモロコの群れが開けた中層を泳ぎ、ゲンゴロウブナは上層から中層をゆったり回ります。ナマズとテナガエビは夜行性で、明るい間は倒木や根の下の陰で休み、暗くなると底を動き回ります。",
+  "widthCm": 150,
+  "heightCm": 51,
+  "depthCm": 50,
+  "maxTotalFish": 24,
+  "sceneIds": [
+    "japan-lake-150"
+  ],
+  "species": [
+    {
+      "speciesId": "japanese-white-crucian-carp",
+      "maxCount": 3
+    },
+    {
+      "speciesId": "amur-catfish",
+      "maxCount": 2
+    },
+    {
+      "speciesId": "oriental-river-prawn",
+      "maxCount": 4
+    },
+    {
+      "speciesId": "honmoroko",
+      "maxCount": 16
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "japanese-white-crucian-carp",
+      "count": 2
+    },
+    {
+      "speciesId": "amur-catfish",
+      "count": 1
+    },
+    {
+      "speciesId": "oriental-river-prawn",
+      "count": 2
+    },
+    {
+      "speciesId": "honmoroko",
+      "count": 12
+    }
+  ]
+}

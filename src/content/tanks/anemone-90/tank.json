@@ -1,0 +1,35 @@
+{
+  "id": "anemone-90",
+  "order": 115,
+  "displayName": "イソギンチャクとクマノミの水槽",
+  "exhibitName": "Anemone & Anemonefish",
+  "category": "インド太平洋のサンゴ礁",
+  "description": "岩棚の上と砂の上に大きなイソギンチャクを置いた90cmの水槽。クマノミはイソギンチャクのまわりを離れずに泳ぎ、ときどき触手のあいだに身を寄せます。アマノガワテンジクダイは小さな群れで、岩の近くの中層にじっと浮かびます。",
+  "widthCm": 90,
+  "heightCm": 60,
+  "depthCm": 45,
+  "maxTotalFish": 12,
+  "sceneIds": [
+    "anemone-90"
+  ],
+  "species": [
+    {
+      "speciesId": "clarks-anemonefish",
+      "maxCount": 4
+    },
+    {
+      "speciesId": "banggai-cardinalfish",
+      "maxCount": 8
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "clarks-anemonefish",
+      "count": 4
+    },
+    {
+      "speciesId": "banggai-cardinalfish",
+      "count": 6
+    }
+  ]
+}

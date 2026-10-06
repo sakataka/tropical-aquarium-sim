@@ -1,0 +1,11 @@
+{
+  "id": "mangrove-180",
+  "order": 164,
+  "displayName": "支柱根の並ぶマングローブ",
+  "description": "水上から伸びたマングローブの支柱根が、落ち葉の散る砂泥の底へいくつも降りる汽水の入り江。水面の上には枝葉が張り出し、水中には斜めの光が差し込みます。",
+  "defaultLighting": "natural",
+  "waterColor": "#5a6236",
+  "framing": {
+    "plateBottom": 0.786
+  }
+}

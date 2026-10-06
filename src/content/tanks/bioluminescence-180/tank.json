@@ -1,0 +1,67 @@
+{
+  "id": "bioluminescence-180",
+  "order": 182,
+  "displayName": "発光する深海魚の水槽",
+  "exhibitName": "Bioluminescent Fishes",
+  "category": "外洋の深海の中層",
+  "description": "底の見えない暗い中層を、ナガムネエソとハダカイワシの小さな群れが漂い、デメニギス、ペリカンアンコウ、ホウライエソ、パシフィック・ブラックドラゴンがそれぞれ単独で静かに泳ぐ180cmの水槽です。",
+  "widthCm": 180,
+  "heightCm": 79,
+  "depthCm": 90,
+  "maxTotalFish": 26,
+  "sceneIds": [
+    "bioluminescence-180"
+  ],
+  "species": [
+    {
+      "speciesId": "barreleye",
+      "maxCount": 2
+    },
+    {
+      "speciesId": "humpback-anglerfish",
+      "maxCount": 2
+    },
+    {
+      "speciesId": "pacific-blackdragon",
+      "maxCount": 2
+    },
+    {
+      "speciesId": "pacific-hatchetfish",
+      "maxCount": 12
+    },
+    {
+      "speciesId": "sloanes-viperfish",
+      "maxCount": 2
+    },
+    {
+      "speciesId": "watases-lanternfish",
+      "maxCount": 10
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "barreleye",
+      "count": 1
+    },
+    {
+      "speciesId": "humpback-anglerfish",
+      "count": 1
+    },
+    {
+      "speciesId": "pacific-blackdragon",
+      "count": 1
+    },
+    {
+      "speciesId": "pacific-hatchetfish",
+      "count": 8
+    },
+    {
+      "speciesId": "sloanes-viperfish",
+      "count": 1
+    },
+    {
+      "speciesId": "watases-lanternfish",
+      "count": 6
+    }
+  ]
+}

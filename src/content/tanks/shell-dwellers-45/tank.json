@@ -1,0 +1,35 @@
+{
+  "id": "shell-dwellers-45",
+  "order": 127,
+  "displayName": "タンガニイカ湖の貝殻水槽",
+  "exhibitName": "Shell Dwellers",
+  "category": "タンガニイカ湖の貝殻の砂底",
+  "description": "空の巻貝の殻が散らばるタンガニイカ湖の砂底を再現した45cm水槽。ネオランプロログス・マルチファスキアトゥスは小さな群れで殻のまわりを短く行き来し、驚くと自分の殻へ飛び込みます。オケラートゥスは1匹ずつ自分の殻の近くで暮らし、底の砂をつついて回ります。",
+  "widthCm": 45,
+  "heightCm": 27,
+  "depthCm": 30,
+  "maxTotalFish": 10,
+  "sceneIds": [
+    "shell-dwellers-45"
+  ],
+  "species": [
+    {
+      "speciesId": "neolamprologus-multifasciatus",
+      "maxCount": 8
+    },
+    {
+      "speciesId": "ocellated-shell-dweller",
+      "maxCount": 3
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "neolamprologus-multifasciatus",
+      "count": 6
+    },
+    {
+      "speciesId": "ocellated-shell-dweller",
+      "count": 2
+    }
+  ]
+}

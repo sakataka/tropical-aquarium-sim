@@ -1,0 +1,11 @@
+{
+  "id": "kuroshio-2250",
+  "order": 122,
+  "displayName": "外洋の青と光の筋",
+  "description": "視界のほとんどを深い青の水が占め、水面から光の筋が差し込みます。左右の底には、青く霞んだ岩場が低く連なります。",
+  "defaultLighting": "natural",
+  "waterColor": "#0866b2",
+  "framing": {
+    "plateBottom": 0.779
+  }
+}
