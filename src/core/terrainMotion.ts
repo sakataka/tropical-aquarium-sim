@@ -94,14 +94,15 @@ export function terrainAvoidance(fish: FishInstance, context: Context): Vec2 {
 /** 衝突しそうな物体の周囲へ一貫した側から回り込む。毎フレーム左右を選び直さない。 */
 export function routeTerrainTarget(fish: FishInstance, target: Vec2, context: Context) {
   const solids = ellipses(fish.depth, context);
-  const intersects = (solid: typeof solids[number]) => {
+  const lineDistance = (point: Vec2, solid: typeof solids[number]) => {
     const ax = (fish.position.x - solid.center.x) / solid.rx;
     const ay = (fish.position.y - solid.center.y) / solid.ry;
-    const dx = (target.x - fish.position.x) / solid.rx;
-    const dy = (target.y - fish.position.y) / solid.ry;
+    const dx = (point.x - fish.position.x) / solid.rx;
+    const dy = (point.y - fish.position.y) / solid.ry;
     const t = Math.max(0, Math.min(1, -(ax * dx + ay * dy) / Math.max(1e-12, dx * dx + dy * dy)));
-    return Math.hypot(ax + t * dx, ay + t * dy) < 1.18;
+    return Math.hypot(ax + t * dx, ay + t * dy);
   };
+  const intersects = (solid: typeof solids[number]) => lineDistance(target, solid) < 1.18;
   const previous = fish.terrainRoute?.sceneId === context.scene.id ? fish.terrainRoute : undefined;
   const solid = solids.find((s) => s.id === previous?.obstacleId && intersects(s))
     ?? solids.filter(intersects).sort((a, b) => distance(a.center, fish.position) - distance(b.center, fish.position))[0];
@@ -122,16 +123,27 @@ export function routeTerrainTarget(fish: FishInstance, target: Vec2, context: Co
   const margin = context.tank.safeMarginCm;
   const visible = (p: Vec2) => p.x >= margin && p.x <= context.tank.widthCm - margin &&
     p.y >= margin && p.y <= context.tank.heightCm - margin && !insideTerrain(p, fish.depth, context);
+  // 停止からの復帰では、また岩越しの候補へ戻らない。通常の滑り移動は変えない。
+  const recovering = (previous?.stuckSec ?? 0) > 0;
+  const reachable = (p: Vec2) => visible(p) && (!recovering || solids.every((s) => lineDistance(p, s) >= 1 - 1e-9));
   let point = waypoint(side, .65);
-  if (!visible(point)) {
+  if (!reachable(point)) {
     const alternative = waypoint(side === 1 ? -1 : 1, .65);
-    if (visible(alternative)) { side = side === 1 ? -1 : 1; point = alternative; }
+    if (reachable(alternative)) { side = side === 1 ? -1 : 1; point = alternative; }
     else {
       // 壁に切られた岩でも、目標を壁へ丸めて岩の内側に置かない。
       const alternatives = [side, side === 1 ? -1 as const : 1 as const].flatMap((direction) =>
         [1, 1.4, 1.8, 2.2, 2.6].map((advance) => ({ point: waypoint(direction, advance), side: direction })));
-      const choice = alternatives.find((item) => visible(item.point));
+      // 遠い候補は終点が岩の外でも、そこへの直線が岩を横切ることがある。
+      const choice = alternatives.find((item) => reachable(item.point));
       if (choice) { point = choice.point; side = choice.side; }
+      else if (recovering) {
+        // 隣の岩とガラスで両側が塞がったら、まず外側へ離れて回る余地を作る。
+        const outward = waypoint(side, 0);
+        const retreat = { x: Math.max(margin, Math.min(context.tank.widthCm - margin, outward.x)),
+          y: Math.max(margin, Math.min(context.tank.heightCm - margin, outward.y)) };
+        point = reachable(retreat) ? retreat : fish.position;
+      }
     }
   }
   return { target: point,

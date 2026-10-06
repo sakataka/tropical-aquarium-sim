@@ -5,9 +5,39 @@ import { getSceneById, terrainSchema } from "./sceneCatalog";
 import { stepSimulation } from "./simulation";
 import { aquariumTanks, getTankById } from "./tankCatalog";
 import { FULL_SURFACE_FRAME } from "./surfaceMotion";
-import { chooseTerrainGoal, constrainTerrainDepth, constrainTerrainStep, insideTerrain, pointInPolygon, resolveTerrainGoal } from "./terrainMotion";
+import { chooseTerrainGoal, constrainTerrainDepth, constrainTerrainStep, insideTerrain, pointInPolygon, resolveTerrainGoal, routeTerrainTarget } from "./terrainMotion";
+import { getRenderedSurfaceFrame } from "./testContent";
 
 describe("depth-aware terrain across habitats", () => {
+  test("recovers without routing across a boulder when glass and another rock block the near waypoints", () => {
+    // 上限48匹・seed137の耐久テストで、岩とガラスの間に止まった位置。
+    const tank = getTankById("barbs-stream-90")!;
+    const scene = getSceneById("barbs-stream-90")!;
+    const species = fishCatalog["clown-loach"]!;
+    const frame = getRenderedSurfaceFrame(tank, scene);
+    const fish = { ...createFishFromStock([{ speciesId: species.id, count: 1 }], tank)[0]!,
+      position: { x: 31.2920798020135, y: tank.heightCm - tank.safeMarginCm },
+      depth: .5000001,
+      terrainRoute: { sceneId: scene.id, obstacleId: "front-boulder-core", side: -1 as const, stuckSec: .6 },
+    };
+    const context = { tank, scene, species, frame };
+    const navigation = routeTerrainTarget(fish, { x: 7.2, y: 37.514932126696834 }, context);
+    expect(insideTerrain(fish.position, fish.depth, context)).toBe(false);
+    expect(insideTerrain(navigation.target, fish.depth, context)).toBe(false);
+    expect(navigation.target.x).toBeGreaterThanOrEqual(tank.safeMarginCm);
+    expect(navigation.target.x).toBeLessThanOrEqual(tank.widthCm - tank.safeMarginCm);
+    expect(navigation.target.y).toBeGreaterThanOrEqual(tank.safeMarginCm);
+    expect(navigation.target.y).toBeLessThanOrEqual(tank.heightCm - tank.safeMarginCm);
+    const reachable = constrainTerrainStep(fish.position, navigation.target, fish.depth, context);
+    expect(Math.hypot(reachable.x - navigation.target.x, reachable.y - navigation.target.y)).toBeLessThan(1e-6);
+    expect(Math.hypot(reachable.x - fish.position.x, reachable.y - fish.position.y)).toBeGreaterThan(.1);
+    // 停止が検知されるまでは、従来の経路選択を変えない。
+    const moving = routeTerrainTarget({ ...fish, terrainRoute: { ...fish.terrainRoute, stuckSec: 0 } },
+      { x: 7.2, y: 37.514932126696834 }, context);
+    expect(moving.target.x).toBeCloseTo(15.596987703071264, 10);
+    expect(moving.target.y).toBeCloseTo(36.61186904556797, 10);
+  });
+
   test("blocks a swept crossing at rock depth, while permitting passage in front and behind", () => {
     const tank = getTankById("cube-30")!;
     const scene = { ...getSceneById("cube-stones")!, terrain: {
