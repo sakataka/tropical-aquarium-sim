@@ -1,7 +1,6 @@
-import { z } from "zod";
 import configJson from "../content/aquarium/customization.json";
-import { getSceneHeader } from "./sceneCatalog";
-import { aquariumTanks, getSpeciesLimit, getTankById } from "./tankCatalog";
+import { getSpeciesLimit } from "./catalog";
+import { defaultTankId, getSceneSummary, getTankSummary } from "./museum";
 import type {
   AquariumConfig,
   AquariumCustomization,
@@ -13,198 +12,75 @@ import type {
   TankDefinition,
 } from "./types";
 
-/** 魚種があるかどうかだけを引く表。中身は使わないので、読み込み前の ID の表でも足りる。 */
-type SpeciesDirectory = Readonly<Record<string, unknown>>;
-
-const configSchema = z.object({
-  stateStorageKey: z.string().min(1),
-  legacyStorageKeys: z.array(z.string().min(1)),
-  discardedStorageKeys: z.array(z.string().min(1)),
-});
-
-const config = configSchema.parse(configJson) as AquariumConfig;
+const config = configJson as AquariumConfig;
 
 export const AQUARIUM_STATE_STORAGE_KEY = config.stateStorageKey;
-/** 新しい順。読み込み時は最初に見つかったものだけを移行する。 */
-export const LEGACY_STORAGE_KEYS = config.legacyStorageKeys;
 /** 読まずに消す古い保存。通常の魚種追加では保存キーを変えない。 */
 export const DISCARDED_STORAGE_KEYS = config.discardedStorageKeys;
-
-// 2026-10: 依頼された魚の入れ替えを一度だけ適用する（2: 3水槽に全魚種、3: 5水槽を実際の水槽らしい匹数に）。
-// 通常の魚種追加や初期構成の変更では、この番号を上げない。
-const STOCK_ARRANGEMENT_VERSION = 3;
-// 5水槽を先行表示した端末にも、依頼された追加4種だけを一度補う。
-// 既存3水槽の構成バージョンや、追加済みの生き物の匹数は変えない。
-const FIVE_TANK_STOCK_VERSION = 1;
-const FIVE_TANK_ADDITIONS: Record<string, string[]> = {
-  "japan-60": ["japanese-bitterling", "japanese-loach"],
-  "malawi-120": ["rusty-cichlid", "saulosi"],
-};
 
 const DEFAULT_PREFERENCES: AquariumPreferences = {
   soundEnabled: false,
   soundVolume: 0.42,
 };
 
-const persistedStateSchema = z.object({
-  version: z.literal(5),
-  stockArrangementVersion: z.number().int().nonnegative().optional().catch(undefined),
-  fiveTankStockVersion: z.number().int().nonnegative().optional().catch(undefined),
-  activeTankId: z.string(),
-  tanks: z.record(z.string(), z.unknown()),
-  preferences: z.unknown(),
-});
+// 保存データの水槽ごとの設定は、その水槽のある展示室に入るまで匹数を確かめられない
+// （水槽の定義は展示室のモジュールにある）。起動時には水景と照明だけを館の索引で確かめ、
+// 匹数は展示室を読んだときに normalizeHallCustomizations で直す。まだ入っていない水槽の設定はない。
 
-export function getDefaultLayout(tank: TankDefinition, sceneId?: string): AquariumLayout {
+/** 水槽の水景。選べない水景なら、その水槽の最初の水景にする。照明は水景の既定。 */
+export function getDefaultLayout(tank: { sceneIds: readonly string[] }, sceneId?: string): AquariumLayout {
   const id = sceneId && tank.sceneIds.includes(sceneId) ? sceneId : tank.sceneIds[0]!;
-  return { sceneId: id, lighting: getSceneHeader(id)?.defaultLighting ?? "natural" };
+  return { sceneId: id, lighting: getSceneSummary(id)?.defaultLighting ?? "natural" };
 }
 
-function getDefaultCustomization(
-  tank: TankDefinition,
-  speciesCatalog: SpeciesDirectory,
-): AquariumCustomization {
-  return {
-    stock: normalizeStock(tank.defaultStock, tank, speciesCatalog),
-    layout: getDefaultLayout(tank),
-  };
-}
-
-export function createDefaultState(
-  speciesCatalog: SpeciesDirectory,
-): AquariumPersistedState {
+export function createDefaultState(): AquariumPersistedState {
   return {
     version: 5,
-    stockArrangementVersion: STOCK_ARRANGEMENT_VERSION,
-    fiveTankStockVersion: FIVE_TANK_STOCK_VERSION,
-    activeTankId: aquariumTanks[0]!.id,
-    tanks: Object.fromEntries(aquariumTanks.map((tank) => [
-      tank.id,
-      getDefaultCustomization(tank, speciesCatalog),
-    ])),
+    activeTankId: defaultTankId,
+    tanks: {},
     preferences: DEFAULT_PREFERENCES,
   };
 }
 
-// 水槽に入れられない魚種や上限を超えた匹数、ほかの水槽の水景は落とす。
-export function normalizeTankCustomization(
-  value: unknown,
-  tank: TankDefinition,
-  speciesCatalog: SpeciesDirectory,
-): AquariumCustomization {
-  if (!value || typeof value !== "object") return getDefaultCustomization(tank, speciesCatalog);
-  const candidate = value as Partial<AquariumCustomization>;
-  return {
-    stock: Array.isArray(candidate.stock)
-      ? normalizeStock(candidate.stock, tank, speciesCatalog)
-      : normalizeStock(tank.defaultStock, tank, speciesCatalog),
-    layout: normalizeLayout(candidate.layout, tank),
-  };
-}
-
-export function normalizeAquariumPersistedState(
-  value: unknown,
-  speciesCatalog: SpeciesDirectory,
-): AquariumPersistedState | undefined {
-  const parsed = persistedStateSchema.safeParse(value);
-  if (!parsed.success) return undefined;
-  const needsArrangement = (parsed.data.stockArrangementVersion ?? 0) < STOCK_ARRANGEMENT_VERSION;
-  const relocated = relocateMovedSpecies(parsed.data.tanks);
+/** 保存データを読む。形が違えば undefined。館にない水槽の設定は落とす。 */
+export function normalizeAquariumPersistedState(value: unknown): AquariumPersistedState | undefined {
+  if (!isRecord(value) || value.version !== 5 || typeof value.activeTankId !== "string" || !isRecord(value.tanks)) {
+    return undefined;
+  }
+  const tanks: Record<string, AquariumCustomization> = {};
+  for (const [tankId, saved] of Object.entries(value.tanks)) {
+    const tank = getTankSummary(tankId);
+    if (!tank || !isRecord(saved)) continue;
+    tanks[tankId] = {
+      stock: Array.isArray(saved.stock) ? saved.stock.flatMap(toStockEntry) : [],
+      layout: normalizeLayout(saved.layout, tank),
+    };
+  }
   return {
     version: 5,
-    stockArrangementVersion: Math.max(parsed.data.stockArrangementVersion ?? 0, STOCK_ARRANGEMENT_VERSION),
-    fiveTankStockVersion: Math.max(parsed.data.fiveTankStockVersion ?? 0, FIVE_TANK_STOCK_VERSION),
-    activeTankId: getTankById(parsed.data.activeTankId)?.id ?? aquariumTanks[0]!.id,
-    tanks: Object.fromEntries(aquariumTanks.map((tank) => {
-      const customization = normalizeTankCustomization(relocated[tank.id], tank, speciesCatalog);
-      if ((parsed.data.fiveTankStockVersion ?? 0) < FIVE_TANK_STOCK_VERSION) {
-        const additions = tank.defaultStock.filter((entry) =>
-          FIVE_TANK_ADDITIONS[tank.id]?.includes(entry.speciesId) &&
-          !customization.stock.some((saved) => saved.speciesId === entry.speciesId));
-        customization.stock = normalizeStock([...customization.stock, ...additions], tank, speciesCatalog);
-      }
-      return [tank.id, needsArrangement
-        ? { ...customization, stock: normalizeStock(tank.defaultStock, tank, speciesCatalog) }
-        : customization];
-    })),
-    preferences: normalizePreferences(parsed.data.preferences),
+    activeTankId: getTankSummary(value.activeTankId)?.id ?? defaultTankId,
+    tanks,
+    preferences: normalizePreferences(value.preferences),
   };
 }
 
-// 魚種を別の水槽へ移したとき（例: ゼブラダニオを30cmキューブから60cm水槽へ）、元の水槽に保存された
-// 匹数を、その魚種を新しく受け入れた水槽へ引き継ぐ。移し先にすでにその魚種があれば手を付けない。
-function relocateMovedSpecies(savedTanks: Record<string, unknown>): Record<string, unknown> {
-  const result: Record<string, unknown> = { ...savedTanks };
-  const stockOf = (value: unknown): FishStockEntry[] =>
-    value && typeof value === "object" && Array.isArray((value as { stock?: unknown }).stock)
-      ? (value as { stock: FishStockEntry[] }).stock : [];
-  for (const tank of aquariumTanks) {
-    for (const entry of stockOf(savedTanks[tank.id])) {
-      if (!entry || typeof entry !== "object" || getSpeciesLimit(tank, entry.speciesId) > 0) continue;
-      const destination = aquariumTanks.find((item) => getSpeciesLimit(item, entry.speciesId) > 0);
-      const saved = destination && result[destination.id];
-      if (!destination || !saved || stockOf(saved).some((other) => other?.speciesId === entry.speciesId)) continue;
-      result[destination.id] = { ...(saved as object), stock: [...stockOf(saved), entry] };
-    }
+/**
+ * 展示室の水槽の設定をそろえる。まだ設定のない水槽には既定の構成を入れ、
+ * 保存されていた匹数は、水槽に入れられない生き物や上限を超えた分を落とす。
+ */
+export function normalizeHallCustomizations(
+  saved: Readonly<Record<string, AquariumCustomization>>,
+  tanks: readonly TankDefinition[],
+): Record<string, AquariumCustomization> {
+  const result = { ...saved };
+  for (const tank of tanks) {
+    const current = saved[tank.id];
+    result[tank.id] = {
+      stock: normalizeStock(current?.stock ?? tank.defaultStock, tank),
+      layout: current?.layout ?? getDefaultLayout(tank),
+    };
   }
   return result;
-}
-
-// v1〜v4 は60cm水槽1つだった。魚種はそれを入れられる水槽へ、水景と照明はその水景を持つ水槽へ移す。
-export function migrateLegacyAquariumState(
-  value: unknown,
-  speciesCatalog: SpeciesDirectory,
-): AquariumPersistedState | undefined {
-  if (!value || typeof value !== "object") return undefined;
-  const source = value as {
-    customization?: {
-      stock?: unknown;
-      environment?: Record<string, unknown>;
-      layout?: Record<string, unknown>;
-    };
-    stock?: unknown;
-    environment?: Record<string, unknown>;
-    preferences?: Record<string, unknown>;
-  };
-  const legacyCustomization = source.customization ?? source;
-  const legacyLayout = source.customization?.layout;
-  const environment = legacyCustomization.environment ?? {};
-  const legacySceneId = typeof legacyLayout?.sceneId === "string"
-    ? legacyLayout.sceneId
-    : typeof legacyLayout?.themeId === "string"
-      ? legacyLayout.themeId
-      : mapLegacyBackground(environment.backgroundStyle);
-  const legacyLighting = legacyLayout?.lighting ?? environment.lighting;
-  const legacyStock = Array.isArray(legacyCustomization.stock)
-    ? legacyCustomization.stock as FishStockEntry[]
-    : [];
-
-  const state = createDefaultState(speciesCatalog);
-  const moved = new Map<string, FishStockEntry[]>();
-  for (const entry of legacyStock) {
-    const speciesId = entry && typeof entry === "object" ? entry.speciesId : undefined;
-    const tank = aquariumTanks.find((item) => speciesId && getSpeciesLimit(item, speciesId) > 0);
-    if (!tank) continue;
-    moved.set(tank.id, [...(moved.get(tank.id) ?? []), entry]);
-  }
-  for (const tank of aquariumTanks) {
-    const current = state.tanks[tank.id]!;
-    const stock = moved.get(tank.id);
-    const ownsScene = tank.sceneIds.includes(legacySceneId);
-    state.tanks[tank.id] = {
-      stock: stock ? normalizeStock(stock, tank, speciesCatalog) : current.stock,
-      layout: ownsScene
-        ? {
-          sceneId: legacySceneId,
-          lighting: isLightingId(legacyLighting) ? legacyLighting : current.layout.lighting,
-        }
-        : current.layout,
-    };
-    if (ownsScene) state.activeTankId = tank.id;
-  }
-  const preferences = source.preferences ?? {};
-  state.preferences = normalizePreferences({ soundVolume: preferences.soundVolume });
-  return state;
 }
 
 export function setStockCount(
@@ -212,50 +88,35 @@ export function setStockCount(
   speciesId: string,
   count: number,
   tank: TankDefinition,
-  speciesCatalog: SpeciesDirectory,
 ): FishStockEntry[] {
   const next = new Map(stock.map((entry) => [entry.speciesId, entry.count]));
   next.set(speciesId, count);
   return normalizeStock(
-    Array.from(next, ([entrySpeciesId, entryCount]) => ({
-      speciesId: entrySpeciesId,
-      count: entryCount,
-    })),
+    Array.from(next, ([entrySpeciesId, entryCount]) => ({ speciesId: entrySpeciesId, count: entryCount })),
     tank,
-    speciesCatalog,
   );
 }
 
-function normalizeLayout(value: unknown, tank: TankDefinition): AquariumLayout {
-  const candidate = value && typeof value === "object"
-    ? value as Partial<AquariumLayout>
-    : {};
-  const layout = getDefaultLayout(tank, candidate.sceneId);
+function normalizeLayout(value: unknown, tank: { sceneIds: readonly string[] }): AquariumLayout {
+  const candidate = isRecord(value) ? value : {};
+  const layout = getDefaultLayout(tank, typeof candidate.sceneId === "string" ? candidate.sceneId : undefined);
   return {
     sceneId: layout.sceneId,
     lighting: isLightingId(candidate.lighting) ? candidate.lighting : layout.lighting,
   };
 }
 
-function normalizeStock(
-  stock: unknown[],
-  tank: TankDefinition,
-  speciesCatalog: SpeciesDirectory,
-): FishStockEntry[] {
+function normalizeStock(stock: readonly FishStockEntry[], tank: TankDefinition): FishStockEntry[] {
   const counts = new Map<string, number>();
-  const order: string[] = [];
-  for (const item of stock) {
-    if (!item || typeof item !== "object") continue;
-    const { speciesId, count } = item as FishStockEntry;
+  for (const { speciesId, count } of stock) {
     const limit = getSpeciesLimit(tank, speciesId);
-    if (!speciesCatalog[speciesId] || limit === 0) continue;
-    if (!counts.has(speciesId)) order.push(speciesId);
+    if (limit === 0) continue;
     counts.set(speciesId, Math.min(limit, (counts.get(speciesId) ?? 0) + clampCount(count)));
   }
   const result: FishStockEntry[] = [];
   let total = 0;
-  for (const speciesId of order) {
-    const count = Math.min(counts.get(speciesId) ?? 0, tank.maxTotalFish - total);
+  for (const [speciesId, limited] of counts) {
+    const count = Math.min(limited, tank.maxTotalFish - total);
     if (count > 0) result.push({ speciesId, count });
     total += count;
     if (total >= tank.maxTotalFish) break;
@@ -263,11 +124,15 @@ function normalizeStock(
   return result;
 }
 
+function toStockEntry(value: unknown): FishStockEntry[] {
+  return isRecord(value) && typeof value.speciesId === "string"
+    ? [{ speciesId: value.speciesId, count: clampCount(value.count) }]
+    : [];
+}
+
 // 環境音は保存値に関係なく毎回OFFで始める。ONにするのはその場で選んだときだけ。
 function normalizePreferences(value: unknown): AquariumPreferences {
-  const candidate = value && typeof value === "object"
-    ? value as Partial<AquariumPreferences>
-    : {};
+  const candidate = isRecord(value) ? value : {};
   return {
     soundEnabled: false,
     soundVolume: Math.max(0, Math.min(1,
@@ -278,16 +143,14 @@ function normalizePreferences(value: unknown): AquariumPreferences {
   };
 }
 
-function mapLegacyBackground(backgroundStyle: unknown): string {
-  if (backgroundStyle === "deep") return "driftwood";
-  if (backgroundStyle === "bright") return "iwagumi";
-  return "planted";
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return Boolean(value) && typeof value === "object" && !Array.isArray(value);
 }
 
 function isLightingId(value: unknown): value is LightingId {
   return value === "natural" || value === "cool" || value === "evening" || value === "night";
 }
 
-function clampCount(count: number): number {
+function clampCount(count: unknown): number {
   return Math.max(0, Math.trunc(Number(count) || 0));
 }

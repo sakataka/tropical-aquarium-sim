@@ -1,12 +1,13 @@
 import { describe, expect, test } from "vitest";
-import { fishCatalog } from "./catalog";
+import { fishCatalog, getLoadedTanks, getSceneById, getTankById } from "./catalog";
 import { createFishFromStock } from "./fishPopulation";
-import { getSceneById, terrainSchema } from "./sceneCatalog";
+import { terrainSchema } from "./contentSchemas";
 import { stepSimulation } from "./simulation";
-import { aquariumTanks, getTankById } from "./tankCatalog";
 import { FULL_SURFACE_FRAME } from "./surfaceMotion";
 import { chooseTerrainGoal, constrainTerrainDepth, constrainTerrainStep, insideTerrain, pointInPolygon, resolveTerrainGoal, routeTerrainTarget } from "./terrainMotion";
 import { getRenderedSurfaceFrame } from "./testContent";
+
+const aquariumTanks = getLoadedTanks();
 
 describe("depth-aware terrain across habitats", () => {
   test("recovers without routing across a boulder when glass and another rock block the near waypoints", () => {

@@ -1,6 +1,6 @@
 import { useState, type RefObject } from "react";
 import {
-  getSceneHeader,
+  getSceneById,
   getSpeciesLimit,
   getStockCount,
   type AquariumCustomization,
@@ -10,7 +10,8 @@ import {
   type SwimZoneId,
   type TankDefinition,
 } from "../core";
-import { getFishImageUrl, getSceneThumbUrl } from "../render/assetUrls";
+import { getSceneSummary } from "../core/museum";
+import { getFishImageUrl } from "../render/assetUrls";
 import { CheckIcon, CloseIcon, MinusIcon, PlusIcon } from "./icons";
 import { playSfx } from "../audio/sfx";
 
@@ -62,7 +63,7 @@ export function AquariumControls({
   const [tab, setTab] = useState<PanelTab>("fish");
   const totalFish = customization.stock.reduce((sum, entry) => sum + entry.count, 0);
   const tankFull = totalFish >= tank.maxTotalFish;
-  const scenes = tank.sceneIds.map((sceneId) => getSceneHeader(sceneId)).filter((scene) => scene !== undefined);
+  const scenes = tank.sceneIds.map((sceneId) => getSceneById(sceneId)).filter((scene) => scene !== undefined);
 
   return (
     <aside aria-label="水槽の設定" className="control-panel" id="tank-settings" ref={panelRef} tabIndex={-1}>
@@ -190,7 +191,7 @@ export function AquariumControls({
                     type="button"
                   >
                     <span className="theme-thumb">
-                      <img alt="" loading="lazy" src={getSceneThumbUrl(scene.id)} />
+                      <img alt="" loading="lazy" src={getSceneSummary(scene.id)?.thumbUrl} />
                       {active ? <span className="theme-check"><CheckIcon /></span> : null}
                     </span>
                     <strong>{scene.displayName}</strong>

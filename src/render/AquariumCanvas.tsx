@@ -28,7 +28,7 @@ import {
 } from "./tankFraming";
 import { UnderwaterFilter } from "./underwaterFilter";
 import { playSfx } from "../audio/sfx";
-import { getGlassAspect, getWindowOverscan } from "../core/room";
+import { getGlassAspect, getWindowOverscan } from "../core/museum";
 import { getSurfaceFrame, placePlate, TerrainLayer } from "./terrainLayer";
 import type { AquariumScene } from "../core/types";
 import { clamp, smoothstep } from "../core/math";
@@ -125,7 +125,7 @@ export function AquariumCanvas({
     world.mask = glassMask;
     // 部屋から入った直後は部屋で見えていた絵のままにし、水中の効果は少しずつ効かせる。
     const underwater = new UnderwaterFilter(layoutRef.current.lighting, { startNeutral: true });
-    const glassAspect = getGlassAspect(tank);
+    const glassAspect = getGlassAspect(tank.id);
     const overscan = getWindowOverscan(tank.id);
     // 最初は水槽の全体が入る大きさ。ホイール・ピンチ・キーで近づき、ドラッグで見回す。
     const view = { x: 0, y: 0, targetX: 0, targetY: 0, zoom: 1, targetZoom: 1 };

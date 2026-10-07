@@ -10,19 +10,17 @@ import {
 import {
   AQUARIUM_STATE_STORAGE_KEY,
   DISCARDED_STORAGE_KEYS,
-  LEGACY_STORAGE_KEYS,
-  aquariumTanks,
   createDefaultState,
   createFishFromStock,
   fishCatalog,
   getDefaultLayout,
-  getSceneHeader,
+  getSceneById,
   getTankById,
-  migrateLegacyAquariumState,
+  loadHall,
   normalizeAquariumPersistedState,
+  normalizeHallCustomizations,
   reconcileFishStock,
   setStockCount,
-  speciesDirectory,
   type AquariumCustomization,
   type AquariumPersistedState,
   type FishInstance,
@@ -32,9 +30,7 @@ import {
 import type { ViewControl } from "./render/AquariumCanvas";
 import { forgetMotionState } from "./render/motionState";
 import { RENDER_PROBLEM_EVENT } from "./render/renderProblems";
-import { getRoomForTank } from "./core/room";
-import { loadHallContent } from "./core/hallContent";
-import { getHallById } from "./core/museum";
+import { getHallById, getHallOfTank, getTankSummary, tankSummaries } from "./core/museum";
 import { MuseumMap } from "./ui/MuseumMap";
 import { getHallTextureUrls, getScenePlateUrl } from "./render/assetUrls";
 import { AquariumControls, LIGHTING_OPTIONS } from "./ui/AquariumControls";
@@ -121,23 +117,39 @@ export default function App() {
       window.removeEventListener("unhandledrejection", onRejection);
     };
   }, []);
-  const tank = getTankById(state.activeTankId) ?? aquariumTanks[0]!;
-  const customization = state.tanks[tank.id]!;
-  const room = getRoomForTank(tank.id);
-  const roomTanks = room.tanks.map((placement) => getTankById(placement.tankId)!);
+  // 館内図にいる間も、選んでいる水槽と展示室は館の索引で分かる。水槽の定義と設定は、展示室を読んでから使う。
+  const activeTankId = getTankSummary(state.activeTankId)?.id ?? tankSummaries[0]!.id;
+  const room = getHallOfTank(activeTankId);
+  const roomTankIds = room.tanks.map((placement) => placement.tankId);
   const hallReady = loadedHalls.has(room.id);
+  const tank = hallReady ? getTankById(activeTankId) : undefined;
+  const customization = state.tanks[activeTankId];
+  const pendingSceneRef = useRef(initial.pendingScene);
 
-  // 展示室に入るときに、その展示室の魚種と水景の地形を読み、魚を生む。
+  // 展示室に入るときに、その展示室の水槽・水景・生き物を読み、水槽の設定をそろえて魚を生む。
   useEffect(() => {
     if (phase.kind === "map" || hallReady) return;
     let cancelled = false;
-    loadHallContent(room)
+    loadHall(room.id)
       .then(() => {
         if (cancelled) return;
-        for (const placement of room.tanks) {
-          const item = getTankById(placement.tankId)!;
-          fishRefs[item.id] ??= { current: createFishFromStock(stateRef.current.tanks[item.id]!.stock, item) };
+        const hallTanks = room.tanks.map((placement) => getTankById(placement.tankId)!);
+        const prepare = (saved: Record<string, AquariumCustomization>) => {
+          const tanks = normalizeHallCustomizations(saved, hallTanks);
+          // ?theme= で開いた水景は、その水槽の設定がそろってから当てる。
+          const pending = pendingSceneRef.current;
+          const themed = pending && hallTanks.find((item) => item.id === pending.tankId);
+          if (themed && tanks[themed.id]!.layout.sceneId !== pending.sceneId) {
+            tanks[themed.id] = { ...tanks[themed.id]!, layout: getDefaultLayout(themed, pending.sceneId) };
+          }
+          return tanks;
+        };
+        const tanks = prepare(stateRef.current.tanks);
+        for (const item of hallTanks) {
+          fishRefs[item.id] ??= { current: createFishFromStock(tanks[item.id]!.stock, item) };
         }
+        setState((current) => ({ ...current, tanks: prepare(current.tanks) }));
+        pendingSceneRef.current = undefined;
         setLoadedHalls((current) => new Set(current).add(room.id));
       })
       .catch((error: unknown) => setRenderProblem((current) =>
@@ -149,7 +161,7 @@ export default function App() {
   // 館内図にいる間は、戻ってくることが多い直前の展示室の分を残す。
   useEffect(() => {
     if (!hallReady || (phase.kind !== "room" && phase.kind !== "tank")) return;
-    void import("./render/assets").then(({ releaseTexturesExcept }) => releaseTexturesExcept(getHallTextureUrls(room)));
+    void import("./render/assets").then(({ releaseTexturesExcept }) => releaseTexturesExcept(getHallTextureUrls(room.id)));
   }, [hallReady, phase.kind, room]);
 
   // 館内図を見ている間に、展示室の描画部品を先読みしておく。
@@ -162,7 +174,7 @@ export default function App() {
   // 館内図の「前回の展示室」は、保存データがあるか、この回に展示室を見たあとだけ付ける。
   const visitedRef = useRef(initial.restored);
   if (phase.kind !== "map") visitedRef.current = true;
-  lastTankByRoom.current[room.id] = tank.id;
+  lastTankByRoom.current[room.id] = activeTankId;
 
   useAmbientSound(
     state.preferences.soundEnabled && audioUnlocked,
@@ -191,10 +203,11 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    for (const item of aquariumTanks) {
-      const ref = fishRefs[item.id];
-      if (!ref) continue;
-      const next = reconcileFishStock(ref.current, state.tanks[item.id]!.stock, item);
+    for (const [tankId, ref] of Object.entries(fishRefs)) {
+      const item = getTankById(tankId);
+      const saved = state.tanks[tankId];
+      if (!item || !saved) continue;
+      const next = reconcileFishStock(ref.current, saved.stock, item);
       const kept = new Set(next.map((fish) => fish.id));
       for (const fish of ref.current) if (!kept.has(fish.id)) forgetMotionState(fish.id);
       ref.current = next;
@@ -205,7 +218,7 @@ export default function App() {
     const timeout = window.setTimeout(() => {
       try {
         window.localStorage.setItem(AQUARIUM_STATE_STORAGE_KEY, JSON.stringify(state));
-        for (const key of [...LEGACY_STORAGE_KEYS, ...DISCARDED_STORAGE_KEYS]) window.localStorage.removeItem(key);
+        for (const key of DISCARDED_STORAGE_KEYS) window.localStorage.removeItem(key);
         setSaveFailed(false);
       } catch {
         setSaveFailed(true);
@@ -240,9 +253,9 @@ export default function App() {
   const switchTank = useCallback((direction: SwitchDirection) => {
     setPhase((current) => {
       if (current.kind !== "tank") return current;
-      const index = roomTanks.findIndex((item) => item.id === state.activeTankId);
+      const index = roomTankIds.indexOf(state.activeTankId);
       const step = direction === "next" ? 1 : -1;
-      const to = roomTanks[(index + step + roomTanks.length) % roomTanks.length]!.id;
+      const to = roomTankIds[(index + step + roomTankIds.length) % roomTankIds.length]!;
       playSfx("tank_switch");
       return { kind: "leaveTank", to, direction };
     });
@@ -311,14 +324,14 @@ export default function App() {
     toHall: (hallId) => {
       const current = phaseRef.current;
       // 水槽から、その水槽のある展示室へ戻るときは引く演出を使う。
-      if (current.kind === "tank" && getRoomForTank(activeTankRef.current).id === hallId) {
+      if (current.kind === "tank" && getHallOfTank(activeTankRef.current).id === hallId) {
         setPhase({ kind: "toRoom", returningFrom: activeTankRef.current, roomReady: false });
       } else enterHall(hallId);
     },
     toTank: (tankId) => {
       const current = phaseRef.current;
       setState((value) => ({ ...value, activeTankId: tankId }));
-      if (current.kind === "room" && getRoomForTank(tankId).id === getRoomForTank(activeTankRef.current).id) {
+      if (current.kind === "room" && getHallOfTank(tankId).id === getHallOfTank(activeTankRef.current).id) {
         setPhase({ kind: "toTank", tankReady: false });
       } else setPhase({ kind: "tank" });
     },
@@ -372,7 +385,7 @@ export default function App() {
           <SoundToggle className="room-sound" enabled={state.preferences.soundEnabled} onToggle={toggleSound} />
         </>
       ) : null}
-      {showTank && hallReady ? (
+      {showTank && tank && customization ? (
         <TankScreen
           active={phase.kind !== "toRoom"}
           leaving={phase.kind === "leaveTank" ? phase.direction : undefined}
@@ -473,7 +486,7 @@ function TankScreen({
   editingRef.current = editing;
   onBackToRoomRef.current = onBackToRoom;
   onSwitchTankRef.current = onSwitchTank;
-  const activeScene = getSceneHeader(customization.layout.sceneId);
+  const activeScene = getSceneById(customization.layout.sceneId);
   const totalFish = customization.stock.reduce((sum, entry) => sum + entry.count, 0);
   const speciesList = useRef(tank.species
     .map((slot) => fishCatalog[slot.speciesId])
@@ -542,7 +555,7 @@ function TankScreen({
   }, [onReady]);
 
   const plateUrl = getScenePlateUrl(customization.layout.sceneId);
-  const roomTanks = getRoomForTank(tank.id).tanks.map((placement) => getTankById(placement.tankId)!);
+  const roomTanks = getHallOfTank(tank.id).tanks.map((placement) => getTankById(placement.tankId)!);
   const tankIndex = roomTanks.indexOf(tank);
   const exhibitNumber = String(tankIndex + 1).padStart(2, "0");
   const neighbor = (step: number) =>
@@ -696,7 +709,7 @@ function TankScreen({
         }))}
         onSpeciesCountChange={(speciesId, count) => onCustomizationChange((current) => ({
           ...current,
-          stock: setStockCount(current.stock, speciesId, count, tank, speciesDirectory),
+          stock: setStockCount(current.stock, speciesId, count, tank),
         }))}
         preferences={preferences}
         saveFailed={saveFailed}
@@ -719,7 +732,7 @@ type HistoryTargets = {
 function searchForPhase(phase: Phase, tankId: string, zukan: ZukanView | null): string | null {
   if (zukan) return zukan.speciesId ? `?zukan=${zukan.speciesId}` : "?zukan";
   if (phase.kind === "map") return "";
-  if (phase.kind === "room") return `?hall=${getRoomForTank(tankId).id}`;
+  if (phase.kind === "room") return `?hall=${getHallOfTank(tankId).id}`;
   if (phase.kind === "tank") return `?tank=${tankId}`;
   return null;
 }
@@ -758,7 +771,7 @@ function useHistorySync(phase: Phase, tankId: string, zukan: ZukanView | null,
         return;
       }
       targetsRef.current.toZukan(undefined);
-      const tank = getTankById(params.get("tank"));
+      const tank = getTankSummary(params.get("tank"));
       const hall = getHallById(params.get("hall"));
       if (tank) targetsRef.current.toTank(tank.id);
       else if (hall) targetsRef.current.toHall(hall.id);
@@ -788,21 +801,24 @@ function useFullscreen() {
   return { supported, active, toggle };
 }
 
-function loadInitialState(): { state: AquariumPersistedState; phase: Phase; restored: boolean; zukan: ZukanView | null } {
+type InitialState = {
+  state: AquariumPersistedState;
+  phase: Phase;
+  restored: boolean;
+  zukan: ZukanView | null;
+  /** ?theme= で指定された水景。その水槽の展示室を読んでから当てる。 */
+  pendingScene?: { tankId: string; sceneId: string };
+};
+
+function loadInitialState(): InitialState {
   const params = new URLSearchParams(window.location.search);
-  let state = createDefaultState(speciesDirectory);
+  let state = createDefaultState();
   let restored = false;
   try {
-    const currentValue = window.localStorage.getItem(AQUARIUM_STATE_STORAGE_KEY);
-    const current = currentValue
-      ? normalizeAquariumPersistedState(JSON.parse(currentValue), speciesDirectory)
-      : undefined;
-    const legacyKey = LEGACY_STORAGE_KEYS.find((key) => window.localStorage.getItem(key));
-    const legacy = !current && legacyKey
-      ? migrateLegacyAquariumState(JSON.parse(window.localStorage.getItem(legacyKey)!), speciesDirectory)
-      : undefined;
-    state = current ?? legacy ?? state;
-    restored = Boolean(current ?? legacy);
+    const saved = window.localStorage.getItem(AQUARIUM_STATE_STORAGE_KEY);
+    const current = saved ? normalizeAquariumPersistedState(JSON.parse(saved)) : undefined;
+    state = current ?? state;
+    restored = Boolean(current);
   } catch {
     // 壊れた保存データは初期状態から始める。
   }
@@ -811,8 +827,8 @@ function loadInitialState(): { state: AquariumPersistedState; phase: Phase; rest
   // 何も指定がなければ館内図から始める。
   if (params.has("zukan")) return { state, phase: { kind: "map" }, restored, zukan: { speciesId: params.get("zukan") || null } };
   const sceneId = params.get("theme");
-  const sceneTank = aquariumTanks.find((item) => sceneId && item.sceneIds.includes(sceneId));
-  const requestedTank = getTankById(params.get("tank")) ?? sceneTank;
+  const sceneTank = sceneId ? tankSummaries.find((item) => item.sceneIds.includes(sceneId)) : undefined;
+  const requestedTank = getTankSummary(params.get("tank")) ?? sceneTank;
   if (!requestedTank) {
     const hall = getHallById(params.get("hall"));
     if (!hall) return { state, phase: { kind: "map" }, restored, zukan: null };
@@ -824,19 +840,13 @@ function loadInitialState(): { state: AquariumPersistedState; phase: Phase; rest
       zukan: null,
     };
   }
-  const tanks = { ...state.tanks };
-  // すでにその水景なら、選んである照明を残す。
-  if (sceneTank && sceneId && tanks[sceneTank.id]!.layout.sceneId !== sceneId) {
-    tanks[sceneTank.id] = {
-      ...tanks[sceneTank.id]!,
-      layout: getDefaultLayout(sceneTank, sceneId),
-    };
-  }
   return {
-    state: { ...state, tanks, activeTankId: requestedTank.id },
+    state: { ...state, activeTankId: requestedTank.id },
     phase: { kind: "tank" },
     restored,
     zukan: null,
+    // すでにその水景なら、選んである照明を残す。
+    pendingScene: sceneTank && sceneId ? { tankId: sceneTank.id, sceneId } : undefined,
   };
 }
 

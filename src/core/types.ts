@@ -290,15 +290,13 @@ export type AquariumPreferences = { soundEnabled: boolean; soundVolume: number }
 
 export type AquariumPersistedState = {
   version: 5;
-  stockArrangementVersion: number;
-  fiveTankStockVersion: number;
   activeTankId: string;
+  /** 水槽ごとの設定。入ったことのある展示室の水槽だけを持つ。 */
   tanks: Record<string, AquariumCustomization>;
   preferences: AquariumPreferences;
 };
 
 export type AquariumConfig = {
   stateStorageKey: string;
-  legacyStorageKeys: string[];
   discardedStorageKeys: string[];
 };

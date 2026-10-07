@@ -1,10 +1,8 @@
 import { describe, expect, test } from "vitest";
-import { fishCatalog } from "./catalog";
+import { fishCatalog, getSceneById, getTankById } from "./catalog";
 import { createFishFromStock, createFishPersonality } from "./fishPopulation";
-import { getSceneById } from "./sceneCatalog";
 import { stepSimulation } from "./simulation";
 import { worldPoint } from "./surfaceMotion";
-import { getTankById } from "./tankCatalog";
 import { getRenderedSurfaceFrame } from "./testContent";
 import type { FishInstance, FishStockEntry, LightingId } from "./types";
 

@@ -1,6 +1,6 @@
 // テスト専用。水景の一枚絵のピクセル寸法を読み、描画と同じ切り取り方で地形を検証する。
 import { framePlate, toSurfaceFrame } from "./plateFraming";
-import { getGlassAspect, getWindowOverscan } from "./room";
+import { getGlassAspect, getWindowOverscan } from "./museum";
 import type { AquariumScene, SurfaceFrame, TankDefinition } from "./types";
 
 const plateModules = import.meta.glob<string>("../content/environment/scenes/*/plate.webp", {
@@ -27,6 +27,6 @@ function getPlateSize(sceneId: string): { width: number; height: number } {
 
 /** 部屋と水槽画面で使うのと同じ、水景画像のガラスに対する位置。 */
 export function getRenderedSurfaceFrame(tank: TankDefinition, scene: AquariumScene): SurfaceFrame {
-  const glass = { x: 0, y: 0, width: getGlassAspect(tank), height: 1 };
+  const glass = { x: 0, y: 0, width: getGlassAspect(tank.id), height: 1 };
   return toSurfaceFrame(framePlate(getPlateSize(scene.id), glass, getWindowOverscan(tank.id), scene), glass);
 }

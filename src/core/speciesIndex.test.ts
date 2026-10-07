@@ -1,13 +1,15 @@
 import { describe, expect, test } from "vitest";
-import { speciesIds } from "./catalog";
-import { getExhibitOrder, getSpeciesExhibits, loadSpeciesIndex, searchSpeciesIndex } from "./speciesIndex";
+import { getLoadedTanks } from "./catalog";
+import { getSpeciesExhibits, loadSpeciesIndex, searchSpeciesIndex } from "./speciesIndex";
 import { toSpeciesKey } from "./speciesIndexEntry";
-import { aquariumTanks } from "./tankCatalog";
+
+const speciesFolders = Object.keys(import.meta.glob("../content/fish/*/species.json"))
+  .map((path) => path.split("/").slice(-2)[0]!).sort();
 
 describe("species index", () => {
   test("lists every species folder with its taxonomy", async () => {
     const entries = await loadSpeciesIndex();
-    expect(entries.map((entry) => entry.id)).toEqual([...speciesIds]);
+    expect(entries.map((entry) => entry.id)).toEqual(speciesFolders);
     for (const entry of entries) {
       expect(entry.familyJa, entry.id).toBeTruthy();
       expect(entry.salinity, entry.id).toBeTruthy();
@@ -23,11 +25,13 @@ describe("species index", () => {
     expect(ids("")).toHaveLength(entries.length);
   });
 
-  test("every species shown in a tank links back to that tank", () => {
-    const order = getExhibitOrder();
-    for (const tank of aquariumTanks) for (const slot of tank.species) {
-      expect(getSpeciesExhibits(slot.speciesId).map((item) => item.tank.id)).toContain(tank.id);
-      expect(order.has(slot.speciesId)).toBe(true);
+  test("every species shown in a tank links back to that tank", async () => {
+    const entries = new Map((await loadSpeciesIndex()).map((entry) => [entry.id, entry]));
+    for (const tank of getLoadedTanks()) for (const slot of tank.species) {
+      const entry = entries.get(slot.speciesId)!;
+      expect(getSpeciesExhibits(entry).map((item) => item.tank.id)).toContain(tank.id);
+      expect(entry.exhibitRank, slot.speciesId).toBeTypeOf("number");
+      expect(entry.imageUrl, slot.speciesId).toBeTruthy();
     }
   });
 });

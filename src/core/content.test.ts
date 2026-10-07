@@ -1,13 +1,12 @@
 import { describe, expect, test } from "vitest";
 import { getBodyPlan } from "./bodyPlans";
-import { fishCatalog } from "./catalog";
-import { museum } from "./museum";
-import { fishRooms } from "./room";
-import { getSceneById, sceneHeaders as aquariumScenes } from "./sceneCatalog";
+import { fishCatalog, getLoadedTanks, getSceneById } from "./catalog";
+import { halls as fishRooms, museum } from "./museum";
 import { visibleSurfaceIntervals, worldPoint } from "./surfaceMotion";
-import { aquariumTanks } from "./tankCatalog";
 import { getRenderedSurfaceFrame } from "./testContent";
 import { insideTerrain } from "./terrainMotion";
+
+const aquariumTanks = getLoadedTanks();
 
 // 魚・水景・水槽・部屋を追加したときの取り違えを、画面を開く前に見つける。
 const fishImages = import.meta.glob("../content/fish/*/body.webp");
@@ -16,12 +15,16 @@ const thumbImages = import.meta.glob("../content/environment/scenes/*/thumb.webp
 const roomImages = import.meta.glob("../content/room/*.webp");
 const roomThumbs = import.meta.glob("../content/room/thumbs/*.webp");
 const museumImages = import.meta.glob("../content/museum/*.webp");
+const folderIds = (files: Record<string, unknown>) => Object.keys(files).map((path) => path.split("/").slice(-2)[0]!).sort();
+const tankFolders = folderIds(import.meta.glob("../content/tanks/*/tank.json"));
+const sceneFolders = folderIds(import.meta.glob("../content/environment/scenes/*/scene.json"));
 
 describe("content wiring", () => {
   test("every tank is placed in exactly one room, and rooms only place known tanks", () => {
     const placed = fishRooms.flatMap((room) => room.tanks.map((item) => item.tankId));
     expect(new Set(placed).size).toBe(placed.length);
-    expect([...placed].sort()).toEqual(aquariumTanks.map((tank) => tank.id).sort());
+    expect([...placed].sort()).toEqual(tankFolders);
+    expect(aquariumTanks.map((tank) => tank.id)).toEqual(placed);
     expect(new Set(fishRooms.map((room) => room.id)).size).toBe(fishRooms.length);
     for (const room of fishRooms) {
       expect(roomImages[`../content/room/${room.image}`], room.id).toBeDefined();
@@ -79,13 +82,13 @@ describe("content wiring", () => {
       expect(fishImages[`../content/fish/${id}/body.webp`], `${id}/body.webp`).toBeDefined();
     }
     const usedScenes = new Set(aquariumTanks.flatMap((tank) => tank.sceneIds));
-    // 地形は展示室に入るときに読むので、すべての水景に terrain.json がある（テストの準備で全件読んでいる）。
-    for (const scene of aquariumScenes) expect(getSceneById(scene.id), `${scene.id}/terrain.json`).toBeDefined();
-    for (const scene of aquariumScenes) {
-      expect(usedScenes.has(scene.id), `${scene.id} is not offered by any tank`).toBe(true);
-      expect(plateImages[`../content/environment/scenes/${scene.id}/plate.webp`], `${scene.id}/plate.webp`).toBeDefined();
+    for (const id of sceneFolders) {
+      expect(usedScenes.has(id), `${id} is not offered by any tank`).toBe(true);
+      // 展示室を読むと、その水槽の水景が地形まで読み込まれる（テストの準備で全展示室を読んでいる）。
+      expect(getSceneById(id), `${id}/terrain.json`).toBeDefined();
+      expect(plateImages[`../content/environment/scenes/${id}/plate.webp`], `${id}/plate.webp`).toBeDefined();
       // 館内図の縮小版用。scripts/build-scene-thumbs.py で作る。
-      expect(thumbImages[`../content/environment/scenes/${scene.id}/thumb.webp`], `${scene.id}/thumb.webp`).toBeDefined();
+      expect(thumbImages[`../content/environment/scenes/${id}/thumb.webp`], `${id}/thumb.webp`).toBeDefined();
     }
   });
 

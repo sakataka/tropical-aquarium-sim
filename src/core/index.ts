@@ -1,12 +1,17 @@
-export { fishCatalog, loadSpecies, speciesDirectory } from "./catalog";
+export {
+  fishCatalog,
+  getSceneById,
+  getSpeciesLimit,
+  getTankById,
+  loadHall,
+} from "./catalog";
 export {
   AQUARIUM_STATE_STORAGE_KEY,
   DISCARDED_STORAGE_KEYS,
-  LEGACY_STORAGE_KEYS,
   createDefaultState,
   getDefaultLayout,
-  migrateLegacyAquariumState,
   normalizeAquariumPersistedState,
+  normalizeHallCustomizations,
   setStockCount,
 } from "./customization";
 export {
@@ -14,12 +19,10 @@ export {
   getStockCount,
   reconcileFishStock,
 } from "./fishPopulation";
-export { getSceneById, getSceneHeader, loadScenes } from "./sceneCatalog";
 export { imageToGlass } from "./plateFraming";
 export { getFishSpriteScale } from "./scale";
 export { stepSimulation } from "./simulation";
 export { startleFish } from "./startle";
-export { aquariumTanks, getSpeciesLimit, getTankById } from "./tankCatalog";
 export type {
   AquariumCustomization,
   AquariumLayout,

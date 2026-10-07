@@ -1,13 +1,13 @@
 import { expect, test } from "vitest";
 import { getBodyPlan } from "./bodyPlans";
-import { fishCatalog } from "./catalog";
+import { fishCatalog, getLoadedTanks, getSceneById } from "./catalog";
 import { createFishFromStock, createFishPersonality } from "./fishPopulation";
-import { getSceneById } from "./sceneCatalog";
 import { stepSimulation } from "./simulation";
-import { aquariumTanks } from "./tankCatalog";
 import { getRenderedSurfaceFrame } from "./testContent";
 import { insideTerrain } from "./terrainMotion";
 import type { FishStockEntry, LightingId } from "./types";
+
+const aquariumTanks = getLoadedTanks();
 
 // 上限匹数で昼・夜を続けて泳がせる。フレームごとの大量の expect は避け、
 // 実寸での移動量・衝突・個体数・通常の奥行き変化を検証する。

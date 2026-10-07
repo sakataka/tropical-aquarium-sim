@@ -1,11 +1,10 @@
 import { describe, expect, test } from "vitest";
-import { getHallSlotsOnFloor, museum } from "../core/museum";
-import { fishRooms } from "../core/room";
+import { getHallSlotsOnFloor, halls, museum } from "../core/museum";
 import { cropAroundTanks } from "./HallPreview";
 
 describe("hall preview crop", () => {
   test("keeps the frame's aspect, stays inside the hall picture and shows every tank", () => {
-    for (const hall of fishRooms) {
+    for (const hall of halls) {
       const area = museum.floors.flatMap((floor) => getHallSlotsOnFloor(floor.id)).find((slot) => slot.id === hall.id)!.mapArea;
       const aspect = area.width / area.height;
       const crop = cropAroundTanks(hall, aspect);

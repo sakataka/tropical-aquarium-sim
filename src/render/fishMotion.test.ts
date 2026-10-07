@@ -1,8 +1,7 @@
 import { describe, expect, test } from "vitest";
 import { Texture } from "pixi.js";
-import { fishCatalog } from "../core/catalog";
+import { fishCatalog, getTankById } from "../core/catalog";
 import { createFishFromStock } from "../core/fishPopulation";
-import { getTankById } from "../core/tankCatalog";
 import { FishBody, forgetMotionState } from "./fishBody";
 import { sampleMeshPoint, stepTurnSpring } from "./fishMotion";
 

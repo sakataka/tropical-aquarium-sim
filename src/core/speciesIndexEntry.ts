@@ -1,7 +1,16 @@
 // 図鑑の一覧と検索に使う、魚種ごとの軽い見出し。ビルド時に species.json から作る
-// （vite.config.ts の speciesIndex）。設定ファイルからも読むので、ほかのモジュールに依存しない。
+// （vite/contentModules.ts の virtual:species-index）。ビルド設定からも読むので、ほかのモジュールに依存しない。
 
-export type SpeciesIndexEntry = {
+export type SpeciesIndexEntry = SpeciesHeading & {
+  /** 一覧に出す体の画像（body.webp）。 */
+  imageUrl?: string;
+  /** 見られる水槽。館内図の順。 */
+  tankIds: string[];
+  /** 展示順（館内図の順に水槽をたどって最初に出会う順）。どの水槽にもいなければ undefined。 */
+  exhibitRank?: number;
+};
+
+type SpeciesHeading = {
   id: string;
   name: string;
   scientificName: string;
@@ -25,7 +34,7 @@ type SpeciesJson = {
   };
 };
 
-export function toSpeciesIndexEntry(species: SpeciesJson): SpeciesIndexEntry {
+export function toSpeciesIndexEntry(species: SpeciesJson): SpeciesHeading {
   const profile = species.profile;
   return {
     id: species.id,

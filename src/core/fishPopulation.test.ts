@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import { getTankById } from "./tankCatalog";
+import { getTankById } from "./catalog";
 import { createFishFromStock, getStockCount, reconcileFishStock } from "./fishPopulation";
 
 const TANK_60CM = getTankById("asia-60")!;

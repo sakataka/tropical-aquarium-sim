@@ -8,8 +8,8 @@ import {
   type AquariumCustomization,
   type FishInstance,
 } from "../core";
-import { getWindowOverscan, type FishRoomDefinition, type RoomRect } from "../core/room";
-import { getFloorOfHall } from "../core/museum";
+import type { FishRoomDefinition, RoomRect } from "../core/room";
+import { getFloorOfHall, getWindowOverscan } from "../core/museum";
 import { reportRenderProblem, watchContextLoss, watchSetup } from "./renderProblems";
 import { getScenePlateUrl, getRoomImageUrl, loadTexture } from "./assets";
 import { FishLayer, getWaterTint, type ViewRect } from "./fishLayer";
@@ -160,7 +160,7 @@ export function FishRoom({
       }
       progress.mark("部屋と水景の画像の読み込み");
       const [roomTexture] = await Promise.all([
-        loadTexture(getRoomImageUrl(fishRoom)),
+        loadTexture(getRoomImageUrl(fishRoom.id)!),
         ...views.map((view) => loadPlate(view, tanksRef.current[view.tankId]?.layout.sceneId)),
       ]);
       if (disposed) return;

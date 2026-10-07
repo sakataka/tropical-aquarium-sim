@@ -1,79 +1,50 @@
-import { z } from "zod";
-import museumJson from "../content/museum/museum.json";
-import { fishRooms, type FishRoomDefinition } from "./room";
+import {
+  defaultTankId as firstTankId,
+  halls as hallList,
+  hallLoaders as loaders,
+  mapImageUrl as mapImage,
+  museum as museumData,
+  scenes as sceneList,
+  tanks as tankList,
+} from "virtual:museum";
+import type { MuseumFloor, MuseumMapArea } from "./contentSchemas";
+import type { HallModule, HallSummary, SceneSummary, TankSummary } from "./contentTypes";
+import { glassAspect, windowOverscan } from "./room";
 
-/** 館内図の絵の中の範囲。絵の画素で表す。 */
-const mapAreaSchema = z.object({
-  x: z.number().nonnegative(),
-  y: z.number().nonnegative(),
-  width: z.number().positive(),
-  height: z.number().positive(),
-});
+// 起動時に読む館の索引。館内図・URL の解決・保存データの確認に要る、展示室・水槽・水景の見出しだけを持つ。
+// 水槽の定義、水景の地形、生き物は展示室ごとのモジュールにあり、展示室に入るときに読む（catalog.ts）。
+// ビルド時に内容ファイルから作り、検証も済ませてある（vite/contentModules.ts）。
 
-/** 階に置く展示室の枠。展示室（room/*.json）があれば開き、なければ「準備中」と出す。 */
-const hallSlotSchema = z.object({
-  /** 展示室のID。room/*.json の id と同じにする。 */
-  id: z.string().regex(/^[a-z0-9-]+$/),
-  /** 準備中の展示室の名前。展示室ができたら room/*.json の displayName を使う。 */
-  displayName: z.string().min(1).optional(),
-});
-
-const floorSchema = z.object({
-  id: z.string().regex(/^[a-z0-9-]+$/),
-  /** 館内図で上から並べる順。上の階ほど小さい。 */
-  order: z.number().finite(),
-  /** 「1階」「地下1階」など。 */
-  label: z.string().min(1),
-  /** 館内図の断面図に添える短い階名（"1F"、"B1" など）。 */
-  shortLabel: z.string().min(1).max(3),
-  /** 展示ラベル用の英字の階名（"Floor B1" など）。 */
-  exhibitLabel: z.string().min(1),
-  displayName: z.string().min(1),
-  exhibitName: z.string().min(1),
-  description: z.string().min(1),
-  /** 館内図の断面図で、この階の展示フロアが描かれている範囲。展示室はこれを左から等分する。 */
-  mapArea: mapAreaSchema,
-  /** この階の展示室の枠を左から順に。館内のどこに展示室があるかは、ここだけで決める。 */
-  halls: z.array(hallSlotSchema).min(1),
-});
-
-const museumSchema = z.object({
-  displayName: z.string().min(1),
-  exhibitName: z.string().min(1),
-  lede: z.string().min(1),
-  /** 館内図の断面図。画像は src/content/museum/ に置く。 */
-  map: z.object({
-    image: z.string().regex(/^[\w-]+\.webp$/),
-    width: z.number().positive(),
-    height: z.number().positive(),
-    /** 狭い画面で切り出す横の範囲（絵の画素）。建物と階名の札が収まるようにする。 */
-    focus: z.object({ x: z.number().nonnegative(), width: z.number().positive() }),
-  }),
-  floors: z.array(floorSchema).min(1),
-});
-
-export type MuseumFloor = z.infer<typeof floorSchema>;
-export type MuseumMapArea = z.infer<typeof mapAreaSchema>;
+export type { MuseumFloor, MuseumMapArea } from "./contentSchemas";
+export type { HallSummary, SceneSummary, TankSummary } from "./contentTypes";
 
 /** 館内図に並べる展示室の枠。room があれば開ける展示室、なければ準備中。 */
 export type HallSlot = {
   id: string;
   displayName: string;
   floor: MuseumFloor;
-  room?: FishRoomDefinition;
+  room?: HallSummary;
   /** 館内図の絵の中の範囲（絵の画素）。 */
   mapArea: MuseumMapArea;
 };
 
-const parsed = museumSchema.parse(museumJson);
+/** 階は上から順に並ぶ。 */
+export const museum = museumData;
+/** 開いている展示室。館内図の順（上の階から、階の中は左から）。 */
+export const halls: readonly HallSummary[] = hallList;
+/** すべての水槽。館内図の順（展示室の順、展示室の中の水槽の順）。 */
+export const tankSummaries: readonly TankSummary[] = tankList;
+/** 館内図の断面図。 */
+export const mapImageUrl = mapImage;
+/** 保存データがないときに選んでおく水槽。 */
+export const defaultTankId = firstTankId;
+export const hallLoaders: Readonly<Record<string, () => Promise<HallModule>>> = loaders;
 
-export const museum = {
-  ...parsed,
-  floors: [...parsed.floors].sort((a, b) => a.order - b.order),
-};
+const hallById = new Map(halls.map((hall) => [hall.id, hall]));
+const tankById = new Map(tankSummaries.map((tank) => [tank.id, tank]));
 
 const hallSlots: HallSlot[] = museum.floors.flatMap((floor) => floor.halls.map((hall, index) => {
-  const room = fishRooms.find((item) => item.id === hall.id);
+  const room = hallById.get(hall.id);
   const displayName = room?.displayName ?? hall.displayName;
   if (!displayName) throw new Error(`Hall "${hall.id}" has no room and no displayName`);
   const width = floor.mapArea.width / floor.halls.length;
@@ -86,12 +57,6 @@ const hallSlots: HallSlot[] = museum.floors.flatMap((floor) => floor.halls.map((
   };
 }));
 
-for (const room of fishRooms) {
-  if (!hallSlots.some((slot) => slot.id === room.id)) {
-    throw new Error(`Room "${room.id}" is not placed on any floor in museum.json`);
-  }
-}
-
 /** その階の展示室の枠を左から順に。準備中の枠も含む。 */
 export function getHallSlotsOnFloor(floorId: string): HallSlot[] {
   return hallSlots.filter((slot) => slot.floor.id === floorId);
@@ -102,6 +67,38 @@ export function getFloorOfHall(hallId: string): MuseumFloor | undefined {
   return hallSlots.find((slot) => slot.id === hallId)?.floor;
 }
 
-export function getHallById(hallId: string | null | undefined): FishRoomDefinition | undefined {
-  return fishRooms.find((room) => room.id === hallId);
+export function getHallById(hallId: string | null | undefined): HallSummary | undefined {
+  return hallId ? hallById.get(hallId) : undefined;
+}
+
+export function getTankSummary(tankId: string | null | undefined): TankSummary | undefined {
+  return tankId ? tankById.get(tankId) : undefined;
+}
+
+/** 水槽のある展示室。 */
+export function getHallOfTank(tankId: string): HallSummary {
+  const hall = hallById.get(tankById.get(tankId)?.hallId ?? "");
+  if (!hall) throw new Error(`Tank is not placed in any hall: ${tankId}`);
+  return hall;
+}
+
+export function getSceneSummary(sceneId: string | null | undefined): SceneSummary | undefined {
+  return sceneId ? sceneList[sceneId] : undefined;
+}
+
+function getPlacement(tankId: string) {
+  const hall = getHallOfTank(tankId);
+  return { hall, placement: hall.tanks.find((item) => item.tankId === tankId)! };
+}
+
+// 水槽画面は部屋で見えているガラスと同じ縦横比で水景を切り取る。
+// こうすると、部屋から寄り終えた構図と水槽画面の構図が一致する。
+export function getGlassAspect(tankId: string): number {
+  const { hall, placement } = getPlacement(tankId);
+  return glassAspect(hall, placement);
+}
+
+/** 側面ガラスまで含めた切り抜き範囲が、前面ガラスの何倍か。水景はここまで広げて描く。 */
+export function getWindowOverscan(tankId: string): { x: number; y: number } {
+  return windowOverscan(getPlacement(tankId).placement);
 }

@@ -1,8 +1,7 @@
 import { describe, expect, test } from "vitest";
-import { fishCatalog } from "./catalog";
+import { fishCatalog, getTankById } from "./catalog";
 import { createFishFromStock } from "./fishPopulation";
 import { stepSimulation } from "./simulation";
-import { getTankById } from "./tankCatalog";
 
 const TANK_60CM = getTankById("asia-60")!;
 

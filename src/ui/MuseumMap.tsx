@@ -1,14 +1,17 @@
 import { useState, type CSSProperties } from "react";
-import { getTankById, type AquariumCustomization } from "../core";
-import { getHallSlotsOnFloor, museum, type HallSlot } from "../core/museum";
-import type { FishRoomDefinition } from "../core/room";
+import type { AquariumCustomization } from "../core";
+import {
+  getHallSlotsOnFloor,
+  getTankSummary,
+  mapImageUrl,
+  museum,
+  type HallSlot,
+  type HallSummary,
+} from "../core/museum";
 import { playSfx } from "../audio/sfx";
-import { getMuseumMapImageUrl } from "../render/assetUrls";
 import { HallPreview } from "./HallPreview";
 import { BookIcon } from "./icons";
 import { SoundToggle } from "./SoundToggle";
-
-const mapImageUrl = getMuseumMapImageUrl(museum.map.image);
 
 /** 触れている階と展示室。断面図とフロアガイドで同じものを光らせる。 */
 type Active = { floorId: string; hallId?: string };
@@ -27,7 +30,7 @@ export function MuseumMap({
   /** 前回見ていた展示室。目印を付ける。 */
   lastHallId?: string;
   soundEnabled: boolean;
-  /** 水槽ごとの今の設定。縮小版に今の水景を映す。 */
+  /** 水槽ごとの今の設定。縮小版に今の水景を映す（入ったことのない水槽は既定の水景）。 */
   tanks: Record<string, AquariumCustomization>;
   onEnterHall: (hallId: string) => void;
   onOpenZukan: () => void;
@@ -181,7 +184,7 @@ function HallCard({ last, onEnter, onFocus, onPointerEnter, onPointerLeave, room
   onFocus: () => void;
   onPointerEnter: () => void;
   onPointerLeave: () => void;
-  room: FishRoomDefinition;
+  room: HallSummary;
 }) {
   const { tanks, species } = hallStats(room);
   const tankNames = tanks.map((tank) => tank.displayName).join("、");
@@ -212,8 +215,6 @@ function toPercent(area: { x: number; y: number; width: number; height: number }
   };
 }
 
-function hallStats(hall: FishRoomDefinition) {
-  const tanks = hall.tanks.map((placement) => getTankById(placement.tankId)!);
-  const species = new Set(tanks.flatMap((tank) => tank.species.map((slot) => slot.speciesId))).size;
-  return { tanks, species };
+function hallStats(hall: HallSummary) {
+  return { tanks: hall.tanks.flatMap((placement) => getTankSummary(placement.tankId) ?? []), species: hall.speciesCount };
 }

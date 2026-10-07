@@ -1,11 +1,11 @@
 import { describe, expect, test } from "vitest";
-import { fishCatalog } from "./catalog";
+import { fishCatalog, getSceneById, getTankById } from "./catalog";
 import { createFishFromStock } from "./fishPopulation";
-import { getSceneById, terrainSchema } from "./sceneCatalog";
+import { terrainSchema } from "./contentSchemas";
 import { stepSimulation } from "./simulation";
 import { sampleSurface } from "./surfaceMotion";
-import { getTankById } from "./tankCatalog";
-import { normalizeTankCustomization } from "./customization";
+import { normalizeHallCustomizations } from "./customization";
+import type { AquariumCustomization } from "./types";
 
 const tank = getTankById("japan-60")!;
 const shrimp = fishCatalog["amano-shrimp"]!;
@@ -92,11 +92,11 @@ describe("scene surface movement", () => {
       expect(Math.abs(f.depth - fish[i]!.depth)).toBeLessThan(.001);
       expect(f.position.y).toBeLessThan(tank.heightCm * fishCatalog.medaka!.preferredZone.maxY);
     }
-    const saved = { stock: [{ speciesId: shrimp.id, count: 3 }],
+    const saved: AquariumCustomization = { stock: [{ speciesId: shrimp.id, count: 3 }],
       layout: { sceneId: "japan-spring", lighting: "night" } };
-    expect(normalizeTankCustomization(saved, tank, fishCatalog)).toEqual(saved);
-    expect(normalizeTankCustomization({ ...saved, layout: { ...saved.layout, sceneId: scene.id } }, tank, fishCatalog)
-      .layout.sceneId).toBe(scene.id);
+    const normalize = (value: AquariumCustomization) => normalizeHallCustomizations({ [tank.id]: value }, [tank])[tank.id]!;
+    expect(normalize(saved)).toEqual(saved);
+    expect(normalize({ ...saved, layout: { ...saved.layout, sceneId: scene.id } }).layout.sceneId).toBe(scene.id);
   });
 
   test("rejects empty, degenerate and ambiguous surface definitions", () => {

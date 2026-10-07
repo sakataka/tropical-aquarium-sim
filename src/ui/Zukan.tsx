@@ -1,15 +1,15 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { fishCatalog, loadSpecies } from "../core";
+import { fishCatalog } from "../core";
 import {
-  getExhibitOrder,
+  getFirstExhibitHallName,
   getSpeciesExhibits,
+  loadSpeciesDefinition,
   loadSpeciesIndex,
   searchSpeciesIndex,
   type SpeciesIndexEntry,
 } from "../core/speciesIndex";
 import type { ConservationStatus, FishProfile, FishSpeciesDefinition } from "../core/types";
 import { playSfx } from "../audio/sfx";
-import { getFishImageUrl } from "../render/assetUrls";
 import { BackIcon, CloseIcon } from "./icons";
 import "./zukan.css";
 
@@ -44,7 +44,6 @@ export function Zukan({ speciesId, onSelect, onClose, onVisitTank }: {
   const [query, setQuery] = useState("");
   const [salinity, setSalinity] = useState<Salinity | "all">("all");
   const [sort, setSort] = useState<SortKey>("exhibit");
-  const exhibitOrder = useMemo(getExhibitOrder, []);
 
   useEffect(() => {
     let cancelled = false;
@@ -71,8 +70,8 @@ export function Zukan({ speciesId, onSelect, onClose, onVisitTank }: {
     if (!entries) return [];
     const found = searchSpeciesIndex(entries, query)
       .filter((entry) => salinity === "all" || entry.salinity === salinity);
-    return groupEntries(found, sort, exhibitOrder);
-  }, [entries, exhibitOrder, query, salinity, sort]);
+    return groupEntries(found, sort);
+  }, [entries, query, salinity, sort]);
   const shown = groups.reduce((sum, group) => sum + group.entries.length, 0);
   const counted = entries ? new Set(entries.flatMap((entry) => entry.speciesKey ?? [])).size : 0;
   const entry = speciesId ? entries?.find((item) => item.id === speciesId) : undefined;
@@ -132,7 +131,7 @@ export function Zukan({ speciesId, onSelect, onClose, onVisitTank }: {
                 <li key={item.id}>
                   <button className="zukan-card" onClick={() => { playSfx("ui_tap", 0.6); onSelect(item.id); }} type="button">
                     <span className="zukan-thumb">
-                      <img alt="" decoding="async" loading="lazy" src={getFishImageUrl(item.id)} />
+                      <img alt="" decoding="async" loading="lazy" src={item.imageUrl} />
                     </span>
                     <span className="zukan-card-name">{item.name}</span>
                     <span className="zukan-card-sci">{item.scientificName}</span>
@@ -161,17 +160,16 @@ export function Zukan({ speciesId, onSelect, onClose, onVisitTank }: {
 
 type Group = { key: string; heading?: string; sub?: string; entries: SpeciesIndexEntry[] };
 
-function groupEntries(entries: SpeciesIndexEntry[], sort: SortKey,
-  exhibitOrder: Map<string, { rank: number; hallName: string }>): Group[] {
+function groupEntries(entries: SpeciesIndexEntry[], sort: SortKey): Group[] {
   const byName = (a: SpeciesIndexEntry, b: SpeciesIndexEntry) => a.name.localeCompare(b.name, "ja");
   if (sort === "name") return [{ key: "all", entries: [...entries].sort(byName) }];
   const groups = new Map<string, Group>();
   const sorted = [...entries].sort(sort === "exhibit"
-    ? (a, b) => (exhibitOrder.get(a.id)?.rank ?? Infinity) - (exhibitOrder.get(b.id)?.rank ?? Infinity) || byName(a, b)
+    ? (a, b) => (a.exhibitRank ?? Infinity) - (b.exhibitRank ?? Infinity) || byName(a, b)
     : (a, b) => (a.orderJa ?? "").localeCompare(b.orderJa ?? "", "ja") ||
       (a.familyJa ?? "").localeCompare(b.familyJa ?? "", "ja") || byName(a, b));
   for (const entry of sorted) {
-    const key = sort === "exhibit" ? exhibitOrder.get(entry.id)?.hallName ?? "展示していない生き物" : entry.familyJa ?? "分類の記載なし";
+    const key = sort === "exhibit" ? getFirstExhibitHallName(entry) ?? "展示していない生き物" : entry.familyJa ?? "分類の記載なし";
     const sub = sort === "taxonomy" ? [entry.orderJa, entry.family].filter(Boolean).join(" · ") : undefined;
     const group = groups.get(key) ?? { key, heading: key, sub, entries: [] };
     group.entries.push(entry);
@@ -196,11 +194,11 @@ function SpeciesDetail({ id, entry, known, onBack, onClose, onVisitTank }: {
     let cancelled = false;
     setSpecies(fishCatalog[id]);
     setFailed(false);
-    loadSpecies([id]).then(() => { if (!cancelled) setSpecies(fishCatalog[id]); }, () => { if (!cancelled) setFailed(true); });
+    loadSpeciesDefinition(id).then((loaded) => { if (!cancelled) setSpecies(loaded); }, () => { if (!cancelled) setFailed(true); });
     return () => { cancelled = true; };
   }, [id]);
   useEffect(() => { headingRef.current?.focus({ preventScroll: true }); }, [id, species]);
-  const exhibits = useMemo(() => getSpeciesExhibits(id), [id]);
+  const exhibits = useMemo(() => (entry ? getSpeciesExhibits(entry) : []), [entry]);
   const profile = species?.profile;
   // 古い種の aliases には ID や学名そのものが入っているので、別名としては出さない。
   const aliases = (species?.catalog.aliases ?? []).filter((alias) => alias !== id && alias !== species?.catalog.scientificName);
@@ -219,7 +217,7 @@ function SpeciesDetail({ id, entry, known, onBack, onClose, onVisitTank }: {
       ) : (
         <>
           <figure className="zukan-figure">
-            <img alt={species?.displayName ?? entry?.name ?? ""} src={getFishImageUrl(id)} />
+            <img alt={species?.displayName ?? entry?.name ?? ""} src={entry?.imageUrl} />
           </figure>
           <header className="zukan-detail-head">
             <p className="zukan-eyebrow">{profile ? `${profile.taxonomy.orderJa} · ${profile.taxonomy.familyJa}` : entry?.familyJa}</p>

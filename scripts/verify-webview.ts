@@ -55,7 +55,6 @@ type Result = {
   amazonCards: number;
   adjacentTanks: string[];
   restored: { version: number; scene: string; lighting: string; harlequinCount: number; sound: boolean };
-  migrated: { version: number; asiaScene: string; amazonNeon: number };
   desktop: { stageWidth: number; stageHeight: number; canvasWidth: number };
   mobile: {
     entered: boolean;
@@ -254,7 +253,7 @@ async function main() {
       `JSON.stringify(JSON.parse(localStorage.getItem("${STATE_KEY}")).tanks)`,
     ));
 
-    // 一部の水槽しかない古いv5保存へ、足りない水槽だけが既定の構成で加わること。
+    // 水槽の設定は、その水槽のある展示室に入ったときに加わる。入っていない展示室の水槽の設定は保存しない。
     const beforeExpansion = String(await view.evaluate(`(() => {
       const old = JSON.parse(localStorage.getItem("${STATE_KEY}"));
       delete old.tanks["japan-60"];
@@ -265,14 +264,21 @@ async function main() {
     })()`));
     await view.navigate(BASE_URL);
     await sleep(2500);
-    const addedTanksPreserved = Boolean(await view.evaluate(`(() => {
+    const untouchedOnMap = Boolean(await view.evaluate(`(() => {
+      const now = JSON.parse(localStorage.getItem("${STATE_KEY}"));
+      return JSON.stringify(now.tanks) === ${JSON.stringify(beforeExpansion)};
+    })()`));
+    await view.navigate(`${BASE_URL}?tank=japan-60`);
+    await sleep(2600);
+    const addedTanksPreserved = untouchedOnMap && Boolean(await view.evaluate(`(() => {
       const now = JSON.parse(localStorage.getItem("${STATE_KEY}"));
       const before = JSON.parse(${JSON.stringify(beforeExpansion)});
-      return Object.keys(now.tanks).length === ${TANKS.size} &&
-        Object.keys(before).every(id => JSON.stringify(now.tanks[id]) === JSON.stringify(before[id])) &&
+      return Object.keys(before).every(id => JSON.stringify(now.tanks[id]) === JSON.stringify(before[id])) &&
         now.tanks["japan-60"].stock.reduce((n,e) => n+e.count,0) === ${defaultTotal("japan-60")} &&
-        now.tanks["malawi-120"].stock.reduce((n,e) => n+e.count,0) === ${defaultTotal("malawi-120")};
+        (now.tanks["malawi-120"] !== undefined) === ${roomOf("malawi-120").id === roomOf("japan-60").id};
     })()`));
+    await view.navigate(`${BASE_URL}?tank=asia-60`);
+    await sleep(2600);
 
     await view.reload();
     await sleep(2200);
@@ -291,58 +297,16 @@ async function main() {
     const removedCopyAbsent = ["愛称", "空腹", "餌やり", "お気に入り", "今日の観察"]
       .every((word) => !shellText.includes(word));
 
-    // v4 の保存データからの移行
-    await view.evaluate(`(() => {
-      localStorage.clear();
-      localStorage.setItem("tropical-aquarium.state.v4", JSON.stringify({
-        version: 4,
-        customization: {
-          stock: [{ speciesId: "neon-tetra", count: 9 }, { speciesId: "cherry-barb", count: 4 }],
-          layout: { sceneId: "iwagumi", lighting: "cool" },
-        },
-        preferences: { soundEnabled: false, soundVolume: 0.4 },
-      }));
-    })()`);
-    await view.reload();
-    await sleep(2200);
-    const migrated = await view.evaluate(`(() => {
-      const state = JSON.parse(localStorage.getItem("${STATE_KEY}"));
-      return {
-        version: state.version,
-        asiaScene: state.tanks["asia-60"].layout.sceneId,
-        amazonNeon: state.tanks["amazon-90"].stock.find((entry) => entry.speciesId === "neon-tetra")?.count ?? 0,
-      };
-    })()`) as Result["migrated"];
-
-    // 旧v5を想定し、魚だけが一度入れ替わり、水景・照明・以後の手動変更が残ること。
-    await view.evaluate(`(() => {
-      const old = JSON.parse(localStorage.getItem("${STATE_KEY}"));
-      old.stockArrangementVersion = 2;
-      old.tanks["cube-30"].stock = [{ speciesId: "guppy", count: 6 }];
-      old.tanks["cube-30"].layout = { sceneId: "cube-stones", lighting: "evening" };
-      old.preferences.soundVolume = 0.25;
-      localStorage.setItem("${STATE_KEY}", JSON.stringify(old));
-    })()`);
+    // 手で変えた匹数は、読み直しても残る。
     await view.navigate(`${BASE_URL}?tank=cube-30`);
     await sleep(2500);
-    const arrangementApplied = Boolean(await view.evaluate(`(() => {
-      const s = JSON.parse(localStorage.getItem("${STATE_KEY}"));
-      const cube = s.tanks["cube-30"];
-      const total = id => s.tanks[id].stock.reduce((n, entry) => n + entry.count, 0);
-      return s.stockArrangementVersion === 3 && total("asia-60") === ${defaultTotal("asia-60")} && total("amazon-90") === ${defaultTotal("amazon-90")} && total("cube-30") === ${defaultTotal("cube-30")} &&
-        total("japan-60") === ${defaultTotal("japan-60")} && total("malawi-120") === ${defaultTotal("malawi-120")} &&
-        s.tanks["asia-60"].stock.length === ${TANKS.get("asia-60")!.defaultStock.length} && s.tanks["amazon-90"].stock.length === ${TANKS.get("amazon-90")!.defaultStock.length} && cube.stock.length === ${TANKS.get("cube-30")!.defaultStock.length} &&
-        Object.values(s.tanks).every(t => t.stock.every(e => e.count >= 1)) &&
-        cube.stock.some(e => e.speciesId === "ember-tetra" && e.count === 8) &&
-        cube.stock.some(e => e.speciesId === "clown-killifish" && e.count === 2) &&
-        cube.layout.sceneId === "cube-stones" && cube.layout.lighting === "evening" && s.preferences.soundVolume === 0.25;
-    })()`));
+    const emberBefore = Number(await view.evaluate(stockCount("cube-30", "ember-tetra")));
     await clickButtonByText(view, "設定");
     await clickByLabel(view, "エンバーテトラを1匹減らす");
     await sleep(350);
     await view.reload();
     await sleep(2500);
-    const arrangementPreserved = arrangementApplied && Number(await view.evaluate(stockCount("cube-30", "ember-tetra"))) === 7;
+    const arrangementPreserved = emberBefore > 1 && Number(await view.evaluate(stockCount("cube-30", "ember-tetra"))) === emberBefore - 1;
 
     await using mobileView = new Bun.WebView({
       width: 420,
@@ -453,7 +417,7 @@ async function main() {
     const result: Result = {
       title, map, history, zukan, roomTanks, enteredTank, asiaCards, harlequinCount, rejectedSpecies, newSpeciesChecked, addedTanksPreserved, arrangementPreserved, scenesVisited, japanScenes,
       viewingOnEntry, viewingStageWidth, editingOpened, editingStageWidth, closedToViewing, backToRoom, cubeCards, cubeStageRatio, amazonCards, adjacentTanks,
-      restored, migrated, desktop, mobile, landscape, removedCopyAbsent, consoleErrors, expandedScenes, halls,
+      restored, desktop, mobile, landscape, removedCopyAbsent, consoleErrors, expandedScenes, halls,
     };
     console.log(JSON.stringify(result, null, 2));
 
@@ -478,7 +442,6 @@ async function main() {
     assert(amazonCards === TANKS.get("amazon-90")!.species.length);
     assert(restored.version === 5 && restored.scene === "driftwood");
     assert(restored.lighting === "night" && restored.harlequinCount === 12 && !restored.sound);
-    assert(migrated.version === 5 && migrated.asiaScene === "iwagumi" && migrated.amazonNeon === 9);
     assert(desktop.stageWidth >= 700 && desktop.canvasWidth >= 700 && desktop.stageHeight >= 400);
     assert(mobile.entered && mobile.roomTanks === ASIA_HALL.tanks.length &&
       mobile.roomTouchAction === "pan-x" && mobile.tankStageWidth >= 380 && mobile.overflowWidth === 0);
