@@ -14,10 +14,15 @@ export function createFishPersonality(birthSeed: number): FishPersonality {
     restfulness: variation(.2), sociability: variation(.2), personalSpace: variation(.15), exploration: variation(.2) });
 }
 
-export function createFishFromStock(stock: FishStockEntry[], tank: TankDefinition): FishInstance[] {
+/** random を渡すと、同じ乱数列から同じ個体（性格・体長の差・最初の行動）が生まれる。テストで使う。 */
+export function createFishFromStock(
+  stock: FishStockEntry[],
+  tank: TankDefinition,
+  random: () => number = Math.random,
+): FishInstance[] {
   return stock.flatMap(({ speciesId, count }, speciesIndex) =>
     Array.from({ length: count }, (_, index) =>
-      createFish(speciesId, speciesIndex * 17 + index, tank),
+      createFish(speciesId, speciesIndex * 17 + index, tank, random),
     ),
   );
 }
@@ -42,12 +47,12 @@ export function getStockCount(stock: FishStockEntry[], speciesId: string): numbe
   return stock.find((entry) => entry.speciesId === speciesId)?.count ?? 0;
 }
 
-function createFish(speciesId: string, index: number, tank: TankDefinition): FishInstance {
+function createFish(speciesId: string, index: number, tank: TankDefinition, random: () => number = Math.random): FishInstance {
   const species = fishCatalog[speciesId];
   const zone = species.preferredZone;
   const xRatio = zone.minX + (((index * 37) % 100) / 100) * (zone.maxX - zone.minX);
   const yRatio = zone.minY + (((index * 29) % 100) / 100) * (zone.maxY - zone.minY);
-  const seed = Math.floor(Math.random() * 1_000_000) + index * 7919;
+  const seed = Math.floor(random() * 1_000_000) + index * 7919;
   const personality = createFishPersonality(seed);
   const onBottom = getBodyPlan(species).bottomDweller;
   const y = onBottom ? tank.heightCm - tank.safeMarginCm : tank.heightCm * yRatio;
@@ -68,10 +73,10 @@ function createFish(speciesId: string, index: number, tank: TankDefinition): Fis
     },
     facing: index % 2 === 0 ? 1 : -1,
     depth: lerp(species.ecology.depthRange[0], species.ecology.depthRange[1], (index * 0.37) % 1),
-    bodyLengthVariance: 0.94 + Math.random() * 0.12,
+    bodyLengthVariance: 0.94 + random() * 0.12,
     personality,
     behaviorMode: "coast",
-    behaviorTimeRemainingSec: 0.4 + Math.random() * 1.2,
+    behaviorTimeRemainingSec: 0.4 + random() * 1.2,
     target: {
       x: tank.widthCm *
         (zone.minX + (((index * 17) % 100) / 100) * (zone.maxX - zone.minX)),

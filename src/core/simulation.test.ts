@@ -5,6 +5,15 @@ import { stepSimulation } from "./simulation";
 
 const TANK_60CM = getTankById("asia-60")!;
 
+/** 魚を生むときの乱数を固定する（線形合同法）。同じ seed からは同じ個体が生まれる。 */
+function seededRandom(seed: number): () => number {
+  let state = seed >>> 0;
+  return () => {
+    state = (Math.imul(state, 1664525) + 1013904223) >>> 0;
+    return state / 0x100000000;
+  };
+}
+
 describe("natural swimming", () => {
   test("surface fish keep their layer when attracted to bottom structures", () => {
     const tank = getTankById("cube-30")!;
@@ -176,8 +185,11 @@ describe("natural swimming", () => {
 
   test("diurnal midwater fish settle lower at night, while surface fish stay up", () => {
     const tank = getTankById("amazon-90")!;
-    const averageDepth = (speciesId: string, lighting: "natural" | "night") => {
-      let fish = createFishFromStock([{ speciesId, count: 8 }], tank).map((item, index) => ({ ...item, seed: 7 + index * 13 }));
+    // 群れはまとまって動くので、1つの群れを2分見ただけでは、泳層の中のどこにいたかで昼の深さが大きく揺れる
+    // （昼の平均は群れによって泳層 0.28〜0.72 の中の 0.39〜0.60）。同じ乱数から生んだ同じ群れを昼と夜で比べ、
+    // 4つの群れで平均する。乱数を固定するので、実行するたびに結果が変わらない。
+    const averageDepth = (speciesId: string, lighting: "natural" | "night", population: number) => {
+      let fish = createFishFromStock([{ speciesId, count: 8 }], tank, seededRandom(population));
       let total = 0, samples = 0;
       for (let index = 0; index < 3600; index += 1) {
         fish = stepSimulation({ tank, species: fishCatalog, fish, deltaSec: 0.05, lighting, structurePoints: [] }).fish;
@@ -187,8 +199,11 @@ describe("natural swimming", () => {
       }
       return total / samples;
     };
-    expect(averageDepth("neon-tetra", "night")).toBeGreaterThan(averageDepth("neon-tetra", "natural") + 0.05);
+    const populations = [1, 2, 3, 4];
+    const nightDrop = populations.reduce((sum, population) =>
+      sum + averageDepth("neon-tetra", "night", population) - averageDepth("neon-tetra", "natural", population), 0) / populations.length;
+    expect(nightDrop).toBeGreaterThan(0.05);
     // 水面に暮らすマーブルハチェットは夜も上層にいる。
-    expect(averageDepth("marbled-hatchetfish", "night")).toBeLessThan(0.4);
+    expect(averageDepth("marbled-hatchetfish", "night", 1)).toBeLessThan(0.4);
   });
 });
