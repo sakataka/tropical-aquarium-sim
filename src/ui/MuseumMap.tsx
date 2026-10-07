@@ -1,32 +1,45 @@
-import { useState, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import type { AquariumCustomization } from "../core";
 import {
+  getFloorById,
+  getFloorOfHall,
+  getFloorSpeciesCount,
+  getHallById,
+  getHallLayout,
   getHallSlotsOnFloor,
   getTankSummary,
+  isFloorLoaded,
+  loadFloor,
   mapImageUrl,
   museum,
   type HallSlot,
   type HallSummary,
+  type MuseumFloor,
 } from "../core/museum";
 import { playSfx } from "../audio/sfx";
 import { HallPreview } from "./HallPreview";
-import { BookIcon } from "./icons";
+import { BackIcon, BookIcon, ChevronRightIcon } from "./icons";
 import { SoundToggle } from "./SoundToggle";
 
-/** 触れている階と展示室。断面図とフロアガイドで同じものを光らせる。 */
-type Active = { floorId: string; hallId?: string };
+/** 階の一覧の縮小版の縦横比。展示室の絵より少し横長にして、水槽の並びを大きく見せる。 */
+const PREVIEW_ASPECT = 2;
 
-// 館内図。館の断面図の絵に、階ごとの展示室の枠を重ねて選べるようにする。
-// 開いている展示室には、その展示室の画面の縮小版を映す。
-// まだ展示室のない枠も、館の構成として「準備中」で見せる。
+// 館内図。2段になっている。
+// 1段目は館全体の断面図とフロアガイドで、階を選ぶ。展示室が増えても、ここに並ぶのは階の数だけ。
+// 2段目は選んだ階の展示室の一覧で、開いている展示室には、その展示室の画面の縮小版を映す。
+// 縮小版に要る部屋の絵とガラスの位置は、階を開くときにその階の分だけ読む。
 export function MuseumMap({
+  floorId,
   lastHallId,
   soundEnabled,
   tanks,
   onEnterHall,
   onOpenZukan,
+  onSelectFloor,
   onToggleSound,
 }: {
+  /** 開いている階。なければ館全体の断面図。 */
+  floorId?: string;
   /** 前回見ていた展示室。目印を付ける。 */
   lastHallId?: string;
   soundEnabled: boolean;
@@ -34,15 +47,66 @@ export function MuseumMap({
   tanks: Record<string, AquariumCustomization>;
   onEnterHall: (hallId: string) => void;
   onOpenZukan: () => void;
+  onSelectFloor: (floorId?: string) => void;
   onToggleSound: () => void;
 }) {
-  const [active, setActive] = useState<Active>();
+  const floor = getFloorById(floorId);
+  const scrollRef = useRef<HTMLElement>(null);
+  // 階から館全体へ戻ったら、いま見ていた階のフロアガイドにフォーカスを戻す。
+  const returnFloorRef = useRef<string | undefined>(undefined);
+  useEffect(() => {
+    scrollRef.current?.scrollTo({ top: 0 });
+    if (floor) {
+      returnFloorRef.current = floor.id;
+      return;
+    }
+    const back = returnFloorRef.current;
+    returnFloorRef.current = undefined;
+    if (back) scrollRef.current?.querySelector<HTMLElement>(`.map-floor[data-floor="${back}"] button`)?.focus({ preventScroll: true });
+  }, [floor]);
+
   const enter = (hallId: string) => { playSfx("tank_switch"); onEnterHall(hallId); };
-  const floors = museum.floors.map((floor) => ({ floor, slots: getHallSlotsOnFloor(floor.id) }));
-  const highlight = (next: Active) => ({
-    onPointerEnter: () => setActive(next),
-    onPointerLeave: () => setActive((current) =>
-      current?.floorId === next.floorId && current.hallId === next.hallId ? undefined : current),
+  const selectFloor = (next?: string) => { playSfx("ui_tap"); onSelectFloor(next); };
+
+  return (
+    <main className={floor ? "museum-map floor-view" : "museum-map"} ref={scrollRef}>
+      {floor ? (
+        <FloorView
+          floor={floor}
+          key={floor.id}
+          lastHallId={lastHallId}
+          onBack={() => selectFloor(undefined)}
+          onEnterHall={enter}
+          onSelectFloor={selectFloor}
+          tanks={tanks}
+        />
+      ) : (
+        <MuseumOverview
+          lastHallId={lastHallId}
+          onEnterHall={enter}
+          onOpenZukan={onOpenZukan}
+          onSelectFloor={selectFloor}
+        />
+      )}
+      <SoundToggle className="map-sound" enabled={soundEnabled} onToggle={onToggleSound} />
+    </main>
+  );
+}
+
+// 1段目。館の断面図に階の帯を重ね、横（狭い画面では下）にフロアガイドを置く。
+function MuseumOverview({ lastHallId, onEnterHall, onOpenZukan, onSelectFloor }: {
+  lastHallId?: string;
+  onEnterHall: (hallId: string) => void;
+  onOpenZukan: () => void;
+  onSelectFloor: (floorId: string) => void;
+}) {
+  const [activeFloor, setActiveFloor] = useState<string>();
+  const lastHall = getHallById(lastHallId);
+  const lastFloorId = lastHallId ? getFloorOfHall(lastHallId)?.id : undefined;
+  // 触れた階は、開く前に配置を先読みしておく（小さなチャンク）。
+  const highlight = (id: string) => ({
+    onPointerEnter: () => { setActiveFloor(id); void loadFloor(id).catch(() => undefined); },
+    onPointerLeave: () => setActiveFloor((current) => current === id ? undefined : current),
   });
   const { width, height, focus } = museum.map;
   const plateStyle = {
@@ -54,155 +118,220 @@ export function MuseumMap({
   } as CSSProperties;
 
   return (
-    <main className="museum-map">
-      <div className="map-layout">
-        <header className="map-heading">
-          <p className="map-eyebrow">{museum.exhibitName}</p>
-          <h1>{museum.displayName}</h1>
-          <p className="map-lede">{museum.lede}</p>
+    <div className="map-layout map-level">
+      <header className="map-heading">
+        <p className="map-eyebrow">{museum.exhibitName}</p>
+        <h1>{museum.displayName}</h1>
+        <p className="map-lede">{museum.lede}</p>
+        <div className="map-actions">
           <button className="map-zukan" onClick={onOpenZukan} type="button">
             <BookIcon /><span>図鑑</span><small>館の生き物を調べる</small>
           </button>
-        </header>
-        <figure className="map-plate" style={plateStyle}>
-          <div className="map-canvas">
-            <img alt="水の生き物館の断面図。地上4階と地下2階に、展示室が並ぶ。" draggable={false} src={mapImageUrl} />
-            {floors.map(({ floor, slots }) => (
-              <div
-                className={floor.id === active?.floorId ? "map-zone active" : "map-zone"}
+          {lastHall ? (
+            <button className="map-resume" onClick={() => onEnterHall(lastHall.id)} type="button">
+              <small>前回の展示室</small><span>{lastHall.displayName}</span><ChevronRightIcon />
+            </button>
+          ) : null}
+        </div>
+      </header>
+      <figure className="map-plate" style={plateStyle}>
+        <div className="map-canvas">
+          <img alt="水の生き物館の断面図。地上4階と地下2階に、展示室が並ぶ。" draggable={false} src={mapImageUrl} />
+          {/* 階の帯。操作はフロアガイドのボタンでもできるので、こちらはポインター用にしてフォーカス順に入れない。 */}
+          {museum.floors.map((floor) => {
+            const { open } = floorStats(floor);
+            return (
+              <button
+                aria-hidden="true"
+                className={[
+                  "map-zone",
+                  open === 0 ? "soon" : "",
+                  floor.id === activeFloor ? "active" : "",
+                ].filter(Boolean).join(" ")}
                 data-floor={floor.id}
                 key={floor.id}
+                onClick={() => onSelectFloor(floor.id)}
                 style={toPercent(floor.mapArea)}
+                tabIndex={-1}
+                type="button"
+                {...highlight(floor.id)}
               >
-                <span aria-hidden="true" className="zone-sign">{floor.shortLabel}</span>
-              </div>
-            ))}
-            {floors.flatMap(({ slots }) => slots.map((slot) => (
-              <MapHall
-                active={slot.id === active?.hallId}
-                key={slot.id}
-                last={slot.id === lastHallId}
-                onEnter={enter}
-                slot={slot}
-                tanks={tanks}
-                {...highlight({ floorId: slot.floor.id, hallId: slot.id })}
-              />
-            )))}
-          </div>
-        </figure>
-        <ol aria-label="フロアガイド" className="map-directory">
-          {floors.map(({ floor, slots }) => (
+                <span className="zone-sign">{floor.shortLabel}</span>
+                <span className="zone-label">
+                  {floor.displayName}
+                  <small>{open === 0 ? "準備中" : `${open}室`}{floor.id === lastFloorId ? " · 前回" : ""}</small>
+                </span>
+              </button>
+            );
+          })}
+        </div>
+      </figure>
+      <ol aria-label="フロアガイド" className="map-directory">
+        {museum.floors.map((floor) => {
+          const { slots, open, tankCount, speciesCount } = floorStats(floor);
+          return (
             <li
               className={[
                 "map-floor",
-                slots.some((slot) => slot.room) ? "" : "empty",
-                floor.id === active?.floorId ? "active" : "",
+                open === 0 ? "empty" : "",
+                floor.id === activeFloor ? "active" : "",
               ].filter(Boolean).join(" ")}
               data-floor={floor.id}
               key={floor.id}
-              onBlur={() => setActive(undefined)}
-              {...highlight({ floorId: floor.id })}
+              {...highlight(floor.id)}
             >
-              <div className="floor-tag">
-                <strong>{floor.shortLabel}</strong>
-                <span>{floor.label}</span>
-              </div>
-              <div className="floor-body">
-                <h2>{floor.displayName}<em>{floor.exhibitName}</em></h2>
-                <p>{floor.description}</p>
-                <div className="floor-halls">
-                  {slots.map((slot) => slot.room ? (
-                    <HallCard
-                      key={slot.id}
-                      last={slot.id === lastHallId}
-                      onEnter={enter}
-                      onFocus={() => setActive({ floorId: floor.id, hallId: slot.id })}
-                      room={slot.room}
-                      {...highlight({ floorId: floor.id, hallId: slot.id })}
-                    />
-                  ) : (
-                    <p className="hall-soon" key={slot.id}>{slot.displayName}<span>準備中</span></p>
-                  ))}
-                </div>
-              </div>
+              <button
+                onBlur={() => setActiveFloor(undefined)}
+                onClick={() => onSelectFloor(floor.id)}
+                onFocus={() => setActiveFloor(floor.id)}
+                type="button"
+              >
+                <span className="floor-tag">
+                  <strong>{floor.shortLabel}</strong>
+                  <span>{floor.label}</span>
+                </span>
+                <span className="floor-body">
+                  <span className="floor-name">{floor.displayName}<em>{floor.exhibitName}</em></span>
+                  <span className="floor-meta">
+                    {open === 0 ? "準備中" : `${open}展示室 · ${tankCount}水槽 · ${speciesCount}種`}
+                    {floor.id === lastFloorId ? <em className="hall-last">前回</em> : null}
+                  </span>
+                  <span className="floor-hall-names">
+                    {slots.map((slot) => (
+                      <span className={slot.room ? undefined : "soon"} key={slot.id}>{slot.displayName}</span>
+                    ))}
+                  </span>
+                </span>
+                <ChevronRightIcon />
+              </button>
             </li>
-          ))}
-        </ol>
-      </div>
-      <SoundToggle className="map-sound" enabled={soundEnabled} onToggle={onToggleSound} />
-    </main>
+          );
+        })}
+      </ol>
+    </div>
   );
 }
 
-// 断面図の上の、ひとつの展示室の枠。開いている展示室は縮小版を映して入れるようにする。
-// 操作はフロアガイドのボタンでもできるので、こちらはポインター用にしてフォーカス順に入れない。
-function MapHall({ active, last, onEnter, onPointerEnter, onPointerLeave, slot, tanks }: {
-  active: boolean;
-  last: boolean;
-  onEnter: (hallId: string) => void;
-  onPointerEnter: () => void;
-  onPointerLeave: () => void;
-  slot: HallSlot;
+// 2段目。階の展示室を、縮小版つきのカードで並べる。上に階の切り替えを置く。
+function FloorView({ floor, lastHallId, onBack, onEnterHall, onSelectFloor, tanks }: {
+  floor: MuseumFloor;
+  lastHallId?: string;
+  onBack: () => void;
+  onEnterHall: (hallId: string) => void;
+  onSelectFloor: (floorId: string) => void;
   tanks: Record<string, AquariumCustomization>;
 }) {
-  const className = ["map-hall", slot.room ? "open" : "soon", active ? "active" : "", last ? "last" : ""]
-    .filter(Boolean).join(" ");
-  const style = toPercent(slot.mapArea);
-  if (!slot.room) {
-    return (
-      <div className={className} data-hall={slot.id} onPointerEnter={onPointerEnter} onPointerLeave={onPointerLeave} style={style}>
-        <span aria-hidden="true" className="hall-label soon">{slot.displayName}<small>準備中</small></span>
-      </div>
-    );
-  }
-  const room = slot.room;
-  const { tanks: hallTanks, species } = hallStats(room);
+  const layoutReady = useFloorLayout(floor.id);
+  const { slots, open, tankCount, speciesCount } = floorStats(floor);
+  const headingRef = useRef<HTMLHeadingElement>(null);
+  // 階を開いたら見出しにフォーカスを移し、読み上げでも階が変わったと分かるようにする。
+  useEffect(() => { headingRef.current?.focus({ preventScroll: true }); }, []);
+
   return (
-    <button
-      aria-hidden="true"
-      className={className}
-      data-hall={slot.id}
-      onClick={() => onEnter(room.id)}
-      onPointerEnter={onPointerEnter}
-      onPointerLeave={onPointerLeave}
-      style={style}
-      tabIndex={-1}
-      type="button"
-    >
-      <HallPreview aspect={slot.mapArea.width / slot.mapArea.height} hall={room} tanks={tanks} />
-      <span className="hall-label">
-        {room.displayName}
-        <small>{hallTanks.length}水槽 · {species}種{last ? " · 前回" : ""}</small>
+    <div className="floor-layout map-level">
+      <nav aria-label="階を選ぶ" className="floor-nav">
+        <button className="floor-back" onClick={onBack} title="館内図へ（Esc）" type="button">
+          <BackIcon /><span>館内図</span>
+        </button>
+        <ol className="floor-switch">
+          {museum.floors.map((item) => (
+            <li key={item.id}>
+              <button
+                aria-current={item.id === floor.id ? "page" : undefined}
+                onClick={() => item.id !== floor.id && onSelectFloor(item.id)}
+                onPointerEnter={() => void loadFloor(item.id).catch(() => undefined)}
+                type="button"
+              >
+                <strong>{item.shortLabel}</strong><span>{item.displayName}</span>
+              </button>
+            </li>
+          ))}
+        </ol>
+      </nav>
+      <header className="floor-heading">
+        <p className="map-eyebrow">{floor.exhibitLabel} · {floor.exhibitName}</p>
+        <h1 ref={headingRef} tabIndex={-1}>{floor.label}<span>{floor.displayName}</span></h1>
+        <p className="map-lede">{floor.description}</p>
+        <p className="floor-summary">{open === 0 ? "準備中" : `${open}展示室 · ${tankCount}水槽 · ${speciesCount}種`}</p>
+      </header>
+      <ul aria-label={`${floor.label}の展示室`} className="floor-halls">
+        {slots.map((slot) => (
+          <li key={slot.id}>
+            {slot.room ? (
+              <HallCard
+                last={slot.id === lastHallId}
+                layoutReady={layoutReady}
+                onEnter={onEnterHall}
+                room={slot.room}
+                tanks={tanks}
+              />
+            ) : (
+              <SoonCard slot={slot} />
+            )}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+/** 階の配置を読み、読み終えたら true。 */
+function useFloorLayout(floorId: string): boolean {
+  const [ready, setReady] = useState(() => isFloorLoaded(floorId));
+  useEffect(() => {
+    if (ready) return;
+    let cancelled = false;
+    void loadFloor(floorId).then(() => { if (!cancelled) setReady(true); }).catch(() => undefined);
+    return () => { cancelled = true; };
+  }, [floorId, ready]);
+  return ready;
+}
+
+function HallCard({ last, layoutReady, onEnter, room, tanks }: {
+  last: boolean;
+  layoutReady: boolean;
+  onEnter: (hallId: string) => void;
+  room: HallSummary;
+  tanks: Record<string, AquariumCustomization>;
+}) {
+  const layout = layoutReady ? getHallLayout(room.id) : undefined;
+  const tankNames = room.tankIds.flatMap((tankId) => getTankSummary(tankId)?.displayName ?? []);
+  return (
+    <button className={last ? "hall-card last" : "hall-card"} data-hall={room.id} onClick={() => onEnter(room.id)} type="button">
+      <span className="hall-card-view">
+        {layout ? <HallPreview aspect={PREVIEW_ASPECT} hall={layout} tanks={tanks} /> : null}
+        {last ? <em className="hall-last">前回の展示室</em> : null}
+      </span>
+      <span className="hall-card-text">
+        <strong>{room.displayName}</strong>
+        <small>{room.tankIds.length}水槽 · {room.speciesCount}種</small>
+        <span className="hall-tanks">{tankNames.join("、")}</span>
       </span>
     </button>
   );
 }
 
-function HallCard({ last, onEnter, onFocus, onPointerEnter, onPointerLeave, room }: {
-  last: boolean;
-  onEnter: (hallId: string) => void;
-  onFocus: () => void;
-  onPointerEnter: () => void;
-  onPointerLeave: () => void;
-  room: HallSummary;
-}) {
-  const { tanks, species } = hallStats(room);
-  const tankNames = tanks.map((tank) => tank.displayName).join("、");
+function SoonCard({ slot }: { slot: HallSlot }) {
   return (
-    <button
-      className={last ? "hall-card last" : "hall-card"}
-      onClick={() => onEnter(room.id)}
-      onFocus={onFocus}
-      onPointerEnter={onPointerEnter}
-      onPointerLeave={onPointerLeave}
-      type="button"
-    >
-      <strong>{room.displayName}</strong>
-      <small>{tanks.length}水槽 · {species}種</small>
-      <span className="hall-tanks" title={tankNames}>{tankNames}</span>
-      {last ? <em className="hall-last">前回の展示室</em> : null}
-    </button>
+    <div className="hall-card soon">
+      <span className="hall-card-view"><span>準備中</span></span>
+      <span className="hall-card-text">
+        <strong>{slot.displayName}</strong>
+        <small>展示の準備をしています</small>
+      </span>
+    </div>
   );
+}
+
+function floorStats(floor: MuseumFloor) {
+  const slots = getHallSlotsOnFloor(floor.id);
+  const rooms = slots.flatMap((slot) => slot.room ?? []);
+  return {
+    slots,
+    open: rooms.length,
+    tankCount: rooms.reduce((sum, room) => sum + room.tankIds.length, 0),
+    speciesCount: getFloorSpeciesCount(floor.id),
+  };
 }
 
 function toPercent(area: { x: number; y: number; width: number; height: number }): CSSProperties {
@@ -213,8 +342,4 @@ function toPercent(area: { x: number; y: number; width: number; height: number }
     width: `${(area.width / width) * 100}%`,
     height: `${(area.height / height) * 100}%`,
   };
-}
-
-function hallStats(hall: HallSummary) {
-  return { tanks: hall.tanks.flatMap((placement) => getTankSummary(placement.tankId) ?? []), species: hall.speciesCount };
 }

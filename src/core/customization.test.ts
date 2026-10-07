@@ -8,7 +8,7 @@ import {
   normalizeHallCustomizations,
   setStockCount,
 } from "./customization";
-import { defaultTankId, halls as fishRooms } from "./museum";
+import { defaultTankId, getHallLayout, halls as fishRooms } from "./museum";
 import { getStructurePoints } from "./plateFraming";
 
 const aquariumTanks = getLoadedTanks();
@@ -42,10 +42,10 @@ describe("tanks", () => {
   });
 
   test("place every tank once across the halls, at most six to a hall", () => {
-    expect(fishRooms.flatMap((room) => room.tanks.map((item) => item.tankId)).sort())
+    expect(fishRooms.flatMap((room) => room.tankIds).sort())
       .toEqual(aquariumTanks.map((tank) => tank.id).sort());
-    for (const room of fishRooms) expect(room.tanks.length, room.id).toBeLessThanOrEqual(6);
-    for (const { glass } of fishRooms.flatMap((room) => room.tanks)) {
+    for (const room of fishRooms) expect(room.tankIds.length, room.id).toBeLessThanOrEqual(6);
+    for (const { glass } of fishRooms.flatMap((room) => getHallLayout(room.id)!.tanks)) {
       expect(glass.x + glass.width).toBeLessThanOrEqual(1);
       expect(glass.y + glass.height).toBeLessThanOrEqual(1);
     }

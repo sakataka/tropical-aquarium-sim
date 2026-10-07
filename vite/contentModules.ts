@@ -11,7 +11,7 @@ import {
   type MuseumDefinition,
   type SceneHeader,
 } from "../src/core/contentSchemas";
-import type { HallSummary, SceneSummary, TankSummary } from "../src/core/contentTypes";
+import type { HallLayout, HallSummary, SceneSummary, TankSummary } from "../src/core/contentTypes";
 import { glassAspect } from "../src/core/room";
 import { parseFishSpeciesDefinition } from "../src/core/schema";
 import { toSpeciesIndexEntry } from "../src/core/speciesIndexEntry";
@@ -20,8 +20,10 @@ import type { FishSpeciesDefinition, TankDefinition } from "../src/core/types";
 // 内容ファイル（src/content/）を読み、形と参照を検証して、アプリが読むモジュールを作る。
 // 中央の一覧ファイルを手で書かず、展示室・水槽・水景・生き物のフォルダを置けば載る。
 //
-// - virtual:museum        起動時に読む館の索引。館内図に要る展示室・水槽・水景の見出しだけを持ち、
+// - virtual:museum        起動時に読む館の索引。館内図の階と、展示室・水槽の見出しだけを持ち、
 //                         生き物の数では増えない（展示室と水槽の数に比例する）。
+// - virtual:floor/<id>    階の配置。部屋の絵のガラスの位置と、その階の水景の縮小版・既定の照明。
+//                         館内図でその階を開くときと、その階の展示室に入るときに読む。
 // - virtual:hall/<id>     展示室の中身。水槽の定義、水景の地形、生き物の定義、画像の URL。入るときに読む。
 //                         生き物は1種ずつのチャンクに分けず、展示室のチャンクに入れる（入るときの読み込みを1回にする）。
 // - virtual:fish-images   全種の体の画像の URL。展示室と図鑑の一覧で使う。
@@ -187,8 +189,11 @@ const thumbPath = (contentDir: string, room: FishRoomDefinition) =>
 function museumModule(model: ContentModel, contentDir: string): string {
   const out = new ModuleWriter();
   const halls: HallSummary[] = model.halls.map((room) => ({
-    ...room,
-    thumbUrl: out.url(contentPath(thumbPath(contentDir, room))),
+    id: room.id,
+    displayName: room.displayName,
+    shortName: room.shortName,
+    floorId: floorOf(model, room.id),
+    tankIds: room.tanks.map((placement) => placement.tankId),
     speciesCount: new Set(room.tanks.flatMap((placement) =>
       model.tanks.get(placement.tankId)!.species.map((slot) => slot.speciesId))).size,
   }));
@@ -196,26 +201,53 @@ function museumModule(model: ContentModel, contentDir: string): string {
     const tank = model.tanks.get(placement.tankId)!;
     return { id: tank.id, hallId: room.id, displayName: tank.displayName, sceneIds: tank.sceneIds };
   }));
-  const scenes: Record<string, SceneSummary> = {};
-  for (const [id, { header }] of model.scenes) {
-    if (![...model.tanks.values()].some((tank) => tank.sceneIds.includes(id))) continue;
-    scenes[id] = {
-      thumbUrl: existsSync(join(contentDir, "environment/scenes", id, "thumb.webp"))
-        ? out.url(contentPath(`environment/scenes/${id}/thumb.webp`)) : undefined,
-      defaultLighting: header.defaultLighting,
-      framing: header.framing,
-    };
-  }
+  // 階の生き物の数（同じ生き物を数えない）。展示室ごとの数を足すと、階の中で重なる種を数え直してしまう。
+  const floorSpeciesCounts = Object.fromEntries(model.museum.floors.map((floor) => [floor.id, new Set(
+    model.halls.filter((room) => floorOf(model, room.id) === floor.id).flatMap((room) => room.tanks.flatMap((placement) =>
+      model.tanks.get(placement.tankId)!.species.map((slot) => slot.speciesId))),
+  ).size]));
   const firstTank = [...model.tanks.values()].sort((a, b) => a.order - b.order)[0]!;
   return out.toString([
     `export const museum = ${out.literal(model.museum)};`,
     `export const halls = ${out.literal(halls)};`,
+    `export const floorSpeciesCounts = ${out.literal(floorSpeciesCounts)};`,
     `export const tanks = ${out.literal(tanks)};`,
-    `export const scenes = ${out.literal(scenes)};`,
     `export const mapImageUrl = ${out.literal(out.url(contentPath(`museum/${model.museum.map.image}`)))};`,
     `export const defaultTankId = ${JSON.stringify(firstTank.id)};`,
     `export const hallLoaders = {${model.halls.map((room) =>
       `${JSON.stringify(room.id)}: () => import(${JSON.stringify(`${PREFIX}hall/${room.id}`)})`).join(",")}};`,
+    `export const floorLoaders = {${model.museum.floors.map((floor) =>
+      `${JSON.stringify(floor.id)}: () => import(${JSON.stringify(`${PREFIX}floor/${floor.id}`)})`).join(",")}};`,
+  ]);
+}
+
+function floorOf(model: ContentModel, hallId: string): string {
+  return model.museum.floors.find((floor) => floor.halls.some((hall) => hall.id === hallId))!.id;
+}
+
+function floorModule(model: ContentModel, contentDir: string, floorId: string): string {
+  if (!model.museum.floors.some((floor) => floor.id === floorId)) throw new Error(`Unknown floor: ${floorId}`);
+  const out = new ModuleWriter();
+  const rooms = model.halls.filter((room) => floorOf(model, room.id) === floorId);
+  const halls: HallLayout[] = rooms.map((room) => ({
+    ...room,
+    thumbUrl: out.url(contentPath(thumbPath(contentDir, room))),
+  }));
+  const scenes: Record<string, SceneSummary> = {};
+  for (const room of rooms) for (const placement of room.tanks) {
+    for (const id of model.tanks.get(placement.tankId)!.sceneIds) {
+      const { header } = model.scenes.get(id)!;
+      scenes[id] = {
+        thumbUrl: existsSync(join(contentDir, "environment/scenes", id, "thumb.webp"))
+          ? out.url(contentPath(`environment/scenes/${id}/thumb.webp`)) : undefined,
+        defaultLighting: header.defaultLighting,
+        framing: header.framing,
+      };
+    }
+  }
+  return out.toString([
+    `export const halls = ${out.literal(halls)};`,
+    `export const scenes = ${out.literal(scenes)};`,
   ]);
 }
 
@@ -293,7 +325,8 @@ export function contentModules(contentDir: string): Plugin {
     name: "content-modules",
     resolveId(source) {
       if (source === `${PREFIX}museum` || source === `${PREFIX}species-index` || source === `${PREFIX}fish-images` ||
-        source.startsWith(`${PREFIX}hall/`) || source.startsWith(`${PREFIX}species/`)) return `\0${source}`;
+        source.startsWith(`${PREFIX}floor/`) || source.startsWith(`${PREFIX}hall/`) ||
+        source.startsWith(`${PREFIX}species/`)) return `\0${source}`;
       return undefined;
     },
     load(id) {
@@ -304,6 +337,7 @@ export function contentModules(contentDir: string): Plugin {
       if (name === "museum") return museumModule(model, contentDir);
       if (name === "species-index") return speciesIndexModule(model);
       if (name === "fish-images") return fishImagesModule(model, contentDir);
+      if (name.startsWith("floor/")) return floorModule(model, contentDir, name.slice("floor/".length));
       if (name.startsWith("hall/")) return hallModule(model, name.slice("hall/".length));
       if (name.startsWith("species/")) return speciesModule(model, name.slice("species/".length));
       return undefined;

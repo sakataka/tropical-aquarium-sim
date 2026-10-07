@@ -11,11 +11,13 @@ declare module '*.png' {
 declare module "virtual:museum" {
   export const museum: import("./core/contentSchemas").MuseumDefinition;
   export const halls: import("./core/contentTypes").HallSummary[];
+  /** 階ごとの、見られる生き物の数（同じ生き物を数えない）。 */
+  export const floorSpeciesCounts: Record<string, number>;
   export const tanks: import("./core/contentTypes").TankSummary[];
-  export const scenes: Record<string, import("./core/contentTypes").SceneSummary>;
   export const mapImageUrl: string;
   export const defaultTankId: string;
   export const hallLoaders: Record<string, () => Promise<import("./core/contentTypes").HallModule>>;
+  export const floorLoaders: Record<string, () => Promise<import("./core/contentTypes").FloorModule>>;
 }
 
 /** 図鑑の全種の見出しと、1種ずつ読む関数。 */

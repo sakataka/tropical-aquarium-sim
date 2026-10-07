@@ -55,7 +55,7 @@ button:focus-visible, input:focus-visible, select:focus-visible {
 
 /* ───────── 館内図 ───────── */
 
-/* 館の断面図の絵と、横のフロアガイド。狭い画面では見出し・断面図・フロアガイドの順に縦に積む。 */
+/* 館内図は2段。1段目は館の断面図と横のフロアガイド、2段目は選んだ階の展示室の一覧。 */
 .museum-map {
   position: fixed;
   inset: 0;
@@ -68,6 +68,9 @@ button:focus-visible, input:focus-visible, select:focus-visible {
   animation: map-in 0.6s var(--ease-out) both;
 }
 @keyframes map-in { from { opacity: 0; } }
+/* 段を切り替えたときは、中身だけを少し持ち上げながら出す。 */
+.map-level { animation: map-level-in 0.5s var(--ease-out) both; }
+@keyframes map-level-in { from { opacity: 0; transform: translateY(8px); } }
 .map-layout {
   --guide-width: clamp(300px, 26vw, 380px);
   --map-gap: clamp(28px, 3.4vw, 56px);
@@ -97,8 +100,9 @@ button:focus-visible, input:focus-visible, select:focus-visible {
   letter-spacing: 0.2em;
 }
 .map-lede { margin: 12px 0 0; color: var(--muted); font-size: 12.5px; letter-spacing: 0.06em; line-height: 1.8; }
+.map-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
 
-/* 断面図。絵の画素で決めた階と展示室の範囲を、割合で重ねる。 */
+/* 断面図。絵の画素で決めた階の範囲を、割合で重ねる。 */
 .map-plate {
   grid-area: plate;
   position: relative;
@@ -123,7 +127,24 @@ button:focus-visible, input:focus-visible, select:focus-visible {
   user-select: none;
   -webkit-user-select: none;
 }
-.map-zone { position: absolute; pointer-events: none; }
+/* 階の帯。触れた階を縁取って明るくし、帯の左に階の名前の札を出す。 */
+.map-zone {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 3px;
+  background: transparent;
+  box-shadow: inset 0 0 0 1.5px transparent;
+  transition: background-color 0.35s, box-shadow 0.35s;
+}
+.map-zone.active {
+  z-index: 1;
+  background: rgba(143, 220, 211, 0.08);
+  box-shadow: inset 0 0 0 1.5px rgba(143, 220, 211, 0.85), 0 0 34px rgba(143, 220, 211, 0.3);
+}
+.map-zone.soon { background: rgba(1, 8, 10, 0.42); }
 .zone-sign {
   position: absolute;
   top: 50%;
@@ -137,88 +158,28 @@ button:focus-visible, input:focus-visible, select:focus-visible {
   transition: color 0.3s;
 }
 .map-zone.active .zone-sign { color: #f3e2b8; }
-/* 展示室の枠。枠のまわりを床や壁の色で縁取り、部屋が並んで見えるようにする。 */
-.map-hall {
-  position: absolute;
-  display: flex;
-  align-items: flex-end;
-  padding: 0;
-  border: 0;
-  border-radius: 2px;
-  background: transparent;
-  box-shadow: inset 0 0 0 1.5px rgba(32, 44, 48, 0.95);
-  transition: background-color 0.35s, box-shadow 0.35s;
-}
-.map-hall.soon { align-items: center; justify-content: center; background: rgba(1, 8, 10, 0.42); }
-.map-hall.soon.active { background: rgba(1, 8, 10, 0.24); }
-.map-hall.open.active {
-  z-index: 1;
-  box-shadow: inset 0 0 0 1.5px rgba(143, 220, 211, 0.9), 0 0 30px rgba(143, 220, 211, 0.32);
-}
-.hall-label {
-  position: relative;
+.zone-label {
   display: flex;
   align-items: baseline;
   gap: 0.7em;
-  max-width: calc(100% - 8px);
-  margin: clamp(3px, 0.6cqw, 8px);
-  overflow: hidden;
-  padding: 0.3em 0.8em 0.35em;
+  margin-left: clamp(4px, 0.9cqw, 12px);
+  padding: 0.3em 0.9em 0.35em;
   border-left: 2px solid var(--brass);
   border-radius: 0 4px 4px 0;
   background: rgba(3, 16, 18, 0.78);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   font-family: var(--font-display);
-  font-size: clamp(10px, 1.15cqw, 14px);
+  font-size: clamp(11px, 1.35cqw, 16px);
   font-weight: 500;
-  letter-spacing: 0.1em;
-  text-align: left;
+  letter-spacing: 0.12em;
   white-space: nowrap;
+  transition: border-color 0.3s;
 }
-.hall-label small { color: var(--accent); font-family: var(--font-sans); font-size: 0.78em; letter-spacing: 0.06em; }
-.map-hall.last .hall-label { border-left-color: var(--accent); }
-.hall-label.soon {
-  flex-direction: column;
-  align-items: center;
-  gap: 0.1em;
-  padding: 0.25em 1em;
-  border: 1px dashed rgba(196, 228, 220, 0.42);
-  border-radius: 8px;
-  background: rgba(1, 8, 10, 0.55);
-  color: var(--muted);
-}
-.hall-label.soon small { color: var(--faint); letter-spacing: 0.16em; }
-@container (max-width: 560px) {
-  .hall-label { font-size: 10px; }
-  .map-hall.open .hall-label small { display: none; }
-  .hall-label.soon { padding: 0.15em 0.7em; }
-}
+.zone-label small { color: var(--accent); font-family: var(--font-sans); font-size: 0.78em; letter-spacing: 0.06em; }
+.map-zone.active .zone-label { border-left-color: var(--accent); }
 
-/* 展示室の画面の縮小版。展示室の枠の窓のように、ふちを少し暗くする。 */
-.hall-preview {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  border-radius: 2px;
-  pointer-events: none;
-}
-.hall-preview::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  box-shadow: inset 0 0 18px 4px rgba(2, 10, 12, 0.7);
-  transition: box-shadow 0.35s;
-}
-.map-hall.active .hall-preview::after { box-shadow: inset 0 0 10px 2px rgba(2, 10, 12, 0.45); }
-.hall-preview-room { position: absolute; display: block; opacity: 0; transition: opacity 0.5s; }
-.hall-preview-room.loaded { opacity: 1; }
-.hall-preview-room > img, .hall-preview-glass > img { position: absolute; display: block; user-select: none; -webkit-user-select: none; }
-.hall-preview-room > img { inset: 0; width: 100%; height: 100%; }
-.hall-preview-glass { position: absolute; display: block; overflow: hidden; }
-.hall-preview-glass > img { opacity: 0; transition: opacity 0.5s; }
-
-/* フロアガイド。断面図と同じ階・展示室を光らせる。 */
+/* フロアガイド。断面図と同じ階を光らせる。行全体が、その階を開くボタン。 */
 .map-directory {
   grid-area: directory;
   margin: 20px 0 0;
@@ -228,13 +189,22 @@ button:focus-visible, input:focus-visible, select:focus-visible {
 }
 .map-floor {
   position: relative;
-  display: grid;
-  grid-template-columns: 52px minmax(0, 1fr);
-  gap: 12px;
-  padding: 12px 8px 13px 0;
   border-bottom: 1px solid var(--line);
   transition: background 0.3s;
 }
+.map-floor > button {
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr) 18px;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 44px;
+  padding: 12px 4px 13px 0;
+  border: 0;
+  background: transparent;
+  text-align: left;
+}
+.map-floor > button > .icon { color: var(--faint); transition: color 0.3s, transform 0.4s var(--ease-out); }
 .map-floor::before {
   content: "";
   position: absolute;
@@ -248,43 +218,28 @@ button:focus-visible, input:focus-visible, select:focus-visible {
 }
 .map-floor.active { background: linear-gradient(90deg, rgba(143, 220, 211, 0.07), transparent 80%); }
 .map-floor.active::before { opacity: 1; }
-.floor-tag { display: grid; align-content: start; justify-items: start; gap: 4px; }
+.map-floor.active > button > .icon { color: var(--accent); transform: translateX(2px); }
+.floor-tag { display: grid; align-self: start; justify-items: start; gap: 4px; }
 .floor-tag strong { color: var(--brass); font-family: var(--font-latin); font-size: 26px; font-weight: 500; line-height: 1; }
 .floor-tag span { color: var(--faint); font-size: 10.5px; letter-spacing: 0.06em; white-space: nowrap; }
-.floor-body h2 {
+.floor-body { display: grid; gap: 3px; min-width: 0; }
+.floor-name {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
   gap: 2px 12px;
-  margin: 0;
   font-family: var(--font-display);
   font-size: 19px;
   font-weight: 500;
   letter-spacing: 0.14em;
 }
-.floor-body h2 em { color: var(--brass); font-family: var(--font-latin); font-size: 15px; letter-spacing: 0.02em; }
-.floor-body > p { margin: 4px 0 0; color: var(--muted); font-size: 12px; line-height: 1.7; }
-.floor-halls { display: grid; gap: 6px; margin-top: 9px; }
-.hall-card {
-  position: relative;
-  display: grid;
-  gap: 3px;
-  min-height: 44px;
-  padding: 10px 14px 11px;
-  border: 1px solid var(--line-strong);
-  border-radius: 8px;
-  background: var(--surface);
-  text-align: left;
-  transition: background 0.3s, border-color 0.3s, transform 0.4s var(--ease-out);
-}
-.hall-card:hover { background: var(--surface-strong); border-color: rgba(143, 220, 211, 0.55); transform: translateY(-1px); }
-.hall-card strong { font-family: var(--font-display); font-size: 16px; font-weight: 500; letter-spacing: 0.1em; }
-.hall-card small { color: var(--accent); font-size: 11px; letter-spacing: 0.08em; }
-.hall-tanks { overflow: hidden; color: var(--muted); font-size: 11.5px; line-height: 1.6; text-overflow: ellipsis; white-space: nowrap; }
+.floor-name em { color: var(--brass); font-family: var(--font-latin); font-size: 15px; letter-spacing: 0.02em; }
+.floor-meta { display: flex; align-items: center; gap: 8px; color: var(--accent); font-size: 11.5px; letter-spacing: 0.08em; }
+.floor-hall-names { display: flex; flex-wrap: wrap; gap: 0 4px; color: var(--muted); font-size: 11.5px; line-height: 1.65; }
+.floor-hall-names > span:not(:last-child)::after { content: " ·"; color: var(--faint); }
+.floor-hall-names > .soon { color: var(--faint); }
+.map-floor.empty .floor-tag, .map-floor.empty .floor-name { opacity: 0.6; }
 .hall-last {
-  position: absolute;
-  top: 10px;
-  right: 10px;
   padding: 2px 8px;
   border-radius: 999px;
   background: var(--accent-soft);
@@ -292,23 +247,9 @@ button:focus-visible, input:focus-visible, select:focus-visible {
   font-size: 10.5px;
   font-style: normal;
   letter-spacing: 0.08em;
+  white-space: nowrap;
 }
-.hall-soon {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  margin: 0;
-  padding: 6px 12px;
-  border: 1px dashed var(--line);
-  border-radius: 8px;
-  color: var(--faint);
-  font-family: var(--font-display);
-  font-size: 13.5px;
-  letter-spacing: 0.1em;
-}
-.hall-soon span { font-family: var(--font-sans); font-size: 10.5px; letter-spacing: 0.16em; }
-.map-floor.empty .floor-tag, .map-floor.empty .floor-body > h2, .map-floor.empty .floor-body > p { opacity: 0.6; }
+
 .hud-button.map-sound {
   position: fixed;
   top: max(24px, env(safe-area-inset-top));
@@ -318,24 +259,198 @@ button:focus-visible, input:focus-visible, select:focus-visible {
   background: rgba(4, 19, 21, 0.6);
   backdrop-filter: blur(10px);
 }
-.map-zukan {
+.map-zukan, .map-resume {
   display: inline-flex;
   align-items: center;
   gap: 10px;
   min-height: 44px;
-  margin-top: 16px;
   padding: 0 18px 0 14px;
-  border: 1px solid rgba(214, 192, 143, 0.4);
   border-radius: 999px;
-  background: rgba(214, 192, 143, 0.08);
   color: var(--ink);
   font-size: 13.5px;
   letter-spacing: 0.1em;
   transition: background 0.3s, border-color 0.3s;
 }
+.map-zukan {
+  border: 1px solid rgba(214, 192, 143, 0.4);
+  background: rgba(214, 192, 143, 0.08);
+}
 .map-zukan .icon { color: var(--brass); }
-.map-zukan small { color: var(--muted); font-size: 11.5px; letter-spacing: 0.04em; }
+.map-zukan small, .map-resume small { color: var(--muted); font-size: 11.5px; letter-spacing: 0.04em; }
 .map-zukan:hover { background: rgba(214, 192, 143, 0.16); border-color: rgba(214, 192, 143, 0.7); }
+/* 前回の展示室へ、階を選ばずに戻る近道。 */
+.map-resume {
+  padding: 0 10px 0 18px;
+  border: 1px solid rgba(143, 220, 211, 0.35);
+  background: var(--accent-soft);
+  font-family: var(--font-display);
+}
+.map-resume small { font-family: var(--font-sans); }
+.map-resume .icon { color: var(--accent); }
+.map-resume:hover { background: rgba(143, 220, 211, 0.22); border-color: rgba(143, 220, 211, 0.6); }
+
+/* ── 階の展示室の一覧 ── */
+.floor-layout {
+  width: min(100%, 1180px);
+  margin: 0 auto;
+  padding-bottom: 24px;
+}
+/* 館内図へ戻るボタンと階の切り替え。音のボタンと重ならないよう右を空ける。
+   画面の上端に貼り付けるので、階の一覧では館内図の上の余白をこの帯が持つ。 */
+.museum-map.floor-view { padding-top: 0; }
+.floor-nav {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: calc(var(--safe-top) + 8px) 64px 8px 0;
+  /* 背景だけを画面の幅いっぱいに広げる。 */
+  border-image: linear-gradient(rgba(7, 28, 30, 0.9), rgba(7, 28, 30, 0.9)) fill 0 / 0 / 0 100vmax;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.floor-back {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 0 16px 0 10px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: rgba(4, 19, 21, 0.6);
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  transition: background 0.3s, border-color 0.3s;
+}
+.floor-back:hover { background: var(--surface-strong); border-color: rgba(143, 220, 211, 0.55); }
+.floor-switch {
+  display: flex;
+  gap: 4px;
+  min-width: 0;
+  margin: 0;
+  padding: 2px;
+  overflow-x: auto;
+  list-style: none;
+  scrollbar-width: none;
+}
+.floor-switch::-webkit-scrollbar { display: none; }
+.floor-switch > li { display: flex; }
+.floor-switch button {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 7px;
+  min-height: 44px;
+  padding: 0 14px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font-family: var(--font-display);
+  font-size: 13.5px;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+  transition: background 0.3s, border-color 0.3s, color 0.3s;
+}
+.floor-switch button strong { color: var(--brass); font-family: var(--font-latin); font-size: 17px; font-weight: 500; letter-spacing: 0.02em; }
+.floor-switch button:hover { background: var(--surface); color: var(--ink); }
+.floor-switch button[aria-current="page"] {
+  border-color: rgba(214, 192, 143, 0.45);
+  background: rgba(214, 192, 143, 0.1);
+  color: var(--ink);
+  cursor: default;
+}
+.floor-heading { padding: 22px 0 26px; }
+.floor-heading h1 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 18px;
+  margin: 6px 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(30px, 3vw, 40px);
+  font-weight: 500;
+  letter-spacing: 0.2em;
+}
+.floor-heading h1:focus { outline: none; }
+.floor-heading h1 span { font-size: 0.62em; letter-spacing: 0.16em; color: var(--muted); }
+.floor-heading .map-lede { max-width: 46em; }
+.floor-summary { margin: 8px 0 0; color: var(--accent); font-size: 12px; letter-spacing: 0.1em; }
+.floor-halls {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+  gap: 18px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.floor-halls > li { display: grid; }
+.hall-card {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  overflow: hidden;
+  padding: 0;
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  background: var(--surface);
+  text-align: left;
+  transition: background 0.3s, border-color 0.3s, transform 0.4s var(--ease-out), box-shadow 0.4s;
+}
+button.hall-card:hover {
+  background: var(--surface-strong);
+  border-color: rgba(143, 220, 211, 0.55);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px);
+}
+.hall-card.last { border-color: rgba(143, 220, 211, 0.45); }
+/* 縮小版の窓。階の配置が届くまでは暗い水の色を見せる。 */
+.hall-card-view {
+  position: relative;
+  display: block;
+  aspect-ratio: 2 / 1;
+  background: linear-gradient(180deg, #0b2a2d, #051416);
+}
+.hall-card-view > .hall-last { position: absolute; top: 10px; right: 10px; z-index: 1; background: rgba(3, 16, 18, 0.8); }
+.hall-card-text { display: grid; align-content: start; gap: 3px; padding: 12px 16px 14px; }
+.hall-card-text strong { font-family: var(--font-display); font-size: 17px; font-weight: 500; letter-spacing: 0.12em; }
+.hall-card-text small { color: var(--accent); font-size: 11.5px; letter-spacing: 0.08em; }
+.hall-tanks { color: var(--muted); font-size: 11.5px; line-height: 1.65; }
+.hall-card.soon { border-style: dashed; border-color: var(--line); background: transparent; color: var(--faint); }
+.hall-card.soon .hall-card-view {
+  display: grid;
+  place-items: center;
+  background: rgba(1, 8, 10, 0.35);
+  font-size: 11px;
+  letter-spacing: 0.24em;
+}
+.hall-card.soon .hall-card-text strong { color: var(--muted); }
+.hall-card.soon .hall-card-text small { color: var(--faint); }
+
+/* 展示室の画面の縮小版。窓のように、ふちを少し暗くする。 */
+.hall-preview {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.hall-preview::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 18px 4px rgba(2, 10, 12, 0.55);
+  transition: box-shadow 0.35s;
+}
+.hall-card:hover .hall-preview::after { box-shadow: inset 0 0 10px 2px rgba(2, 10, 12, 0.35); }
+.hall-preview-room { position: absolute; display: block; opacity: 0; transition: opacity 0.5s; }
+.hall-preview-room.loaded { opacity: 1; }
+.hall-preview-room > img, .hall-preview-glass > img { position: absolute; display: block; user-select: none; -webkit-user-select: none; }
+.hall-preview-room > img { inset: 0; width: 100%; height: 100%; }
+.hall-preview-glass { position: absolute; display: block; overflow: hidden; }
+.hall-preview-glass > img { opacity: 0; transition: opacity 0.5s; }
+
 /* 狭い画面では建物のあたりだけを切り出して大きく見せる。 */
 @media (max-width: 900px) {
   .map-layout {
@@ -348,13 +463,25 @@ button:focus-visible, input:focus-visible, select:focus-visible {
     padding-top: 0;
   }
   .map-heading { padding: 40px 0 22px; text-align: center; }
+  .map-actions { justify-content: center; }
   .map-directory { grid-area: directory; }
   .map-plate { width: 100%; aspect-ratio: var(--focus-aspect); }
   .map-canvas { right: auto; left: calc(var(--focus-left) * 100%); width: calc(var(--focus-scale) * 100%); }
   .zone-sign { font-size: clamp(13px, 3.4cqw, 22px); }
+  .zone-label { font-size: clamp(11px, 2.6cqw, 15px); }
   .map-directory { margin-top: 24px; }
   .map-floor::before { left: 0; }
-  .map-floor { padding-left: 12px; }
+  .map-floor > button { padding-left: 12px; }
+  .floor-layout { max-width: 640px; }
+  /* 狭い画面では、戻るボタンの下の行に階の記号だけを幅いっぱいに並べる（階の名前は見出しにある）。 */
+  .floor-nav { flex-wrap: wrap; gap: 6px 8px; padding-right: 0; }
+  .floor-back { margin-right: 52px; padding: 0 14px 0 8px; }
+  .floor-switch { flex: 1 1 100%; gap: 4px; }
+  .floor-switch > li { flex: 1 1 0; }
+  .floor-switch button { justify-content: center; width: 100%; padding: 0 4px; }
+  .floor-switch button span { display: none; }
+  .floor-heading { padding: 16px 0 20px; }
+  .floor-halls { gap: 14px; }
 }
 
 /* ───────── フィッシュルーム ───────── */

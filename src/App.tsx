@@ -30,7 +30,7 @@ import {
 import type { ViewControl } from "./render/AquariumCanvas";
 import { forgetMotionState } from "./render/motionState";
 import { RENDER_PROBLEM_EVENT } from "./render/renderProblems";
-import { getHallById, getHallOfTank, getTankSummary, tankSummaries } from "./core/museum";
+import { getFloorById, getHallById, getHallLayout, getHallOfTank, getTankSummary, tankSummaries } from "./core/museum";
 import { MuseumMap } from "./ui/MuseumMap";
 import { getHallTextureUrls, getScenePlateUrl } from "./render/assetUrls";
 import { AquariumControls, LIGHTING_OPTIONS } from "./ui/AquariumControls";
@@ -68,7 +68,8 @@ type ZukanView = { speciesId: string | null };
 type FishRefs = Record<string, MutableRefObject<FishInstance[]>>;
 // 画面を切り替える間は、次の画面の準備ができるまで前の画面を重ねて残す。
 type Phase =
-  | { kind: "map" }
+  // floorId があれば、館内図のその階の展示室の一覧。なければ館全体の断面図。
+  | { kind: "map"; floorId?: string }
   | { kind: "room"; returningFrom?: string }
   | { kind: "toTank"; tankReady: boolean }
   | { kind: "tank" }
@@ -120,7 +121,7 @@ export default function App() {
   // 館内図にいる間も、選んでいる水槽と展示室は館の索引で分かる。水槽の定義と設定は、展示室を読んでから使う。
   const activeTankId = getTankSummary(state.activeTankId)?.id ?? tankSummaries[0]!.id;
   const room = getHallOfTank(activeTankId);
-  const roomTankIds = room.tanks.map((placement) => placement.tankId);
+  const roomTankIds = room.tankIds;
   const hallReady = loadedHalls.has(room.id);
   const tank = hallReady ? getTankById(activeTankId) : undefined;
   const customization = state.tanks[activeTankId];
@@ -133,7 +134,7 @@ export default function App() {
     loadHall(room.id)
       .then(() => {
         if (cancelled) return;
-        const hallTanks = room.tanks.map((placement) => getTankById(placement.tankId)!);
+        const hallTanks = room.tankIds.map((tankId) => getTankById(tankId)!);
         const prepare = (saved: Record<string, AquariumCustomization>) => {
           const tanks = normalizeHallCustomizations(saved, hallTanks);
           // ?theme= で開いた水景は、その水槽の設定がそろってから当てる。
@@ -275,24 +276,29 @@ export default function App() {
     if (!hall) return;
     setState((current) => {
       const last = lastTankByRoom.current[hall.id];
-      const saved = hall.tanks.some((item) => item.tankId === current.activeTankId) ? current.activeTankId : undefined;
-      return { ...current, activeTankId: last ?? saved ?? hall.tanks[0]!.tankId };
+      const saved = hall.tankIds.includes(current.activeTankId) ? current.activeTankId : undefined;
+      return { ...current, activeTankId: last ?? saved ?? hall.tankIds[0]! };
     });
     setPhase({ kind: "room" });
   }, []);
+  // 展示室から館内図へは、その展示室の階の一覧に戻る。
   const showMap = useCallback(() => {
     playSfx("room_return");
-    setPhase({ kind: "map" });
+    setPhase({ kind: "map", floorId: getHallOfTank(stateRef.current.activeTankId).floorId });
   }, []);
-  // 展示室で Esc を押すと館内図へ戻る（水槽画面の Esc は TankScreen が扱う）。
+  const showFloor = useCallback((floorId?: string) => setPhase({ kind: "map", floorId }), []);
+  // 展示室で Esc を押すと、その階の一覧へ、階の一覧では館全体の断面図へ戻る（水槽画面の Esc は TankScreen が扱う）。
+  const mapFloorId = phase.kind === "map" ? phase.floorId : undefined;
   useEffect(() => {
-    if (phase.kind !== "room") return;
+    if (phase.kind !== "room" && !(mapFloorId && !zukan)) return;
     const onKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape" && !document.fullscreenElement) showMap();
+      if (event.key !== "Escape" || document.fullscreenElement) return;
+      if (phase.kind === "room") showMap();
+      else showFloor(undefined);
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [phase.kind, showMap]);
+  }, [mapFloorId, phase.kind, showFloor, showMap, zukan]);
 
   const phaseRef = useRef(phase);
   phaseRef.current = phase;
@@ -320,7 +326,7 @@ export default function App() {
   }, []);
   useHistorySync(phase, state.activeTankId, zukan, closingZukanRef, {
     toZukan: (speciesId) => setZukan(speciesId === undefined ? null : { speciesId }),
-    toMap: () => setPhase({ kind: "map" }),
+    toMap: (floorId) => setPhase({ kind: "map", floorId }),
     toHall: (hallId) => {
       const current = phaseRef.current;
       // 水槽から、その水槽のある展示室へ戻るときは引く演出を使う。
@@ -354,7 +360,9 @@ export default function App() {
       ) : null}
       {phase.kind === "map" ? (
         <MuseumMap
+          floorId={phase.floorId}
           lastHallId={visitedRef.current ? room.id : undefined}
+          onSelectFloor={showFloor}
           onEnterHall={enterHall}
           onOpenZukan={() => openZukan(null)}
           onToggleSound={toggleSound}
@@ -369,7 +377,7 @@ export default function App() {
           active={phase.kind === "room" || phase.kind === "toRoom"}
           fishRefs={fishRefs}
           key={`room-${room.id}`}
-          room={room}
+          room={getHallLayout(room.id)!}
           onEnterTank={enterTank}
           onReady={handleRoomReady}
           returningFrom={returningFrom}
@@ -555,7 +563,7 @@ function TankScreen({
   }, [onReady]);
 
   const plateUrl = getScenePlateUrl(customization.layout.sceneId);
-  const roomTanks = getHallOfTank(tank.id).tanks.map((placement) => getTankById(placement.tankId)!);
+  const roomTanks = getHallOfTank(tank.id).tankIds.map((tankId) => getTankById(tankId)!);
   const tankIndex = roomTanks.indexOf(tank);
   const exhibitNumber = String(tankIndex + 1).padStart(2, "0");
   const neighbor = (step: number) =>
@@ -723,15 +731,19 @@ function TankScreen({
 type HistoryTargets = {
   /** 図鑑を開く（speciesId が null なら一覧）。undefined なら閉じる。 */
   toZukan: (speciesId: string | null | undefined) => void;
-  toMap: () => void;
+  /** 館内図へ。floorId があれば、その階の展示室の一覧。 */
+  toMap: (floorId?: string) => void;
   toHall: (hallId: string) => void;
   toTank: (tankId: string) => void;
 };
 
-/** 館内図は ""、展示室は ?hall=、水槽は ?tank=、図鑑は ?zukan と ?zukan=<種>。切り替えの途中は URL を書き換えない。 */
+/**
+ * 館内図は ""、階の一覧は ?floor=、展示室は ?hall=、水槽は ?tank=、図鑑は ?zukan と ?zukan=<種>。
+ * 切り替えの途中は URL を書き換えない。
+ */
 function searchForPhase(phase: Phase, tankId: string, zukan: ZukanView | null): string | null {
   if (zukan) return zukan.speciesId ? `?zukan=${zukan.speciesId}` : "?zukan";
-  if (phase.kind === "map") return "";
+  if (phase.kind === "map") return phase.floorId ? `?floor=${phase.floorId}` : "";
   if (phase.kind === "room") return `?hall=${getHallOfTank(tankId).id}`;
   if (phase.kind === "tank") return `?tank=${tankId}`;
   return null;
@@ -751,8 +763,9 @@ function useHistorySync(phase: Phase, tankId: string, zukan: ZukanView | null,
     const current = window.location.search;
     if (search !== current) {
       const url = `${window.location.pathname}${search}${window.location.hash}`;
-      // 開いた直後の正規化（?theme= など）、同じ展示室の隣の水槽への移動、直接開いた図鑑を閉じるときは履歴を増やさない。
-      const sideways = search.startsWith("?tank=") && current.startsWith("?tank=");
+      // 開いた直後の正規化（?theme= など）、同じ展示室の隣の水槽や隣の階への移動、直接開いた図鑑を閉じるときは履歴を増やさない。
+      const sideways = (search.startsWith("?tank=") && current.startsWith("?tank=")) ||
+        (search.startsWith("?floor=") && current.startsWith("?floor="));
       const depth = Number((window.history.state as { zukanDepth?: number } | null)?.zukanDepth ?? 0);
       // 図鑑の中で進んだ数を履歴に残し、閉じるときにその分だけ戻れるようにする。
       const state = zukan ? { zukanDepth: depth + 1 } : null;
@@ -775,7 +788,7 @@ function useHistorySync(phase: Phase, tankId: string, zukan: ZukanView | null,
       const hall = getHallById(params.get("hall"));
       if (tank) targetsRef.current.toTank(tank.id);
       else if (hall) targetsRef.current.toHall(hall.id);
-      else targetsRef.current.toMap();
+      else targetsRef.current.toMap(getFloorById(params.get("floor"))?.id);
     };
     window.addEventListener("popstate", onPop);
     return () => window.removeEventListener("popstate", onPop);
@@ -823,6 +836,7 @@ function loadInitialState(): InitialState {
     // 壊れた保存データは初期状態から始める。
   }
   // ?tank=<id> で水槽を、?theme=<水景id> でその水景を持つ水槽を、?hall=<id> で展示室を直接開く。
+  // ?floor=<id> で館内図のその階の展示室の一覧を開く。
   // ?zukan で図鑑の一覧を、?zukan=<種> でその種の解説を、館内図の上に開く。
   // 何も指定がなければ館内図から始める。
   if (params.has("zukan")) return { state, phase: { kind: "map" }, restored, zukan: { speciesId: params.get("zukan") || null } };
@@ -831,10 +845,10 @@ function loadInitialState(): InitialState {
   const requestedTank = getTankSummary(params.get("tank")) ?? sceneTank;
   if (!requestedTank) {
     const hall = getHallById(params.get("hall"));
-    if (!hall) return { state, phase: { kind: "map" }, restored, zukan: null };
-    const saved = hall.tanks.some((item) => item.tankId === state.activeTankId);
+    if (!hall) return { state, phase: { kind: "map", floorId: getFloorById(params.get("floor"))?.id }, restored, zukan: null };
+    const saved = hall.tankIds.includes(state.activeTankId);
     return {
-      state: saved ? state : { ...state, activeTankId: hall.tanks[0]!.tankId },
+      state: saved ? state : { ...state, activeTankId: hall.tankIds[0]! },
       phase: { kind: "room" },
       restored,
       zukan: null,

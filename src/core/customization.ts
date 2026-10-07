@@ -27,7 +27,10 @@ const DEFAULT_PREFERENCES: AquariumPreferences = {
 // （水槽の定義は展示室のモジュールにある）。起動時には水景と照明だけを館の索引で確かめ、
 // 匹数は展示室を読んだときに normalizeHallCustomizations で直す。まだ入っていない水槽の設定はない。
 
-/** 水槽の水景。選べない水景なら、その水槽の最初の水景にする。照明は水景の既定。 */
+/**
+ * 水槽の水景。選べない水景なら、その水槽の最初の水景にする。照明は水景の既定。
+ * 既定の照明は階のモジュールにあるので、その水槽の階を読んでから使う。
+ */
 export function getDefaultLayout(tank: { sceneIds: readonly string[] }, sceneId?: string): AquariumLayout {
   const id = sceneId && tank.sceneIds.includes(sceneId) ? sceneId : tank.sceneIds[0]!;
   return { sceneId: id, lighting: getSceneSummary(id)?.defaultLighting ?? "natural" };
@@ -50,10 +53,11 @@ export function normalizeAquariumPersistedState(value: unknown): AquariumPersist
   const tanks: Record<string, AquariumCustomization> = {};
   for (const [tankId, saved] of Object.entries(value.tanks)) {
     const tank = getTankSummary(tankId);
-    if (!tank || !isRecord(saved)) continue;
+    const layout = isRecord(saved) ? normalizeLayout(saved.layout, tank) : undefined;
+    if (!isRecord(saved) || !layout) continue;
     tanks[tankId] = {
       stock: Array.isArray(saved.stock) ? saved.stock.flatMap(toStockEntry) : [],
-      layout: normalizeLayout(saved.layout, tank),
+      layout,
     };
   }
   return {
@@ -97,13 +101,12 @@ export function setStockCount(
   );
 }
 
-function normalizeLayout(value: unknown, tank: { sceneIds: readonly string[] }): AquariumLayout {
-  const candidate = isRecord(value) ? value : {};
-  const layout = getDefaultLayout(tank, typeof candidate.sceneId === "string" ? candidate.sceneId : undefined);
-  return {
-    sceneId: layout.sceneId,
-    lighting: isLightingId(candidate.lighting) ? candidate.lighting : layout.lighting,
-  };
+// 起動時には水景の既定の照明が分からない（階のモジュールにある）ので、照明の壊れた設定は落とし、
+// 展示室に入るときに既定の構成で作り直す。選べない水景は、水槽の最初の水景にして照明を残す。
+function normalizeLayout(value: unknown, tank: { sceneIds: readonly string[] } | undefined): AquariumLayout | undefined {
+  if (!tank || !isRecord(value) || !isLightingId(value.lighting)) return undefined;
+  const sceneId = typeof value.sceneId === "string" && tank.sceneIds.includes(value.sceneId) ? value.sceneId : tank.sceneIds[0]!;
+  return { sceneId, lighting: value.lighting };
 }
 
 function normalizeStock(stock: readonly FishStockEntry[], tank: TankDefinition): FishStockEntry[] {

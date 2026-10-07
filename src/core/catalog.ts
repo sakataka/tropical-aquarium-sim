@@ -1,5 +1,5 @@
 import type { HallModule, LoadedScene, SpeciesModule } from "./contentTypes";
-import { hallLoaders, halls } from "./museum";
+import { getHallById, hallLoaders, halls, loadFloor } from "./museum";
 import type { FishSpeciesDefinition, TankDefinition } from "./types";
 
 // 読み込み済みの展示室の中身。展示室に入るときに loadHall でその展示室のモジュールを読み、
@@ -23,14 +23,15 @@ export function addSpecies(module: SpeciesModule): FishSpeciesDefinition {
   return fishCatalog[module.default.id] ??= module.default;
 }
 
-/** 展示室の水槽、水景の地形、生き物をまとめて読む。 */
+/** 展示室の水槽、水景の地形、生き物をまとめて読む。部屋の絵のガラスの位置のために、その階も読む。 */
 export function loadHall(hallId: string): Promise<void> {
   if (loadedHalls.has(hallId)) return Promise.resolve();
   const current = pendingHalls.get(hallId);
   if (current) return current;
   const load = hallLoaders[hallId];
-  if (!load) return Promise.reject(new Error(`Hall not found: ${hallId}`));
-  const promise = load().then((module) => {
+  const hall = getHallById(hallId);
+  if (!load || !hall) return Promise.reject(new Error(`Hall not found: ${hallId}`));
+  const promise = Promise.all([load(), loadFloor(hall.floorId)]).then(([module]) => {
     for (const tank of module.tanks) tanks.set(tank.id, tank);
     for (const scene of module.scenes) scenes.set(scene.id, scene);
     for (const species of module.species) {

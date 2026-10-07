@@ -1,13 +1,13 @@
 import { useState, type CSSProperties } from "react";
 import type { AquariumCustomization } from "../core";
-import { getSceneSummary, getTankSummary, getWindowOverscan, type HallSummary } from "../core/museum";
+import { getSceneSummary, getTankSummary, getWindowOverscan, type HallLayout } from "../core/museum";
 import { framePlate } from "../core/plateFraming";
 import type { FishRoomDefinition, RoomRect } from "../core/room";
 
 /** 水槽の並びの上下左右に残す余白（水槽の並びの大きさに対する比率）。 */
 const MARGIN = { x: 0.06, y: 0.35 };
 
-// 館内図の展示フロアに映す、展示室の画面の縮小版。
+// 館内図の階の一覧に映す、展示室の画面の縮小版。その階のモジュールを読んでから使う。
 // 展示室の絵を水槽の並びのあたりで切り取り、各水槽のガラスに今の水景（の小さな画像）を、
 // 展示室の画面と同じ置き方で重ねる。水景を変えればここも変わる。
 // 魚はこの大きさでは数画素にしかならないので描かない。
@@ -16,7 +16,7 @@ export function HallPreview({
   aspect,
   tanks,
 }: {
-  hall: HallSummary;
+  hall: HallLayout;
   /** 映す枠の縦横比（幅 / 高さ）。 */
   aspect: number;
   tanks: Record<string, AquariumCustomization>;
@@ -36,7 +36,10 @@ export function HallPreview({
       <span className={roomLoaded ? "hall-preview-room loaded" : "hall-preview-room"} style={roomStyle}>
         <img alt="" decoding="async" draggable={false} loading="lazy" onLoad={() => setRoomLoaded(true)} src={hall.thumbUrl} />
         {hall.tanks.map((placement) => {
-          const sceneId = tanks[placement.tankId]?.layout.sceneId ?? getTankSummary(placement.tankId)?.sceneIds[0];
+          // 保存された水景が今は選べない水景なら（展示室に入ると直る）、水槽の最初の水景を映す。
+          const saved = tanks[placement.tankId]?.layout.sceneId;
+          const sceneIds = getTankSummary(placement.tankId)?.sceneIds ?? [];
+          const sceneId = saved && sceneIds.includes(saved) ? saved : sceneIds[0];
           return (
             <GlassPlate
               aspect={hall.aspectRatio}

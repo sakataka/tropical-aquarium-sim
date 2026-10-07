@@ -1,22 +1,25 @@
 import {
   defaultTankId as firstTankId,
+  floorLoaders,
+  floorSpeciesCounts,
   halls as hallList,
   hallLoaders as loaders,
   mapImageUrl as mapImage,
   museum as museumData,
-  scenes as sceneList,
   tanks as tankList,
 } from "virtual:museum";
 import type { MuseumFloor, MuseumMapArea } from "./contentSchemas";
-import type { HallModule, HallSummary, SceneSummary, TankSummary } from "./contentTypes";
+import type { HallLayout, HallModule, HallSummary, SceneSummary, TankSummary } from "./contentTypes";
 import { glassAspect, windowOverscan } from "./room";
 
-// 起動時に読む館の索引。館内図・URL の解決・保存データの確認に要る、展示室・水槽・水景の見出しだけを持つ。
+// 起動時に読む館の索引。館内図・URL の解決・保存データの確認に要る、階と展示室・水槽の見出しだけを持つ。
+// 部屋の絵のガラスの位置と水景の縮小版は階ごとのモジュールにあり、館内図で階を開くときか、
+// その階の展示室に入るときに loadFloor で読む。
 // 水槽の定義、水景の地形、生き物は展示室ごとのモジュールにあり、展示室に入るときに読む（catalog.ts）。
 // ビルド時に内容ファイルから作り、検証も済ませてある（vite/contentModules.ts）。
 
 export type { MuseumFloor, MuseumMapArea } from "./contentSchemas";
-export type { HallSummary, SceneSummary, TankSummary } from "./contentTypes";
+export type { HallLayout, HallSummary, SceneSummary, TankSummary } from "./contentTypes";
 
 /** 館内図に並べる展示室の枠。room があれば開ける展示室、なければ準備中。 */
 export type HallSlot = {
@@ -24,8 +27,6 @@ export type HallSlot = {
   displayName: string;
   floor: MuseumFloor;
   room?: HallSummary;
-  /** 館内図の絵の中の範囲（絵の画素）。 */
-  mapArea: MuseumMapArea;
 };
 
 /** 階は上から順に並ぶ。 */
@@ -43,18 +44,11 @@ export const hallLoaders: Readonly<Record<string, () => Promise<HallModule>>> = 
 const hallById = new Map(halls.map((hall) => [hall.id, hall]));
 const tankById = new Map(tankSummaries.map((tank) => [tank.id, tank]));
 
-const hallSlots: HallSlot[] = museum.floors.flatMap((floor) => floor.halls.map((hall, index) => {
+const hallSlots: HallSlot[] = museum.floors.flatMap((floor) => floor.halls.map((hall) => {
   const room = hallById.get(hall.id);
   const displayName = room?.displayName ?? hall.displayName;
   if (!displayName) throw new Error(`Hall "${hall.id}" has no room and no displayName`);
-  const width = floor.mapArea.width / floor.halls.length;
-  return {
-    id: hall.id,
-    displayName,
-    floor,
-    room,
-    mapArea: { ...floor.mapArea, x: floor.mapArea.x + width * index, width },
-  };
+  return { id: hall.id, displayName, floor, room };
 }));
 
 /** その階の展示室の枠を左から順に。準備中の枠も含む。 */
@@ -82,17 +76,60 @@ export function getHallOfTank(tankId: string): HallSummary {
   return hall;
 }
 
+const floorById = new Map(museum.floors.map((floor) => [floor.id, floor]));
+
+export function getFloorById(floorId: string | null | undefined): MuseumFloor | undefined {
+  return floorId ? floorById.get(floorId) : undefined;
+}
+
+/** 階で見られる生き物の数（同じ生き物を数えない）。 */
+export function getFloorSpeciesCount(floorId: string): number {
+  return floorSpeciesCounts[floorId] ?? 0;
+}
+
+const loadedFloors = new Set<string>();
+const pendingFloors = new Map<string, Promise<void>>();
+const hallLayouts = new Map<string, HallLayout>();
+const sceneSummaries = new Map<string, SceneSummary>();
+
+/** 階の部屋の絵・ガラスの位置と、その階の水景の縮小版・既定の照明を読む。 */
+export function loadFloor(floorId: string): Promise<void> {
+  if (loadedFloors.has(floorId)) return Promise.resolve();
+  const current = pendingFloors.get(floorId);
+  if (current) return current;
+  const load = floorLoaders[floorId];
+  if (!load) return Promise.reject(new Error(`Floor not found: ${floorId}`));
+  const promise = load().then((module) => {
+    for (const hall of module.halls) hallLayouts.set(hall.id, hall);
+    for (const [id, scene] of Object.entries(module.scenes)) sceneSummaries.set(id, scene);
+    loadedFloors.add(floorId);
+  }).finally(() => pendingFloors.delete(floorId));
+  pendingFloors.set(floorId, promise);
+  return promise;
+}
+
+export function isFloorLoaded(floorId: string): boolean {
+  return loadedFloors.has(floorId);
+}
+
+/** 展示室の部屋の絵とガラスの位置。その階を読んでいなければ undefined。 */
+export function getHallLayout(hallId: string): HallLayout | undefined {
+  return hallLayouts.get(hallId);
+}
+
+/** 水景の縮小版と既定の照明。その水景を使う水槽の階を読んでいなければ undefined。 */
 export function getSceneSummary(sceneId: string | null | undefined): SceneSummary | undefined {
-  return sceneId ? sceneList[sceneId] : undefined;
+  return sceneId ? sceneSummaries.get(sceneId) : undefined;
 }
 
 function getPlacement(tankId: string) {
-  const hall = getHallOfTank(tankId);
+  const hall = getHallLayout(getHallOfTank(tankId).id);
+  if (!hall) throw new Error(`Floor of tank "${tankId}" is not loaded`);
   return { hall, placement: hall.tanks.find((item) => item.tankId === tankId)! };
 }
 
 // 水槽画面は部屋で見えているガラスと同じ縦横比で水景を切り取る。
-// こうすると、部屋から寄り終えた構図と水槽画面の構図が一致する。
+// こうすると、部屋から寄り終えた構図と水槽画面の構図が一致する。どちらもその階を読んでから使う。
 export function getGlassAspect(tankId: string): number {
   const { hall, placement } = getPlacement(tankId);
   return glassAspect(hall, placement);

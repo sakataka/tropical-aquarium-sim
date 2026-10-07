@@ -1,7 +1,7 @@
 import { describe, expect, test } from "vitest";
 import { getBodyPlan } from "./bodyPlans";
 import { fishCatalog, getLoadedTanks, getSceneById } from "./catalog";
-import { halls as fishRooms, museum } from "./museum";
+import { halls as fishRooms, getHallLayout, getSceneSummary, museum, tankSummaries } from "./museum";
 import { visibleSurfaceIntervals, worldPoint } from "./surfaceMotion";
 import { getRenderedSurfaceFrame } from "./testContent";
 import { insideTerrain } from "./terrainMotion";
@@ -21,15 +21,27 @@ const sceneFolders = folderIds(import.meta.glob("../content/environment/scenes/*
 
 describe("content wiring", () => {
   test("every tank is placed in exactly one room, and rooms only place known tanks", () => {
-    const placed = fishRooms.flatMap((room) => room.tanks.map((item) => item.tankId));
+    const placed = fishRooms.flatMap((room) => room.tankIds);
     expect(new Set(placed).size).toBe(placed.length);
     expect([...placed].sort()).toEqual(tankFolders);
     expect(aquariumTanks.map((tank) => tank.id)).toEqual(placed);
     expect(new Set(fishRooms.map((room) => room.id)).size).toBe(fishRooms.length);
     for (const room of fishRooms) {
-      expect(roomImages[`../content/room/${room.image}`], room.id).toBeDefined();
+      const layout = getHallLayout(room.id)!;
+      // 館の索引の水槽の並びと、階のモジュールのガラスの並びが同じ。
+      expect(layout.tanks.map((item) => item.tankId), room.id).toEqual(room.tankIds);
+      expect(roomImages[`../content/room/${layout.image}`], room.id).toBeDefined();
       // 館内図の縮小版用。scripts/build-room-thumbs.py で作る。
-      expect(roomThumbs[`../content/room/thumbs/${room.image}`], `${room.id} thumb`).toBeDefined();
+      expect(roomThumbs[`../content/room/thumbs/${layout.image}`], `${room.id} thumb`).toBeDefined();
+    }
+  });
+
+  test("the startup index holds headings only, and each floor module brings its halls' glass and scenes", () => {
+    // 起動時に読む索引には、部屋の絵のガラスの位置や水景の情報を入れない（水槽の数で重くなるため）。
+    for (const room of fishRooms) expect(Object.keys(room).sort(), room.id).toEqual(["displayName", "floorId", "id", "shortName", "speciesCount", "tankIds"]);
+    for (const tank of tankSummaries) expect(Object.keys(tank).sort(), tank.id).toEqual(["displayName", "hallId", "id", "sceneIds"]);
+    for (const tank of tankSummaries) {
+      for (const sceneId of tank.sceneIds) expect(getSceneSummary(sceneId)?.defaultLighting, sceneId).toBeDefined();
     }
   });
 
