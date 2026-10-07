@@ -1,6 +1,7 @@
 import { MeshPlane, type Texture } from "pixi.js";
 import type { FishInstance, FishSpeciesDefinition } from "../core";
 import { blendAngle, sampleMeshPoint, stepTurnSpring } from "./fishMotion";
+import { BODY_PLANS } from "../core/bodyPlans";
 import { clamp } from "../core/math";
 import { BODY_PLAN_RENDERERS, VERTICES_X, type BodyPlanRenderer, type MotionState, type SwimStyle } from "./bodyPlans";
 import { getMotionState, MIN_TURN_INTERVAL_SEC } from "./motionState";
@@ -53,11 +54,14 @@ export class FishBody {
 
   private readonly verticesY: number;
   private readonly renderer: BodyPlanRenderer;
+  /** 横歩きの生き物は、進む向きではなくシミュレーションの向き（facing）に従って体を向ける。 */
+  private readonly sideways: boolean;
 
   constructor(texture: Texture, species: FishSpeciesDefinition, fish: FishInstance) {
     this.swim = { ...DEFAULT_SWIM, ...species.swim };
     this.renderer = BODY_PLAN_RENDERERS[this.swim.bodyPlan];
     this.verticesY = this.renderer.verticesY;
+    this.sideways = BODY_PLANS[this.swim.bodyPlan].sideways;
     this.mesh = new MeshPlane({ texture, verticesX: VERTICES_X, verticesY: this.verticesY });
     this.mesh.autoResize = false;
     this.basePositions = new Float32Array(this.mesh.geometry.positions);
@@ -135,7 +139,7 @@ export class FishBody {
   private updateYaw(fish: FishInstance, deltaSec: number) {
     this.motion.sinceTurnSec += deltaSec;
     const vx = fish.velocity.x;
-    const anchored = fish.surfaceMotion || (fish.contact && fish.contact.weight > .5);
+    const anchored = this.sideways || fish.surfaceMotion || (fish.contact && fish.contact.weight > .5);
     if (anchored && this.motion.sinceTurnSec >= MIN_TURN_INTERVAL_SEC &&
       (fish.facing === 1) !== (this.motion.targetYaw > Math.PI / 2)) {
       this.motion.targetYaw = fish.facing === 1 ? Math.PI : 0;

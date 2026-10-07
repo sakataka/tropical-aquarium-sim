@@ -1,0 +1,11 @@
+{
+  "id": "cold-crabs-180",
+  "order": 104,
+  "displayName": "岩の散らばる冷たい砂泥底",
+  "description": "岩と貝殻が散らばる、北の海の砂泥底。上から淡い光が差し、奥へ行くほど青く暗い冷たい水に沈んでいきます。",
+  "defaultLighting": "cool",
+  "waterColor": "#1f5f78",
+  "framing": {
+    "plateBottom": 0.815
+  }
+}

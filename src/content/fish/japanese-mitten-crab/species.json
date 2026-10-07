@@ -1,0 +1,132 @@
+{
+  "id": "japanese-mitten-crab",
+  "displayName": "モクズガニ",
+  "realBodyLengthCm": 18,
+  "catalog": {
+    "scientificName": "Eriocheir japonica",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "日本の川と河口にすむカニです。海で生まれて川を遡って育ち、成熟すると汽水域や海へ下って繁殖します。",
+    "temperament": "川底の転石の隙間を隠れ場所にしますが、決まった隠れ家は持たず、そのときどきで空いた隙間を使います。条件のよい石の隙間には、何匹も集まることがあります。本水槽では、淵の底を歩き回ります。",
+    "movement": "脚を左右に広げて川底を横向きに歩き、川を遡ったり下ったりして移動します。はさみで底の餌をつまみ、口へ運んで食べます。",
+    "habitat": "成長する時期は淡水の川で過ごします。福岡の2つの川の調査では、転石の多い瀬の近くに集まっていました。成熟すると汽水域や海へ下って交尾と産卵をし、その後多くが死にます。本水槽では、大岩と倒木のある川の淵の底にいます。",
+    "aliases": [
+      "Japanese mitten crab"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Decapoda",
+      "orderJa": "十脚目",
+      "family": "Varunidae",
+      "familyJa": "モクズガニ科"
+    },
+    "adultSizeCm": 5.5,
+    "sizeNote": "茨城県の解説では甲幅55mmほど、岡山県の解説では大きく育った個体で甲幅7〜8cm、重さ180gほどとされます。どちらも雌雄を分けた値ではありません。ここでは甲幅5.5cmとして表示し、画面では脚を広げた幅（約18cm）で描いています。",
+    "distribution": "北海道から沖縄にかけての、日本の川と河口の沿岸に分布します。茨城県の解説では、ロシア極東、韓国、中国南部、台湾も分布域に挙げられています。小笠原諸島のモクズガニの仲間は、別種（Eriocheir ogasawaraensis）とされています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "世界の IUCN 区分は確かめられていません。茨城県のレッドリスト（2016）では準絶滅危惧とされています。"
+    },
+    "highlights": [
+      "はさみに毛の束が密に生えています。雄は雌よりはさみの毛が多く、腹部が細くなっています。",
+      "甲は四角形に近く、側面のふちに3対のとげがあります。",
+      "海で育った幼生は河口で稚ガニになり、川を遡って育ちます。",
+      "川底のデトリタスを食べる雑食性で、岸辺の植物に由来するものが主な餌です。河口近くの潮の影響を受ける場所の成体は、淡水域の個体より動物質をよく食べていました。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "crab",
+    "tailBeatHz": 0.6,
+    "bodyWaveStart": 0.85,
+    "tailSweepRad": 0,
+    "verticalFlex": 0,
+    "footAnchor": {
+      "x": 0.5,
+      "y": 0.96
+    }
+  },
+  "visual": {
+    "fallbackColor": "#806443"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.86,
+    "maxY": 0.94
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.05,
+      "burst": 0.4
+    },
+    "turnRateRadPerSec": 1.0,
+    "restFraction": 0.65,
+    "depthRange": [
+      0.4,
+      0.95
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.85,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 2.5,
+        "durationSec": [
+          10,
+          25
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.5,
+        "durationSec": [
+          12,
+          30
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "岡山県水産研究所：モクズガニ",
+        "url": "https://www.pref.okayama.jp/page/402681.html"
+      },
+      {
+        "title": "茨城県野生動植物DB：モクズガニ",
+        "url": "https://tayousei.pref.ibaraki.jp/creaturekind/モクズガニ/"
+      },
+      {
+        "title": "Kobayashi (2009), Dietary preferences of Eriocheir japonica",
+        "url": "https://www.jstage.jst.go.jp/article/pbr/4/2/4_2_77/_article"
+      },
+      {
+        "title": "小林 (2012)：モクズガニの微生息環境利用",
+        "url": "https://www.jstage.jst.go.jp/article/ece/15/1/15_61/_article/-char/ja/"
+      },
+      {
+        "title": "佐賀県有明海漁協：モクズガニ",
+        "url": "https://jf-sariake.or.jp/page/maeumimon_mokuzugani.html"
+      },
+      {
+        "title": "JAMSTEC BISMaL: Eriocheir ogasawaraensis",
+        "url": "https://www.godac.jamstec.go.jp/bismal/e/view/9012499"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 78,
+    "y": 170,
+    "width": 1373,
+    "height": 712
+  }
+}

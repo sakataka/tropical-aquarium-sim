@@ -29,13 +29,13 @@ export type MotionState = {
   targetYaw: number;
   sinceTurnSec: number;
   pitch: number;
-  /** エビの脚の運び。歩く速さに合わせて進む。 */
+  /** エビやカニの脚の運び。歩く速さに合わせて進む。 */
   stridePhase: number;
   clockSec: number;
   surfaceRotation?: number;
   detailPhase: number;
   contactAnchor?: { x: number; y: number };
-  /** エビが尾を打って跳ね退くときの腹の曲がり（0〜1）。 */
+  /** 驚いたときの構え（0〜1）。エビは尾を打つ腹の曲がり、カニははさみの振り上げ。 */
   flick: number;
 };
 

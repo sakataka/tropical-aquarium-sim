@@ -22,7 +22,7 @@ export type StartleInput = {
 /**
  * ガラスを叩いたときの驚き。振動は近い魚ほど強く伝わり、魚のつくりと習性で逃げ方が変わる。
  * - 住みかを持つ魚・物陰に隠れる魚: 近くの住みか・物陰へ飛び込み、しばらく出てこない。
- * - エビ: 尾を打って後ろ向きに跳ね退き、しばらく固まる。
+ * - エビ: 尾を打って後ろ向きに跳ね退き、しばらく固まる。カニ: 向きを変えずに横へ走って離れ、しばらく固まる。
  * - そのほかの魚: 叩いた所から離れる向きへ瞬発で泳ぎ去る（C字の急旋回）。
  */
 export function startleFish(input: StartleInput): FishInstance[] {
@@ -40,8 +40,8 @@ export function startleFish(input: StartleInput): FishInstance[] {
     const chance = input.strength * (1 - distance / reach) ** 0.6 * fish.personality.responsiveness;
     if (random() >= Math.min(1, chance * 1.4)) return fish;
     const away = normalize({ x: dx, y: dy }, { x: fish.facing, y: 0 });
-    if (getBodyPlan(species).startle === "tailFlip" && fish.surfaceMotion && input.scene) {
-      return tailFlip(fish, tank, input.scene, input.frame, point, random);
+    if (getBodyPlan(species).startle !== "dart" && fish.surfaceMotion && input.scene) {
+      return fleeAlongSurface(fish, tank, input.scene, input.frame, point, random);
     }
     return retreatToShelter(fish, species, input, random) ?? dart(fish, species, tank, away, random, input);
   });
@@ -92,12 +92,12 @@ function dart(fish: FishInstance, species: FishSpeciesDefinition, tank: TankDefi
   };
 }
 
-function tailFlip(fish: FishInstance, tank: TankDefinition, scene: AquariumScene,
+function fleeAlongSurface(fish: FishInstance, tank: TankDefinition, scene: AquariumScene,
   frame: SurfaceFrame, point: Vec2, random: () => number): FishInstance {
   const motion = fish.surfaceMotion!;
   const surface = scene.terrain.surfaces.find((item) => item.id === motion.surfaceId);
   if (!surface) return fish;
-  // 経路のどちら向きへ進めば叩いた所から離れるかで、跳ねる向きを決める。向きは変えず後ろへ跳ぶ。
+  // 経路のどちら向きへ進めば叩いた所から離れるかで、逃げる向きを決める。体の向きは変えない（エビは後ろへ跳び、カニは横へ走る）。
   const ahead = sampleSurface(surface, Math.min(1, motion.progress + 0.02), tank, frame).position;
   const behind = sampleSurface(surface, Math.max(0, motion.progress - 0.02), tank, frame).position;
   const direction: -1 | 1 = Math.hypot(ahead.x - point.x, ahead.y - point.y) >=

@@ -61,6 +61,19 @@ def cover(image: Image.Image, width: int, height: int) -> Image.Image:
     return resized.crop((left, top, left + width, top + height))
 
 
+def despill(image: Image.Image, box: tuple[int, int, int, int], band: int = 10) -> None:
+    """ガラスの矩形の外側に残る、緑で塗ったときのにじみ（枠の照り返し）から緑みを抜く。"""
+    pixels = image.load()
+    x0, y0, x1, y1 = box
+    for x in range(max(0, x0 - band), min(image.width, x1 + band)):
+        for y in range(max(0, y0 - band), min(image.height, y1 + band)):
+            if x0 <= x < x1 and y0 <= y < y1:
+                continue
+            red, green, blue = pixels[x, y]
+            if green > max(red, blue) + 20:
+                pixels[x, y] = (red, max(red, blue), blue)
+
+
 def install(vault: Path, hall_id: str, order: int, plan_hall: dict) -> None:
     adoption = json.loads((vault / "adoptions" / f"hall-{hall_id}.json").read_text())["image"]
     image_path = vault / adoption["path"]
@@ -81,6 +94,7 @@ def install(vault: Path, hall_id: str, order: int, plan_hall: dict) -> None:
         x0, y0, x1, y1 = components[tank["id"]]
         # 緑の縁のにじみも覆うよう、1px 広げて塗る。
         box = (x0 - 1, y0 - 1, x1 + 1, y1 + 1)
+        despill(image, box)
         if (CONTENT / "tanks" / tank["id"] / "tank.json").exists():
             image.paste(GLASS_FILL, box)
             rect = {"x": x0 / width, "y": y0 / height, "width": (x1 - x0) / width, "height": (y1 - y0) / height}

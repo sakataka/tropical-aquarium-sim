@@ -1,0 +1,126 @@
+{
+  "id": "snow-crab",
+  "displayName": "ズワイガニ",
+  "realBodyLengthCm": 63,
+  "catalog": {
+    "scientificName": "Chionoecetes opilio",
+    "originRegionId": "north-pacific",
+    "originRegionName": "北太平洋",
+    "origin": "アラスカ周辺ではベーリング海、チュクチ海、ボーフォート海に分布し、オホーツク海南西部の調査でもとれています。分布の全体は、ここでは確かめられていません。",
+    "temperament": "魚、エビ、貝、ゴカイなどを捕らえて食べ、死骸も食べます。群れの大きさや昼夜の活動は分かっていません。本水槽では、1匹ずつ底を歩き回ります。",
+    "movement": "細長い歩脚で軟らかい砂泥底を歩き、危険を感じると底に潜ることがあります。本水槽では、泥砂底を横へ歩き、ときどき止まって、はさみで餌をつまんで口へ運びます。",
+    "habitat": "軟らかい砂泥底にすみます。オホーツク海南西部の夏の調査では主に水深100〜300mでとれ、底層水温は-1.0〜6.0℃でした。本水槽では、冷たい海の泥砂底と岩をイメージしています。",
+    "aliases": [
+      "Snow crab",
+      "Opilio crab",
+      "マツバガニ（雄の地方名）",
+      "エチゼンガニ（雄の地方名）"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Decapoda",
+      "orderJa": "十脚目",
+      "family": "Oregoniidae",
+      "familyJa": "ケセンガニ科"
+    },
+    "adultSizeCm": 15,
+    "sizeNote": "雄の甲幅での値です。アメリカ海洋大気庁（NOAA）によると、雄は甲幅約15cm（6インチ）に達します。画面では脚を広げた幅で描き、水槽に合わせて甲幅約13cmの雄として表示しています。オホーツク海南西部の調査では、雄の半数が甲幅10.6cmで形の上で成熟していました。",
+    "distribution": "アラスカ周辺のベーリング海、チュクチ海、ボーフォート海と、オホーツク海南西部で記録があります。分布の全体は、ここでは確かめられていません。",
+    "water": {
+      "salinity": "marine",
+      "temperatureC": [
+        -1,
+        6
+      ]
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "世界の IUCN 区分は確かめられていません。アメリカ海洋大気庁（NOAA）の2025年の評価では、アラスカの資源は資源量が少ない状態（overfished）とされ、2024年の漁獲は獲りすぎ（overfishing）ではないとされています。"
+    },
+    "highlights": [
+      "細長い歩脚4対と、はさみ1対を持ちます。",
+      "脱皮をくり返して成長し、最後の脱皮を終えると、それ以上は脱皮しません。",
+      "東部ベーリング海の成熟した雄は春に岸の方へ移動し、一方向に100km以上動いた個体もいます。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "crab",
+    "tailBeatHz": 0.6,
+    "bodyWaveStart": 0.85,
+    "tailSweepRad": 0,
+    "verticalFlex": 0,
+    "footAnchor": {
+      "x": 0.5,
+      "y": 0.96
+    }
+  },
+  "visual": {
+    "fallbackColor": "#c8834f"
+  },
+  "preferredZone": {
+    "minX": 0.12,
+    "maxX": 0.88,
+    "minY": 0.86,
+    "maxY": 0.94
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.04,
+      "burst": 0.3
+    },
+    "turnRateRadPerSec": 0.8,
+    "restFraction": 0.6,
+    "depthRange": [
+      0.5,
+      0.95
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.25,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 2.5,
+        "durationSec": [
+          8,
+          25
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.5,
+        "durationSec": [
+          10,
+          30
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "NOAA Fisheries: Alaska Snow Crab",
+        "url": "https://www.fisheries.noaa.gov/species/alaska-snow-crab"
+      },
+      {
+        "title": "柳本ほか (2004)：オホーツク海南西部のズワイガニ",
+        "url": "https://www.jstage.jst.go.jp/article/suisan/70/5/70_5_750/_article/-char/ja"
+      },
+      {
+        "title": "NOAA: Snow crab archival tag dataset",
+        "url": "https://www.fisheries.noaa.gov/inport/item/28008"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 70,
+    "y": 170,
+    "width": 1399,
+    "height": 720
+  }
+}

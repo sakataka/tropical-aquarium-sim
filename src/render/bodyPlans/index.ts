@@ -1,4 +1,5 @@
 import type { BodyPlanId } from "../../core/bodyPlans";
+import { crabRenderer } from "./crab";
 import { crustaceanRenderer } from "./crustacean";
 import { fishRenderer } from "./fish";
 import type { BodyPlanRenderer } from "./types";
@@ -7,6 +8,7 @@ import type { BodyPlanRenderer } from "./types";
 export const BODY_PLAN_RENDERERS: Record<BodyPlanId, BodyPlanRenderer> = {
   fish: fishRenderer,
   crustacean: crustaceanRenderer,
+  crab: crabRenderer,
 };
 
 export * from "./types";

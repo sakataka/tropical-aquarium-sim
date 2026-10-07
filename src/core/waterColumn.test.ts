@@ -25,6 +25,8 @@ describe("water line", () => {
         for (const item of fish) {
           const ceiling = waterCeilingCm(water, tank, item.depth);
           if (item.targetKind === "surfaceVisit" && item.position.y <= ceiling + 1) breathed.add(item.speciesId);
+          // 面を歩く生き物（カニなど）は地形の面の上にいる。干潟の岸のように水の外の面もある。
+          if (item.surfaceMotion) continue;
           // 巣穴など地形の目的地は水の外にもある。そこから戻る数秒の間は確かめない。
           if (item.terrainGoal) { leftGoalAt.set(item.id, tick); continue; }
           if (tick - (leftGoalAt.get(item.id) ?? -1000) < 100) continue;

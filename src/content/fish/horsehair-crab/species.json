@@ -1,0 +1,136 @@
+{
+  "id": "horsehair-crab",
+  "displayName": "ケガニ",
+  "realBodyLengthCm": 15,
+  "catalog": {
+    "scientificName": "Erimacrus isenbeckii",
+    "originRegionId": "northwest-pacific",
+    "originRegionName": "北西太平洋",
+    "origin": "北海道と本州の沿岸、朝鮮半島の沿岸で記録があります。最初に記載された標本は、アリューシャン列島のウナラスカ島のものです。",
+    "temperament": "野外で何を食べているかは、ここでは確かめられていません。研究施設では、エビジャコ、キュウリウオ、スケトウダラ、アヤボラなどを与えて育てられました。活動時間や群れ方も分かっていません。本水槽では、1匹ずつ底を歩き回ります。",
+    "movement": "海底を歩くカニで、横だけでなく前にも歩けます。本水槽では、泥砂底を横へ歩き、ときどき止まって、はさみで餌をつまんで口へ運びます。",
+    "habitat": "砂や砂泥の海底にすみます。北海道では水温15℃以下の海にすむと紹介され、オホーツク海ではほぼ10℃以下で水深150mより浅いところにいます。岩手県の沖では主に水深150〜350mにすみ、冬から春に水温が下がると水深200mより浅いところへ移ります。本水槽では、冷たい海の泥砂底と岩をイメージしています。",
+    "aliases": [
+      "Horsehair crab",
+      "Hair crab"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Decapoda",
+      "orderJa": "十脚目",
+      "family": "Cheiragonidae",
+      "familyJa": "クリガニ科"
+    },
+    "adultSizeCm": 8,
+    "sizeNote": "甲長（甲の前後の長さ）での値です。代表的な成体の甲幅は確かめられておらず、北海道で雄をとってよい大きさの下限の甲長8cmを目安にしています。画面では脚を広げた幅（約15cm）で描いています。2025年の岩手県の調査でとれた個体は、雄が甲長3.6〜8.7cm、雌が3.5〜7.2cmでした。",
+    "distribution": "北海道と本州の沿岸、朝鮮半島の沿岸で記録があります。分布の全体は、ここでは確かめられていません。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "世界の IUCN 区分は確かめられていません。北海道の2025年の資源管理マニュアルでは、雌と甲長8cm未満の雄をとることが禁じられています。岩手県の2025年の調査では、資源の水準は中位で増える傾向とされました。"
+    },
+    "highlights": [
+      "甲と脚が短い剛毛に覆われ、甲の側縁に7つ、前縁に2つの歯が並びます。",
+      "雄の甲は縦長の楕円形で、雌の甲は幅が広く円に近く、背中が強くふくらみます。",
+      "雌は受精した卵を腹肢に付けて、ふ化するまで守ります。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "crab",
+    "tailBeatHz": 0.6,
+    "bodyWaveStart": 0.85,
+    "tailSweepRad": 0,
+    "verticalFlex": 0,
+    "footAnchor": {
+      "x": 0.5,
+      "y": 0.96
+    }
+  },
+  "visual": {
+    "fallbackColor": "#a35f3f"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.86,
+    "maxY": 0.94
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.07,
+      "burst": 0.45
+    },
+    "turnRateRadPerSec": 1.0,
+    "restFraction": 0.6,
+    "depthRange": [
+      0.5,
+      0.95
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.3,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 2.5,
+        "durationSec": [
+          8,
+          25
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.5,
+        "durationSec": [
+          10,
+          30
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "JAMSTEC BISMaL: Erimacrus isenbeckii",
+        "url": "https://www.godac.jamstec.go.jp/bismal/e/view/9000231"
+      },
+      {
+        "title": "Naturalis: Crabs of Japan, Erimacrus isenbeckii",
+        "url": "https://crabs-japan.linnaeus.naturalis.nl/linnaeus_ng/app/views/species/taxon.php?id=33742"
+      },
+      {
+        "title": "三原ほか (2016)：北海道沿岸域におけるケガニの齢期と甲長",
+        "url": "https://www.jstage.jst.go.jp/article/suisan/82/6/82_16-00021/_pdf"
+      },
+      {
+        "title": "北海道：ケガニ［毛蟹］",
+        "url": "https://www.pref.hokkaido.lg.jp/sr/gid/fis080.html"
+      },
+      {
+        "title": "岩手県水産技術センター：2025年ケガニ漁況情報",
+        "url": "https://www2.suigi.pref.iwate.jp/research/20251204erimacrus_info"
+      },
+      {
+        "title": "北海道：資源管理マニュアル2025（ケガニ）",
+        "url": "https://www.pref.hokkaido.lg.jp/fs/1/2/7/7/9/3/2/3/_/%E8%B3%87%E6%BA%90%E7%AE%A1%E7%90%86%E3%83%9E%E3%83%8B%E3%83%A5%E3%82%A2%E3%83%AB_2025_%E3%81%97%E3%81%8A%E3%82%8A%E4%BB%98%E3%81%8D.pdf"
+      },
+      {
+        "title": "碧南海浜水族館：前に歩くカニの解説",
+        "url": "https://www.city.hekinan.lg.jp/material/files/group/4/1786_34.pdf"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 169,
+    "y": 199,
+    "width": 1217,
+    "height": 672
+  }
+}

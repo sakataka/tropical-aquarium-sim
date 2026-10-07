@@ -1,0 +1,123 @@
+{
+  "id": "japanese-freshwater-crab",
+  "displayName": "サワガニ",
+  "realBodyLengthCm": 8,
+  "catalog": {
+    "scientificName": "Geothelphusa dehaani",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "日本の淡水にすむカニです。2024年の再記載で、狭い意味のサワガニが定義し直されました。全国で「サワガニ」と呼ばれてきたものには、遺伝的に分かれた複数の集団が含まれています。",
+    "temperament": "雨が降ると、岩間の巣穴から多くの個体が出てくることが観察されています。夜の23〜24時にも、水中や陸上で動いている個体が採集されています。本水槽では、沢の底を歩き回ります。",
+    "movement": "脚を左右に広げて横向きに歩き、水中と陸上を行き来します。はさみで餌をつまみ、口へ運んで食べます。",
+    "habitat": "きれいな水の流れる水路や、水際の岩間にすみます。福岡の川の調査では、川底や岸の石の下にある巣穴で休んでいました。本水槽では、水面の上に湿った石が出ている山あいの沢を再現しています。",
+    "aliases": [
+      "Japanese freshwater crab"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Decapoda",
+      "orderJa": "十脚目",
+      "family": "Potamidae",
+      "familyJa": "サワガニ科"
+    },
+    "adultSizeCm": 2.8,
+    "sizeNote": "成体の雄の代表的な甲幅は確かめられていません。2024年の再記載で選ばれた雄の標本は、甲幅28.3mm（甲長21.0mm）でした。ここでは甲幅約2.8cmとして表示し、画面では脚を広げた幅（約8cm）で描いています。",
+    "distribution": "日本に分布します。2024年の再記載で狭い意味のサワガニと確かめられたのは長崎の個体群で、本当の分布範囲はさらに調べる必要があるとされます。北海道からトカラ列島までのサワガニの仲間を調べた2025年の研究では、5つの遺伝集団が見つかりましたが、それぞれが別種かどうかは決まっていません。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "2024年に種の範囲が定義し直されたため、世界の IUCN 区分や環境省レッドリストでの扱いは確かめられていません。"
+    },
+    "highlights": [
+      "成体の雄は、左右のはさみの大きさが違い、腹部が細くなっています。",
+      "甲は楕円形で、背中はなめらかに膨らみます。甲の色は褐色から橙色、暗い色まで個体によって違います。",
+      "水際の水草を食べる姿が観察されています。福岡の川では、大きな雄の胃から植物と動物の両方が見つかりました。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "crab",
+    "tailBeatHz": 0.6,
+    "bodyWaveStart": 0.85,
+    "tailSweepRad": 0,
+    "verticalFlex": 0,
+    "footAnchor": {
+      "x": 0.5,
+      "y": 0.96
+    }
+  },
+  "visual": {
+    "fallbackColor": "#9d522f"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.86,
+    "maxY": 0.94
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.07,
+      "burst": 0.5
+    },
+    "turnRateRadPerSec": 1.2,
+    "restFraction": 0.6,
+    "depthRange": [
+      0.3,
+      0.9
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.8,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 3,
+        "durationSec": [
+          8,
+          22
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.5,
+        "durationSec": [
+          10,
+          30
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Naruse & Ng (2024), Identity of Geothelphusa dehaani and two new species",
+        "url": "https://www.jstage.jst.go.jp/article/crustacea/53/0/53_53/_pdf"
+      },
+      {
+        "title": "Kunishima et al. (2025), Genetic population structure of the Geothelphusa dehaani species complex",
+        "url": "https://www.nature.com/articles/s41598-025-08085-0"
+      },
+      {
+        "title": "Kobayashi (2012), Dietary preferences of Geothelphusa dehaani",
+        "url": "https://www.jstage.jst.go.jp/article/pbr/7/4/7_159/_pdf"
+      },
+      {
+        "title": "JAMSTEC BISMaL: Geothelphusa dehaani",
+        "url": "https://www.godac.jamstec.go.jp/bismal/e/view/9033442"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 187,
+    "y": 234,
+    "width": 1176,
+    "height": 573
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "id": "japan-stream-crab-45",
+  "order": 133,
+  "displayName": "沢のサワガニ水槽",
+  "exhibitName": "Mountain Brook",
+  "category": "日本の山あいの沢",
+  "description": "苔むした丸石と砂利の沢を、水面の上の岸まで見える形で再現した45cm水槽。サワガニは砂利や石の上を横歩きし、はさみで底の餌をつまんで口へ運びます。",
+  "widthCm": 45,
+  "heightCm": 37,
+  "depthCm": 30,
+  "maxTotalFish": 4,
+  "sceneIds": [
+    "japan-stream-crab-45"
+  ],
+  "species": [
+    {
+      "speciesId": "japanese-freshwater-crab",
+      "maxCount": 4
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "japanese-freshwater-crab",
+      "count": 3
+    }
+  ]
+}

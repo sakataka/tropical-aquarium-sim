@@ -4,11 +4,11 @@
   "displayName": "有明海の干潟水槽",
   "exhibitName": "Ariake Tidal Flat",
   "category": "有明海の干潟",
-  "description": "有明海の干潟を、泥の岸と浅い水で再現した120cm水槽。ムツゴロウは岸の巣穴を住みかにして、水際の泥の上で餌を探します。トビハゼは水際と浅い水を行き来し、泥の底でひと休みします。",
+  "description": "有明海の干潟を、泥の岸と浅い水で再現した120cm水槽。ムツゴロウは岸の巣穴を住みかにして、水際の泥の上で餌を探します。トビハゼは水際と浅い水を行き来し、泥の底でひと休みします。ハクセンシオマネキは泥の上を横歩きし、はさみで泥をすくって口へ運びます。",
   "widthCm": 120,
   "heightCm": 39,
   "depthCm": 60,
-  "maxTotalFish": 8,
+  "maxTotalFish": 14,
   "sceneIds": [
     "mudflat-120"
   ],
@@ -20,6 +20,10 @@
     {
       "speciesId": "shuttles-hoppfish",
       "maxCount": 5
+    },
+    {
+      "speciesId": "milky-fiddler-crab",
+      "maxCount": 6
     }
   ],
   "defaultStock": [
@@ -29,6 +33,10 @@
     },
     {
       "speciesId": "shuttles-hoppfish",
+      "count": 4
+    },
+    {
+      "speciesId": "milky-fiddler-crab",
       "count": 4
     }
   ]

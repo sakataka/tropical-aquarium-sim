@@ -2,7 +2,7 @@ import type { FishSpeciesDefinition } from "./types";
 
 /**
  * 体のつくりが動きに与える性質。シミュレーションは体のつくりの名前ではなく、この性質を見て分岐する。
- * 新しい体のつくり（カニ、クラゲなど）は、ここに性質を足し、描画側の
+ * 新しい体のつくり（クラゲ、タコなど）は、ここに性質を足し、描画側の
  * src/render/bodyPlans/ に変形を足す。どちらかが欠けると型エラーになる。
  */
 export type BodyPlanTraits = {
@@ -14,8 +14,13 @@ export type BodyPlanTraits = {
   tailKick: boolean;
   /** 画像の前端に触角があり、体長は swim.headStart より後ろで測る。 */
   antennae: boolean;
-  /** ガラスを叩かれたとき。dart = 瞬発で泳ぎ去る、tailFlip = 腹を丸めて後ろへ跳ねる。 */
-  startle: "dart" | "tailFlip";
+  /** 横歩きする。進む向きへ体を向けず、向きを保ったまま左右へ歩き、休むときにときどき向きを変える。 */
+  sideways: boolean;
+  /**
+   * ガラスを叩かれたとき。dart = 瞬発で泳ぎ去る、tailFlip = 腹を丸めて後ろへ跳ねる、
+   * scuttle = 向きを変えずに横へ素早く走って離れ、はさみを振り上げる。
+   */
+  startle: "dart" | "tailFlip" | "scuttle";
 };
 
 export const BODY_PLANS = {
@@ -24,6 +29,7 @@ export const BODY_PLANS = {
     bottomDweller: false,
     tailKick: true,
     antennae: false,
+    sideways: false,
     startle: "dart",
   },
   // エビ。脚で歩き、触角を揺らし、驚くと尾で後ろへ跳ねる。
@@ -32,7 +38,17 @@ export const BODY_PLANS = {
     bottomDweller: true,
     tailKick: false,
     antennae: true,
+    sideways: false,
     startle: "tailFlip",
+  },
+  // カニ。斜め前から見た画像で、脚を左右へ広げて横へ歩く。ついばむときは、はさみを交互に口へ運ぶ。
+  crab: {
+    walksOnSurfaces: true,
+    bottomDweller: true,
+    tailKick: false,
+    antennae: false,
+    sideways: true,
+    startle: "scuttle",
   },
 } as const satisfies Record<string, BodyPlanTraits>;
 

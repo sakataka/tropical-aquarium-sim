@@ -61,13 +61,18 @@ export function stepSimulation(input: SimulationInput): SimulationOutput {
   const structurePoints = input.structurePoints ??
     (input.scene ? getStructurePoints(input.tank, input.scene, frame) : []);
   const water = getWaterColumn(input.tank, input.scene, frame);
+  const walkers = input.fish.flatMap((fish) => {
+    const species = input.species[fish.speciesId];
+    return species && getBodyPlan(species).walksOnSurfaces && fish.surfaceMotion
+      ? [{ id: fish.id, position: fish.position, depth: fish.depth, bodyLengthCm: species.realBodyLengthCm }] : [];
+  });
   return {
     fish: input.fish.map((fish) => {
       const species = input.species[fish.speciesId];
       if (!species) return fish;
       if (getBodyPlan(species).walksOnSurfaces && input.scene?.terrain) {
         return stepSurfaceWalker(fish, species, input.tank, input.scene,
-          frame, deltaSec, getActivityLevel(species, lighting));
+          frame, deltaSec, getActivityLevel(species, lighting), walkers);
       }
       // 生まれたばかりの魚（まだ一度も動いていない）は、水槽全体に対する高さを水の部分へ当て直す。
       if (fish.legTimeSec === undefined) fish = placeInWater(fish, input.tank, water);
@@ -383,7 +388,8 @@ function stepFish(context: StepContext): FishInstance {
     depthMotion: terrain ? depthMotion : undefined,
     terrainRoute: route,
     contact,
-    facing: terrainGoal?.facing && contact && contact.weight > .5 ? terrainGoal.facing : velocity.x < -FACING_THRESHOLD_CM_PER_SEC
+    facing: getBodyPlan(species).sideways ? fish.facing
+      : terrainGoal?.facing && contact && contact.weight > .5 ? terrainGoal.facing : velocity.x < -FACING_THRESHOLD_CM_PER_SEC
       ? -1
       : velocity.x > FACING_THRESHOLD_CM_PER_SEC ? 1 : fish.facing,
     behaviorMode: mode,

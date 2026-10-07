@@ -93,7 +93,8 @@ describe("depth-aware terrain across habitats", () => {
       expect(fish.length).toBe(tank.defaultStock.reduce((sum, s) => sum + s.count, 0));
     }
     expect(grazing && hiding && changedDepth).toBe(true);
-  }, 30000);
+    // 全水槽を回すので、水槽の数に比例して長くなる（72水槽で単独30秒前後、全テストの並列実行ではさらに延びる）。
+  }, 90000);
 
   test("a grazer reaches a leaf gradually in depth, and scene switches discard its old destination", () => {
     const tank = getTankById("cube-30")!, scene = getSceneById("cube-planted")!;

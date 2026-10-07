@@ -1,0 +1,137 @@
+{
+  "id": "red-king-crab",
+  "displayName": "タラバガニ",
+  "realBodyLengthCm": 56,
+  "catalog": {
+    "scientificName": "Paralithodes camtschaticus",
+    "originRegionId": "north-pacific",
+    "originRegionName": "北太平洋",
+    "origin": "北太平洋のブリティッシュコロンビアから日本までの沿岸と、ベーリング海、オホーツク海に分布します。1960年代には、人の手でヨーロッパ北部のバレンツ海へ持ち込まれました。",
+    "temperament": "大きなカニは、貝類、ゴカイなどの環形動物、甲殻類、魚、棘皮動物を食べます。成体の活動時間は確かめられていませんが、大きくなった若いカニは昼に積み重なるように集まり、夜に餌をとります。本水槽では、1匹ずつ底を歩き回ります。",
+    "movement": "海底を脚で歩き、底の餌をはさみで砕いて扱います。本水槽では、泥砂底を横へ歩き、ときどき止まって、はさみで餌をつまんで口へ運びます。",
+    "habitat": "海底で暮らします。冬の終わりに浅場へ集まり、脱皮と繁殖を終えると沖の深場へ移ります。移入先のロシア側バレンツ海では水深335mまで見つかり、底層水温は-0.8〜8.5℃でした。本水槽では、冷たい海の泥砂底と岩をイメージしています。",
+    "aliases": [
+      "Red king crab",
+      "Alaska king crab",
+      "King crab"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Decapoda",
+      "orderJa": "十脚目",
+      "family": "Lithodidae",
+      "familyJa": "タラバガニ科"
+    },
+    "adultSizeCm": 20,
+    "sizeNote": "甲幅での値です。代表的な成体の大きさは確かめられておらず、ここでは甲幅約20cmとして、画面では脚を広げた幅（約56cm）で描いています。アラスカの資料では甲長は最大約28cm（11インチ）で、大きな雄は脚を広げると約1.5m（5フィート）になります。ロシア側バレンツ海の調査でとれた個体は甲幅6〜27cmでした。",
+    "distribution": "北太平洋のブリティッシュコロンビアから日本までの沿岸と、ベーリング海、オホーツク海に分布します。バレンツ海の個体群は1960年代に人が持ち込んだもので、そこでは海底の生き物を食べる影響が報告されています。",
+    "water": {
+      "salinity": "marine",
+      "temperatureC": [
+        -0.8,
+        8.5
+      ]
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "世界の IUCN 区分は確かめられていません。アメリカ海洋大気庁（NOAA）の2025年の評価では、アラスカのブリストル湾、プリビロフ諸島、ノートン湾の資源は乱獲された状態ではないとされています。アリューシャン列島西部の資源は、データが足りず判定されていません。"
+    },
+    "highlights": [
+      "カニと呼ばれますが、ヤドカリと同じ異尾類のなかまです。外から目立つ脚は、はさみ1対と歩くための脚3対で、5対目の小さな脚は腹側に隠れています。",
+      "成体では、ふつう右のはさみが左より大きくなります。",
+      "雌は腹側に卵を抱え、約1年守ります。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "crab",
+    "tailBeatHz": 0.6,
+    "bodyWaveStart": 0.85,
+    "tailSweepRad": 0,
+    "verticalFlex": 0,
+    "footAnchor": {
+      "x": 0.5,
+      "y": 0.96
+    }
+  },
+  "visual": {
+    "fallbackColor": "#a84a36"
+  },
+  "preferredZone": {
+    "minX": 0.12,
+    "maxX": 0.88,
+    "minY": 0.86,
+    "maxY": 0.94
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.04,
+      "burst": 0.3
+    },
+    "turnRateRadPerSec": 0.8,
+    "restFraction": 0.6,
+    "depthRange": [
+      0.5,
+      0.95
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.4,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 2.5,
+        "durationSec": [
+          8,
+          25
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.5,
+        "durationSec": [
+          10,
+          30
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "JAMSTEC BISMaL: Paralithodes camtschaticus",
+        "url": "https://www.godac.jamstec.go.jp/bismal/e/view/9005329"
+      },
+      {
+        "title": "NOAA Fisheries: Red King Crab",
+        "url": "https://www.fisheries.noaa.gov/species/red-king-crab"
+      },
+      {
+        "title": "Alaska Department of Fish and Game: Red King Crab Species Profile",
+        "url": "https://www.adfg.alaska.gov/index.cfm?adfg=redkingcrab.main"
+      },
+      {
+        "title": "Institute of Marine Research: Red King Crab",
+        "url": "https://www.hi.no/en/hi/temasider/species/red-king-crab"
+      },
+      {
+        "title": "Pinchukov & Karsakov (2008), Red king crab settling and conditions of habitation in Russian waters of the Barents Sea",
+        "url": "https://www.hi.no/resources/publikasjoner/imrpinro/2008/imr-pinro_2008-3_til_web.pdf"
+      },
+      {
+        "title": "北海道IT漁業推進コンソーシアム・道総研 (2018)：底魚資源管理支援マニュアル（タラバガニ）",
+        "url": "https://www.hro.or.jp/upload/35263/manual2018a.pdf"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 86,
+    "y": 178,
+    "width": 1384,
+    "height": 738
+  }
+}

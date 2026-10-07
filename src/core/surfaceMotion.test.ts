@@ -51,6 +51,28 @@ describe("scene surface movement", () => {
     }
   });
 
+  test("crabs walk both ways along their paths, keeping the way they face until they stop", () => {
+    const crabTank = getTankById("cold-crabs-180")!;
+    const scene = getSceneById(crabTank.sceneIds[0]!)!;
+    let fish = createFishFromStock([{ speciesId: "horsehair-crab", count: 4 }], crabTank)
+      .map((item, i) => ({ ...item, seed: 7 + i * 3000 }));
+    let walkedLeft = false, walkedRight = false, turned = false;
+    for (let i = 0; i < 6000; i++) {
+      const before = fish;
+      fish = stepSimulation({ tank: crabTank, species: fishCatalog, fish, deltaSec: .05, structurePoints: [], scene }).fish;
+      for (const [index, item] of fish.entries()) {
+        // 歩いている間は向きを変えない。向きを変えるのは立ち止まったときだけ。
+        if (item.facing !== before[index]!.facing) {
+          expect(item.behaviorMode === "rest" || item.behaviorMode === "forage").toBe(true);
+          turned = true;
+        }
+        walkedLeft ||= item.velocity.x * item.facing < -.05;
+        walkedRight ||= item.velocity.x * item.facing > .05;
+      }
+    }
+    expect(walkedLeft && walkedRight && turned).toBe(true);
+  });
+
   test("crosses joined sand and stone paths without jumping at the junction", () => {
     const scene = getSceneById("japan-moss-stones")!;
     const surface = scene.terrain!.surfaces.find((s) => s.id === "sand-west")!;

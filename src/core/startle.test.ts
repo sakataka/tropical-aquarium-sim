@@ -72,6 +72,21 @@ describe("tapping the glass", () => {
     expect(world.fish[0]!.behaviorMode).toBe("rest");
   });
 
+  test("crabs scuttle sideways away from the tap without turning, then freeze", () => {
+    const world = setup("cold-crabs-180", [{ speciesId: "horsehair-crab", count: 1 }]);
+    world.step(5);
+    const crab = world.fish[0]!;
+    world.tap({ x: crab.position.x + 1, y: crab.position.y });
+    expect(world.fish[0]!.surfaceMotion?.flee).toBeDefined();
+    const facing = world.fish[0]!.facing;
+    const start = { ...world.fish[0]!.position };
+    world.step(.25, ([f]) => expect(f!.facing).toBe(facing));
+    expect(world.fish[0]!.position.x).toBeLessThan(start.x);
+    world.step(.4);
+    expect(world.fish[0]!.surfaceMotion?.flee).toBeUndefined();
+    expect(world.fish[0]!.behaviorMode).toBe("rest");
+  });
+
   test("distant fish ignore a gentle tap, and repeated taps weaken the response", () => {
     const world = setup("amazon-90", [{ speciesId: "neon-tetra", count: 6 }]);
     const far = { x: world.tank.widthCm * 2, y: centre(world.tank).y };

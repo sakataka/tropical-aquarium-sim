@@ -1,0 +1,15 @@
+{
+  "id": "japan-stream-crab-45",
+  "order": 158,
+  "displayName": "苔石と落ち葉の沢",
+  "description": "苔むした丸石のあいだを、浅く澄んだ水が流れる山あいの沢。水面の上には小さな滝と岸の草が見え、水の中の砂礫には光の網目が揺れます。",
+  "defaultLighting": "natural",
+  "waterColor": "#5f7a3a",
+  "framing": {
+    "plateBottom": 0.913
+  },
+  "waterLine": {
+    "front": 0.43,
+    "back": 0.36
+  }
+}

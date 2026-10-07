@@ -1,3 +1,4 @@
+import { getBodyPlan } from "./bodyPlans";
 import type {
   AquariumScene, FishInstance, FishSpeciesDefinition, SceneSurface, SurfaceFrame,
   SurfacePoint, TankDefinition,
@@ -70,10 +71,13 @@ export function visibleSurfaceIntervals(surface: SceneSurface, tank: TankDefinit
   return intervals;
 }
 
+/** 同じ水槽で面を歩くほかの生き物。前をふさがれたら引き返すのに使う。 */
+export type SurfaceNeighbor = { id: string; position: { x: number; y: number }; depth: number; bodyLengthCm: number };
+
 /** 表面を歩く生き物だけに使う。経路は水景の情報で、魚種名による分岐を持たない。 */
 export function stepSurfaceWalker(fish: FishInstance, species: FishSpeciesDefinition,
   tank: TankDefinition, scene: AquariumScene, frame: SurfaceFrame, deltaSec: number,
-  activity: number): FishInstance {
+  activity: number, neighbors: SurfaceNeighbor[] = []): FishInstance {
   const visible = scene.terrain!.surfaces.map((surface) => ({ surface, intervals: visibleSurfaceIntervals(surface, tank, frame) }))
     .filter((item) => item.intervals.length > 0);
   const surfaces = visible.map((item) => item.surface);
@@ -120,9 +124,25 @@ export function stepSurfaceWalker(fish: FishInstance, species: FishSpeciesDefini
       surfaceMotion: motion, behaviorMode: "kick", behaviorTimeRemainingSec: 0, seed,
     };
   }
+  const sideways = getBodyPlan(species).sideways;
+  let facing = fish.facing;
   const wasPaused = motion.pauseSec > 0;
   motion.pauseSec = Math.max(0, motion.pauseSec - deltaSec);
-  if (!wasPaused && deltaSec > 0) {
+  // 近い奥行きで、進む先に別の個体が近すぎるときは、重ならないよう少し立ち止まって引き返す。
+  // 近くにいる個体を先に絞り、いるときだけ進む向きを調べる（エビの多い水槽でも軽く保つ）。
+  const close = wasPaused || deltaSec === 0 ? [] : neighbors.filter((other) => other.id !== fish.id &&
+    Math.abs(other.depth - before.depth) <= .35 &&
+    Math.abs(other.position.x - before.position.x) < (species.realBodyLengthCm + other.bodyLengthCm) * .35);
+  if (close.length > 0) {
+    const ahead = sampleSurface(surface, Math.max(0, Math.min(1, motion.progress + motion.direction * .01)), tank, frame);
+    const heading = Math.sign(ahead.position.x - before.position.x);
+    if (heading !== 0 && close.some((other) => Math.sign(other.position.x - before.position.x) === heading)) {
+      motion.direction = motion.direction === 1 ? -1 : 1;
+      motion.pauseSec = .4 + random() * 1.2;
+      motion.grazing = false;
+    }
+  }
+  if (!wasPaused && motion.pauseSec === 0 && deltaSec > 0) {
     const speed = species.realBodyLengthCm * species.ecology.speedBodyLengthsPerSec.cruise * fish.personality.pace *
       (0.45 + 0.55 * Math.min(activity, 1.1));
     motion.progress += motion.direction * speed * deltaSec / before.length;
@@ -164,6 +184,8 @@ export function stepSurfaceWalker(fish: FishInstance, species: FishSpeciesDefini
       motion.grazing = random() * (grazingChance + restChance) < grazingChance;
       const range = (motion.grazing ? grazing : rest)?.durationSec ?? [6, 12];
       motion.pauseSec = (range[0] + random() * (range[1] - range[0])) * (motion.grazing ? 1 : fish.personality.restfulness);
+      // 横歩きの生き物は、立ち止まったときにときどき向きを変える。
+      if (sideways && random() < 0.3) facing = facing === 1 ? -1 : 1;
     }
   }
   const sampled = sampleSurface(surface, motion.progress, tank, frame);
@@ -172,8 +194,8 @@ export function stepSurfaceWalker(fish: FishInstance, species: FishSpeciesDefini
     x: (sampled.position.x - before.position.x) / deltaSec,
     y: (sampled.position.y - before.position.y) / deltaSec,
   };
-  // 経路の折返しでも、速度のしきい値に依存せず体を進行方向へ向ける。
-  const facing = Math.cos(sampled.angle) * motion.direction >= 0 ? 1 : -1;
+  // 経路の折返しでも、速度のしきい値に依存せず体を進行方向へ向ける。横歩きの生き物は向きを保つ。
+  if (!sideways) facing = Math.cos(sampled.angle) * motion.direction >= 0 ? 1 : -1;
   return {
     ...fish, position: sampled.position, depth: sampled.depth, velocity, facing,
     terrainGoal: undefined, terrainRoute: undefined, depthMotion: undefined, contact: undefined, homeDepth: undefined,

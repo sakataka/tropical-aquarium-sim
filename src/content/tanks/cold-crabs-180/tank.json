@@ -1,0 +1,51 @@
+{
+  "id": "cold-crabs-180",
+  "order": 105,
+  "displayName": "北の海のカニ水槽",
+  "exhibitName": "Northern Crabs",
+  "category": "北の海の砂泥底",
+  "description": "岩の散らばる北の海の砂泥底を再現した180cm水槽。タラバガニ、ズワイガニ、ハナサキガニ、ケガニが、脚を広げて砂の上を横歩きし、はさみで底の餌をつまんで口へ運びます。",
+  "widthCm": 180,
+  "heightCm": 57,
+  "depthCm": 90,
+  "maxTotalFish": 8,
+  "sceneIds": [
+    "cold-crabs-180"
+  ],
+  "species": [
+    {
+      "speciesId": "red-king-crab",
+      "maxCount": 2
+    },
+    {
+      "speciesId": "snow-crab",
+      "maxCount": 2
+    },
+    {
+      "speciesId": "horsehair-crab",
+      "maxCount": 3
+    },
+    {
+      "speciesId": "hanasaki-crab",
+      "maxCount": 2
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "red-king-crab",
+      "count": 1
+    },
+    {
+      "speciesId": "snow-crab",
+      "count": 1
+    },
+    {
+      "speciesId": "horsehair-crab",
+      "count": 2
+    },
+    {
+      "speciesId": "hanasaki-crab",
+      "count": 1
+    }
+  ]
+}

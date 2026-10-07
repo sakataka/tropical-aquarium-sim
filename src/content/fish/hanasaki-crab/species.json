@@ -1,0 +1,149 @@
+{
+  "id": "hanasaki-crab",
+  "displayName": "ハナサキガニ",
+  "realBodyLengthCm": 25,
+  "catalog": {
+    "scientificName": "Paralithodes brevipes",
+    "originRegionId": "north-pacific",
+    "originRegionName": "北太平洋",
+    "origin": "北海道東部から千島列島、樺太、シベリア沿岸、オホーツク海、カムチャツカ半島沿岸、ベーリング海に分布します。日本では、太平洋側は襟裳岬から納沙布岬まで、オホーツク海側は根室半島より北で見られます。",
+    "temperament": "動物と植物の両方を食べる雑食性で、ヒトデをよく食べるという漁業者の話もあります。若い個体は岩の下に1匹で隠れます。活動時間は確かめられていません。本水槽では、1匹ずつ底を歩き回ります。",
+    "movement": "太く短い歩脚3対で海底を歩きます。本水槽では、岩のまわりの底を横へ歩き、ときどき止まって、はさみで餌をつまんで口へ運びます。",
+    "habitat": "コンブ類の生える岩礁や転石のある海底にすみ、主に水深50mより浅いところで見られます。若い個体は潮だまりや岩陰にいて、甲長9cm以上の大きな個体は水深190mまで入るとされます。親ガニを育てる施設では、冬は1℃を下回らないように温め、夏から秋は10℃以下に冷やします。本水槽では、冷たい海の泥砂底と岩をイメージしています。",
+    "aliases": [
+      "Spiny king crab",
+      "Hanasaki crab",
+      "ハナサキ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Decapoda",
+      "orderJa": "十脚目",
+      "family": "Lithodidae",
+      "familyJa": "タラバガニ科"
+    },
+    "adultSizeCm": 11,
+    "sizeNote": "甲長での値です。代表的な成体の大きさは確かめられておらず、繁殖行動の実験に使われた雌雄の甲長9.6〜11.6cmを目安にしています。画面では脚を広げた幅（約25cm）で描いています。2008年に納沙布岬沖でとれた大きな雄は、甲長16.8cm、甲幅19.5cm、重さ4.85kgでした。",
+    "distribution": "北海道東部、千島列島、樺太、シベリア沿岸、オホーツク海、カムチャツカ半島沿岸、ベーリング海に分布し、チュクチ海のコツビュー湾でも記録があります。",
+    "water": {
+      "salinity": "marine",
+      "temperatureC": [
+        1,
+        10
+      ]
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "世界の IUCN 区分は確かめられていません。北海道での漁獲量は1960年代に年2000トンを超えていましたが、2000年以降は100トン未満になったと2013年の資料にあります。親ガニの養成から稚ガニの放流までの技術も研究されてきました。"
+    },
+    "highlights": [
+      "カニと呼ばれますが、ヤドカリと同じ異尾類のなかまです。外から見える脚は、はさみ1対と歩くための脚3対で、5対目の小さな脚は甲の下の鰓のある部屋に入っていて、鰓の掃除に使われます。",
+      "逆ハート形に近い甲と、太く短い脚に、たくさんの棘があります。",
+      "繁殖期の雄は、脱皮を控えた雌のはさみや脚をつかんだり、体で覆ったりして守ります。観察された雌は、脱皮してから24時間以内に交接しました。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "crab",
+    "tailBeatHz": 0.6,
+    "bodyWaveStart": 0.85,
+    "tailSweepRad": 0,
+    "verticalFlex": 0,
+    "footAnchor": {
+      "x": 0.5,
+      "y": 0.96
+    }
+  },
+  "visual": {
+    "fallbackColor": "#8e4d2f"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.86,
+    "maxY": 0.94
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.06,
+      "burst": 0.4
+    },
+    "turnRateRadPerSec": 1.0,
+    "restFraction": 0.6,
+    "depthRange": [
+      0.5,
+      0.95
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.7,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 2.5,
+        "durationSec": [
+          8,
+          25
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.5,
+        "durationSec": [
+          10,
+          30
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "ITIS: Paralithodes brevipes (TSN 97937)",
+        "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=0097937"
+      },
+      {
+        "title": "北海道立総合研究機構：北海道の漁業図鑑（ハナサキガニ）",
+        "url": "https://www.hro.or.jp/fisheries/h3mfcd0000000gsj/o7u1kr000000019q/o7u1kr000000d4fu/o7u1kr000000ccrf.html"
+      },
+      {
+        "title": "芦立昌一・佐藤琢 (2009)：ハナサキガニの種苗生産技術",
+        "url": "https://www.fra.go.jp/home/kenkyushokai/book/archive/saibai/files/series-no14.pdf"
+      },
+      {
+        "title": "Petryashov (2009), Anomura, Illustrated Keys to Free-Living Invertebrates of Eurasian Arctic Seas",
+        "url": "https://repository.library.noaa.gov/view/noaa/43093/noaa_43093_DS1.pdf"
+      },
+      {
+        "title": "安永倫明・工藤良二 (2008)：超巨大ハナサキガニ水揚げされる！",
+        "url": "https://www.hro.or.jp/fisheries/publication/ima/o7u1kr000000bka1.html"
+      },
+      {
+        "title": "北海道：ハナサキガニ［花咲蟹］",
+        "url": "https://www.pref.hokkaido.lg.jp/sr/gid/fis078.html"
+      },
+      {
+        "title": "Wada, Ashidate & Goshima (1997), Observations on the reproductive behavior of Paralithodes brevipes",
+        "url": "https://www.jstage.jst.go.jp/article/crustacea/26/0/26_KJ00003243378/_pdf/-char/en"
+      },
+      {
+        "title": "Kittaka & Onoda (2002), Effect of temperature on growth and maturity of king crabs in the laboratory",
+        "url": "https://www.jstage.jst.go.jp/article/fishsci1994/68/sup1/68_sup1_921/_pdf"
+      },
+      {
+        "title": "水産無脊椎動物研究所：水族館動物図鑑（ハナサキガニ）",
+        "url": "https://rimi.or.jp/dobutumenu/c/arthropoda/#pb_paralithodes-brevipes"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 61,
+    "y": 100,
+    "width": 1441,
+    "height": 832
+  }
+}

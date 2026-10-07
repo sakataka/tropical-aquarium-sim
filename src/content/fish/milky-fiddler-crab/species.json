@@ -1,0 +1,149 @@
+{
+  "id": "milky-fiddler-crab",
+  "displayName": "ハクセンシオマネキ",
+  "realBodyLengthCm": 7,
+  "catalog": {
+    "scientificName": "Austruca lactea",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "日本、韓国、中国沿岸、台湾から、ベトナム中部までの干潟にすむシオマネキの仲間です。",
+    "temperament": "人が近づくと巣穴に入り、静かに待つとまた地表へ出てきます。繁殖期の雄は、巣穴の入口に砂泥でひさしのような囲いをつくります。本水槽では、干潟の泥の上を歩き回ります。",
+    "movement": "干上がった干潟の地表と巣穴の間を、脚を左右に広げて横向きに歩いて行き来します。雄は小さいほうのはさみで泥をすくって口へ運び、食べたあとに砂団子を残します。繁殖期には、雄が白い大きなはさみを振って雌に求愛します（ウェービング）。",
+    "habitat": "河口や海岸の干潟のうち、潮が引くと長く干上がる高いところの、小石の混じる硬めの砂泥底に巣穴を掘ってすみます。大阪の河口干潟では、夏に掘った穴へ湧く地下水が24.9〜35.1℃でした。本水槽では、有明海の干潟の泥の岸と浅い水を再現しています。",
+    "aliases": [
+      "Milky fiddler crab",
+      "Uca lactea"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Decapoda",
+      "orderJa": "十脚目",
+      "family": "Ocypodidae",
+      "familyJa": "スナガニ科"
+    },
+    "adultSizeCm": 1.7,
+    "sizeNote": "香港で実験のために選ばれた成体の雄は甲幅15〜18mmで、福岡県の解説では甲幅21mmとされます。代表的な大きさは確かめられておらず、ここでは甲幅約1.7cmとして表示しています。画面では、大きいはさみと脚を広げた幅（約7cm）で描いています。",
+    "distribution": "日本、韓国、中国沿岸、台湾に分布します。2022年の再検討では、南限はベトナム中部とされています。",
+    "water": {
+      "salinity": "brackish"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "世界の IUCN 区分は確かめられていません。環境省レッドリスト2020では絶滅危惧II類（VU）です。福岡県レッドデータブック2024でも絶滅危惧II類とされ、河川・海岸・湿地の開発や水質汚濁が危機の要因に挙げられています。"
+    },
+    "highlights": [
+      "成体の雄は、片方のはさみがとても大きく白くなります。大きいはさみが左にある雄も、右にある雄もいます。",
+      "甲は幅が広く、目は細長い柄の先についています。",
+      "雄は小さいほうのはさみだけで泥をすくい、泥の中の藻類や微生物を食べます。",
+      "大阪の干潟の観察では、干潮から2時間後に、はさみを振る雄の割合が最も高くなりました。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "crab",
+    "tailBeatHz": 0.6,
+    "bodyWaveStart": 0.85,
+    "tailSweepRad": 0,
+    "verticalFlex": 0,
+    "footAnchor": {
+      "x": 0.5,
+      "y": 0.96
+    }
+  },
+  "visual": {
+    "fallbackColor": "#ab987f"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.86,
+    "maxY": 0.94
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.1,
+      "burst": 0.6
+    },
+    "turnRateRadPerSec": 1.6,
+    "restFraction": 0.5,
+    "depthRange": [
+      0.15,
+      0.8
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 2,
+      "cohesion": 0.15,
+      "polarization": 0
+    },
+    "structureAffinity": 0.5,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 4,
+        "durationSec": [
+          8,
+          20
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1,
+        "durationSec": [
+          10,
+          25
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "JAMSTEC BISMaL: Austruca lactea",
+        "url": "https://www.godac.jamstec.go.jp/bismal/e/view/9053140"
+      },
+      {
+        "title": "福岡県レッドデータブック2024：ハクセンシオマネキ",
+        "url": "https://biodiversity.pref.fukuoka.lg.jp/rdb/rdbs/detail/202401548"
+      },
+      {
+        "title": "広島県：ハクセンシオマネキ（2014）",
+        "url": "https://www.pref.hiroshima.lg.jp/soshiki/47/investigation-hakusensiomaneki.html"
+      },
+      {
+        "title": "Aoki & Wada (2011), Comparison of mating behavior of the fiddler crab Uca lactea in relation to density",
+        "url": "https://www.jstage.jst.go.jp/article/crustacea/40/0/40_KJ00008514366/_pdf/-char/ja"
+      },
+      {
+        "title": "Temperature Extremes and Sex-Related Physiology, Not Environmental Variability, Are Key in Explaining Thermal Sensitivity of Bimodal-Breathing Intertidal Crabs (2022)",
+        "url": "https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2022.858280/full"
+      },
+      {
+        "title": "いおワールドかごしま水族館：マングローブ水槽",
+        "url": "https://ioworld.jp/place/area04"
+      },
+      {
+        "title": "環境省レッドリスト2020 別添資料3",
+        "url": "https://www.env.go.jp/content/900515981.pdf"
+      },
+      {
+        "title": "臺灣生命大百科：Austruca lactea",
+        "url": "https://taieol.tw/pages/126170/articles"
+      },
+      {
+        "title": "Shih et al. (2022), Diversity and Distribution of Fiddler Crabs in Vietnam",
+        "url": "https://zoolstud.sinica.edu.tw/issue.php?id=227"
+      },
+      {
+        "title": "Yamaguchi (2000), Sexual differences in feeding by the fiddler crab Uca lactea",
+        "url": "https://www.jstage.jst.go.jp/article/crustacea/29/0/29_KJ00003243444/_article/-char/en"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 174,
+    "y": 195,
+    "width": 1199,
+    "height": 641
+  }
+}
