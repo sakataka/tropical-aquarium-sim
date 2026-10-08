@@ -123,6 +123,11 @@ export type FishSwimStyle = {
    * y は付け根の高さ、top・bottom は翼足の上端と下端（画像の上端0〜下端1の比率）。
    */
   wings: { rootX: number; y: number; top: number; bottom: number };
+  /**
+   * 歩く生き物（両生類）の脚。x・y は付け根（肩・腰）、footX・footY は足先、width は脚の太さ（画像の横幅に対する比率）。
+   * beat が同じ脚は同じ拍で運び、0 と 1 の組は半拍ずらす（手前の前脚と奥の後脚、奥の前脚と手前の後脚を組にする）。
+   */
+  legs: { x: number; y: number; footX: number; footY: number; width: number; beat: 0 | 1 }[];
 };
 
 /** IUCN レッドリストの区分。NE は未評価。 */
@@ -227,6 +232,21 @@ export type FishInstance = {
   pulsePhase?: number;
   /** クラゲの傘の傾き (rad)。進む向きへ少し傾ける。保存対象外。 */
   tilt?: number;
+  /**
+   * 面を歩く生き物が息継ぎに泳いでいる間。面を離れた点（perch）から水面の点（apex）へ上がり、
+   * 息を吸ってから同じ道筋で perch へ戻り、離れたときの歩き方（surfaceMotion）に戻る。保存対象外。
+   */
+  breathTrip?: {
+    sceneId: string;
+    phase: "rise" | "breathe" | "sink";
+    perch: Vec2;
+    apex: Vec2;
+    /** perch から apex までの道のりのどこにいるか（0〜1）。 */
+    progress: number;
+    /** 水面で息を吸う残り秒数。 */
+    breatheSec: number;
+    resume: SurfaceMotion;
+  };
   /** 描画用の姿勢。底を探るときは頭を下げる。 */
   posture?: "level" | "noseDown";
   seed: number;

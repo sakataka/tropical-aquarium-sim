@@ -1,0 +1,147 @@
+{
+  "id": "olm",
+  "displayName": "ホライモリ",
+  "realBodyLengthCm": 24,
+  "catalog": {
+    "scientificName": "Proteus anguinus",
+    "originRegionId": "europe",
+    "originRegionName": "ヨーロッパ",
+    "origin": "スロベニア・クロアチア・ボスニア・ヘルツェゴビナ・イタリアにまたがる、ディナル・カルスト地域の洞窟にすむ両生類です。英語では human fish とも呼ばれます。",
+    "temperament": "野外の標識調査では、同じ個体が何年も数平方メートルの範囲で見つかり、ほとんど居場所を変えません。繁殖のときは、雄が縄張りを守ります。",
+    "movement": "細長い体と短い脚で、洞窟の水底をゆっくり歩きます。前脚の指は3本、後脚の指は2本です。",
+    "habitat": "カルスト洞窟の地下水の流れや地下湖にすみ、岩の下や裂け目に集まります。昆虫の幼虫や小型の甲殻類を食べます。本水槽では、光の届かない石灰岩の洞窟の川を再現しています。",
+    "aliases": [
+      "olm",
+      "human fish"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Caudata",
+      "orderJa": "有尾目",
+      "family": "Proteidae",
+      "familyJa": "ホライモリ科"
+    },
+    "adultSizeCm": 24,
+    "sizeNote": "動物園の解説では、全長23〜25cmとされます。画面では全長約24cmで描いています。",
+    "distribution": "ヨーロッパ南東部のディナル・カルスト地域（スロベニア、クロアチア、ボスニア・ヘルツェゴビナ、イタリア）の洞窟に分布します。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "動物園の解説では IUCN の危急種（VU）とされていますが、2024年の評価での区分は確かめられていません。"
+    },
+    "highlights": [
+      "成体になっても、頭の後ろの外鰓など幼生の特徴が残ります。",
+      "体は淡いピンクがかった白色で、目は退化して皮膚に覆われています。",
+      "研究では、寿命が100年を超えると予測されています（100歳の個体が実際に記録されたわけではありません）。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "walker",
+    "tailBeatHz": 1.4,
+    "bodyWaveStart": 0.72,
+    "waveCount": 0.9,
+    "tailSweepRad": 0.35,
+    "verticalFlex": 0.01,
+    "footAnchor": {
+      "x": 0.45,
+      "y": 0.9
+    },
+    "legs": [
+      {
+        "x": 0.24,
+        "y": 0.62,
+        "footX": 0.23,
+        "footY": 0.96,
+        "width": 0.04,
+        "beat": 0
+      },
+      {
+        "x": 0.69,
+        "y": 0.58,
+        "footX": 0.71,
+        "footY": 0.97,
+        "width": 0.035,
+        "beat": 1
+      }
+    ]
+  },
+  "visual": {
+    "fallbackColor": "#e6c4bd"
+  },
+  "preferredZone": {
+    "minX": 0.06,
+    "maxX": 0.94,
+    "minY": 0.85,
+    "maxY": 0.97
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "undulate",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.07,
+      "burst": 0.6
+    },
+    "turnRateRadPerSec": 0.8,
+    "restFraction": 0.85,
+    "depthRange": [
+      0.2,
+      0.8
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 1,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.8,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 1,
+        "durationSec": [
+          5,
+          15
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1,
+        "durationSec": [
+          60,
+          200
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Zagreb Zoo: Proteus anguinus",
+        "url": "https://zoo.hr/248002-2/"
+      },
+      {
+        "title": "Postojna Cave: Olm Diary 2022",
+        "url": "https://www.postojnska-jama.eu/en/wonderland-stories/olm-diary-2022/"
+      },
+      {
+        "title": "Balázs et al. (2020), Extreme site fidelity of the olm",
+        "url": "https://zslpublications.onlinelibrary.wiley.com/doi/abs/10.1111/jzo.12760"
+      },
+      {
+        "title": "Voituron et al. (2011), Extreme lifespan of the human fish",
+        "url": "https://digitalcommons.usf.edu/kip_articles/2031/"
+      },
+      {
+        "title": "Zagreb Zoo: PROTEUS – the olm conservation project",
+        "url": "https://zoo.hr/proteus-the-olm-conservation-project-proteus-anguinus/"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 85,
+    "y": 358,
+    "width": 1403,
+    "height": 302
+  }
+}

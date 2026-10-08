@@ -65,6 +65,7 @@ export class FishBody {
   private readonly reverses: boolean;
   /** 漂う生き物（クラゲ）は向きを変えず、傘の中心を軸に傾く。 */
   private readonly drifts: boolean;
+  private readonly bodyLengthCm: number;
 
   constructor(texture: Texture, species: FishSpeciesDefinition, fish: FishInstance) {
     this.swim = { ...DEFAULT_SWIM, ...species.swim };
@@ -73,6 +74,7 @@ export class FishBody {
     this.reverses = BODY_PLANS[this.swim.bodyPlan].reverses;
     this.keepsFacing = BODY_PLANS[this.swim.bodyPlan].sideways || this.reverses;
     this.drifts = BODY_PLANS[this.swim.bodyPlan].drifts;
+    this.bodyLengthCm = species.realBodyLengthCm * fish.bodyLengthVariance;
     this.mesh = new MeshPlane({ texture, verticesX: VERTICES_X, verticesY: this.verticesY });
     this.mesh.autoResize = false;
     this.basePositions = new Float32Array(this.mesh.geometry.positions);
@@ -133,9 +135,10 @@ export class FishBody {
       verticesY: this.verticesY,
       swim: this.swim,
       motion: this.motion,
-    }, { fish, speed, deltaSec, bottomY });
+    }, { fish, speed, deltaSec, bottomY, bodyLengthCm: this.bodyLengthCm });
     this.mesh.geometry.getBuffer("aPosition").update();
-    const desiredAnchor = fish.surfaceMotion ? this.swim.footAnchor
+    // 息継ぎに面を離れる・戻る間も、脚の接地点を基準にして連続させる。
+    const desiredAnchor = fish.surfaceMotion || fish.breathTrip ? this.swim.footAnchor
       : fish.contact?.kind === "mouth" ? this.swim.mouthAnchor : { x: .42, y: .82 };
     if (fish.contact || fish.surfaceMotion) {
       const previous = this.motion.contactAnchor;
@@ -165,7 +168,7 @@ export class FishBody {
       verticesY: this.verticesY,
       swim: this.swim,
       motion: this.motion,
-    }, { fish, speed: Math.hypot(fish.velocity.x, fish.velocity.y), deltaSec, bottomY });
+    }, { fish, speed: Math.hypot(fish.velocity.x, fish.velocity.y), deltaSec, bottomY, bodyLengthCm: this.bodyLengthCm });
     this.mesh.geometry.getBuffer("aPosition").update();
     const bell = this.swim.bell;
     this.mesh.pivot.set(this.pivotX, this.height * (this.swim.wings?.y ?? (bell.top + bell.bottom) / 2));

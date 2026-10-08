@@ -36,8 +36,9 @@ export type BodyPlanTraits = {
    * scuttle = 向きを変えずに横へ素早く走って離れ、はさみを振り上げる。
    * jet = 漏斗から水を噴いて胴を先に飛び退き、腕をそろえてなびかせる（タコ、イカ）。none = 反応しない（クラゲ）。
    * 漂う生き物の dart は、向きを変えずに羽ばたきを速めて叩いた所から離れる（クリオネ）。
+   * crawl = 叩いた所と逆へ向き直り、頭を先にして面に沿って這って離れる（両生類）。
    */
-  startle: "dart" | "tailFlip" | "scuttle" | "jet" | "none";
+  startle: "dart" | "tailFlip" | "scuttle" | "jet" | "crawl" | "none";
 };
 
 export const BODY_PLANS = {
@@ -136,6 +137,19 @@ export const BODY_PLANS = {
     flaps: true,
     reverses: false,
     startle: "dart",
+  },
+  // 両生類（オオサンショウウオ、イモリ）。真横の画像（頭が左）。4本の脚を対角の組で運んで底を歩き、長く休む。
+  // 息継ぎの習性（airBreathing）があれば、ときどき水面まで泳ぎ上がって息を吸い、元の場所へ戻る。
+  walker: {
+    walksOnSurfaces: true,
+    bottomDweller: true,
+    tailKick: false,
+    antennae: false,
+    sideways: false,
+    drifts: false,
+    flaps: false,
+    reverses: false,
+    startle: "crawl",
   },
 } as const satisfies Record<string, BodyPlanTraits>;
 

@@ -1,0 +1,11 @@
+{
+  "id": "giant-salamander-240",
+  "order": 159,
+  "displayName": "大岩と砂利の山の川",
+  "description": "苔むした大きな丸石が並ぶ砂利の川底に、岩の下の暗い穴が口を開ける山あいの川。岸辺の水草が流れに揺れ、奥には平らな砂利の瀬が続きます。",
+  "defaultLighting": "evening",
+  "waterColor": "#24595a",
+  "framing": {
+    "plateBottom": 0.786
+  }
+}

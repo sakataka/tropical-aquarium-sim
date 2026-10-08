@@ -22,6 +22,7 @@ export type SwimStyle = {
   fins?: { x: number; y: number; radius: number }[];
   tailStartY?: number;
   wings?: { rootX: number; y: number; top: number; bottom: number };
+  legs?: { x: number; y: number; footX: number; footY: number; width: number; beat: 0 | 1 }[];
 };
 
 // 尾の振りや向きの状態は魚ごとに1つだけ持ち、部屋と水槽画面で共有する。
@@ -41,6 +42,10 @@ export type MotionState = {
   contactAnchor?: { x: number; y: number };
   /** 驚いたときの構え（0〜1）。エビは尾を打つ腹の曲がり、カニははさみの振り上げ。 */
   flick: number;
+  /** 歩いている度合い（0〜1）。両生類が立ち止まるときに、上げた脚をゆっくり下ろす。 */
+  stepBlend: number;
+  /** 泳いでいる度合い（0〜1）。両生類が面を離れて泳ぐ間、脚をたたんで体をくねらせる。 */
+  swimBlend: number;
 };
 
 /** 変形に使う、画像メッシュとその元の形。 */
@@ -64,6 +69,8 @@ export type DeformFrame = {
   deltaSec: number;
   /** 水槽の底の高さ (cm)。泳いでいるか歩いているかの判定に使う。 */
   bottomY: number;
+  /** この個体の体長 (cm)。歩幅から脚の運びの速さを決めるのに使う。 */
+  bodyLengthCm: number;
 };
 
 /** 体のつくりごとの描き方。メッシュの縦の分割数と、毎フレームの変形。 */

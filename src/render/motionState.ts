@@ -26,6 +26,8 @@ export function getMotionState(fish: FishInstance): MotionState {
       clockSec: (Math.abs(fish.seed) % 1000) / 37,
       detailPhase: (Math.abs(fish.seed) % 628) / 100,
       flick: 0,
+      stepBlend: 0,
+      swimBlend: 0,
     };
     motionStates.set(fish.id, state);
   }

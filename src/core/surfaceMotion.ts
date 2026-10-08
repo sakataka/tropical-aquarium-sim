@@ -136,11 +136,12 @@ export function stepSurfaceWalker(fish: FishInstance, species: FishSpeciesDefini
     motion!.progress = Math.max(0, Math.min(1, motion!.progress));
   };
   if (motion.flee) {
-    // 尾を打って後ろ向きに跳ね退く（タコは噴射で飛び退く）。経路の外へは出ず、跳び終えたらしばらく固まる。
+    // 尾を打って後ろ向きに跳ね退く（タコは噴射で飛び退き、両生類は頭を先に這って離れる）。経路の外へは出ず、跳び終えたらしばらく固まる。
     const flee = { ...motion.flee, remainingSec: motion.flee.remainingSec - deltaSec };
-    // タコの噴射は種の最大の速さで。脚の長い大きなタコが水槽の端まで一気に飛ばないようにする。
+    // タコの噴射と両生類の這い逃げは種の最大の速さで。大きな生き物が水槽の端まで一気に飛ばないようにする。
     const burst = species.ecology.speedBodyLengthsPerSec.burst;
-    const speed = species.realBodyLengthCm * (getBodyPlan(species).startle === "jet" ? burst : Math.max(6, burst));
+    const style = getBodyPlan(species).startle;
+    const speed = species.realBodyLengthCm * (style === "jet" || style === "crawl" ? burst : Math.max(6, burst));
     // 噴射の途中で面の端に着いたら、つながった面へ乗り移って逃げ続ける。
     motion.direction = flee.direction;
     motion.progress += flee.direction * speed * deltaSec / before.length;

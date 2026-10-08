@@ -1,0 +1,155 @@
+{
+  "id": "japanese-giant-salamander",
+  "displayName": "オオサンショウウオ",
+  "realBodyLengthCm": 70,
+  "catalog": {
+    "scientificName": "Andrias japonicus",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "日本だけにすむ大型の両生類です。岐阜県より西の本州と、四国・九州の一部の川に分布します。国の特別天然記念物で、捕まえることを含めて、現状を変えることが規制されています。",
+    "temperament": "変態したあとは、基本的に1匹で暮らします。繁殖期以外はおもに夜に活動します。繁殖期には、大きな雄が巣穴を占め、入ってくるほかの雄と争います。",
+    "movement": "短い4本の脚で川底を歩き、左右に平たい尾で泳ぎます。飼育下の調査では、水中を移動したり泳いだりするほか、水面へ浮上して呼吸する姿が記録されています。",
+    "habitat": "川の水中で暮らし、河岸の横穴を利用します。サワガニや淡水魚などの動物を食べます。本水槽では、大きな岩と砂利の川底に、岩の下の穴がある山あいの川を再現しています。",
+    "aliases": [
+      "Japanese giant salamander",
+      "ハンザキ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Caudata",
+      "orderJa": "有尾目",
+      "family": "Cryptobranchidae",
+      "familyJa": "オオサンショウウオ科"
+    },
+    "adultSizeCm": 65,
+    "sizeNote": "よく見られる全長は60〜70cmです。2010年に川の巣穴で卵を守っていた雄2匹は、全長88cmと106cmでした。画面では全長約70cmで描いています。",
+    "distribution": "日本固有。岐阜県より西の本州と、四国・九州の一部に分布します。自然分布の外で捕まる個体には、人が持ち込んだものや、中国産の種を見誤ったものが含まれます。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "環境省レッドリスト（2026年）では絶滅危惧II類（VU）。ワシントン条約の附属書Iに載っています。IUCN の世界の区分は確かめられていません。"
+    },
+    "highlights": [
+      "幅の広い平たい頭と、体の側面から脚の後ろへ続く皮膚のひだ、左右に平たい尾が特徴です。",
+      "おもに夜に活動します。本水槽でも、明るい間は川底でじっと休んでいることが多く、暗くなるとゆっくり歩き回ります。",
+      "ときどき水面へ泳ぎ上がって息を吸い、また川底へ戻ります。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "walker",
+    "tailBeatHz": 1.1,
+    "bodyWaveStart": 0.7,
+    "waveCount": 0.8,
+    "tailSweepRad": 0.35,
+    "verticalFlex": 0.01,
+    "footAnchor": {
+      "x": 0.45,
+      "y": 0.93
+    },
+    "legs": [
+      {
+        "x": 0.29,
+        "y": 0.5,
+        "footX": 0.25,
+        "footY": 0.93,
+        "width": 0.07,
+        "beat": 0
+      },
+      {
+        "x": 0.56,
+        "y": 0.64,
+        "footX": 0.545,
+        "footY": 0.86,
+        "width": 0.045,
+        "beat": 0
+      },
+      {
+        "x": 0.635,
+        "y": 0.48,
+        "footX": 0.65,
+        "footY": 0.95,
+        "width": 0.06,
+        "beat": 1
+      }
+    ]
+  },
+  "visual": {
+    "fallbackColor": "#6b5638"
+  },
+  "preferredZone": {
+    "minX": 0.06,
+    "maxX": 0.94,
+    "minY": 0.85,
+    "maxY": 0.97
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "undulate",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.08,
+      "burst": 0.7
+    },
+    "turnRateRadPerSec": 0.7,
+    "restFraction": 0.8,
+    "depthRange": [
+      0.2,
+      0.85
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 1,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.9,
+    "habits": [
+      {
+        "type": "airBreathing",
+        "breathsPerHour": [
+          6,
+          12
+        ],
+        "style": "rise"
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.2,
+        "durationSec": [
+          40,
+          150
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "AMNH Amphibian Species of the World: Andrias japonicus",
+        "url": "https://amphibiansoftheworld.amnh.org/Amphibia/Caudata/Cryptobranchidae/Andrias/Andrias-japonicus"
+      },
+      {
+        "title": "環境省 第5次レッドデータブック：オオサンショウウオ（2026）",
+        "url": "https://www.env.go.jp/nature/kisho/5th-rl-2026/AM0054_RDB5th.pdf"
+      },
+      {
+        "title": "Palacios et al. (2026), Influence of husbandry and habitat design on Japanese giant salamanders",
+        "url": "https://link.springer.com/article/10.1007/s44338-026-00190-2"
+      },
+      {
+        "title": "Okada et al. (2015), Paternal care behaviors of Japanese giant salamander in natural populations",
+        "url": "https://link.springer.com/article/10.1007/s10164-014-0413-5"
+      },
+      {
+        "title": "環境省：オオサンショウウオ属の譲渡し等の規制について（2024）",
+        "url": "https://www.env.go.jp/nature/kisho/alert_andrias_00001.html"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 43,
+    "y": 346,
+    "width": 1452,
+    "height": 345
+  }
+}

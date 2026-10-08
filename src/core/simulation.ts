@@ -14,9 +14,10 @@ import type {
 } from "./types";
 import { getBodyPlan } from "./bodyPlans";
 import { stepDrifter } from "./driftMotion";
-import { findHabit } from "./habits";
+import { breathIntervalSec, findHabit } from "./habits";
 import { getStructurePoints } from "./plateFraming";
-import { FULL_SURFACE_FRAME, stepSurfaceWalker, worldPoint } from "./surfaceMotion";
+import { stepWalker } from "./breathTrip";
+import { FULL_SURFACE_FRAME, worldPoint } from "./surfaceMotion";
 import { chooseTerrainGoal, constrainTerrainDepth, constrainTerrainStep, findHomeShelter, insideTerrain, resolveTerrainGoal, routeTerrainTarget, terrainAvoidance } from "./terrainMotion";
 import { getWaterColumn, waterCeilingCm, waterY, type WaterColumn } from "./waterColumn";
 import { add, addMany, clamp, length, lerp, normalize, scale, subtract } from "./math";
@@ -78,7 +79,7 @@ export function stepSimulation(input: SimulationInput): SimulationOutput {
           tankmates: input.fish, catalog: input.species }, deltaSec);
       }
       if (getBodyPlan(species).walksOnSurfaces && input.scene?.terrain) {
-        return stepSurfaceWalker(fish, species, input.tank, input.scene,
+        return stepWalker(fish, species, input.tank, input.scene,
           frame, deltaSec, getActivityLevel(species, lighting), walkers);
       }
       // 生まれたばかりの魚（まだ一度も動いていない）は、水槽全体に対する高さを水の部分へ当て直す。
@@ -163,7 +164,7 @@ function stepFish(context: StepContext): FishInstance {
     : undefined;
   const isFree = (point: Vec2) => !terrain || !insideTerrain(point, fish.depth, terrain);
   let nextBreathSec = airBreathing
-    ? (fish.nextBreathSec ?? getBreathIntervalSec(airBreathing, random) * random()) - deltaSec
+    ? (fish.nextBreathSec ?? breathIntervalSec(airBreathing, random) * random()) - deltaSec
     : undefined;
 
   const startOpenWater = () => {
@@ -239,7 +240,7 @@ function stepFish(context: StepContext): FishInstance {
           mode = "pause";
           remaining = lerp(0.8, 1.6, random());
         }
-        nextBreathSec = airBreathing ? getBreathIntervalSec(airBreathing, random) : undefined;
+        nextBreathSec = airBreathing ? breathIntervalSec(airBreathing, random) : undefined;
       }
       break;
     case "descend":
@@ -881,14 +882,6 @@ function drawHabitDuration(
   const habit = findHabit(species, type);
   const range = habit && "durationSec" in habit ? habit.durationSec : [3, 8] as const;
   return lerp(range[0], range[1], random());
-}
-
-function getBreathIntervalSec(
-  habit: Extract<FishHabit, { type: "airBreathing" }>,
-  random: () => number,
-): number {
-  const perHour = lerp(habit.breathsPerHour[0], habit.breathsPerHour[1], random());
-  return 3600 / Math.max(perHour, 0.1);
 }
 
 function getSchoolRadiusCm(species: FishSpeciesDefinition): number {

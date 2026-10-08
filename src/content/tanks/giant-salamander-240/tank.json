@@ -1,0 +1,27 @@
+{
+  "id": "giant-salamander-240",
+  "order": 134,
+  "displayName": "オオサンショウウオ水槽",
+  "exhibitName": "Giant Salamander",
+  "category": "日本の山あいの川",
+  "description": "大きな丸石と砂利の川底に、岩の下の穴がある山あいの川を再現した240cm水槽。オオサンショウウオは明るい間は川底でじっと休み、暗くなると短い脚でゆっくり歩き回ります。ときどき水面まで泳ぎ上がって息を吸い、また川底へ戻ります。",
+  "widthCm": 240,
+  "heightCm": 69,
+  "depthCm": 90,
+  "maxTotalFish": 3,
+  "sceneIds": [
+    "giant-salamander-240"
+  ],
+  "species": [
+    {
+      "speciesId": "japanese-giant-salamander",
+      "maxCount": 3
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "japanese-giant-salamander",
+      "count": 2
+    }
+  ]
+}

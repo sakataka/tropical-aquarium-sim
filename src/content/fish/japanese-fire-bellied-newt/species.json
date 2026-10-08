@@ -1,0 +1,171 @@
+{
+  "id": "japanese-fire-bellied-newt",
+  "displayName": "アカハライモリ",
+  "realBodyLengthCm": 10,
+  "catalog": {
+    "scientificName": "Cynops pyrrhogaster",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "日本だけにすむイモリです。本州・四国・九州とその周りの島に分布します。八丈島の個体群は、人が持ち込んだものです。",
+    "temperament": "夜に活発になります。成熟すると水中にとどまる傾向があり、4〜7月と秋に求愛します。強い神経毒を持つとされます。",
+    "movement": "4本の脚で水底を歩き、強く左右に平たい尾で泳ぎます。本水槽では、ときどき水面へ泳ぎ上がって息を吸います。",
+    "habitat": "水田・池・小川・溝など、おもに流れのない淡水にすみます。変態してから成熟するまでは陸で暮らします。ミミズや昆虫、カエルの幼生などの小動物を食べます。本水槽では、稲の切り株が残る田んぼの水路の底を歩きます。",
+    "aliases": [
+      "ニホンイモリ",
+      "Japanese fire-bellied newt"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Caudata",
+      "orderJa": "有尾目",
+      "family": "Salamandridae",
+      "familyJa": "イモリ科"
+    },
+    "adultSizeCm": 10,
+    "sizeNote": "全長は雄で7〜11cm、雌で8〜14cm（頭胴長は雄で4〜6cm、雌で4.5〜7.5cm）とされます。画面では全長約10cmで描いています。",
+    "distribution": "日本固有。本州・四国・九州と周辺の島に分布します。地域によって系統が分かれ、別の種に分ける案もありますが、ここでは広い意味のアカハライモリとして扱います。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "note": "環境省レッドリスト（2026年）では準絶滅危惧（NT）で、減っていると評価されています。IUCN の世界の区分は確かめられていません。"
+    },
+    "highlights": [
+      "背から体の側面は黒く、腹は赤くなっています。腹の斑紋や尾の長さの割合は、地域によって大きく違います。",
+      "夜に活発になります。本水槽でも、暗くなると泥の底をよく歩き回ります。",
+      "ときどき水面へ泳ぎ上がって息を吸い、また底へ戻ります。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "walker",
+    "tailBeatHz": 2,
+    "bodyWaveStart": 0.58,
+    "waveCount": 0.85,
+    "tailSweepRad": 0.4,
+    "verticalFlex": 0.012,
+    "footAnchor": {
+      "x": 0.38,
+      "y": 0.9
+    },
+    "legs": [
+      {
+        "x": 0.17,
+        "y": 0.5,
+        "footX": 0.13,
+        "footY": 0.77,
+        "width": 0.045,
+        "beat": 1
+      },
+      {
+        "x": 0.22,
+        "y": 0.42,
+        "footX": 0.19,
+        "footY": 0.91,
+        "width": 0.06,
+        "beat": 0
+      },
+      {
+        "x": 0.47,
+        "y": 0.58,
+        "footX": 0.455,
+        "footY": 0.77,
+        "width": 0.04,
+        "beat": 0
+      },
+      {
+        "x": 0.54,
+        "y": 0.47,
+        "footX": 0.58,
+        "footY": 0.92,
+        "width": 0.065,
+        "beat": 1
+      }
+    ]
+  },
+  "visual": {
+    "fallbackColor": "#2b2420"
+  },
+  "preferredZone": {
+    "minX": 0.06,
+    "maxX": 0.94,
+    "minY": 0.85,
+    "maxY": 0.97
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "undulate",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.25,
+      "burst": 1.5
+    },
+    "turnRateRadPerSec": 1.5,
+    "restFraction": 0.55,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 1.2,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.6,
+    "habits": [
+      {
+        "type": "airBreathing",
+        "breathsPerHour": [
+          10,
+          20
+        ],
+        "style": "rise"
+      },
+      {
+        "type": "grazing",
+        "chancePerMin": 2,
+        "durationSec": [
+          3,
+          8
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.5,
+        "durationSec": [
+          15,
+          60
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "AMNH Amphibian Species of the World: Cynops pyrrhogaster",
+        "url": "https://amphibiansoftheworld.amnh.org/Amphibia/Caudata/Salamandridae/Pleurodelinae/Cynops/Cynops-pyrrhogaster"
+      },
+      {
+        "title": "富永・松井（2026）アカハライモリ、環境省 第5次レッドデータブック",
+        "url": "https://www.env.go.jp/nature/kisho/5th-rl-2026/AM0067_RDB5th.pdf"
+      },
+      {
+        "title": "国立環境研究所 侵入生物データベース：アカハライモリ",
+        "url": "https://www.nies.go.jp/biodiversity/invasive/DB/detail/40260.html"
+      },
+      {
+        "title": "京都市動物園：アカハライモリ",
+        "url": "https://zoo.city.kyoto.lg.jp/zoo/animals/c_pyrrhogaster"
+      },
+      {
+        "title": "鳥羽水族館（2024）今年も予報しています！",
+        "url": "https://aquarium.co.jp/diary/2024/08/67037"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 73,
+    "y": 359,
+    "width": 1424,
+    "height": 341
+  }
+}

@@ -4,7 +4,7 @@
   "displayName": "田んぼの水路水槽",
   "exhibitName": "Rice Paddy Ditch",
   "category": "日本の田んぼ",
-  "description": "稲の切り株が残る田んぼの水路を再現した60cm水槽。タモロコとモツゴのゆるい群れが中層を行き交い、ドジョウとホトケドジョウは泥の底を探りながら進みます。ドジョウはときどき水面へ息継ぎに上がり、ミナミヌマエビは泥や枯れわらの上を歩いてついばみます。",
+  "description": "稲の切り株が残る田んぼの水路を再現した60cm水槽。タモロコとモツゴのゆるい群れが中層を行き交い、ドジョウとホトケドジョウは泥の底を探りながら進みます。ドジョウはときどき水面へ息継ぎに上がり、ミナミヌマエビは泥や枯れわらの上を歩いてついばみます。アカハライモリは4本の脚で底を歩き、ときどき水面まで泳ぎ上がって息を吸います。",
   "widthCm": 60,
   "heightCm": 47,
   "depthCm": 30,
@@ -32,6 +32,10 @@
     {
       "speciesId": "minami-numa-shrimp",
       "maxCount": 10
+    },
+    {
+      "speciesId": "japanese-fire-bellied-newt",
+      "maxCount": 4
     }
   ],
   "defaultStock": [
@@ -54,6 +58,10 @@
     {
       "speciesId": "minami-numa-shrimp",
       "count": 6
+    },
+    {
+      "speciesId": "japanese-fire-bellied-newt",
+      "count": 2
     }
   ]
 }
