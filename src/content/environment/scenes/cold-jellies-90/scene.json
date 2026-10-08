@@ -1,0 +1,11 @@
+{
+  "id": "cold-jellies-90",
+  "order": 107,
+  "displayName": "冷たい海の開けた水",
+  "description": "水面から光の筋が差し込み、下へ行くほど濃い青に沈んでいく、冷たい海の開けた水。岩も水草もない、クラゲのための水景です。",
+  "defaultLighting": "cool",
+  "waterColor": "#1d4f78",
+  "framing": {
+    "plateBottom": 0.95
+  }
+}

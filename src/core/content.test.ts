@@ -84,6 +84,8 @@ describe("content wiring", () => {
         expect(entry.count, `${tank.id}/${entry.speciesId}`).toBeLessThanOrEqual(limit);
       }
       expect(tank.defaultStock.reduce((sum, entry) => sum + entry.count, 0)).toBeLessThanOrEqual(tank.maxTotalFish);
+      // 種ごとの上限を全部使えば、水槽の上限まで入れられる（耐久テストは上限まで埋めて泳がせる）。
+      expect(tank.species.reduce((sum, slot) => sum + slot.maxCount, 0), tank.id).toBeGreaterThanOrEqual(tank.maxTotalFish);
     }
   });
 
@@ -112,6 +114,8 @@ describe("content wiring", () => {
     for (const species of Object.values(fishCatalog)) {
       // 触角の範囲 headStart は、触角のある体のつくり（エビ）にだけ意味がある。
       if (!getBodyPlan(species).antennae) expect(species.swim?.headStart, species.id).toBeUndefined();
+      // 傘の範囲 bell は、漂う体のつくり（クラゲ）にだけ意味がある。
+      if (!getBodyPlan(species).drifts) expect(species.swim?.bell, species.id).toBeUndefined();
     }
   });
 

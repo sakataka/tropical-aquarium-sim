@@ -1,0 +1,103 @@
+{
+  "id": "pacific-sea-nettle",
+  "displayName": "パシフィックシーネットル",
+  "realBodyLengthCm": 36,
+  "catalog": {
+    "scientificName": "Chrysaora fuscescens",
+    "originRegionId": "northeast-pacific",
+    "originRegionName": "北東太平洋",
+    "origin": "北米の西岸、カナダのブリティッシュコロンビア州からメキシコにかけて見られます。モントレーベイ水族館は、アラスカからカリフォルニアまでなど、より広い範囲を挙げています。",
+    "temperament": "刺胞で動物プランクトンなどを捕らえ、口腕から口へ運びます。稚魚や動物プランクトン、ほかのクラゲを食べます。群れの大きさは確かめられていません。本水槽では、何匹かが間をあけて漂います。",
+    "movement": "光を感じて、昼と夜とで深さを変えるとされています。本水槽では、傘を縮めて水を押し出して進み、傘が開く間にゆっくり沈みます。進む向きへ傘を少し傾け、長い触手と口腕をなびかせます。ガラスを叩いても反応しません。",
+    "habitat": "沿岸の海を漂って暮らします。野外の水温や深さは、ここでは確かめられていません。米国動物園水族館協会（AZA）の飼育の手引きは、クラゲの時期の水温を10〜14℃、塩分を28〜35pptとしています。本水槽では、深い青から黒へ移る冷たい海の中層をイメージしています。",
+    "aliases": [
+      "Pacific sea nettle",
+      "West Coast sea nettle"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Semaeostomeae",
+      "orderJa": "旗口クラゲ目",
+      "family": "Pelagiidae",
+      "familyJa": "オキクラゲ科"
+    },
+    "adultSizeCm": 35,
+    "sizeNote": "傘の直径での値です。米国動物園水族館協会（AZA）の飼育の手引きによると、モントレーで採集された成体は傘の直径19〜35cmでした。最大の大きさは資料によって異なり、モントレーベイ水族館は約45cm、ナショナル水族館は30インチ（約76cm）としています。画面では水槽に合わせて、小さめの傘の直径約30cmの個体として表示しています。",
+    "distribution": "北米の西岸、ブリティッシュコロンビア州からメキシコにかけて見られ、モントレーベイ水族館はアラスカからカリフォルニアまでを挙げています。日本などでの記録も施設の資料にありますが、近縁種と混同された可能性があり、ここでは確かめられていません。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "世界の IUCN 区分は確かめられていません。"
+    },
+    "highlights": [
+      "金褐色の半球形の傘から、24本の触手と4本の口腕が垂れます。",
+      "傘は黄色から赤褐色で、長い触手や口腕は黄色から暗い赤色をしています。",
+      "触手の刺胞で捕らえた餌を、口腕を伝わせて口へ運びます。",
+      "本水槽では、傘を縮めては開く拍動をくり返し、長い口腕と触手をなびかせて漂います。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "jelly",
+    "bell": {
+      "top": 0,
+      "bottom": 0.27
+    },
+    "tailBeatHz": 0.6,
+    "tailSweepRad": 0.14,
+    "waveCount": 2
+  },
+  "visual": {
+    "fallbackColor": "#c88a3f"
+  },
+  "preferredZone": {
+    "minX": 0.12,
+    "maxX": 0.88,
+    "minY": 0.1,
+    "maxY": 0.8
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.08,
+      "burst": 0.2
+    },
+    "turnRateRadPerSec": 0.5,
+    "restFraction": 0.1,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0,
+    "habits": [],
+    "sources": [
+      {
+        "title": "AZA Jellyfish Care Manual: Chrysaora fuscescens",
+        "url": "https://assets.speakcdn.com/assets/2332/aza_jellyfish_care_manual.pdf"
+      },
+      {
+        "title": "Monterey Bay Aquarium: Sea nettle",
+        "url": "https://www.montereybayaquarium.org/animals-the-ocean/animals-a-to-z/sea-nettle"
+      },
+      {
+        "title": "National Aquarium: Pacific sea nettle",
+        "url": "https://aqua.org/explore/animals/pacific-sea-nettle"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 515,
+    "y": 49,
+    "width": 558,
+    "height": 925
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "id": "deep-jellies-90",
+  "order": 184,
+  "displayName": "深海のクラゲ水槽",
+  "exhibitName": "Deep-Sea Jellies",
+  "category": "外洋の深海",
+  "description": "光のほとんど届かない深海の水を再現した90cmの縦長水槽。暗赤色のアトラクラゲが、円盤のような傘を縮めては、暗い水の中をゆっくり漂います。",
+  "widthCm": 90,
+  "heightCm": 125,
+  "depthCm": 45,
+  "maxTotalFish": 4,
+  "sceneIds": [
+    "deep-jellies-90"
+  ],
+  "species": [
+    {
+      "speciesId": "atolla-jellyfish",
+      "maxCount": 4
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "atolla-jellyfish",
+      "count": 3
+    }
+  ]
+}

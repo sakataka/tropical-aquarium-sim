@@ -1,0 +1,11 @@
+{
+  "id": "deep-jellies-90",
+  "order": 183,
+  "displayName": "暗い深海の水",
+  "description": "上のほうにかすかな光が残るだけの、暗く深い外洋の水。細かな粒が漂う、深海のクラゲのための水景です。",
+  "defaultLighting": "cool",
+  "waterColor": "#0b1d33",
+  "framing": {
+    "plateBottom": 0.963
+  }
+}

@@ -131,6 +131,9 @@ const fishSpeciesDefinitionSchema = z.object({
     headStart: z.number().finite().min(0).max(0.8),
     mouthAnchor: z.object({ x: unit, y: unit }),
     footAnchor: z.object({ x: unit, y: unit }),
+    bell: z.object({ top: unit, bottom: unit }).refine((bell) => bell.top < bell.bottom, {
+      message: "bell top must be above its bottom",
+    }),
   }).partial().optional(),
   visual: z.object({ fallbackColor: z.string().regex(/^#[0-9a-fA-F]{6}$/) }),
   sourceBodyBounds: bodyBoundsSchema,

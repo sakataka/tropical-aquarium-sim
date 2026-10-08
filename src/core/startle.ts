@@ -24,6 +24,7 @@ export type StartleInput = {
  * - 住みかを持つ魚・物陰に隠れる魚: 近くの住みか・物陰へ飛び込み、しばらく出てこない。
  * - エビ: 尾を打って後ろ向きに跳ね退き、しばらく固まる。カニ: 向きを変えずに横へ走って離れ、しばらく固まる。
  * - そのほかの魚: 叩いた所から離れる向きへ瞬発で泳ぎ去る（C字の急旋回）。
+ * - クラゲ: 反応しない。
  */
 export function startleFish(input: StartleInput): FishInstance[] {
   const { tank, point } = input;
@@ -31,7 +32,7 @@ export function startleFish(input: StartleInput): FishInstance[] {
   const reach = Math.min(45, Math.max(18, tank.widthCm * 0.4));
   return input.fish.map((fish) => {
     const species = input.species[fish.speciesId];
-    if (!species) return fish;
+    if (!species || getBodyPlan(species).startle === "none") return fish;
     const dx = fish.position.x - point.x;
     const dy = fish.position.y - point.y;
     const distance = Math.hypot(dx, dy, fish.depth * tank.depthCm * 0.6);

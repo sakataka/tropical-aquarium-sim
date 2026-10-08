@@ -1,0 +1,8 @@
+{
+  "id": "sea-jellies-60",
+  "order": 125,
+  "displayName": "光の揺れる白い砂地",
+  "description": "明るい青の水の底に、光の網目が揺れる白い砂地が広がります。傘を下にして伏せるサカサクラゲのための砂底です。",
+  "defaultLighting": "natural",
+  "waterColor": "#2a6f80"
+}

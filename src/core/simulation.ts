@@ -13,6 +13,7 @@ import type {
   Vec2,
 } from "./types";
 import { getBodyPlan } from "./bodyPlans";
+import { stepDrifter } from "./driftMotion";
 import { findHabit } from "./habits";
 import { getStructurePoints } from "./plateFraming";
 import { FULL_SURFACE_FRAME, stepSurfaceWalker, worldPoint } from "./surfaceMotion";
@@ -70,6 +71,10 @@ export function stepSimulation(input: SimulationInput): SimulationOutput {
     fish: input.fish.map((fish) => {
       const species = input.species[fish.speciesId];
       if (!species) return fish;
+      if (getBodyPlan(species).drifts) {
+        return stepDrifter(fish, species, { tank: input.tank, scene: input.scene, frame, activity: getActivityLevel(species, lighting),
+          tankmates: input.fish, catalog: input.species }, deltaSec);
+      }
       if (getBodyPlan(species).walksOnSurfaces && input.scene?.terrain) {
         return stepSurfaceWalker(fish, species, input.tank, input.scene,
           frame, deltaSec, getActivityLevel(species, lighting), walkers);

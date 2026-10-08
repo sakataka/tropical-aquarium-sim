@@ -1,0 +1,127 @@
+{
+  "id": "moon-jellyfish",
+  "displayName": "ミズクラゲ",
+  "realBodyLengthCm": 22,
+  "catalog": {
+    "scientificName": "Aurelia coerulea",
+    "originRegionId": "west-pacific",
+    "originRegionName": "西太平洋",
+    "origin": "西太平洋の沿岸が起源と考えられてきました。2021年の分類の見直しでは、北西太平洋、オーストラリア、米国西岸、地中海、ヨーロッパの大西洋岸での分布が確かめられています。日本では、石川県沿岸や福井県の敦賀湾で成熟した雌がとれています。",
+    "temperament": "刺胞のある触手や口のまわりで小さな餌を捕らえ、口へ運びます。韓国の馬山湾では、カイアシ類などを食べていました。海流で湾の中に集まることはありますが、群れとしてまとまって動くとは確かめられていません。本水槽では、何匹かが間をあけて漂います。",
+    "movement": "傘の拍動と、海流に運ばれる漂流で水中を移動します。本水槽では、傘を縮めて水を押し出して進み、傘が開く間にゆっくり沈みます。進む向きへ傘を少し傾け、傘の縁の短い触手と口腕をなびかせます。ガラスを叩いても反応しません。",
+    "habitat": "沿岸の海や河口域にすみます。山形県の庄内浜では、大きな個体が春から秋に現れます。韓国の馬山湾で2013年5〜9月に行われた調査では、月ごとの平均水温は15.1〜24.7℃でした。本水槽では、深い青から黒へ移る冷たい海の中層をイメージしています。",
+    "aliases": [
+      "Moon jelly",
+      "Moon jellyfish",
+      "Aurelia sp. 1",
+      "Aurelia japonica",
+      "Aurelia aurita（日本のミズクラゲに以前使われた学名）"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Semaeostomeae",
+      "orderJa": "旗口クラゲ目",
+      "family": "Ulmaridae",
+      "familyJa": "ミズクラゲ科"
+    },
+    "adultSizeCm": 20,
+    "sizeNote": "傘の直径での値です。ふつうの成体の大きさは確かめられていません。2023年6月に福井県の敦賀湾でとれた、幼生を抱えた雌3匹は、傘の直径が15.5〜20cmでした。加茂水族館は、庄内浜の個体が最大で傘の直径40cmになるとしています。ここでは傘の直径約20cmとして表示しています。",
+    "distribution": "北西太平洋、オーストラリア、米国西岸、地中海、ヨーロッパの大西洋岸で確かめられています。もとの分布と、あとから広がった分布の境は分かっていません。日本では、石川県沿岸と福井県の敦賀湾で成熟した雌の記録があります。",
+    "water": {
+      "salinity": "marine",
+      "temperatureC": [
+        15.1,
+        24.7
+      ]
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "世界の IUCN 区分や日本の保全区分は確かめられていません。"
+    },
+    "highlights": [
+      "透明な傘を通して、桃色を帯びた馬蹄形の生殖腺が、ふつう4つ見えます。",
+      "傘の縁に短い触手と8つの感覚器が並び、中央の口から4本の口腕が垂れます。",
+      "以前は Aurelia aurita とされていましたが、今は別種とされています。形が個体ごとに変わるため、形だけで種を見分けるのは難しく、遺伝子の分析も使われます。",
+      "新江ノ島水族館で育てた個体を使った実験では、アカクラゲに食べられました。",
+      "本水槽では、傘を縮めては開く拍動をくり返しながら、ゆっくり漂います。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "jelly",
+    "bell": {
+      "top": 0,
+      "bottom": 0.57
+    },
+    "tailBeatHz": 0.8,
+    "tailSweepRad": 0.12,
+    "waveCount": 1
+  },
+  "visual": {
+    "fallbackColor": "#c9d5e4"
+  },
+  "preferredZone": {
+    "minX": 0.12,
+    "maxX": 0.88,
+    "minY": 0.1,
+    "maxY": 0.8
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.12,
+      "burst": 0.3
+    },
+    "turnRateRadPerSec": 0.5,
+    "restFraction": 0.1,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Lawley et al. (2021)：ミズクラゲ属 Aurelia の分類",
+        "url": "https://lawleyjw.com/files/pdf/research/Lawley2021-1.pdf"
+      },
+      {
+        "title": "加茂水族館：ミズクラゲ",
+        "url": "https://kamo-kurage.jp/shonaikurage/mizukurage/"
+      },
+      {
+        "title": "Aurelia coerulea のプラヌラとストロビレーションの酸性環境への適応 (2025)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12249036/"
+      },
+      {
+        "title": "Han, Chae & Lee (2026)：馬山湾の Aurelia coerulea の摂餌",
+        "url": "https://www.mdpi.com/2073-4441/18/13/1585"
+      },
+      {
+        "title": "Miura et al. (2026)：クラゲの行動と外傘の防御",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13356075/"
+      },
+      {
+        "title": "新江ノ島水族館：水を漂うダイヤモンド (2016)",
+        "url": "https://www.enosui.com/diaryentry.php?eid=03869"
+      },
+      {
+        "title": "Australian Museum: Moon Jelly",
+        "url": "https://australian.museum/learn/animals/jellyfish/moon-jelly/"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 190,
+    "y": 225,
+    "width": 1157,
+    "height": 575
+  }
+}

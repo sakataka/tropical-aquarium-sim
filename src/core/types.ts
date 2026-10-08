@@ -111,6 +111,8 @@ export type FishSwimStyle = {
   /** 切り出した画像内の口・脚の接地点。画像の見た目に合わせた比率。 */
   mouthAnchor: Vec2;
   footAnchor: Vec2;
+  /** クラゲの傘（拍動する部分）の範囲。画像の上端0〜下端1の比率。傘が下にあれば、傘を下にして底で暮らす。 */
+  bell: { top: number; bottom: number };
 };
 
 /** IUCN レッドリストの区分。NE は未評価。 */
@@ -211,6 +213,10 @@ export type FishInstance = {
   nextBreathSec?: number;
   /** ガラスを叩かれて警戒している残り秒数。群れが締まり、物陰への戻りが速くなる。保存対象外。 */
   alarmSec?: number;
+  /** クラゲの拍動の位相（0〜1）。推力と傘の縮みを描画と合わせる。保存対象外。 */
+  pulsePhase?: number;
+  /** クラゲの傘の傾き (rad)。進む向きへ少し傾ける。保存対象外。 */
+  tilt?: number;
   /** 描画用の姿勢。底を探るときは頭を下げる。 */
   posture?: "level" | "noseDown";
   seed: number;

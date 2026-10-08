@@ -2,6 +2,7 @@ import { MeshPlane, type Texture } from "pixi.js";
 import type { FishInstance, FishSpeciesDefinition } from "../core";
 import { blendAngle, sampleMeshPoint, stepTurnSpring } from "./fishMotion";
 import { BODY_PLANS } from "../core/bodyPlans";
+import { DEFAULT_BELL } from "../core/driftMotion";
 import { clamp } from "../core/math";
 import { BODY_PLAN_RENDERERS, VERTICES_X, type BodyPlanRenderer, type MotionState, type SwimStyle } from "./bodyPlans";
 import { getMotionState, MIN_TURN_INTERVAL_SEC } from "./motionState";
@@ -21,6 +22,7 @@ const DEFAULT_SWIM: SwimStyle = {
   headStart: 0,
   mouthAnchor: { x: .025, y: .62 },
   footAnchor: { x: .42, y: .95 },
+  bell: DEFAULT_BELL,
 };
 
 type BehaviorMode = FishInstance["behaviorMode"];
@@ -56,23 +58,30 @@ export class FishBody {
   private readonly renderer: BodyPlanRenderer;
   /** 横歩きの生き物は、進む向きではなくシミュレーションの向き（facing）に従って体を向ける。 */
   private readonly sideways: boolean;
+  /** 漂う生き物（クラゲ）は向きを変えず、傘の中心を軸に傾く。 */
+  private readonly drifts: boolean;
 
   constructor(texture: Texture, species: FishSpeciesDefinition, fish: FishInstance) {
     this.swim = { ...DEFAULT_SWIM, ...species.swim };
     this.renderer = BODY_PLAN_RENDERERS[this.swim.bodyPlan];
     this.verticesY = this.renderer.verticesY;
     this.sideways = BODY_PLANS[this.swim.bodyPlan].sideways;
+    this.drifts = BODY_PLANS[this.swim.bodyPlan].drifts;
     this.mesh = new MeshPlane({ texture, verticesX: VERTICES_X, verticesY: this.verticesY });
     this.mesh.autoResize = false;
     this.basePositions = new Float32Array(this.mesh.geometry.positions);
     this.width = texture.width;
     this.height = texture.height;
-    this.pivotX = texture.width * 0.42;
+    this.pivotX = texture.width * (this.drifts ? 0.5 : 0.42);
     this.mesh.pivot.set(this.pivotX, texture.height / 2);
     this.motion = getMotionState(fish);
   }
 
   update(fish: FishInstance, deltaSec: number, bottomY: number, surfaceAngle?: number) {
+    if (this.drifts) {
+      this.updateDrifter(fish, deltaSec, bottomY);
+      return;
+    }
     this.updateYaw(fish, deltaSec);
     const speed = Math.hypot(fish.velocity.x, fish.velocity.y);
     const turning = Math.abs(Math.sin(this.motion.yaw));
@@ -130,6 +139,27 @@ export class FishBody {
     const weight = fish.surfaceMotion ? 1 : fish.contact?.weight ?? 0;
     this.mesh.pivot.set(this.pivotX + (point.x - this.pivotX) * weight,
       this.height / 2 + (point.y - this.height / 2) * weight);
+  }
+
+  // 画像は反転せず、傘の中心を軸にシミュレーションの傾き（fish.tilt）だけ回す。
+  private updateDrifter(fish: FishInstance, deltaSec: number, bottomY: number) {
+    this.motion.yaw = 0;
+    this.motion.targetYaw = 0;
+    this.motion.yawVelocity = 0;
+    this.mesh.rotation = fish.tilt ?? 0;
+    this.renderer.deform({
+      positions: this.mesh.geometry.positions,
+      base: this.basePositions,
+      width: this.width,
+      height: this.height,
+      pivotX: this.pivotX,
+      verticesY: this.verticesY,
+      swim: this.swim,
+      motion: this.motion,
+    }, { fish, speed: Math.hypot(fish.velocity.x, fish.velocity.y), deltaSec, bottomY });
+    this.mesh.geometry.getBuffer("aPosition").update();
+    const bell = this.swim.bell;
+    this.mesh.pivot.set(this.pivotX, this.height * (bell.top + bell.bottom) / 2);
   }
 
   destroy() {

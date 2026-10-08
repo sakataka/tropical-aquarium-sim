@@ -18,6 +18,7 @@ export type SwimStyle = {
   headStart: number;
   mouthAnchor: Vec2;
   footAnchor: Vec2;
+  bell: { top: number; bottom: number };
 };
 
 // 尾の振りや向きの状態は魚ごとに1つだけ持ち、部屋と水槽画面で共有する。

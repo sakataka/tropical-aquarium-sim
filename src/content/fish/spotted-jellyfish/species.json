@@ -1,0 +1,109 @@
+{
+  "id": "spotted-jellyfish",
+  "displayName": "タコクラゲ",
+  "realBodyLengthCm": 12,
+  "catalog": {
+    "scientificName": "Mastigias papua",
+    "originRegionId": "west-pacific",
+    "originRegionName": "西太平洋",
+    "origin": "狭い意味での本種は、インドネシアの西パプア、パラオ、マーシャル諸島で記録されています。日本産のタコクラゲの多くは別の系統（M. albipunctata）とされ、似た種が多いため、見た目だけでなく遺伝子も使って見分けます。",
+    "temperament": "体の中に共生藻をすまわせ、共生藻と、口腕にある小さな口を使って栄養をとります。飼育下では、自分で底から離れて照明の近くに集まります。本水槽では、何匹かがそれぞれ水中を漂います。",
+    "movement": "野外では、昼は水面から数mの浅いところにいて、夜は数十mの深さまで下りると記載されています。本水槽では、傘を縮めて水を押し出して進み、傘を開く間にゆっくり沈みます。進む向きへ傘を少し傾け、口腕をなびかせます。ガラスを叩いても反応しません。",
+    "habitat": "沿岸の海や海水湖で浮かんで暮らし、ときに外洋でも見られます。アメリカ動物園水族館協会（AZA）の飼育の手引きでは、クラゲの時期の水温を24〜26℃、塩分を32〜34pptとしています。本水槽では、明るい青の水と白い砂底をイメージしています。",
+    "aliases": [
+      "Spotted jellyfish",
+      "Spotted lagoon jellyfish",
+      "Golden jellyfish",
+      "Papuan jellyfish"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Rhizostomeae",
+      "orderJa": "根口クラゲ目",
+      "family": "Mastigiidae",
+      "familyJa": "タコクラゲ科"
+    },
+    "adultSizeCm": 12,
+    "sizeNote": "傘の直径での値です。成熟した雌の基準標本（ネオタイプ）1個体の傘の直径12.2cmを目安にしています。ふつうの大きさや最大の値は、ここでは確かめられていません。",
+    "distribution": "インドネシアの西パプアにあるワイゲオ島が基準の産地で、パラオとマーシャル諸島でも記録があります。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "世界の IUCN 区分は確かめられていません。"
+    },
+    "highlights": [
+      "黄褐色の傘に、大小の白い斑点が散らばります。",
+      "体の中に共生藻をすまわせ、飼育下では照明の近くに集まります。",
+      "口腕の先に棍棒のような付属物があり、海水湖の個体では短いことがあります。",
+      "傘を縮めて水を押し出して進み、傘を開く間にゆっくり沈みます。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "jelly",
+    "bell": {
+      "top": 0,
+      "bottom": 0.52
+    },
+    "tailBeatHz": 0.9,
+    "tailSweepRad": 0.13,
+    "waveCount": 1
+  },
+  "visual": {
+    "fallbackColor": "#b39b79"
+  },
+  "preferredZone": {
+    "minX": 0.12,
+    "maxX": 0.88,
+    "minY": 0.1,
+    "maxY": 0.75
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.12,
+      "burst": 0.3
+    },
+    "turnRateRadPerSec": 0.5,
+    "restFraction": 0.1,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Souza & Dawson (2018), Mastigias の再記載（Zootaxa）",
+        "url": "https://www.biotaxa.org/Zootaxa/article/view/zootaxa.4457.4.2"
+      },
+      {
+        "title": "Mastigias papua taxonomic treatment（Zenodo）",
+        "url": "https://zenodo.org/records/5956951"
+      },
+      {
+        "title": "AZA Jellyfish Care Manual",
+        "url": "https://assets.speakcdn.com/assets/2332/aza_jellyfish_care_manual.pdf"
+      },
+      {
+        "title": "Tan et al. (2026), 日本産根口クラゲの分子研究（Frontiers in Marine Science）",
+        "url": "https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2025.1679299/full"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 409,
+    "y": 95,
+    "width": 720,
+    "height": 825
+  }
+}

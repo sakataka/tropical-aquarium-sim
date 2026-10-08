@@ -1,0 +1,35 @@
+{
+  "id": "sea-jellies-60",
+  "order": 126,
+  "displayName": "海のクラゲ水槽",
+  "exhibitName": "Sea Jellies",
+  "category": "暖かい海の砂地",
+  "description": "明るい青の水と白い砂底の60cmの縦長水槽。タコクラゲは白い斑点のある傘を縮めて水中を漂い、サカサクラゲは傘を下にして砂の上に伏せたまま、ゆっくり拍動を続けます。",
+  "widthCm": 60,
+  "heightCm": 90,
+  "depthCm": 45,
+  "maxTotalFish": 10,
+  "sceneIds": [
+    "sea-jellies-60"
+  ],
+  "species": [
+    {
+      "speciesId": "spotted-jellyfish",
+      "maxCount": 5
+    },
+    {
+      "speciesId": "upside-down-jellyfish",
+      "maxCount": 5
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "spotted-jellyfish",
+      "count": 3
+    },
+    {
+      "speciesId": "upside-down-jellyfish",
+      "count": 3
+    }
+  ]
+}

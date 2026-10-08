@@ -1,0 +1,123 @@
+{
+  "id": "lobate-comb-jelly",
+  "displayName": "カブトクラゲ",
+  "realBodyLengthCm": 4.9,
+  "catalog": {
+    "scientificName": "Bolinopsis mikado",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "日本の沿岸に分布します。高知県の宿毛湾では1年を通して見られ、山形県の庄内浜では夏から秋に多く、ときに大量に現れます。海外にも同じ種がいるかは、ここでは確かめられていません。",
+    "temperament": "クラゲと呼ばれますが、刺胞動物ではなく有櫛動物の仲間で、毒針を持たないとされます。群れの大きさや昼夜の活動は分かっていません。本水槽では、何匹かがそれぞれ開けた水の中を漂います。",
+    "movement": "体に並ぶ8列の櫛板が順に波打ち、その動きで進みます。傘を拍動させて泳ぐクラゲとは、進むしくみが違います。本水槽では、拍動せずに一定の速さでゆっくり進み、体全体がゆるやかに揺れます。ガラスを叩いても反応しません。",
+    "habitat": "沿岸の海で水中を漂って暮らします。体が壊れやすく、傷のない展示個体を確保するのが難しいとされます。本水槽では、同じ日本の沿岸にすむミズクラゲやアカクラゲと並べて、冷たい海の開けた水に漂わせています。",
+    "aliases": [
+      "Lobate comb jelly",
+      "Lobate ctenophore"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Lobata",
+      "orderJa": "カブトクラゲ目",
+      "family": "Bolinopsidae",
+      "familyJa": "カブトクラゲ科"
+    },
+    "adultSizeCm": 6.5,
+    "sizeNote": "体の全長（縦の長さ）での値です。飼育下で卵をとった成熟個体の平均全長6.5cmを目安にしています。東京湾で採集され産卵した個体は全長2.2〜7.3cmで、黒潮生物研究所は5〜10cmと紹介しています。",
+    "distribution": "日本の沿岸で記録があり、高知県の宿毛湾や山形県の庄内浜で見られます。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "IUCN の区分は確かめられていません。"
+    },
+    "highlights": [
+      "体に並ぶ8列の櫛板が順に波打ち、拍動せずに進みます。",
+      "櫛板の虹色は、外からの光が規則正しく並んだ繊毛で干渉して生じる構造色で、自ら光っているのではありません。",
+      "体の下側に広がる袖のような突起が、兜のように見えます。",
+      "全長約1.5cmで触手を失い、成体に似た形になります。加茂水族館やすみだ水族館では繁殖も行われています。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "jelly",
+    "bell": {
+      "top": 0,
+      "bottom": 1
+    },
+    "tailBeatHz": 0.5,
+    "tailSweepRad": 0,
+    "waveCount": 1
+  },
+  "visual": {
+    "fallbackColor": "#818d9e"
+  },
+  "preferredZone": {
+    "minX": 0.12,
+    "maxX": 0.88,
+    "minY": 0.1,
+    "maxY": 0.8
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.1,
+      "burst": 0.25
+    },
+    "turnRateRadPerSec": 0.5,
+    "restFraction": 0.1,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0,
+    "habits": [],
+    "sources": [
+      {
+        "title": "黒潮生物研究所：カブトクラゲ",
+        "url": "https://kuroshio.or.jp/creature/%E3%82%AB%E3%83%96%E3%83%88%E3%82%AF%E3%83%A9%E3%82%B2/"
+      },
+      {
+        "title": "加茂水族館クラゲ図鑑：カブトクラゲ",
+        "url": "https://kamo-kurage.jp/shonaikurage/kabutokurage/"
+      },
+      {
+        "title": "石川 (2011)：カブトクラゲの繁殖（第55回水族館技術者研究会）",
+        "url": "https://www.marinepia.or.jp/study/proceeding/entry-2894.html"
+      },
+      {
+        "title": "Kasuya, Ishimaru & Murano (2002), Laboratory study of growth of Bolinopsis mikado",
+        "url": "https://plankton.jp/PBE/issue/vol49_2/vol49_2_081.pdf"
+      },
+      {
+        "title": "Kasuya et al. (2008), Reproductive characteristics of Bolinopsis mikado",
+        "url": "https://www.jstage.jst.go.jp/article/pbr/3/2/3_2_72/_article/-char/en"
+      },
+      {
+        "title": "Ikeda et al. (2022), An effective method to mass culture a lobate ctenophore (Bolinopsis mikado)",
+        "url": "https://www.jstage.jst.go.jp/article/pbr/17/4/17_P170401/_article"
+      },
+      {
+        "title": "筑波大学・基礎生物学研究所 (2019)：虹色に輝く「クシ」の謎",
+        "url": "https://www.tsukuba.ac.jp/journal/images/pdf/191011inaba2.pdf"
+      },
+      {
+        "title": "すみだ水族館：カブトクラゲ",
+        "url": "https://www.sumida-aquarium.com/about/animals/kabutokurage/"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 457,
+    "y": 69,
+    "width": 623,
+    "height": 826
+  }
+}

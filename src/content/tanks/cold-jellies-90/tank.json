@@ -1,0 +1,51 @@
+{
+  "id": "cold-jellies-90",
+  "order": 108,
+  "displayName": "冷たい海のクラゲ水槽",
+  "exhibitName": "Cold-Water Jellies",
+  "category": "冷たい海の外洋",
+  "description": "上から淡い光が差し、下へ行くほど暗くなる、冷たい海の開けた水を再現した90cmの縦長水槽。ミズクラゲ、アカクラゲ、パシフィックシーネットルが、傘を縮めては水を押し出して浮かび、開く間にゆっくり沈みながら、触手をなびかせて漂います。透明なカブトクラゲは拍動せず、体の櫛板を波打たせて静かに進みます。",
+  "widthCm": 90,
+  "heightCm": 122,
+  "depthCm": 45,
+  "maxTotalFish": 14,
+  "sceneIds": [
+    "cold-jellies-90"
+  ],
+  "species": [
+    {
+      "speciesId": "moon-jellyfish",
+      "maxCount": 6
+    },
+    {
+      "speciesId": "japanese-sea-nettle",
+      "maxCount": 3
+    },
+    {
+      "speciesId": "pacific-sea-nettle",
+      "maxCount": 3
+    },
+    {
+      "speciesId": "lobate-comb-jelly",
+      "maxCount": 5
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "moon-jellyfish",
+      "count": 4
+    },
+    {
+      "speciesId": "japanese-sea-nettle",
+      "count": 2
+    },
+    {
+      "speciesId": "pacific-sea-nettle",
+      "count": 2
+    },
+    {
+      "speciesId": "lobate-comb-jelly",
+      "count": 3
+    }
+  ]
+}

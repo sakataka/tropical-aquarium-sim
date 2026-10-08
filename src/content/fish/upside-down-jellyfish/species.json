@@ -1,0 +1,116 @@
+{
+  "id": "upside-down-jellyfish",
+  "displayName": "サカサクラゲ",
+  "realBodyLengthCm": 11.4,
+  "catalog": {
+    "scientificName": "Cassiopea ornata",
+    "originRegionId": "west-pacific",
+    "originRegionName": "西太平洋",
+    "origin": "遺伝子で確かめられた記録は、パラオの海水湖や礁湖とグアムにあります。日本では鹿児島以南にすむと紹介されています。同じ仲間は形の変わり方が大きく、見た目だけで種を見分けるのは難しいとされます。",
+    "temperament": "傘を底に置いて口腕を上へ向け、口腕にすむ共生藻に光を当てます。共生藻の作る栄養を利用し、動物プランクトンも捕らえます。本水槽では、何匹かがそれぞれ砂底に伏せています。",
+    "movement": "泳ぎ続けることはなく、逆さの姿勢のまま傘を拍動させます。本水槽では、砂底に伏せたまま傘をゆっくり拍動させ、ときどき少しだけ場所を移します。ガラスを叩いても反応しません。",
+    "habitat": "浅い沿岸の海底や、海水湖、礁湖にすみます。グアムでは、濁った礁湖と澄んだ水路の両方で見られます。本水槽では、明るい青の水と白い砂底をイメージしています。",
+    "aliases": [
+      "Upside-down jellyfish",
+      "Cassiopea"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Rhizostomeae",
+      "orderJa": "根口クラゲ目",
+      "family": "Cassiopeidae",
+      "familyJa": "サカサクラゲ科"
+    },
+    "adultSizeCm": 10,
+    "sizeNote": "傘の直径での値です。本種の傘の大きさは、ここで使った資料では確かめられておらず、ここでの値は展示用の目安です。グアムの2つの集団は、大きさや色が違っても DNA では同じ種でした。",
+    "distribution": "パラオの海水湖や礁湖とグアムで、遺伝子で確かめられた記録があります。日本では鹿児島以南にすむと紹介されています。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "世界の IUCN 区分は確かめられていません。"
+    },
+    "highlights": [
+      "傘を下にして底に伏せ、上へ向けた口腕にすむ共生藻に光を当てます。",
+      "泳ぎ続けることはなく、逆さの姿勢のまま傘を拍動させます。",
+      "共生藻の作る栄養を利用しながら、動物プランクトンも捕らえます。",
+      "グアムの2つの集団は、大きさや色、付属物の形が違っても、DNA では同じ種でした。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "jelly",
+    "bell": {
+      "top": 0.69,
+      "bottom": 1
+    },
+    "tailBeatHz": 0.7,
+    "tailSweepRad": 0.1,
+    "waveCount": 2
+  },
+  "visual": {
+    "fallbackColor": "#a09369"
+  },
+  "preferredZone": {
+    "minX": 0.12,
+    "maxX": 0.88,
+    "minY": 0.86,
+    "maxY": 0.96
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.03,
+      "burst": 0.075
+    },
+    "turnRateRadPerSec": 0.5,
+    "restFraction": 0.9,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1,
+        "durationSec": [
+          60,
+          240
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "鳥羽水族館：サカサクラゲ",
+        "url": "https://aquarium.co.jp/picturebook/cassiopea-ornata.html"
+      },
+      {
+        "title": "Arai et al. (2017), パラオの Cassiopea の系統と形態",
+        "url": "https://www.jstage.jst.go.jp/article/biogeo/19/0/19_133/_pdf/-char/ja"
+      },
+      {
+        "title": "Anthony et al. (2022), Phenotypic plasticity in Cassiopea ornata",
+        "url": "https://link.springer.com/article/10.1007/s00435-022-00558-4"
+      },
+      {
+        "title": "University of Guam: Graduate students publish paper on upside-down jellyfish",
+        "url": "https://guamepscor.uog.edu/graduate-students-publish-paper-on-upside-down-jellyfish/"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 129,
+    "y": 111,
+    "width": 1298,
+    "height": 773
+  }
+}

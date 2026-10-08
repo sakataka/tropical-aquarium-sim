@@ -17,10 +17,15 @@ export type BodyPlanTraits = {
   /** 横歩きする。進む向きへ体を向けず、向きを保ったまま左右へ歩き、休むときにときどき向きを変える。 */
   sideways: boolean;
   /**
-   * ガラスを叩かれたとき。dart = 瞬発で泳ぎ去る、tailFlip = 腹を丸めて後ろへ跳ねる、
-   * scuttle = 向きを変えずに横へ素早く走って離れ、はさみを振り上げる。
+   * 泳がずに漂う（クラゲ）。傘の拍動で傘の向きへ進み、開く間にゆっくり沈む。
+   * 向きを変えず（画像を反転しない）、群れ・住みか・地形の面を使わない。動きは src/core/driftMotion.ts。
    */
-  startle: "dart" | "tailFlip" | "scuttle";
+  drifts: boolean;
+  /**
+   * ガラスを叩かれたとき。dart = 瞬発で泳ぎ去る、tailFlip = 腹を丸めて後ろへ跳ねる、
+   * scuttle = 向きを変えずに横へ素早く走って離れ、はさみを振り上げる。none = 反応しない（クラゲ）。
+   */
+  startle: "dart" | "tailFlip" | "scuttle" | "none";
 };
 
 export const BODY_PLANS = {
@@ -30,6 +35,7 @@ export const BODY_PLANS = {
     tailKick: true,
     antennae: false,
     sideways: false,
+    drifts: false,
     startle: "dart",
   },
   // エビ。脚で歩き、触角を揺らし、驚くと尾で後ろへ跳ねる。
@@ -39,6 +45,7 @@ export const BODY_PLANS = {
     tailKick: false,
     antennae: true,
     sideways: false,
+    drifts: false,
     startle: "tailFlip",
   },
   // カニ。斜め前から見た画像で、脚を左右へ広げて横へ歩く。ついばむときは、はさみを交互に口へ運ぶ。
@@ -48,7 +55,18 @@ export const BODY_PLANS = {
     tailKick: false,
     antennae: false,
     sideways: true,
+    drifts: false,
     startle: "scuttle",
+  },
+  // クラゲ。傘を上にした真横の画像（サカサクラゲは傘が下）。傘を縮める拍で進み、触手をなびかせて漂う。
+  jelly: {
+    walksOnSurfaces: false,
+    bottomDweller: false,
+    tailKick: false,
+    antennae: false,
+    sideways: false,
+    drifts: true,
+    startle: "none",
   },
 } as const satisfies Record<string, BodyPlanTraits>;
 

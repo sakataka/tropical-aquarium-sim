@@ -1,0 +1,111 @@
+{
+  "id": "atolla-jellyfish",
+  "displayName": "アトラクラゲ",
+  "realBodyLengthCm": 12.5,
+  "catalog": {
+    "scientificName": "Atolla wyvillei",
+    "originRegionId": "worldwide",
+    "originRegionName": "世界の海",
+    "origin": "世界の深海に広く分布し、2026年の総説では、北極海と地中海からは記録がないと整理されています。日本では、2002年春に日本海溝周辺で行われた無人潜水機（ROV）の調査で確認されました。",
+    "temperament": "長く伸びる1本の触手で、ゼラチン質の動物を捕らえると考えられていますが、はっきりとは分かっていません。群れの大きさや昼夜の活動も分かっていません。本水槽では、何匹かがそれぞれ暗い水の中を漂います。",
+    "movement": "本水槽では、傘を縮めて水を押し出して進み、傘を開く間にゆっくり沈みます。進む向きへ傘を少し傾け、縁の短い触手と長い1本の触手をなびかせます。ガラスを叩いても反応しません。",
+    "habitat": "深海の中層の水中で暮らし、水深600mから3000mを超える深さまで知られます。日本海溝周辺では、500mより深いところで見られました。研究のために短い間だけ飼育された例はありますが、長く展示された例は確かめられていません。本水槽では、上のほうにかすかな光が残るだけの暗い深海の水をイメージしています。",
+    "aliases": [
+      "Atolla jellyfish",
+      "ムラサキカムリクラゲ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Coronatae",
+      "orderJa": "冠クラゲ目",
+      "family": "Atollidae",
+      "familyJa": "ムラサキカムリクラゲ科"
+    },
+    "adultSizeCm": 10,
+    "sizeNote": "傘の直径での値です。ふつうの成体の大きさは確かめられておらず、ここでの値は展示用の目安です。発光の研究で調べた17個体の傘の直径は2〜17.4cmでした。",
+    "distribution": "世界の深海に広く分布し、北極海と地中海からは記録がないとされます。日本では日本海溝周辺で確認され、アメリカのモントレー湾でも採集されています。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "rarelyDisplayed",
+    "conservation": {
+      "note": "世界の IUCN 区分は確かめられていません。"
+    },
+    "highlights": [
+      "赤い傘の縁から、ほかの触手よりずっと長い1本の触手が伸びます。",
+      "傘には深い放射状の溝が刻まれ、冠のように見えます。",
+      "刺激を受けると、傘の外側を光の波が伝わることが記録されています。",
+      "傘を縮めて水を押し出して進み、傘を開く間にゆっくり沈みます。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "jelly",
+    "bell": {
+      "top": 0,
+      "bottom": 0.45
+    },
+    "tailBeatHz": 0.6,
+    "tailSweepRad": 0.12,
+    "waveCount": 1.5
+  },
+  "visual": {
+    "fallbackColor": "#ad534d"
+  },
+  "preferredZone": {
+    "minX": 0.12,
+    "maxX": 0.88,
+    "minY": 0.1,
+    "maxY": 0.8
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.1,
+      "burst": 0.25
+    },
+    "turnRateRadPerSec": 0.5,
+    "restFraction": 0.1,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Bock (2026), Portrayal of the deep sea: Haeckel's Atolla wyvillei, the challenger expedition, and the boundaries of science and illustration",
+        "url": "https://link.springer.com/article/10.1007/s00114-026-02154-8"
+      },
+      {
+        "title": "Lindsay et al. (2004), The scyphomedusan fauna of the Japan Trench",
+        "url": "https://www.researchgate.net/publication/225983632_The_scyphomedusan_fauna_of_the_Japan_Trench_Preliminary_results_from_a_remotely-operated_vehicle"
+      },
+      {
+        "title": "Herring & Widder (2004), Bioluminescence of deep-sea coronate medusae",
+        "url": "https://www.researchgate.net/publication/225563695_Bioluminescence_of_deep-sea_coronate_medusae_Cnidaria_Scyphozoa"
+      },
+      {
+        "title": "MBARI (2022), Scientists discover a new species of deep-sea crown jelly in Monterey Bay",
+        "url": "https://www.mbari.org/news/scientists-discover-a-new-species-of-deep-sea-crown-jelly-in-monterey-bay/"
+      },
+      {
+        "title": "Walker (2011), MBARI report on the hypertrophied tentacle of Atolla",
+        "url": "https://www.mbari.org/wp-content/uploads/2015/10/Walker.pdf"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 234,
+    "y": 186,
+    "width": 1062,
+    "height": 705
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "id": "japanese-sea-nettle",
+  "displayName": "アカクラゲ",
+  "realBodyLengthCm": 29,
+  "catalog": {
+    "scientificName": "Chrysaora pacifica",
+    "originRegionId": "northwest-pacific",
+    "originRegionName": "北西太平洋",
+    "origin": "北海道より南の日本近海に分布し、韓国の統営沖などでも確認されています。分布の全体は、ここでは確かめられていません。",
+    "temperament": "飼育下では、触手を使って餌をとる様子が観察されています。野外で何を食べているかや、群れの大きさ、昼夜の活動は確かめられていません。本水槽では、何匹かが間をあけて漂います。",
+    "movement": "触手を長く伸ばして水中を泳ぎます。本水槽では、傘を縮めて水を押し出して進み、傘が開く間にゆっくり沈みます。進む向きへ傘を少し傾け、長い触手と口腕をなびかせます。ガラスを叩いても反応しません。",
+    "habitat": "海を漂って暮らし、房総半島では春から夏に見られます。海底に付いて暮らすポリプの時期には、相模湾の海底で貝殻の内側や石のくぼみに付いているのが見つかっています。本水槽では、深い青から黒へ移る冷たい海の中層をイメージしています。",
+    "aliases": [
+      "Japanese sea nettle",
+      "ハクションクラゲ",
+      "Chrysaora melanaster（誤って当てられた学名）"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Semaeostomeae",
+      "orderJa": "旗口クラゲ目",
+      "family": "Pelagiidae",
+      "familyJa": "オキクラゲ科"
+    },
+    "adultSizeCm": 20,
+    "sizeNote": "傘の直径での値です。ふつうの成体の大きさは確かめられていません。名古屋港水族館によると、野外では傘の直径が20cmを超え、触手が2mを超える個体もいます。同館で育てた個体は、傘の直径約10cm、触手約70cmでした。ここでは傘の直径約20cmとして表示しています。",
+    "distribution": "北海道より南の日本近海に分布し、韓国の統営沖などでも確認されています。分布の全体は、ここでは確かめられていません。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "世界の IUCN 区分や日本の保全区分は確かめられていません。"
+    },
+    "highlights": [
+      "白っぽい傘に、褐色の縞が放射状に入ります。名古屋港水族館は縞を16本としていますが、韓国の標本では32本と記録されています。",
+      "長い触手の刺胞の毒は、強い痛みを起こします。乾いても刺胞が刺激を与えるとされ、ハクションクラゲとも呼ばれます。",
+      "北方の Chrysaora melanaster と混同されてきましたが、遺伝子の分析でも別種とされています。",
+      "鴨川シーワールドでは、触手が絡まないよう、長いスポイトで1匹ずつ餌を与えていました。",
+      "本水槽では、傘を縮めては開く拍動をくり返し、長い触手と口腕をなびかせて漂います。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "jelly",
+    "bell": {
+      "top": 0,
+      "bottom": 0.25
+    },
+    "tailBeatHz": 0.7,
+    "tailSweepRad": 0.14,
+    "waveCount": 2
+  },
+  "visual": {
+    "fallbackColor": "#c98f6b"
+  },
+  "preferredZone": {
+    "minX": 0.12,
+    "maxX": 0.88,
+    "minY": 0.1,
+    "maxY": 0.8
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.1,
+      "burst": 0.25
+    },
+    "turnRateRadPerSec": 0.5,
+    "restFraction": 0.1,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0,
+    "habits": [],
+    "sources": [
+      {
+        "title": "名古屋港水族館：アカクラゲ",
+        "url": "https://nagoyaaqua.jp/friends/south/13851/"
+      },
+      {
+        "title": "鴨川シーワールド：アカクラゲ（Vol.70）",
+        "url": "https://www.kamogawa-seaworld.jp/animal/movie/vol_70/"
+      },
+      {
+        "title": "のとじま水族館：アカクラゲの展示",
+        "url": "https://www.notoaqua.jp/diary/320"
+      },
+      {
+        "title": "Lee et al.：Chrysaora pacifica の形態と分子分類",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6517748/"
+      },
+      {
+        "title": "相模湾におけるアカクラゲの野外ポリプの初記録",
+        "url": "https://www.jstage.jst.go.jp/article/pbr/6/3/6_3_175/_article"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 455,
+    "y": 34,
+    "width": 667,
+    "height": 938
+  }
+}
