@@ -1,0 +1,131 @@
+{
+  "id": "tinfoil-barb",
+  "displayName": "ティンフォイルバルブ",
+  "realBodyLengthCm": 25,
+  "catalog": {
+    "scientificName": "Barbonymus schwanefeldii",
+    "originRegionId": "southeast-asia",
+    "originRegionName": "東南アジア",
+    "origin": "カンボジア、ラオス、タイ、ベトナムのメコン川水系のほか、マレー半島、スマトラ島、ジャワ島、ボルネオ島南部に分布します。シンガポールの集団は、一度姿を消したあとに持ち込まれた魚が野生化したものとする資料もあります。",
+    "temperament": "群れをつくるとされます。植物質を多く食べる雑食性ですが、小魚を食べることもあるとされます。",
+    "movement": "群れで泳ぎ、飼育には広く泳げる場所が必要とされます。背が高く強く平たい体は、大きな銀色の鱗で覆われています。",
+    "habitat": "大きな川に暮らします。氾濫原で餌をとって産卵し、乾季には本流の深みへ避難する魚のひとつに挙げられています。",
+    "aliases": [
+      "Tinfoil barb",
+      "レッドフィンバルブ",
+      "Barbonymus schwanenfeldii",
+      "Barbonymus schwanefeldi",
+      "Barbus schwanenfeldii",
+      "Barbus schwanefeldii",
+      "Puntius schwanenfeldii",
+      "Puntius schwanefeldii",
+      "Barbodes schwanenfeldii",
+      "Barbodes schwanefeldii",
+      "Systomus schwanefeldi",
+      "Barbus schwanefeldi var. rubra"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cypriniformes",
+      "orderJa": "コイ目",
+      "family": "Cyprinidae",
+      "familyJa": "コイ科"
+    },
+    "adultSizeCm": 34,
+    "sizeNote": "標準体長。メコン川の図鑑では約34cmまでとされ、飼育の解説では35.5cmとされます。インドネシアで飼育された成熟した親魚は、雌が全長20〜25cm、雄が全長20〜23cmでした。ふつうの成魚の大きさは分かっていません。",
+    "distribution": "メコン川下流のカンボジア、ラオス、タイ、ベトナムと、マレー半島、シンガポール、スマトラ島、ジャワ島、ボルネオ島南部（カリマンタン）に分布します。イベリア半島、イタリア、香港には移入されています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "分類のカタログでは IUCN の低懸念（LC、2020年）と示されていますが、評価の本文は確認できていません。メコン川では、流れの変化で氾濫原と本流のつながりが失われ、産卵や子育ての場所が減ることが心配されています。"
+    },
+    "highlights": [
+      "銀色の体に、赤橙色の腹びれ、しりびれ、尾びれが映えます。背びれの先は黒くなります。",
+      "尾びれの上下それぞれに、縁に沿って黒い帯が1本ずつ走り、その外側に細い淡色の縁が残ります。",
+      "同じ属のシルバーバーブとは別の種です。よく似たバルボニムス・アルトゥスには、尾びれの黒い帯がありません。",
+      "群れで泳ぎながら、植物質を多く含む餌をついばみます。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 1.9,
+    "mouthAnchor": {
+      "x": 0.008,
+      "y": 0.56
+    }
+  },
+  "visual": {
+    "fallbackColor": "#b7947d"
+  },
+  "sourceBodyBounds": {
+    "x": 103,
+    "y": 98,
+    "width": 1366,
+    "height": 748
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.3,
+    "maxY": 0.85
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "steady",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.4,
+      "burst": 1.8
+    },
+    "turnRateRadPerSec": 1.9,
+    "restFraction": 0.08,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.4,
+      "cohesion": 0.6,
+      "polarization": 0.45
+    },
+    "structureAffinity": 0.2,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 0.8,
+        "durationSec": [
+          3,
+          7
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes — Barbonymus schwanefeldii",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=1892"
+      },
+      {
+        "title": "Field Guide to Fishes of the Cambodian Freshwater Bodies (2019), p.51",
+        "url": "https://www.nagaofoundation.or.jp/publication/documents/FG2019_cambodia_full.pdf"
+      },
+      {
+        "title": "MRC 2025: Fishes Photo Book for Fish Abundance and Diversity Monitoring in Lower Mekong Basin, p.43",
+        "url": "https://www.mrcmekong.org/publications/fishes-photo-book-for-fish-abundance-and-diversity-monitoring-in-lower-mekong-basin/"
+      },
+      {
+        "title": "MRC 2023: Technical Guidance for the Protection and Restoration of Key Fish Habitats of Regional Importance, Annex 5",
+        "url": "https://www.mrcmekong.org/wp-content/uploads/2024/09/TG-Protection-and-Restoration-of-Key-Fish-Habitats-BH4.pdf"
+      },
+      {
+        "title": "Kusmini et al. 2023: Reproductive performance of the domesticated tinfoil barb, Indonesian Aquaculture Journal 18(2):97–104",
+        "url": "https://doi.org/10.15578/iaj.18.2.2023.97-104"
+      },
+      {
+        "title": "Seriously Fish — Barbonymus schwanefeldii",
+        "url": "https://www.seriouslyfish.com/species/barbonymus-schwanefeldii/"
+      }
+    ]
+  }
+}

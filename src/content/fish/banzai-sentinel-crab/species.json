@@ -1,0 +1,160 @@
+{
+  "id": "banzai-sentinel-crab",
+  "displayName": "ヒメヤマトオサガニ",
+  "realBodyLengthCm": 5.5,
+  "catalog": {
+    "scientificName": "Macrophthalmus banzai",
+    "originRegionId": "east-asia",
+    "originRegionName": "東アジア",
+    "origin": "日本、朝鮮半島、中国沿岸、台湾にすむ小型のオサガニの仲間です。有明海でも記録があります。",
+    "temperament": "巣穴のまわりでは他の個体を追い払う一方、同じ種の個体の甲や脚についたものをついばむ「掃除」も見られます。本水槽では、干潟の泥の上を歩き回ります。",
+    "movement": "干上がった干潟の泥の上を歩いて、泥の表面の有機物を食べ、危険を感じると巣穴へ逃げ込みます。雄は両方のはさみを上げて外側へ大きく開き、体も持ち上げるウェービングをします。はさみを主に上下に振るヤマトオサガニとは、動きが違います。",
+    "habitat": "潮間帯の軟らかい泥の干潟にすみ、干上がった泥の表面と水際、泥の中の巣穴を使います。福岡県の解説では、外海に比較的近く、暖流の影響を受ける軟泥の干潟に多いとされます。本水槽では、有明海の干潟の泥の岸と浅い水を再現しています。",
+    "aliases": [
+      "Banzai sentinel crab",
+      "Macrophthalmus (Mareotis) banzai",
+      "Macrophthalmus japonicus Form L",
+      "萬歲大眼蟹"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Decapoda",
+      "orderJa": "十脚目",
+      "family": "Macrophthalmidae",
+      "familyJa": "オサガニ科"
+    },
+    "adultSizeCm": 2.3,
+    "sizeNote": "甲幅での値です。代表的な成体の大きさは確かめられておらず、神奈川県の江奈湾でとれた成体の雄の甲幅23.4mm（甲長15.0mm、重さ4.6g）を目安に、甲幅約2.3cmとして表示しています。画面では脚を広げた幅（約5.5cm）で描いています。1989年の原記載で選ばれた雄の標本（ホロタイプ）は甲幅21.6mmで、愛媛県の解説では甲幅25mmほどとされます。",
+    "distribution": "日本、朝鮮半島、中国沿岸、台湾に分布します。有明海では1985年にとれた標本があり、熊本県の緑川流域にある住吉海岸でも記録されています。2016年に神奈川県の江奈湾でとれた雄は、分布の北東の端を広げる記録とされましたが、人が放した可能性も否定されていません。",
+    "water": {
+      "salinity": "brackish"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "世界の IUCN 区分は確かめられていません。環境省の海洋生物レッドリスト2017では準絶滅危惧（NT）です。福岡県と兵庫県の解説では、埋め立て、浚渫、底質の変化などによる軟泥の干潟の消失や劣化が脅威に挙げられています。"
+    },
+    "highlights": [
+      "甲は低く横長の長方形に近く、原記載の雄では幅が長さの約1.6倍です。",
+      "雄の第3歩脚の腹側には毛の束があり、よく似たヤマトオサガニと見分ける手がかりになります。",
+      "雄は両方のはさみを外側へ大きく開き、体を持ち上げるウェービングをします。",
+      "同じ種の個体の甲や脚についたものを食べる、個体どうしの掃除行動が観察されています。",
+      "かつてはヤマトオサガニの一型（Form L）とされ、1989年に別種として記載されました。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "crab",
+    "tailBeatHz": 0.6,
+    "bodyWaveStart": 0.85,
+    "tailSweepRad": 0,
+    "verticalFlex": 0,
+    "footAnchor": {
+      "x": 0.5,
+      "y": 0.96
+    }
+  },
+  "visual": {
+    "fallbackColor": "#917a5f"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.86,
+    "maxY": 0.94
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.1,
+      "burst": 0.6
+    },
+    "turnRateRadPerSec": 1.6,
+    "restFraction": 0.5,
+    "depthRange": [
+      0.15,
+      0.8
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0.1,
+      "polarization": 0
+    },
+    "structureAffinity": 0.5,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 4,
+        "durationSec": [
+          8,
+          20
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1,
+        "durationSec": [
+          10,
+          25
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "JAMSTEC BISMaL: Macrophthalmus banzai",
+        "url": "https://www.godac.jamstec.go.jp/bismal/j/view/9046970"
+      },
+      {
+        "title": "Wada & Sakai (1989), A new species of Macrophthalmus closely related to M. japonicus",
+        "url": "https://decapoda.nhm.org/pdfs/27990/27990.pdf"
+      },
+      {
+        "title": "伊藤・島津 (2018)：ヒメヤマトオサガニの神奈川県からの産出記録",
+        "url": "https://nh.kanagawa-museum.jp/files/data/pdf/nhr/39/nhr39_all.pdf"
+      },
+      {
+        "title": "Fujishima & Wada (2013), Allocleaning behavior by the sentinel crab Macrophthalmus banzai",
+        "url": "https://link.springer.com/article/10.1007/s10164-013-0360-6"
+      },
+      {
+        "title": "OWS 江奈湾干潟生きもの図鑑：ヒメヤマトオサガニ",
+        "url": "https://www.ows-npo.org/zukan/ena/180/sp-e0290.html"
+      },
+      {
+        "title": "漫湖水鳥・湿地センター：ヒメヤマトオサガニ",
+        "url": "https://www.manko-mizudori.net/macrophthalmus_banzai/"
+      },
+      {
+        "title": "愛媛県レッドデータブック2014：ヒメヤマトオサガニ",
+        "url": "https://www.pref.ehime.jp/reddatabook2014/detail/08_07_003670_5.html"
+      },
+      {
+        "title": "福岡県レッドデータブック2014：ヒメヤマトオサガニ",
+        "url": "https://biodiversity.pref.fukuoka.lg.jp/rdb/rdbs/detail/201400828"
+      },
+      {
+        "title": "兵庫県レッドデータブック：ヒメヤマトオサガニ",
+        "url": "https://www.kankyo.pref.hyogo.lg.jp/application/files/5116/2304/3421/57_himeyamatoosagani.pdf"
+      },
+      {
+        "title": "国立台湾博物館：Macrophthalmus banzai の標本（有明海、1985年）",
+        "url": "https://collections.culture.tw/ntm_collectionsweb/Collection?GID=MNMRMZMCMA"
+      },
+      {
+        "title": "内野ほか：有明海・八代海の生物棲息環境の評価・保全・再生",
+        "url": "https://kumadai.repo.nii.ac.jp/record/17520/files/SSP2005_237-259.pdf"
+      },
+      {
+        "title": "環境省：海洋生物レッドリスト2017 甲殻類",
+        "url": "https://www.env.go.jp/content/000037629.pdf"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 65,
+    "y": 178,
+    "width": 1425,
+    "height": 680
+  }
+}

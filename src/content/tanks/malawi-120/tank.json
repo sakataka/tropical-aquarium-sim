@@ -4,11 +4,11 @@
   "displayName": "マラウイ湖の岩場水槽",
   "exhibitName": "Lake Malawi Rockshore",
   "category": "アフリカの湖",
-  "description": "青く澄んだ水、白い砂と大きな岩組み。黄色、青紫、赤褐色、青い縞模様、濃紺の縞模様の5種が、岩陰から開けた中上層まで泳ぎ、デマソニは小さな群れで岩肌をついばみます。色も動きも賑やかな120cmのマラウイ湖岸風景です。",
+  "description": "青く澄んだ水、白い砂と大きな岩組み。黄色、青紫、赤褐色、青い縞模様、濃紺の縞模様、白地に黒い横帯、淡い青の7種が、岩陰から開けた中上層まで泳ぎ、デマソニは小さな群れで岩肌をついばみます。色も動きも賑やかな120cmのマラウイ湖岸風景です。",
   "widthCm": 120,
   "heightCm": 69,
   "depthCm": 45,
-  "maxTotalFish": 30,
+  "maxTotalFish": 40,
   "sceneIds": [
     "malawi-rocks",
     "malawi-crevices"
@@ -33,6 +33,14 @@
     {
       "speciesId": "demasoni",
       "maxCount": 6
+    },
+    {
+      "speciesId": "chisumulu-cichlid",
+      "maxCount": 6
+    },
+    {
+      "speciesId": "powder-blue-cichlid",
+      "maxCount": 6
     }
   ],
   "defaultStock": [
@@ -55,6 +63,14 @@
     {
       "speciesId": "demasoni",
       "count": 4
+    },
+    {
+      "speciesId": "chisumulu-cichlid",
+      "count": 2
+    },
+    {
+      "speciesId": "powder-blue-cichlid",
+      "count": 2
     }
   ]
 }

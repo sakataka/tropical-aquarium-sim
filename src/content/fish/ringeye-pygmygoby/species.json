@@ -1,0 +1,142 @@
+{
+  "id": "ringeye-pygmygoby",
+  "displayName": "メガネベニハゼ",
+  "realBodyLengthCm": 2.5,
+  "catalog": {
+    "scientificName": "Trimma benjamini",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "インド洋東部から西太平洋のサンゴ礁に広く分布します。新種として記載されたときの模式産地は、フィリピンのシキホール島です。",
+    "temperament": "同じ種どうしが近くに集まっていることはありますが、そろって泳ぐ群れは作りません。調査では、同じ場所にすむ近縁のベニハゼ類と追いかけ合うことは少なかったと報告されています。",
+    "movement": "サンゴ岩の面にとまり、短く飛び出して水中の小さな動物を捕らえては、たいてい同じ足場に戻ります。驚くと岩の隙間へ逃げ込みます。",
+    "habitat": "サンゴ礁の斜面や落ち込みにある、生き物に覆われたサンゴ岩の面と小さな隙間。主に水深4〜35mで見られます。",
+    "aliases": [
+      "Ringeye pygmygoby",
+      "Ring-eye pygmygoby",
+      "Ring-eye pygmy-goby",
+      "Redface dwarf goby",
+      "Redface dwarfgoby",
+      "Redface goby",
+      "Red-face dwarf goby"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Gobiiformes",
+      "orderJa": "ハゼ目",
+      "family": "Gobiidae",
+      "familyJa": "ハゼ科"
+    },
+    "adultSizeCm": 2.1,
+    "sizeNote": "標準体長。雄の模式標本は2.12cm、図示された雌の標本は2.05cmでした。パプアニューギニアのキンベ湾で採集された129尾は、平均1.72cm、最大2.4cmでした。最大3cmとする資料もあります（FishBase は標準体長、Fishes of Australia は全長）。典型的な成魚の大きさは確かめられていません。",
+    "distribution": "インド洋東部と西太平洋。インドネシアのバリ島やカリマンタン島、ベトナムから、東はマーシャル諸島、トンガ、サモア、北はフィリピン、南は西オーストラリア、グレートバリアリーフ、ロード・ハウ島まで記録があります。日本からも記録されています。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "rarelyDisplayed",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2015,
+      "note": "評価年は FishBase の記載（2015年3月11日）で、公表は2016年です。IUCN 公式サイトは直接取得できませんでした。"
+    },
+    "highlights": [
+      "赤から赤橙色の小さな体で、目のまわりを細い淡い色の輪が囲みます。頬には短い線が2本あります。",
+      "第1背びれの2本目のとげが最も長く、ふつうは細い糸のように伸びます。",
+      "主に水中の小さな動物を捕らえて食べます。胃からは、貝類の幼生やカイアシ類が見つかっています。",
+      "キンベ湾の調査では、耳石から推定した年齢は最高でも130日ほどでした。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 3.4
+  },
+  "visual": {
+    "fallbackColor": "#c37959"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.62,
+    "maxY": 0.94
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.3,
+      "burst": 1.8
+    },
+    "turnRateRadPerSec": 2.9,
+    "restFraction": 0.6,
+    "depthRange": [
+      0.2,
+      0.8
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 4,
+      "cohesion": 0.05,
+      "polarization": 0
+    },
+    "structureAffinity": 0.85,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 2.5,
+        "durationSec": [
+          8,
+          30
+        ]
+      },
+      {
+        "type": "homeShelter",
+        "kind": "cave",
+        "rangeBodyLengths": 5,
+        "visitChancePerMin": 0.6,
+        "visitDurationSec": [
+          5,
+          15
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Fishes of Australia: Ringeye Pygmygoby, Trimma benjamini",
+        "url": "https://fishesofaustralia.net.au/Home/species/481"
+      },
+      {
+        "title": "Winterbottom 2019: An illustrated key to the described valid species of Trimma",
+        "url": "https://oceansciencefoundation.org/josf/josf34a.pdf"
+      },
+      {
+        "title": "FishBase: Trimma benjamini",
+        "url": "https://www.fishbase.se/summary/trimma-benjamini"
+      },
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Trimma benjamini",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=63561"
+      },
+      {
+        "title": "BISMaL: メガネベニハゼ Trimma benjamini",
+        "url": "https://www.godac.jamstec.go.jp/bismal/j/view/9017082"
+      },
+      {
+        "title": "Goldsworthy et al. 2026: Habitat use and partitioning of three cryptobenthic coral reef fishes of the genus Trimma",
+        "url": "https://link.springer.com/article/10.1007/s00338-026-02933-9"
+      },
+      {
+        "title": "Goldsworthy et al. 2026: Trophic dynamics of three small and short-lived coral reef fishes of the genus Trimma",
+        "url": "https://link.springer.com/article/10.1007/s00338-026-02926-8"
+      },
+      {
+        "title": "Goldsworthy et al. 2022: Life-history constraints, short adult life span and reproductive strategies in coral reef gobies of the genus Trimma",
+        "url": "https://researchonline.jcu.edu.au/75709/1/75709.pdf"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 90,
+    "y": 200,
+    "width": 1378,
+    "height": 557
+  }
+}

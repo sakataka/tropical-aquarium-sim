@@ -4,7 +4,7 @@
   "displayName": "北の海のカニ水槽",
   "exhibitName": "Northern Crabs",
   "category": "北の海の砂泥底",
-  "description": "岩の散らばる北の海の砂泥底を再現した180cm水槽。タラバガニ、ズワイガニ、ハナサキガニ、ケガニが、脚を広げて砂の上を横歩きし、はさみで底の餌をつまんで口へ運びます。",
+  "description": "岩の散らばる北の海の砂泥底を再現した180cm水槽。タラバガニ、ズワイガニ、オオズワイガニ、ハナサキガニ、ケガニが、脚を広げて砂の上を横歩きし、はさみで底の餌をつまんで口へ運びます。",
   "widthCm": 180,
   "heightCm": 57,
   "depthCm": 90,
@@ -28,6 +28,10 @@
     {
       "speciesId": "hanasaki-crab",
       "maxCount": 2
+    },
+    {
+      "speciesId": "tanner-crab",
+      "maxCount": 2
     }
   ],
   "defaultStock": [
@@ -45,6 +49,10 @@
     },
     {
       "speciesId": "hanasaki-crab",
+      "count": 1
+    },
+    {
+      "speciesId": "tanner-crab",
       "count": 1
     }
   ]

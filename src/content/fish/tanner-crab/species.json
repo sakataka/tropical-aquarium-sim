@@ -1,0 +1,148 @@
+{
+  "id": "tanner-crab",
+  "displayName": "オオズワイガニ",
+  "realBodyLengthCm": 42,
+  "catalog": {
+    "scientificName": "Chionoecetes bairdi",
+    "originRegionId": "north-pacific",
+    "originRegionName": "北太平洋",
+    "origin": "ベーリング海、アリューシャン列島、アラスカ半島から北海道にかけての北太平洋と、アラスカからオレゴン州までの北米の太平洋岸に分布します。",
+    "temperament": "カナダ水産海洋省（DFO）によると、雌は昼は底に潜り、夜に活動します。群れの大きさや餌のとり方は、ここでは確かめられていません。本水槽では、1匹ずつ底を歩き回ります。",
+    "movement": "細長い歩脚で砂泥底を歩きます。生まれて間もない稚ガニは、捕食者がいると泥に潜る量を増やすことが実験で確かめられています。本水槽では、泥砂底を横へ歩き、ときどき止まって、はさみで餌をつまんで口へ運びます。",
+    "habitat": "砂泥底にすみ、北太平洋の分布域では水深16〜474mから知られています。アラスカのグレーシャー湾で2002年の夏に行われた調査では、若い雌が水温4.3〜8.3℃の場所でとれました。本水槽では、冷たい海の泥砂底と岩をイメージしています。",
+    "aliases": [
+      "Tanner crab",
+      "Southern Tanner crab",
+      "Bairdi crab",
+      "Bairdi Tanner crab"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Decapoda",
+      "orderJa": "十脚目",
+      "family": "Oregoniidae",
+      "familyJa": "ケセンガニ科"
+    },
+    "adultSizeCm": 14,
+    "sizeNote": "甲幅での値です。代表的な成体の大きさは確かめられていません。ワシントン州魚類野生生物局（WDFW）によると、甲幅は最大で約20cm（7.8インチ）になり、ワシントン州の水域では多くが約13.7cm（5.4インチ）以下です。カナダ水産海洋省（DFO）は、ブリティッシュコロンビア州での最大を甲幅約14cmとしています。ここでは甲幅約14cmとして表示し、画面では脚を広げた幅（約42cm）で描いています。",
+    "distribution": "ベーリング海、アリューシャン列島、アラスカ半島、北海道の北太平洋と、アラスカからオレゴン州までの北米の太平洋岸に分布し、ワシントン州ではピュージェット湾にも記録があります。南東部ベーリング海では、ズワイガニやタラバガニと分布が一部重なります。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "世界の IUCN 区分は確かめられていません。アメリカ海洋大気庁（NOAA）の東部ベーリング海の気候変動に対する脆弱性評価では、本種の脆弱性は「中程度（Moderate）」とされています。"
+    },
+    "highlights": [
+      "甲は長さより幅が広く、額の先にある2本の短いとげは鋭く、やや上を向きます。",
+      "目はふつう赤みを帯び、はさみの指は細く曲がって、先が白くなります。",
+      "細長い歩脚4対と、はさみ1対を持ちます。",
+      "近縁のズワイガニとは別種ですが、東部ベーリング海の分布が重なる海域では、両種の交雑が報告されています。",
+      "アクアマリンふくしまは、2025年6月に本種を初めて展示しました。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "crab",
+    "tailBeatHz": 0.6,
+    "bodyWaveStart": 0.85,
+    "tailSweepRad": 0,
+    "verticalFlex": 0,
+    "footAnchor": {
+      "x": 0.5,
+      "y": 0.96
+    }
+  },
+  "visual": {
+    "fallbackColor": "#b17951"
+  },
+  "preferredZone": {
+    "minX": 0.12,
+    "maxX": 0.88,
+    "minY": 0.86,
+    "maxY": 0.94
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.04,
+      "burst": 0.3
+    },
+    "turnRateRadPerSec": 0.8,
+    "restFraction": 0.6,
+    "depthRange": [
+      0.5,
+      0.95
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.25,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 2.5,
+        "durationSec": [
+          8,
+          25
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.5,
+        "durationSec": [
+          10,
+          30
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "WoRMS: Chionoecetes bairdi Rathbun, 1924",
+        "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=368558"
+      },
+      {
+        "title": "JAMSTEC BISMaL: Chionoecetes bairdi",
+        "url": "https://www.godac.jamstec.go.jp/bismal/j/view/9040291"
+      },
+      {
+        "title": "アクアマリンふくしま：レア生物展示（2025年6月26日）",
+        "url": "https://www.aquamarine.or.jp/new-animals/20250607fu-oi/"
+      },
+      {
+        "title": "Washington Department of Fish & Wildlife: Tanner crab",
+        "url": "https://wdfw.wa.gov/species-habitats/species/chionoecetes-bairdi"
+      },
+      {
+        "title": "Fisheries and Oceans Canada: Tanner Crab",
+        "url": "https://www.dfo-mpo.gc.ca/species-especes/profiles-profils/tanner-crab-crabe-neiges-pac-eng.html"
+      },
+      {
+        "title": "NOAA AFSC: Crab Identification Training (2021)",
+        "url": "https://apps-afsc.fisheries.noaa.gov/documents/Crab_ID_Training_3wk_2021_508.pdf"
+      },
+      {
+        "title": "Ottmar, Ryer & Hurst (2022), Comparative predator-mediated habitat use in early juvenile Tanner, snow and red king crab",
+        "url": "https://repository.library.noaa.gov/view/noaa/45058"
+      },
+      {
+        "title": "NOAA: Eastern Bering Sea Climate Vulnerability Assessment, Tanner crab",
+        "url": "https://www.st.nmfs.noaa.gov/data-and-tools/Bering_Sea_CVA/pdf/sis-tanner-crab.pdf"
+      },
+      {
+        "title": "Spatial distribution of juvenile and adult female Tanner crabs in a glacial fjord ecosystem (2007)",
+        "url": "https://academic.oup.com/icesjms/article/64/9/1772/787151"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 26,
+    "y": 106,
+    "width": 1477,
+    "height": 839
+  }
+}

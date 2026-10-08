@@ -1,0 +1,140 @@
+{
+  "id": "chisumulu-cichlid",
+  "displayName": "ラビドクロミス・キスムラエ",
+  "realBodyLengthCm": 8,
+  "catalog": {
+    "scientificName": "Labidochromis chisumulae",
+    "originRegionId": "east-africa",
+    "originRegionName": "東アフリカ",
+    "origin": "マラウイ湖のチズムル島の岩場にだけすむとされる小型のシクリッド。雄は白から淡い青の体に、濃い青黒の縦縞が入ります。",
+    "temperament": "群れを作らず、1尾ずつ行動するとされます。決まった縄張りは持たないものの、餌場から同じ種を追い払います。飼育下では、雄が雌を追い回すことがあります。",
+    "movement": "岩のそばを短く泳いで餌場を移り、岩の表面や隙間から小さな無脊椎動物をついばみます。",
+    "habitat": "堆積物の積もった岩場。水深3〜20mの記録があります。",
+    "aliases": [
+      "Chisumulu cichlid",
+      "Chizumulu cichlid",
+      "ラビドクロミス・チスムラエ",
+      "キスムラエ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cichliformes",
+      "orderJa": "シクリッド目",
+      "family": "Cichlidae",
+      "familyJa": "シクリッド科"
+    },
+    "adultSizeCm": 6.6,
+    "sizeNote": "FishBase の最大は標準体長6.6cmです。雄の模式標本は標準体長5.57cmでした。産地の解説では、雄は全長8cm、雌は6cmほどまでとされます。典型的な大きさは確かめられていません。",
+    "distribution": "マラウイ湖のチズムル島（Chizumulu Island）に限られるとされます。模式産地も同じ島の沖です。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2018,
+      "note": "IUCN の2019年の報告書で LC を確認しました。評価年は FishBase の記載（2018年6月22日）です。"
+    },
+    "highlights": [
+      "雄は白から淡い青の体に、濃い青黒の縦縞が入ります。縞の濃さや広がりは個体によって違います。",
+      "背びれの付け根側に暗い帯があり、縁は淡い色です。目から口にかけて暗い帯が出る雄もいます。",
+      "岩の表面の付着物や隙間から、小さな無脊椎動物をついばむとされます。",
+      "雌は白っぽい体色です。飼育下では、雌が卵と稚魚を口の中で育てる様子が観察されています。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 1.8,
+    "bodyWaveStart": 0.5,
+    "tailSweepRad": 0.32,
+    "verticalFlex": 0.015,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.53
+    }
+  },
+  "visual": {
+    "fallbackColor": "#7f8ca5"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.42,
+    "maxY": 0.78
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.32,
+      "burst": 1.6
+    },
+    "turnRateRadPerSec": 1.9,
+    "restFraction": 0.26,
+    "depthRange": [
+      0.18,
+      0.72
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.3,
+      "cohesion": 0,
+      "polarization": 0.15
+    },
+    "structureAffinity": 0.75,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 1.2,
+        "durationSec": [
+          2,
+          5
+        ]
+      },
+      {
+        "type": "follow",
+        "chancePerMin": 0.5,
+        "durationSec": [
+          2,
+          4
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "FishBase: Labidochromis chisumulae",
+        "url": "https://www.fishbase.se/summary/Labidochromis_chisumulae.html"
+      },
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Labidochromis chisumulae",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=8578"
+      },
+      {
+        "title": "malawi.si: Labidochromis chisumulae, Chizumulu Island",
+        "url": "https://www.malawi.si/malawibylocations/Chizumulu%20Island/slides/Labidochromis%20chisumulae%20%27Chizumulu%20Island%27.html"
+      },
+      {
+        "title": "M. K. Oliver: Labidochromis chisumulae",
+        "url": "https://malawicichlids.com/mw09001a.htm"
+      },
+      {
+        "title": "Greater Chicago Cichlid Association: Labidochromis chisumulae",
+        "url": "https://www.gcca.net/art-pics/cichlid-profiles-list/malawi-cichlids/68-labidochromis-chisumulae.html"
+      },
+      {
+        "title": "Nordiska Ciklidsällskapet: Labidochromis chisumulae",
+        "url": "https://www.ciklid.org/artregister/art.php?ID=1590"
+      },
+      {
+        "title": "IUCN 2019: Conservation priorities for freshwater biodiversity in the Lake Malawi/Nyasa/Niassa catchment",
+        "url": "https://portals.iucn.org/library/sites/library/files/documents/RL-2019-001-En.pdf"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 83,
+    "y": 232,
+    "width": 1404,
+    "height": 622
+  }
+}

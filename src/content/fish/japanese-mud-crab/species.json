@@ -1,0 +1,140 @@
+{
+  "id": "japanese-mud-crab",
+  "displayName": "ヤマトオサガニ",
+  "realBodyLengthCm": 7,
+  "catalog": {
+    "scientificName": "Macrophthalmus (Mareotis) japonicus",
+    "originRegionId": "east-asia",
+    "originRegionName": "東アジア",
+    "origin": "日本、韓国、中国の干潟にすむオサガニの仲間です。日本では青森県より南の干潟で見られます。",
+    "temperament": "干潟の泥に巣穴を掘ってすみ、巣穴を掘ったり直したりして泥をかき混ぜます。多摩川河口の干潟では、1平方メートルあたり40匹あまりが暮らしていました。本水槽では、干潟の泥の上を歩き回ります。",
+    "movement": "干上がった干潟の泥の上を歩脚で歩き、泥の表面を口元へ運んで、微小な藻類などを含む泥から餌をとります。雄は、両方のはさみを曲げたまま甲の前の少し上まで持ち上げ、脚を伸ばして体を持ち上げてから下ろす動き（ウェービング）をくり返します。1回の動きは平均0.84秒ほどです。",
+    "habitat": "河口の潮間帯の泥干潟にすみ、干潮で干上がる泥の表面と巣穴を行き来します。多摩川河口の調査地では、潮間帯の上部の泥にシルトや粘土が半分以上含まれ、1回の干潮で6〜8時間ほど干上がっていました。本水槽では、有明海の干潟の泥の岸と浅い水を再現しています。",
+    "aliases": [
+      "Japanese mud crab",
+      "Japanese sentinel crab",
+      "Macrophthalmus japonicus",
+      "Ocypode (Macrophthalmus) japonica"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Decapoda",
+      "orderJa": "十脚目",
+      "family": "Macrophthalmidae",
+      "familyJa": "オサガニ科"
+    },
+    "adultSizeCm": 3.2,
+    "sizeNote": "甲幅での値です。代表的な成体の大きさは確かめられておらず、1989年の再記載で選ばれた雄の標本（レクトタイプ）の甲幅31.9mmを目安に、甲幅約3.2cmとして表示しています。画面では脚を広げた幅（約7cm）で描いています。同じ再記載で調べた標本のうち大きな雄は甲幅45.8mmで、佐賀県の解説では大きさを35〜40mmとしています。",
+    "distribution": "日本、韓国、中国で標本が確かめられています。日本では青森県より南の干潟に分布し、和歌山県白浜、徳島県の吉野川、東京湾、福岡県の多々良川河口などで記録があります。オーストラリアで本種とされていたものは、2008年に別種として記載されました。",
+    "water": {
+      "salinity": "brackish"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "世界の IUCN 区分は確かめられていません。江奈湾干潟の生きもの図鑑（OWS）には千葉県のレッドリストでの「D」の区分が示されていますが、評価の年は確かめられていません。"
+    },
+    "highlights": [
+      "甲は低く横に長く、幅は長さのおよそ1.5倍です。",
+      "長い眼柄の先に、小さな黒っぽい目がついています。",
+      "雄は左右どちらのはさみもよく発達し、シオマネキのように片方だけが大きくなることはありません。",
+      "多摩川の干潟でこのカニを取り除いた実験では、泥の有機物、含水率、微小な藻類の量が増えました。泥をかき混ぜて食べることで、干潟の泥の性質を変えています。",
+      "かつて同じ種の一型とされていたヒメヤマトオサガニは、1989年に別種として記載されました。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "crab",
+    "tailBeatHz": 0.6,
+    "bodyWaveStart": 0.85,
+    "tailSweepRad": 0,
+    "verticalFlex": 0,
+    "footAnchor": {
+      "x": 0.5,
+      "y": 0.96
+    }
+  },
+  "visual": {
+    "fallbackColor": "#8a785f"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.86,
+    "maxY": 0.94
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.08,
+      "burst": 0.5
+    },
+    "turnRateRadPerSec": 1.4,
+    "restFraction": 0.5,
+    "depthRange": [
+      0.15,
+      0.8
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 2,
+      "cohesion": 0.1,
+      "polarization": 0
+    },
+    "structureAffinity": 0.5,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 4,
+        "durationSec": [
+          8,
+          20
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1,
+        "durationSec": [
+          10,
+          25
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "OBIS: Macrophthalmus (Mareotis) japonicus",
+        "url": "https://obis.org/taxon/367848"
+      },
+      {
+        "title": "Wada & Sakai (1989), A new species of Macrophthalmus closely related to M. japonicus",
+        "url": "https://decapoda.nhm.org/pdfs/27990/27990.pdf"
+      },
+      {
+        "title": "Wada (2018), Relative carapace and chela proportions of Australian M. pistrosinus compared with Japanese M. japonicus",
+        "url": "https://www.jstage.jst.go.jp/article/crustacea/47/0/47_1/_pdf"
+      },
+      {
+        "title": "Barnes & Davie (2008), Macrophthalmus pistrosinus の原記載",
+        "url": "https://www.mapress.com/zootaxa/2008/f/z01807p068f.pdf"
+      },
+      {
+        "title": "Tanaka, Aoki & Okamoto (2017), Effects of the bioturbating crab Macrophthalmus japonicus on tidal mudflat characteristics",
+        "url": "https://www.jstage.jst.go.jp/article/pbr/12/1/12_B120105/_pdf"
+      },
+      {
+        "title": "OWS 江奈湾干潟生きもの図鑑：ヤマトオサガニ",
+        "url": "https://www.ows-npo.org/zukan/ena/180/sp-e0109.html"
+      },
+      {
+        "title": "佐賀県：東よか干潟などの生きもの紹介",
+        "url": "https://www.pref.saga.lg.jp/kiji003115403/index.html"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 102,
+    "y": 185,
+    "width": 1359,
+    "height": 678
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "id": "red-spotted-pygmygoby",
+  "displayName": "トリマ・ルブロマクラタム",
+  "realBodyLengthCm": 2.5,
+  "catalog": {
+    "scientificName": "Trimma rubromaculatum",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "インドネシアのバリ島とスラウェシ島からフィリピン、パプアニューギニアのニューアイルランド島、ソロモン諸島にかけて知られています。新種として記載されたときの標本は、ニューブリテン島キンベ湾のヌモンド礁で採集されました。",
+    "temperament": "群れの大きさや食べ物は、まだ確かめられていません。本水槽では、礁の岩の根もとで1尾ずつ過ごします。",
+    "movement": "底から数cm上の水中に、斜めや縦向きの姿勢で浮かんでいるとされます。本水槽では底の近くにとどまり、泳ぐのは短い距離だけです。",
+    "habitat": "礁湖側や外海側の急な礁斜面の、根もとにたまった礫の上に暮らします。ニューアイルランド島では水深20〜35mとされ、50mまでとする資料もあります。",
+    "aliases": [
+      "Red-spotted pygmygoby",
+      "Red-spotted dwarfgoby",
+      "Trimma rubromaculatus",
+      "Trimma rubromaculata"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Gobiiformes",
+      "orderJa": "ハゼ目",
+      "family": "Gobiidae",
+      "familyJa": "ハゼ科"
+    },
+    "adultSizeCm": 2.2,
+    "sizeNote": "標準体長。検索表に図示された生きた雄の標本は2.18cmでした。最大で3.5cmの記録があります。典型的な大きさは確かめられていません。",
+    "distribution": "バリ島、スラウェシ島からフィリピン、ニューブリテン島、ニューアイルランド島、ソロモン諸島にかけての西太平洋から記録があります。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "home",
+    "conservation": {
+      "note": "FishBase では IUCN の低懸念（LC、2020年評価）とされていますが、評価の本文は確かめられていません。"
+    },
+    "highlights": [
+      "乳白色の地に、大小ふぞろいの赤い斑点や斑紋が散らばります。赤い部分が広い個体もいます。",
+      "背びれは2つに分かれ、尾びれは丸みを帯びます。第1背びれに大きな黒い眼状斑はありません。",
+      "礁の斜面の根もとにたまった礫の上で暮らします。",
+      "底から数cm上に、斜めや縦向きの姿勢で浮かぶことが知られています。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 3.4
+  },
+  "visual": {
+    "fallbackColor": "#c99590"
+  },
+  "sourceBodyBounds": {
+    "x": 68,
+    "y": 226,
+    "width": 1415,
+    "height": 561
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.72,
+    "maxY": 0.94
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.3,
+      "burst": 1.8
+    },
+    "turnRateRadPerSec": 2.9,
+    "restFraction": 0.6,
+    "depthRange": [
+      0.2,
+      0.8
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 3,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.8,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 2.5,
+        "durationSec": [
+          8,
+          30
+        ]
+      },
+      {
+        "type": "homeShelter",
+        "kind": "cave",
+        "rangeBodyLengths": 5,
+        "visitChancePerMin": 0.6,
+        "visitDurationSec": [
+          5,
+          15
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Trimma rubromaculatum",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=63290"
+      },
+      {
+        "title": "Winterbottom 2019: An illustrated key to the described valid species of Trimma, JOSF 34:1–61",
+        "url": "https://oceansciencefoundation.org/josf/josf34a.pdf"
+      },
+      {
+        "title": "Checklist of the marine and estuarine fishes of New Ireland Province, Papua New Guinea (2019), p.290",
+        "url": "https://tb.plazi.org/GgServer/xhtml/1577035E8125FE86EDFCC8EE1DBF090C/14"
+      },
+      {
+        "title": "FishBase: Trimma rubromaculatum species summary",
+        "url": "https://www.fishbase.se/summary/Trimma_rubromaculatum.html"
+      },
+      {
+        "title": "MasterFisch: Trimma rubromaculatum（販売の掲載）",
+        "url": "https://www.masterfisch.fr/poissons-marins-blennies-gobies/131600-trimma-rubromaculatum.html"
+      }
+    ]
+  }
+}

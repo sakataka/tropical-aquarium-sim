@@ -89,8 +89,12 @@ describe("content wiring", () => {
 
   test("every species and scene belongs to a tank and has its generated image", () => {
     const usedSpecies = new Set(aquariumTanks.flatMap((tank) => tank.species.map((slot) => slot.speciesId)));
+    // 図鑑に載る種は、館のどこかへ行けば最低1匹は見られる（既定の匹数に入っている）。
+    const shownSpecies = new Set(aquariumTanks.flatMap((tank) =>
+      tank.defaultStock.filter((entry) => entry.count > 0).map((entry) => entry.speciesId)));
     for (const id of Object.keys(fishCatalog)) {
       expect(usedSpecies.has(id), `${id} is not offered by any tank`).toBe(true);
+      expect(shownSpecies.has(id), `${id} is not shown in any tank by default`).toBe(true);
       expect(fishImages[`../content/fish/${id}/body.webp`], `${id}/body.webp`).toBeDefined();
     }
     const usedScenes = new Set(aquariumTanks.flatMap((tank) => tank.sceneIds));

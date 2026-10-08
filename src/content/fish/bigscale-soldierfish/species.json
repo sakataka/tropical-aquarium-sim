@@ -1,0 +1,135 @@
+{
+  "id": "bigscale-soldierfish",
+  "displayName": "アカマツカサ",
+  "realBodyLengthCm": 22,
+  "catalog": {
+    "scientificName": "Myripristis berndti",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "インド太平洋から東太平洋まで広く分布し、日本では琉球列島や小笠原諸島で見られます。紅海を分布に含める資料と含めない資料があります。",
+    "temperament": "夜に活動し、プランクトンを食べる魚です。岩棚の下で、ほかの種もまじえて集まっている様子が報告されています。",
+    "movement": "昼は洞窟や大きな割れ目、岩棚の下に身を寄せていて、夜になると活動します。",
+    "habitat": "外側の礁に暮らし、洞窟や大きな割れ目、岩棚の下を隠れ場所にします。おもに水深10〜30mで見られ、160m近くまでの記録もあります。",
+    "aliases": [
+      "Bigscale soldierfish",
+      "Blotcheye soldierfish",
+      "Blotch-eye soldierfish"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Holocentriformes",
+      "orderJa": "イットウダイ目",
+      "family": "Holocentridae",
+      "familyJa": "イットウダイ科"
+    },
+    "adultSizeCm": 22,
+    "sizeNote": "全長22cmほどにふつうに達するとされます。最大全長は資料によって29cm、30cmと異なり、31cmとする資料もありますが、測り方は示されていません。成熟した魚の典型的な大きさは確かめられていません。",
+    "distribution": "インド太平洋から東太平洋まで広く分布し、日本では琉球列島や小笠原諸島に見られます。沖縄島と阿嘉島で採集された魚は、海域どうしの遺伝的なつながりを調べた研究にも使われました。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "低懸念（LC）とする資料と、未評価とする資料があり、IUCN の評価は確かめられていません。"
+    },
+    "highlights": [
+      "大きな目と斜めの口をもち、成魚は口を閉じていても下あごが大きく突き出ます。",
+      "背びれのとげの部分は外側が黄色から橙黄色です。軟らかい背びれ、しりびれ、腹びれ、尾びれの前の縁は白く見えます。",
+      "よく似たヨゴレマツカサとは、下あごの突き出し方と、背びれのとげの部分の色で見分けます。",
+      "昼は岩陰でじっとしていて、夜になると活動します。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.2
+  },
+  "visual": {
+    "fallbackColor": "#c16759"
+  },
+  "sourceBodyBounds": {
+    "x": 68,
+    "y": 149,
+    "width": 1416,
+    "height": 716
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.2,
+    "maxY": 0.85
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.3,
+      "burst": 2.2
+    },
+    "turnRateRadPerSec": 2.4,
+    "restFraction": 0.35,
+    "depthRange": [
+      0.35,
+      0.9
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.3,
+      "cohesion": 0.45,
+      "polarization": 0.2
+    },
+    "structureAffinity": 0.85,
+    "habits": [
+      {
+        "type": "hideByDay",
+        "durationSec": [
+          90,
+          240
+        ]
+      },
+      {
+        "type": "homeShelter",
+        "kind": "cave",
+        "rangeBodyLengths": 6,
+        "visitChancePerMin": 0.6,
+        "visitDurationSec": [
+          20,
+          60
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Myripristis berndti",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=14361"
+      },
+      {
+        "title": "JAMSTEC BISMaL: アカマツカサ Myripristis berndti",
+        "url": "https://www.godac.jamstec.go.jp/bismal/j/view/9003117"
+      },
+      {
+        "title": "Bray 2022: Bigscale Soldierfish, Fishes of Australia",
+        "url": "https://fishesofaustralia.net.au/home/species/1404"
+      },
+      {
+        "title": "Randall & Greenfield: Holocentridae, FAO western central Pacific guide, pp.2229, 2238",
+        "url": "https://www.fao.org/4/x2400e/x2400e15.pdf"
+      },
+      {
+        "title": "Robertson & Allen: Myripristis berndti, Shorefishes of the Eastern Pacific",
+        "url": "https://biogeodb.stri.si.edu/sftep/en/thefishes/species/945"
+      },
+      {
+        "title": "Craig et al. 2007: High genetic connectivity across the Indian and Pacific Oceans in Myripristis berndti, MEPS 334:245–254",
+        "url": "https://stri-apps.si.edu/docs/publications/pdfs/STRI_Craig_etal_2007_myripristis.pdf"
+      },
+      {
+        "title": "Keoki Stender: Myripristis berndti, Marine Life Photography",
+        "url": "https://www.marinelifephotography.com/fishes/squirrelfishes/myripristis-berndti.htm"
+      },
+      {
+        "title": "鳥羽水族館 生きもの図鑑: アカマツカサ",
+        "url": "https://aquarium.co.jp/picturebook/myripristis-berndti.html"
+      }
+    ]
+  }
+}
