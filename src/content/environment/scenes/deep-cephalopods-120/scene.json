@@ -1,0 +1,11 @@
+{
+  "id": "deep-cephalopods-120",
+  "order": 182,
+  "displayName": "マリンスノーの降る深海の泥底",
+  "description": "光の届かない深海の、なだらかな泥の底。暗い水の中を、マリンスノーがゆっくり降りていきます。",
+  "defaultLighting": "cool",
+  "waterColor": "#0b1d33",
+  "framing": {
+    "plateBottom": 0.983
+  }
+}

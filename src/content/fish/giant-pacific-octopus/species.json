@@ -1,0 +1,141 @@
+{
+  "id": "giant-pacific-octopus",
+  "displayName": "ミズダコ",
+  "realBodyLengthCm": 100,
+  "catalog": {
+    "scientificName": "Enteroctopus dofleini",
+    "originRegionId": "north-pacific",
+    "originRegionName": "北太平洋",
+    "origin": "北太平洋の沿岸に分布し、日本からアラスカを経て南カリフォルニアまで見られます。日本では、2015年1月に新潟県の佐渡島で、水深15mの岩礁にいる個体が撮影されています。",
+    "temperament": "甲殻類や貝などの軟体動物を捕らえて食べます。単独で暮らし、夜に活動することが多いとされますが、昼に動くこともあります。米国動物園水族館協会（AZA）の飼育の手引きは、同じ種どうしの攻撃を避けて1匹ずつ飼うよう勧め、同じ水槽の動物を食べるおそれがあるとしています。本水槽では、1匹で底をゆっくり動き回り、長い時間じっと休みます。",
+    "movement": "腕を使って海底を移動し、短い距離なら水を噴き出して泳ぎます。本水槽では、腕をくねらせながら砂や岩の上をゆっくり這い、ときどき腕で底を探ります。ガラスを叩くと、腕をそろえて後ろへなびかせ、胴（外套）を先にして水を噴いて逃げ、そのあとはじっと止まります。",
+    "habitat": "海底で暮らし、岩の巣穴で休みます。分布する水深の範囲は確かめられていません。佐渡島で撮影された日の水温は13℃でした。北海道のオホーツク海で記録計を付けた未成熟の個体は、2013年の夏に最高20.1℃の水に入っていました。AZA の飼育の手引き（2014年）は、水温6〜12℃、pH 8.0〜8.3、塩分28〜33‰を理想の値とし、照明は強すぎないほうがよいとしています。本水槽では、洞穴のある冷たい海の岩礁と砂底をイメージしています。",
+    "aliases": [
+      "Giant Pacific octopus",
+      "North Pacific giant octopus",
+      "Octopus dofleini（以前の学名）"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Octopoda",
+      "orderJa": "タコ目",
+      "family": "Enteroctopodidae",
+      "familyJa": "ミズダコ科"
+    },
+    "adultSizeCm": 100,
+    "sizeNote": "代表的な成体の大きさ（全長、外套長、腕を広げた幅）は、調査では確かめられていません。アラスカ湾の調査では、半数の個体が成熟する体重は雌13.7kg、雄14.2kgでした。ここでの100cmは測った値ではなく、180cm水槽に収まるように画面で描いている、腕を広げた幅（約1m）です。",
+    "distribution": "北太平洋の沿岸に分布し、日本、アラスカから南カリフォルニアまで見られます。日本では佐渡島で記録があります。ほかの地域へ持ち込まれた記録は調べられていません。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2014,
+      "note": "IUCN の区分は SeaLifeBase の表示（2014年7月28日の評価）で確かめたもので、評価の原文は確かめていません。"
+    },
+    "highlights": [
+      "腕は8本で、イカのような2本の触腕はありません。",
+      "皮膚の色と表面の凹凸を変えられます。",
+      "以前は Octopus dofleini の学名でマダコ科に入れられていましたが、今はミズダコ科（Enteroctopodidae）とされています。",
+      "アラスカ湾の2010〜2011年の調査では、産卵の盛りは冬から早春でした。",
+      "本水槽では、腕で砂や岩の上をゆっくり這い、ガラスを叩くと水を噴いて逃げます。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "octopus",
+    "tailBeatHz": 0.5,
+    "bodyWaveStart": 1,
+    "tailSweepRad": 0,
+    "verticalFlex": 0,
+    "mouthAnchor": {
+      "x": 0.45,
+      "y": 0.52
+    },
+    "footAnchor": {
+      "x": 0.5,
+      "y": 0.94
+    }
+  },
+  "visual": {
+    "fallbackColor": "#954739"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.8,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.05,
+      "burst": 0.8
+    },
+    "turnRateRadPerSec": 0.8,
+    "restFraction": 0.7,
+    "depthRange": [
+      0.3,
+      0.9
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.8,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.5,
+        "durationSec": [
+          40,
+          150
+        ]
+      },
+      {
+        "type": "grazing",
+        "chancePerMin": 1,
+        "durationSec": [
+          8,
+          20
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "OBIS: Enteroctopus dofleini (taxon 342305)",
+        "url": "https://obis.org/taxon/342305"
+      },
+      {
+        "title": "Conrath & Conners (2014), Aspects of the reproductive biology of the North Pacific giant octopus in the Gulf of Alaska",
+        "url": "https://spo.nmfs.noaa.gov/sites/default/files/pdf-content/2014/conrath.pdf"
+      },
+      {
+        "title": "AZA (2014), Giant Pacific Octopus Care Manual",
+        "url": "https://assets.speakcdn.com/assets/2332/giant_pacific_octopus_care_manual_final_9514.pdf"
+      },
+      {
+        "title": "新潟大学 佐渡の海の生き物：ミズダコ",
+        "url": "https://www.sc.niigata-u.ac.jp/sc/sadomarine/english/marinelife/mizudako.html"
+      },
+      {
+        "title": "Joh et al. (2017), Seasonal migration and exposed temperature of immature giant octopus",
+        "url": "https://www.jstage.jst.go.jp/article/jsfo/81/1/81_50/_article/-char/en"
+      },
+      {
+        "title": "SeaLifeBase: Enteroctopus dofleini",
+        "url": "https://www.sealifebase.se/summary/Enteroctopus-dofleini.html"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 179,
+    "y": 140,
+    "width": 1214,
+    "height": 726
+  }
+}

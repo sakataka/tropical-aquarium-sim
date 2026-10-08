@@ -1,0 +1,136 @@
+{
+  "id": "northern-kelp-crab",
+  "displayName": "ノーザンケルプクラブ",
+  "realBodyLengthCm": 21,
+  "catalog": {
+    "scientificName": "Pugettia producta",
+    "originRegionId": "northeast-pacific",
+    "originRegionName": "北東太平洋",
+    "origin": "北米の太平洋岸に分布し、アラスカからメキシコのアスンシオン岬まで見られます。北の端は、資料によってプリンスオブウェールズ島ともチチャゴフ島ともされています。",
+    "temperament": "海藻をよく食べ、実験では新鮮なブルケルプ（Nereocystis）を、ほかの7種の海藻のうち6種より多く食べました。小さな巻貝も食べ、2024年の研究では、野外で生きた魚を捕らえたことも報告されています。夜行性かどうかは分かっておらず、群れの大きさも確かめられていません。本水槽では、1匹ずつ底を歩き回ります。",
+    "movement": "海底を横歩きし、成体は海藻の茎や桟橋の杭を登って、曲がった爪でしっかりつかまります。本水槽では、岩のまわりの底を、体の向きを変えずに横へ歩き、ときどき止まって、はさみで餌をつまんで口へ運びます。ガラスを叩くと、はさみを振り上げて横へ素早く逃げます。",
+    "habitat": "海藻の茂るところ、とくにブルケルプなどのケルプの森にすみ、海底や海藻の上で暮らします。潮間帯から水深73mまで記録があり、若い個体は潮だまりにも出てきます。薄い海水には弱いとされます。野外の水温は確かめられていません。本水槽では、洞穴のある冷たい海の岩礁をイメージしています。",
+    "aliases": [
+      "Northern kelp crab",
+      "Shield-backed kelp crab",
+      "Kelp crab",
+      "Epialtus productus（以前の学名）"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Decapoda",
+      "orderJa": "十脚目",
+      "family": "Epialtidae",
+      "familyJa": "モガニ科"
+    },
+    "adultSizeCm": 9.3,
+    "sizeNote": "甲幅での値です。代表的な成体の大きさは確かめられておらず、図鑑にある雄の甲長10.7cm、甲幅9.3cmを目安にしています（雌は甲長9.2cm、甲幅7.8cm）。野外の実験に使われた成体は、甲のいちばん広いところが10cmを超えていました。画面では、雄を脚を広げた幅（約21cm）で描いています。",
+    "distribution": "北米の太平洋岸に分布し、アラスカからメキシコのアスンシオン岬まで見られます。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "IUCN の区分は確かめられていません。カナダのブリティッシュコロンビア州の保全リストなどには載っていませんが、脅威がないと評価されたわけではありません。"
+    },
+    "highlights": [
+      "甲は縦長の盾形でほぼ滑らかです。甲の先は、平たい2本の突起に分かれます。",
+      "成熟した雄は、はさみの掌部が大きくふくらみ、閉じても指の間にすき間が残ります。",
+      "体に海藻などを付けて飾るほかのカニほどは体を飾りませんが、大きな個体にはフジツボが付くことがあります。",
+      "ミズダコの巣に残った食べかすから、ミズダコに食べられていることが分かっています。",
+      "成体1匹を入れた野外のケージでは、15日のうちに若いケルプが大きく減りました。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "crab",
+    "tailBeatHz": 0.6,
+    "bodyWaveStart": 0.85,
+    "tailSweepRad": 0,
+    "verticalFlex": 0,
+    "footAnchor": {
+      "x": 0.5,
+      "y": 0.96
+    }
+  },
+  "visual": {
+    "fallbackColor": "#916134"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.86,
+    "maxY": 0.94
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.06,
+      "burst": 0.4
+    },
+    "turnRateRadPerSec": 1.0,
+    "restFraction": 0.6,
+    "depthRange": [
+      0.5,
+      0.95
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.8,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 2.5,
+        "durationSec": [
+          8,
+          25
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.5,
+        "durationSec": [
+          10,
+          30
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "ITIS: Pugettia producta (TSN 98436)",
+        "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=98436"
+      },
+      {
+        "title": "UBC E-Fauna BC: Pugettia producta",
+        "url": "https://linnet.geog.ubc.ca/efauna/Atlas/Atlas.aspx?sciname=Pugettia+producta"
+      },
+      {
+        "title": "Walla Walla University: Pugettia producta",
+        "url": "https://inverts.wallawalla.edu/Arthropoda/Crustacea/Malacostraca/Eumalacostraca/Eucarida/Decapoda/Brachyura/Family_Majidae/Pugettia_producta.html"
+      },
+      {
+        "title": "Dobkowski (2017), The role of kelp crabs as consumers in bull kelp forests",
+        "url": "https://kdobkowski.com/wp-content/uploads/2017/10/peerjkelpcrabs.pdf"
+      },
+      {
+        "title": "Jensen (2024), Piscivory by Cancer productus and Pugettia producta",
+        "url": "https://academic.oup.com/jcb/article-abstract/44/3/ruae042/7715730"
+      },
+      {
+        "title": "Scheel & Anderson (2012), Variability in the diet specialization of Enteroctopus dofleini",
+        "url": "https://alaskaoctopus.com/wp-content/uploads/2025/12/2012-Scheel-Anderson-2012-Am-Mal-Bul-Diet-specialization.pdf"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 66,
+    "y": 105,
+    "width": 1427,
+    "height": 817
+  }
+}

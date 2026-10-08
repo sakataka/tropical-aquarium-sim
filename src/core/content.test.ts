@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import { getBodyPlan } from "./bodyPlans";
+import { getBodyPlan, getBodyPlanId, HEAD_START_PLANS } from "./bodyPlans";
 import { fishCatalog, getLoadedTanks, getSceneById } from "./catalog";
 import { halls as fishRooms, getHallLayout, getSceneSummary, museum, tankSummaries } from "./museum";
 import { visibleSurfaceIntervals, worldPoint } from "./surfaceMotion";
@@ -112,8 +112,8 @@ describe("content wiring", () => {
 
   test("swim parameters only describe body parts the body plan has", () => {
     for (const species of Object.values(fishCatalog)) {
-      // 触角の範囲 headStart は、触角のある体のつくり（エビ）にだけ意味がある。
-      if (!getBodyPlan(species).antennae) expect(species.swim?.headStart, species.id).toBeUndefined();
+      // headStart は、触角のあるエビと腕のあるイカにだけ意味がある。
+      if (!HEAD_START_PLANS.includes(getBodyPlanId(species))) expect(species.swim?.headStart, species.id).toBeUndefined();
       // 傘の範囲 bell は、漂う体のつくり（クラゲ）にだけ意味がある。
       if (!getBodyPlan(species).drifts) expect(species.swim?.bell, species.id).toBeUndefined();
     }

@@ -1,0 +1,27 @@
+{
+  "id": "nautilus-120",
+  "order": 176,
+  "displayName": "オウムガイ水槽",
+  "exhibitName": "Nautilus",
+  "category": "深いサンゴ礁の斜面",
+  "description": "水深300mほどの、暗い岩の斜面を再現した120cm水槽。オウムガイが、たくさんの触手をなびかせながら、ゆっくり前へ後ろへと漂います。",
+  "widthCm": 120,
+  "heightCm": 87,
+  "depthCm": 60,
+  "maxTotalFish": 6,
+  "sceneIds": [
+    "nautilus-120"
+  ],
+  "species": [
+    {
+      "speciesId": "chambered-nautilus",
+      "maxCount": 6
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "chambered-nautilus",
+      "count": 4
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import { getBodyPlan } from "./bodyPlans";
+import { getBodyPlanId, HEAD_START_PLANS } from "./bodyPlans";
 import { parseFishSpeciesDefinition } from "./schema";
 
 // 展示室を開ける前の下書き（content-drafts/fish/）。アプリは読み込まないが、形はここで確かめる。
@@ -18,7 +18,7 @@ describe("species drafts", () => {
       expect(species.id).toBe(id);
       expect(species.profile, `${id} needs a profile`).toBeDefined();
       expect(images[`../../content-drafts/fish/${id}/body.webp`], `${id}/body.webp`).toBeDefined();
-      if (!getBodyPlan(species).antennae) expect(species.swim?.headStart, id).toBeUndefined();
+      if (!HEAD_START_PLANS.includes(getBodyPlanId(species))) expect(species.swim?.headStart, id).toBeUndefined();
     },
   );
 });

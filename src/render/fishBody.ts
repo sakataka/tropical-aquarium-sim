@@ -56,8 +56,13 @@ export class FishBody {
 
   private readonly verticesY: number;
   private readonly renderer: BodyPlanRenderer;
-  /** 横歩きの生き物は、進む向きではなくシミュレーションの向き（facing）に従って体を向ける。 */
-  private readonly sideways: boolean;
+  /**
+   * 横歩きの生き物（カニ）と前後どちらへも泳ぐ生き物（イカ）は、進む向きではなく
+   * シミュレーションの向き（facing）に従って体を向ける。
+   */
+  private readonly keepsFacing: boolean;
+  /** 前後どちらへも泳ぐ生き物は、後ろへ進むときに胴の側を進む向きへ傾ける。 */
+  private readonly reverses: boolean;
   /** 漂う生き物（クラゲ）は向きを変えず、傘の中心を軸に傾く。 */
   private readonly drifts: boolean;
 
@@ -65,7 +70,8 @@ export class FishBody {
     this.swim = { ...DEFAULT_SWIM, ...species.swim };
     this.renderer = BODY_PLAN_RENDERERS[this.swim.bodyPlan];
     this.verticesY = this.renderer.verticesY;
-    this.sideways = BODY_PLANS[this.swim.bodyPlan].sideways;
+    this.reverses = BODY_PLANS[this.swim.bodyPlan].reverses;
+    this.keepsFacing = BODY_PLANS[this.swim.bodyPlan].sideways || this.reverses;
     this.drifts = BODY_PLANS[this.swim.bodyPlan].drifts;
     this.mesh = new MeshPlane({ texture, verticesX: VERTICES_X, verticesY: this.verticesY });
     this.mesh.autoResize = false;
@@ -96,8 +102,10 @@ export class FishBody {
     const maxPitch = fish.targetKind === "surfaceVisit" || fish.targetKind === "descend"
       ? MAX_TRIP_PITCH_RAD
       : MAX_PITCH_RAD;
+    // 後ろへ進むとき（イカ）は、胴の側が上下を先導する。
+    const backward = this.reverses && fish.velocity.x * fish.facing < 0 ? -1 : 1;
     const headingPitch = speed > 0.08
-      ? clamp(Math.atan2(fish.velocity.y, Math.abs(fish.velocity.x)) * 0.8, -maxPitch, maxPitch)
+      ? clamp(Math.atan2(fish.velocity.y, Math.abs(fish.velocity.x)) * 0.8 * backward, -maxPitch, maxPitch)
       : 0;
     const targetPitch = fish.posture === "noseDown"
       ? Math.max(headingPitch, NOSE_DOWN_PITCH_RAD)
@@ -169,7 +177,7 @@ export class FishBody {
   private updateYaw(fish: FishInstance, deltaSec: number) {
     this.motion.sinceTurnSec += deltaSec;
     const vx = fish.velocity.x;
-    const anchored = this.sideways || fish.surfaceMotion || (fish.contact && fish.contact.weight > .5);
+    const anchored = this.keepsFacing || fish.surfaceMotion || (fish.contact && fish.contact.weight > .5);
     if (anchored && this.motion.sinceTurnSec >= MIN_TURN_INTERVAL_SEC &&
       (fish.facing === 1) !== (this.motion.targetYaw > Math.PI / 2)) {
       this.motion.targetYaw = fish.facing === 1 ? Math.PI : 0;

@@ -1,0 +1,118 @@
+{
+  "id": "chambered-nautilus",
+  "displayName": "オウムガイ",
+  "realBodyLengthCm": 23,
+  "catalog": {
+    "scientificName": "Nautilus pompilius",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "西太平洋とインド洋の沿岸に分布します。よく調べられた群れの一つが、オーストラリアのサンゴ海にあるオスプレイ礁にいます。2023年には、島々の群れの一部が N. samoaensis、N. vitiensis、N. vanuatuensis という別の種として記載されており、本種の細かい分布の範囲は確かめられていません。",
+    "temperament": "魚や甲殻類を食べ、動物の死骸も利用します。粘りけのある触手で餌をつかみ、口へ運びます。オスプレイ礁では昼にも餌をとり、浅めの深さで休んで、夜に広く動き回る個体が見られました。群れの大きさは確かめられていません。本水槽では、何匹かが間をあけてゆっくり漂います。",
+    "movement": "外套腔の水を、頭の近くにある漏斗から噴き出して進みます。漏斗の向きを変えて、前へも後ろへも横へも動きます。本水槽では、ひれのない体で水中に浮かび、触手をゆらしながら前へも後ろへもゆっくり進みます。ガラスを叩くと、水を噴いて逃げます。",
+    "habitat": "オスプレイ礁では、深い礁の斜面の岩壁からシルトの底へ続くあたりにすみ、水深700mまで観察されています。昼は水深160〜225mあたりで休むか、489〜700mで餌をとり、夜は130〜700mの間を盛んに上下します。そこの水温はおよそ10〜20℃です。米国動物園水族館協会（AZA）の飼育の手引き（2025年）は、オウムガイ属について、pH 8.0〜8.4、塩分33〜35‰を勧め、昼の照明を弱めにして、水平にも垂直にも動ける空間と休む面を用意するよう勧めています。本水槽では、光のほとんど届かない暗い岩の斜面をイメージしています。",
+    "aliases": [
+      "Chambered nautilus"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Nautilida",
+      "orderJa": "オウムガイ目",
+      "family": "Nautilidae",
+      "familyJa": "オウムガイ科"
+    },
+    "adultSizeCm": 13.2,
+    "sizeNote": "殻の直径での値です。種全体の代表的な大きさは確かめられておらず、オスプレイ礁で調べた成熟した雄870匹の平均13.19cmを目安にしています。成熟した雌86匹の平均は11.89cmで、雄のほうが大きめでした。画面では、触手の先から殻の縁までの長さ（約23cm）で描いています。",
+    "distribution": "西太平洋とインド洋の沿岸に分布し、オーストラリアのサンゴ海のオスプレイ礁で詳しく調べられています。2023年に別の種として分けられた島々の群れを除いた、本種の分布の範囲は確かめられていません。",
+    "water": {
+      "salinity": "marine",
+      "temperatureC": [
+        10,
+        20
+      ]
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "IUCN の区分は、AZA の飼育の手引き（2025年）では未評価と表示されています。オウムガイ科はワシントン条約の附属書IIに載っており、米国では2018年10月29日から絶滅危惧種法で「絶滅のおそれがある種（Threatened）」に指定されています。装飾用の殻をとるための漁獲が主な脅威です。"
+    },
+    "highlights": [
+      "体の外に巻いた殻をもち、軟らかい体を殻の中に収めています。殻の縞模様は個体ごとに違います。",
+      "吸盤のない触手がたくさんあり、革のような頭巾で殻の口をふさぎます。口にはくちばしと歯舌があります。",
+      "泳ぐための水は外套腔から漏斗へ出します。殻の部屋どうしをつなぐ連室細管は、漏斗とは別の器官です。",
+      "飼育下では、休むときに触手で壁につかまる姿が見られます。",
+      "本水槽では、触手をゆらしながら、前へも後ろへもゆっくり進みます。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "squid",
+    "tailBeatHz": 0.6,
+    "bodyWaveStart": 1,
+    "waveCount": 1,
+    "verticalFlex": 0,
+    "tailSweepRad": 0,
+    "headStart": 0.45,
+    "mouthAnchor": {
+      "x": 0.4,
+      "y": 0.55
+    }
+  },
+  "visual": {
+    "fallbackColor": "#b8997a"
+  },
+  "preferredZone": {
+    "minX": 0.1,
+    "maxX": 0.9,
+    "minY": 0.25,
+    "maxY": 0.85
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.12,
+      "burst": 0.8
+    },
+    "turnRateRadPerSec": 0.8,
+    "restFraction": 0.5,
+    "depthRange": [
+      0.2,
+      0.85
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 2,
+      "cohesion": 0.15,
+      "polarization": 0.2
+    },
+    "structureAffinity": 0.4,
+    "habits": [],
+    "sources": [
+      {
+        "title": "NOAA Fisheries: Chambered Nautilus",
+        "url": "https://www.fisheries.noaa.gov/species/chambered-nautilus"
+      },
+      {
+        "title": "AZA (2025), Chambered Nautilus Care Manual",
+        "url": "https://assets.speakcdn.com/assets/2332/aza_chambered_nautilus_care_manual.pdf"
+      },
+      {
+        "title": "Monterey Bay Aquarium: Chambered nautilus",
+        "url": "https://www.montereybayaquarium.org/animals-the-ocean/animals-a-to-z/chambered-nautilus"
+      },
+      {
+        "title": "Dunstan, Ward & Marshall (2011), Vertical Distribution and Migration Patterns of Nautilus pompilius",
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0016311"
+      },
+      {
+        "title": "Dunstan, Ward & Marshall (2011), Nautilus pompilius Life History and Demographics at Osprey Reef",
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0016312"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 190,
+    "y": 174,
+    "width": 1109,
+    "height": 691
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "id": "giant-octopus-180",
+  "order": 106,
+  "displayName": "ミズダコの岩穴水槽",
+  "exhibitName": "Giant Octopus Den",
+  "category": "北の海の岩礁",
+  "description": "大きな岩の間に洞穴が口を開ける、冷たい北の海の岩礁を再現した180cm水槽。ミズダコが腕をうねらせて岩と砂の上を這い、長く休みます。ノーザンケルプクラブとアンブレラクラブが、砂の上を横歩きします。",
+  "widthCm": 180,
+  "heightCm": 85,
+  "depthCm": 90,
+  "maxTotalFish": 7,
+  "sceneIds": [
+    "giant-octopus-180"
+  ],
+  "species": [
+    {
+      "speciesId": "giant-pacific-octopus",
+      "maxCount": 1
+    },
+    {
+      "speciesId": "northern-kelp-crab",
+      "maxCount": 3
+    },
+    {
+      "speciesId": "umbrella-crab",
+      "maxCount": 3
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "giant-pacific-octopus",
+      "count": 1
+    },
+    {
+      "speciesId": "northern-kelp-crab",
+      "count": 2
+    },
+    {
+      "speciesId": "umbrella-crab",
+      "count": 2
+    }
+  ]
+}

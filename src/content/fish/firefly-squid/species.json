@@ -1,0 +1,124 @@
+{
+  "id": "firefly-squid",
+  "displayName": "ホタルイカ",
+  "realBodyLengthCm": 8,
+  "catalog": {
+    "scientificName": "Watasenia scintillans",
+    "originRegionId": "northwest-pacific",
+    "originRegionName": "北西太平洋",
+    "origin": "北西太平洋に分布し、日本海、東シナ海、オホーツク海の南部などで知られます。2020年の研究では、隠岐諸島周辺、鳥取県沖、富山湾でとれた個体が調べられました。",
+    "temperament": "触腕で獲物を捕らえ、腕で抱えて食べます。富山湾周辺でとれた345匹の胃の中からは、浮遊する甲殻類、魚、イカが見つかりました。富山湾の沿岸には春に集まりますが、一年を通して群れで泳ぐのか、ふだん何匹ほどで集まるのかは確かめられていません。本水槽では、何匹かが間をあけて、ゆるくまとまって泳ぎます。",
+    "movement": "外套膜を縮め、漏斗から海水を噴き出して泳ぎます。ふだん泳ぐ速さは測られていません。本水槽では、ひれを波打たせて中層にとどまり、向きを変えずに前へも後ろへも進みます。後ろ向きに長く進むときだけ向きを変え、腕をゆらします。ガラスを叩くと、腕をそろえ、胴を先にして後ろへ噴射で飛び退きます。",
+    "habitat": "外洋の中深層を主にすみかとし、水深100〜600mの範囲で知られます。昼は水深200mより深い海底付近にいて、夜は50〜100mまで上がると報告されています。野外の水温は確かめられていません。魚津水族館では研究のため、暗い所か遠赤色の照明の下で、14℃の水で産卵させた例があります。本水槽では、マリンスノーの降る暗い深海をイメージしています。",
+    "aliases": [
+      "Firefly squid",
+      "Sparkling enope squid",
+      "Abraliopsis scintillans（記載されたときの学名）"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Oegopsida",
+      "orderJa": "開眼目",
+      "family": "Enoploteuthidae",
+      "familyJa": "ホタルイカモドキ科"
+    },
+    "adultSizeCm": 7,
+    "sizeNote": "外套長での値です。ふつうの成体の大きさは確かめられておらず、FAOの資料にある最大の外套長（雌7cm、雄6cm）を目安にしています。胃の中を調べた研究で成体として扱われた標本は、外套長3.8〜6.7cmでした。腕を含む全長は確かめられていません。画面では、腕の先からひれの先まで約8cmで描いています。",
+    "distribution": "北西太平洋の日本海、東シナ海、オホーツク海の南部などに分布します。ほかの海域へ移入した記録は確かめられていません。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "世界の IUCN 区分は確かめられていません。最近の資源量の傾向も確かめられていません。"
+    },
+    "highlights": [
+      "8本の腕と2本の長い触腕があり、後ろへ細まる外套膜の後端に菱形のひれがあります。",
+      "腕の先、眼の腹側、外套膜や頭の腹側に発光器があり、青白く光ります。第4腕の先には、ふつう3個ずつ発光器が並びます。",
+      "富山県のほたるいかミュージアムは、3月20日から5月下旬まで生きた個体を展示すると案内していました（調査時）。",
+      "遺伝子を調べた研究では、雌19匹のうち18匹で、体にためた精子が1匹の雄に由来していました。",
+      "本水槽では、ひれを波打たせて中層にとどまり、前へも後ろへも進みます。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "squid",
+    "tailBeatHz": 2.2,
+    "bodyWaveStart": 0.75,
+    "waveCount": 1,
+    "verticalFlex": 0.04,
+    "tailSweepRad": 0.12,
+    "headStart": 0.3,
+    "mouthAnchor": {
+      "x": 0.3,
+      "y": 0.5
+    }
+  },
+  "visual": {
+    "fallbackColor": "#a8847e"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.1,
+    "maxY": 0.7
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "steady",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.5,
+      "burst": 3
+    },
+    "turnRateRadPerSec": 1.4,
+    "restFraction": 0.3,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 2,
+      "cohesion": 0.25,
+      "polarization": 0.4
+    },
+    "structureAffinity": 0.1,
+    "habits": [],
+    "sources": [
+      {
+        "title": "NCBI Taxonomy: Watasenia scintillans, taxid 6625",
+        "url": "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=6625"
+      },
+      {
+        "title": "FAO Cephalopods of the World Vol. 2, Watasenia scintillans, pp.199–200",
+        "url": "https://www.fao.org/4/i1920e/i1920e05.pdf"
+      },
+      {
+        "title": "富山県農林水産総合技術センター 水産研究所：ホタルイカの生態と漁業",
+        "url": "https://taffrc.pref.toyama.jp/nsgc/8ken/suisan/index02.html"
+      },
+      {
+        "title": "ほたるいかミュージアム：ほたるいかとは",
+        "url": "https://hotaruikamuseum.com/museum/hotaruika"
+      },
+      {
+        "title": "Sato et al. (2020), Rare polyandry and common monogamy in the firefly squid",
+        "url": "https://www.nature.com/articles/s41598-020-68006-1"
+      },
+      {
+        "title": "ほたるいかミュージアム公式案内",
+        "url": "https://hotaruikamuseum.com/museum"
+      },
+      {
+        "title": "Hayashi & Hirakawa (1997), Diet composition of firefly squid: AGRIS record",
+        "url": "https://agris.fao.org/search/en/records/64723696e17b74d2224ec18c"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 106,
+    "y": 226,
+    "width": 1346,
+    "height": 510
+  }
+}

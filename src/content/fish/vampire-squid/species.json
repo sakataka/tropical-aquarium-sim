@@ -1,0 +1,106 @@
+{
+  "id": "vampire-squid",
+  "displayName": "コウモリダコ",
+  "realBodyLengthCm": 25,
+  "catalog": {
+    "scientificName": "Vampyroteuthis infernalis",
+    "originRegionId": "worldwide",
+    "originRegionName": "世界の海",
+    "origin": "世界の熱帯と温帯の海に分布します。",
+    "temperament": "マリンスノーを2本の細長い糸で集め、粘液でまとめて食べます。群れの大きさや昼夜の活動は分かっていません。本水槽では、1匹ずつ暗い水の中をゆっくり泳ぎます。",
+    "movement": "中性浮力に近い体で水中にとどまり、エネルギーを節約して暮らします。泳ぐ速さは測られていません。襲われると、腕の間の膜を裏返したり、腕の先を光らせたり、光る液を出したりして相手を惑わせます。本水槽では、ひれを波打たせて中層にとどまり、向きを変えずに前へも後ろへも進みます。後ろ向きに長く進むときだけ向きを変え、腕をゆらします。ガラスを叩くと、腕をそろえ、胴を先にして後ろへ噴射で飛び退きます。",
+    "habitat": "深海の中層、とくに酸素のとても少ない層（酸素極小層）で暮らし、MBARIは水深600〜900mで見られると紹介しています。野外の水温は確かめられていません。MBARIでは、無人潜水機（ROV）で採集した個体を研究室で数か月飼った実績があります。モントレーベイ水族館の種のページでは、展示していないとされていました（調査時）。本水槽では、マリンスノーの降る暗い深海をイメージしています。",
+    "aliases": [
+      "Vampire squid"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Vampyromorpha",
+      "orderJa": "コウモリダコ目",
+      "family": "Vampyroteuthidae",
+      "familyJa": "コウモリダコ科"
+    },
+    "adultSizeCm": 30,
+    "sizeNote": "全長での値です。ふつうの成体の大きさは確かめられておらず、MBARIが紹介する最大の全長約30cmを目安にしています。モントレーベイ水族館のページには外套長30cmとする欄もあり、資料によって測り方がそろっていません。画面では、腕の先からひれまで約25cmで描いています。",
+    "distribution": "世界の熱帯と温帯の海の深海に分布します。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "rarelyDisplayed",
+    "conservation": {
+      "note": "世界の IUCN 区分や個体数の傾向は確かめられていません。"
+    },
+    "highlights": [
+      "8本の腕の間に膜が張り、2本の細長い糸を伸ばします。体は暗い赤褐色です。",
+      "研究室で飼った個体では、小さな動物に由来する粒が糸に付き、粘液でまとめて口へ運ばれる様子が観察されました。",
+      "襲われると、腕の間の膜を裏返したり、腕の先を光らせたり、光る液を出したりして相手を惑わせます。",
+      "映像で目が青く見えるのは、照明と周りの水の反射によるものです。",
+      "本水槽では、ひれを波打たせて中層にとどまり、前へも後ろへもゆっくり進みます。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "squid",
+    "tailBeatHz": 0.7,
+    "bodyWaveStart": 0.75,
+    "waveCount": 0.6,
+    "verticalFlex": 0.05,
+    "tailSweepRad": 0.08,
+    "headStart": 0.55,
+    "mouthAnchor": {
+      "x": 0.5,
+      "y": 0.5
+    }
+  },
+  "visual": {
+    "fallbackColor": "#49262d"
+  },
+  "preferredZone": {
+    "minX": 0.1,
+    "maxX": 0.9,
+    "minY": 0.2,
+    "maxY": 0.75
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.08,
+      "burst": 1.2
+    },
+    "turnRateRadPerSec": 0.7,
+    "restFraction": 0.6,
+    "depthRange": [
+      0.2,
+      0.8
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 3,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.1,
+    "habits": [],
+    "sources": [
+      {
+        "title": "MBARI: Vampire squid",
+        "url": "https://www.mbari.org/animal/vampire-squid/"
+      },
+      {
+        "title": "Monterey Bay Aquarium: Vampire squid",
+        "url": "https://www.montereybayaquarium.org/animals-the-ocean/animals-a-to-z/vampire-squid"
+      },
+      {
+        "title": "MBARI (2012): MBARI researchers discover what vampire squids eat",
+        "url": "https://www.mbari.org/news/mbari-researchers-discover-what-vampire-squids-eat-its-not-what-you-think/"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 135,
+    "y": 160,
+    "width": 1317,
+    "height": 667
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "id": "bigfin-reef-squid",
+  "displayName": "アオリイカ",
+  "realBodyLengthCm": 36,
+  "catalog": {
+    "scientificName": "Sepioteuthis lessoniana",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "紅海からハワイまでの、インド太平洋の熱帯域に分布します。オーストラリアでは、北部の沿岸と、東岸のニューサウスウェールズ州北部・クイーンズランド州南部から西岸のシャーク湾まで見られます。日本の研究では、シロイカを三重県の志摩沖、アカイカを種子島の西岸、クアイカを奄美大島の瀬戸内町でとっています。",
+    "temperament": "主にエビや魚、ほかの甲殻類を食べます。2本の触腕で獲物を捕らえ、腕で抱えて、くちばしで少しずつかじります。近い大きさの個体どうしで群れを作り、夜にはサンゴ礁へ移って餌をとるとされます。群れのふつうの大きさは確かめられていません。本水槽では、何匹かがゆるく集まって泳ぎます。",
+    "movement": "ひれを動かして泳ぎ、驚いたときや争うときは水を噴いてすばやく後ろへ下がり、墨を吐くことがあります。本水槽では、中層でひれを波打たせて浮かび、向きを変えずに前へも後ろへも進みます。後ろへ長く進むときだけ向きを変えます。ガラスを叩くと、腕をそろえ、胴（外套）を先にして後ろへ水を噴いて逃げます。",
+    "habitat": "沿岸のサンゴ礁や海草の藻場にすみ、水深100mくらいまで見られます。台湾の北東岸では、砂底に竹を置いた水深18mの産卵場に、数十匹が集まりました。台湾の実験では水温29℃の流れる海水で飼っていましたが、適した水温や水質の範囲は確かめられていません。本水槽では、海藻の茂る温帯の岩礁の中層をイメージしています。",
+    "aliases": [
+      "Bigfin reef squid"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Myopsida",
+      "orderJa": "閉眼目",
+      "family": "Loliginidae",
+      "familyJa": "ヤリイカ科"
+    },
+    "adultSizeCm": 30,
+    "sizeNote": "外套長（胴の長さ）での値です。FAO の図鑑は、ふつうの大きさを外套長20〜30cm、最大を雄42.2cm、雌38.2cmとしています。いくつかの型をまとめて扱った集計の値です。画面では、腕の先からひれの端までの長さ（約36cm）で描いています。",
+    "distribution": "インド太平洋の熱帯域に分布し、紅海からハワイまで見られます。オーストラリアでは北部の沿岸に広く分布します。日本の3つの型それぞれの分布の範囲は確かめられていません。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "IUCN の区分は確かめられていません。モントレーベイ水族館は、漁獲、汚染、すみかの破壊を心配な点としてあげています。"
+    },
+    "highlights": [
+      "胴のほぼ全長にわたって、幅の広い楕円形のひれがあります。",
+      "色素胞の働きで、半透明から暗い帯模様まで、体の色と模様を変えます。台湾の産卵場では、行動に合わせて模様が変わる様子が記録されました。",
+      "日本には、アカイカ、シロイカ、クアイカと呼ばれる3つの型があり、2026年の研究では Sepioteuthis sp.1〜sp.3 として分けて扱っています。",
+      "台湾の産卵場では、雌雄が並んで泳いだり、雄が雌のそばで守ったり、雄どうしが争ったりする様子が観察されました。",
+      "本水槽では、ひれを波打たせて中層に浮かび、前にも後ろにも進みます。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "squid",
+    "tailBeatHz": 1.6,
+    "bodyWaveStart": 0.45,
+    "waveCount": 1.5,
+    "verticalFlex": 0.03,
+    "tailSweepRad": 0.12,
+    "headStart": 0.3,
+    "mouthAnchor": {
+      "x": 0.3,
+      "y": 0.48
+    }
+  },
+  "visual": {
+    "fallbackColor": "#9e9c8c"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.25,
+    "maxY": 0.7
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "steady",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.35,
+      "burst": 2.5
+    },
+    "turnRateRadPerSec": 1.2,
+    "restFraction": 0.35,
+    "depthRange": [
+      0.15,
+      0.8
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0.3,
+      "polarization": 0.5
+    },
+    "structureAffinity": 0.2,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Australian Museum: Bigfin Reef Squid",
+        "url": "https://australian.museum/learn/animals/molluscs/bigfin-reef-squid-sepioteuthis-lessoniana-lesson-1830/"
+      },
+      {
+        "title": "宮崎ほか (2026)：アオリイカ3種におけるロドプシンの最大吸収波長",
+        "url": "https://www.jstage.jst.go.jp/article/suisan/92/1/92_25-00020/_pdf/-char/ja"
+      },
+      {
+        "title": "FAO Cephalopods of the World, Volume 2：Sepioteuthis lessoniana",
+        "url": "https://www.fao.org/4/i1920e/i1920e03.pdf"
+      },
+      {
+        "title": "Lin, Tsai & Chiao (2017), Dynamic body patterning during reproductive behavior",
+        "url": "https://www.frontiersin.org/journals/ecology-and-evolution/articles/10.3389/fevo.2017.00030/full"
+      },
+      {
+        "title": "Monterey Bay Aquarium: Bigfin reef squid",
+        "url": "https://www.montereybayaquarium.org/animals-the-ocean/animals-a-to-z/bigfin-reef-squid"
+      },
+      {
+        "title": "Hu et al. (2014), Branchial acid–base transport and energy metabolism under acidification",
+        "url": "https://link.springer.com/article/10.1186/s12983-014-0055-z"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 139,
+    "y": 273,
+    "width": 1261,
+    "height": 424
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "id": "octopus-squid-120",
+  "order": 123,
+  "displayName": "海藻の茂る温帯の岩礁",
+  "description": "色とりどりの海藻と石灰藻に覆われた岩に穴が開き、明るい白砂が広がる温帯の岩礁。澄んだ青緑の水に、水面からの光が揺れます。",
+  "defaultLighting": "natural",
+  "waterColor": "#2a8a8f"
+}

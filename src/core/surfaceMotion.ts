@@ -107,16 +107,57 @@ export function stepSurfaceWalker(fish: FishInstance, species: FishSpeciesDefini
   });
   motion.progress = Math.max(interval.from, Math.min(interval.to, motion.progress));
   const before = sampleSurface(surface, motion.progress, tank, frame);
+  // 面の端を越えたら、端点でつながった面へ移る。つながった面がなければ、bounce なら引き返し、そうでなければ端で止まる。
+  const crossEnd = (bounce: boolean) => {
+    const atEnd = motion!.direction === 1;
+    const endpoint = surface!.points[atEnd ? surface!.points.length - 1 : 0]!;
+    const candidates = surfaces.flatMap<{ surface: SceneSurface; direction: -1 | 1 }>((candidate) => {
+      if (candidate.id === surface!.id) return [];
+      const intervals = visible.find((item) => item.surface.id === candidate.id)!.intervals;
+      if (connected(endpoint, candidate.points[0]!) && intervals[0]!.from < 1e-9)
+        return [{ surface: candidate, direction: 1 as const }];
+      if (connected(endpoint, candidate.points[candidate.points.length - 1]!) && intervals[intervals.length - 1]!.to > 1 - 1e-9)
+        return [{ surface: candidate, direction: -1 as const }];
+      return [];
+    });
+    const excessCm = Math.abs(motion!.progress - (atEnd ? 1 : 0)) * before.length;
+    const next = candidates[Math.floor(random() * candidates.length)];
+    if (!next && !bounce) {
+      motion!.progress = atEnd ? 1 : 0;
+      return;
+    }
+    if (next) {
+      surface = next.surface;
+      motion!.surfaceId = surface.id;
+      motion!.direction = next.direction;
+    } else motion!.direction = atEnd ? -1 : 1;
+    const length = sampleSurface(surface!, 0, tank, frame).length;
+    motion!.progress = motion!.direction === 1 ? excessCm / length : 1 - excessCm / length;
+    motion!.progress = Math.max(0, Math.min(1, motion!.progress));
+  };
   if (motion.flee) {
-    // 尾を打って後ろ向きに跳ね退く。経路の外へは出ず、跳び終えたらしばらく固まる。
+    // 尾を打って後ろ向きに跳ね退く（タコは噴射で飛び退く）。経路の外へは出ず、跳び終えたらしばらく固まる。
     const flee = { ...motion.flee, remainingSec: motion.flee.remainingSec - deltaSec };
-    const speed = species.realBodyLengthCm * Math.max(6, species.ecology.speedBodyLengthsPerSec.burst);
-    motion.progress = Math.max(interval.from, Math.min(interval.to,
-      motion.progress + flee.direction * speed * deltaSec / before.length));
+    // タコの噴射は種の最大の速さで。脚の長い大きなタコが水槽の端まで一気に飛ばないようにする。
+    const burst = species.ecology.speedBodyLengthsPerSec.burst;
+    const speed = species.realBodyLengthCm * (getBodyPlan(species).startle === "jet" ? burst : Math.max(6, burst));
+    // 噴射の途中で面の端に着いたら、つながった面へ乗り移って逃げ続ける。
+    motion.direction = flee.direction;
+    motion.progress += flee.direction * speed * deltaSec / before.length;
+    if ((motion.progress < interval.from && interval.from > 1e-9) || (motion.progress > interval.to && interval.to < 1 - 1e-9)) {
+      motion.progress = Math.max(interval.from, Math.min(interval.to, motion.progress));
+    } else if (motion.progress < 0 || motion.progress > 1) {
+      crossEnd(false);
+      flee.direction = motion.direction;
+    }
     motion.flee = flee.remainingSec > 0 ? flee : undefined;
-    if (!motion.flee) motion.pauseSec = 1.2 + random() * 1.8;
     const sampled = sampleSurface(surface, motion.progress, tank, frame);
     motion.angle = sampled.angle;
+    if (!motion.flee) {
+      motion.pauseSec = 1.2 + random() * 1.8;
+      // 逃げ終えたら、逃げている間の向きのまま歩き出す（その場で振り返らない）。
+      motion.direction = Math.cos(sampled.angle) * flee.facing >= 0 ? 1 : -1;
+    }
     return {
       ...fish, position: sampled.position, depth: sampled.depth, facing: flee.facing,
       velocity: deltaSec > 0 ? { x: (sampled.position.x - before.position.x) / deltaSec,
@@ -153,29 +194,7 @@ export function stepSurfaceWalker(fish: FishInstance, species: FishSpeciesDefini
       motion.progress = Math.max(interval.from, interval.to - (motion.progress - interval.to));
       motion.direction = -1;
     }
-    if (motion.progress < 0 || motion.progress > 1) {
-      const atEnd = motion.direction === 1;
-      const endpoint = surface.points[atEnd ? surface.points.length - 1 : 0]!;
-      const candidates = surfaces.flatMap<{ surface: SceneSurface; direction: -1 | 1 }>((candidate) => {
-        if (candidate.id === surface!.id) return [];
-        const intervals = visible.find((item) => item.surface.id === candidate.id)!.intervals;
-        if (connected(endpoint, candidate.points[0]!) && intervals[0]!.from < 1e-9)
-          return [{ surface: candidate, direction: 1 as const }];
-        if (connected(endpoint, candidate.points[candidate.points.length - 1]!) && intervals[intervals.length - 1]!.to > 1 - 1e-9)
-          return [{ surface: candidate, direction: -1 as const }];
-        return [];
-      });
-      const excessCm = Math.abs(motion.progress - (atEnd ? 1 : 0)) * before.length;
-      const next = candidates[Math.floor(random() * candidates.length)];
-      if (next) {
-        surface = next.surface;
-        motion.surfaceId = surface.id;
-        motion.direction = next.direction;
-      } else motion.direction = atEnd ? -1 : 1;
-      const length = sampleSurface(surface, 0, tank, frame).length;
-      motion.progress = motion.direction === 1 ? excessCm / length : 1 - excessCm / length;
-      motion.progress = Math.max(0, Math.min(1, motion.progress));
-    }
+    if (motion.progress < 0 || motion.progress > 1) crossEnd(true);
     const grazing = species.ecology.habits.find((habit) => habit.type === "grazing");
     const rest = species.ecology.habits.find((habit) => habit.type === "bottomRest");
     const grazingChance = (grazing?.chancePerMin ?? 0) * activity * fish.personality.exploration;

@@ -1,0 +1,35 @@
+{
+  "id": "octopus-squid-120",
+  "order": 124,
+  "displayName": "タコとイカの水槽",
+  "exhibitName": "Octopus & Squid",
+  "category": "温帯の岩礁",
+  "description": "海藻の茂る岩礁と白い砂底を再現した120cm水槽。マダコが岩のまわりの底を這い、アオリイカの小さな群れが、ひれを波打たせて中層に浮かび、前へも後ろへも泳ぎます。",
+  "widthCm": 120,
+  "heightCm": 69,
+  "depthCm": 60,
+  "maxTotalFish": 8,
+  "sceneIds": [
+    "octopus-squid-120"
+  ],
+  "species": [
+    {
+      "speciesId": "east-asian-common-octopus",
+      "maxCount": 2
+    },
+    {
+      "speciesId": "bigfin-reef-squid",
+      "maxCount": 6
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "east-asian-common-octopus",
+      "count": 1
+    },
+    {
+      "speciesId": "bigfin-reef-squid",
+      "count": 3
+    }
+  ]
+}

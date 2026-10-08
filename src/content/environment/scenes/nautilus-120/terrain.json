@@ -1,0 +1,55 @@
+{
+  "structurePoints": [],
+  "bubbleSources": [],
+  "terrain": {
+    "surfaces": [
+      {
+        "id": "back-gravel",
+        "material": "sand",
+        "points": [
+          { "x": 0.43, "y": 0.755, "depth": 0.8 },
+          { "x": 0.52, "y": 0.75, "depth": 0.8 },
+          { "x": 0.6, "y": 0.752, "depth": 0.8 },
+          { "x": 0.68, "y": 0.76, "depth": 0.8 }
+        ]
+      },
+      {
+        "id": "middle-gravel",
+        "material": "sand",
+        "points": [
+          { "x": 0.39, "y": 0.845, "depth": 0.5 },
+          { "x": 0.48, "y": 0.84, "depth": 0.5 },
+          { "x": 0.6, "y": 0.842, "depth": 0.5 },
+          { "x": 0.71, "y": 0.85, "depth": 0.5 }
+        ]
+      },
+      {
+        "id": "front-gravel",
+        "material": "sand",
+        "points": [
+          { "x": 0.37, "y": 0.955, "depth": 0.2 },
+          { "x": 0.42, "y": 0.95, "depth": 0.2 },
+          { "x": 0.55, "y": 0.952, "depth": 0.2 },
+          { "x": 0.66, "y": 0.95, "depth": 0.2 },
+          { "x": 0.74, "y": 0.955, "depth": 0.2 }
+        ]
+      }
+    ],
+    "occluders": [],
+    "obstacles": [
+      {
+        "id": "west-wall-core",
+        "center": { "x": 0.08, "y": 0.98, "depth": 0.5 },
+        "radius": { "x": 0.27, "y": 0.63 },
+        "depthRadius": 0.75
+      },
+      {
+        "id": "east-wall-core",
+        "center": { "x": 0.92, "y": 0.98, "depth": 0.5 },
+        "radius": { "x": 0.18, "y": 0.6 },
+        "depthRadius": 0.75
+      }
+    ],
+    "shelters": []
+  }
+}

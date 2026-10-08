@@ -23,6 +23,8 @@ export type StartleInput = {
  * ガラスを叩いたときの驚き。振動は近い魚ほど強く伝わり、魚のつくりと習性で逃げ方が変わる。
  * - 住みかを持つ魚・物陰に隠れる魚: 近くの住みか・物陰へ飛び込み、しばらく出てこない。
  * - エビ: 尾を打って後ろ向きに跳ね退き、しばらく固まる。カニ: 向きを変えずに横へ走って離れ、しばらく固まる。
+ * - タコ: 底に沿って、胴を先にして噴射で飛び退き、しばらく固まる。
+ * - イカ: 向きを変えずに噴射で飛び退く（後ろへ逃げるときは胴が先になる）。
  * - そのほかの魚: 叩いた所から離れる向きへ瞬発で泳ぎ去る（C字の急旋回）。
  * - クラゲ: 反応しない。
  */
@@ -42,7 +44,7 @@ export function startleFish(input: StartleInput): FishInstance[] {
     if (random() >= Math.min(1, chance * 1.4)) return fish;
     const away = normalize({ x: dx, y: dy }, { x: fish.facing, y: 0 });
     if (getBodyPlan(species).startle !== "dart" && fish.surfaceMotion && input.scene) {
-      return fleeAlongSurface(fish, tank, input.scene, input.frame, point, random);
+      return fleeAlongSurface(fish, tank, input.scene, input.frame, point, random, getBodyPlan(species).startle === "jet");
     }
     return retreatToShelter(fish, species, input, random) ?? dart(fish, species, tank, away, random, input);
   });
@@ -66,7 +68,8 @@ function retreatToShelter(fish: FishInstance, species: FishSpeciesDefinition, in
 function dart(fish: FishInstance, species: FishSpeciesDefinition, tank: TankDefinition, away: Vec2,
   random: () => number, input: StartleInput): FishInstance {
   const zone = species.preferredZone;
-  const run = species.realBodyLengthCm * (4 + random() * 4);
+  // 水槽に対して大きな生き物でも、水槽の半分ほどより遠くへは逃げない。
+  const run = Math.min(species.realBodyLengthCm * (4 + random() * 4), tank.widthCm * 0.45);
   // 少し上下にもぶれて逃げる。生活層の外へは大きく出ない。
   const spread = (random() - 0.5) * 0.6;
   const direction = normalize({ x: away.x - away.y * spread, y: away.y + away.x * spread }, { x: fish.facing, y: 0 });
@@ -80,7 +83,7 @@ function dart(fish: FishInstance, species: FishSpeciesDefinition, tank: TankDefi
       Math.min(tank.heightCm - margin, waterY(water, Math.min(1, zone.maxY + 0.1), fish.depth))),
   };
   // 壁際で逃げ場がないときは、壁に沿って横へ逃げる。
-  if (Math.hypot(target.x - fish.position.x, target.y - fish.position.y) < species.realBodyLengthCm * 2) {
+  if (Math.hypot(target.x - fish.position.x, target.y - fish.position.y) < Math.min(species.realBodyLengthCm * 2, run * 0.5)) {
     target = { ...target, x: clamp(fish.position.x - Math.sign(away.x || fish.facing) * run, margin, tank.widthCm - margin) };
   }
   if (input.scene && insideTerrain(target, fish.depth, { ...input, species, scene: input.scene })) {
@@ -94,7 +97,7 @@ function dart(fish: FishInstance, species: FishSpeciesDefinition, tank: TankDefi
 }
 
 function fleeAlongSurface(fish: FishInstance, tank: TankDefinition, scene: AquariumScene,
-  frame: SurfaceFrame, point: Vec2, random: () => number): FishInstance {
+  frame: SurfaceFrame, point: Vec2, random: () => number, mantleFirst = false): FishInstance {
   const motion = fish.surfaceMotion!;
   const surface = scene.terrain.surfaces.find((item) => item.id === motion.surfaceId);
   if (!surface) return fish;
@@ -103,10 +106,14 @@ function fleeAlongSurface(fish: FishInstance, tank: TankDefinition, scene: Aquar
   const behind = sampleSurface(surface, Math.max(0, motion.progress - 0.02), tank, frame).position;
   const direction: -1 | 1 = Math.hypot(ahead.x - point.x, ahead.y - point.y) >=
     Math.hypot(behind.x - point.x, behind.y - point.y) ? 1 : -1;
+  // タコは胴（画像の右）を先にして飛び退くので、逃げる向きと逆を向く。
+  const awayX = (direction === 1 ? ahead.x - behind.x : behind.x - ahead.x);
+  const facing: -1 | 1 = mantleFirst && Math.abs(awayX) > 1e-9 ? (awayX > 0 ? -1 : 1) : fish.facing;
   return {
     ...fish,
     surfaceMotion: { ...motion, pauseSec: 0, grazing: false,
-      flee: { direction, remainingSec: 0.22 + random() * 0.12, facing: fish.facing } },
+      // 噴射は尾を打つ1回の跳ねより長く続く。
+      flee: { direction, remainingSec: mantleFirst ? 0.5 + random() * 0.3 : 0.22 + random() * 0.12, facing } },
   };
 }
 

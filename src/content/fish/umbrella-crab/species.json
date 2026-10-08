@@ -1,0 +1,144 @@
+{
+  "id": "umbrella-crab",
+  "displayName": "アンブレラクラブ",
+  "realBodyLengthCm": 11,
+  "catalog": {
+    "scientificName": "Cryptolithodes sitchensis",
+    "originRegionId": "northeast-pacific",
+    "originRegionName": "北東太平洋",
+    "origin": "北米の太平洋岸に分布し、アラスカ州のシトカからカリフォルニア州のポイント・ロマまで知られます。ポイント・コンセプションより南では少ないとされます。北の端をアラスカ州のトーチ湾とする資料もあります。",
+    "temperament": "石灰藻（Corallina、Calliarthron、Bossiella のなかま）を食べると紹介され、ほかの固着生物も餌に挙げる総説があります。2匹以上が互いの甲の縁をつかむことがありますが、交尾に関わるのか争いなのかは分かっていません。群れの大きさや活動時間は確かめられていません。本水槽では、1匹ずつ底を歩き回ります。",
+    "movement": "とてもゆっくり歩き、よく立ち止まります。歩く速さは測られていません。本水槽では、向きを保ったまま岩のまわりの底を横へ歩き、ときどき止まって、はさみで餌をつまんで口へ運びます。ガラスを叩くと、はさみを振り上げ、横へ素早く走って離れます。",
+    "habitat": "外海に面した岩礁で、海藻に覆われた岩の割れ目や石の下にすみ、潮だまりや低潮線付近から潮下帯で見られます。深さは資料によって、潮間帯から水深15m、17m、37mまでとまちまちです。色とりどりの付着生物が多い岩に紛れてじっとしています。米国のオレゴン・コースト水族館が種のページで紹介しています。本水槽では、洞穴のある冷たい岩礁をイメージしています。",
+    "aliases": [
+      "Umbrella crab",
+      "Turtle crab",
+      "Sitka crab",
+      "Helmet crab",
+      "Cryptolithodes altafissura（異名）"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Decapoda",
+      "orderJa": "十脚目",
+      "family": "Lithodidae",
+      "familyJa": "タラバガニ科"
+    },
+    "adultSizeCm": 9,
+    "sizeNote": "甲幅での値です。ふつうの成体の大きさは確かめられておらず、図鑑に載る雄の甲長6.5cm・甲幅9cm、雌の甲長6.8cm・甲幅8.7cmを目安にしています。1952年の論文には、甲長6.4cm・甲幅10.8cmという記録もあります。画面では、甲と、甲の外にのぞく脚先を合わせた幅（約11cm）で描いています。",
+    "distribution": "アラスカ州のシトカからカリフォルニア州のポイント・ロマまで、北米の太平洋岸に分布します。カナダのブリティッシュコロンビア州の冷たい海では普通に見られるとされます。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "オレゴン・コースト水族館の種のページでは IUCN 未評価と表示されていますが、IUCN の評価そのものは確かめられていません。ブリティッシュコロンビア州の保全のリストには載っていません。"
+    },
+    "highlights": [
+      "横に広がる盾のような甲が、体と脚の大部分を傘のように覆います。",
+      "カニと呼ばれますが、ヤドカリと同じ異尾類のなかまです。はさみの後ろの歩く脚は3対で、腹部は平たい三角形に折りたたまれています。",
+      "体の色は白や淡い褐色から、橙、桃、赤褐色、緑、灰紫まで個体ごとに幅があり、付着生物の多い岩に紛れます。",
+      "額の突起は先へ向かって広がり、先端を横に切ったような形です。近縁の Cryptolithodes typicus では先が細くなります。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "crab",
+    "tailBeatHz": 0.6,
+    "bodyWaveStart": 0.85,
+    "tailSweepRad": 0,
+    "verticalFlex": 0,
+    "footAnchor": {
+      "x": 0.5,
+      "y": 0.96
+    }
+  },
+  "visual": {
+    "fallbackColor": "#9b7e66"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.86,
+    "maxY": 0.94
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.05,
+      "burst": 0.4
+    },
+    "turnRateRadPerSec": 1.0,
+    "restFraction": 0.7,
+    "depthRange": [
+      0.5,
+      0.95
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.7,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 2.5,
+        "durationSec": [
+          8,
+          25
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.5,
+        "durationSec": [
+          15,
+          40
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "ITIS: Cryptolithodes sitchensis (TSN 97953)",
+        "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=97953"
+      },
+      {
+        "title": "Wicksten (2012), Decapod Crustacea of the Californian and Oregonian Zoogeographic Provinces",
+        "url": "https://research.nhm.org/pdfs/38926/38926.pdf"
+      },
+      {
+        "title": "E-Fauna BC: Cryptolithodes sitchensis (Hart の解説)",
+        "url": "https://linnet.geog.ubc.ca/efauna/Atlas/Atlas.aspx?sciname=Cryptolithodes+sitchensis"
+      },
+      {
+        "title": "Walla Walla University: Cryptolithodes sitchensis (Dave Cowles)",
+        "url": "https://inverts.wallawalla.edu/Arthropoda/Crustacea/Malacostraca/Eumalacostraca/Eucarida/Decapoda/Anomura/Family_Lithodidae/Cryptolithodes_sitchensis.html"
+      },
+      {
+        "title": "Coffin (1952), Crabs of Puget Sound, Washington (MA thesis)",
+        "url": "https://inverts.wallawalla.edu/zzReferences/Coffin_1952_Crabs_of_Puget_Sound.pdf"
+      },
+      {
+        "title": "Oregon Coast Aquarium: Turtle crab",
+        "url": "https://aquarium.org/animals/turtle-crab/"
+      },
+      {
+        "title": "Zaklan (2002), Review of the Family Lithodidae: Distribution, Biology, and Fisheries",
+        "url": "https://repository.library.noaa.gov/view/noaa/38677/noaa_38677_DS13.pdf"
+      },
+      {
+        "title": "Hall & Thatje (2009), Global bottlenecks in the distribution of marine Crustacea",
+        "url": "https://eprints.soton.ac.uk/65000/1/Hall_JBiogeogr_09.pdf"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 39,
+    "y": 158,
+    "width": 1469,
+    "height": 733
+  }
+}

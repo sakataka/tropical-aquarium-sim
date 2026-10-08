@@ -22,6 +22,8 @@ describe("body plans", () => {
   test("species with antennae say where the head starts", () => {
     for (const species of Object.values(fishCatalog)) {
       if (getBodyPlan(species).antennae) expect(species.swim?.headStart, species.id).toBeGreaterThan(0);
+      // イカは腕の付け根を書く。
+      if (species.swim?.bodyPlan === "squid") expect(species.swim.headStart, species.id).toBeGreaterThan(0);
     }
   });
 });

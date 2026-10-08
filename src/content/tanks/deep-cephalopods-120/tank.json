@@ -1,0 +1,43 @@
+{
+  "id": "deep-cephalopods-120",
+  "order": 183,
+  "displayName": "深海のタコとイカの水槽",
+  "exhibitName": "Deep-Sea Cephalopods",
+  "category": "深海の泥底",
+  "description": "マリンスノーの降る暗い深海と泥の底を再現した120cm水槽。ホタルイカが中層を前へ後ろへと泳ぎ、コウモリダコがひれを動かしてゆっくり漂い、メンダコが腕の間の膜を広げて浮かんでは、底に伏せて休みます。",
+  "widthCm": 120,
+  "heightCm": 65,
+  "depthCm": 60,
+  "maxTotalFish": 20,
+  "sceneIds": [
+    "deep-cephalopods-120"
+  ],
+  "species": [
+    {
+      "speciesId": "firefly-squid",
+      "maxCount": 16
+    },
+    {
+      "speciesId": "vampire-squid",
+      "maxCount": 2
+    },
+    {
+      "speciesId": "flapjack-octopus",
+      "maxCount": 3
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "firefly-squid",
+      "count": 10
+    },
+    {
+      "speciesId": "vampire-squid",
+      "count": 1
+    },
+    {
+      "speciesId": "flapjack-octopus",
+      "count": 2
+    }
+  ]
+}

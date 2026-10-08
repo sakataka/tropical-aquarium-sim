@@ -78,6 +78,21 @@ export function stepDrifter(fish: FishInstance, species: FishSpeciesDefinition, 
 
   if (isBellDown(species)) return stepBottomPulser(fish, species, context, deltaSec, range, xRange, pulsePhase, random, () => seed);
 
+  // 底で休む習性のあるもの（メンダコ）は、ときどき底に降りて体を広げて伏せ、しばらくしてまた泳ぎ出す。
+  const rest = findHabit(species, "bottomRest");
+  if (rest && fish.targetKind === "rest") {
+    const remaining = fish.behaviorTimeRemainingSec - deltaSec;
+    if (remaining > 0) {
+      return settle(fish, species, context, deltaSec, range, xRange, remaining,
+        ((fish.pulsePhase ?? 0) + deltaSec * RESTING_PULSE_HZ) % 1, () => seed);
+    }
+    fish = { ...fish, targetKind: "openWater", target: undefined, legTimeSec: undefined };
+  } else if (rest && fish.position.y > lerp(range.min, range.max, 0.6) &&
+    random() < rest.chancePerMin / 60 * deltaSec * fish.personality.restfulness / Math.max(activity, 0.3)) {
+    const duration = lerp(rest.durationSec[0], rest.durationSec[1], random()) * fish.personality.restfulness;
+    return settle(fish, species, context, deltaSec, range, xRange, duration, pulsePhase, () => seed);
+  }
+
   // 行き先は生活層の中で選び、着いたか長く向かい続けたら選び直す。
   let target = fish.target;
   let legTimeSec = (fish.legTimeSec ?? 0) + deltaSec;
@@ -145,6 +160,35 @@ export function stepDrifter(fish: FishInstance, species: FishSpeciesDefinition, 
   };
 }
 
+/** 底で休む間の、ゆっくりした拍動 (Hz)。 */
+const RESTING_PULSE_HZ = 0.12;
+
+/** 底に降りて伏せる。休む残り秒数は behaviorTimeRemainingSec に持つ。 */
+function settle(fish: FishInstance, species: FishSpeciesDefinition, context: DriftContext, deltaSec: number,
+  range: { min: number; max: number }, xRange: { min: number; max: number }, remainingSec: number, pulsePhase: number,
+  currentSeed: () => number): FishInstance {
+  const x = clamp(fish.position.x, xRange.min, xRange.max);
+  const y = fish.position.y + clamp((restingY(fish, species, context, range, x) - fish.position.y) * (1 - Math.exp(-2 * deltaSec)),
+    -SINK_CM_PER_SEC * deltaSec, SINK_CM_PER_SEC * deltaSec);
+  return {
+    ...fish, position: { x, y }, velocity: { x: 0, y: deltaSec > 0 ? (y - fish.position.y) / deltaSec : 0 },
+    pulsePhase, tilt: (fish.tilt ?? 0) * Math.exp(-2 * deltaSec), target: undefined,
+    targetKind: "rest", behaviorMode: "rest", behaviorTimeRemainingSec: remainingSec,
+    surfaceMotion: undefined, contact: undefined, alarmSec: undefined, seed: currentSeed(),
+  };
+}
+
+/**
+ * 底に伏せたときの傘の中心の高さ (cm)。水景に砂の面があれば、奥の個体ほど奥の砂（画面では上）に伏せる。
+ */
+function restingY(fish: FishInstance, species: FishSpeciesDefinition, context: DriftContext,
+  range: { min: number; max: number }, x: number): number {
+  const floor = context.scene?.terrain ? floorY(context.scene, context.tank, context.frame, x, fish.depth) : undefined;
+  const bounds = species.sourceBodyBounds;
+  const below = species.realBodyLengthCm * fish.bodyLengthVariance * bounds.height / bounds.width * (1 - bellCenter(species));
+  return floor === undefined ? range.max : clamp(floor - below, range.min, range.max);
+}
+
 function stepBottomPulser(fish: FishInstance, species: FishSpeciesDefinition, context: DriftContext,
   deltaSec: number, range: { min: number; max: number }, xRange: { min: number; max: number }, pulsePhase: number, random: () => number,
   currentSeed: () => number): FishInstance {
@@ -153,13 +197,7 @@ function stepBottomPulser(fish: FishInstance, species: FishSpeciesDefinition, co
   const cruise = species.ecology.speedBodyLengthsPerSec.cruise * species.realBodyLengthCm;
   const rest = findHabit(species, "bottomRest");
   // 底に伏せたまま拍動する。ときどき傘の縁で少しだけ這うように場所を移す。
-  // 水景に砂の面があれば、奥の個体ほど奥の砂（画面では上）に伏せる。
-  const restY = (x: number) => {
-    const floor = context.scene?.terrain ? floorY(context.scene, tank, context.frame, x, fish.depth) : undefined;
-    const bounds = species.sourceBodyBounds;
-    const below = species.realBodyLengthCm * fish.bodyLengthVariance * bounds.height / bounds.width * (1 - bellCenter(species));
-    return floor === undefined ? range.max : clamp(floor - below, range.min, range.max);
-  };
+  const restY = (x: number) => restingY(fish, species, context, range, x);
   let target = fish.target ?? { x: fish.position.x, y: restY(fish.position.x) };
   let habitTimeSec = (fish.habitTimeSec ?? lerp(rest?.durationSec[0] ?? 60, rest?.durationSec[1] ?? 240, random())) - deltaSec;
   if (habitTimeSec <= 0) {
@@ -195,7 +233,9 @@ function verticalRange(fish: FishInstance, species: FishSpeciesDefinition, tank:
   const center = bellCenter(species);
   const min = waterCeilingCm(water, tank, fish.depth) + heightCm * center * 0.9;
   const bottom = tank.heightCm - tank.safeMarginCm;
-  const max = isBellDown(species) ? bottom - heightCm * (1 - center) : bottom - heightCm * (1 - center) * 0.6;
+  // 触手の垂れる種は、触手の先が少し底に隠れるところまで下りてよい。触手のないもの（メンダコ）は体の下端まで。
+  const tentacles = !isBellDown(species) && getBell(species).bottom < 0.9;
+  const max = bottom - heightCm * (1 - center) * (tentacles ? 0.6 : 1);
   return min <= max ? { min, max } : { min: (min + max) / 2, max: (min + max) / 2 };
 }
 

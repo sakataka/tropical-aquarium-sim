@@ -1,0 +1,144 @@
+{
+  "id": "east-asian-common-octopus",
+  "displayName": "マダコ",
+  "realBodyLengthCm": 45,
+  "catalog": {
+    "scientificName": "Octopus sinensis",
+    "originRegionId": "northwest-pacific",
+    "originRegionName": "北西太平洋",
+    "origin": "日本の周辺、東シナ海、台湾で知られます。日本では、太平洋側、日本海側、瀬戸内海、有明海で標本が確かめられており、中国の福建省の沿岸でもとれています。台湾より南の分布の境は確かめられていません。",
+    "temperament": "甲殻類や二枚貝を食べます。夜に活動し、昼は穴や岩の割れ目に隠れます。交接の時期のほかは縄張り意識が強いとされ、飼うときは縄張り争いや共食いに気をつけます。本水槽では、1匹ずつ底をゆっくり動き回り、長い時間じっと休みます。",
+    "movement": "底を這って移動し、漏斗から水を噴き出して泳ぎます。本水槽では、腕をくねらせながら砂や岩の上をゆっくり這い、ときどき腕で底を探ります。ガラスを叩くと、腕をそろえて後ろへなびかせ、胴（外套）を先にして水を噴いて逃げ、そのあとはじっと止まります。",
+    "habitat": "沿岸にすみ、穴や岩の割れ目を隠れ場にします。加茂水族館は、すむ深さを潮間帯から約40mとしていますが、宮城県の女川の近くでは水深50〜100mのかごで成熟した雄がとれています。中国の研究では、親にする個体を水温19.5〜23.1℃、塩分28〜32ppt、pH 7.8〜8.2の海水で2週間飼っていました。研究施設での値で、適した範囲として確かめたものではありません。本水槽では、海藻の茂る温帯の岩礁と白い砂底をイメージしています。",
+    "aliases": [
+      "East Asian common octopus",
+      "Octopus vulgaris（日本のマダコに以前使われた学名）",
+      "まだご",
+      "いそだご"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Octopoda",
+      "orderJa": "タコ目",
+      "family": "Octopodidae",
+      "familyJa": "マダコ科"
+    },
+    "adultSizeCm": 16.8,
+    "sizeNote": "外套長（胴の長さ）での値です。代表的な成体の大きさは確かめられておらず、2014年1月に宮城県の女川の近くで水揚げされた成熟した雄7匹の外套長11.1〜16.8cmを目安にしています。この7匹の重さは902〜2432gで、およその最大は約3kgとされます。画面では、腕を広げた幅（約45cm）で描いています。",
+    "distribution": "日本の周辺、東シナ海、台湾で知られます。日本では太平洋側、日本海側、瀬戸内海、有明海で標本があり、中国の福建省の沿岸でもとれています。台湾より南の境は分かっていません。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "IUCN の区分は確かめられていません。2016年の分類の研究は、大西洋や地中海の Octopus vulgaris と区別して漁業を管理する大切さを指摘しています。"
+    },
+    "highlights": [
+      "日本のマダコは以前、大西洋や地中海の Octopus vulgaris と同じ種とされていましたが、2016年の再記載で Octopus sinensis として区別されました。",
+      "筋肉質の卵形の胴と長い腕をもちます。皮膚には溝で区切られた盛り上がりや乳頭のような突起があり、周りの岩や海藻に似た見た目に変わります。",
+      "雄は右の第3腕が交接腕になっています。",
+      "養殖用の隠れ場を調べた試験では、板を横に置いたときより、6cmや8cmの間隔で縦に並べた板のすき間をよく使いました。",
+      "水槽のすき間から逃げ出すので、飼うときは開いたところをふさぐ必要があります。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "octopus",
+    "tailBeatHz": 0.5,
+    "bodyWaveStart": 1,
+    "tailSweepRad": 0,
+    "verticalFlex": 0,
+    "mouthAnchor": {
+      "x": 0.44,
+      "y": 0.52
+    },
+    "footAnchor": {
+      "x": 0.5,
+      "y": 0.94
+    }
+  },
+  "visual": {
+    "fallbackColor": "#9f6049"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.8,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.08,
+      "burst": 1.2
+    },
+    "turnRateRadPerSec": 1,
+    "restFraction": 0.65,
+    "depthRange": [
+      0.3,
+      0.9
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.8,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.5,
+        "durationSec": [
+          30,
+          120
+        ]
+      },
+      {
+        "type": "grazing",
+        "chancePerMin": 1.2,
+        "durationSec": [
+          8,
+          20
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Gleadall (2016), Octopus sinensis の再記載",
+        "url": "https://zenodo.org/records/5526871"
+      },
+      {
+        "title": "CSIRO CAAB: Octopus sinensis (23659055)",
+        "url": "https://www.cmar.csiro.au/data/caab/taxon_report.cfm?caab_code=23659055"
+      },
+      {
+        "title": "鶴岡市立加茂水族館：マダコ",
+        "url": "https://kamo-kurage.jp/shonaizukan/madako/"
+      },
+      {
+        "title": "鳥羽水族館 生きもの図鑑：マダコ",
+        "url": "https://aquarium.co.jp/picturebook/octopus-sinensis.html"
+      },
+      {
+        "title": "Frontiers in Marine Science (2022), Octopus sinensis の飢餓と老化における行動・組織・ImpL2 遺伝子発現の比較",
+        "url": "https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2022.874777/full"
+      },
+      {
+        "title": "Suzumura et al. (2022), Shelters for aquaculture of Octopus sinensis",
+        "url": "https://link.springer.com/article/10.1007/s12562-022-01582-5"
+      },
+      {
+        "title": "四国水族館：マダコ",
+        "url": "https://shikoku-aquarium.jp/kannai/exhibition/creature/213.html"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 165,
+    "y": 153,
+    "width": 1207,
+    "height": 725
+  }
+}

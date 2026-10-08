@@ -25,6 +25,8 @@ const FORWARD_TARGET_CHANCE = 0.86;
 const FACING_THRESHOLD_CM_PER_SEC = 0.3;
 const WALL_AVOIDANCE_STRENGTH = 4;
 const ZONE_HOLD_STRENGTH = 1.1;
+/** 前後どちらへも泳ぐ生き物（イカ）が、後ろ向きに進み続けたら向きを変えるまでの秒数。 */
+const REVERSE_TURN_SEC = 3;
 
 type GaitProfile = {
   kickDurationSec: number;
@@ -178,7 +180,9 @@ function stepFish(context: StepContext): FishInstance {
   };
 
   // 1. 進行中の習性行動を進める。
-  const precise = targetKind === "rest" || targetKind === "hide" || targetKind === "forage" || targetKind === "home";
+  // 逃げる先も細かく判定する。大きな生き物は体長の0.8倍の手前で「着いた」とみなすと、逃げ始めてすぐに止まってしまう。
+  const precise = targetKind === "rest" || targetKind === "hide" || targetKind === "forage" || targetKind === "home" ||
+    targetKind === "flee";
   const reached = target !== undefined && (goalPoint
     ? length(subtract(target, fish.position)) < Math.max(.12, bodyLength * .06)
     : hasReachedTarget(fish, target, species, precise)) &&
@@ -394,6 +398,7 @@ function stepFish(context: StepContext): FishInstance {
     terrainRoute: route,
     contact,
     facing: getBodyPlan(species).sideways ? fish.facing
+      : getBodyPlan(species).reverses ? reversingFacing(fish.facing, velocity, legTimeSec, targetKind)
       : terrainGoal?.facing && contact && contact.weight > .5 ? terrainGoal.facing : velocity.x < -FACING_THRESHOLD_CM_PER_SEC
       ? -1
       : velocity.x > FACING_THRESHOLD_CM_PER_SEC ? 1 : fish.facing,
@@ -409,6 +414,14 @@ function stepFish(context: StepContext): FishInstance {
     posture: getPosture(species, tank, position, mode),
     seed,
   };
+}
+
+// イカは体の向きを保ったまま後ろへも進む。同じ目的地へ後ろ向きにしばらく進んだときだけ向きを変える。
+// 驚いて噴射で飛び退く間は向きを変えない。
+function reversingFacing(facing: -1 | 1, velocity: Vec2, legTimeSec: number,
+  targetKind: NonNullable<FishInstance["targetKind"]>): -1 | 1 {
+  const backward = velocity.x * facing < -FACING_THRESHOLD_CM_PER_SEC;
+  return backward && targetKind !== "flee" && legTimeSec > REVERSE_TURN_SEC ? (facing === 1 ? -1 : 1) : facing;
 }
 
 type HabitStart = {

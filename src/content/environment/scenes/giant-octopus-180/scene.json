@@ -1,0 +1,11 @@
+{
+  "id": "giant-octopus-180",
+  "order": 105,
+  "displayName": "洞穴のある冷たい岩礁",
+  "description": "大きな岩の間に洞穴が口を開け、褐色の海藻と白いイソギンチャクが岩を飾る北の海の岩礁。上から差す光が、手前の白い砂に揺れます。",
+  "defaultLighting": "cool",
+  "waterColor": "#1f6680",
+  "framing": {
+    "plateBottom": 0.919
+  }
+}

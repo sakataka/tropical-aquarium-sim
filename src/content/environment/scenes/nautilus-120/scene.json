@@ -1,0 +1,8 @@
+{
+  "id": "nautilus-120",
+  "order": 175,
+  "displayName": "暗い岩の斜面",
+  "description": "水深300mほどの、サンゴ礁の外側の急な岩の斜面。光はほとんど届かず、青黒い水に細かな粒が漂い、岩の間に小石の底がのぞきます。",
+  "defaultLighting": "evening",
+  "waterColor": "#0d2944"
+}

@@ -1,0 +1,132 @@
+{
+  "id": "flapjack-octopus",
+  "displayName": "メンダコ",
+  "realBodyLengthCm": 17,
+  "catalog": {
+    "scientificName": "Exsuperoteuthis depressa",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "相模湾から九州の近海に分布するとされます。2023〜2024年には、静岡県沼津市戸田で水揚げされた駿河湾の3匹が調べられました。",
+    "temperament": "飼育下では、腕で餌をつかみ、体の下の口へ運びます。新江ノ島水族館では、冷凍サクラエビを食べた記録があります。野外で何を食べるか、1匹で暮らすか群れるか、昼と夜のどちらに活動するかは確かめられていません。本水槽では、1匹ずつ暮らします。",
+    "movement": "腕の間の膜を広げ、ひれを動かして海底を離れて泳ぎます。飼育下では、水槽の底で体を平たく広げて低く伏せる姿が見られます。ふだん泳ぐ速さは測られていません。本水槽では、腕の間の膜を脈打たせて底から浮かび上がり、ゆっくり漂います。ときどき底に降り、体を平たく広げて休みます。ガラスを叩いても反応しません。",
+    "habitat": "砂泥の海底にすみ、文献では水深130〜600mとされます。新江ノ島水族館は2016年2月に、駿河湾の水深約300mで採集しています。野外の水温は確かめられていません。同館は2015年に、7〜9℃の水で照明をごく弱くして飼育しました。光や音、振動などの刺激に気を配って飼われ、弱い赤色の照明をつけただけで目を閉じる様子も観察されています。本水槽では、マリンスノーの降る深海の泥底をイメージしています。",
+    "aliases": [
+      "Opisthoteuthis depressa（以前の学名）"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Octopoda",
+      "orderJa": "タコ目",
+      "family": "Opisthoteuthidae",
+      "familyJa": "メンダコ科"
+    },
+    "adultSizeCm": 17,
+    "sizeNote": "体を広げた全幅での値です。ふつうの成体の大きさは確かめられておらず、2023〜2024年に駿河湾でとれた3匹（性別や成熟は不明）の全幅16〜18cmを目安にしています。外套長や全長は確かめられていません。画面では、膜を広げた全幅約17cmで描いています。",
+    "distribution": "相模湾から九州の近海に分布するとされ、駿河湾でも記録があります。ほかの海域へ移入した記録は確かめられていません。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "rarelyDisplayed",
+    "conservation": {
+      "note": "世界の IUCN 区分は確かめられていません。野外の個体数の傾向も確かめられていません。"
+    },
+    "highlights": [
+      "8本の腕の間に広い膜があり、耳のようなひれを持ちます。",
+      "以前は Opisthoteuthis 属とされていましたが、新しく立てられた Exsuperoteuthis 属に移されました。",
+      "飼育下では、水槽の底で体を平たく広げて伏せ、腕で餌を包むようにして口元へ運びます。",
+      "沼津港深海水族館は、2019年5月に飼育下での孵化を報告しています。",
+      "本水槽では、腕の間の膜を脈打たせて浮かび上がり、ときどき底で平たく広がって休みます。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "jelly",
+    "tailBeatHz": 0.5,
+    "tailSweepRad": 0.08,
+    "waveCount": 1,
+    "bell": {
+      "top": 0,
+      "bottom": 1
+    }
+  },
+  "visual": {
+    "fallbackColor": "#bb5c3b"
+  },
+  "preferredZone": {
+    "minX": 0.1,
+    "maxX": 0.9,
+    "minY": 0.55,
+    "maxY": 0.92
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.15,
+      "burst": 0.4
+    },
+    "turnRateRadPerSec": 0.6,
+    "restFraction": 0.6,
+    "depthRange": [
+      0.3,
+      0.85
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.2,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 2,
+        "durationSec": [
+          40,
+          150
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "OBIS: Exsuperoteuthis depressa",
+        "url": "https://obis.org/taxon/1765490"
+      },
+      {
+        "title": "OBIS: Opisthoteuthis depressa (superseded combination)",
+        "url": "https://obis.org/taxon/342094"
+      },
+      {
+        "title": "脇・高野・青山 (2026)：メンダコの消化管から検出されたYamaguticestus属の一種の幼虫",
+        "url": "https://www.jstage.jst.go.jp/article/taxa/60/0/60_37/_pdf/-char/en"
+      },
+      {
+        "title": "新江ノ島水族館 (2015-03-24)：メンダコ飼育28日目",
+        "url": "https://www.enosui.com/diaryentry.php?eid=03416"
+      },
+      {
+        "title": "新江ノ島水族館 (2015-03-11)：メンダコが餌を食べました！",
+        "url": "https://www.enosui.com/diaryentry.php?eid=03398"
+      },
+      {
+        "title": "サンシャイン水族館：深海生物展示への挑戦（メンダコ）",
+        "url": "https://sunshinecity.jp/aquarium/animals/shinkaigyo.html"
+      },
+      {
+        "title": "沼津港深海水族館：展示ガイド",
+        "url": "https://www.numazu-deepsea.com/exhibition/"
+      },
+      {
+        "title": "新江ノ島水族館 (2016-02-05)：メンダコチャレンジ2016、その1",
+        "url": "https://www.enosui.com/diaryentry.php?eid=03728"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 120,
+    "y": 147,
+    "width": 1325,
+    "height": 744
+  }
+}
