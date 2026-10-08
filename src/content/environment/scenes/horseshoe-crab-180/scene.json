@@ -1,0 +1,11 @@
+{
+  "id": "horseshoe-crab-180",
+  "order": 176,
+  "displayName": "浅い湾の砂底",
+  "description": "細かな砂がなだらかに広がる、浅い湾の底。水面からの光が砂の上で網の目のように揺れます。",
+  "defaultLighting": "evening",
+  "waterColor": "#2a6f80",
+  "framing": {
+    "plateBottom": 0.772
+  }
+}

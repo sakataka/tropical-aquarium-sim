@@ -46,6 +46,10 @@ export type MotionState = {
   stepBlend: number;
   /** 泳いでいる度合い（0〜1）。両生類が面を離れて泳ぐ間、脚をたたんで体をくねらせる。 */
   swimBlend: number;
+  /** 前を持ち上げている度合い（0〜1）。カブトガニが脚を伸ばして砂を探る。 */
+  lift: number;
+  /** 砂に潜っている度合い（0〜1）。fishBody が体を沈め、砂が透けて見えるよう薄くする。 */
+  burial: number;
 };
 
 /** 変形に使う、画像メッシュとその元の形。 */

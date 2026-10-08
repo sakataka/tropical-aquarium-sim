@@ -1,0 +1,91 @@
+{
+  "structurePoints": [],
+  "bubbleSources": [],
+  "terrain": {
+    "surfaces": [
+      {
+        "id": "back-sand-west",
+        "material": "sand",
+        "points": [
+          { "x": 0.17, "y": 0.6, "depth": 0.85 },
+          { "x": 0.26, "y": 0.598, "depth": 0.85 },
+          { "x": 0.35, "y": 0.6, "depth": 0.85 }
+        ]
+      },
+      {
+        "id": "back-sand-east",
+        "material": "sand",
+        "points": [
+          { "x": 0.35, "y": 0.6, "depth": 0.85 },
+          { "x": 0.6, "y": 0.602, "depth": 0.85 },
+          { "x": 0.83, "y": 0.6, "depth": 0.85 }
+        ]
+      },
+      {
+        "id": "middle-sand-west",
+        "material": "sand",
+        "points": [
+          { "x": 0.17, "y": 0.668, "depth": 0.5 },
+          { "x": 0.3, "y": 0.668, "depth": 0.5 }
+        ]
+      },
+      {
+        "id": "middle-sand-centre",
+        "material": "sand",
+        "points": [
+          { "x": 0.3, "y": 0.668, "depth": 0.5 },
+          { "x": 0.48, "y": 0.665, "depth": 0.5 },
+          { "x": 0.66, "y": 0.668, "depth": 0.5 }
+        ]
+      },
+      {
+        "id": "middle-sand-east",
+        "material": "sand",
+        "points": [
+          { "x": 0.66, "y": 0.668, "depth": 0.5 },
+          { "x": 0.75, "y": 0.67, "depth": 0.5 },
+          { "x": 0.83, "y": 0.668, "depth": 0.5 }
+        ]
+      },
+      {
+        "id": "front-sand-west",
+        "material": "sand",
+        "points": [
+          { "x": 0.17, "y": 0.738, "depth": 0.15 },
+          { "x": 0.4, "y": 0.735, "depth": 0.15 },
+          { "x": 0.62, "y": 0.738, "depth": 0.15 }
+        ]
+      },
+      {
+        "id": "front-sand-east",
+        "material": "sand",
+        "points": [
+          { "x": 0.62, "y": 0.738, "depth": 0.15 },
+          { "x": 0.72, "y": 0.74, "depth": 0.15 },
+          { "x": 0.83, "y": 0.738, "depth": 0.15 }
+        ]
+      },
+      {
+        "id": "slope-back-middle",
+        "material": "sand",
+        "points": [
+          { "x": 0.35, "y": 0.6, "depth": 0.85 },
+          { "x": 0.505, "y": 0.634, "depth": 0.68 },
+          { "x": 0.66, "y": 0.668, "depth": 0.5 }
+        ]
+      },
+      {
+        "id": "slope-middle-front",
+        "material": "sand",
+        "points": [
+          { "x": 0.3, "y": 0.668, "depth": 0.5 },
+          { "x": 0.46, "y": 0.703, "depth": 0.33 },
+          { "x": 0.62, "y": 0.738, "depth": 0.15 }
+        ]
+      }
+    ],
+    "occluders": [],
+    "obstacles": [],
+    "shelters": []
+  }
+}

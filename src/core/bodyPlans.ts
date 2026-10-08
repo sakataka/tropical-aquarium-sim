@@ -37,8 +37,9 @@ export type BodyPlanTraits = {
    * jet = 漏斗から水を噴いて胴を先に飛び退き、腕をそろえてなびかせる（タコ、イカ）。none = 反応しない（クラゲ）。
    * 漂う生き物の dart は、向きを変えずに羽ばたきを速めて叩いた所から離れる（クリオネ）。
    * crawl = 叩いた所と逆へ向き直り、頭を先にして面に沿って這って離れる（両生類）。
+   * hunker = その場で立ち止まり、甲を伏せてしばらく動かない（カブトガニ）。砂に潜っている間は反応しない。
    */
-  startle: "dart" | "tailFlip" | "scuttle" | "jet" | "crawl" | "none";
+  startle: "dart" | "tailFlip" | "scuttle" | "jet" | "crawl" | "hunker" | "none";
 };
 
 export const BODY_PLANS = {
@@ -150,6 +151,19 @@ export const BODY_PLANS = {
     flaps: false,
     reverses: false,
     startle: "crawl",
+  },
+  // カブトガニ。斜め上から見た画像（前が左、尾剣が右）。脚は甲の下に隠れ、甲ごと底を這う。
+  // 砂の面では、ときどき前縁から砂に潜って休む（習性 burrow）。叩くと甲を伏せて固まる。
+  horseshoeCrab: {
+    walksOnSurfaces: true,
+    bottomDweller: true,
+    tailKick: false,
+    antennae: false,
+    sideways: false,
+    drifts: false,
+    flaps: false,
+    reverses: false,
+    startle: "hunker",
   },
 } as const satisfies Record<string, BodyPlanTraits>;
 

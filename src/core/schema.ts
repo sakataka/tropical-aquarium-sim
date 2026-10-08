@@ -32,6 +32,11 @@ const habitSchema = z.discriminatedUnion("type", [
     chancePerMin: z.number().finite().min(0).max(10),
     durationSec: rangeSchema,
   }),
+  z.object({
+    type: z.literal("burrow"),
+    chancePerMin: z.number().finite().min(0).max(10),
+    durationSec: rangeSchema,
+  }),
   z.object({ type: z.literal("bottomForage") }),
   z.object({
     type: z.literal("grazing"),

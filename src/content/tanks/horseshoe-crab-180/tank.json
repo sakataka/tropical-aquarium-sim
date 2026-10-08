@@ -1,0 +1,27 @@
+{
+  "id": "horseshoe-crab-180",
+  "order": 177,
+  "displayName": "カブトガニ水槽",
+  "exhibitName": "Horseshoe Crab",
+  "category": "瀬戸内海と九州北部の浅い湾",
+  "description": "浅い湾の砂底を再現した180cm水槽。カブトガニは甲ごと砂の上を這い、ときどき脚を伸ばして前を持ち上げ、砂の中の餌を探ります。立ち止まると前の縁から砂に潜り、しばらくすると砂から出てまた歩き出します。夜によく動くので、照明を夕方や夜にすると歩き回る姿が見られます。",
+  "widthCm": 180,
+  "heightCm": 49,
+  "depthCm": 90,
+  "maxTotalFish": 4,
+  "sceneIds": [
+    "horseshoe-crab-180"
+  ],
+  "species": [
+    {
+      "speciesId": "tri-spine-horseshoe-crab",
+      "maxCount": 4
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "tri-spine-horseshoe-crab",
+      "count": 3
+    }
+  ]
+}

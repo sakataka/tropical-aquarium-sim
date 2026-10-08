@@ -1,4 +1,5 @@
 import { getBodyPlan } from "./bodyPlans";
+import { findHabit } from "./habits";
 import type {
   AquariumScene, FishInstance, FishSpeciesDefinition, SceneSurface, SurfaceFrame,
   SurfacePoint, TankDefinition,
@@ -170,6 +171,7 @@ export function stepSurfaceWalker(fish: FishInstance, species: FishSpeciesDefini
   let facing = fish.facing;
   const wasPaused = motion.pauseSec > 0;
   motion.pauseSec = Math.max(0, motion.pauseSec - deltaSec);
+  if (motion.pauseSec === 0) motion.burrowed = undefined;
   // 近い奥行きで、進む先に別の個体が近すぎるときは、重ならないよう少し立ち止まって引き返す。
   // 近くにいる個体を先に絞り、いるときだけ進む向きを調べる（エビの多い水槽でも軽く保つ）。
   const close = wasPaused || deltaSec === 0 ? [] : neighbors.filter((other) => other.id !== fish.id &&
@@ -196,13 +198,19 @@ export function stepSurfaceWalker(fish: FishInstance, species: FishSpeciesDefini
       motion.direction = -1;
     }
     if (motion.progress < 0 || motion.progress > 1) crossEnd(true);
-    const grazing = species.ecology.habits.find((habit) => habit.type === "grazing");
-    const rest = species.ecology.habits.find((habit) => habit.type === "bottomRest");
+    const grazing = findHabit(species, "grazing");
+    const rest = findHabit(species, "bottomRest");
+    // 砂に潜るのは、砂の面で立ち止まったときだけ。
+    const burrow = surface.material === "sand" ? findHabit(species, "burrow") : undefined;
     const grazingChance = (grazing?.chancePerMin ?? 0) * activity * fish.personality.exploration;
     const restChance = (rest?.chancePerMin ?? 0) * fish.personality.restfulness / Math.max(activity, 0.3);
-    if (random() < (grazingChance + restChance) * deltaSec / 60) {
-      motion.grazing = random() * (grazingChance + restChance) < grazingChance;
-      const range = (motion.grazing ? grazing : rest)?.durationSec ?? [6, 12];
+    const burrowChance = (burrow?.chancePerMin ?? 0) * fish.personality.restfulness / Math.max(activity, 0.3);
+    const chance = grazingChance + restChance + burrowChance;
+    if (random() < chance * deltaSec / 60) {
+      const pick = random() * chance;
+      motion.grazing = pick < grazingChance;
+      motion.burrowed = pick >= grazingChance + restChance || undefined;
+      const range = (motion.grazing ? grazing : motion.burrowed ? burrow : rest)?.durationSec ?? [6, 12];
       motion.pauseSec = (range[0] + random() * (range[1] - range[0])) * (motion.grazing ? 1 : fish.personality.restfulness);
       // 横歩きの生き物は、立ち止まったときにときどき向きを変える。
       if (sideways && random() < 0.3) facing = facing === 1 ? -1 : 1;
@@ -216,8 +224,10 @@ export function stepSurfaceWalker(fish: FishInstance, species: FishSpeciesDefini
   };
   // 経路の折返しでも、速度のしきい値に依存せず体を進行方向へ向ける。横歩きの生き物は向きを保つ。
   if (!sideways) facing = Math.cos(sampled.angle) * motion.direction >= 0 ? 1 : -1;
+  const alarmSec = Math.max(0, (fish.alarmSec ?? 0) - deltaSec);
   return {
     ...fish, position: sampled.position, depth: sampled.depth, velocity, facing,
+    alarmSec: alarmSec > 0 ? alarmSec : undefined,
     terrainGoal: undefined, terrainRoute: undefined, depthMotion: undefined, contact: undefined, homeDepth: undefined,
     surfaceMotion: motion, target: undefined, targetKind: "openWater",
     behaviorMode: motion.pauseSec > 0 ? (motion.grazing ? "forage" : "rest") : "coast",

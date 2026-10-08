@@ -1,0 +1,172 @@
+{
+  "id": "tri-spine-horseshoe-crab",
+  "displayName": "カブトガニ",
+  "realBodyLengthCm": 55,
+  "catalog": {
+    "scientificName": "Tachypleus tridentatus",
+    "originRegionId": "east-asia",
+    "originRegionName": "東アジア",
+    "origin": "日本の西部から、東アジア・東南アジアの沿岸に分布します。日本では、瀬戸内海や九州北部などに残っています。",
+    "temperament": "福岡県津屋崎の成体の追跡調査では、昼より夜に多く移動していました。マレーシアのサバ州で調べた個体は、昼も夜も活動していました。本水槽では、明るい間は砂の上で休んだり砂に潜ったりし、暗くなると歩き回ります。",
+    "movement": "甲の下に隠れた脚で、砂浜や海底を這って進みます。仰向けになって鰓のある脚を動かして泳ぐこともありますが、成体で見られることはまれです。本水槽では、甲ごと砂の上を滑るように這い、ときどき砂に潜ります。",
+    "habitat": "沿岸の海底で暮らし、内湾から湾の外までを個体ごとに違う割合で使います。夏の大潮の満潮のころに砂浜の高い所で卵を産み、幼生は干潟で育ちます。冬は海底の砂に潜って、あまり動かなくなります。本水槽では、浅い湾の砂底をイメージしています。",
+    "aliases": [
+      "Tri-spine horseshoe crab",
+      "Japanese horseshoe crab",
+      "Chinese horseshoe crab"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Xiphosura",
+      "orderJa": "カブトガニ目",
+      "family": "Limulidae",
+      "familyJa": "カブトガニ科"
+    },
+    "adultSizeCm": 60,
+    "sizeNote": "尾剣を含めた全長での値です。成体の全長は雌で約60cm、雄で約50cmとされます。画面では全長約55cmで描いています。",
+    "distribution": "日本の西部から、東アジア・東南アジアの沿岸に分布します。日本では、瀬戸内海や九州北部などに残っています。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "EN",
+      "assessedYear": 2018,
+      "note": "IUCN レッドリストでは絶滅危惧（EN）で、減り続けていると評価されています。環境省レッドリスト2020では絶滅危惧I類、福岡県レッドデータブック2024では絶滅危惧IA類です。岡山県笠岡市の「カブトガニ繁殖地」は、1928年に国の天然記念物に指定されました。"
+    },
+    "highlights": [
+      "カニと名前につきますが、十脚類のカニではなく、クモやサソリに近い鋏角類のなかまです。",
+      "お椀のような前の甲と、縁に棘の並ぶ後ろの甲、断面が三角形の細長い尾剣からなります。尾剣の付け根の後ろの甲の縁に小さな3本の棘があり、ほかのカブトガニとの見分けに使われます。",
+      "笠岡市立カブトガニ博物館では、脚を伸ばして甲を持ち上げ、前の脚で砂の中を探って、捕らえたものを口へ運ぶ様子が見られます。ゴカイや貝などを食べます。",
+      "成体の雄は前の脚が鉤のような形で、繁殖のときに雌の後ろの甲をつかんでつながります。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "horseshoeCrab",
+    "tailBeatHz": 0.5,
+    "bodyWaveStart": 0.552,
+    "tailSweepRad": 0,
+    "verticalFlex": 0,
+    "footAnchor": {
+      "x": 0.42,
+      "y": 0.88
+    }
+  },
+  "visual": {
+    "fallbackColor": "#8a7a3a"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.86,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.05,
+      "burst": 0.1
+    },
+    "turnRateRadPerSec": 0.6,
+    "restFraction": 0.6,
+    "depthRange": [
+      0.1,
+      0.9
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.2,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 1.5,
+        "durationSec": [
+          8,
+          20
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1,
+        "durationSec": [
+          10,
+          30
+        ]
+      },
+      {
+        "type": "burrow",
+        "chancePerMin": 0.8,
+        "durationSec": [
+          30,
+          90
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Laurie et al. (2019), Tachypleus tridentatus, The IUCN Red List of Threatened Species (errata version)",
+        "url": "https://www.researchgate.net/publication/332240716_Tachypleus_tridentatus_Tri-spine_Horseshoe_Crab_-_The_IUCN_Red_List_of_Threatened_Specis_Assessment_Report_Errata_Version"
+      },
+      {
+        "title": "四国水族館：カブトガニ幼生の展示（2026年）",
+        "url": "https://shikoku-aquarium.jp/news/archive/960/"
+      },
+      {
+        "title": "大分県レッドデータブック：カブトガニ",
+        "url": "https://www.pref.oita.jp/10550/reddata/data/picture/207.pdf"
+      },
+      {
+        "title": "Movement patterns and residency of tri-spine horseshoe crabs using acoustic telemetry (2016)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4749169/"
+      },
+      {
+        "title": "Activity recording of free-ranging tri-spine horseshoe crabs in Sabah",
+        "url": "https://html.rhhz.net/ZGHYDXXBYWB/html/0dceb50a-a9b4-4e18-b083-e2054554122e.htm"
+      },
+      {
+        "title": "福岡県レッドデータブック2024：カブトガニ",
+        "url": "https://biodiversity.pref.fukuoka.lg.jp/rdb/rdbs/detail/202401527"
+      },
+      {
+        "title": "環境省レッドリスト2020：その他無脊椎動物",
+        "url": "https://www.env.go.jp/content/900515981.pdf"
+      },
+      {
+        "title": "文化遺産オンライン：カブトガニ繁殖地",
+        "url": "https://online.bunka.go.jp/heritages/detail/217319"
+      },
+      {
+        "title": "笠岡市立カブトガニ博物館：飼育展示室",
+        "url": "https://www.city.kasaoka.okayama.jp/site/kabutogani/3807.html"
+      },
+      {
+        "title": "笠岡市立カブトガニ博物館：冬のカブトガニ",
+        "url": "https://www.city.kasaoka.okayama.jp/site/kabutogani/12487.html"
+      },
+      {
+        "title": "笠岡市立カブトガニ博物館：カブトガニ教養講座1",
+        "url": "https://www.city.kasaoka.okayama.jp/site/kabutogani/3694.html"
+      },
+      {
+        "title": "西田伸：アジアのカブトガニ類と種の判別",
+        "url": "https://sites.google.com/site/snnishida/studies-and-topics/horseshoe-crabs-in-asia-jp"
+      },
+      {
+        "title": "笠岡市立カブトガニ博物館：カブトガニの種類",
+        "url": "https://www.city.kasaoka.okayama.jp/site/kabutogani/3676.html"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 76,
+    "y": 240,
+    "width": 1417,
+    "height": 570
+  }
+}

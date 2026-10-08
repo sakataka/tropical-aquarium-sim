@@ -1,4 +1,4 @@
-import { MeshPlane, type Texture } from "pixi.js";
+import { Graphics, MeshPlane, type Texture } from "pixi.js";
 import type { FishInstance, FishSpeciesDefinition } from "../core";
 import { blendAngle, sampleMeshPoint, stepTurnSpring } from "./fishMotion";
 import { BODY_PLANS } from "../core/bodyPlans";
@@ -11,6 +11,9 @@ const TURN_HYSTERESIS_CM_PER_SEC = 0.35;
 const MAX_PITCH_RAD = 0.42;
 const MAX_TRIP_PITCH_RAD = 1.05;
 const NOSE_DOWN_PITCH_RAD = 0.32;
+/** 砂に潜りきったときに沈める量（画像の高さに対する比率）と、砂をかぶって薄く見える量。 */
+const BURIAL_SINK = 0.32;
+const BURIAL_FADE = 0.2;
 
 const DEFAULT_SWIM: SwimStyle = {
   tailBeatHz: 2.6,
@@ -66,6 +69,8 @@ export class FishBody {
   /** 漂う生き物（クラゲ）は向きを変えず、傘の中心を軸に傾く。 */
   private readonly drifts: boolean;
   private readonly bodyLengthCm: number;
+  /** 砂に潜っている間だけ使う、砂の面より上を残す切り抜き。 */
+  private burialMask?: Graphics;
 
   constructor(texture: Texture, species: FishSpeciesDefinition, fish: FishInstance) {
     this.swim = { ...DEFAULT_SWIM, ...species.swim };
@@ -149,8 +154,30 @@ export class FishBody {
     const anchor = this.motion.contactAnchor ?? desiredAnchor;
     const point = sampleMeshPoint(this.mesh.geometry.positions, VERTICES_X, this.verticesY, anchor.x, anchor.y);
     const weight = fish.surfaceMotion ? 1 : fish.contact?.weight ?? 0;
+    const burial = this.motion.burial;
     this.mesh.pivot.set(this.pivotX + (point.x - this.pivotX) * weight,
-      this.height / 2 + (point.y - this.height / 2) * weight);
+      this.height / 2 + (point.y - this.height / 2) * weight - burial * this.height * BURIAL_SINK);
+    this.updateBurial(burial, point.y);
+  }
+
+  // 砂に潜っている生き物は、潜る前の体の下端（砂の面）より下を切り取りながら沈め、砂をかぶって少し薄く見せる。
+  private updateBurial(burial: number, anchorY: number) {
+    if (burial < 0.002) {
+      if (this.mesh.mask) this.mesh.mask = null;
+      if (this.burialMask) this.burialMask.visible = false;
+      return;
+    }
+    const parent = this.mesh.parent;
+    if (!parent) return;
+    this.burialMask ??= new Graphics();
+    if (this.burialMask.parent !== parent) parent.addChild(this.burialMask);
+    const scale = this.mesh.scale.y;
+    const groundY = this.mesh.position.y + (this.height - anchorY) * scale;
+    const reach = this.width * Math.abs(this.mesh.scale.x) * 1.5;
+    this.burialMask.clear().rect(this.mesh.position.x - reach, groundY - reach, reach * 2, reach).fill(0xffffff);
+    this.burialMask.visible = true;
+    this.mesh.mask = this.burialMask;
+    this.mesh.alpha *= 1 - burial * BURIAL_FADE;
   }
 
   // 画像は反転せず、傘の中心（クリオネは翼足の付け根）を軸にシミュレーションの傾き（fish.tilt）だけ回す。
@@ -176,6 +203,7 @@ export class FishBody {
 
   destroy() {
     this.mesh.destroy();
+    this.burialMask?.destroy();
   }
 
   private updateYaw(fish: FishInstance, deltaSec: number) {

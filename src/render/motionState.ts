@@ -28,6 +28,8 @@ export function getMotionState(fish: FishInstance): MotionState {
       flick: 0,
       stepBlend: 0,
       swimBlend: 0,
+      lift: 0,
+      burial: 0,
     };
     motionStates.set(fish.id, state);
   }

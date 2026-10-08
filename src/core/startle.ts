@@ -26,6 +26,7 @@ export type StartleInput = {
  * - タコ: 底に沿って、胴を先にして噴射で飛び退き、しばらく固まる。
  * - イカ: 向きを変えずに噴射で飛び退く（後ろへ逃げるときは胴が先になる）。
  * - 両生類: 叩いた所と逆へ向き直り、頭を先にして底を這って離れる。息継ぎに泳いでいる間は反応しない。
+ * - カブトガニ: その場で立ち止まり、甲を伏せてしばらく動かない。砂に潜っている間は反応しない。
  * - そのほかの魚: 叩いた所から離れる向きへ瞬発で泳ぎ去る（C字の急旋回）。
  * - クラゲ: 反応しない。
  */
@@ -45,12 +46,24 @@ export function startleFish(input: StartleInput): FishInstance[] {
     // 近いほど、反応の速い個体ほど驚きやすい。
     const chance = input.strength * (1 - distance / reach) ** 0.6 * fish.personality.responsiveness;
     if (random() >= Math.min(1, chance * 1.4)) return fish;
+    if (style === "hunker") return hunker(fish, random);
     const away = normalize({ x: dx, y: dy }, { x: fish.facing, y: 0 });
     if (style !== "dart" && fish.surfaceMotion && input.scene) {
       return fleeAlongSurface(fish, tank, input.scene, input.frame, point, random, style);
     }
     return retreatToShelter(fish, species, input, random) ?? dart(fish, species, tank, away, random, input);
   });
+}
+
+// 立ち止まって甲を伏せる。伏せている間（alarmSec）は描き方が甲を低く構える。
+function hunker(fish: FishInstance, random: () => number): FishInstance {
+  const motion = fish.surfaceMotion;
+  if (!motion || motion.burrowed) return fish;
+  const holdSec = 3 + random() * 4;
+  return {
+    ...fish, alarmSec: holdSec, velocity: { x: 0, y: 0 },
+    surfaceMotion: { ...motion, flee: undefined, grazing: false, pauseSec: Math.max(motion.pauseSec, holdSec + 0.5 + random()) },
+  };
 }
 
 function retreatToShelter(fish: FishInstance, species: FishSpeciesDefinition, input: StartleInput,

@@ -30,6 +30,8 @@ export type SurfaceMotion = {
   pauseSec: number;
   grazing: boolean;
   angle: number;
+  /** 砂に潜って休んでいる間（習性 burrow）。pauseSec が尽きると砂から出て歩き出す。 */
+  burrowed?: boolean;
   /** 驚いて尾を打ち、後ろ向きに跳ね退いている間。向き（facing）は変えない。 */
   flee?: { direction: -1 | 1; remainingSec: number; facing: -1 | 1 };
 };
@@ -55,6 +57,8 @@ export type SocialGrouping = "school" | "shoal" | "group" | "solitary";
 export type FishHabit =
   | { type: "airBreathing"; breathsPerHour: [number, number]; style: "dash" | "rise" }
   | { type: "bottomRest"; chancePerMin: number; durationSec: [number, number] }
+  /** 面を歩く生き物が、砂の面で立ち止まったときに砂に潜って休む。砂でない面では潜らない。 */
+  | { type: "burrow"; chancePerMin: number; durationSec: [number, number] }
   | { type: "bottomForage" }
   | { type: "grazing"; chancePerMin: number; durationSec: [number, number] }
   | { type: "hideByDay"; durationSec: [number, number] }

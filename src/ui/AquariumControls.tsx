@@ -271,6 +271,7 @@ const GROUPING_LABELS = {
 const HABIT_LABELS = {
   airBreathing: "空気呼吸",
   bottomRest: "底で休む",
+  burrow: "砂に潜る",
   bottomForage: "底を探る",
   grazing: "ついばむ",
   hideByDay: "昼は隠れる",
