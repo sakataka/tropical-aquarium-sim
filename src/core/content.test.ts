@@ -116,6 +116,11 @@ describe("content wiring", () => {
       if (!HEAD_START_PLANS.includes(getBodyPlanId(species))) expect(species.swim?.headStart, species.id).toBeUndefined();
       // 傘の範囲 bell は、漂う体のつくり（クラゲ）にだけ意味がある。
       if (!getBodyPlan(species).drifts) expect(species.swim?.bell, species.id).toBeUndefined();
+      // 震わせるひれ fins と立った尾の始まり tailStartY は、タツノオトシゴの仲間にだけ意味がある。
+      if (getBodyPlanId(species) !== "seahorse") {
+        expect(species.swim?.fins, species.id).toBeUndefined();
+        expect(species.swim?.tailStartY, species.id).toBeUndefined();
+      }
     }
   });
 

@@ -1,0 +1,129 @@
+{
+  "id": "flamboyant-cuttlefish",
+  "displayName": "フランボヤントカトルフィッシュ",
+  "realBodyLengthCm": 10.3,
+  "catalog": {
+    "scientificName": "Ascarosepion pfefferi",
+    "originRegionId": "west-pacific",
+    "originRegionName": "西太平洋",
+    "origin": "インドネシア、パプアニューギニアの東部、オーストラリアの北部に分布し、フィリピンにもいるとされます。",
+    "temperament": "伸び縮みする2本の触腕で獲物を捕らえます。野外では、ふだんは背景にまぎれる色をしていて、敵が近づくと目立つ模様に切り替えます。2014年に水族館で成熟した5匹を一緒に飼った研究では、交接のほか、同じ種どうしの攻撃も見られました。野外で群れを作るかどうかは確かめられていません。本水槽では、1匹ずつ底の近くで過ごします。",
+    "movement": "腹側の腕と、体の下側の突起を使って底を歩くほか、泳いだり、その場に浮かんだり、底でじっとしたりします。本水槽では、底の近くで、ひれを波打たせて前へも後ろへも進み、驚くと水を噴いて飛び退きます。",
+    "habitat": "浅い海の砂や泥の底で暮らします。すむ深さの範囲は確かめられていません。2014年の水族館（エプコット）の研究では、総水量550Lの水槽を水温24〜26℃、塩分33〜36ppt、pH 8.0〜8.2に保ち、休んだり卵を産んだりする場所として、人工のサンゴやシャコガイの殻などを置いていました。一つの施設での値で、適した範囲として確かめたものではありません。本水槽では、海草と褐藻の藻場の白い砂底をイメージしています。",
+    "aliases": [
+      "Flamboyant cuttlefish",
+      "Metasepia pfefferi（2023年に属が変わる前の学名）"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Sepioida",
+      "orderJa": "コウイカ目",
+      "family": "Sepiidae",
+      "familyJa": "コウイカ科"
+    },
+    "adultSizeCm": 8,
+    "sizeNote": "外套長（胴の長さ）として表示していますが、もとにしたモントレーベイ水族館の6〜8cmという値は、外套長か全長かが示されていません。ふつうの成体の大きさや最大の値は確かめられていません。雄は雌より小さく、2014年の研究の成熟した個体の重さは、雌が約20g、雄が約10gでした。画面では、外套長約7cm、腕の先までで約10cmで描いています。",
+    "distribution": "インドネシア、パプアニューギニアの東部、オーストラリアの北部に分布し、フィリピンにもいるとされます。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "IUCN の区分やワシントン条約での扱いは確かめられていません。"
+    },
+    "highlights": [
+      "短く厚い胴（外套）の中に、胴より短いひし形の甲があります。",
+      "ふだんは背景にまぎれる色ですが、敵が近づくと、白、黄、赤、褐色に、暗い波が流れるように見える模様を見せます。いつも派手な色をしているわけではありません。",
+      "求愛では、雄が白っぽい体と桃色の腕先を見せ、雌の前で体を揺らします。",
+      "2023年の分類の研究で、Metasepia 属から Ascarosepion 属へ移されました。",
+      "モントレーベイ水族館は、本種を5世代にわたって繁殖させています。",
+      "本水槽では、底の近くで前へも後ろへも進み、ときどき底でじっと休みます。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "squid",
+    "tailBeatHz": 1.4,
+    "bodyWaveStart": 0.42,
+    "waveCount": 2.5,
+    "verticalFlex": 0.02,
+    "tailSweepRad": 0.1,
+    "headStart": 0.38,
+    "mouthAnchor": {
+      "x": 0.38,
+      "y": 0.5
+    }
+  },
+  "visual": {
+    "fallbackColor": "#845945"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.65,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "steady",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.2,
+      "burst": 2.0
+    },
+    "turnRateRadPerSec": 1.2,
+    "restFraction": 0.4,
+    "depthRange": [
+      0.6,
+      0.95
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.4,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.0,
+        "durationSec": [
+          15,
+          45
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Lupše et al. (2023), Cuttlefishes (Cephalopoda, Sepiidae): the bare bones",
+        "url": "https://link.springer.com/article/10.1007/s00227-023-04195-3"
+      },
+      {
+        "title": "WoRMS: Ascarosepion taxon list",
+        "url": "https://www.marinespecies.org/aphia.php?p=taxlist&tName=Ascarosepion"
+      },
+      {
+        "title": "Thomas & MacDonald (2016), Investigating body patterning in aquarium-raised flamboyant cuttlefish",
+        "url": "https://www.researchgate.net/publication/303326509_Investigating_body_patterning_in_aquarium-raised_flamboyant_cuttlefish_Metasepia_pfefferi"
+      },
+      {
+        "title": "Grasse (2014), The Biological Characteristics, Life Cycle, and System Design for Metasepia sp.",
+        "url": "https://www.researchgate.net/publication/263272564_The_Biological_Characteristics_Life_Cycle_and_System_Design_for_the_Flamboyant_and_Paintpot_Cuttlefish_Metasepia_sp_Cultured_Through_Multiple_Generations"
+      },
+      {
+        "title": "Monterey Bay Aquarium: Flamboyant cuttlefish",
+        "url": "https://www.montereybayaquarium.org/animals-the-ocean/animals-a-to-z/flamboyant-cuttlefish"
+      },
+      {
+        "title": "Marine Biological Laboratory (2022): Flamboyant cuttlefish",
+        "url": "https://www.mbl.edu/news/mbl-march-madness-flamboyant-cuttlefish"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 197,
+    "y": 245,
+    "width": 1192,
+    "height": 541
+  }
+}

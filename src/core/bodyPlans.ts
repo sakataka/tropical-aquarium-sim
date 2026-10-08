@@ -100,6 +100,18 @@ export const BODY_PLANS = {
     reverses: true,
     startle: "jet",
   },
+  // タツノオトシゴ・シードラゴン。体を曲げず、背びれと胸びれを震わせてゆっくり進む（尾で蹴らない）。
+  // タツノオトシゴは体を立てた画像で、尾で海草につかまって休む（住みかの種類 holdfast）。
+  seahorse: {
+    walksOnSurfaces: false,
+    bottomDweller: false,
+    tailKick: false,
+    antennae: false,
+    sideways: false,
+    drifts: false,
+    reverses: false,
+    startle: "dart",
+  },
 } as const satisfies Record<string, BodyPlanTraits>;
 
 export type BodyPlanId = keyof typeof BODY_PLANS;

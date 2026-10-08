@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { BODY_PLAN_IDS } from "./bodyPlans";
-import type { FishSpeciesDefinition } from "./types";
+import { SHELTER_KINDS, type FishSpeciesDefinition } from "./types";
 
 const bodyBoundsSchema = z.object({
   x: z.number().finite().min(0),
@@ -46,7 +46,7 @@ const habitSchema = z.discriminatedUnion("type", [
   }),
   z.object({
     type: z.literal("homeShelter"),
-    kind: z.enum(["anemone", "burrow", "crevice", "cave"]),
+    kind: z.enum(SHELTER_KINDS),
     rangeBodyLengths: z.number().finite().positive().max(40),
     visitChancePerMin: z.number().finite().min(0).max(10),
     visitDurationSec: rangeSchema,
@@ -134,6 +134,8 @@ const fishSpeciesDefinitionSchema = z.object({
     bell: z.object({ top: unit, bottom: unit }).refine((bell) => bell.top < bell.bottom, {
       message: "bell top must be above its bottom",
     }),
+    fins: z.array(z.object({ x: unit, y: unit, radius: unit.gt(0) })).min(1),
+    tailStartY: unit,
   }).partial().optional(),
   visual: z.object({ fallbackColor: z.string().regex(/^#[0-9a-fA-F]{6}$/) }),
   sourceBodyBounds: bodyBoundsSchema,

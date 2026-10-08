@@ -1,0 +1,51 @@
+{
+  "id": "seahorse-90",
+  "order": 120,
+  "displayName": "タツノオトシゴとシードラゴンの水槽",
+  "exhibitName": "Seahorses & Seadragons",
+  "category": "海草の藻場",
+  "description": "海草と褐藻の茂る藻場を再現した90cm水槽。クロウミウマは体を立てたまま背びれを震わせて進み、尾を海草に巻きつけて休みます。2種のシードラゴンは体を曲げずに海藻のように漂い、フランボヤントカトルフィッシュは底の近くをひれを波打たせて進みます。",
+  "widthCm": 90,
+  "heightCm": 77,
+  "depthCm": 45,
+  "maxTotalFish": 9,
+  "sceneIds": [
+    "seahorse-90"
+  ],
+  "species": [
+    {
+      "speciesId": "spotted-seahorse",
+      "maxCount": 6
+    },
+    {
+      "speciesId": "leafy-seadragon",
+      "maxCount": 2
+    },
+    {
+      "speciesId": "weedy-seadragon",
+      "maxCount": 2
+    },
+    {
+      "speciesId": "flamboyant-cuttlefish",
+      "maxCount": 2
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "spotted-seahorse",
+      "count": 3
+    },
+    {
+      "speciesId": "leafy-seadragon",
+      "count": 1
+    },
+    {
+      "speciesId": "weedy-seadragon",
+      "count": 1
+    },
+    {
+      "speciesId": "flamboyant-cuttlefish",
+      "count": 1
+    }
+  ]
+}

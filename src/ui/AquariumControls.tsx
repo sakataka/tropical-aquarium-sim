@@ -7,6 +7,7 @@ import {
   type AquariumPreferences,
   type FishSpeciesDefinition,
   type LightingId,
+  type ShelterKind,
   type SwimZoneId,
   type TankDefinition,
 } from "../core";
@@ -281,7 +282,8 @@ const SHELTER_LABELS = {
   burrow: "巣穴に住む",
   crevice: "岩の隙間で休む",
   cave: "物陰を住みかにする",
-} as const;
+  holdfast: "尾で海草につかまる",
+} as const satisfies Record<ShelterKind, string>;
 
 function getTraitLabels(species: FishSpeciesDefinition): string[] {
   const { activityPeriod, social, habits } = species.ecology;

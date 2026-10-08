@@ -1,0 +1,134 @@
+{
+  "id": "leafy-seadragon",
+  "displayName": "リーフィーシードラゴン",
+  "realBodyLengthCm": 30,
+  "catalog": {
+    "scientificName": "Phycodurus eques",
+    "originRegionId": "oceania",
+    "originRegionName": "オセアニア",
+    "origin": "オーストラリア南部の温帯域の固有種で、南オーストラリア州から西オーストラリア州にかけて分布します。Fishes of Australia によると、およそビクターハーバーからヤンチェップまでで、カンガルー島も含みます。ビクトリア州の記録は確かめられていないとされます。",
+    "temperament": "近くにいるアミ類を、管のような吻で吸い込んで食べます。南オーストラリアで成魚9匹を2〜10日追跡した研究では、8匹が決まった範囲の中で過ごし、1匹は大きく移動しました。群れを作るかどうかは確かめられていません。本水槽では、1匹ずつ藻場をゆっくり漂います。",
+    "movement": "波や流れに合わせて、海藻のように揺れます。追跡研究では、長いあいだ位置をほとんど変えず、ときどき短く移動していました。昼と夜で決まった動き方はなく、昼によく動く個体も夜によく動く個体もいました。本水槽では、体を曲げず、小さな背びれと胸びれを震わせて、海藻のように漂いながらゆっくり進みます。",
+    "habitat": "海草の藻場や、ケルプなど大きな海藻の茂る岩礁、波の穏やかな湾にすみます。すむ深さは4〜50mとされます。追跡研究では、ポシドニアという海草の藻場の上で多く見つかり、植物の茂みの中にも上にもいました。2005年の飼育の手引きでは、水族館での飼育水温を12〜18℃とまとめており、ダラス・ワールド水族館の展示水槽は塩分27〜35ppt、pH 8.0〜8.3でした。当時の施設の値で、適した範囲として確かめたものではありません。本水槽では、海草と褐藻の茂る藻場と白い砂底をイメージしています。",
+    "aliases": [
+      "Leafy Seadragon",
+      "Glauert's Sea-dragon"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Syngnathiformes",
+      "orderJa": "ヨウジウオ目",
+      "family": "Syngnathidae",
+      "familyJa": "ヨウジウオ科"
+    },
+    "adultSizeCm": 35,
+    "sizeNote": "全長での値です。Fishes of Australia は最大全長を35cmとしています。モントレーベイ水族館は平均30cm、最大50cmとしていますが、測り方は示されていません。ふつうの成魚の全長は確かめられていません。画面では、90cm水槽に合わせて、資料の中で小さめの約30cm（皮弁を含む端から端まで）で描いています。",
+    "distribution": "オーストラリア南部の固有種です。南オーストラリア州から西オーストラリア州にかけて分布し、ビクトリア州の記録は確かめられていません。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "note": "IUCN の2017年版のレッドリストで、準絶滅危惧（NT）から低懸念（LC）に変わりました。新しい情報などによる変更で、数が回復したことを示すものではありません。いまの評価は確かめられていません。西オーストラリア州では完全に保護されていてとることができず、南オーストラリア州ではヨウジウオ科の魚を、生死にかかわらず一年中保護しています。"
+    },
+    "highlights": [
+      "頭と体は骨のような環状の板でおおわれ、長いとげと、葉のような皮弁があります。ウィーディーシードラゴンより皮弁の形が複雑で、体のとげも長いです。",
+      "緑、黄色、黄褐色の体に、縁の暗い淡い細い線が、体の横を横切ります。",
+      "雄は尾の下側に卵をつけて守ります。タツノオトシゴのような閉じた育児嚢はありません。",
+      "2005年の飼育の手引きは、冷凍のアミを食べなくなるときに備えて、生きたアミを用意できるようにしておくよう勧めています。",
+      "本水槽では、体を曲げずに、海藻のように漂いながらゆっくり進みます。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "seahorse",
+    "tailBeatHz": 5,
+    "bodyWaveStart": 0.6,
+    "tailSweepRad": 0.03,
+    "verticalFlex": 0.015,
+    "mouthAnchor": {
+      "x": 0.03,
+      "y": 0.47
+    },
+    "fins": [
+      {
+        "x": 0.58,
+        "y": 0.38,
+        "radius": 0.05
+      },
+      {
+        "x": 0.21,
+        "y": 0.47,
+        "radius": 0.03
+      }
+    ]
+  },
+  "visual": {
+    "fallbackColor": "#a3882a"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.3,
+    "maxY": 0.8
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.08,
+      "burst": 0.3
+    },
+    "turnRateRadPerSec": 0.6,
+    "restFraction": 0.5,
+    "depthRange": [
+      0.3,
+      0.8
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.6,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Bray & Thompson (2023), Fishes of Australia: Phycodurus eques",
+        "url": "https://fishesofaustralia.net.au/home/species/3126"
+      },
+      {
+        "title": "Monterey Bay Aquarium: Leafy sea dragon",
+        "url": "https://www.montereybayaquarium.org/animals-the-ocean/animals-a-to-z/leafy-sea-dragon"
+      },
+      {
+        "title": "Connolly, Melville & Preston (2002), Patterns of movement and habitat use by leafy seadragons tracked ultrasonically",
+        "url": "https://www.rodconnolly.com/uploads/2/5/7/2/25722279/connolly_et_al_2002_jfb_-_lsd.pdf"
+      },
+      {
+        "title": "Western Australia recreational fishing rules: Seadragon, leafy",
+        "url": "https://rules.fish.wa.gov.au/Species/Index/133"
+      },
+      {
+        "title": "PIRSA: Syngnathidae family",
+        "url": "https://pir.sa.gov.au/fishing-and-aquaculture/recreational-fishing/rules/species-limits/species-profile/syngnathidae_family"
+      },
+      {
+        "title": "IUCN Red List 2017-2, Table 7: Species changing Red List Status",
+        "url": "https://cmsdocs.s3.amazonaws.com/summarystats/2017-2_Summary_Stats_Page_Documents/2017_2_RL_Stats_Table_7.pdf"
+      },
+      {
+        "title": "Branshaw (2005), Leafy Seadragon chapter in Syngnathid Husbandry in Public Aquariums",
+        "url": "https://projectseahorse.org/wp-content/uploads/2021/06/Syngnathid_Husbandry_Manual2005.pdf"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 62,
+    "y": 142,
+    "width": 1423,
+    "height": 706
+  }
+}

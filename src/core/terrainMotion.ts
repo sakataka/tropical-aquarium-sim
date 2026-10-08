@@ -35,10 +35,12 @@ export function chooseTerrainGoal(kind: "hide" | "rest" | "forage", fish: FishIn
   const shelters = scene.terrain?.shelters ?? [];
   // 住みかを持つ魚は、同じ種類の隠れ場所があればそこへ入る。
   const home = preferredShelter ? findHomeShelter(fish, scene, preferredShelter) : undefined;
-  // 同じ隠れ場所へ入る仲間と重ならないよう、体長の範囲で左右へずらす。
+  // 同じ隠れ場所へ入る仲間と重ならないよう、体長の範囲で左右へずらす。海草の茎は、ずらすと茎から離れるのでずらさない。
   const offsetCm = kind === "hide" ? (random() - .5) * context.species.realBodyLengthCm * .9 : 0;
+  // 海草の茎は水中にあり、身を隠す物陰ではないので、住みかにする種だけが使う。
   const candidates: Goal[] = kind === "hide"
-    ? (home ? [home] : shelters).map((s) => ({ sceneId: scene.id, shelterId: s.id, offsetCm }))
+    ? (home ? [home] : shelters.filter((s) => s.kind !== "holdfast")).map((s) =>
+      ({ sceneId: scene.id, shelterId: s.id, offsetCm: s.kind === "holdfast" ? 0 : offsetCm }))
     : (scene.terrain?.surfaces ?? []).filter((s) => kind === "rest" ? s.material === "sand" : s.material !== "sand")
       .flatMap((s) => [.2, .5, .8].map((progress) =>
         ({ sceneId: scene.id, surfaceId: s.id, progress })));

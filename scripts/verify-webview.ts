@@ -15,6 +15,9 @@ const ROOMS: RoomJson[] = [];
 for await (const path of new Bun.Glob("src/content/room/*.json").scan()) ROOMS.push(await Bun.file(path).json());
 const HALL_ORDER = museumJson.floors.flatMap((floor) => floor.halls.map((hall) => hall.id));
 ROOMS.sort((a, b) => HALL_ORDER.indexOf(a.id) - HALL_ORDER.indexOf(b.id));
+// 影響する展示室だけを確かめるときは --halls=<展示室id>,... を渡す（展示室と水槽の出入りだけを、2つの画面幅で見る）。
+const ONLY_HALLS = Bun.argv.find((arg) => arg.startsWith("--halls="))?.slice("--halls=".length).split(",");
+for (const id of ONLY_HALLS ?? []) if (!ROOMS.some((room) => room.id === id)) throw new Error(`unknown hall: ${id}`);
 const TANKS = new Map<string, TankJson>();
 for await (const path of new Bun.Glob("src/content/tanks/*/tank.json").scan()) {
   const tank = await Bun.file(path).json() as TankJson;
@@ -79,7 +82,7 @@ async function main() {
   try {
     await waitForServer(BASE_URL);
     const consoleErrors: string[] = [];
-    if (Bun.argv.includes("--halls-only")) {
+    if (Bun.argv.includes("--halls-only") || ONLY_HALLS) {
       const halls = await verifyHalls(consoleErrors);
       assert(consoleErrors.length === 0);
       console.log(JSON.stringify({ halls, consoleErrors }, null, 2));
@@ -480,7 +483,7 @@ async function verifyHalls(consoleErrors: string[]) {
     await sleep(2000);
     // 館内図では、どの水景や生き物の画像もまだ要求しない。
     assert(await view.evaluate(`!performance.getEntriesByType('resource').some(r => /\\/(plate|body)\\.webp$/.test(r.name))`));
-    for (const room of ROOMS) {
+    for (const room of ROOMS.filter((item) => !ONLY_HALLS || ONLY_HALLS.includes(item.id))) {
       await openHall(view, room.displayName);
       assert(await view.evaluate(`document.querySelector('.room-scroll.ready[data-room="${room.id}"]') && document.querySelectorAll('.room-tank').length === ${room.tanks.length} && document.querySelector('.room-stage canvas') && !document.querySelector('.render-problem')`));
       assert(await view.evaluate(`document.documentElement.scrollWidth === document.documentElement.clientWidth`));

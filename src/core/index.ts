@@ -38,6 +38,7 @@ export type {
   FishStockEntry,
   FishSwimStyle,
   LightingId,
+  ShelterKind,
   SwimZoneId,
   TankDefinition,
   Vec2,

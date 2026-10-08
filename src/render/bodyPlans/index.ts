@@ -4,6 +4,7 @@ import { crustaceanRenderer } from "./crustacean";
 import { fishRenderer } from "./fish";
 import { jellyRenderer } from "./jelly";
 import { octopusRenderer } from "./octopus";
+import { seahorseRenderer } from "./seahorse";
 import { squidRenderer } from "./squid";
 import type { BodyPlanRenderer } from "./types";
 
@@ -15,6 +16,7 @@ export const BODY_PLAN_RENDERERS: Record<BodyPlanId, BodyPlanRenderer> = {
   jelly: jellyRenderer,
   octopus: octopusRenderer,
   squid: squidRenderer,
+  seahorse: seahorseRenderer,
 };
 
 export * from "./types";

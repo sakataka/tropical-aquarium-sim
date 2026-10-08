@@ -105,7 +105,8 @@ export class FishBody {
     // 後ろへ進むとき（イカ）は、胴の側が上下を先導する。
     const backward = this.reverses && fish.velocity.x * fish.facing < 0 ? -1 : 1;
     const headingPitch = speed > 0.08
-      ? clamp(Math.atan2(fish.velocity.y, Math.abs(fish.velocity.x)) * 0.8 * backward, -maxPitch, maxPitch)
+      ? clamp(Math.atan2(fish.velocity.y, Math.abs(fish.velocity.x)) * 0.8 * backward, -maxPitch, maxPitch) *
+        (this.renderer.pitchScale ?? 1)
       : 0;
     const targetPitch = fish.posture === "noseDown"
       ? Math.max(headingPitch, NOSE_DOWN_PITCH_RAD)

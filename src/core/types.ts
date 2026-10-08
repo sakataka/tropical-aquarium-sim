@@ -17,8 +17,9 @@ export type SceneTerrain = {
   /** 隠れ場所・住みか。kind を持つものは、その種類を住みかにする魚が優先して使う。 */
   shelters?: (SurfacePoint & { id: string; kind?: ShelterKind })[];
 };
-/** 住みかの種類。イソギンチャク、砂礫の巣穴、岩の隙間、流木や岩の下の陰。 */
-export type ShelterKind = "anemone" | "burrow" | "crevice" | "cave";
+/** 住みかの種類。イソギンチャク、砂礫の巣穴、岩の隙間、流木や岩の下の陰、尾を巻きつける海草や海藻の茎。 */
+export const SHELTER_KINDS = ["anemone", "burrow", "crevice", "cave", "holdfast"] as const;
+export type ShelterKind = typeof SHELTER_KINDS[number];
 // cover 表示で切り取られる背景と、前面ガラスの座標を一致させる。
 export type SurfaceFrame = { x: number; y: number; width: number; height: number };
 export type SurfaceMotion = {
@@ -113,6 +114,10 @@ export type FishSwimStyle = {
   footAnchor: Vec2;
   /** クラゲの傘（拍動する部分）の範囲。画像の上端0〜下端1の比率。傘が下にあれば、傘を下にして底で暮らす。 */
   bell: { top: number; bottom: number };
+  /** 細かく震わせるひれ（タツノオトシゴの背びれ・胸びれ）。画像内の中心と、画像の横幅に対する半径。 */
+  fins: { x: number; y: number; radius: number }[];
+  /** 体を立てた画像（タツノオトシゴ）で、尾が始まる高さ。画像の上端0〜下端1の比率。 */
+  tailStartY: number;
 };
 
 /** IUCN レッドリストの区分。NE は未評価。 */

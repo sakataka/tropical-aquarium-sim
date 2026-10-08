@@ -1,5 +1,5 @@
 import { z } from "zod";
-import type { AquariumScene } from "./types";
+import { SHELTER_KINDS, type AquariumScene } from "./types";
 
 // 館・展示室・水槽・水景の内容ファイルの形。ビルド時（vite/contentModules.ts）とテストで検証し、
 // アプリは検証済みの内容を読むだけにする（起動時に zod を読まない）。
@@ -132,7 +132,7 @@ export const terrainSchema = z.object({
   })).optional(),
   shelters: z.array(surfacePointSchema.extend({
     id: z.string().min(1),
-    kind: z.enum(["anemone", "burrow", "crevice", "cave"]).optional(),
+    kind: z.enum(SHELTER_KINDS).optional(),
   })).optional(),
 }).refine((terrain) => new Set(terrain.surfaces.map((s) => s.id)).size === terrain.surfaces.length,
 { message: "Surface ids must be unique" })

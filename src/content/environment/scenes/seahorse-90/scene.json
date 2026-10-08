@@ -1,0 +1,11 @@
+{
+  "id": "seahorse-90",
+  "order": 119,
+  "displayName": "海草と褐藻の藻場",
+  "description": "細長い海草と、葉の縁の波打つ褐藻が茂る浅い藻場。白い砂底に岩と海綿が点々とあり、澄んだ水に水面からの光が差し込みます。",
+  "defaultLighting": "natural",
+  "waterColor": "#2a6f80",
+  "framing": {
+    "plateBottom": 0.927
+  }
+}

@@ -19,6 +19,8 @@ export type SwimStyle = {
   mouthAnchor: Vec2;
   footAnchor: Vec2;
   bell: { top: number; bottom: number };
+  fins?: { x: number; y: number; radius: number }[];
+  tailStartY?: number;
 };
 
 // 尾の振りや向きの状態は魚ごとに1つだけ持ち、部屋と水槽画面で共有する。
@@ -67,6 +69,8 @@ export type DeformFrame = {
 export type BodyPlanRenderer = {
   verticesY: number;
   deform: (mesh: BodyMesh, frame: DeformFrame) => void;
+  /** 上下へ進むときに体を傾ける割合（既定 1）。体を曲げない生き物は小さくする。 */
+  pitchScale?: number;
 };
 
 /** 横向きの幅（反転の途中は細くなる）。符号は向き。 */

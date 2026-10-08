@@ -1,0 +1,147 @@
+{
+  "id": "weedy-seadragon",
+  "displayName": "ウィーディーシードラゴン",
+  "realBodyLengthCm": 30,
+  "catalog": {
+    "scientificName": "Phyllopteryx taeniolatus",
+    "originRegionId": "oceania",
+    "originRegionName": "オセアニア",
+    "origin": "オーストラリア南部の温帯の沿岸に分布し、タスマニアにもいます。Fishes of Australia によると、ニューサウスウェールズ州のニューカッスルから、南岸とタスマニアを経て、西オーストラリア州のジェラルトンまで見られます。2020年の遺伝子の研究では、調べた個体が、ニューサウスウェールズ州の中部と南部、ビクトリア州、タスマニアの4つの集団に分かれていました。",
+    "temperament": "アミ類などの小さな甲殻類を、管のような吻で吸い込んで食べます。群れの大きさや、一日のうちいつよく動くかは確かめられていません。本水槽では、1匹ずつ藻場をゆっくり漂います。",
+    "movement": "泳ぐ力は弱く、生まれた子は底の近くにとどまり、遠くまで流されて広がる時期がないとされます。バーチ水族館では、雌雄が姿勢をそろえて上下に動き、尾を離して曲げる求愛が見られました。尾でものをつかめるかどうかは、資料によって食い違います。本水槽では、体を曲げず、小さな背びれと胸びれを震わせて、海藻のように漂いながらゆっくり進みます。",
+    "habitat": "温帯の沿岸の、大きな海藻の茂る岩礁や海草の藻場にすみ、藻場と砂地の境目でも見られるとされます。すむ深さは1〜50mとされます。2020年の飼育の手引きは、水温12〜20℃（理想は14〜18℃）、塩分30〜36ppt、pH 7.6〜8.4を飼育の目安とし、穏やかな水流と、魚が巻き込まれたり絡まったりしない設備を勧めています。本水槽では、海草と褐藻の茂る藻場と白い砂底をイメージしています。",
+    "aliases": [
+      "Common seadragon",
+      "Weedy seadragon"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Syngnathiformes",
+      "orderJa": "ヨウジウオ目",
+      "family": "Syngnathidae",
+      "familyJa": "ヨウジウオ科"
+    },
+    "adultSizeCm": 30,
+    "sizeNote": "オーストラリア博物館は、ふつうの大きさを30cmとしています。Fishes of Australia は最大を45cmとしています。どちらも全長か標準体長かは示されていません。画面では、90cm水槽に合わせて、資料の中で小さめの約30cm（皮弁を含む端から端まで）で描いています。",
+    "distribution": "オーストラリア南部の沿岸に分布し、ニューサウスウェールズ州のニューカッスルから、南岸とタスマニアを経て、西オーストラリア州のジェラルトンまで見られます。",
+    "water": {
+      "salinity": "marine",
+      "temperatureC": [
+        12,
+        20
+      ],
+      "pH": [
+        7.6,
+        8.4
+      ]
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "VU",
+      "note": "Eschmeyer の魚類目録は、IUCN の2025年の評価で危急種（VU）としています。評価の本文は確かめられていません。以前の評価では低懸念（LC）とされていました。2020年の研究は、東南岸の4つの集団の違いを、保全で考える必要があると論じています。"
+    },
+    "highlights": [
+      "骨のような板でおおわれた細長い体と管のような吻に、海藻のような皮弁がつきます。腹びれと尾びれはありません。",
+      "赤橙から紫の体に細かな淡い点が散り、胴には青っぽい帯、尾には暗い帯があります。色は地域や個体によって変わります。",
+      "雄は尾の下側に卵をつけて守り、閉じた育児嚢はありません。卵を抱く期間は、シドニー周辺で30〜38日と報告されています。",
+      "バーチ水族館では、2020年に生まれた2匹が成熟し、2023年には70匹を超える子が生まれました。",
+      "本水槽では、体を曲げずに、海藻のように漂いながらゆっくり進みます。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "seahorse",
+    "tailBeatHz": 5,
+    "bodyWaveStart": 0.62,
+    "tailSweepRad": 0.04,
+    "verticalFlex": 0.003,
+    "mouthAnchor": {
+      "x": 0.02,
+      "y": 0.45
+    },
+    "fins": [
+      {
+        "x": 0.3,
+        "y": 0.24,
+        "radius": 0.04
+      },
+      {
+        "x": 0.62,
+        "y": 0.5,
+        "radius": 0.06
+      },
+      {
+        "x": 0.56,
+        "y": 0.61,
+        "radius": 0.025
+      }
+    ]
+  },
+  "visual": {
+    "fallbackColor": "#985a3f"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.3,
+    "maxY": 0.8
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.08,
+      "burst": 0.3
+    },
+    "turnRateRadPerSec": 0.6,
+    "restFraction": 0.5,
+    "depthRange": [
+      0.3,
+      0.8
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.6,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Phyllopteryx taeniolatus",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=32517"
+      },
+      {
+        "title": "Bray, Fishes of Australia: Common Seadragon",
+        "url": "https://fishesofaustralia.net.au/home/species/3127"
+      },
+      {
+        "title": "Australian Museum: Weedy Seadragon",
+        "url": "https://australian.museum/learn/animals/fishes/weedy-seadragon-phyllopteryx-taeniolatus/"
+      },
+      {
+        "title": "Klanten et al. (2020), Genomic and morphological evidence of distinct populations",
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0243446"
+      },
+      {
+        "title": "鳥羽水族館 生きもの図鑑：ウィーディーシードラゴン",
+        "url": "https://aquarium.co.jp/picturebook/phyllopteryx-taeniolatus.html"
+      },
+      {
+        "title": "Birch Aquarium: Weedy Seadragons",
+        "url": "https://aquarium.ucsd.edu/animals/weedy-seadragons"
+      },
+      {
+        "title": "Jones, White & Claridge (2020), Husbandry guidelines for seadragons（公開された転記）",
+        "url": "https://www.readkong.com/page/husbandry-guidelines-for-weedy-seadragon-phyllopteryx-3415056"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 42,
+    "y": 88,
+    "width": 1447,
+    "height": 809
+  }
+}

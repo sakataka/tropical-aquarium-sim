@@ -1,0 +1,141 @@
+{
+  "id": "spotted-seahorse",
+  "displayName": "クロウミウマ",
+  "realBodyLengthCm": 10,
+  "catalog": {
+    "scientificName": "Hippocampus kuda",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "現在の魚類目録（Eschmeyer's Catalog of Fishes）では、モルディブ、バングラデシュ、ミャンマーから、インドネシア西部、タイランド湾、ベトナムを経て、北は中国と鹿児島県まで分布するとされます。国内の古い解説では、静岡県より南の内湾にすむとされています。以前はもっと広い範囲の個体を本種としていましたが、ペルシャ湾の記録は、いまは別種の Hippocampus borboniensis とされています。分布の北の限界は確かめられていません。",
+    "temperament": "小さな動物プランクトンを食べます。尾で足場につかまり、体を立てた姿勢で、まわりの小さな餌をとります。成魚はペアで見られるという記述がありますが、ふつうの群れの大きさは確かめられていません。本水槽では、1匹ずつ自分の海草のまわりで過ごします。",
+    "movement": "尾を海草などの足場に巻きつけてつかまります。泳ぐ速さや、一日のうちいつよく動くかは確かめられていません。本水槽では、体を立てたまま背びれを震わせてゆっくり進み、尾を海草に巻きつけて休みます。",
+    "habitat": "河口の近くの海草の藻場や、浅い内湾にすみ、汽水にも入ります。すむ深さの範囲は確かめられていません。2006年のインドの飼育研究では、1000Lの水槽で、水温26.5〜28.0℃、pH 7.8〜8.3、塩分36.5〜37.0pptのろ過海水で親魚を飼っていました。研究施設での値で、適した範囲として確かめたものではありません。本水槽では、海草と褐藻の茂る藻場と白い砂底をイメージしています。",
+    "aliases": [
+      "Spotted seahorse",
+      "Yellow seahorse"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Syngnathiformes",
+      "orderJa": "ヨウジウオ目",
+      "family": "Syngnathidae",
+      "familyJa": "ヨウジウオ科"
+    },
+    "adultSizeCm": 17,
+    "sizeNote": "高さ（頭の冠の先から、伸ばした尾の先まで）での値です。2004年のタツノオトシゴの同定ガイドと新潟市水族館マリンピア日本海は、高さ17cmとしています。同定ガイドの値は、いまより広い種の範囲での最大です。FishBase の最大全長30cmは測り方が違うため、比べられません。2006年のインドの飼育研究の親魚42匹は12.9〜17.5cmでした（測り方は示されていません）。ふつうの成魚の大きさは確かめられていません。画面では、高さ約15cmの成魚として描いています。",
+    "distribution": "モルディブ、バングラデシュ、ミャンマーから、インドネシア西部、タイランド湾、ベトナム、中国、鹿児島県まで分布します。北の限界や、以前の広い分布との関係は確かめられていません。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "VU",
+      "assessedYear": 2012,
+      "note": "2012年の IUCN の評価（FishBase による転記）は、以前の広い種の範囲に対するものです。いまの狭い種の範囲での評価は確かめられていません。タツノオトシゴ属はすべて、2004年5月からワシントン条約（CITES）の附属書IIに載っています。"
+    },
+    "highlights": [
+      "体が黒っぽい個体のほか、淡い黄色やクリーム色の個体もいて、暗い斑点が出ることもあります。色は個体によって違い、変わることもあるので、色だけでは種を見分けられません。",
+      "頭の上の冠（コロネット）は低めで丸く、後ろへ張り出します。体の突起は低く丸いこぶのようで、頭と胴は深く、吻は太めです。",
+      "雌が雄の育児嚢に卵を移し、雄が育てます。2006年のインドの研究では、飼育下で雄が稚魚を産み出し、孫の世代（F2）まで得られました。",
+      "タツノオトシゴ属はすべて、ワシントン条約の附属書IIに載っていて、国際的な取引が管理されています。",
+      "本水槽では、尾を海草に巻きつけて体を立て、じっと休む時間が長くなっています。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "seahorse",
+    "tailBeatHz": 6,
+    "tailSweepRad": 0.05,
+    "tailStartY": 0.68,
+    "fins": [
+      {
+        "x": 0.56,
+        "y": 0.19,
+        "radius": 0.09
+      },
+      {
+        "x": 0.9,
+        "y": 0.54,
+        "radius": 0.13
+      }
+    ]
+  },
+  "visual": {
+    "fallbackColor": "#ceab2b"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.35,
+    "maxY": 0.9
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "steady",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.15,
+      "burst": 0.5
+    },
+    "turnRateRadPerSec": 1.0,
+    "restFraction": 0.5,
+    "depthRange": [
+      0.35,
+      0.9
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.8,
+    "habits": [
+      {
+        "type": "homeShelter",
+        "kind": "holdfast",
+        "rangeBodyLengths": 4,
+        "visitChancePerMin": 3,
+        "visitDurationSec": [
+          25,
+          70
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Hippocampus kuda",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=14812"
+      },
+      {
+        "title": "新潟市水族館マリンピア日本海：クロウミウマ",
+        "url": "https://www.marinepia.or.jp/picturebook/fish/entry-11284.html"
+      },
+      {
+        "title": "Lourie et al. (2004), A Guide to the Identification of Seahorses",
+        "url": "https://projectseahorse.org/wp-content/uploads/2021/06/Seahorse_ID_Guide_2004.pdf"
+      },
+      {
+        "title": "Thangaraj, Lipton & Victor (2006), Onset of sexual maturity in captive-reared Hippocampus kuda",
+        "url": "https://eprints.cmfri.org.in/6196/1/2006.pdf"
+      },
+      {
+        "title": "FishBase: Hippocampus kuda",
+        "url": "https://www.fishbase.se/summary/Hippocampus-kuda.html"
+      },
+      {
+        "title": "NParks Flora & Fauna Web: Hippocampus spp.",
+        "url": "https://www.nparks.gov.sg/florafaunaweb/fauna/3/0/305"
+      },
+      {
+        "title": "DCCEEW (2025), Non-Detriment findings for CITES listed Hippocampus spp. Seahorses",
+        "url": "https://www.dcceew.gov.au/environment/wildlife-trade/publications/non-detriment-finding-cites-hippocampus-seahorses"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 452,
+    "y": 79,
+    "width": 576,
+    "height": 864
+  }
+}
