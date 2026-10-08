@@ -121,6 +121,9 @@ describe("content wiring", () => {
         expect(species.swim?.fins, species.id).toBeUndefined();
         expect(species.swim?.tailStartY, species.id).toBeUndefined();
       }
+      // 体の中心線 spine は、体を立てて巣穴から出し入れするチンアナゴの仲間に必要で、ほかには意味がない。
+      if (getBodyPlan(species).burrowDwelling) expect(species.swim?.spine?.length, species.id).toBeGreaterThanOrEqual(3);
+      else expect(species.swim?.spine, species.id).toBeUndefined();
     }
   });
 

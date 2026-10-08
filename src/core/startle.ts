@@ -27,6 +27,7 @@ export type StartleInput = {
  * - イカ: 向きを変えずに噴射で飛び退く（後ろへ逃げるときは胴が先になる）。
  * - 両生類: 叩いた所と逆へ向き直り、頭を先にして底を這って離れる。息継ぎに泳いでいる間は反応しない。
  * - カブトガニ: その場で立ち止まり、甲を伏せてしばらく動かない。砂に潜っている間は反応しない。
+ * - チンアナゴ: 尾から巣穴へ素早く引っ込み、しばらく顔だけ出して様子をうかがってから、ゆっくり体を出す。
  * - そのほかの魚: 叩いた所から離れる向きへ瞬発で泳ぎ去る（C字の急旋回）。
  * - クラゲ: 反応しない。
  */
@@ -47,6 +48,7 @@ export function startleFish(input: StartleInput): FishInstance[] {
     const chance = input.strength * (1 - distance / reach) ** 0.6 * fish.personality.responsiveness;
     if (random() >= Math.min(1, chance * 1.4)) return fish;
     if (style === "hunker") return hunker(fish, random);
+    if (style === "retract") return retract(fish, random);
     const away = normalize({ x: dx, y: dy }, { x: fish.facing, y: 0 });
     if (style !== "dart" && fish.surfaceMotion && input.scene) {
       return fleeAlongSurface(fish, tank, input.scene, input.frame, point, random, style);
@@ -64,6 +66,13 @@ function hunker(fish: FishInstance, random: () => number): FishInstance {
     ...fish, alarmSec: holdSec, velocity: { x: 0, y: 0 },
     surfaceMotion: { ...motion, flee: undefined, grazing: false, pauseSec: Math.max(motion.pauseSec, holdSec + 0.5 + random()) },
   };
+}
+
+// 巣穴へ引っ込む。alarmSec の間は巣穴にこもり、hideSec が尽きるまでは顔だけ出す。
+function retract(fish: FishInstance, random: () => number): FishInstance {
+  const home = fish.burrowHome;
+  if (!home) return fish;
+  return { ...fish, alarmSec: 2 + random() * 2, burrowHome: { ...home, hideSec: Math.max(home.hideSec, 6 + random() * 6) } };
 }
 
 function retreatToShelter(fish: FishInstance, species: FishSpeciesDefinition, input: StartleInput,

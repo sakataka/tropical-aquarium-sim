@@ -23,6 +23,7 @@ export type SwimStyle = {
   tailStartY?: number;
   wings?: { rootX: number; y: number; top: number; bottom: number };
   legs?: { x: number; y: number; footX: number; footY: number; width: number; beat: 0 | 1 }[];
+  spine?: Vec2[];
 };
 
 // 尾の振りや向きの状態は魚ごとに1つだけ持ち、部屋と水槽画面で共有する。

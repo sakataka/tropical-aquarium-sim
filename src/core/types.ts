@@ -132,6 +132,11 @@ export type FishSwimStyle = {
    * beat が同じ脚は同じ拍で運び、0 と 1 の組は半拍ずらす（手前の前脚と奥の後脚、奥の前脚と手前の後脚を組にする）。
    */
   legs: { x: number; y: number; footX: number; footY: number; width: number; beat: 0 | 1 }[];
+  /**
+   * 体を立てた画像（チンアナゴ）の体の中心線。首の付け根（体がほぼ縦になる所）から尾の先まで、上から順に並べる
+   * （画像の横幅・高さに対する比率）。最初の点より上の頭と曲がった首は、形を保ったまま動かす。
+   */
+  spine: Vec2[];
 };
 
 /** IUCN レッドリストの区分。NE は未評価。 */
@@ -250,6 +255,24 @@ export type FishInstance = {
     /** 水面で息を吸う残り秒数。 */
     breatheSec: number;
     resume: SurfaceMotion;
+  };
+  /**
+   * 巣穴に住む生き物（チンアナゴ）の巣穴と、体の出し方。巣穴の口は水景の画像の座標（水景のないときは水槽に対する比率）で持つ。
+   * emerge は体（頭を含む）を巣穴から出している割合（0〜1）、reach は今出そうとしている割合。保存対象外。
+   */
+  burrowHome?: {
+    sceneId: string;
+    x: number;
+    y: number;
+    depth: number;
+    emerge: number;
+    reach: number;
+    /** reach を選び直すまでの秒数。 */
+    reachSec: number;
+    /** 驚いて引っ込んだまま待つ残り秒数。 */
+    hideSec: number;
+    /** 向きを考え直すまでの秒数。 */
+    turnSec: number;
   };
   /** 描画用の姿勢。底を探るときは頭を下げる。 */
   posture?: "level" | "noseDown";

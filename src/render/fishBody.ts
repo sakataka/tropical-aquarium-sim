@@ -60,8 +60,8 @@ export class FishBody {
   private readonly verticesY: number;
   private readonly renderer: BodyPlanRenderer;
   /**
-   * 横歩きの生き物（カニ）と前後どちらへも泳ぐ生き物（イカ）は、進む向きではなく
-   * シミュレーションの向き（facing）に従って体を向ける。
+   * 横歩きの生き物（カニ）と前後どちらへも泳ぐ生き物（イカ）、巣穴から動かない生き物（チンアナゴ）は、
+   * 進む向きではなくシミュレーションの向き（facing）に従って体を向ける。
    */
   private readonly keepsFacing: boolean;
   /** 前後どちらへも泳ぐ生き物は、後ろへ進むときに胴の側を進む向きへ傾ける。 */
@@ -79,7 +79,7 @@ export class FishBody {
     this.renderer = BODY_PLAN_RENDERERS[this.swim.bodyPlan];
     this.verticesY = this.renderer.verticesY;
     this.reverses = BODY_PLANS[this.swim.bodyPlan].reverses;
-    this.keepsFacing = BODY_PLANS[this.swim.bodyPlan].sideways || this.reverses;
+    this.keepsFacing = BODY_PLANS[this.swim.bodyPlan].sideways || this.reverses || BODY_PLANS[this.swim.bodyPlan].burrowDwelling;
     this.drifts = BODY_PLANS[this.swim.bodyPlan].drifts;
     this.bodyLengthCm = species.realBodyLengthCm * fish.bodyLengthVariance;
     this.mesh = new MeshPlane({ texture, verticesX: VERTICES_X, verticesY: this.verticesY });

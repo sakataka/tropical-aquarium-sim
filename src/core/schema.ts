@@ -148,6 +148,10 @@ const fishSpeciesDefinitionSchema = z.object({
     legs: z.array(z.object({
       x: unit, y: unit, footX: unit, footY: unit, width: unit.gt(0), beat: z.union([z.literal(0), z.literal(1)]),
     }).refine((leg) => leg.y < leg.footY, { message: "a leg's foot must be below its root" })).min(2),
+    spine: z.array(z.object({ x: unit, y: unit })).min(3)
+      .refine((points) => points.every((point, i) => i === 0 || point.y > points[i - 1]!.y), {
+        message: "spine points must run from the neck down to the tail tip",
+      }),
   }).partial().optional(),
   visual: z.object({ fallbackColor: z.string().regex(/^#[0-9a-fA-F]{6}$/) }),
   sourceBodyBounds: bodyBoundsSchema,

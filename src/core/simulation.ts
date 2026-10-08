@@ -13,6 +13,7 @@ import type {
   Vec2,
 } from "./types";
 import { getBodyPlan } from "./bodyPlans";
+import { stepBurrowDweller } from "./burrowMotion";
 import { stepDrifter } from "./driftMotion";
 import { breathIntervalSec, findHabit } from "./habits";
 import { getStructurePoints } from "./plateFraming";
@@ -77,6 +78,10 @@ export function stepSimulation(input: SimulationInput): SimulationOutput {
       if (getBodyPlan(species).drifts) {
         return stepDrifter(fish, species, { tank: input.tank, scene: input.scene, frame, activity: getActivityLevel(species, lighting),
           tankmates: input.fish, catalog: input.species }, deltaSec);
+      }
+      if (getBodyPlan(species).burrowDwelling) {
+        return stepBurrowDweller(fish, species, { tank: input.tank, scene: input.scene, frame,
+          activity: getActivityLevel(species, lighting), tankmates: input.fish, catalog: input.species }, deltaSec);
       }
       if (getBodyPlan(species).walksOnSurfaces && input.scene?.terrain) {
         return stepWalker(fish, species, input.tank, input.scene,

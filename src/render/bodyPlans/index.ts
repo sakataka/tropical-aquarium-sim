@@ -2,6 +2,7 @@ import type { BodyPlanId } from "../../core/bodyPlans";
 import { crabRenderer } from "./crab";
 import { crustaceanRenderer } from "./crustacean";
 import { fishRenderer } from "./fish";
+import { gardenEelRenderer } from "./gardenEel";
 import { horseshoeCrabRenderer } from "./horseshoeCrab";
 import { jellyRenderer } from "./jelly";
 import { octopusRenderer } from "./octopus";
@@ -25,6 +26,7 @@ export const BODY_PLAN_RENDERERS: Record<BodyPlanId, BodyPlanRenderer> = {
   walker: walkerRenderer,
   horseshoeCrab: horseshoeCrabRenderer,
   ray: rayRenderer,
+  gardenEel: gardenEelRenderer,
 };
 
 export * from "./types";

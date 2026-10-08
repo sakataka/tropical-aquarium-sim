@@ -1,0 +1,139 @@
+{
+  "id": "splendid-garden-eel",
+  "displayName": "ニシキアナゴ",
+  "realBodyLengthCm": 11,
+  "catalog": {
+    "scientificName": "Gorgasia preclara",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "熱帯のインド太平洋に分布し、モルディブ、フィリピン、インドネシアのあたりで知られています。分布の広がりは、くわしくは確かめられていません。",
+    "temperament": "砂の斜面に1匹ずつ巣穴を持ち、巣穴に定着した集団で暮らします。水中をそろって泳ぐ群れとは違います。流れてくる動物プランクトンを捕えます。すみだ水族館では、チンアナゴなどとの混合展示で、本種どうしが集まる様子が見られました。",
+    "movement": "尾から砂へ潜り、刺激を受けると巣穴へ素早く退避します。巣穴の壁は粘液で固めます。本水槽では、チンアナゴとそろって同じ向きに顔を向けて体を揺らし、ときどき首を突き出して餌をついばみます。ガラスを叩いたり大きな魚が近づいたりすると巣穴へ引っ込み、しばらくしてからまた体を伸ばします。",
+    "habitat": "砂の斜面の巣穴から上体を出して暮らします。ジョージア水族館の解説では、水深18〜81mとされています。本水槽では、サンゴ礁のラグーンの白砂に巣穴を並べています。",
+    "aliases": [
+      "Splendid garden eel",
+      "Orange barred garden eel"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Anguilliformes",
+      "orderJa": "ウナギ目",
+      "family": "Congridae",
+      "familyJa": "アナゴ科"
+    },
+    "adultSizeCm": 40,
+    "sizeNote": "すみだ水族館は約40cm、ジョージア水族館は41cm（16インチ）としています。全長か標準体長かは示されていません。ふつうの成魚の大きさは確かめられていません。画面では約38cmで描いています。",
+    "distribution": "熱帯のインド太平洋に分布し、モルディブ、フィリピン、インドネシアのあたりで知られています。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "note": "ジョージア水族館の解説によります。IUCN の評価の本文と評価の年は確かめられていません。"
+    },
+    "highlights": [
+      "白と、黄色から橙色の横帯が交互に並びます。チンアナゴより面長です。",
+      "小さな胸びれと、体のほぼ全長に沿う背びれがあります。",
+      "砂の斜面の巣穴から上体を出し、流れてくる動物プランクトンを捕えます。",
+      "刺激を受けると、尾から巣穴へ素早く退避します。巣穴の壁は粘液で固めます。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "gardenEel",
+    "spine": [
+      {
+        "x": 0.79,
+        "y": 0.244
+      },
+      {
+        "x": 0.786,
+        "y": 0.317
+      },
+      {
+        "x": 0.734,
+        "y": 0.39
+      },
+      {
+        "x": 0.689,
+        "y": 0.463
+      },
+      {
+        "x": 0.694,
+        "y": 0.536
+      },
+      {
+        "x": 0.745,
+        "y": 0.609
+      },
+      {
+        "x": 0.815,
+        "y": 0.682
+      },
+      {
+        "x": 0.885,
+        "y": 0.755
+      },
+      {
+        "x": 0.924,
+        "y": 0.828
+      },
+      {
+        "x": 0.926,
+        "y": 0.901
+      },
+      {
+        "x": 0.835,
+        "y": 0.975
+      }
+    ]
+  },
+  "visual": {
+    "fallbackColor": "#e8902c"
+  },
+  "sourceBodyBounds": {
+    "x": 576,
+    "y": 52,
+    "width": 278,
+    "height": 944
+  },
+  "preferredZone": {
+    "minX": 0.1,
+    "maxX": 0.9,
+    "minY": 0.85,
+    "maxY": 1
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "steady",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.1,
+      "burst": 1.0
+    },
+    "turnRateRadPerSec": 1.0,
+    "restFraction": 0.2,
+    "depthRange": [
+      0.15,
+      0.6
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 2,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Georgia Aquarium: Splendid Garden Eel",
+        "url": "https://www.georgiaaquarium.org/animal/splendid-garden-eel/"
+      },
+      {
+        "title": "すみだ水族館：知っているだけで100倍かわいい！チンアナゴの豆知識",
+        "url": "https://www.sumida-aquarium.com/column/612/"
+      }
+    ]
+  }
+}

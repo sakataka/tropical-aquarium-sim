@@ -32,14 +32,20 @@ export type BodyPlanTraits = {
    */
   reverses: boolean;
   /**
+   * 砂の巣穴に住み、泳がない（チンアナゴ）。巣穴の口に留まり、体を出し入れし、首を曲げて向きを変えるだけ。
+   * 動きは src/core/burrowMotion.ts。
+   */
+  burrowDwelling: boolean;
+  /**
    * ガラスを叩かれたとき。dart = 瞬発で泳ぎ去る、tailFlip = 腹を丸めて後ろへ跳ねる、
    * scuttle = 向きを変えずに横へ素早く走って離れ、はさみを振り上げる。
    * jet = 漏斗から水を噴いて胴を先に飛び退き、腕をそろえてなびかせる（タコ、イカ）。none = 反応しない（クラゲ）。
    * 漂う生き物の dart は、向きを変えずに羽ばたきを速めて叩いた所から離れる（クリオネ）。
    * crawl = 叩いた所と逆へ向き直り、頭を先にして面に沿って這って離れる（両生類）。
    * hunker = その場で立ち止まり、甲を伏せてしばらく動かない（カブトガニ）。砂に潜っている間は反応しない。
+   * retract = 尾から巣穴へ素早く引っ込み、しばらくしてからゆっくり体を出す（チンアナゴ）。
    */
-  startle: "dart" | "tailFlip" | "scuttle" | "jet" | "crawl" | "hunker" | "none";
+  startle: "dart" | "tailFlip" | "scuttle" | "jet" | "crawl" | "hunker" | "retract" | "none";
 };
 
 export const BODY_PLANS = {
@@ -52,6 +58,7 @@ export const BODY_PLANS = {
     drifts: false,
     flaps: false,
     reverses: false,
+    burrowDwelling: false,
     startle: "dart",
   },
   // エビ。脚で歩き、触角を揺らし、驚くと尾で後ろへ跳ねる。
@@ -64,6 +71,7 @@ export const BODY_PLANS = {
     drifts: false,
     flaps: false,
     reverses: false,
+    burrowDwelling: false,
     startle: "tailFlip",
   },
   // カニ。斜め前から見た画像で、脚を左右へ広げて横へ歩く。ついばむときは、はさみを交互に口へ運ぶ。
@@ -76,6 +84,7 @@ export const BODY_PLANS = {
     drifts: false,
     flaps: false,
     reverses: false,
+    burrowDwelling: false,
     startle: "scuttle",
   },
   // クラゲ。傘を上にした真横の画像（サカサクラゲは傘が下）。傘を縮める拍で進み、触手をなびかせて漂う。
@@ -88,6 +97,7 @@ export const BODY_PLANS = {
     drifts: true,
     flaps: false,
     reverses: false,
+    burrowDwelling: false,
     startle: "none",
   },
   // タコ。斜め上から見た画像（前が左、胴が右上）。腕をうねらせて底を這い、長く休む。驚くと胴を先に噴射で飛び退く。
@@ -100,6 +110,7 @@ export const BODY_PLANS = {
     drifts: false,
     flaps: false,
     reverses: false,
+    burrowDwelling: false,
     startle: "jet",
   },
   // イカ・オウムガイ。真横の画像（腕が左）。ひれを波打たせて前へも後ろへも進み、驚くと噴射で後ろへ飛び退く。
@@ -112,6 +123,7 @@ export const BODY_PLANS = {
     drifts: false,
     flaps: false,
     reverses: true,
+    burrowDwelling: false,
     startle: "jet",
   },
   // タツノオトシゴ・シードラゴン。体を曲げず、背びれと胸びれを震わせてゆっくり進む（尾で蹴らない）。
@@ -125,6 +137,7 @@ export const BODY_PLANS = {
     drifts: false,
     flaps: false,
     reverses: false,
+    burrowDwelling: false,
     startle: "dart",
   },
   // クリオネ（裸殻翼足類）。体を立てた正面の画像（頭が上）。左右の翼足を打ち続けて漂い、進む向きへ体を傾ける。
@@ -137,6 +150,7 @@ export const BODY_PLANS = {
     drifts: true,
     flaps: true,
     reverses: false,
+    burrowDwelling: false,
     startle: "dart",
   },
   // 両生類（オオサンショウウオ、イモリ）。真横の画像（頭が左）。4本の脚を対角の組で運んで底を歩き、長く休む。
@@ -150,6 +164,7 @@ export const BODY_PLANS = {
     drifts: false,
     flaps: false,
     reverses: false,
+    burrowDwelling: false,
     startle: "crawl",
   },
   // カブトガニ。斜め上から見た画像（前が左、尾剣が右）。脚は甲の下に隠れ、甲ごと底を這う。
@@ -163,6 +178,7 @@ export const BODY_PLANS = {
     drifts: false,
     flaps: false,
     reverses: false,
+    burrowDwelling: false,
     startle: "hunker",
   },
   // エイ。真上から見た画像（頭が左、尾が右）を、斜め上から見下ろした円盤として描く。
@@ -177,7 +193,22 @@ export const BODY_PLANS = {
     drifts: false,
     flaps: false,
     reverses: false,
+    burrowDwelling: false,
     startle: "dart",
+  },
+  // チンアナゴ。体を立てた真横の画像（頭が上、左向き）。砂の巣穴に尾を残して体を出し、首を曲げて流れの来る向きへ顔を向ける。
+  // 叩かれたり大きな魚が近づいたりすると尾から巣穴へ引っ込み、しばらくしてからゆっくり出てくる。
+  gardenEel: {
+    walksOnSurfaces: false,
+    bottomDweller: true,
+    tailKick: false,
+    antennae: false,
+    sideways: false,
+    drifts: false,
+    flaps: false,
+    reverses: false,
+    burrowDwelling: true,
+    startle: "retract",
   },
 } as const satisfies Record<string, BodyPlanTraits>;
 

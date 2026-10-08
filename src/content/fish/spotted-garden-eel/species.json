@@ -1,0 +1,161 @@
+{
+  "id": "spotted-garden-eel",
+  "displayName": "チンアナゴ",
+  "realBodyLengthCm": 12,
+  "catalog": {
+    "scientificName": "Heteroconger hassi",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "東アフリカとインド洋の島々から、西部・中部太平洋まで分布し、台湾、琉球列島、小笠原諸島、オーストラリア北部、ニューカレドニアでも見られます。日本では、静岡県より南から琉球列島にすむとされています。",
+    "temperament": "1匹ずつ自分の巣穴を持ち、たくさんの巣穴が集まったコロニーで暮らします。数百から数千匹のコロニーもあります。尾の側を巣穴に残したまま、流れてくる動物プランクトンを捕えます。飼育下では、口を大きく開け、低い姿勢で隣の個体を威嚇することがあります。",
+    "movement": "水の流れが来る向きに体と顔を向けます。流れが速まると、出している体を短くし、体を曲げます。危ないときは尾から巣穴へ引っ込みます。本水槽では、仲間とそろって同じ向きに顔を向けて体を揺らし、ときどき首を突き出して餌をついばみます。ガラスを叩いたり大きな魚が近づいたりすると巣穴へ引っ込み、しばらくしてからまた体を伸ばします。",
+    "habitat": "サンゴ礁のまわりの、流れのある砂底や砂の斜面に巣穴を作ります。データベースでは水深1〜50mとされています。本水槽では、サンゴ礁のラグーンの白砂に巣穴を並べています。",
+    "aliases": [
+      "Spotted garden eel",
+      "Xarifania hassi"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Anguilliformes",
+      "orderJa": "ウナギ目",
+      "family": "Congridae",
+      "familyJa": "アナゴ科"
+    },
+    "adultSizeCm": 40,
+    "sizeNote": "全長での値です。京都水族館は成魚の全長を30〜40cmとしています。FishBase の最大全長は45cmです。体の太さは1cmほどしかありません。画面では全長約36cmで描いています。",
+    "distribution": "東アフリカからインド洋、西部・中部太平洋に分布します。日本では静岡県より南から琉球列島、小笠原諸島で見られます。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2016,
+      "note": "IUCN の区分は、FishBase に掲載された2016年の評価によります。"
+    },
+    "highlights": [
+      "白っぽい細い体に細かな黒い点が散らばり、大きな黒い斑が左右に2つずつと腹側に1つあります。眼は黄色く、胸びれはとても小さく、透明な背びれは目立ちません。",
+      "体の後ろ半分を砂の中の巣穴に残し、頭と体の前の部分だけを水中に出します。",
+      "流れの来る向きに顔を向け、流れてくる動物プランクトンを捕えます。2022年の水路の実験では、流れが速まると採餌が減り、秒速0.30〜0.35mを超えると巣穴へ退避しました。",
+      "近づくと巣穴に引っ込み、しばらくすると、また体を伸ばします。",
+      "先のとがった尾で巣穴を掘ります。水槽の中では、まれに全身を出して泳ぎ、新しい巣穴を掘ることもあります。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "gardenEel",
+    "spine": [
+      {
+        "x": 0.711,
+        "y": 0.246
+      },
+      {
+        "x": 0.741,
+        "y": 0.345
+      },
+      {
+        "x": 0.751,
+        "y": 0.443
+      },
+      {
+        "x": 0.762,
+        "y": 0.542
+      },
+      {
+        "x": 0.783,
+        "y": 0.64
+      },
+      {
+        "x": 0.819,
+        "y": 0.739
+      },
+      {
+        "x": 0.874,
+        "y": 0.837
+      },
+      {
+        "x": 0.92,
+        "y": 0.911
+      },
+      {
+        "x": 0.976,
+        "y": 0.985
+      }
+    ]
+  },
+  "visual": {
+    "fallbackColor": "#d9d4c4"
+  },
+  "sourceBodyBounds": {
+    "x": 560,
+    "y": 50,
+    "width": 313,
+    "height": 934
+  },
+  "preferredZone": {
+    "minX": 0.1,
+    "maxX": 0.9,
+    "minY": 0.85,
+    "maxY": 1
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "steady",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.1,
+      "burst": 1.0
+    },
+    "turnRateRadPerSec": 1.0,
+    "restFraction": 0.2,
+    "depthRange": [
+      0.15,
+      0.6
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 2,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Heteroconger hassi",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=58340"
+      },
+      {
+        "title": "Ishikawa et al. (2022), Effects of prey density and flow speed on plankton feeding by garden eels: a flume study",
+        "url": "https://journals.biologists.com/jeb/article/225/8/jeb243655/275099/Effects-of-prey-density-and-flow-speed-on-plankton"
+      },
+      {
+        "title": "名古屋港水族館：赤道の海 チンアナゴ",
+        "url": "https://nagoyaaqua.jp/friends/south/1059/"
+      },
+      {
+        "title": "京都水族館 (2016-10-14) プレスリリース",
+        "url": "https://www.kyoto-aquarium.com/wp/wp-content/uploads/2019/03/press_20161014.pdf"
+      },
+      {
+        "title": "神戸須磨シーワールド：チンアナゴ (2025-11-11)",
+        "url": "https://www.kobesuma-seaworld.jp/future/display/7106/"
+      },
+      {
+        "title": "すみだ水族館：知っているだけで100倍かわいい！チンアナゴの豆知識",
+        "url": "https://www.sumida-aquarium.com/column/612/"
+      },
+      {
+        "title": "新江ノ島水族館 (2014-12-13)：穴からにょきにょきチンアナゴ",
+        "url": "https://www.enosui.com/diaryentry.php?eid=03300"
+      },
+      {
+        "title": "California Academy of Sciences: Spotted Garden Eel",
+        "url": "https://www.calacademy.org/learn-explore/creature-closeups/spotted-garden-eel"
+      },
+      {
+        "title": "FishBase: Heteroconger hassi",
+        "url": "https://fishbase.se/summary/12619"
+      }
+    ]
+  }
+}
