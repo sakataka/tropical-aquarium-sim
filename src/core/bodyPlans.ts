@@ -22,6 +22,11 @@ export type BodyPlanTraits = {
    */
   drifts: boolean;
   /**
+   * 翼足で羽ばたいて漂う（クリオネ）。drifts の動きのうち、傘の拍動の代わりに左右の翼足を打ち続けて
+   * 途切れずに進み、進む向きへ体を大きく傾ける。叩くと羽ばたきを速めて離れる。
+   */
+  flaps: boolean;
+  /**
    * 前へも後ろへも泳ぐ（イカ、オウムガイ）。体の向きを保ったまま後ろへも進み、
    * 同じ向きへしばらく後ろ向きに進んだときだけ向きを変える。
    */
@@ -30,6 +35,7 @@ export type BodyPlanTraits = {
    * ガラスを叩かれたとき。dart = 瞬発で泳ぎ去る、tailFlip = 腹を丸めて後ろへ跳ねる、
    * scuttle = 向きを変えずに横へ素早く走って離れ、はさみを振り上げる。
    * jet = 漏斗から水を噴いて胴を先に飛び退き、腕をそろえてなびかせる（タコ、イカ）。none = 反応しない（クラゲ）。
+   * 漂う生き物の dart は、向きを変えずに羽ばたきを速めて叩いた所から離れる（クリオネ）。
    */
   startle: "dart" | "tailFlip" | "scuttle" | "jet" | "none";
 };
@@ -42,6 +48,7 @@ export const BODY_PLANS = {
     antennae: false,
     sideways: false,
     drifts: false,
+    flaps: false,
     reverses: false,
     startle: "dart",
   },
@@ -53,6 +60,7 @@ export const BODY_PLANS = {
     antennae: true,
     sideways: false,
     drifts: false,
+    flaps: false,
     reverses: false,
     startle: "tailFlip",
   },
@@ -64,6 +72,7 @@ export const BODY_PLANS = {
     antennae: false,
     sideways: true,
     drifts: false,
+    flaps: false,
     reverses: false,
     startle: "scuttle",
   },
@@ -75,6 +84,7 @@ export const BODY_PLANS = {
     antennae: false,
     sideways: false,
     drifts: true,
+    flaps: false,
     reverses: false,
     startle: "none",
   },
@@ -86,6 +96,7 @@ export const BODY_PLANS = {
     antennae: false,
     sideways: false,
     drifts: false,
+    flaps: false,
     reverses: false,
     startle: "jet",
   },
@@ -97,6 +108,7 @@ export const BODY_PLANS = {
     antennae: false,
     sideways: false,
     drifts: false,
+    flaps: false,
     reverses: true,
     startle: "jet",
   },
@@ -109,6 +121,19 @@ export const BODY_PLANS = {
     antennae: false,
     sideways: false,
     drifts: false,
+    flaps: false,
+    reverses: false,
+    startle: "dart",
+  },
+  // クリオネ（裸殻翼足類）。体を立てた正面の画像（頭が上）。左右の翼足を打ち続けて漂い、進む向きへ体を傾ける。
+  pteropod: {
+    walksOnSurfaces: false,
+    bottomDweller: false,
+    tailKick: false,
+    antennae: false,
+    sideways: false,
+    drifts: true,
+    flaps: true,
     reverses: false,
     startle: "dart",
   },

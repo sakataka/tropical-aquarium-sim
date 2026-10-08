@@ -1,0 +1,27 @@
+{
+  "id": "clione-30",
+  "order": 130,
+  "displayName": "クリオネの水槽",
+  "exhibitName": "Sea Angels",
+  "category": "冷たい海の外洋",
+  "description": "上から光が差し込む冷たい海の開けた水を再現した、30cmの縦長の小さな水槽。体長5cmほどのダイオウハダカカメガイが、翼のような左右の翼足をはばたかせて、体を傾けながらゆっくり漂います。",
+  "widthCm": 30,
+  "heightCm": 45,
+  "depthCm": 30,
+  "maxTotalFish": 8,
+  "sceneIds": [
+    "clione-30"
+  ],
+  "species": [
+    {
+      "speciesId": "naked-sea-butterfly",
+      "maxCount": 8
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "naked-sea-butterfly",
+      "count": 5
+    }
+  ]
+}

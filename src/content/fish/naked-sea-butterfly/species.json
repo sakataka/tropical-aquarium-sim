@@ -1,0 +1,116 @@
+{
+  "id": "naked-sea-butterfly",
+  "displayName": "ダイオウハダカカメガイ",
+  "realBodyLengthCm": 4,
+  "catalog": {
+    "scientificName": "Clione limacina",
+    "originRegionId": "north-atlantic",
+    "originRegionName": "北極海・北大西洋",
+    "origin": "北極海と北大西洋に分布します。研究には、カナダのニューファンドランド島の Logy Bay や、スヴァールバル諸島の北の北極海で採集された個体が使われています。日本近海で以前 Clione limacina とされていたクリオネは、今は別種のハダカカメガイ（Clione elegantissima）とされます。",
+    "temperament": "殻をもつ翼足類を捕らえて食べます。スヴァールバル諸島の成体を使った実験では、生きた Limacina retroversa を食べ、空になった殻と胃の中の餌から摂餌が確かめられました。群れるかどうか、昼と夜のどちらに活動するかは確かめられていません。本水槽では、何匹かが間をあけて漂います。",
+    "movement": "左右に広がる翼のような側足（翼足）をはばたかせて泳ぎます。羽ばたきを動かす神経と筋のしくみが調べられ、ゆっくりした拍と速い拍があることが実験で確かめられています。刺激を受けると、速く泳いで逃げる行動が報告されています。ふだん泳ぐ速さや羽ばたきの回数は確かめられていません。本水槽では、翼足を打ち続けてゆっくり漂い、進む向きへ体を傾けます。ガラスを叩くと、羽ばたきを速めて離れます。",
+    "habitat": "海中を漂って暮らす翼足類です。ふだんいる深さは確かめられていません。Logy Bay で採集されたときの水温は約7℃でした。本水槽では、上から光が差し込む冷たい海の開けた水をイメージしています。",
+    "aliases": [
+      "クリオネ",
+      "Clio limacina（記載時の学名）"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Gymnosomata",
+      "orderJa": "裸殻翼足目",
+      "family": "Clionidae",
+      "familyJa": "ハダカカメガイ科"
+    },
+    "adultSizeCm": 5,
+    "sizeNote": "体長での値です。ふつうの成体の大きさは確かめられていません。論文には最大で体長70〜80mmとする値が引用されていますが、もとの記録の測り方は確かめられていません。画面では、体長約5cmで描いています。",
+    "distribution": "北極海と北大西洋に分布します。分布の全体は確かめられていません。日本の古い Clione limacina の記録が、今のどの種に当たるかは決められていません。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "rarelyDisplayed",
+    "conservation": {
+      "note": "世界の IUCN 区分や日本の保全区分は確かめられていません。"
+    },
+    "highlights": [
+      "貝殻をもたない巻貝の仲間で、左右に広がる翼のような側足（翼足）をはばたかせて泳ぎます。",
+      "「クリオネ」はいくつかの種に使われる通称です。北太平洋のクリオネはハダカカメガイ（Clione elegantissima）、オホーツク海の小さなクリオネはダルマハダカカメガイ（Clione okhotensis）で、どちらも本種とは別種とされます。",
+      "殻をもつ翼足類の Limacina を、生きたまま捕らえて食べます。",
+      "羽ばたきを動かす神経と筋のしくみがよく調べられ、ゆっくりした拍と速い拍の2つの泳ぎ方が確かめられています。",
+      "本水槽では、翼足を打ち続けて漂い、叩くと羽ばたきを速めて逃げます。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "pteropod",
+    "tailBeatHz": 1.6,
+    "wings": {
+      "rootX": 0.115,
+      "y": 0.33,
+      "top": 0.23,
+      "bottom": 0.5
+    }
+  },
+  "visual": {
+    "fallbackColor": "#c9d3dc"
+  },
+  "preferredZone": {
+    "minX": 0.12,
+    "maxX": 0.88,
+    "minY": 0.08,
+    "maxY": 0.78
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.35,
+      "burst": 1.6
+    },
+    "turnRateRadPerSec": 0.8,
+    "restFraction": 0.05,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0,
+    "habits": [],
+    "sources": [
+      {
+        "title": "NCBI Taxonomy: Clione limacina",
+        "url": "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=71516&mode=Info"
+      },
+      {
+        "title": "国立極地研究所ほか (2018)：オホーツク海南部で見られる小さなクリオネと大きなクリオネの謎を解明",
+        "url": "https://www.nipr.ac.jp/info/notice/20180713.html"
+      },
+      {
+        "title": "鳥羽水族館：ハダカカメガイ（クリオネ）",
+        "url": "https://aquarium.co.jp/picturebook/clione-limacina.html"
+      },
+      {
+        "title": "Rosenthal et al. (2009)：南極の翼足類の有酸素能力と遊泳能力",
+        "url": "https://nerve.bsd.uchicago.edu/FB/Clione.pdf"
+      },
+      {
+        "title": "Boissonnot et al. (2019)：スヴァールバル諸島の翼足類の脂質と脂肪酸の代謝",
+        "url": "https://www.researchgate.net/publication/329432386_Lipid_and_fatty_acid_turnover_of_the_pteropods_Limacina_helicina_L_Retroversa_and_Clione_limacina_from_Svalbard_waters"
+      },
+      {
+        "title": "奥谷喬司 (2017)：わが国近海に見られる浮遊性巻貝類VII 裸殻翼足類",
+        "url": "https://www.rimi.or.jp/wp-content/uploads/2017/08/94-03_Okutani_VII_rev.pdf"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 392,
+    "y": 28,
+    "width": 752,
+    "height": 939
+  }
+}

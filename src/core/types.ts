@@ -118,6 +118,11 @@ export type FishSwimStyle = {
   fins: { x: number; y: number; radius: number }[];
   /** 体を立てた画像（タツノオトシゴ）で、尾が始まる高さ。画像の上端0〜下端1の比率。 */
   tailStartY: number;
+  /**
+   * 体を立てた正面の画像（クリオネ）の左右の翼足。rootX は画像の中心から付け根までの距離（画像の横幅に対する比率）、
+   * y は付け根の高さ、top・bottom は翼足の上端と下端（画像の上端0〜下端1の比率）。
+   */
+  wings: { rootX: number; y: number; top: number; bottom: number };
 };
 
 /** IUCN レッドリストの区分。NE は未評価。 */

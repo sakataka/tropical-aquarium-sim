@@ -21,6 +21,7 @@ export type SwimStyle = {
   bell: { top: number; bottom: number };
   fins?: { x: number; y: number; radius: number }[];
   tailStartY?: number;
+  wings?: { rootX: number; y: number; top: number; bottom: number };
 };
 
 // 尾の振りや向きの状態は魚ごとに1つだけ持ち、部屋と水槽画面で共有する。

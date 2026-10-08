@@ -1,0 +1,27 @@
+{
+  "structurePoints": [],
+  "bubbleSources": [],
+  "terrain": {
+    "surfaces": [
+      {
+        "id": "floor",
+        "material": "sand",
+        "points": [
+          {
+            "x": 0.03,
+            "y": 0.9,
+            "depth": 0.5
+          },
+          {
+            "x": 0.97,
+            "y": 0.9,
+            "depth": 0.5
+          }
+        ]
+      }
+    ],
+    "occluders": [],
+    "obstacles": [],
+    "shelters": []
+  }
+}

@@ -136,6 +136,10 @@ const fishSpeciesDefinitionSchema = z.object({
     }),
     fins: z.array(z.object({ x: unit, y: unit, radius: unit.gt(0) })).min(1),
     tailStartY: unit,
+    wings: z.object({ rootX: z.number().finite().min(0).max(0.5), y: unit, top: unit, bottom: unit })
+      .refine((wings) => wings.top < wings.bottom && wings.top <= wings.y && wings.y <= wings.bottom, {
+        message: "wings must span top <= y <= bottom",
+      }),
   }).partial().optional(),
   visual: z.object({ fallbackColor: z.string().regex(/^#[0-9a-fA-F]{6}$/) }),
   sourceBodyBounds: bodyBoundsSchema,

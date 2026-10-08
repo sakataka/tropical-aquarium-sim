@@ -1,0 +1,8 @@
+{
+  "id": "clione-30",
+  "order": 129,
+  "displayName": "光の差す冷たい開けた水",
+  "description": "水面から光の筋が差し込み、中ほどで濃い青に沈む開けた水。岩も水草もなく、底には光の模様が揺れる砂が少しだけ見えます。",
+  "defaultLighting": "cool",
+  "waterColor": "#1d4f78"
+}

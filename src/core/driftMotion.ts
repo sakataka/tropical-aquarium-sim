@@ -1,3 +1,4 @@
+import { getBodyPlan } from "./bodyPlans";
 import { findHabit } from "./habits";
 import { worldPoint } from "./surfaceMotion";
 import { constrainTerrainStep } from "./terrainMotion";
@@ -18,6 +19,11 @@ const WATER_DRAG = 1.6;
 const SINK_CM_PER_SEC = 1.2;
 /** 進む向きへ傾く最大の角度。 */
 const MAX_TILT_RAD = 0.42;
+/** 羽ばたく生き物（クリオネ）が進む向きへ体を傾ける最大の角度。逃げるときはさらに傾ける。 */
+const MAX_FLAP_TILT_RAD = 0.8;
+const MAX_FLEE_TILT_RAD = 1.1;
+/** 逃げる間の羽ばたきの速さ（ふだんに対する倍率）。 */
+const FLEE_BEAT_SCALE = 2.2;
 
 /** 傘の縮み具合（0 = 開いている、1 = 最も縮んでいる）。素早く縮み、ゆっくり開く。 */
 export function bellContraction(phase: number): number {
@@ -25,6 +31,11 @@ export function bellContraction(phase: number): number {
   if (p < CONTRACTION_SHARE) return Math.sin((p / CONTRACTION_SHARE) * Math.PI / 2);
   const relax = (p - CONTRACTION_SHARE) / (1 - CONTRACTION_SHARE);
   return (1 - relax) ** 2;
+}
+
+/** 翼足の1回の羽ばたき（前へ打つ・後ろへ打つの2回）に合わせた推力の揺らぎ（平均1）。 */
+function flapThrust(phase: number): number {
+  return 1 + 0.3 * Math.cos(phase * Math.PI * 4);
 }
 
 /** 縮む間だけ水を押し出す推力（0〜1）。 */
@@ -54,9 +65,18 @@ export type DriftContext = {
 };
 
 /**
- * 漂う生き物（クラゲ）の1歩。傘を縮める拍で傘の向きへ進み、開く間は水の抵抗で減速しながらゆっくり沈む。
+ * 体を回す中心の高さ（画像の上端0〜下端1の比率）。クラゲは傘の中心、クリオネは翼足の付け根。
+ */
+export function driftPivotY(species: FishSpeciesDefinition): number {
+  return species.swim?.wings?.y ?? bellCenter(species);
+}
+
+/**
+ * 漂う生き物（クラゲ、クリオネ）の1歩。傘を縮める拍で傘の向きへ進み、開く間は水の抵抗で減速しながらゆっくり沈む。
  * 向きは変えず（画像を反転しない）、行き先の方へ傘を少し傾ける。上へ行くときは強く、下へ行くときは弱く拍動する。
  * 傘を下にして暮らす種は、底に伏せたまま拍動し、ときどき少しだけ場所を移す。
+ * 羽ばたく種（クリオネ）は、翼足を打ち続けて途切れずに進み、進む向きへ体を大きく傾ける。叩かれると
+ * （startle.ts が targetKind を flee にする）、羽ばたきを速めて逃げる先へ向かう。
  */
 export function stepDrifter(fish: FishInstance, species: FishSpeciesDefinition, context: DriftContext,
   deltaSec: number): FishInstance {
@@ -72,9 +92,15 @@ export function stepDrifter(fish: FishInstance, species: FishSpeciesDefinition, 
   const range = verticalRange(fish, species, tank, water);
   const xRange = horizontalRange(fish, species, tank);
   const swim = species.swim ?? {};
-  const pulsing = (swim.tailSweepRad ?? 0.12) > 0;
-  const pulseHz = (swim.tailBeatHz ?? 0.8) * fish.personality.pace * lerp(0.55, 1, clamp(activity, 0, 1));
-  const pulsePhase = ((fish.pulsePhase ?? random()) + deltaSec * pulseHz) % 1;
+  const flaps = getBodyPlan(species).flaps;
+  const pulsing = !flaps && (swim.tailSweepRad ?? 0.12) > 0;
+  // 逃げる先へ向かう間（着くか、逃げる時間が尽きるまで）。
+  const fleeing = flaps && fish.targetKind === "flee" && fish.target !== undefined &&
+    (fish.legTimeSec ?? 0) < (fish.habitTimeSec ?? 0) &&
+    Math.hypot(fish.target.x - fish.position.x, fish.target.y - fish.position.y) >= Math.max(1, bodyLength * 0.5);
+  const pulseHz = (swim.tailBeatHz ?? 0.8) * fish.personality.pace * lerp(0.55, 1, clamp(activity, 0, 1)) *
+    (fleeing ? FLEE_BEAT_SCALE : 1);
+  let pulsePhase = ((fish.pulsePhase ?? random()) + deltaSec * pulseHz) % 1;
 
   if (isBellDown(species)) return stepBottomPulser(fish, species, context, deltaSec, range, xRange, pulsePhase, random, () => seed);
 
@@ -97,7 +123,8 @@ export function stepDrifter(fish: FishInstance, species: FishSpeciesDefinition, 
   let target = fish.target;
   let legTimeSec = (fish.legTimeSec ?? 0) + deltaSec;
   const reached = target && Math.hypot(target.x - fish.position.x, target.y - fish.position.y) < Math.max(2.5, bodyLength * 0.6);
-  if (!target || reached || legTimeSec > (fish.habitTimeSec ?? 30)) {
+  // 逃げ終えたら（targetKind が flee のまま逃げる間でなくなったら）、すぐ新しい行き先を選ぶ。
+  if (!target || (!fleeing && (reached || legTimeSec > (fish.habitTimeSec ?? 30) || fish.targetKind === "flee"))) {
     const zone = species.preferredZone;
     target = {
       x: clamp(lerp(tank.widthCm * zone.minX, tank.widthCm * zone.maxX, random()), xRange.min, xRange.max),
@@ -107,28 +134,43 @@ export function stepDrifter(fish: FishInstance, species: FishSpeciesDefinition, 
     fish = { ...fish, habitTimeSec: lerp(18, 40, random()) };
   }
   const direction = normalize({ x: target.x - fish.position.x, y: target.y - fish.position.y });
-  // 上へ向かうほど強く拍動し、下へ向かうときは拍を弱めて沈む。真横なら浮きも沈みもしない。
-  const sink = 0.35;
-  const effort = pulsing ? clamp(sink - direction.y * 0.8, 0.1, 1.15) : 1;
-  const tiltTarget = clamp(direction.x * MAX_TILT_RAD * 1.3, -MAX_TILT_RAD, MAX_TILT_RAD);
-  const tilt = (fish.tilt ?? 0) + (tiltTarget - (fish.tilt ?? 0)) * (1 - Math.exp(-0.5 * deltaSec));
-  const axis = { x: Math.sin(tilt), y: -Math.cos(tilt) };
-  // クシクラゲのように拍動しないものは、繊毛で一定の速さのまま進む。
-  const boost = pulsing ? pulseThrust(pulsePhase) / MEAN_THRUST : 1;
-  const thrust = pulsing ? cruise * effort * boost : cruise * 0.6;
-  const steer = pulsing ? { x: direction.x * cruise * 0.25, y: sink * cruise } : { x: direction.x * cruise * 0.4, y: direction.y * cruise * 0.6 };
   const crowd = crowding(fish, species, context);
-  const desired = {
-    x: axis.x * thrust * (pulsing ? 1 : 0.3) + steer.x + crowd.x * cruise,
-    y: (pulsing ? axis.y * thrust : 0) + steer.y + crowd.y * cruise,
-  };
-  const response = 1 - Math.exp(-WATER_DRAG * deltaSec);
+  const burst = species.ecology.speedBodyLengthsPerSec.burst * species.realBodyLengthCm * fish.personality.pace;
+  let tilt: number;
+  let desired: Vec2;
+  if (flaps) {
+    // 翼足を打ち続けて行き先へ進む。上へは速く打ち、下へは打つのを緩めて沈むように進む。
+    // 進む向きへ体を傾け、逃げるときは大きく傾けて速く打つ。
+    const beat = fleeing ? 1 : clamp(1 - direction.y * 0.4, 0.6, 1.3);
+    pulsePhase = ((fish.pulsePhase ?? pulsePhase) + deltaSec * pulseHz * beat) % 1;
+    const maxTilt = fleeing ? MAX_FLEE_TILT_RAD : MAX_FLAP_TILT_RAD;
+    const tiltTarget = clamp(direction.x * maxTilt * 1.3, -maxTilt, maxTilt);
+    tilt = (fish.tilt ?? 0) + (tiltTarget - (fish.tilt ?? 0)) * (1 - Math.exp(-(fleeing ? 4 : 1) * deltaSec));
+    const speed = (fleeing ? burst : cruise) * flapThrust(pulsePhase);
+    desired = { x: direction.x * speed + crowd.x * cruise, y: direction.y * speed + crowd.y * cruise };
+  } else {
+    // 上へ向かうほど強く拍動し、下へ向かうときは拍を弱めて沈む。真横なら浮きも沈みもしない。
+    const sink = 0.35;
+    const effort = pulsing ? clamp(sink - direction.y * 0.8, 0.1, 1.15) : 1;
+    const tiltTarget = clamp(direction.x * MAX_TILT_RAD * 1.3, -MAX_TILT_RAD, MAX_TILT_RAD);
+    tilt = (fish.tilt ?? 0) + (tiltTarget - (fish.tilt ?? 0)) * (1 - Math.exp(-0.5 * deltaSec));
+    const axis = { x: Math.sin(tilt), y: -Math.cos(tilt) };
+    // クシクラゲのように拍動しないものは、繊毛で一定の速さのまま進む。
+    const boost = pulsing ? pulseThrust(pulsePhase) / MEAN_THRUST : 1;
+    const thrust = pulsing ? cruise * effort * boost : cruise * 0.6;
+    const steer = pulsing ? { x: direction.x * cruise * 0.25, y: sink * cruise } : { x: direction.x * cruise * 0.4, y: direction.y * cruise * 0.6 };
+    desired = {
+      x: axis.x * thrust * (pulsing ? 1 : 0.3) + steer.x + crowd.x * cruise,
+      y: (pulsing ? axis.y * thrust : 0) + steer.y + crowd.y * cruise,
+    };
+  }
+  const response = 1 - Math.exp(-(fleeing ? WATER_DRAG * 3 : WATER_DRAG) * deltaSec);
   let velocity = {
     x: fish.velocity.x + (desired.x - fish.velocity.x) * response,
     y: fish.velocity.y + (desired.y - fish.velocity.y) * response,
   };
   // 拍の山でも、種の最大の速さ（burst）を超えない。
-  const top = species.ecology.speedBodyLengthsPerSec.burst * species.realBodyLengthCm * fish.personality.pace;
+  const top = burst;
   const speed = Math.hypot(velocity.x, velocity.y);
   if (speed > top) velocity = { x: velocity.x * top / speed, y: velocity.y * top / speed };
   let position = {
@@ -155,7 +197,7 @@ export function stepDrifter(fish: FishInstance, species: FishSpeciesDefinition, 
 
   return {
     ...fish, position, velocity, depth, depthMotion, target, legTimeSec, pulsePhase, tilt,
-    targetKind: "openWater", behaviorMode: "coast", behaviorTimeRemainingSec: 1,
+    targetKind: fleeing ? "flee" : "openWater", behaviorMode: fleeing ? "kick" : "coast", behaviorTimeRemainingSec: 1,
     surfaceMotion: undefined, contact: undefined, alarmSec: undefined, seed,
   };
 }
@@ -185,7 +227,7 @@ function restingY(fish: FishInstance, species: FishSpeciesDefinition, context: D
   range: { min: number; max: number }, x: number): number {
   const floor = context.scene?.terrain ? floorY(context.scene, context.tank, context.frame, x, fish.depth) : undefined;
   const bounds = species.sourceBodyBounds;
-  const below = species.realBodyLengthCm * fish.bodyLengthVariance * bounds.height / bounds.width * (1 - bellCenter(species));
+  const below = species.realBodyLengthCm * fish.bodyLengthVariance * bounds.height / bounds.width * (1 - driftPivotY(species));
   return floor === undefined ? range.max : clamp(floor - below, range.min, range.max);
 }
 
@@ -230,11 +272,11 @@ function verticalRange(fish: FishInstance, species: FishSpeciesDefinition, tank:
   water: ReturnType<typeof getWaterColumn>): { min: number; max: number } {
   const bounds = species.sourceBodyBounds;
   const heightCm = species.realBodyLengthCm * fish.bodyLengthVariance * bounds.height / bounds.width;
-  const center = bellCenter(species);
+  const center = driftPivotY(species);
   const min = waterCeilingCm(water, tank, fish.depth) + heightCm * center * 0.9;
   const bottom = tank.heightCm - tank.safeMarginCm;
   // 触手の垂れる種は、触手の先が少し底に隠れるところまで下りてよい。触手のないもの（メンダコ）は体の下端まで。
-  const tentacles = !isBellDown(species) && getBell(species).bottom < 0.9;
+  const tentacles = !species.swim?.wings && !isBellDown(species) && getBell(species).bottom < 0.9;
   const max = bottom - heightCm * (1 - center) * (tentacles ? 0.6 : 1);
   return min <= max ? { min, max } : { min: (min + max) / 2, max: (min + max) / 2 };
 }

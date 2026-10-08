@@ -150,7 +150,7 @@ export class FishBody {
       this.height / 2 + (point.y - this.height / 2) * weight);
   }
 
-  // 画像は反転せず、傘の中心を軸にシミュレーションの傾き（fish.tilt）だけ回す。
+  // 画像は反転せず、傘の中心（クリオネは翼足の付け根）を軸にシミュレーションの傾き（fish.tilt）だけ回す。
   private updateDrifter(fish: FishInstance, deltaSec: number, bottomY: number) {
     this.motion.yaw = 0;
     this.motion.targetYaw = 0;
@@ -168,7 +168,7 @@ export class FishBody {
     }, { fish, speed: Math.hypot(fish.velocity.x, fish.velocity.y), deltaSec, bottomY });
     this.mesh.geometry.getBuffer("aPosition").update();
     const bell = this.swim.bell;
-    this.mesh.pivot.set(this.pivotX, this.height * (bell.top + bell.bottom) / 2);
+    this.mesh.pivot.set(this.pivotX, this.height * (this.swim.wings?.y ?? (bell.top + bell.bottom) / 2));
   }
 
   destroy() {
