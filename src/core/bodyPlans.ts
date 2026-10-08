@@ -165,6 +165,20 @@ export const BODY_PLANS = {
     reverses: false,
     startle: "hunker",
   },
+  // エイ。真上から見た画像（頭が左、尾が右）を、斜め上から見下ろした円盤として描く。
+  // 胸びれの縁を頭から尾へ波打たせて（マンタは羽ばたいて）泳ぎ、底の種は砂の上に伏せて休む（習性 bottomRest）。
+  // 尾で蹴らず、向きを変えるときは体盤の面の中で回る。
+  ray: {
+    walksOnSurfaces: false,
+    bottomDweller: false,
+    tailKick: false,
+    antennae: false,
+    sideways: false,
+    drifts: false,
+    flaps: false,
+    reverses: false,
+    startle: "dart",
+  },
 } as const satisfies Record<string, BodyPlanTraits>;
 
 export type BodyPlanId = keyof typeof BODY_PLANS;

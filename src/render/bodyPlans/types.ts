@@ -83,6 +83,12 @@ export type BodyPlanRenderer = {
   deform: (mesh: BodyMesh, frame: DeformFrame) => void;
   /** 上下へ進むときに体を傾ける割合（既定 1）。体を曲げない生き物は小さくする。 */
   pitchScale?: number;
+  /**
+   * 生き物の位置に置く、メッシュ上の固定の点（画像の座標）。接地や向きにかかわらず動かさない。
+   * 真上から見たエイは、見下ろした体盤の手前の縁（体盤の中心の真下）にする。既定は、泳ぐ間は画像の中心、
+   * 底や面に着くときは口・腹・脚の接地点。
+   */
+  pivot?: (size: { width: number; height: number; swim: SwimStyle }) => Vec2;
 };
 
 /** 横向きの幅（反転の途中は細くなる）。符号は向き。 */

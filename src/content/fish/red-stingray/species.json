@@ -1,0 +1,122 @@
+{
+  "id": "red-stingray",
+  "displayName": "アカエイ",
+  "realBodyLengthCm": 80,
+  "catalog": {
+    "scientificName": "Hemitrygon akajei",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "日本の南部の沿岸から、朝鮮半島、台湾、中国の沿岸に分布します。",
+    "temperament": "魚やカニなどを食べます。尾に毒のある棘を持つので、近づくときは注意が必要です。水族館では、餌の出る装置の下へ来て、餌を体で覆って食べることを覚えた個体もいます。",
+    "movement": "餌を探すとき以外は、砂に潜って眼と噴水孔だけを出し、じっとしていることが多いとされます。本水槽では、胸びれの縁を波打たせて砂の上を滑るように泳ぎ、ときどき砂の上で休みます。",
+    "habitat": "砂泥の海底で暮らし、河口域にも入ります。東京湾の三番瀬のかつての調査では、小さな個体がほぼ一年中見られ、夏には生まれて間もない大きさの個体も確かめられました。本水槽では、日本の沿岸の砂地をイメージしています。",
+    "aliases": [
+      "Red stingray",
+      "Dasyatis akajei"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Myliobatiformes",
+      "orderJa": "トビエイ目",
+      "family": "Dasyatidae",
+      "familyJa": "アカエイ科"
+    },
+    "adultSizeCm": 50,
+    "sizeNote": "体盤幅での値です。水族館の解説では体盤幅50cmとされますが、体幅1.5mとする水族館の解説もあり、最大の大きさは確かめられていません。画面では体盤幅約42cm、尾を含めた全長約80cmで描いています。",
+    "distribution": "日本の南部の沿岸、朝鮮半島、台湾、中国の沿岸に分布します。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "IUCN レッドリストの区分は、今回の調査では確かめられていません。海水のほか、河口域などの汽水にも入ります。"
+    },
+    "highlights": [
+      "背は褐色で、眼と噴水孔のまわりが黄色く色づきます。",
+      "餌を探すとき以外は、砂に潜って眼と噴水孔だけを出し、じっとしていることが多い魚です。",
+      "尾に毒のある棘があります。",
+      "葛西臨海水族園では、餌の出る装置の下へ来て、餌を体で覆って食べることを覚えた個体がいました。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "ray",
+    "tailBeatHz": 1.2,
+    "bodyWaveStart": 0.52,
+    "waveCount": 1.2,
+    "tailSweepRad": 0.35,
+    "verticalFlex": 0,
+    "footAnchor": {
+      "x": 0.28,
+      "y": 0.5
+    }
+  },
+  "visual": {
+    "fallbackColor": "#8a4e32"
+  },
+  "preferredZone": {
+    "minX": 0.06,
+    "maxX": 0.94,
+    "minY": 0.78,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "undulate",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.12,
+      "burst": 0.6
+    },
+    "turnRateRadPerSec": 0.8,
+    "restFraction": 0.45,
+    "depthRange": [
+      0.1,
+      0.9
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.1,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.2,
+        "durationSec": [
+          20,
+          80
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "マリンピア日本海 アカエイ",
+        "url": "https://www.marinepia.or.jp/picturebook/fish/entry-10939.html"
+      },
+      {
+        "title": "千葉県 三番瀬自然環境DB アカエイ",
+        "url": "https://www.pref.chiba.lg.jp/shizen/sanbanze/database/seibutsu/akaei.html"
+      },
+      {
+        "title": "葛西臨海水族園 くす玉を覚えたアカエイ",
+        "url": "https://www.tokyo-zoo.net/topics/news/kasai/4654_22562_2014-10-24.html"
+      },
+      {
+        "title": "鈴木ほか2021 汽水域定置網内のアカエイ餌選択性",
+        "url": "https://www.jstage.jst.go.jp/article/aquaculturesci/69/3/69_185/_article/-char/ja"
+      },
+      {
+        "title": "加茂水族館 アカエイ",
+        "url": "https://kamo-kurage.jp/shonaizukan/akaei/"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 61,
+    "y": 129,
+    "width": 1425,
+    "height": 753
+  }
+}

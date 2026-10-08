@@ -1,0 +1,130 @@
+{
+  "id": "bluespotted-ribbontail-ray",
+  "displayName": "ブルースポッテッドスティングレイ",
+  "realBodyLengthCm": 60,
+  "catalog": {
+    "scientificName": "Taeniura lymma",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "紅海、インド洋の西部から、パプアニューギニア、フィリピン、オーストラリア北部までのインド西太平洋に分布します。",
+    "temperament": "潮が満ちてくると群れで浅場へ移って餌を探し、潮が引くとばらばらになって、洞窟や岩棚の下に隠れます。貝などの軟体動物、ゴカイのなかま、カニ、エビを食べます。尾に毒のある棘があります。",
+    "movement": "底の近くで、ひれを波打たせて滑るように泳ぎます。砂に埋まった姿はあまり見られないとされます。本水槽では、胸びれの縁を波打たせて砂の上を滑るように泳ぎ、ときどき砂の上で休みます。",
+    "habitat": "浅いサンゴ礁のまわりの砂地や海草場、礫や泥の底で暮らし、水深20mほどまで見られます。本水槽では、サンゴ礁のラグーンの白砂をイメージしています。",
+    "aliases": [
+      "Bluespotted ribbontail ray",
+      "Bluespotted fantail ray",
+      "Blue-spotted stingray",
+      "Raja lymma"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Myliobatiformes",
+      "orderJa": "トビエイ目",
+      "family": "Dasyatidae",
+      "familyJa": "アカエイ科"
+    },
+    "adultSizeCm": 35,
+    "sizeNote": "体盤幅での値です。最大で体盤幅35cm、尾を含めた全長70cmになります。ふつうの成体の大きさは分かっていません。画面では体盤幅約28cm、全長約60cmで描いています。",
+    "distribution": "紅海、インド洋の西部から、パプアニューギニア、フィリピン、オーストラリア北部までのインド西太平洋に分布します。オーストラリアでは、西のニンガルー・リーフから東のニューサウスウェールズ州北部まで見られます。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2020,
+      "note": "IUCN の区分は、FishBase に掲載された2020年の評価によります。漁獲やサンゴ礁の減少が脅威とされています。"
+    },
+    "highlights": [
+      "黄褐色の体盤に、鮮やかな青い斑点が散らばります。尾の両側にも青い帯が走ります。",
+      "大きく突き出た眼をもち、尾の下側には先まで続く幅の広いひだがあります。",
+      "底の近くで、ひれを波打たせて滑るように泳ぎます。",
+      "飼育下で良い状態を保つのは難しいとされますが、リスボン海洋水族館では2017年に子が生まれています。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "ray",
+    "tailBeatHz": 1.5,
+    "bodyWaveStart": 0.52,
+    "waveCount": 1.4,
+    "tailSweepRad": 0.35,
+    "verticalFlex": 0,
+    "footAnchor": {
+      "x": 0.27,
+      "y": 0.5
+    }
+  },
+  "visual": {
+    "fallbackColor": "#7e7653"
+  },
+  "preferredZone": {
+    "minX": 0.06,
+    "maxX": 0.94,
+    "minY": 0.78,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "undulate",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.12,
+      "burst": 0.6
+    },
+    "turnRateRadPerSec": 0.8,
+    "restFraction": 0.45,
+    "depthRange": [
+      0.1,
+      0.9
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.1,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.2,
+        "durationSec": [
+          20,
+          80
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes — Taeniura lymma",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=7277"
+      },
+      {
+        "title": "Museums Victoria / Fishes of Australia — Bluespotted Fantail Ray",
+        "url": "https://fishesofaustralia.net.au/home/species/2030"
+      },
+      {
+        "title": "FishBase — Taeniura lymma",
+        "url": "https://fishbase.se/summary/Taeniura_lymma.html"
+      },
+      {
+        "title": "Dabruzzi et al. 2013 — Juvenile ribbontail stingray thermal physiology, JCU repository",
+        "url": "https://researchonline.jcu.edu.au/25066/"
+      },
+      {
+        "title": "Oceanário de Lisboa — Annual Review 2017",
+        "url": "https://oceanario.pt/wp-content/uploads/2024/07/annual_review_2017_oceanario_de_lisboa_en.pdf"
+      },
+      {
+        "title": "Monterey Bay Aquarium — Ocean in Motion opening announcement (2026)",
+        "url": "https://www.montereybayaquarium.org/es/acerca-de-nosotros/acerca-del-acuario/sala-de-prensa/comunicados-de-prensa/monterey-bay-aquariums-ocean-in-motion-la-danza-del-mar-opens-november-7-2026"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 99,
+    "y": 188,
+    "width": 1376,
+    "height": 647
+  }
+}

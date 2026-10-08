@@ -4,11 +4,11 @@
   "displayName": "アマゾンの大型魚水槽",
   "exhibitName": "River Giants",
   "category": "アマゾンの本流",
-  "description": "アマゾン本流の深みを思わせる400cmの大水槽。レッドテールキャットとデンキウナギは砂底で休み、デンキウナギはときおり水面へ息を吸いに上がります。ブラックゴーストは昼は物陰に隠れ、暗くなると泳ぎ出します。",
+  "description": "アマゾン本流の深みを思わせる400cmの大水槽。レッドテールキャットとデンキウナギは砂底で休み、デンキウナギはときおり水面へ息を吸いに上がります。ポタモトリゴン・モトロは眼状紋の並ぶ円い体で砂の上を滑り、ブラックゴーストは昼は物陰に隠れ、暗くなると泳ぎ出します。",
   "widthCm": 400,
   "heightCm": 142,
   "depthCm": 150,
-  "maxTotalFish": 6,
+  "maxTotalFish": 10,
   "sceneIds": [
     "amazon-giants-400"
   ],
@@ -24,6 +24,10 @@
     {
       "speciesId": "electric-eel",
       "maxCount": 2
+    },
+    {
+      "speciesId": "ocellate-river-stingray",
+      "maxCount": 3
     }
   ],
   "defaultStock": [
@@ -38,6 +42,10 @@
     {
       "speciesId": "electric-eel",
       "count": 1
+    },
+    {
+      "speciesId": "ocellate-river-stingray",
+      "count": 2
     }
   ]
 }

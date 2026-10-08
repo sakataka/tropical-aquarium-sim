@@ -4,11 +4,11 @@
   "displayName": "砂地とウツボの水槽",
   "exhibitName": "Sand Flat & Eels",
   "category": "サンゴ礁のラグーン",
-  "description": "広い白砂の上に岩をひとつ置いた240cmの水槽。ハナヒゲウツボは岩の穴や岩場の根元を住みかにして、ほとんどの時間をその近くで過ごし、ときおり体をくねらせて砂地の上を泳ぎます。",
+  "description": "広い白砂の上に岩をひとつ置いた240cmの水槽。ハナヒゲウツボは岩の穴や岩場の根元を住みかにして、ほとんどの時間をその近くで過ごし、ときおり体をくねらせて砂地の上を泳ぎます。ブルースポッテッドスティングレイは胸びれの縁を波打たせて砂の上を滑り、ときどき砂の上で休みます。",
   "widthCm": 240,
   "heightCm": 98,
   "depthCm": 120,
-  "maxTotalFish": 2,
+  "maxTotalFish": 5,
   "sceneIds": [
     "sand-eels-120"
   ],
@@ -16,11 +16,19 @@
     {
       "speciesId": "ribbon-eel",
       "maxCount": 2
+    },
+    {
+      "speciesId": "bluespotted-ribbontail-ray",
+      "maxCount": 3
     }
   ],
   "defaultStock": [
     {
       "speciesId": "ribbon-eel",
+      "count": 2
+    },
+    {
+      "speciesId": "bluespotted-ribbontail-ray",
       "count": 2
     }
   ]

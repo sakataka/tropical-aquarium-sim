@@ -69,6 +69,8 @@ export class FishBody {
   /** 漂う生き物（クラゲ）は向きを変えず、傘の中心を軸に傾く。 */
   private readonly drifts: boolean;
   private readonly bodyLengthCm: number;
+  /** 描き方が決める、位置に置くメッシュ上の固定の点（エイ）。 */
+  private readonly fixedPivot?: { x: number; y: number };
   /** 砂に潜っている間だけ使う、砂の面より上を残す切り抜き。 */
   private burialMask?: Graphics;
 
@@ -85,7 +87,8 @@ export class FishBody {
     this.basePositions = new Float32Array(this.mesh.geometry.positions);
     this.width = texture.width;
     this.height = texture.height;
-    this.pivotX = texture.width * (this.drifts ? 0.5 : 0.42);
+    this.fixedPivot = this.renderer.pivot?.({ width: texture.width, height: texture.height, swim: this.swim });
+    this.pivotX = this.fixedPivot?.x ?? texture.width * (this.drifts ? 0.5 : 0.42);
     this.mesh.pivot.set(this.pivotX, texture.height / 2);
     this.motion = getMotionState(fish);
   }
@@ -142,6 +145,10 @@ export class FishBody {
       motion: this.motion,
     }, { fish, speed, deltaSec, bottomY, bodyLengthCm: this.bodyLengthCm });
     this.mesh.geometry.getBuffer("aPosition").update();
+    if (this.fixedPivot) {
+      this.mesh.pivot.set(this.fixedPivot.x, this.fixedPivot.y);
+      return;
+    }
     // 息継ぎに面を離れる・戻る間も、脚の接地点を基準にして連続させる。
     const desiredAnchor = fish.surfaceMotion || fish.breathTrip ? this.swim.footAnchor
       : fish.contact?.kind === "mouth" ? this.swim.mouthAnchor : { x: .42, y: .82 };

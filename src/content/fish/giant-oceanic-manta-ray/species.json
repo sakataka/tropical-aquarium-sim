@@ -1,0 +1,129 @@
+{
+  "id": "giant-oceanic-manta-ray",
+  "displayName": "オニイトマキエイ",
+  "realBodyLengthCm": 500,
+  "catalog": {
+    "scientificName": "Mobula birostris",
+    "originRegionId": "tropical-oceans",
+    "originRegionName": "世界の暖かい海",
+    "origin": "世界中の熱帯から暖温帯の海に分布します。",
+    "temperament": "ふだんは単独で過ごすことが多いものの、餌場や繁殖のとき、体を掃除してもらうクリーニングの場所には集まります。頭びれを広げて水と餌を口へ導き、動物プランクトンをこし取って食べます。",
+    "movement": "ペルー沖で追跡した3匹では、昼より夜に深く潜る傾向が見られました。本水槽では、大きな胸びれを羽ばたかせて泳ぎ、ときどき羽ばたきをゆるめて滑るように進みます。",
+    "habitat": "外洋と、生産性の高い沿岸や湧昇域で暮らします。追跡調査では、水深1246mまで潜った記録があります。本水槽では、黒潮の流れる外洋をイメージしています。",
+    "aliases": [
+      "Giant manta ray",
+      "Oceanic manta ray",
+      "Manta birostris",
+      "ジャイアントマンタ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Myliobatiformes",
+      "orderJa": "トビエイ目",
+      "family": "Mobulidae",
+      "familyJa": "イトマキエイ科"
+    },
+    "adultSizeCm": 420,
+    "sizeNote": "体盤幅での値です。ふつうの成体の大きさは確かめられておらず、ここでは約4.2mとして表示しています。追跡調査で測った個体は体盤幅3.5〜5.0mでした。NOAA は最大の体盤幅を26フィート（約8m）としています。画面では体盤幅約4.2m、尾を含めた全長約5mで描いています。",
+    "distribution": "世界中の熱帯から暖温帯の海に分布します。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "rarelyDisplayed",
+    "conservation": {
+      "status": "EN",
+      "assessedYear": 2019,
+      "note": "IUCN の区分は、FishBase に掲載された2019年の評価によります。2026年3月5日から、イトマキエイ科の全種がワシントン条約（CITES）附属書Iに掲載されています。米国の絶滅危惧種法（ESA）では threatened に指定されています。"
+    },
+    "highlights": [
+      "ひし形の大きな体盤と、翼のような胸びれを持ちます。",
+      "口の前に1対の頭びれがあり、餌を食べるときに広げて水と餌を口へ導きます。",
+      "背中の白い肩の模様にはさまれた黒い部分が、おおむねT字の形になります。近縁のマンタと見分ける手がかりの一つです。",
+      "腹側の斑紋は1匹ずつ違い、個体の見分けに使われます。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "ray",
+    "tailBeatHz": 0.35,
+    "bodyWaveStart": 0.6,
+    "waveCount": 0.3,
+    "tailSweepRad": 0.8,
+    "verticalFlex": 0,
+    "footAnchor": {
+      "x": 0.4,
+      "y": 0.5
+    }
+  },
+  "visual": {
+    "fallbackColor": "#303238"
+  },
+  "preferredZone": {
+    "minX": 0.05,
+    "maxX": 0.95,
+    "minY": 0.2,
+    "maxY": 0.75
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.12,
+      "burst": 0.35
+    },
+    "turnRateRadPerSec": 0.35,
+    "restFraction": 0,
+    "depthRange": [
+      0.15,
+      0.9
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes — Mobula birostris",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=27290"
+      },
+      {
+        "title": "NOAA Fisheries — Giant Manta Ray",
+        "url": "https://www.fisheries.noaa.gov/species/giant-manta-ray"
+      },
+      {
+        "title": "Bucair et al. (2025) — Mobula yarae taxonomic treatment and comparison with M. birostris",
+        "url": "https://zenodo.org/records/16739966"
+      },
+      {
+        "title": "Beale et al. (2025) — Deep diving behaviour in oceanic manta rays",
+        "url": "https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2025.1630451/full"
+      },
+      {
+        "title": "FishBase — Mobula birostris",
+        "url": "https://www.fishbase.se/summary/Mobula-birostris.html"
+      },
+      {
+        "title": "Hong Kong AFCD — ES 01/26 Annex: Amendments to Appendices of CITES",
+        "url": "https://www.afcd.gov.hk/tc_chi/conservation/con_end/files/ES01_26_Annex.pdf"
+      },
+      {
+        "title": "Netherlands government — Parliamentary letter, 2025–2026, 33 576 no.474",
+        "url": "https://www.tweedekamer.nl/downloads/document?id=2026D02129"
+      },
+      {
+        "title": "Andrzejaczek et al. (2021) — Reverse diel vertical movements off Peru",
+        "url": "https://besjournals.onlinelibrary.wiley.com/doi/full/10.1002/2688-8319.12051"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 275,
+    "y": 25,
+    "width": 1156,
+    "height": 961
+  }
+}

@@ -4,11 +4,11 @@
   "displayName": "沿岸の砂地水槽",
   "exhibitName": "Coastal Sand Flats",
   "category": "日本の沿岸の砂地",
-  "description": "波の跡が残る平らな砂地を再現した180cm水槽。シロギスの群れが、砂底の近くを連れ立って泳ぎ回ります。",
+  "description": "波の跡が残る平らな砂地を再現した180cm水槽。シロギスの群れが、砂底の近くを連れ立って泳ぎ回ります。アカエイは胸びれの縁を波打たせて砂の上を滑るように泳ぎ、砂の上でじっと休みます。",
   "widthCm": 180,
   "heightCm": 57,
   "depthCm": 90,
-  "maxTotalFish": 12,
+  "maxTotalFish": 14,
   "sceneIds": [
     "sand-flats-180"
   ],
@@ -16,12 +16,20 @@
     {
       "speciesId": "japanese-whiting",
       "maxCount": 12
+    },
+    {
+      "speciesId": "red-stingray",
+      "maxCount": 2
     }
   ],
   "defaultStock": [
     {
       "speciesId": "japanese-whiting",
       "count": 8
+    },
+    {
+      "speciesId": "red-stingray",
+      "count": 1
     }
   ]
 }

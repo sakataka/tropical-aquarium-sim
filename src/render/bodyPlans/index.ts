@@ -6,6 +6,7 @@ import { horseshoeCrabRenderer } from "./horseshoeCrab";
 import { jellyRenderer } from "./jelly";
 import { octopusRenderer } from "./octopus";
 import { pteropodRenderer } from "./pteropod";
+import { rayRenderer } from "./ray";
 import { seahorseRenderer } from "./seahorse";
 import { squidRenderer } from "./squid";
 import type { BodyPlanRenderer } from "./types";
@@ -23,6 +24,7 @@ export const BODY_PLAN_RENDERERS: Record<BodyPlanId, BodyPlanRenderer> = {
   pteropod: pteropodRenderer,
   walker: walkerRenderer,
   horseshoeCrab: horseshoeCrabRenderer,
+  ray: rayRenderer,
 };
 
 export * from "./types";

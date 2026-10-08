@@ -4,11 +4,11 @@
   "displayName": "黒潮の大水槽",
   "exhibitName": "Kuroshio Sea",
   "category": "黒潮の外洋",
-  "description": "幅22.5mのアクリル越しに、外洋の青を見渡す大水槽。ジンベエザメとマンボウがゆったりと行き来し、ブリの群れが中層から上層を回ります。マダイの群れは底に近い層を泳ぎます。",
+  "description": "幅22.5mのアクリル越しに、外洋の青を見渡す大水槽。ジンベエザメとマンボウがゆったりと行き来し、オニイトマキエイが大きな胸びれを羽ばたかせて中層を横切ります。ブリの群れは中層から上層を回り、マダイの群れは底に近い層を泳ぎます。",
   "widthCm": 2250,
   "heightCm": 628,
   "depthCm": 1000,
-  "maxTotalFish": 30,
+  "maxTotalFish": 38,
   "sceneIds": [
     "kuroshio-2250"
   ],
@@ -28,6 +28,10 @@
     {
       "speciesId": "red-seabream",
       "maxCount": 12
+    },
+    {
+      "speciesId": "giant-oceanic-manta-ray",
+      "maxCount": 2
     }
   ],
   "defaultStock": [
@@ -46,6 +50,10 @@
     {
       "speciesId": "red-seabream",
       "count": 8
+    },
+    {
+      "speciesId": "giant-oceanic-manta-ray",
+      "count": 1
     }
   ]
 }
