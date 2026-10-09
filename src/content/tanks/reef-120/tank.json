@@ -4,11 +4,11 @@
   "displayName": "サンゴ礁の海水水槽",
   "exhibitName": "Coral Reef Lagoon",
   "category": "インド太平洋の海",
-  "description": "青い海、白い砂と低いサンゴ礁。カクレクマノミ、ハタタテハゼ、ニシキテグリが、それぞれ異なる高さと速さで泳ぐ120cmの海水水槽です。",
+  "description": "青い海、白い砂と低いサンゴ礁を再現した120cmの海水水槽。カクレクマノミ、ハタタテハゼ、ニシキテグリが、それぞれ異なる高さと速さで泳ぎます。背びれの長い棘をなびかせるイトヒキテンジクダイは小さな群れで中層に浮かび、ハシナガベラとオウゴンニジギンポは右の岩の隙間、黄色いイエローアセッサーは左の岩の張り出しの下を住みかにします。",
   "widthCm": 120,
   "heightCm": 86,
   "depthCm": 45,
-  "maxTotalFish": 4,
+  "maxTotalFish": 18,
   "sceneIds": [
     "reef-lagoon"
   ],
@@ -24,6 +24,22 @@
     {
       "speciesId": "mandarinfish",
       "maxCount": 1
+    },
+    {
+      "speciesId": "longspine-cardinalfish",
+      "maxCount": 8
+    },
+    {
+      "speciesId": "possum-wrasse",
+      "maxCount": 1
+    },
+    {
+      "speciesId": "eyelash-fangblenny",
+      "maxCount": 3
+    },
+    {
+      "speciesId": "yellow-assessor",
+      "maxCount": 3
     }
   ],
   "defaultStock": [
@@ -38,6 +54,22 @@
     {
       "speciesId": "mandarinfish",
       "count": 1
+    },
+    {
+      "speciesId": "longspine-cardinalfish",
+      "count": 5
+    },
+    {
+      "speciesId": "possum-wrasse",
+      "count": 1
+    },
+    {
+      "speciesId": "eyelash-fangblenny",
+      "count": 2
+    },
+    {
+      "speciesId": "yellow-assessor",
+      "count": 2
     }
   ]
 }

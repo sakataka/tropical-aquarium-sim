@@ -1,0 +1,112 @@
+{
+  "id": "bluntnose-sixgill-shark",
+  "displayName": "カグラザメ",
+  "realBodyLengthCm": 350,
+  "catalog": {
+    "scientificName": "Hexanchus griseus",
+    "originRegionId": "worldwide",
+    "originRegionName": "世界の海",
+    "origin": "世界の熱帯から温帯の海に広く、ところどころに分布します。日本では2015年1月、青森県むつ市の大畑漁港沖の定置網で雄が採集され、日本周辺の北限の記録として報告されました。",
+    "temperament": "南アフリカ沖の胃の内容物の調査では、イカやタコの仲間、硬骨魚、軟骨魚、海の哺乳類が主な餌で、成長につれて食べるものが変わります。単独でも群れでも見られ、傷ついた仲間を襲うことも記録されています。",
+    "movement": "太い体で、海底近くと中層を泳ぎます。ハワイのオアフ島沖で追跡された雌は、昼は水深687mまで潜り、夜は274mまで浮かび上がりました。",
+    "habitat": "大陸棚や大陸斜面、島の周りの棚、海山の近くにすみ、表層から少なくとも水深2500mまで記録があります。若い魚は沿岸の湾に現れ、成魚も深い谷に接する浅い湾へ入ることがあります。生きた個体の展示はまれで、青森で採集された雄は浅虫水族館で20日ほどしか飼育できませんでした。",
+    "aliases": [
+      "Bluntnose sixgill shark",
+      "Sixgill shark",
+      "Requin griset",
+      "Notidanus griseus"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Hexanchiformes",
+      "orderJa": "カグラザメ目",
+      "family": "Hexanchidae",
+      "familyJa": "カグラザメ科"
+    },
+    "adultSizeCm": 350,
+    "sizeNote": "FAO の資料では全長482cmの記録があり、潜水艇からは約550cmの大きな雌が目撃されています。雄は全長309〜330cm、雌は350〜420cmで成熟するとされ、カリフォルニアでは出産間近の雌が421cmでした。展示では小さめの個体として350cmとしました。",
+    "distribution": "世界の熱帯・温帯の海に広く、局地的に分布します。日本では青森県むつ市沖でも採集されています。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "rarelyDisplayed",
+    "conservation": {
+      "status": "NT",
+      "assessedYear": 2019,
+      "note": "2019年11月に評価され、2020年に公表されました。3世代（約160年）で20〜29%減ったと推定され、減少傾向とされています。深場の漁業での混獲と、一部の対象漁獲が主な脅威です。"
+    },
+    "highlights": [
+      "体の両側に6本ずつのえら穴が並びます。多くのサメは5本です。",
+      "下あごには、くしのような形の大きな歯が左右に6列ずつ並びます。",
+      "背びれは体の後ろに1基だけで、尾びれの上の葉が長く伸びます。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 0.55,
+    "tailSweepRad": 0.4
+  },
+  "visual": {
+    "fallbackColor": "#6b6462"
+  },
+  "sourceBodyBounds": {
+    "x": 37,
+    "y": 233,
+    "width": 1471,
+    "height": 519
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.35,
+    "maxY": 0.68
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "steady",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.2,
+      "burst": 0.6
+    },
+    "turnRateRadPerSec": 0.9,
+    "restFraction": 0.15,
+    "depthRange": [
+      0.3,
+      0.9
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 3,
+      "cohesion": 0,
+      "polarization": 0.03
+    },
+    "structureAffinity": 0.15,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Ebert 2013 — Deep-sea Cartilaginous Fishes of the Indian Ocean, Volume 1: Sharks (FAO)",
+        "url": "https://www.fao.org/4/i3477e/i3477e.pdf"
+      },
+      {
+        "title": "河合ほか 2017 — 青森県むつ市沖から採集されたカグラザメ",
+        "url": "https://eprints.lib.hokudai.ac.jp/repo/huscap/all/68159/bull.fish.67.3.35.pdf"
+      },
+      {
+        "title": "Coffey & Holland 2015 — In situ dissolved oxygen from free-ranging fish",
+        "url": "https://link.springer.com/content/pdf/10.1186/s40317-015-0088-x.pdf"
+      },
+      {
+        "title": "Finucci et al. 2020 — Hexanchus griseus, The IUCN Red List of Threatened Species",
+        "url": "https://www.researchgate.net/publication/352568698_Hexanchus_griseus_-_Bluntnose_Sixgill_Shark_The_IUCN_Red_List_of_Threatened_Species_2020"
+      },
+      {
+        "title": "Ebert 1994 — Diet of the sixgill shark off southern Africa",
+        "url": "https://www.researchgate.net/publication/259293891_Diet_of_the_Sixgill_shark_Hexanchus_griseus_off_southern_Africa"
+      },
+      {
+        "title": "Smithsonian STRI Shorefishes — Hexanchus griseus",
+        "url": "https://biogeodb.stri.si.edu/caribbean/en/thefishes/species/129"
+      }
+    ]
+  }
+}

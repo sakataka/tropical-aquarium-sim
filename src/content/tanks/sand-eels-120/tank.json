@@ -4,11 +4,11 @@
   "displayName": "砂地とウツボの水槽",
   "exhibitName": "Sand Flat & Eels",
   "category": "サンゴ礁のラグーン",
-  "description": "広い白砂の上に岩をひとつ置いた240cmの水槽。白砂にはチンアナゴとニシキアナゴの巣穴が並び、みな同じ向きに顔を向けて体を揺らし、驚くといっせいに巣穴へ引っ込みます。ハナヒゲウツボは岩の穴や岩場の根元を住みかにして、ときおり体をくねらせて砂地の上を泳ぎます。ブルースポッテッドスティングレイは胸びれの縁を波打たせて砂の上を滑り、ときどき砂の上で休みます。",
+  "description": "広い白砂の上に岩をひとつ置いた240cmの水槽。白砂にはチンアナゴとニシキアナゴの巣穴が並び、みな同じ向きに顔を向けて体を揺らし、驚くといっせいに巣穴へ引っ込みます。ハナヒゲウツボは岩の穴や岩場の根元を住みかにして、ときおり体をくねらせて砂地の上を泳ぎます。ブルースポッテッドスティングレイは胸びれの縁を波打たせて砂の上を滑り、ときどき砂の上で休みます。黄色い縦帯のアカヒメジは、夜に砂地へ出て2本のひげで餌を探し、昼は群れで集まって休みます。",
   "widthCm": 240,
   "heightCm": 98,
   "depthCm": 120,
-  "maxTotalFish": 18,
+  "maxTotalFish": 22,
   "sceneIds": [
     "sand-eels-120"
   ],
@@ -28,6 +28,10 @@
     {
       "speciesId": "splendid-garden-eel",
       "maxCount": 5
+    },
+    {
+      "speciesId": "goldstripe-goatfish",
+      "maxCount": 6
     }
   ],
   "defaultStock": [
@@ -45,6 +49,10 @@
     },
     {
       "speciesId": "splendid-garden-eel",
+      "count": 3
+    },
+    {
+      "speciesId": "goldstripe-goatfish",
       "count": 3
     }
   ]

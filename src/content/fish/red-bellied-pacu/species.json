@@ -1,0 +1,106 @@
+{
+  "id": "red-bellied-pacu",
+  "displayName": "レッドコロソマ",
+  "realBodyLengthCm": 55,
+  "catalog": {
+    "scientificName": "Piaractus brachypomus",
+    "originRegionId": "south-america",
+    "originRegionName": "南米",
+    "origin": "南米のアマゾン川水系に分布し、ブラジル、ボリビア、エクアドル、コロンビア、ペルーで記録があります。オリノコ川の集団は、2019年に別の種として分けられました。",
+    "habitat": "白く濁った水や澄んだ水の川の支流に暮らし、濁った水と黒い水の境目にも見られます。季節によって川、湖、氾濫原、水に浸かった森を使い分けます。この展示では、沈んだ大木のある広い氾濫原の湖をイメージしています。",
+    "temperament": "果実や種子をよく食べる雑食魚です。臼のような歯をもち、硬い餌も扱えます。",
+    "movement": "水位の変化に合わせて、本流と氾濫原、森の中の湖の間を行き来します。繁殖の時期には上流へ向かって移動します。",
+    "aliases": [
+      "Red-bellied pacu",
+      "Pirapitinga",
+      "ピラピチンガ",
+      "Myletes brachypomus",
+      "Colossoma brachypomum"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Characiformes",
+      "orderJa": "カラシン目",
+      "family": "Serrasalmidae",
+      "familyJa": "セラサルムス科"
+    },
+    "adultSizeCm": 55,
+    "sizeNote": "標準体長。ボリビアのマモレ川の研究では、成魚は標準体長50〜60cm、体重4〜10kgでした。同じ研究での最大は、雌が標準体長71cm・14kg、雄が62cm・10.5kgです。",
+    "distribution": "アマゾン川水系。カケタ（ジャプラ）、プトゥマヨ（イッサ）、ナポ、ウカヤリ、ソリモンエス、プルス、マデイラ、タパジョス、トカンチンス・アラグアイアの各流域で記録があります。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2023,
+      "note": "IUCN の区分は分類台帳の引用で、評価の原文は確認できていません。養殖魚の移送や放流で起こる交雑が、野生の集団を守るうえで心配されています。"
+    },
+    "highlights": [
+      "銀色から暗い灰色の体で、下あごから腹にかけて橙色から淡い黄色を帯びます。",
+      "若い魚ほど腹の橙色が強く、大きな成魚では薄くなります。",
+      "増水して森が水に浸かる時期には、果実や種子、花を食べて体の状態がよくなります。",
+      "うろこの年輪から、28歳と推定された野生の個体がいます。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 1
+  },
+  "visual": {
+    "fallbackColor": "#8b6b53"
+  },
+  "sourceBodyBounds": {
+    "x": 113,
+    "y": 90,
+    "width": 1352,
+    "height": 817
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.15,
+    "maxY": 0.75
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "steady",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.2,
+      "burst": 0.7
+    },
+    "turnRateRadPerSec": 1.3,
+    "restFraction": 0.15,
+    "depthRange": [0.15, 0.8],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0.5,
+      "polarization": 0.35
+    },
+    "structureAffinity": 0.3,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes — Piaractus species",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?tbl=species&genus=Piaractus"
+      },
+      {
+        "title": "Escobar et al. 2019 — A new species of Piaractus from the Orinoco Basin with a redescription of Piaractus brachypomus",
+        "url": "https://www.researchgate.net/profile/Rafaela-Ota/publication/332642965_A_new_species_of_Piaractus_Characiformes_Serrasalmidae_from_the_Orinoco_Basin_with_a_redescription_of_Piaractus_brachypomus/links/5cc6dfe84585156cd7b9f475/A-new-species-of-Piaractus-Characiformes-Serrasalmidae-from-the-Orinoco-Basin-with-a-redescription-of-Piaractus-brachypomus.pdf"
+      },
+      {
+        "title": "Loubens & Panfili 2001 — Biology of Piaractus brachypomus in the Mamoré basin",
+        "url": "https://horizon.documentation.ird.fr/exl-doc/pleins_textes/divers20-05/010027698.pdf"
+      },
+      {
+        "title": "Escobar et al. 2022 — Population genetics and management units of Piaractus",
+        "url": "https://www.ni.bio.br/1982-0224-2022-0056/"
+      },
+      {
+        "title": "Anderson et al. 2009 — Seed dispersal by Colossoma and Piaractus (PubMed abstract)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/19466459/"
+      }
+    ]
+  }
+}

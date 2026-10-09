@@ -1,0 +1,121 @@
+{
+  "id": "siberian-sturgeon",
+  "displayName": "シベリアチョウザメ",
+  "realBodyLengthCm": 110,
+  "catalog": {
+    "scientificName": "Acipenser baerii",
+    "originRegionId": "eurasia",
+    "originRegionName": "ユーラシア",
+    "origin": "シベリアの北極海に注ぐ川に分布します。オビ・イルティシ川、エニセイ川、ハタンガ川、レナ川、インディギルカ川、コリマ川などのほか、バイカル湖の水系にもすみます。",
+    "temperament": "川や湖の底で、水生昆虫の幼虫や貧毛類、貝、甲殻類などの底生動物を食べ、小魚を食べることもあります。陰を好み、強い光を避けるとされます。",
+    "movement": "底近くをゆったり泳ぎ、吻の下の4本のひげで餌を探ります。川の中を長い距離移動し、産卵の移動中も餌を食べ続けます。",
+    "habitat": "主に淡水の川や湖に暮らし、汽水域にも入ります。バイカル湖では、湖で餌をとり、川をさかのぼって産卵します。本水槽では、丸い石と礫が続く冷たい大河の底をイメージしています。",
+    "aliases": [
+      "Siberian sturgeon",
+      "Baikal sturgeon",
+      "Lena sturgeon",
+      "Acipenser baeri",
+      "Huso baerii",
+      "Sterletus baerii"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Acipenseriformes",
+      "orderJa": "チョウザメ目",
+      "family": "Acipenseridae",
+      "familyJa": "チョウザメ科"
+    },
+    "adultSizeCm": 110,
+    "sizeNote": "カナダの識別資料（2001年）では、平均的な大きさは80〜140cm、最大は200cmとされ、成魚の図は110cmの個体です。ここではその成魚にならって110cmとしました。自然の川では雄が10〜17年、雌が12〜20年で成熟しますが、温帯の養殖では雄は6年、雌は7年ほどで成熟します。",
+    "distribution": "オビ川からコリマ川までの、シベリアの北極海に注ぐ河川と、バイカル湖の水系に分布します。ヨーロッパやアジア、アメリカでは、養殖や放流、逃げ出した魚の記録があります。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "CR",
+      "assessedYear": 2022,
+      "note": "2010年の絶滅危惧（EN）から、2022年に深刻な危機（CR）へ引き上げられ、減少が続いています。養殖では広く使われる一方、自然の個体群は乱獲やダム、汚染で数を減らしました。"
+    },
+    "highlights": [
+      "吻の長さは地域で違い、レナ川の魚は長く、オビ川やバイカル湖の魚は短い吻をもちます。",
+      "若い魚は骨板が鋭く目立ちますが、大きな成魚では低くなり、体と同じ色でめだたなくなります。",
+      "雌は毎年は産卵せず、同じ群れでも成熟の時期がそろいません。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 0.85,
+    "mouthAnchor": {
+      "x": 0.075,
+      "y": 0.76
+    }
+  },
+  "visual": {
+    "fallbackColor": "#6e6d68"
+  },
+  "sourceBodyBounds": {
+    "x": 72,
+    "y": 299,
+    "width": 1415,
+    "height": 378
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.7,
+    "maxY": 0.87
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "steady",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.17,
+      "burst": 0.5
+    },
+    "turnRateRadPerSec": 1.1,
+    "restFraction": 0.2,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0.35,
+      "polarization": 0.2
+    },
+    "structureAffinity": 0.15,
+    "habits": [
+      {
+        "type": "bottomForage"
+      }
+    ],
+    "sources": [
+      {
+        "title": "FAO 2009 — Cultured Aquatic Species Fact Sheet: Acipenser baerii",
+        "url": "https://www.fao.org/fishery/docs/CDrom/aquaculture/I1129m/file/en/en_acipenser.htm"
+      },
+      {
+        "title": "Environment Canada 2001 — CITES Identification Guide, Sturgeons and Paddlefish",
+        "url": "https://cites.unia.es/file.php/1/files/CAN-CITES_Sturgeons_Guide.pdf"
+      },
+      {
+        "title": "Life 2026 — Narrative review of Acipenser baerii ecology and culture",
+        "url": "https://www.mdpi.com/2075-1729/16/9/1437"
+      },
+      {
+        "title": "Eschmeyer's Catalog of Fishes — Acipenser baerii",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=27381"
+      },
+      {
+        "title": "IUCN 2024 — Freshwater fishes of potential interest for inclusion in CMS",
+        "url": "https://iucn.org/sites/default/files/2024-01/freshwater-fishes-of-potential-interest-for-inclusion-in-cms-information-brief.pdf"
+      },
+      {
+        "title": "North American Sturgeon and Paddlefish Society — IUCN Assessment 2022",
+        "url": "https://nasps-sturgeon.org/iucn-assessment-2022/"
+      }
+    ]
+  }
+}

@@ -4,11 +4,11 @@
   "displayName": "タンガニイカ湖の岩場水槽",
   "exhibitName": "Lake Tanganyika Rocks",
   "category": "タンガニイカ湖の岩場",
-  "description": "平たい岩が重なるタンガニイカ湖の岩場を再現した180cm水槽。トロフェウス、ジュリドクロミス、カルブス、ブリシャルディは岩の隙間を住みかにして出入りし、トロフェウスとジュリドクロミスは岩肌の藻をついばみます。夕方にはシノドンティスの群れが砂底を探って回ります。",
+  "description": "平たい岩が重なるタンガニイカ湖の岩場を再現した180cm水槽。トロフェウス、ジュリドクロミス、カルブス、ブリシャルディは岩の隙間を住みかにして出入りし、トロフェウスとジュリドクロミスは岩肌の藻をついばみます。夕方にはシノドンティスの群れが砂底を探って回ります。ハゼのような体つきのエレトモドゥスは、浅い岩の上にとどまって岩肌の藻を削り取ります。",
   "widthCm": 180,
   "heightCm": 79,
   "depthCm": 60,
-  "maxTotalFish": 22,
+  "maxTotalFish": 26,
   "sceneIds": [
     "tanganyika-rocks-180"
   ],
@@ -32,6 +32,10 @@
     {
       "speciesId": "cuckoo-catfish",
       "maxCount": 5
+    },
+    {
+      "speciesId": "tanganyika-clown",
+      "maxCount": 4
     }
   ],
   "defaultStock": [
@@ -54,6 +58,10 @@
     {
       "speciesId": "cuckoo-catfish",
       "count": 3
+    },
+    {
+      "speciesId": "tanganyika-clown",
+      "count": 2
     }
   ]
 }

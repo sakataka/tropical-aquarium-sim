@@ -4,11 +4,11 @@
   "displayName": "ピラニアの群泳水槽",
   "exhibitName": "Piranha",
   "category": "アマゾンの川岸",
-  "description": "琥珀色に濁った川岸を再現した180cm水槽。ピラニア・ナッテリーの群れが開けた中層にまとまって泳ぎ、昼は流木の根や岩の陰で休みます。",
+  "description": "琥珀色に濁った川岸を再現した180cm水槽。ピラニア・ナッテリーの群れが開けた中層にまとまって泳ぎ、昼は流木の根や岩の陰で休みます。体の細長いピラニア・エロンガータと、ほかの魚の鱗をかじり取るウィンプル・ピラニアは、群れに加わらず1匹ずつ泳ぎます。",
   "widthCm": 180,
   "heightCm": 60,
   "depthCm": 60,
-  "maxTotalFish": 14,
+  "maxTotalFish": 18,
   "sceneIds": [
     "piranha-180"
   ],
@@ -16,12 +16,28 @@
     {
       "speciesId": "red-bellied-piranha",
       "maxCount": 14
+    },
+    {
+      "speciesId": "slender-piranha",
+      "maxCount": 3
+    },
+    {
+      "speciesId": "wimple-piranha",
+      "maxCount": 2
     }
   ],
   "defaultStock": [
     {
       "speciesId": "red-bellied-piranha",
       "count": 10
+    },
+    {
+      "speciesId": "slender-piranha",
+      "count": 2
+    },
+    {
+      "speciesId": "wimple-piranha",
+      "count": 1
     }
   ]
 }

@@ -4,11 +4,11 @@
   "displayName": "ハギとチョウチョウウオの水槽",
   "exhibitName": "Tangs & Butterflyfish",
   "category": "サンゴ礁の海",
-  "description": "両側のサンゴの岩場のあいだに、青い水が広く開けた240cmの水槽。ナンヨウハギ、キイロハギ、ツノダシが連れ立って中央を横切り、チョウチョウウオの仲間とタテジマキンチャクダイは岩のサンゴをついばみます。シチセンベラは砂底で餌を探します。",
+  "description": "両側のサンゴの岩場のあいだに、青い水が広く開けた240cmの水槽。ナンヨウハギ、キイロハギ、ツノダシが連れ立って中央を横切り、チョウチョウウオの仲間とタテジマキンチャクダイは岩のサンゴをついばみます。シチセンベラは砂底で餌を探します。黒と白の顔のフォックスフェイスは、岩の藻をついばみながらゆったり泳ぎます。",
   "widthCm": 240,
   "heightCm": 119,
   "depthCm": 90,
-  "maxTotalFish": 20,
+  "maxTotalFish": 22,
   "sceneIds": [
     "reef-surgeonfish-240"
   ],
@@ -40,6 +40,10 @@
     {
       "speciesId": "harlequin-tuskfish",
       "maxCount": 1
+    },
+    {
+      "speciesId": "foxface-rabbitfish",
+      "maxCount": 3
     }
   ],
   "defaultStock": [
@@ -70,6 +74,10 @@
     {
       "speciesId": "harlequin-tuskfish",
       "count": 1
+    },
+    {
+      "speciesId": "foxface-rabbitfish",
+      "count": 2
     }
   ]
 }

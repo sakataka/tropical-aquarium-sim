@@ -1,0 +1,124 @@
+{
+  "id": "zezera",
+  "displayName": "ゼゼラ",
+  "realBodyLengthCm": 8,
+  "catalog": {
+    "scientificName": "Biwia zezera",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "日本固有種で、濃尾平野、琵琶湖・淀川水系、山陽地方、九州北西部に分布します。琵琶湖だけにすむ魚ではありません。",
+    "temperament": "繁殖期にはヨシなどの根に卵を産み、雄は縄張りを示すとされます。二枚貝に卵を産むタナゴの仲間とは、産卵の仕方が違います。",
+    "movement": "底に接するか、すぐ上にとどまります。小さな下向きの口で、泥の表面の藻類やデトリタス、動物プランクトンを食べます。",
+    "habitat": "平野の湖や池、川の下流のよどみの砂泥底にすみます。秋から冬には、琵琶湖の深い湖底も使うとされます。この展示では、二枚貝の沈む池の底を泳ぎます。",
+    "aliases": [
+      "Zezera",
+      "Pseudogobio zezera"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cypriniformes",
+      "orderJa": "コイ目",
+      "family": "Gobionidae",
+      "familyJa": "カマツカ科"
+    },
+    "adultSizeCm": 8,
+    "sizeNote": "国立科学博物館は全長8cm、琵琶湖の生物の画像データベースは全長7〜8cmと紹介しています。FishBase の最大は標準体長6.2cmです。成熟した個体のふつうの大きさは確かめられていないため、展示では全長8cmほどを想定しています。",
+    "distribution": "濃尾平野、琵琶湖・淀川水系、山陽地方、九州北西部に分布する日本固有種です。関東平野の集団は、移植によるものとされます。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "環境省レッドリスト2020では絶滅危惧II類（VU）です。FishBase には IUCN の軽度懸念（LC、2017年評価）と表示されていますが、IUCN の評価本文は確かめられていません。"
+    },
+    "highlights": [
+      "細長い体に、短く丸い吻と高い位置の眼があります。口は小さく下を向き、口ひげはありません。",
+      "灰白色からオリーブ褐色の体に不規則な暗い斑が並び、ひれには細かな暗い点が散ります。",
+      "よく似たヨドゼゼラより尾びれの切れ込みが深く、背びれの縁がへこみます。",
+      "琵琶湖博物館は、確保や長期の飼育・繁殖が難しかったこの魚の繁殖に、2024年に成功したと報告しています。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.8,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.61
+    }
+  },
+  "visual": {
+    "fallbackColor": "#a39a7c"
+  },
+  "sourceBodyBounds": {
+    "x": 69,
+    "y": 194,
+    "width": 1417,
+    "height": 554
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.72,
+    "maxY": 0.94
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.4,
+      "burst": 2.2
+    },
+    "turnRateRadPerSec": 2.4,
+    "restFraction": 0.3,
+    "depthRange": [
+      0.2,
+      0.9
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0.35,
+      "polarization": 0.15
+    },
+    "structureAffinity": 0.35,
+    "habits": [
+      {
+        "type": "bottomForage"
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.2,
+        "durationSec": [
+          6,
+          20
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes — Biwia zezera",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=3397"
+      },
+      {
+        "title": "国立科学博物館 日本の淡水魚類 — ゼゼラ",
+        "url": "https://www.kahaku.go.jp/research/db/zoology/uodas_freshdb/area/cyprinnidae/gobioninae/068.html"
+      },
+      {
+        "title": "岐阜県水産研究所 さかな図鑑 — ゼゼラ",
+        "url": "https://www.fish.rd.pref.gifu.lg.jp/sakana/gyoshu/zezera.htm"
+      },
+      {
+        "title": "細谷和海・川瀬成吾 — 琵琶湖生物多様性画像データベース ゼゼラ",
+        "url": "https://www.lberi.jp/iframe_dir/data/biwia-zezera/index.html"
+      },
+      {
+        "title": "大阪府立環境農林水産総合研究所 淡水魚図鑑 — ゼゼラ",
+        "url": "https://www.knsk-osaka.jp/zukan/zukan_database/tansui/7550b2c27c3946f/6653867ff2338ac.html"
+      },
+      {
+        "title": "琵琶湖博物館 — 水族トピック展示「滋賀県の地名にちなんだ名をもつ魚・ゼゼラ」",
+        "url": "https://www.biwahaku.jp/2024/07/post_203.html"
+      }
+    ]
+  }
+}

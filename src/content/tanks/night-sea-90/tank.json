@@ -4,11 +4,11 @@
   "displayName": "夜の岩礁水槽",
   "exhibitName": "Lights of the Night Sea",
   "category": "南日本の夜の岩礁",
-  "description": "暗い洞穴の多い夜の岩礁を再現した90cm水槽。マツカサウオ、ヒカリキンメダイ、ヨゴレマツカサ、アカマツカサはどれも夜行性で、岩の洞穴を住みかにします。夕方の薄明かりでは洞穴の外へ泳ぎ出し、明るい照明では洞穴に隠れて休みます。",
+  "description": "暗い洞穴の多い夜の岩礁を再現した90cm水槽。マツカサウオ、ヒカリキンメダイ、ヨゴレマツカサ、アカマツカサはどれも夜行性で、岩の洞穴を住みかにします。夕方の薄明かりでは洞穴の外へ泳ぎ出し、明るい照明では洞穴に隠れて休みます。大きな眼のホウセキキントキも夜行性で、昼は洞穴の中で過ごします。",
   "widthCm": 90,
   "heightCm": 36,
   "depthCm": 45,
-  "maxTotalFish": 10,
+  "maxTotalFish": 12,
   "sceneIds": [
     "night-sea-90"
   ],
@@ -28,6 +28,10 @@
     {
       "speciesId": "bigscale-soldierfish",
       "maxCount": 3
+    },
+    {
+      "speciesId": "lunartail-bigeye",
+      "maxCount": 2
     }
   ],
   "defaultStock": [
@@ -46,6 +50,10 @@
     {
       "speciesId": "bigscale-soldierfish",
       "count": 2
+    },
+    {
+      "speciesId": "lunartail-bigeye",
+      "count": 1
     }
   ]
 }

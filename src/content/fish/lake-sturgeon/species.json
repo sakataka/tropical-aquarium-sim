@@ -1,0 +1,118 @@
+{
+  "id": "lake-sturgeon",
+  "displayName": "レイクスタージョン",
+  "realBodyLengthCm": 140,
+  "catalog": {
+    "scientificName": "Acipenser fulvescens",
+    "originRegionId": "north-america",
+    "originRegionName": "北米",
+    "origin": "カナダと米国にまたがる、セントローレンス川、ハドソン湾、五大湖、ミシシッピ川、モービル・クーサ川の各水系に分布します。最初に記載された標本はエリー湖のものです。",
+    "temperament": "4本のひげで底の餌を探し、歯のない口を伸ばして吸い込みます。水生昆虫や貝、ザリガニなどを主に食べ、小魚や魚卵も食べます。成熟が遅く、寿命は150年に達するとも言われます。",
+    "movement": "大きな湖や川の底近くをゆったり泳ぎます。繁殖のために川へ移動する個体群があり、産卵の前には頭を水面に出したり、跳ねたりする姿も観察されています。",
+    "habitat": "大きな湖と川の底層に暮らし、細かい泥の少ない礫や玉石の底で産卵します。本水槽では、丸い石と礫が続く冷たい大河の底をイメージしています。",
+    "aliases": [
+      "イケチョウザメ",
+      "ミズウミチョウザメ",
+      "Lake sturgeon",
+      "Rock sturgeon",
+      "Huso fulvescens",
+      "Sterletus fulvescens",
+      "Acipenser rubicundus"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Acipenseriformes",
+      "orderJa": "チョウザメ目",
+      "family": "Acipenseridae",
+      "familyJa": "チョウザメ科"
+    },
+    "adultSizeCm": 140,
+    "sizeNote": "米国魚類野生生物局の解説では、成魚は約1.2〜1.8m（4〜6フィート）、14〜36kgほどで、大きな個体は約2.1mに達します。ここでは典型的な成魚の範囲から140cmとしました。ウィネベーゴ湖の研究では、雄は12〜15年で102cm以上、雌は20〜25年で140cm以上になって成熟します。",
+    "distribution": "カナダと米国の、セントローレンス川・ハドソン湾・五大湖・ミシシッピ川・モービル川の各水系に分布します。ロシアへ導入された記録もあります。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "EN",
+      "assessedYear": 2022,
+      "note": "IUCN の区分は魚類目録からの引用です。過去の商業漁獲と、ダムによる産卵場・育成場の消失や分断で数を減らしました。各地で川のつながりの回復や、生息地の修復、放流が進められています。"
+    },
+    "highlights": [
+      "若い魚は骨板が鋭く尖りますが、大きく育つと骨板が低くなり、皮膚がなめらかになります。",
+      "繁殖期には1尾の雌のまわりに2〜8尾の雄が集まり、短い産卵行動をくり返します。",
+      "寿命は150年に達するとも言われる、長生きで成熟の遅い魚です。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 0.8,
+    "mouthAnchor": {
+      "x": 0.05,
+      "y": 0.8
+    }
+  },
+  "visual": {
+    "fallbackColor": "#7d776a"
+  },
+  "sourceBodyBounds": {
+    "x": 51,
+    "y": 291,
+    "width": 1455,
+    "height": 417
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.68,
+    "maxY": 0.86
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "steady",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.16,
+      "burst": 0.5
+    },
+    "turnRateRadPerSec": 1.0,
+    "restFraction": 0.2,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0.3,
+      "polarization": 0.2
+    },
+    "structureAffinity": 0.15,
+    "habits": [
+      {
+        "type": "bottomForage"
+      }
+    ],
+    "sources": [
+      {
+        "title": "U.S. Fish & Wildlife Service — Lake sturgeon",
+        "url": "https://www.fws.gov/species/lake-sturgeon-acipenser-fulvescens"
+      },
+      {
+        "title": "Eschmeyer's Catalog of Fishes — Acipenser fulvescens",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?genus=Acipenser&tbl=species"
+      },
+      {
+        "title": "Environment Canada 2001 — CITES Identification Guide, Sturgeons and Paddlefish",
+        "url": "https://cites.unia.es/file.php/1/files/CAN-CITES_Sturgeons_Guide.pdf"
+      },
+      {
+        "title": "Bruch & Binkowski 2002 — Spawning behavior of Lake Sturgeon",
+        "url": "https://www.researchgate.net/publication/229845266_Spawning_behavior_of_Lake_Sturgeon_Acipenser_fulvescens"
+      },
+      {
+        "title": "Jude 1982 — Identification of Larval Fishes of the Great Lakes Basin, Acipenseridae",
+        "url": "https://www.glfc.org/pubs/SpecialPubs/glffc_SSpp82_3.pdf"
+      }
+    ]
+  }
+}

@@ -1,0 +1,140 @@
+{
+  "id": "lanceolate-whiptail-catfish",
+  "displayName": "リネロリカリア・ランケオラータ",
+  "realBodyLengthCm": 11.5,
+  "swim": {
+    "tailBeatHz": 2.2,
+    "tailSweepRad": 0.38,
+    "mouthAnchor": {
+      "x": 0.03,
+      "y": 0.72
+    }
+  },
+  "visual": {
+    "fallbackColor": "#8a7556"
+  },
+  "sourceBodyBounds": {
+    "x": 90,
+    "y": 257,
+    "width": 1408,
+    "height": 474
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.72,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.2,
+      "burst": 1.4
+    },
+    "turnRateRadPerSec": 1.9,
+    "restFraction": 0.55,
+    "depthRange": [
+      0.4,
+      0.95
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0,
+      "polarization": 0.03
+    },
+    "structureAffinity": 0.8,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 2.0,
+        "durationSec": [
+          10,
+          40
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.2,
+        "durationSec": [
+          15,
+          50
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes — Rineloricaria lanceolata",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=5387"
+      },
+      {
+        "title": "Isbrücker 1973 — Redescription and figures of Rineloricaria lanceolata",
+        "url": "https://repository.naturalis.nl/pub/504853/BEAU1973021278001.pdf"
+      },
+      {
+        "title": "Vera-Alcaraz et al. 2012 — Taxonomic revision of Rineloricaria from the Paraguay basin",
+        "url": "https://www.scielo.br/j/ni/a/69DJvNjnNmrg5FmkL58MGHp/"
+      },
+      {
+        "title": "Ibañez et al. 2007 — Dietary-morphological relationships in fish assemblages of small forested streams in the Bolivian Amazon",
+        "url": "https://www.researchgate.net/publication/45351132_Dietary-morphological_relationships_in_fish_assemblages_of_small_forested_streams_in_the_Bolivan_Amazon"
+      },
+      {
+        "title": "Teresa et al. 2016 — Environmental constraints structuring fish assemblages in riffles",
+        "url": "https://doi.org/10.1590/1982-0224-20150185"
+      },
+      {
+        "title": "Seriously Fish: Rineloricaria lanceolata",
+        "url": "https://www.seriouslyfish.com/species/rineloricaria-lanceolata/"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Rineloricaria lanceolata",
+    "originRegionId": "south-america",
+    "originRegionName": "南米",
+    "origin": "南米のアマゾン川、オリノコ川、エセキボ川、パラグアイ川の水系に広く分布します。模式産地はペルーのヘベロスです。この展示は雌で、成熟した雄のように頭や胸びれに長いとげ状の突起は生えません。",
+    "habitat": "森を流れる小川の淵や瀬、澄んだ流れに沈んだ植物の葉のまわりで採集されています。飼育の解説では、落ち葉の積もった砂底にすむとされます。この展示では、流木と落ち葉の砂底で暮らします。",
+    "temperament": "飼育の解説では、繁殖期以外はおとなしく、繁殖のときに場所を守るとされます。活発な魚や気の強い魚と一緒だと、餌を取られやすいと注意されています。",
+    "movement": "底や流木の上に体を伏せて休み、腹側の口で底の付着物や堆積物を食べます。ボリビアの乾季の調査では、胃の中身が堆積物ばかりで、泥を食べる魚に分類されました。",
+    "aliases": [
+      "Whiptail catfish",
+      "Loricaria lanceolata",
+      "Hemiloricaria lanceolata",
+      "Loricaria hoehnei"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Siluriformes",
+      "orderJa": "ナマズ目",
+      "family": "Loricariidae",
+      "familyJa": "ロリカリア科"
+    },
+    "adultSizeCm": 9,
+    "sizeNote": "ボリビアで測った24匹は標準体長7.1〜10.6cm、平均8.8cmでした。1973年の再記載で最大の標本は標準体長11.5cmの雄で、飼育の解説は9.5cmとしています。雌では標準体長7.7cmほどの個体で成熟した卵が確かめられています。展示では標準体長9cmほどの雌として、尾びれの糸まで含めて11.5cmほどで描いています。",
+    "distribution": "アルゼンチン、パラグアイ、ボリビア、ペルー、エクアドル、ガイアナ、コロンビア、ブラジルに分布します。",
+    "water": {
+      "salinity": "freshwater",
+      "temperatureC": [
+        25,
+        28
+      ],
+      "pH": [
+        6.0,
+        8.0
+      ]
+    },
+    "keeping": "home",
+    "conservation": {
+      "note": "IUCN の評価区分は確かめられていません。"
+    },
+    "highlights": [
+      "低く平たい頭から細く長い尾柄が後ろへ伸び、体は骨板に覆われています。",
+      "各ひれの最初の条に沿って幅の広い暗い帯が入り、尾びれの上の条は長い糸のように伸びます。",
+      "腹側に吸盤のような口があり、唇には細かな突起と房があります。",
+      "飼育下では洞のような場所に卵を産み、雄が卵を守るとされます。"
+    ]
+  }
+}

@@ -1,0 +1,126 @@
+{
+  "id": "large-finned-lampeye",
+  "displayName": "プロカトプス・ノトタエニア",
+  "realBodyLengthCm": 5,
+  "swim": {
+    "tailBeatHz": 3.2
+  },
+  "visual": {
+    "fallbackColor": "#9a9c80"
+  },
+  "sourceBodyBounds": {
+    "x": 87,
+    "y": 199,
+    "width": 1380,
+    "height": 578
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.06,
+    "maxY": 0.45
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.55,
+      "burst": 2.8
+    },
+    "turnRateRadPerSec": 3.0,
+    "restFraction": 0.15,
+    "depthRange": [
+      0.05,
+      0.6
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 2.0,
+      "cohesion": 0.45,
+      "polarization": 0.3
+    },
+    "structureAffinity": 0.4,
+    "habits": [
+      {
+        "type": "follow",
+        "chancePerMin": 0.6,
+        "durationSec": [
+          2,
+          5
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes — Procatopus",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?tbl=species&genus=Procatopus"
+      },
+      {
+        "title": "van der Zee, Woeltjes & Wildekamp 2007, The Fresh and Brackish Water Fishes of Lower Guinea, chapter 26",
+        "url": "https://horizon.documentation.ird.fr/exl-doc/pleins_textes/ed-06-08/010044414.pdf"
+      },
+      {
+        "title": "American Killifish Association: World of Killies — Procatopus nototaenia",
+        "url": "https://aka.org/wak/Ref_Library/Procatopus/Proc.nototaenia.htm"
+      },
+      {
+        "title": "Seriously Fish: Procatopus nototaenia",
+        "url": "https://www.seriouslyfish.com/species/procatopus-nototaenia/"
+      },
+      {
+        "title": "Kamdem Toham & Teugels 1998, Lower Ntem fish assemblages",
+        "url": "https://www.africamuseum.be/publication_docs/Kamdem%20Toham%20and%20Teugels%201998.pdf"
+      },
+      {
+        "title": "FishBase: Procatopus nototaenia",
+        "url": "https://www.fishbase.se/summary/Procatopus-nototaenia"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Procatopus nototaenia",
+    "originRegionId": "central-africa",
+    "originRegionName": "中部アフリカ",
+    "origin": "カメルーン南西部の固有種で、ケレ川、ロクンジェ川、キエンケ川、ロベ川、ンテム川の水系で知られます。模式産地は、南カメルーンのロビ川の支流です。",
+    "habitat": "海岸近くの雨林を流れる小さな川や細流の、主に流れのある場所にすみます。森に覆われた場所が多いものの、日なたの採集地も記録されています。この展示では、浮き草の下の森の小川を泳ぎます。",
+    "temperament": "飼育の解説では、群れで飼う魚とされ、少数の群れで飼い始めることが勧められています。水槽から飛び出しやすいとも紹介されています。",
+    "movement": "飼育下では、主に水の上層を泳ぐとされます。上を向いた口から、水面に落ちた小さな虫などを食べていると考えられています。",
+    "aliases": [
+      "Large finned lampeye"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cyprinodontiformes",
+      "orderJa": "カダヤシ目",
+      "family": "Procatopodidae",
+      "familyJa": "プロカトプス科"
+    },
+    "adultSizeCm": 5,
+    "sizeNote": "西アフリカの魚類誌では、最大で雄が全長6cm、雌が全長5cmです。飼育の解説には標準体長6cmとするものもあります。ふつうの大きさは確かめられていないため、展示では全長5cmほどの雄を想定しています。",
+    "distribution": "カメルーン南西部の沿岸の川に分布します。資料によって挙げる水系の数は異なります。ナイジェリアなど北の地域の記録は、別種との混同によるもので、この種の分布には含めません。",
+    "water": {
+      "salinity": "freshwater",
+      "temperatureC": [
+        20,
+        25
+      ],
+      "pH": [
+        5.8,
+        7.5
+      ]
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2009,
+      "note": "FishBase の表示によります。IUCN の評価本文は確かめられていません。生息地の河畔林が減ることへの懸念が、地域の魚類調査で述べられています。"
+    },
+    "highlights": [
+      "雄は半透明の灰色がかった体が青緑に光り、背に沿って赤褐色の帯が走ります。",
+      "雄の尻びれは縁が大きく張り出し、赤い短い線が並んで、伸びた先は白くなります。雌はひれがほとんど無色です。",
+      "雌雄とも、眼の上側がオレンジ色に光ります。",
+      "乾季を卵で越す年魚ではなく、いつも水のある川で暮らします。飼育下では狭い隙間に卵を産みます。"
+    ]
+  }
+}

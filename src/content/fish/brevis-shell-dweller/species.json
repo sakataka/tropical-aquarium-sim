@@ -1,0 +1,119 @@
+{
+  "id": "brevis-shell-dweller",
+  "displayName": "ネオランプロログス・ブレビス",
+  "realBodyLengthCm": 4.5,
+  "swim": {
+    "tailBeatHz": 3.0
+  },
+  "visual": {
+    "fallbackColor": "#b08a66"
+  },
+  "sourceBodyBounds": {
+    "x": 129,
+    "y": 184,
+    "width": 1338,
+    "height": 677
+  },
+  "preferredZone": {
+    "minX": 0.1,
+    "maxX": 0.9,
+    "minY": 0.74,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.45,
+      "burst": 3.0
+    },
+    "turnRateRadPerSec": 3.0,
+    "restFraction": 0.3,
+    "depthRange": [0.05, 0.55],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 2.8,
+      "cohesion": 0.2,
+      "polarization": 0.05
+    },
+    "structureAffinity": 0.8,
+    "habits": [
+      {
+        "type": "homeShelter",
+        "kind": "burrow",
+        "rangeBodyLengths": 5,
+        "visitChancePerMin": 1.8,
+        "visitDurationSec": [3, 12]
+      },
+      {
+        "type": "bottomForage"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Neolamprologus brevis",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=38074"
+      },
+      {
+        "title": "Poll (1956): Poissons Cichlidae, Lamprologus brevis, pp. 503–506",
+        "url": "https://biblio.naturalsciences.be/rbins-publications/scientific-results-from-the-hydrobiological-exploration-lake-tanganyika-1946-1947/vol-3-5b-1956-poissons-cichlidae/058cc0x-part3.pdf"
+      },
+      {
+        "title": "Ma et al. (2025) Social fish have larger brains and greater relative telencephalon sizes",
+        "url": "https://pdfs.semanticscholar.org/f5f5/ef9d9ecc7edcb3c98feade702d4f88c1516d.pdf"
+      },
+      {
+        "title": "Goverts, Tomasek & Jordan (2026) Comparative spatial cognition in wild Tanganyikan cichlids",
+        "url": "https://link.springer.com/article/10.1007/s10071-026-02064-2"
+      },
+      {
+        "title": "Arnegard (2009) Ongoing Ecological Divergence in an Emerging Genomic Model",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2746105/"
+      },
+      {
+        "title": "Fluval Species Spotlight: Brevis Shelldweller",
+        "url": "https://fluvalaquatics.com/us/wp-content/uploads/2022/02/Species-Spotlight_Brevis-Shelldweller_EN.pdf"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Neolamprologus brevis",
+    "originRegionId": "east-africa",
+    "originRegionName": "東アフリカ",
+    "origin": "東アフリカのタンガニーカ湖の固有種です。模式産地は、コンゴ民主共和国側の湖岸のアルベールヴィルです。",
+    "habitat": "空の巻貝（ネオタウマ）の殻を隠れ場所に使います。ザンビアの野外研究では、貝殻が密に積もった湖底と、砂底に貝殻がまばらに散らばる場所の両方の個体群が調べられ、水深8〜12mで実験が行われました。この展示では、手前の砂地に散らばる貝殻のまわりで暮らします。",
+    "temperament": "暮らし方は個体群によって違います。貝殻がまばらな場所では繁殖ペアが1つの殻を共有しますが、貝殻が密な場所では同じくらいの大きさの雌雄が同じ殻に入らず、隣どうしで頻繁にかかわり合います。",
+    "movement": "殻のまわりで、水中の小さな餌や底の餌をついばみます。野外の実験で元の殻から30cm離れた場所に移されると、元の殻には戻らず、近くの隠れ場所へ逃げ込みました。",
+    "aliases": [
+      "Brevis shelldweller",
+      "Lamprologus brevis",
+      "Lamprologus taeniurus"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cichliformes",
+      "orderJa": "シクリッド目",
+      "family": "Cichlidae",
+      "familyJa": "シクリッド科"
+    },
+    "adultSizeCm": 5.5,
+    "sizeNote": "最大は全長5.5cmとされます。1946〜1947年の調査で知られた最大は5cm、メーカーの飼育紹介では6cmです。雌雄の大きさの差は個体群によって違い、雌が小さい場所と、ほぼ同じ場所があります。展示では全長4.5cm前後の雄を想定しています。",
+    "distribution": "タンガニーカ湖の固有種。近年は、ザンビアのチコンデやチェジで野外研究が行われています。",
+    "water": {
+      "salinity": "freshwater",
+      "temperatureC": [24, 27],
+      "pH": [8.0, 9.0]
+    },
+    "keeping": "home",
+    "conservation": {
+      "note": "IUCNの評価区分は確かめられていません。"
+    },
+    "highlights": [
+      "短く体高のある体に、短い吻と突き出た顎をもちます。雄の体側には青白い細い縞が入ります。",
+      "貝殻がまばらな場所ではペアが1つの殻を共有し、密な場所では1尾ずつ隣り合って暮らします。同じ種類でも、貝殻の散らばり方によって暮らし方が変わります。",
+      "貝殻が密な場所の個体群は、体の大きさを考えに入れても脳が大きいという関連が報告されています。",
+      "1946〜1947年の調査で調べた個体の腸からは、カイアシ類のかけらが見つかっています。"
+    ]
+  }
+}

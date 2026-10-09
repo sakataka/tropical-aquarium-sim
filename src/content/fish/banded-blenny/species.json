@@ -1,0 +1,143 @@
+{
+  "id": "banded-blenny",
+  "displayName": "ヤエヤマギンポ",
+  "realBodyLengthCm": 12,
+  "catalog": {
+    "scientificName": "Salarias fasciatus",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "紅海からインド・西太平洋に広く分布します。東アフリカからマーシャル諸島やサモアまで、北は琉球列島、南は西オーストラリアやニューカレドニア、トンガまで見られます。",
+    "temperament": "サンゴの根元でじっとしていて、近づかれると穴や割れ目へすばやく逃げ込みます。飼育下で産卵した例では、産卵していないときの雌を雄が激しく攻撃しました。",
+    "movement": "岩やサンゴの上にとまって休み、岩の表面に生えた短い藻のあいだにたまる有機物をついばみます。",
+    "habitat": "サンゴ礁の根元や、サンゴ台地、死んだ枝サンゴのあいだに暮らし、潮だまりにも入ります。図鑑の集計では、水深0〜8mで記録されています。",
+    "aliases": [
+      "Banded blenny",
+      "Jewelled blenny",
+      "Lawnmower blenny",
+      "Salarias quadripennis"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Perciformes",
+      "orderJa": "スズキ目",
+      "family": "Blenniidae",
+      "familyJa": "イソギンポ科"
+    },
+    "adultSizeCm": 12,
+    "sizeNote": "典型的な成魚の大きさは確かめられておらず、ここでは約12cmとして表示しています。水族館の解説では全長12cm、または体長12cm（測り方の記載なし）とされます。図鑑には、最大で全長14cmの報告があります。",
+    "distribution": "紅海とインド・西太平洋。東アフリカからマーシャル諸島・サモアまで、北は琉球列島、南は西オーストラリア・ニューカレドニア・トンガに及びます。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2014,
+      "note": "2014年の評価で低懸念（LC）とする資料がありますが、未評価と表示する資料もあり、現在の評価は確かめられていません。"
+    },
+    "highlights": [
+      "うろこがなく、目の上と首すじに枝分かれした皮弁があります。",
+      "オリーブ色から褐色の体に不規則な暗い帯と白い斑点があり、体の後ろ半分の背側には小さな青い斑点が散ります。",
+      "岩の上にとまって休み、表面の藻をついばみます。短期の摂食実験では、発達した付着藻類の層から、光合成に関わる物質や有機物を減らしたことが報告されています。",
+      "水族館で、ヒトデの上にとまっている姿が紹介されたこともあります。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.8,
+    "mouthAnchor": {
+      "x": 0.005,
+      "y": 0.5
+    }
+  },
+  "visual": {
+    "fallbackColor": "#7d6b52"
+  },
+  "sourceBodyBounds": {
+    "x": 87,
+    "y": 247,
+    "width": 1406,
+    "height": 546
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.65,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.22,
+      "burst": 2.4
+    },
+    "turnRateRadPerSec": 2.8,
+    "restFraction": 0.55,
+    "depthRange": [
+      0.3,
+      0.9
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.85,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 3,
+        "durationSec": [
+          3,
+          10
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 2.5,
+        "durationSec": [
+          8,
+          30
+        ]
+      },
+      {
+        "type": "homeShelter",
+        "kind": "cave",
+        "rangeBodyLengths": 4,
+        "visitChancePerMin": 0.8,
+        "visitDurationSec": [
+          5,
+          15
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "沖縄美ら海水族館：ヤエヤマギンポ",
+        "url": "https://www.churaumi.okinawa/fishbook/00000024/"
+      },
+      {
+        "title": "Fishes of Australia: Banded Blenny",
+        "url": "https://fishesofaustralia.net.au/Home/species/4759"
+      },
+      {
+        "title": "国立科学博物館 Fishes of Andaman Sea: Salarias fasciatus",
+        "url": "https://www.kahaku.go.jp/research/db/zoology/Fishes_of_Andaman_Sea/contents/blenniidae/29.html"
+      },
+      {
+        "title": "Christiansen, Kemp & Tibbetts 2010: Are the oral teeth of combtooth bennies merely combs?",
+        "url": "https://link.springer.com/article/10.1007/s10641-010-9588-y"
+      },
+      {
+        "title": "海響館：そこ、石じゃないですよ！",
+        "url": "https://www.kaikyokan.com/cms/cp_sealife/h29yaeyamaginpo/"
+      },
+      {
+        "title": "Breeder’s Registry: Salarias fasciatus SALFAS-010600-HALHOG-001",
+        "url": "https://breedersregistry.org/spawning-reports/salarias-fasciatus-salfas-010600-halhog-001/"
+      }
+    ]
+  }
+}

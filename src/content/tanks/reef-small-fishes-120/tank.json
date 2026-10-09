@@ -4,11 +4,11 @@
   "displayName": "サンゴ礁の小魚水槽",
   "exhibitName": "Reef Damsels & Anthias",
   "category": "サンゴ礁の海",
-  "description": "白いサンゴ砂を挟んで、テーブルサンゴと枝サンゴの岩場が向かい合う120cmの水槽。デバスズメダイの群れとキンギョハナダイが中層を舞い、ルリスズメダイは岩のまわりを行き来します。ロイヤルグラマとフレームエンゼルフィッシュは岩陰の近くで暮らし、マンジュウイシモチは昼のあいだ岩陰で静かに過ごします。",
+  "description": "白いサンゴ砂を挟んで、テーブルサンゴと枝サンゴの岩場が向かい合う120cmの水槽。デバスズメダイの群れとキンギョハナダイが中層を舞い、ルリスズメダイは岩のまわりを行き来します。ロイヤルグラマとフレームエンゼルフィッシュは岩陰の近くで暮らし、マンジュウイシモチは昼のあいだ岩陰で静かに過ごします。ヤエヤマギンポは岩陰を住みかにして、岩の上で休んだり藻をはんだりします。",
   "widthCm": 120,
   "heightCm": 88,
   "depthCm": 60,
-  "maxTotalFish": 38,
+  "maxTotalFish": 40,
   "sceneIds": [
     "reef-small-fishes-120"
   ],
@@ -36,6 +36,10 @@
     {
       "speciesId": "flame-angelfish",
       "maxCount": 2
+    },
+    {
+      "speciesId": "banded-blenny",
+      "maxCount": 2
     }
   ],
   "defaultStock": [
@@ -61,6 +65,10 @@
     },
     {
       "speciesId": "flame-angelfish",
+      "count": 1
+    },
+    {
+      "speciesId": "banded-blenny",
       "count": 1
     }
   ]

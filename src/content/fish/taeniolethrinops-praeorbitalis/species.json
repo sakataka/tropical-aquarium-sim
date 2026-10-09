@@ -1,0 +1,113 @@
+{
+  "id": "taeniolethrinops-praeorbitalis",
+  "displayName": "タエニオレトリノプス・プラエオルビタリス",
+  "realBodyLengthCm": 25,
+  "swim": {
+    "tailBeatHz": 1.5,
+    "tailSweepRad": 0.4,
+    "mouthAnchor": {
+      "x": 0.007,
+      "y": 0.47
+    }
+  },
+  "visual": {
+    "fallbackColor": "#6f9aa0"
+  },
+  "sourceBodyBounds": {
+    "x": 32,
+    "y": 184,
+    "width": 1473,
+    "height": 659
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.5,
+    "maxY": 0.92
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.22,
+      "burst": 1.0
+    },
+    "turnRateRadPerSec": 1.7,
+    "restFraction": 0.25,
+    "depthRange": [0.2, 0.85],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 3,
+      "cohesion": 0,
+      "polarization": 0.04
+    },
+    "structureAffinity": 0.25,
+    "habits": [
+      {
+        "type": "bottomForage"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Taeniolethrinops",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?genus=Taeniolethrinops&tbl=species"
+      },
+      {
+        "title": "Stauffer, LoVullo & Han (1996) Commensalistic Feeding Relationships of Three Lake Malawi Fish Species",
+        "url": "https://ecosystems.psu.edu/research/labs/stauffer/publications/1990s/1996-commensalistic-feeding-relationships-of-three-lake-malawi-fish-species/@@download/file/Stauffer%20LoVullo%201996.pdf"
+      },
+      {
+        "title": "Konings, Wisor & Stauffer (2021) Microcomputed tomography used to link head morphology and observed feeding behavior in cichlids of Lake Malaŵi",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8093705/"
+      },
+      {
+        "title": "Nordiska Ciklidsällskapet: Taeniolethrinops praeorbitalis",
+        "url": "https://www.ciklid.org/artregister/art.php?ID=2080"
+      },
+      {
+        "title": "Ad Konings / Nordiska Ciklidsällskapet: Taeniolethrinops praeorbitalis, Otter Point",
+        "url": "https://www.ciklid.org/artregister/artbild/T_praeorbitalis-otter02-Ad_Konings.jpg"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Taeniolethrinops praeorbitalis",
+    "originRegionId": "east-africa",
+    "originRegionName": "東アフリカ",
+    "origin": "東アフリカのマラウイ湖の固有種で、専門団体の解説では湖のほぼ全域にいるとされます。ここでは、オッターポイント産の成熟した雄の姿を展示しています。",
+    "habitat": "おもに浅い砂底にすみ、水深50mで捕れた記録もあるとされます。長い吻で、砂の深い層まですくって餌をとります。この展示では、白い砂と花崗岩の岩が点在する湖底で暮らします。",
+    "temperament": "専門団体の解説では、穏やかな性質のマラウイのシクリッドとされます。繁殖期には雄が砂にすり鉢状の巣を作って守り、雌が卵を口の中で育てます。",
+    "movement": "吻を砂に突っ込んで砂ごと口に含み、餌だけを残して砂を鰓から出します。1989年の調査で本種と同定された魚には、キルトカラ・モーリーなどがついて回り、巻き上がった餌を食べていました。本水槽では、砂底すれすれをゆっくり泳ぎます。",
+    "aliases": [
+      "Haplochromis praeorbitalis",
+      "Lethrinops praeorbitalis",
+      "Lethrinops fasciatus"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cichliformes",
+      "orderJa": "シクリッド目",
+      "family": "Cichlidae",
+      "familyJa": "シクリッド科"
+    },
+    "adultSizeCm": 30,
+    "sizeNote": "ふつうの成魚の大きさは確かめられていません。専門団体の解説は30cmとし、水槽では雄が35cm、雌が28cmに達するとしていますが、測り方は書かれていません。1989年に本種と同定された採餌中の魚は、標準体長の平均が11.3cmでした。展示では全長25cm前後の雄を想定しています。",
+    "distribution": "東アフリカ、マラウイ湖の固有種。",
+    "water": {
+      "salinity": "freshwater",
+      "temperatureC": [23, 28],
+      "pH": [7.5, 8.5]
+    },
+    "keeping": "home",
+    "conservation": {
+      "note": "IUCNの評価区分は確かめられていません。"
+    },
+    "highlights": [
+      "目の前が長く伸びた、とがった吻をもちます。吻の長い種ほど、砂の深い層まですくって餌をとるとされます。",
+      "成熟した雄は顔が青緑に光り、体は青と金色を帯びます。臀びれには橙色の斑が並びます。雌はより地味で、黄色みを帯びるとされます。",
+      "砂をふるう魚のあとに別の種類の魚がついて、巻き上がった餌を拾います。1996年の研究では、ついていく側だけが得をする片利共生と考えられました。",
+      "1989年の調査で本種と同定された魚の胃からは、ユスリカの幼虫がよく見つかりました。"
+    ]
+  }
+}

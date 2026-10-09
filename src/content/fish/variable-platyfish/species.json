@@ -1,0 +1,141 @@
+{
+  "id": "variable-platyfish",
+  "displayName": "バリアタス・プラティ",
+  "realBodyLengthCm": 4.5,
+  "swim": {
+    "tailBeatHz": 3.0,
+    "tailSweepRad": 0.45,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.5
+    }
+  },
+  "visual": {
+    "fallbackColor": "#d39a3c"
+  },
+  "sourceBodyBounds": {
+    "x": 127,
+    "y": 167,
+    "width": 1319,
+    "height": 629
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.15,
+    "maxY": 0.8
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "steady",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.6,
+      "burst": 2.5
+    },
+    "turnRateRadPerSec": 2.5,
+    "restFraction": 0.1,
+    "depthRange": [
+      0.1,
+      0.85
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 2.3,
+      "cohesion": 0.3,
+      "polarization": 0.2
+    },
+    "structureAffinity": 0.35,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 1.5,
+        "durationSec": [
+          1.5,
+          4
+        ]
+      },
+      {
+        "type": "follow",
+        "chancePerMin": 0.8,
+        "durationSec": [
+          2,
+          5
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes — Xiphophorus variatus",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=32630"
+      },
+      {
+        "title": "Texas State University Xiphophorus Genetic Stock Center manual",
+        "url": "https://gato-docs.its.txst.edu/jcr%3A8d3206c0-db84-408d-b92b-edf308e97b31/XGSC%20Manual.pdf"
+      },
+      {
+        "title": "Peces dulceacuícolas de México — Xiphophorus variatus",
+        "url": "https://www.biodiversidad.gob.mx/pdf/libros/paguadulceB.pdf"
+      },
+      {
+        "title": "Culumber & Rosenthal 2013 — Mating preferences do not maintain the tailspot polymorphism in the platyfish, Xiphophorus variatus",
+        "url": "https://www.researchgate.net/publication/241687830_Mating_preferences_do_not_maintain_the_tailspot_polymorphism_in_the_platyfish_Xiphophorus_variatus"
+      },
+      {
+        "title": "Culumber, Bautista-Hernández & Monks — Physiological stress and the maintenance of adaptive genetic variation in a livebearing fish",
+        "url": "https://www.researchgate.net/publication/241687824_Physiological_stress_and_the_maintenance_of_adaptive_genetic_variation_in_a_livebearing_fish"
+      },
+      {
+        "title": "Florida Museum — Variable platyfish",
+        "url": "https://www.floridamuseum.ufl.edu/discover-fish/florida-fishes-gallery/variable-platyfish/"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Xiphophorus variatus",
+    "originRegionId": "central-america",
+    "originRegionName": "中央アメリカ",
+    "origin": "メキシコの大西洋側、タマウリパス州からベラクルス州にかけての水系に分布します。模式産地はサン・ルイス・ポトシ州のバジェスです。この展示は、タマウリパス州エンシノ産の系統の雄をもとにしています。",
+    "habitat": "池や沼、溝、氾濫原、川の緩い淵など幅広い場所にすみ、底も泥から岩までさまざまです。水草や藻の多い場所によくいますが、植物のない場所でも見られます。この展示では、水草の茂る明るい小川を泳ぎます。",
+    "temperament": "体の中で受精し、雌が稚魚を産みます。飼育の解説では、雄がひとつの雌に寄り続けないよう、雌を多めにすることが勧められています。",
+    "movement": "求愛する雄は、雌と並んで前へ泳いだあと、雌の前でゆっくり後ろへ漂います。虫や甲殻類、植物質などを食べる雑食とされます。",
+    "aliases": [
+      "Variable platyfish",
+      "Variatus platy",
+      "Espada de Valles",
+      "Platypoecilus variatus"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cyprinodontiformes",
+      "orderJa": "カダヤシ目",
+      "family": "Poeciliidae",
+      "familyJa": "カダヤシ科"
+    },
+    "adultSizeCm": 4.5,
+    "sizeNote": "FishBase の最大は全長7cm、メキシコの専門書が挙げる最大は標準体長5.1cmです。野外で採れた雄を使った研究では、雄の平均は標準体長3.2〜3.7cmでした。展示では尾びれを含めて全長4.5cmほどの雄として描いています。",
+    "distribution": "メキシコの大西洋側に分布します。アメリカのフロリダ半島の運河や、テキサス州オースティンの小川などに移入しています。",
+    "water": {
+      "salinity": "freshwater",
+      "temperatureC": [
+        20,
+        26
+      ],
+      "pH": [
+        7.0,
+        8.2
+      ]
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2018,
+      "note": "FishBase の表示によります。テキサスに定着した集団には、ほかのプラティやソードテールの遺伝子が混じっている可能性が指摘されています。"
+    },
+    "highlights": [
+      "エンシノ産の雄は、黄色い背びれと黄橙から赤の尾びれを見せます。黒い交接器は、この系統の成熟した雄に出る特徴です。",
+      "雄の尻びれは棒状の交接器に変わっています。尾びれは丸い扇形で、ソードテールのような剣はありません。",
+      "同じ淵で採れた個体どうしでも、尾の付け根の斑の型が違うことがあります。"
+    ]
+  }
+}

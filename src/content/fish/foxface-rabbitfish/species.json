@@ -1,0 +1,132 @@
+{
+  "id": "foxface-rabbitfish",
+  "displayName": "フォックスフェイス",
+  "realBodyLengthCm": 20,
+  "catalog": {
+    "scientificName": "Siganus vulpinus",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "東インド洋から西太平洋に分布します。スマトラ島やボルネオ島のサバから、カロリン諸島、ニューアイルランド島、バヌアツまで、北は台湾、南はオーストラリア北部やニューカレドニアまで見られます。",
+    "temperament": "幼魚は浅い礁原で大きな群れをつくり、成長するとペアで暮らすようになります。ペアの一方が岩の隙間で餌を食べているあいだ、もう一方が頭を上げて見張るような姿勢をとることが観察されています。",
+    "movement": "長い吻を礁の隙間に差し入れ、ときには体ごと礁のくぼみに入って餌をとります。野外の研究では、昼に餌をとる姿が観察されています。",
+    "habitat": "サンゴがよく育った礁湖や外側のサンゴ礁の、底近くに暮らします。成魚のペアは、礁の外側の斜面などで見られます。",
+    "aliases": [
+      "Foxface",
+      "Foxface rabbitfish",
+      "Common foxface",
+      "Lo vulpinus"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Acanthuriformes",
+      "orderJa": "ニザダイ目",
+      "family": "Siganidae",
+      "familyJa": "アイゴ科"
+    },
+    "adultSizeCm": 20,
+    "sizeNote": "ふつう全長20cmほどになるとされます。グレートバリアリーフ北部で食性を調べた成魚39尾は、全長18.1〜24.1cmでした。最大は全長25cmとする資料と標準体長25cmとする資料があり、販売店の資料には30cmという記述もあります。",
+    "distribution": "東インド洋から西太平洋。スマトラ島やサバからカロリン諸島・ニューアイルランド島・バヌアツまで、北は台湾、南は西オーストラリア北部・クイーンズランド・ニューカレドニアに及びます。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2016
+    },
+    "highlights": [
+      "黄色い体に白い顔をもち、吻の先から目を通って背びれの付け根へ暗い帯が続きます。",
+      "背びれ、しりびれ、腹びれのとげには毒腺があります。",
+      "長い吻を岩の隙間に入れて、藻類や藍藻、堆積物などを食べます。",
+      "夜やストレスを受けたときに、体が暗い褐色になるという飼育の記録があります。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 1.8,
+    "mouthAnchor": {
+      "x": 0.0,
+      "y": 0.51
+    }
+  },
+  "visual": {
+    "fallbackColor": "#f2cf1d"
+  },
+  "sourceBodyBounds": {
+    "x": 119,
+    "y": 121,
+    "width": 1336,
+    "height": 767
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.35,
+    "maxY": 0.85
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.35,
+      "burst": 1.7
+    },
+    "turnRateRadPerSec": 2.1,
+    "restFraction": 0.18,
+    "depthRange": [
+      0.2,
+      0.85
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0.5,
+      "polarization": 0.15
+    },
+    "structureAffinity": 0.7,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 3.5,
+        "durationSec": [
+          4,
+          12
+        ]
+      },
+      {
+        "type": "follow",
+        "chancePerMin": 0.6,
+        "durationSec": [
+          3,
+          8
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Woodland 2001: FAO Siganus vulpinus treatment",
+        "url": "https://www.fao.org/4/y0870e/y0870e28.pdf"
+      },
+      {
+        "title": "Woodland 2001: FAO Siganidae family treatment",
+        "url": "https://www.fao.org/4/y0870e/y0870e27.pdf"
+      },
+      {
+        "title": "Bray 2018: Fishes of Australia: Foxface",
+        "url": "https://fishesofaustralia.net.au/Home/species/1890"
+      },
+      {
+        "title": "Fox 2012: Rabbitfish functional ecology thesis, Chapter 5",
+        "url": "https://researchonline.jcu.edu.au/23854/5/JCU_23845_Fox_2012_thesis.pdf"
+      },
+      {
+        "title": "Fox & Donelson 2013: Rabbitfish sentinels",
+        "url": "https://rjfox.weebly.com/uploads/1/1/3/2/113288275/fox___donelson__2013__cr.pdf"
+      },
+      {
+        "title": "Hoey, Brandl & Bellwood 2013: Diet and cross-shelf distribution of rabbitfishes on the northern Great Barrier Reef",
+        "url": "https://www.researchgate.net/publication/257398085_Diet_and_cross-shelf_distribution_of_rabbitfishes_f_Siganidae_on_the_northern_Great_Barrier_Reef_Implications_for_ecosystem_function"
+      }
+    ]
+  }
+}

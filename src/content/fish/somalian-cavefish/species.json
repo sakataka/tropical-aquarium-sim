@@ -1,0 +1,124 @@
+{
+  "id": "somalian-cavefish",
+  "displayName": "ソマリアケーブフィッシュ",
+  "realBodyLengthCm": 6,
+  "catalog": {
+    "scientificName": "Garra andruzzii",
+    "originRegionId": "east-africa",
+    "originRegionName": "東アフリカ",
+    "origin": "ソマリア中部の固有種で、BudBud 近くの湧水や井戸が模式産地です。ほかにも GalEf や ElDirri など、井戸を中心に7か所の記録がまとめられています。",
+    "temperament": "野外では、同じ井戸から見つかる地下性の甲殻類を食べている可能性が指摘されています。イタリアのフィレンツェでは、野外から持ち帰った魚が飼育下で繁殖しています。",
+    "movement": "明るさを12時間ずつ切り替えても、泳ぐ活動に昼夜のリズムは現れませんでした。一方、暗闇で毎日同じ時刻に餌を与えると、餌の数時間前から活発になります。",
+    "habitat": "光の届かない地下水にすむ魚で、人が掘った井戸から採集されます。広い地下の割れ目にすむと考えられていますが、確かめられてはいません。この水槽では、暗い洞窟の水底近くを探り回る姿を見せています。",
+    "aliases": [
+      "Phreatichthys andruzzii",
+      "Somalian cavefish",
+      "Somali cavefish",
+      "フレアティクティス・アンドルッツィ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cypriniformes",
+      "orderJa": "コイ目",
+      "family": "Cyprinidae",
+      "familyJa": "コイ科"
+    },
+    "adultSizeCm": 6,
+    "sizeNote": "典型的な成魚の大きさは分かっておらず、ここでは全長約6cmとして表示しています。FishBase は古い資料をもとに最大全長6.2cmとしていて、GalEf 洞窟の博物館標本は標準体長4.9cmでした。",
+    "distribution": "ソマリア中部の狭い範囲の地下水系に分布します。標高135〜150mにある BudBud、GalEf、ElDirri などの井戸や湧水から記録されています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "rarelyDisplayed",
+    "conservation": {
+      "status": "VU",
+      "assessedYear": 2009,
+      "note": "IUCN の区分は、FishBase に掲載された2009年の評価によります。地下水のくみ上げが補給を上回って水位が下がることが、脅威になりうると指摘されています。"
+    },
+    "highlights": [
+      "成魚には外から見える眼がなく、鱗もありません。",
+      "色素がほとんどなく、淡い乳白色から桃色の体は、えらのあたりが赤く透けて見えます。",
+      "Garra 属に含まれますが、喉に吸盤はありません。口のまわりには短いひげがあります。",
+      "眼がなくても体内時計をもち、餌の時刻に合わせて活動のリズムが整います。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.6,
+    "mouthAnchor": {
+      "x": 0.02,
+      "y": 0.68
+    }
+  },
+  "visual": {
+    "fallbackColor": "#e8cfc0"
+  },
+  "sourceBodyBounds": {
+    "x": 105,
+    "y": 240,
+    "width": 1347,
+    "height": 530
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.45,
+    "maxY": 0.94
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.55,
+      "burst": 2.4
+    },
+    "turnRateRadPerSec": 2.6,
+    "restFraction": 0.2,
+    "depthRange": [
+      0.3,
+      0.9
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0.2,
+      "polarization": 0.05
+    },
+    "structureAffinity": 0.4,
+    "habits": [
+      {
+        "type": "bottomForage"
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 0.6,
+        "durationSec": [
+          5,
+          20
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes — Garra andruzzii",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=3529"
+      },
+      {
+        "title": "Proudlove — Subterranean Fishes of the World: Garra andruzzii",
+        "url": "https://cavefishes.org.uk/species-record.php?id=63"
+      },
+      {
+        "title": "FishBase — Garra andruzzii",
+        "url": "https://www.fishbase.se/summary/Garra-andruzzii.html"
+      },
+      {
+        "title": "Cavallari et al. 2011 — A Blind Circadian Clock in Cavefish Reveals that Opsins Mediate Peripheral Clock Photoreception",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3167789/"
+      },
+      {
+        "title": "Kottelat 2020 — Ceratogarra, and comments on the oral and gular soft anatomy in labeonine fishes",
+        "url": "https://www.researchgate.net/profile/Maurice-Kottelat/publication/340298601_Ceratogarra_a_genus_name_for_Garra_cambodgiensis_and_G_fasciacauda_and_comments_on_the_oral_and_gular_soft_anatomy_in_labeonine_fishes_Teleostei_Cyprinidae/links/5e831da7299bf130796aa6a4/Ceratogarra-a-genus-name-for-Garra-cambodgiensis-and-G-fasciacauda-and-comments-on-the-oral-and-gular-soft-anatomy-in-labeonine-fishes-Teleostei-Cyprinidae.pdf"
+      }
+    ]
+  }
+}

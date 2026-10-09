@@ -4,11 +4,11 @@
   "displayName": "タナゴのため池水槽",
   "exhibitName": "Bitterling Pond",
   "category": "日本のため池",
-  "description": "二枚貝が半ば埋もれた池のほとりを再現した90cm水槽。ヤリタナゴ、カネヒラ、イチモンジタナゴがそれぞれ群れて中層を泳ぎ、ときどき仲間を追いかけたり、石や二枚貝の表面をついばんだりします。大きなひれを広げたイタセンパラの雄は、近づく魚を追い払います。",
+  "description": "二枚貝が半ば埋もれた池のほとりを再現した90cm水槽。ヤリタナゴ、カネヒラ、イチモンジタナゴがそれぞれ群れて中層を泳ぎ、ときどき仲間を追いかけたり、石や二枚貝の表面をついばんだりします。大きなひれを広げたイタセンパラの雄は、近づく魚を追い払います。口角にひげのあるアブラボテは中層を泳ぎ、ひげのないゼゼラは砂底の近くで餌を探します。",
   "widthCm": 90,
   "heightCm": 54,
   "depthCm": 45,
-  "maxTotalFish": 30,
+  "maxTotalFish": 36,
   "sceneIds": [
     "bitterling-90"
   ],
@@ -28,6 +28,14 @@
     {
       "speciesId": "itasenpara-bitterling",
       "maxCount": 6
+    },
+    {
+      "speciesId": "oily-bitterling",
+      "maxCount": 6
+    },
+    {
+      "speciesId": "zezera",
+      "maxCount": 6
     }
   ],
   "defaultStock": [
@@ -46,6 +54,14 @@
     {
       "speciesId": "itasenpara-bitterling",
       "count": 4
+    },
+    {
+      "speciesId": "oily-bitterling",
+      "count": 3
+    },
+    {
+      "speciesId": "zezera",
+      "count": 3
     }
   ]
 }

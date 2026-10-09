@@ -4,11 +4,11 @@
   "displayName": "エビの水草水槽",
   "exhibitName": "Shrimp Nano",
   "category": "アジアの淡水エビ",
-  "description": "モスをまとった流木と石を組んだ30cmの小型水槽。レッドチェリーシュリンプとビーシュリンプが流木や石、ソイルの上を歩き回ってついばみ、大きなバンブーシュリンプは底で立ち止まって休みます。",
+  "description": "モスをまとった流木と石を組んだ30cmの小型水槽。レッドチェリーシュリンプとビーシュリンプが流木や石、ソイルの上を歩き回ってついばみ、大きなバンブーシュリンプは底で立ち止まって休みます。夜に動くトゲナシヌマエビは、昼は石のあいだに隠れています。",
   "widthCm": 30,
   "heightCm": 25,
   "depthCm": 30,
-  "maxTotalFish": 20,
+  "maxTotalFish": 24,
   "sceneIds": [
     "shrimp-nano-30"
   ],
@@ -24,6 +24,10 @@
     {
       "speciesId": "bamboo-shrimp",
       "maxCount": 2
+    },
+    {
+      "speciesId": "typus-shrimp",
+      "maxCount": 4
     }
   ],
   "defaultStock": [
@@ -38,6 +42,10 @@
     {
       "speciesId": "bamboo-shrimp",
       "count": 1
+    },
+    {
+      "speciesId": "typus-shrimp",
+      "count": 2
     }
   ]
 }

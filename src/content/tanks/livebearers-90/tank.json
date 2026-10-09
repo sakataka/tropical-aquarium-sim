@@ -4,11 +4,11 @@
   "displayName": "卵胎生魚の水槽",
   "exhibitName": "Livebearers",
   "category": "中米の小川",
-  "description": "中米の小川を思わせる、明るい90cmの水草水槽。ソードテールとセイルフィンモーリーが水草のあいだを泳ぎ、モーリーは流木や石の表面をついばみます。小さなエンドラーズは群れて水草の前を行き交います。南米の河口にすむヨツメウオも卵胎生の仲間で、水面に眼の境目をそろえて泳ぎます。",
+  "description": "中米の小川を思わせる、明るい90cmの水草水槽。ソードテールとセイルフィンモーリーが水草のあいだを泳ぎ、モーリーは流木や石の表面をついばみます。小さなエンドラーズは群れて水草の前を行き交います。南米の河口にすむヨツメウオも卵胎生の仲間で、水面に眼の境目をそろえて泳ぎます。メキシコの小川にすむバリアタス・プラティは、黄色い背びれと橙色の尾を見せながら水草の前を泳ぎます。",
   "widthCm": 90,
   "heightCm": 42,
   "depthCm": 45,
-  "maxTotalFish": 33,
+  "maxTotalFish": 38,
   "sceneIds": [
     "livebearers-90"
   ],
@@ -28,6 +28,10 @@
     {
       "speciesId": "four-eyed-fish",
       "maxCount": 3
+    },
+    {
+      "speciesId": "variable-platyfish",
+      "maxCount": 6
     }
   ],
   "defaultStock": [
@@ -46,6 +50,10 @@
     {
       "speciesId": "four-eyed-fish",
       "count": 2
+    },
+    {
+      "speciesId": "variable-platyfish",
+      "count": 3
     }
   ]
 }

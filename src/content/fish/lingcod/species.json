@@ -1,0 +1,118 @@
+{
+  "id": "lingcod",
+  "displayName": "リングコッド",
+  "realBodyLengthCm": 100,
+  "catalog": {
+    "scientificName": "Ophiodon elongatus",
+    "originRegionId": "northeast-pacific",
+    "originRegionName": "北東太平洋",
+    "origin": "北東太平洋の沿岸。アラスカ湾西部からバハ・カリフォルニア北部まで分布し、ブリティッシュコロンビア州やワシントン州の付近に多く見られます。英名に「コッド」とつきますが、タラの仲間ではなくアイナメ科の魚です。",
+    "temperament": "底魚や小さな同種、イカ、タコ、甲殻類を食べる大型の捕食魚です。冬の繁殖期には雄が産卵場所を確保し、雌が産卵して去ったあとも、雄が卵塊を守ります。",
+    "movement": "カナダの標識調査では、成魚の大半が放流した場所の近くにとどまっていました。仔魚は表層近くを漂い、着底した幼魚はアマモ場や平らな砂底を経て、複雑な岩礁へ移ります。",
+    "habitat": "岩礁の割れ目や岩棚、ケルプなどの海藻のまわりにすみ、多くは水深10〜100mで見られます。この水景では、岩場の海底近くを居場所にしています。",
+    "aliases": [
+      "Oplopoma pantherina",
+      "Cultus cod",
+      "Ling cod"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Scorpaeniformes",
+      "orderJa": "カサゴ目",
+      "family": "Hexagrammidae",
+      "familyJa": "アイナメ科"
+    },
+    "adultSizeCm": 100,
+    "sizeNote": "典型的な成魚の大きさは分かっておらず、ここでは約100cmの成魚として表示しています。雌は雄より大きくなり、カナダの研究では雌は61〜75cmほどで成熟し、測った最大の個体は123cmでした。NOAA は最大5フィート（約150cm）と紹介しています（いずれも測り方の記載なし）。",
+    "distribution": "アラスカ湾西部からバハ・カリフォルニア北部までの北東太平洋。水深3〜400mの記録がありますが、多くは10〜100mで見られます。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "今回の調査では、IUCN の評価は確認できていません。NOAA は、米国太平洋岸の北部と南部の資源について、獲りすぎの状態ではないとまとめています。"
+    },
+    "highlights": [
+      "大きな頭と口に、鋭い犬歯のような大きな歯が並びます。",
+      "背びれは長くひと続きで、途中の切れ込みを境に、前の棘の部分と後ろの軟らかい部分に分かれます。",
+      "眼の上に、肉質の小さな皮弁があります。",
+      "雄が守る卵塊は、潮の流れが弱くて中まで酸素が届かないと、中心の卵の発育が遅れたり死んだりします。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 1.1
+  },
+  "visual": {
+    "fallbackColor": "#8a7a5e"
+  },
+  "sourceBodyBounds": {
+    "x": 51,
+    "y": 232,
+    "width": 1434,
+    "height": 555
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.62,
+    "maxY": 0.94
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.15,
+      "burst": 0.9
+    },
+    "turnRateRadPerSec": 1.3,
+    "restFraction": 0.55,
+    "depthRange": [
+      0.35,
+      0.95
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0,
+      "polarization": 0.03
+    },
+    "structureAffinity": 0.8,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.2,
+        "durationSec": [
+          15,
+          50
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "NOAA Fisheries — Lingcod",
+        "url": "https://www.fisheries.noaa.gov/species/lingcod/seafood"
+      },
+      {
+        "title": "Fisheries and Oceans Canada — Lingcod profile",
+        "url": "https://www.dfo-mpo.gc.ca/species-especes/profiles-profils/lingcod-morue-lingue-eng.html"
+      },
+      {
+        "title": "Eschmeyer’s Catalog of Fishes — Ophiodon elongatus",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?genus=Ophiodon&tbl=species"
+      },
+      {
+        "title": "Cass, Beamish & McFarlane 1990 — Lingcod (Ophiodon elongatus), Canadian Special Publication 109",
+        "url": "https://epe.lac-bac.gc.ca/100/201/301/weekly_acquisitions_list-ef/2016/16-18/publications.gc.ca/collections/collection_2016/mpo-dfo/Fs41-31-109-eng.pdf?nodisclaimer=1"
+      },
+      {
+        "title": "Clemens & Wilby 1961 — Fishes of the Pacific Coast of Canada, second edition",
+        "url": "https://waves-vagues.dfo-mpo.gc.ca/library-bibliotheque/39032_P2.pdf"
+      },
+      {
+        "title": "Giorgi 1981 — Environmental biology of lingcod embryos, egg masses and nesting sites",
+        "url": "https://apps-afsc.fisheries.noaa.gov/Publications/ProcRpt/PR1981-06.pdf"
+      }
+    ]
+  }
+}

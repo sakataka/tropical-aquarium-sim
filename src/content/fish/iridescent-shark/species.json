@@ -1,0 +1,124 @@
+{
+  "id": "iridescent-shark",
+  "displayName": "カイヤン",
+  "realBodyLengthCm": 75,
+  "catalog": {
+    "scientificName": "Pangasianodon hypophthalmus",
+    "originRegionId": "southeast-asia",
+    "originRegionName": "東南アジア",
+    "origin": "東南アジアのメコン川とチャオプラヤ川の水系が原産で、メークロン川も自然分布に含める資料があります。食用に養殖され、インドネシアのスマトラ島などでは外来魚として記録されています。",
+    "temperament": "植物や藻類、動物プランクトン、昆虫、甲殻類、魚まで食べる雑食性と記録されています。英名に「シャーク」とつきますが、サメではなくナマズの仲間です。",
+    "movement": "乾季は本流の深い淵で過ごし、増水期には氾濫原へ移って餌をとり、水が引くと本流へ戻ります。血管の多い鰾で空気呼吸ができ、水面で空気を吸う様子が観察されています。",
+    "habitat": "大きな川の本流と氾濫原を行き来して暮らす淡水魚です。下流メコンの群れの主な産卵期は5〜8月で、カンボジアのクラチエからコーン滝方面の本流が産卵場と推定されています。この水景では、倒木と根の沈む大河の中層を泳ぐ姿を見せています。",
+    "aliases": [
+      "Helicophagus hypophthalmus",
+      "Pangasius hypophthalmus",
+      "Pangasius sutchi",
+      "Striped catfish",
+      "Swai",
+      "Iridescent shark-catfish",
+      "Cá tra"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Siluriformes",
+      "orderJa": "ナマズ目",
+      "family": "Pangasiidae",
+      "familyJa": "パンガシウス科"
+    },
+    "adultSizeCm": 130,
+    "sizeNote": "専門図鑑では最大で標準体長130cmになるとされ、FishBase は最大44kgの記録を引いています。ふつうの成魚の大きさは分かっていません。この水槽では、水槽の高さに合わせて体長約75cmの若い成魚として表示しています。",
+    "distribution": "メコン川とチャオプラヤ川の水系に分布し、メークロン川を含める資料もあります。養殖のため各地へ持ち込まれ、インドネシアなどでは外来魚として記録されています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "EN",
+      "assessedYear": 2011,
+      "note": "IUCN の区分は、FishBase に掲載された2011年の評価によります。養殖で多く生産されていることと、原産の川の野生の群れの保全状態は分けて考えられています。"
+    },
+    "highlights": [
+      "若い魚は体側に2本の黒い縦帯がありますが、大きな成魚では灰色が主になり、帯は目立たなくなります。",
+      "深く二叉した尾びれ、長い尻びれ、背びれの後ろの小さな脂びれが見分けどころです。",
+      "上あごと下あごに1対ずつ、短いひげがあります。",
+      "生まれた仔魚は川を流れ下り、下流域で育ちます。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 1.2
+  },
+  "visual": {
+    "fallbackColor": "#8c9196"
+  },
+  "sourceBodyBounds": {
+    "x": 73,
+    "y": 203,
+    "width": 1417,
+    "height": 564
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.25,
+    "maxY": 0.85
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "steady",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.22,
+      "burst": 1.0
+    },
+    "turnRateRadPerSec": 1.2,
+    "restFraction": 0.1,
+    "depthRange": [
+      0.2,
+      0.85
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 1.8,
+      "cohesion": 0.3,
+      "polarization": 0.2
+    },
+    "structureAffinity": 0.25,
+    "habits": [
+      {
+        "type": "airBreathing",
+        "breathsPerHour": [
+          1,
+          4
+        ],
+        "style": "dash"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Tran et al. 2013 — Fishes of the Mekong Delta, Vietnam, p69",
+        "url": "https://www.nagaofoundation.or.jp/publication/documents/ERCA_FG_20130730_p55-70.pdf"
+      },
+      {
+        "title": "Van Zalinge et al. 2002 — Status of the Mekong Pangasianodon hypophthalmus resources, MRC Technical Paper 1",
+        "url": "https://www.mrcmekong.org/?document_id=01BMXYOADKKBTFILXEWJFI3FIYZD4DHTSE&download_document=1&name=Status-of-the-Mekong-Pangasianodon-Hypophthalmus-Resources-with-Special-Reference-to-the-Stock-Shared-between-Cambodia-and-Vietnam-Technical-Paper-No.1.pdf"
+      },
+      {
+        "title": "Wibowo et al. 2024 — Two new records of fishes in the Musi River drainage",
+        "url": "https://aiep.pensoft.net/article/119948/download/pdf/"
+      },
+      {
+        "title": "Morgan et al. 2021 — Striped catfish use air-breathing and aquatic surface respiration when exposed to severe aquatic hypercarbia",
+        "url": "https://bio.uib.no/te/papers/Morgan_2021_Striped_catfish_use_air-breathing.pdf"
+      },
+      {
+        "title": "FishBase — Pangasianodon hypophthalmus",
+        "url": "https://www.fishbase.se/summary/Pangasianodon-hypophthalmus.html"
+      },
+      {
+        "title": "鳥羽水族館 生きもの図鑑 — カイヤン",
+        "url": "https://aquarium.co.jp/picturebook/pangasianodon-hypophthalmus.html"
+      }
+    ]
+  }
+}
