@@ -1,6 +1,7 @@
 /// <reference types="vitest/config" />
 import { fileURLToPath } from "node:url";
 import { defineConfig } from "vite";
+import { configDefaults } from "vitest/config";
 import react from "@vitejs/plugin-react";
 import { contentModules } from "./vite/contentModules";
 
@@ -9,5 +10,6 @@ import { contentModules } from "./vite/contentModules";
 export default defineConfig({
   base: process.env.VITE_BASE_PATH ?? "./",
   plugins: [react(), contentModules(fileURLToPath(new URL("./src/content/", import.meta.url)))],
-  test: { setupFiles: ["src/core/testSetup.ts"] },
+  // サブエージェントの git worktree（.claude/worktrees/）のテストは拾わない。
+  test: { setupFiles: ["src/core/testSetup.ts"], exclude: [...configDefaults.exclude, ".claude/**"] },
 });
