@@ -1,0 +1,124 @@
+{
+  "id": "spotted-porcelain-crab",
+  "displayName": "イソギンチャクカニダマシ",
+  "realBodyLengthCm": 3.2,
+  "catalog": {
+    "scientificName": "Neopetrolisthes maculatus",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "東アフリカから西太平洋の暖かい海にすむ、カニダマシの仲間です。日本の南部、西オーストラリア、パラオ、フィジーなどで記録があります。沖縄美ら海水族館の図鑑では、アカホシカニダマシの名で紹介されています。",
+    "temperament": "1つのイソギンチャクに雌雄1対で暮らすのが典型とされます。大きなはさみは餌をとるためではなく、競争相手から身を守るのに使うと考えられています。昼夜の活動は分かっていません。本水槽では、岩棚と砂の上のイソギンチャクの根元で暮らします。",
+    "movement": "ふだんはイソギンチャクの上にとどまり、長い毛の生えた口の顎脚で、水中の小さな生き物をこし取って食べます。危険が迫ると、腹部を打って泳いで逃げます。",
+    "habitat": "浅い潮下帯の岩礁やサンゴ礁で、大きなイソギンチャクの上やまわりにすみ、刺胞のある触手の間に隠れます。クリスマス島では、水深1〜12.3mの地点で採集されました。本水槽では、岩棚と砂地に1つずつあるイソギンチャクを住みかにしています。",
+    "aliases": [
+      "Small-dot anemone crab",
+      "アカホシカニダマシ",
+      "Neopetrolisthes ohshimai"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Decapoda",
+      "orderJa": "十脚目",
+      "family": "Porcellanidae",
+      "familyJa": "カニダマシ科"
+    },
+    "adultSizeCm": 1.1,
+    "sizeNote": "甲長での値です。代表的な成体の大きさは確かめられておらず、クリスマス島でとれた抱卵した雌の甲長11.4mm（雄の標本は10.8mm）を目安に、甲長約1.1cmとして表示しています。画面では、はさみと脚を広げた幅を仮に約3.2cmとして描いています。",
+    "distribution": "東アフリカから西太平洋に分布し、日本の南部、西オーストラリア、パラオ、フィジーなどで記録されています。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "世界の IUCN 区分や、国内での扱いは確かめられていません。"
+    },
+    "highlights": [
+      "白い地に赤から赤紫の斑点があります。斑点の大きさや密度は個体によって違い、雌雄の違いとは一致しません。",
+      "大きなはさみとは別に、羽毛のような口の顎脚で餌をこし取ります。",
+      "長いむちのような触角をもちます。",
+      "斑点の大きさの違いから別種とされていた Neopetrolisthes ohshimai は、2014年の報告で同じ種とされました。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "crab",
+    "tailBeatHz": 0.6,
+    "bodyWaveStart": 0.85,
+    "tailSweepRad": 0,
+    "verticalFlex": 0,
+    "footAnchor": {
+      "x": 0.5,
+      "y": 0.96
+    }
+  },
+  "visual": {
+    "fallbackColor": "#cda183"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.86,
+    "maxY": 0.94
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.05,
+      "burst": 0.5
+    },
+    "turnRateRadPerSec": 1.2,
+    "restFraction": 0.75,
+    "depthRange": [
+      0.3,
+      0.9
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0.1,
+      "polarization": 0
+    },
+    "structureAffinity": 0.9,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 2.5,
+        "durationSec": [
+          20,
+          60
+        ]
+      },
+      {
+        "type": "homeShelter",
+        "kind": "anemone",
+        "rangeBodyLengths": 3,
+        "visitChancePerMin": 0.6,
+        "visitDurationSec": [
+          20,
+          60
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Osawa (2014), Porcellanidae from Christmas and Cocos Islands",
+        "url": "https://www.esrec.shimane-u.ac.jp/_files/00184748/Osawa-2014.pdf"
+      },
+      {
+        "title": "Western Australian Museum: Creature Feature – Neopetrolisthes maculatus",
+        "url": "https://museum.wa.gov.au/explore/blogs/andrew-hosie/creature-feature-neopetrolisthes-maculatus"
+      },
+      {
+        "title": "沖縄美ら海水族館：アカホシカニダマシ",
+        "url": "https://churaumi.okinawa/fishbook/00000412/"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 68,
+    "y": 99,
+    "width": 1390,
+    "height": 766
+  }
+}

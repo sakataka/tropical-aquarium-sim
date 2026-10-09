@@ -4,11 +4,11 @@
   "displayName": "アマゾンの浸水林水槽",
   "exhibitName": "Flooded Forest",
   "category": "アマゾンの浸水林",
-  "description": "雨季に水没したアマゾンの森を再現した240cm水槽。大木の板根のあいだをシルバーダラーとアノストムスの群れが行き交い、砂底ではゲオファーガスが砂をはみ、セベラムとオスカーがゆったり泳ぎます。",
+  "description": "雨季に水没したアマゾンの森を再現した240cm水槽。大木の板根のあいだをシルバーダラーとアノストムスの群れが行き交い、砂底ではゲオファーガスが砂をはみ、セベラムとオスカーがゆったり泳ぎます。砂底では、平たいコモリガエルが枯れ葉のようにじっと伏せ、ときどき水面へ息を吸いに泳ぎ上がります。",
   "widthCm": 240,
   "heightCm": 82,
   "depthCm": 80,
-  "maxTotalFish": 34,
+  "maxTotalFish": 36,
   "sceneIds": [
     "amazon-flooded-forest-240"
   ],
@@ -32,6 +32,10 @@
     {
       "speciesId": "oscar",
       "maxCount": 3
+    },
+    {
+      "speciesId": "surinam-toad",
+      "maxCount": 2
     }
   ],
   "defaultStock": [
@@ -54,6 +58,10 @@
     {
       "speciesId": "oscar",
       "count": 2
+    },
+    {
+      "speciesId": "surinam-toad",
+      "count": 1
     }
   ]
 }

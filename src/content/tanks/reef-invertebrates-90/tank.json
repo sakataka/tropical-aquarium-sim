@@ -1,0 +1,27 @@
+{
+  "id": "reef-invertebrates-90",
+  "order": 106,
+  "displayName": "サンゴ礁の無脊椎動物水槽",
+  "exhibitName": "Reef Invertebrates",
+  "category": "サンゴ礁の海",
+  "description": "白い砂地の左右にサンゴの岩を組んだ90cmの水槽。フリソデエビは、振袖のように平たく広がった脚と触角を揺らしながら、砂の上や岩の棚を歩きます。野外ではペアで見つかった記録があり、飼育下でも決まった相手を好む様子が報告されているので、2匹で展示します。",
+  "widthCm": 90,
+  "heightCm": 95,
+  "depthCm": 45,
+  "maxTotalFish": 4,
+  "sceneIds": [
+    "reef-invertebrates-90"
+  ],
+  "species": [
+    {
+      "speciesId": "harlequin-shrimp",
+      "maxCount": 4
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "harlequin-shrimp",
+      "count": 2
+    }
+  ]
+}

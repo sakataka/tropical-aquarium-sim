@@ -152,6 +152,12 @@ const fishSpeciesDefinitionSchema = z.object({
       .refine((points) => points.every((point, i) => i === 0 || point.y > points[i - 1]!.y), {
         message: "spine points must run from the neck down to the tail tip",
       }),
+    limbs: z.array(z.object({
+      kind: z.enum(["hind", "fore"]),
+      joints: z.array(z.object({ x: unit, y: unit })),
+    }).refine((limb) => limb.joints.length === (limb.kind === "hind" ? 4 : 3), {
+      message: "a hind limb has hip, knee, ankle and toe; a fore limb has shoulder, elbow and hand",
+    })).min(2),
   }).partial().optional(),
   visual: z.object({ fallbackColor: z.string().regex(/^#[0-9a-fA-F]{6}$/) }),
   sourceBodyBounds: bodyBoundsSchema,

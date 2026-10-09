@@ -24,6 +24,7 @@ export type SwimStyle = {
   wings?: { rootX: number; y: number; top: number; bottom: number };
   legs?: { x: number; y: number; footX: number; footY: number; width: number; beat: 0 | 1 }[];
   spine?: Vec2[];
+  limbs?: { kind: "hind" | "fore"; joints: Vec2[] }[];
 };
 
 // 尾の振りや向きの状態は魚ごとに1つだけ持ち、部屋と水槽画面で共有する。
@@ -51,6 +52,12 @@ export type MotionState = {
   lift: number;
   /** 砂に潜っている度合い（0〜1）。fishBody が体を沈め、砂が透けて見えるよう薄くする。 */
   burial: number;
+  /** カエルの後脚の伸び（-1 たたむ、0 画像の姿勢、1 伸ばしきる）。 */
+  stroke?: number;
+  /** カエルが最後に蹴り始めてからの秒数。 */
+  strokeSec?: number;
+  /** 前のフレームで蹴っていたか。蹴り始めを見分ける。 */
+  kicking?: boolean;
 };
 
 /** 変形に使う、画像メッシュとその元の形。 */

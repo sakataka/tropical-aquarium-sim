@@ -1,0 +1,141 @@
+{
+  "id": "harlequin-shrimp",
+  "displayName": "フリソデエビ",
+  "realBodyLengthCm": 4.5,
+  "swim": {
+    "bodyPlan": "crustacean",
+    "headStart": 0.3,
+    "tailBeatHz": 0.6,
+    "bodyWaveStart": 0.85,
+    "tailSweepRad": 0,
+    "verticalFlex": 0,
+    "footAnchor": {
+      "x": 0.48,
+      "y": 0.96
+    }
+  },
+  "visual": {
+    "fallbackColor": "#e6dce8"
+  },
+  "sourceBodyBounds": {
+    "x": 170,
+    "y": 224,
+    "width": 1226,
+    "height": 620
+  },
+  "preferredZone": {
+    "minX": 0.18,
+    "maxX": 0.82,
+    "minY": 0.58,
+    "maxY": 0.92
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.08,
+      "burst": 0.4
+    },
+    "turnRateRadPerSec": 1.3,
+    "restFraction": 0.55,
+    "depthRange": [
+      0.1,
+      0.5
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0.4,
+      "polarization": 0.1
+    },
+    "structureAffinity": 0.9,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 2,
+        "durationSec": [
+          8,
+          20
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 2.2,
+        "durationSec": [
+          10,
+          30
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Charles Darwin Foundation: Hymenocera picta",
+        "url": "https://datazone.darwinfoundation.org/en/checklist/?species=8408"
+      },
+      {
+        "title": "Wickler (1973), Biology of Hymenocera picta Dana, Micronesica 9:225–230",
+        "url": "https://micronesica.org/sites/default/files/biology_of_hymenocera_picta_dana-micronesica_vol._9_no.2_dec._1973o.pdf"
+      },
+      {
+        "title": "Mendez et al. (2017), Record of Harlequin Shrimp in southern Mexican Pacific reefs",
+        "url": "https://www.vliz.be/imisdocs/publications/306090.pdf"
+      },
+      {
+        "title": "Zhang et al. (2025), Reproductive habit and embryonic development of Hymenocera picta",
+        "url": "https://www.jto.ac.cn/EN/Y2025/V44/I2/92"
+      },
+      {
+        "title": "Waikīkī Aquarium: Harlequin Shrimp",
+        "url": "https://www.waikikiaquarium.org/experience/animal-guide/invertebrates/crustaceans/harlequin-shrimp/"
+      },
+      {
+        "title": "沖縄美ら海水族館 フリソデエビ",
+        "url": "https://churaumi.okinawa/sp/fishbook/1635656448/"
+      },
+      {
+        "title": "高村・帝釈（1998）三重県初記録の十脚甲殻類3種、鳥羽水族館年報9:43–46",
+        "url": "https://aquarium.co.jp/tobacms/wp-content/uploads/09-1998.pdf"
+      },
+      {
+        "title": "東京都公園協会 フリソデエビ",
+        "url": "https://www.tokyo-park.or.jp/park/hachijo/creature/detail/0806.html"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Hymenocera picta",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "インド洋から太平洋にかけての熱帯の海と、東太平洋のパナマやガラパゴス諸島に分布します。メキシコ南部の太平洋岸のサンゴ礁でも、2014年と2016年にペアが1組ずつ見つかっています。日本では、1998年に三重県の五ヶ所湾で観察された記録があります。",
+    "temperament": "ヒトデを食べるエビです。飼育下の研究では、ヒトデをひっくり返し、小さなはさみで表皮を破って中の組織を食べました。2匹そろわなくても捕らえることができ、はっきりした協力は見られませんでした。野外ではペアでも1匹でも見つかっています。飼育下では決まった相手を好む様子がありましたが、雄はほかの脱皮直後の雌とも交尾しました。野外で昼と夜のどちらに活動するかは確かめられていません（飼育下の研究では、明るい時間に活動しました）。本水槽では、2匹が砂の上や岩の棚を歩きます。",
+    "movement": "幅が広く平たい第2胸脚と、一部が平たく広がった小触角が目立ちます。本水槽では、それらを揺らしながら、砂の上や岩の棚を脚で歩きます。",
+    "habitat": "サンゴ礁や岩礁の、転がった石やサンゴのかけらの隙間に暮らします。メキシコでは水深10〜15mの調査で、三重県では水深20mの岩のくぼみで見つかり、ヒトデの上に乗っていた個体も観察されています。本水槽では、サンゴの岩組のあいだの白い砂地に暮らしています。",
+    "aliases": [
+      "Harlequin shrimp"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Decapoda",
+      "orderJa": "十脚目",
+      "family": "Palaemonidae",
+      "familyJa": "テナガエビ科"
+    },
+    "adultSizeCm": 4.5,
+    "sizeNote": "メキシコの礁で観察された2組は、全長約4.5cmでした。飼育下では、採集したときに約1cmだった個体が約5cmまで育った記録があります。ふつうの大きさや最大の大きさは、今回の調査では確かめられていません。",
+    "distribution": "インド太平洋の熱帯域と、東太平洋のパナマやガラパゴス諸島に分布します。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "今回の調査では IUCN の評価を確認できませんでした。"
+    },
+    "highlights": [
+      "幅の広い第2胸脚を振袖に見立てて、フリソデエビと呼ばれます。",
+      "白い体に、青やワイン色の斑紋が散ります。",
+      "ヒトデをひっくり返し、小さなはさみで表皮を破って食べます。",
+      "飼育下の繁殖実験では、交尾の約2時間後に産卵し、ふ化の12〜24時間後に雌が脱皮して、また交尾しました。"
+    ]
+  }
+}

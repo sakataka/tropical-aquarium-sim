@@ -1,0 +1,145 @@
+{
+  "id": "boxer-crab",
+  "displayName": "キンチャクガニ",
+  "realBodyLengthCm": 6,
+  "catalog": {
+    "scientificName": "Lybia tessellata",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "インド洋・西太平洋の熱帯の海にすむカニです。日本では屋久島や平島で水中写真が撮られ、2022〜2024年には薩摩半島で、九州沿岸では初めての記録となる個体が採集されました。",
+    "temperament": "鳥羽水族館では、同じ水槽の雌雄2匹が岩陰に一緒にいることが多く、あとから入れた個体に雄が近づくと威嚇しました。昼夜の活動や、野外で何匹で暮らすかは分かっていません。本水槽では、岩の張り出しの下や砂の上を歩き回ります。",
+    "movement": "左右のはさみに小さなイソギンチャクを1つずつ持ち、脚を左右に広げて横向きに歩きます。採集されたときには、歩脚でサンゴのかけらにつかまり、持っているイソギンチャクを相手へ押し当てました。イソギンチャクが捕らえた餌の粒を、口の顎脚で取って食べると紹介されています。",
+    "habitat": "浅い岩礁やサンゴ礁の、転石の下にすみます。薩摩半島では、潮間帯の下のほうにあるサンゴ礫の下の隙間で見つかりました。本水槽では、岩の張り出しの下に掃除場のあるサンゴ礁を再現しています。",
+    "aliases": [
+      "Boxer crab",
+      "Pom-pom crab"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Decapoda",
+      "orderJa": "十脚目",
+      "family": "Xanthidae",
+      "familyJa": "オウギガニ科"
+    },
+    "adultSizeCm": 2,
+    "sizeNote": "甲幅での値です。代表的な成体の大きさは確かめられておらず、オーストラリアの解説にある甲幅20mmを目安に、甲幅約2cmとして表示しています。鳥羽水族館の展示個体は甲幅約1cmでした。画面では、はさみのイソギンチャクと脚を広げた幅（約6cm）で描いています。",
+    "distribution": "インド洋・西太平洋の熱帯域に分布します。オーストラリアでは西オーストラリア州北西部と、グレートバリアリーフからニューサウスウェールズ州北部まで、日本では屋久島、平島、薩摩半島で記録があります。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "世界の IUCN 区分や、国内での扱いは確かめられていません。"
+    },
+    "highlights": [
+      "左右のはさみに小さなイソギンチャクを持ちます。日本で調べられた個体の一部は、カサネイソギンチャク（Triactis producta）を持っていました。",
+      "カニが持っていたイソギンチャクは白く、突起のない形でしたが、カニから離して育てると形が変わりました。",
+      "甲はおおむね六角形で、黒く縁どられた赤と淡い褐色の石垣のような模様があります。細長い歩脚には、まばらな長い毛と細い黒い帯があります。",
+      "鳥羽水族館では、イソギンチャクを持っていなかった個体が、後日、両方のはさみにイソギンチャクを持っていました。どうやって手に入れたかは見られていません。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "crab",
+    "tailBeatHz": 0.6,
+    "bodyWaveStart": 0.85,
+    "tailSweepRad": 0,
+    "verticalFlex": 0,
+    "footAnchor": {
+      "x": 0.5,
+      "y": 0.96
+    }
+  },
+  "visual": {
+    "fallbackColor": "#c18c7c"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.86,
+    "maxY": 0.94
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.08,
+      "burst": 0.5
+    },
+    "turnRateRadPerSec": 1.4,
+    "restFraction": 0.55,
+    "depthRange": [
+      0.3,
+      0.9
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.8,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 3,
+        "durationSec": [
+          8,
+          20
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.5,
+        "durationSec": [
+          10,
+          30
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "JAMSTEC BISMaL: Lybia tessellata キンチャクガニ",
+        "url": "https://www.godac.jamstec.go.jp/bismal/j/view/9037656"
+      },
+      {
+        "title": "是枝・佐藤：薩摩半島から得られた九州沿岸初記録のキンチャクガニ（Nature of Kagoshima 51）",
+        "url": "https://journal.kagoshima-nature.org/archives/NK_051/051-062-1.pdf"
+      },
+      {
+        "title": "柳・岩尾 (2012)：キンチャクガニ Lybia tessellata が保持するイソギンチャクの謎（みどりいし 23）",
+        "url": "https://www.amsl.or.jp/midoriishi/23_31.pdf"
+      },
+      {
+        "title": "鳥羽水族館 (2014)：キンチャクガニとイソギンチャク",
+        "url": "https://aquarium.co.jp/diary/2014/08/12107"
+      },
+      {
+        "title": "鳥羽水族館 (2020)：キンチャクガニが抱卵しました",
+        "url": "https://aquarium.co.jp/diary/2020/02/44876"
+      },
+      {
+        "title": "鳥羽水族館 (2021)：キンチャクガニの三角関係（？）",
+        "url": "https://aquarium.co.jp/diary/2021/11/55374"
+      },
+      {
+        "title": "沖縄美ら海水族館：キンチャクガニ",
+        "url": "https://churaumi.okinawa/sp/fishbook/1590660132/"
+      },
+      {
+        "title": "Solitary Islands Underwater Research Group: Lybia tessellata",
+        "url": "https://www.surg.org.au/species/lybia-tessellata-latreille-1812/"
+      },
+      {
+        "title": "Schnytzer et al. (2022), The Intimate Relationship Between Boxer Crabs and Sea Anemones: What is Known and What is Not",
+        "url": "https://www.researchgate.net/publication/365457963_The_Intimate_Relationship_Between_Boxer_Crabs_and_Sea_Anemones_What_is_Known_and_What_is_Not"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 162,
+    "y": 173,
+    "width": 1212,
+    "height": 698
+  }
+}

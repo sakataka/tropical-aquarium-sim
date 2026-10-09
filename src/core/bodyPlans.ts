@@ -210,6 +210,21 @@ export const BODY_PLANS = {
     burrowDwelling: true,
     startle: "retract",
   },
+  // カエル（ヒメツメガエル、コモリガエル）。真上から見た画像（頭が左）を、斜め上から見下ろした姿として描く。
+  // 後脚を左右同時に伸ばして水を蹴り（尾で蹴る代わりに、蹴る拍で速くなる）、脚を伸ばしたまま滑ってから、たたんで次の蹴りに備える。
+  // 向きを変えるときはエイと同じく画像を反転せず、体の面の中で回る。息継ぎに水面へ上がり、底に伏せて休む。
+  frog: {
+    walksOnSurfaces: false,
+    bottomDweller: false,
+    tailKick: true,
+    antennae: false,
+    sideways: false,
+    drifts: false,
+    flaps: false,
+    reverses: false,
+    burrowDwelling: false,
+    startle: "dart",
+  },
 } as const satisfies Record<string, BodyPlanTraits>;
 
 export type BodyPlanId = keyof typeof BODY_PLANS;

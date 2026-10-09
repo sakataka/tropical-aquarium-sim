@@ -1,0 +1,205 @@
+{
+  "id": "surinam-toad",
+  "displayName": "コモリガエル",
+  "sourceBodyBounds": {
+    "x": 86,
+    "y": 131,
+    "width": 1376,
+    "height": 735
+  },
+  "realBodyLengthCm": 26,
+  "catalog": {
+    "scientificName": "Pipa pipa",
+    "originRegionId": "south-america",
+    "originRegionName": "南米",
+    "origin": "アマゾン川の流域からギアナ地方、ペルー・エクアドル、トリニダード島にかけて分布します。",
+    "temperament": "水底で枯れ葉のようにじっとして獲物を待ち伏せし、近づいた獲物へ後脚で突進して、口の中へ吸い込みながら前脚でかき込みます。飼育下では、雄はおもに夕方から夜に鳴きます。",
+    "movement": "ほとんどの時間を水底でじっとして過ごします。泳ぐときは後脚を左右同時に伸ばして水を蹴ります。本水槽では、ときどき水面へ泳ぎ上がって息を吸い、また底へ戻ります。",
+    "habitat": "熱帯雨林や浸水林の、泥の底の水域にすみます。本水槽では、雨季に水没したアマゾンの森の底で暮らします。",
+    "aliases": [
+      "Surinam toad",
+      "Star-fingered frog",
+      "ピパ",
+      "ピパピパ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Anura",
+      "orderJa": "無尾目",
+      "family": "Pipidae",
+      "familyJa": "ピパ科"
+    },
+    "adultSizeCm": 15,
+    "sizeNote": "体長10〜20cmとされます（サンディエゴ動物園）。研究に使われた4匹の頭胴長は9.4〜14.3cmでした。画面では頭胴長約15cm、後脚を伸ばした長さを含めて約26cmで描いています。",
+    "distribution": "アマゾン川の流域からギアナ地方、ペルー・エクアドル、トリニダード島に分布します。遺伝子の研究から、いくつかの種が混じっている可能性も指摘されています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "IUCN レッドリストの区分は、今回の調査では確かめられていません。"
+    },
+    "highlights": [
+      "体はとても平たく、頭は三角形で、前脚の指先が星形に分かれています。",
+      "褐色からオリーブ色のまだら模様で、水底でじっとしていると枯れ葉のように見えます。",
+      "卵は雌の背中の皮膚に埋まって育ち、オタマジャクシの時期を背中の中で過ごして、子ガエルの姿で出てきます。26℃前後で飼育した記録では、105〜145日かかりました。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "frog",
+    "bodyWaveStart": 0.66,
+    "mouthAnchor": {
+      "x": 0.075,
+      "y": 0.49
+    },
+    "footAnchor": {
+      "x": 0.42,
+      "y": 0.5
+    },
+    "limbs": [
+      {
+        "kind": "hind",
+        "joints": [
+          {
+            "x": 0.6,
+            "y": 0.3
+          },
+          {
+            "x": 0.69,
+            "y": 0.27
+          },
+          {
+            "x": 0.81,
+            "y": 0.37
+          },
+          {
+            "x": 0.94,
+            "y": 0.17
+          }
+        ]
+      },
+      {
+        "kind": "hind",
+        "joints": [
+          {
+            "x": 0.62,
+            "y": 0.66
+          },
+          {
+            "x": 0.72,
+            "y": 0.64
+          },
+          {
+            "x": 0.82,
+            "y": 0.64
+          },
+          {
+            "x": 0.93,
+            "y": 0.86
+          }
+        ]
+      },
+      {
+        "kind": "fore",
+        "joints": [
+          {
+            "x": 0.25,
+            "y": 0.22
+          },
+          {
+            "x": 0.2,
+            "y": 0.17
+          },
+          {
+            "x": 0.07,
+            "y": 0.12
+          }
+        ]
+      },
+      {
+        "kind": "fore",
+        "joints": [
+          {
+            "x": 0.24,
+            "y": 0.78
+          },
+          {
+            "x": 0.2,
+            "y": 0.82
+          },
+          {
+            "x": 0.06,
+            "y": 0.85
+          }
+        ]
+      }
+    ]
+  },
+  "visual": {
+    "fallbackColor": "#5e4a32"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.8,
+    "maxY": 0.97
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.15,
+      "burst": 1.5
+    },
+    "turnRateRadPerSec": 1.2,
+    "restFraction": 0.75,
+    "depthRange": [
+      0.1,
+      0.9
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 1.2,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.5,
+    "habits": [
+      {
+        "type": "airBreathing",
+        "breathsPerHour": [
+          4,
+          10
+        ],
+        "style": "rise"
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 3,
+        "durationSec": [
+          60,
+          240
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "AMNH Amphibian Species of the World: Pipa pipa",
+        "url": "https://amphibiansoftheworld.amnh.org/Amphibia/Anura/Pipidae/Pipinae/Pipa/Pipa-pipa"
+      },
+      {
+        "title": "San Diego Zoo: Surinam Toad",
+        "url": "https://animals.sandiegozoo.org/animals/surinam-toad"
+      },
+      {
+        "title": "Schütte & Ehrl (1987) Pipa pipa の飼育と繁殖",
+        "url": "https://www.salamandra-journal.com/index.php/contents/1987-vol-23/1032-schuette-f-a-ehrl/file"
+      },
+      {
+        "title": "Carreño & Nishikawa (2010) Aquatic feeding in pipid frogs: the use of suction for prey capture",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2878287/"
+      }
+    ]
+  }
+}

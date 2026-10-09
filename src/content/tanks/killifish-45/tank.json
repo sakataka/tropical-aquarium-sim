@@ -4,11 +4,11 @@
   "displayName": "キリフィッシュの小川水槽",
   "exhibitName": "Killifish Stream",
   "category": "西アフリカの森の小川",
-  "description": "西アフリカの森の小川を再現した45cm水槽。浮き草の下で、アフィオセミオン・オーストラーレが上層から中層を、ノソブランキウス・ラコビが中層から下をゆるやかに泳ぎます。",
+  "description": "西アフリカの森の小川を再現した45cm水槽。浮き草の下で、アフィオセミオン・オーストラーレが上層から中層を、ノソブランキウス・ラコビが中層から下をゆるやかに泳ぎます。ヒメツメガエルは後脚で水を蹴って泳ぎ、ときどき水面へ息を吸いに上がっては、底でじっと休みます。",
   "widthCm": 45,
   "heightCm": 50,
   "depthCm": 30,
-  "maxTotalFish": 10,
+  "maxTotalFish": 13,
   "sceneIds": [
     "killifish-45"
   ],
@@ -20,6 +20,10 @@
     {
       "speciesId": "rachows-nothobranch",
       "maxCount": 5
+    },
+    {
+      "speciesId": "african-dwarf-frog",
+      "maxCount": 4
     }
   ],
   "defaultStock": [
@@ -29,6 +33,10 @@
     },
     {
       "speciesId": "rachows-nothobranch",
+      "count": 3
+    },
+    {
+      "speciesId": "african-dwarf-frog",
       "count": 3
     }
   ]

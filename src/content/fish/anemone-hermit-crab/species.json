@@ -1,0 +1,141 @@
+{
+  "id": "anemone-hermit-crab",
+  "displayName": "ソメンヤドカリ",
+  "realBodyLengthCm": 15,
+  "catalog": {
+    "scientificName": "Dardanus pedunculatus",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "相模湾より南の日本の暖かい海から、インド洋・西太平洋にすむヤドカリです。三浦半島の南下浦や、和歌山県の白浜でも採集されています。",
+    "temperament": "八丈島の解説では夜行性とされ、昼は転石の下や岩陰にいて、夕方から活動します。殻に付いたイソギンチャクは、タコなどの捕食者から身を守るのに役立つと説明されています。餌を与えない実験では、自分や同じ水槽の個体の殻からイソギンチャクをはがして食べました。本水槽では、1匹が底をゆっくり歩き回ります。",
+    "movement": "巻貝の殻を背負い、脚で底を歩きます。殻の表面にはイソギンチャクが付いています。同じ種のヤドカリどうしで、イソギンチャクを奪い合うことが報告されています。",
+    "habitat": "水深5〜50mほどの岩場で、転石の下や岩陰を利用します。八丈島では水深15m前後で見られます。本水槽では、岩の張り出しの下に掃除場のあるサンゴ礁を再現しています。",
+    "aliases": [
+      "Anemone hermit crab",
+      "Dardanus haani"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Decapoda",
+      "orderJa": "十脚目",
+      "family": "Diogenidae",
+      "familyJa": "ヤドカリ科"
+    },
+    "adultSizeCm": 4.5,
+    "sizeNote": "甲長での値です。百科事典の解説で、甲長4.5cmに達するとされる大きさを表示しています。どこからどこまでを測った甲長かは書かれていません。殻やイソギンチャク、脚を含めた大きさは確かめられておらず、画面では、殻とイソギンチャク、触角を含めた幅を仮に約15cmとして描いています。",
+    "distribution": "相模湾より南の日本の暖かい海から、インド洋・西太平洋に分布します。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "世界の IUCN 区分や、国内での扱いは確かめられていません。"
+    },
+    "highlights": [
+      "左のはさみが大きく、淡い紫褐色の体に、濃い褐色と白の帯のある眼柄をもちます。",
+      "宿にした巻貝の殻に、イソギンチャクが付いています。日本では、ベニヒモイソギンチャク（Calliactis polypus）が付いた記録があります。",
+      "餌のない実験では、殻のイソギンチャクをはがして食べました。",
+      "夕方になると、隠れ家から出て活動を始めます。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "crab",
+    "tailBeatHz": 0.6,
+    "bodyWaveStart": 0.85,
+    "tailSweepRad": 0,
+    "verticalFlex": 0,
+    "footAnchor": {
+      "x": 0.5,
+      "y": 0.96
+    }
+  },
+  "visual": {
+    "fallbackColor": "#ad734e"
+  },
+  "preferredZone": {
+    "minX": 0.12,
+    "maxX": 0.88,
+    "minY": 0.86,
+    "maxY": 0.94
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.04,
+      "burst": 0.3
+    },
+    "turnRateRadPerSec": 1,
+    "restFraction": 0.65,
+    "depthRange": [
+      0.3,
+      0.9
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.7,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 2.5,
+        "durationSec": [
+          8,
+          25
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.5,
+        "durationSec": [
+          15,
+          40
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "JAMSTEC BISMaL: Dardanus pedunculatus ソメンヤドカリ",
+        "url": "https://www.godac.jamstec.go.jp/bismal/j/view/9004827"
+      },
+      {
+        "title": "東京都公園協会 八丈ビジターセンター：ソメンヤドカリ",
+        "url": "https://www.tokyo-park.or.jp/park/hachijo/creature/detail/0949.html"
+      },
+      {
+        "title": "鳥羽水族館 生きもの図鑑：ソメンヤドカリ",
+        "url": "https://aquarium.co.jp/picturebook/dardanus-pedunculatus.html"
+      },
+      {
+        "title": "池田・倉持：三浦半島・南下浦（東京湾口）産ヤドカリ類（神奈川県立博物館）",
+        "url": "https://nh.kanagawa-museum.jp/assets/icp/pdf/nhr24_033_036ikeda.pdf"
+      },
+      {
+        "title": "Imafuku, Yamamoto & Ohta (2000), Predation on symbiont sea anemones by their host hermit crab Dardanus pedunculatus",
+        "url": "https://www.researchgate.net/publication/248924241_Predation_on_symbiont_sea_anemones_by_their_host_hermit_crabDardanus_pedunculatus"
+      },
+      {
+        "title": "武田正倫『日本大百科全書』ソメンヤドカリ（コトバンク）",
+        "url": "https://kotobank.jp/word/%E3%81%9D%E3%82%81%E3%82%93%E3%82%84%E3%81%A9%E3%81%8B%E3%82%8A-3157663"
+      },
+      {
+        "title": "The partnerships between hermit crabs and sea anemones: an overview (2024)",
+        "url": "https://link.springer.com/article/10.1007/s13199-024-00991-7"
+      },
+      {
+        "title": "OBIS: Dardanus pedunculatus",
+        "url": "https://obis.org/taxon/208702"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 93,
+    "y": 127,
+    "width": 1359,
+    "height": 770
+  }
+}

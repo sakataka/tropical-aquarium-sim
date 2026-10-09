@@ -1,0 +1,213 @@
+{
+  "id": "african-dwarf-frog",
+  "displayName": "ヒメツメガエル",
+  "sourceBodyBounds": {
+    "x": 115,
+    "y": 137,
+    "width": 1360,
+    "height": 727
+  },
+  "realBodyLengthCm": 5,
+  "catalog": {
+    "scientificName": "Hymenochirus boettgeri",
+    "originRegionId": "central-africa",
+    "originRegionName": "中部アフリカ",
+    "origin": "ナイジェリア南部とカメルーンから、コンゴ盆地、コンゴ民主共和国の東部、ガボン、赤道ギニアにかけて分布するとされます。",
+    "temperament": "一生を水中で暮らすカエルです。舌がなく、獲物に向かって短く突進し、口の中へ水ごと吸い込んで食べます。前脚で餌をかき込むことはしないと報告されています。",
+    "movement": "後脚を左右同時に伸ばして水を蹴り、脚を伸ばしたまま滑ってから、脚をたたんで次の蹴りに備えます。肺で呼吸するので、ときどき水面へ泳ぎ上がって息を吸います。本水槽では、底でもじっと休みます。",
+    "habitat": "アフリカ中部の森の水域にすみますが、野生での暮らし方はよく分かっていません。本水槽では、西アフリカの森の小川で、キリフィッシュと一緒に暮らします。",
+    "aliases": [
+      "African dwarf frog",
+      "Zaire dwarf clawed frog",
+      "コビトツメガエル"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Anura",
+      "orderJa": "無尾目",
+      "family": "Pipidae",
+      "familyJa": "ピパ科"
+    },
+    "adultSizeCm": 3.1,
+    "sizeNote": "頭胴長（吻の先から総排泄口まで。脚を含まない）での値です。飼育個体を使った研究では、成体3匹の頭胴長が3.05〜3.21cmでした。画面では頭胴長約3cm、後脚を伸ばした長さを含めて約5cmで描いています。",
+    "distribution": "ナイジェリア南部・カメルーンからコンゴ盆地、ガボン、赤道ギニアにかけて分布するとされます。2024年の研究では、コンゴの野生の個体と、長く飼われてきた系統とで染色体の数が違い、飼われている系統は別の種かもしれないとされています。分布の範囲も見直されています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "note": "IUCN レッドリストの区分は、今回の調査では確かめられていません。"
+    },
+    "highlights": [
+      "前脚にも後脚にも水かきがあります。",
+      "舌がなく、獲物へ突進して口の中へ吸い込んで食べます。",
+      "肺で呼吸するので、飼育では水面と蓋の間に空気の層を残します。",
+      "野生の個体には脇腹と後脚に尖ったいぼがあり、飼われてきた系統と見分ける手がかりになるとされます。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "frog",
+    "bodyWaveStart": 0.62,
+    "mouthAnchor": {
+      "x": 0,
+      "y": 0.5
+    },
+    "footAnchor": {
+      "x": 0.38,
+      "y": 0.5
+    },
+    "limbs": [
+      {
+        "kind": "hind",
+        "joints": [
+          {
+            "x": 0.555,
+            "y": 0.37
+          },
+          {
+            "x": 0.625,
+            "y": 0.215
+          },
+          {
+            "x": 0.79,
+            "y": 0.33
+          },
+          {
+            "x": 0.94,
+            "y": 0.17
+          }
+        ]
+      },
+      {
+        "kind": "hind",
+        "joints": [
+          {
+            "x": 0.57,
+            "y": 0.62
+          },
+          {
+            "x": 0.675,
+            "y": 0.74
+          },
+          {
+            "x": 0.8,
+            "y": 0.66
+          },
+          {
+            "x": 0.93,
+            "y": 0.86
+          }
+        ]
+      },
+      {
+        "kind": "fore",
+        "joints": [
+          {
+            "x": 0.215,
+            "y": 0.33
+          },
+          {
+            "x": 0.245,
+            "y": 0.235
+          },
+          {
+            "x": 0.11,
+            "y": 0.16
+          }
+        ]
+      },
+      {
+        "kind": "fore",
+        "joints": [
+          {
+            "x": 0.215,
+            "y": 0.66
+          },
+          {
+            "x": 0.25,
+            "y": 0.75
+          },
+          {
+            "x": 0.12,
+            "y": 0.84
+          }
+        ]
+      }
+    ]
+  },
+  "visual": {
+    "fallbackColor": "#6e6648"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.65,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.6,
+      "burst": 3
+    },
+    "turnRateRadPerSec": 2.5,
+    "restFraction": 0.45,
+    "depthRange": [
+      0.1,
+      0.9
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.4,
+    "habits": [
+      {
+        "type": "airBreathing",
+        "breathsPerHour": [
+          12,
+          30
+        ],
+        "style": "rise"
+      },
+      {
+        "type": "grazing",
+        "chancePerMin": 0.6,
+        "durationSec": [
+          2,
+          5
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 2.5,
+        "durationSec": [
+          15,
+          60
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "AMNH Amphibian Species of the World: Hymenochirus boettgeri",
+        "url": "https://amphibiansoftheworld.amnh.org/Amphibia/Anura/Pipidae/Dactylethrinae/Hymenochirus/Hymenochirus-boettgeri"
+      },
+      {
+        "title": "Gvoždík et al. (2024) Tetraploidy in the Boettger's dwarf clawed frog from the Congo",
+        "url": "https://publications.cuni.cz/bitstream/handle/20.500.14178/2818/zlad119.pdf?isAllowed=y&sequence=1"
+      },
+      {
+        "title": "Carvalho et al. (2023) Housing and Care for Hymenochirus boettgeri",
+        "url": "https://www.researchgate.net/publication/376066713_Housing_and_Care_for_Hymenochirus_boettgeri_v1"
+      },
+      {
+        "title": "Carreño & Nishikawa (2010) Aquatic feeding in pipid frogs: the use of suction for prey capture",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2878287/"
+      }
+    ]
+  }
+}
