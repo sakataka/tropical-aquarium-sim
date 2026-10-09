@@ -1,0 +1,169 @@
+{
+  "id": "festive-hypselodoris",
+  "displayName": "アオウミウシ",
+  "realBodyLengthCm": 3.2,
+  "catalog": {
+    "scientificName": "Hypselodoris festiva",
+    "originRegionId": "northwest-pacific",
+    "originRegionName": "北西太平洋",
+    "origin": "本州、九州、韓国、香港にすみ、台湾にも在来の記録があります。",
+    "temperament": "吻を伸ばして海綿を食べます。研究では、試したカイメン（Dysidea 属）の4群のうち1群を好んで食べました。本水槽では、岩や砂の上をゆっくり這い、ときどき立ち止まって頭を下げて食べます。",
+    "movement": "変態したあとは、海底の上で暮らします。本水槽では、体を伸び縮みさせて這い、外套膜の縁を波打たせ、頭の触角と背の鰓を揺らします。叩かれると触角と鰓を縮め、体を短く丸めます。",
+    "habitat": "浅い海の岩礁域にすみ、1年を通して見られます。研究のための採集は、静岡県下田の水深2〜15mの岩壁の張り出しの下や、潮だまりで行われました。本水槽では、サンゴの岩組と白い砂地を這います。",
+    "aliases": [
+      "Festive hypselodoris"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Nudibranchia",
+      "orderJa": "裸鰓目",
+      "family": "Chromodorididae",
+      "familyJa": "イロウミウシ科"
+    },
+    "adultSizeCm": 3,
+    "sizeNote": "体長での値です（Rudman 1999 の概説）。最大の大きさや成熟した個体の平均は分かっていません。画面では、触角と鰓を含めて幅約3.2cmで描いています。",
+    "distribution": "本州、九州、韓国、香港、台湾。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "IUCN レッドリストの区分は、今回の調査では確かめられていません。"
+    },
+    "highlights": [
+      "青い地に黄色い線や斑点が入り、外套膜の縁が黄色く、触角の先と鰓が橙色です。背の模様には個体差があります。",
+      "殻のある浮遊幼生から、殻のない底生の姿に変態します。2024年に、卵から成体まで育てて次の世代の産卵まで観察した研究が報告されました。",
+      "交尾では互いの体の右側を合わせ、ゆっくり回りながら、らせん状の帯の卵塊を産みます。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "gastropod",
+    "tailBeatHz": 0.4,
+    "waveCount": 2.5,
+    "tailSweepRad": 0.12,
+    "verticalFlex": 0.012,
+    "footAnchor": {
+      "x": 0.45,
+      "y": 0.93
+    },
+    "feelers": [
+      {
+        "kind": "rhinophore",
+        "base": {
+          "x": 0.11,
+          "y": 0.5
+        },
+        "tip": {
+          "x": 0.07,
+          "y": 0.19
+        },
+        "width": 0.035
+      },
+      {
+        "kind": "rhinophore",
+        "base": {
+          "x": 0.2,
+          "y": 0.56
+        },
+        "tip": {
+          "x": 0.19,
+          "y": 0.3
+        },
+        "width": 0.035
+      },
+      {
+        "kind": "gill",
+        "base": {
+          "x": 0.7,
+          "y": 0.4
+        },
+        "tip": {
+          "x": 0.74,
+          "y": 0.03
+        },
+        "width": 0.07
+      }
+    ]
+  },
+  "visual": {
+    "fallbackColor": "#1f3fb0"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.8,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.06,
+      "burst": 0.09
+    },
+    "turnRateRadPerSec": 0.5,
+    "restFraction": 0.5,
+    "depthRange": [
+      0.1,
+      0.9
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.6,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 1.0,
+        "durationSec": [
+          20,
+          60
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 0.4,
+        "durationSec": [
+          30,
+          120
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "JAMSTEC BISMaL Hypselodoris festiva アオウミウシ",
+        "url": "https://www.godac.jamstec.go.jp/bismal/j/view/9020372"
+      },
+      {
+        "title": "Hayashi & Nakano 2024 Staging of post-settlement growth in the nudibranch Hypselodoris festiva",
+        "url": "https://www.nature.com/articles/s41598-024-66322-4"
+      },
+      {
+        "title": "筑波大学 2024 アオウミウシを卵から成体まで育てることに世界で初めて成功",
+        "url": "https://www.tsukuba.ac.jp/journal/biology-environment/20240805140000.html"
+      },
+      {
+        "title": "鳥羽水族館 2024 ウミウシが好きなカイメン",
+        "url": "https://aquarium.co.jp/diary/2024/06/66657"
+      },
+      {
+        "title": "鳥羽水族館 生きもの図鑑 アオウミウシ",
+        "url": "https://aquarium.co.jp/picturebook/hypselodoris-festiva.html"
+      },
+      {
+        "title": "Rudman 1999 Hypselodoris festiva, Sea Slug Forum",
+        "url": "https://seaslugforum.net/find/hypsfest"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 159,
+    "y": 245,
+    "width": 1322,
+    "height": 501
+  }
+}

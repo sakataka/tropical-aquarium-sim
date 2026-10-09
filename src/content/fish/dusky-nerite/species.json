@@ -1,0 +1,163 @@
+{
+  "id": "dusky-nerite",
+  "displayName": "カバクチカノコガイ",
+  "realBodyLengthCm": 3.8,
+  "catalog": {
+    "scientificName": "Neritina pulligera",
+    "originRegionId": "west-pacific",
+    "originRegionName": "西太平洋",
+    "origin": "西太平洋の島々の川にすみ、日本では奄美・沖縄のほか、鹿児島県指宿の水路で採集された記録があります。グアム、サモア、インドネシアのバリ、バヌアツ、ソロモン諸島からも記録があります。東アフリカやインド洋西部にいるかどうかは、2017年の分類の見直しでは確かめられていません。",
+    "temperament": "岩などの表面の細かな藻類を削り取って食べます。本水槽では、苔むした川石や砂の上をごくゆっくり這い、ときどき立ち止まって表面の藻を削ります。",
+    "movement": "広い足で底や石に付いて這います。本水槽では、殻を背負ったまま頭と足を伸び縮みさせて進み、2本の細長い触角を揺らします。叩かれると頭と足を殻に引っ込め、しばらくしてから這い出します。",
+    "habitat": "淡水や汽水の川の、岩が多く流れのある区間で、岩の下や穴、枯れ葉の下にいます。河口から1〜6.7km上流の、潮の届く範囲より上の真水の所でも見つかっています。本水槽では、湧水の浅瀬の苔むした川石をイメージしています。",
+    "aliases": [
+      "Dusky nerite",
+      "Black racer nerite"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cycloneritida",
+      "orderJa": "アマオブネガイ目",
+      "family": "Neritidae",
+      "familyJa": "アマオブネガイ科"
+    },
+    "adultSizeCm": 2.8,
+    "sizeNote": "殻長での値です。鹿児島県指宿で採集した12個体は殻長22.6〜34.4mm（平均28.4mm）でした。標本には殻長約4cm（日本の標本で41.6mm）のものもあります。画面では、触角を含めた幅約3.8cmで描いています。",
+    "distribution": "日本（奄美・沖縄、鹿児島）、グアム、サモア、インドネシア、バヌアツ、ソロモン諸島など、西太平洋の島々の川に記録があります。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "note": "IUCN レッドリストの区分は、今回の調査では確かめられていません。2017年より前の広い意味の N. pulligera には、別の種が含まれていた可能性があります。"
+    },
+    "highlights": [
+      "黒褐色の丸い殻の裏側で、殻口の縁に幅広い橙色の帯が見えます。",
+      "海で浮遊する幼生の時期を過ごし、河口近くで着底してから川を上って育つ、両側回遊の巻貝です。",
+      "川を上るときに、別の種のカノコガイ（Neritina asperulata）の小さな幼貝を殻に乗せていることがあります。",
+      "淡水の水槽でも白い卵嚢を産みますが、淡水だけで成貝まで育つとは限りません。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "gastropod",
+    "tailBeatHz": 0.4,
+    "waveCount": 1.5,
+    "tailSweepRad": 0.18,
+    "verticalFlex": 0.004,
+    "footAnchor": {
+      "x": 0.5,
+      "y": 0.96
+    },
+    "shell": [
+      {
+        "x": 0.62,
+        "y": 0.46,
+        "rx": 0.37,
+        "ry": 0.47
+      }
+    ],
+    "feelers": [
+      {
+        "kind": "tentacle",
+        "base": {
+          "x": 0.2,
+          "y": 0.62
+        },
+        "tip": {
+          "x": 0.0,
+          "y": 0.42
+        },
+        "width": 0.04
+      },
+      {
+        "kind": "tentacle",
+        "base": {
+          "x": 0.2,
+          "y": 0.71
+        },
+        "tip": {
+          "x": 0.04,
+          "y": 0.9
+        },
+        "width": 0.04
+      }
+    ]
+  },
+  "visual": {
+    "fallbackColor": "#2c2618"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.8,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.06,
+      "burst": 0.09
+    },
+    "turnRateRadPerSec": 0.5,
+    "restFraction": 0.5,
+    "depthRange": [
+      0.1,
+      0.9
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.6,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 1.5,
+        "durationSec": [
+          20,
+          60
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 0.5,
+        "durationSec": [
+          30,
+          120
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Abdou et al. 2017 Revision of the species complex Neritina pulligera",
+        "url": "https://borea.mnhn.fr/sites/default/files/pdfs/Abdou%20et%20al.2017_Revision%20of%20the%20species%20complex%20%E2%80%98Neritina%20pulligera%25u2019.pdf"
+      },
+      {
+        "title": "Ponder et al. Australian freshwater molluscs, Neritina pulligera",
+        "url": "https://keys.lucidcentral.org/keys/v3/freshwater_molluscs/key/australian_freshwater_molluscs/Media/Html/entities/neritina_pulligera.htm"
+      },
+      {
+        "title": "Kano & Fukumori 2010 Predation on the hardest molluscan eggs by confamilial snails",
+        "url": "https://www.heimbiotop.de/Kano_2010.pdf"
+      },
+      {
+        "title": "Kano 2009 Hitchhiking behaviour in the obligatory upstream migration of amphidromous snails",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2781923/"
+      },
+      {
+        "title": "環境省 生物多様性アトラス 学名索引",
+        "url": "https://www.biodic.go.jp/kiso/atlas/pdf/16.index.pdf"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 136,
+    "y": 142,
+    "width": 1277,
+    "height": 694
+  }
+}

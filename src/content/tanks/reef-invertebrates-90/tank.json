@@ -4,11 +4,11 @@
   "displayName": "サンゴ礁の無脊椎動物水槽",
   "exhibitName": "Reef Invertebrates",
   "category": "サンゴ礁の海",
-  "description": "白い砂地の左右にサンゴの岩を組んだ90cmの水槽。フリソデエビは、振袖のように平たく広がった脚と触角を揺らしながら、砂の上や岩の棚を歩きます。野外ではペアで見つかった記録があり、飼育下でも決まった相手を好む様子が報告されているので、2匹で展示します。青いアオヒトデは岩や砂の上で長く休んではゆっくり場所を移し、長い棘のガンガゼは明るい間はあまり動かず、暗くなると這い出します。",
+  "description": "白い砂地の左右にサンゴの岩を組んだ90cmの水槽。フリソデエビは、振袖のように平たく広がった脚と触角を揺らしながら、砂の上や岩の棚を歩きます。野外ではペアで見つかった記録があり、飼育下でも決まった相手を好む様子が報告されているので、2匹で展示します。青いアオヒトデは岩や砂の上で長く休んではゆっくり場所を移し、長い棘のガンガゼは明るい間はあまり動かず、暗くなると這い出します。青い体に黄色い縁取りのアオウミウシは、外套膜の縁を波打たせながら岩や砂の上を這います。",
   "widthCm": 90,
   "heightCm": 95,
   "depthCm": 45,
-  "maxTotalFish": 8,
+  "maxTotalFish": 11,
   "sceneIds": [
     "reef-invertebrates-90"
   ],
@@ -24,6 +24,10 @@
     {
       "speciesId": "long-spined-sea-urchin",
       "maxCount": 2
+    },
+    {
+      "speciesId": "festive-hypselodoris",
+      "maxCount": 3
     }
   ],
   "defaultStock": [
@@ -38,6 +42,10 @@
     {
       "speciesId": "long-spined-sea-urchin",
       "count": 1
+    },
+    {
+      "speciesId": "festive-hypselodoris",
+      "count": 2
     }
   ]
 }

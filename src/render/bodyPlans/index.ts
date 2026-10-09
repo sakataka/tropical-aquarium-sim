@@ -3,6 +3,7 @@ import { crabRenderer } from "./crab";
 import { crustaceanRenderer } from "./crustacean";
 import { fishRenderer } from "./fish";
 import { frogRenderer } from "./frog";
+import { gastropodRenderer } from "./gastropod";
 import { gardenEelRenderer } from "./gardenEel";
 import { horseshoeCrabRenderer } from "./horseshoeCrab";
 import { jellyRenderer } from "./jelly";
@@ -33,6 +34,7 @@ export const BODY_PLAN_RENDERERS: Record<BodyPlanId, BodyPlanRenderer> = {
   frog: frogRenderer,
   seaStar: seaStarRenderer,
   urchin: urchinRenderer,
+  gastropod: gastropodRenderer,
 };
 
 export * from "./types";

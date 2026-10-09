@@ -160,6 +160,15 @@ const fishSpeciesDefinitionSchema = z.object({
     })).min(2),
     radial: z.object({ x: unit, y: unit, radius: unit.gt(0), reach: unit.gt(0) })
       .refine((radial) => radial.radius < radial.reach, { message: "radial reach must lie beyond the body radius" }),
+    shell: z.array(z.object({ x: unit, y: unit, rx: unit.gt(0), ry: unit.gt(0) })).min(1),
+    feelers: z.array(z.object({
+      kind: z.enum(["tentacle", "rhinophore", "gill"]),
+      base: z.object({ x: unit, y: unit }),
+      tip: z.object({ x: unit, y: unit }),
+      width: unit.gt(0),
+    }).refine((feeler) => Math.hypot(feeler.tip.x - feeler.base.x, feeler.tip.y - feeler.base.y) > 0.01, {
+      message: "a feeler's tip must lie away from its base",
+    })).min(1),
   }).partial().optional(),
   visual: z.object({ fallbackColor: z.string().regex(/^#[0-9a-fA-F]{6}$/) }),
   sourceBodyBounds: bodyBoundsSchema,

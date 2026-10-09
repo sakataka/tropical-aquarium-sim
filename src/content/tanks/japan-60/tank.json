@@ -4,11 +4,11 @@
   "displayName": "日本の湧水水槽",
   "exhibitName": "Japanese Spring",
   "category": "日本の水辺",
-  "description": "淡い翡翠色の水と、苔むした川石の浅瀬。上層のメダカ、中層に紅色を添えるタナゴ、底を巡るシマドジョウとヤマトヌマエビ。日本の水辺の4種を、泳ぐ高さを分けて眺める60cm水槽です。",
+  "description": "淡い翡翠色の水と、苔むした川石の浅瀬。上層のメダカ、中層に紅色を添えるタナゴ、底を巡るシマドジョウとヤマトヌマエビ、川石を這うカバクチカノコガイ。日本の水辺の5種を、暮らす高さを分けて眺める60cm水槽です。ヤマトヌマエビとカバクチカノコガイは、どちらも海で育ってから川を上ります。",
   "widthCm": 60,
   "heightCm": 41,
   "depthCm": 30,
-  "maxTotalFish": 32,
+  "maxTotalFish": 35,
   "sceneIds": [
     "japan-spring",
     "japan-moss-stones",
@@ -30,6 +30,10 @@
     {
       "speciesId": "japanese-loach",
       "maxCount": 5
+    },
+    {
+      "speciesId": "dusky-nerite",
+      "maxCount": 3
     }
   ],
   "defaultStock": [
@@ -47,6 +51,10 @@
     },
     {
       "speciesId": "japanese-loach",
+      "count": 2
+    },
+    {
+      "speciesId": "dusky-nerite",
       "count": 2
     }
   ]

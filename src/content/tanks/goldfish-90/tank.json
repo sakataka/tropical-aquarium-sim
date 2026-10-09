@@ -4,11 +4,11 @@
   "displayName": "金魚の水草水槽",
   "exhibitName": "Goldfish",
   "category": "日本の観賞魚",
-  "description": "流木と水草の明るい水景で金魚を見せる90cm水槽。金魚はゆるい群れで中層をゆったり泳ぎ、ときどき砂利の底をつついて餌を探します。",
+  "description": "流木と水草の明るい水景で金魚を見せる90cm水槽。金魚はゆるい群れで中層をゆったり泳ぎ、ときどき砂利の底をつついて餌を探します。中国を含む東アジアの丸い巻貝、チャイニーズミステリースネールが、砂利の底や石の上をゆっくり這います。",
   "widthCm": 90,
   "heightCm": 53,
   "depthCm": 45,
-  "maxTotalFish": 7,
+  "maxTotalFish": 10,
   "sceneIds": [
     "goldfish-90"
   ],
@@ -16,12 +16,20 @@
     {
       "speciesId": "goldfish",
       "maxCount": 7
+    },
+    {
+      "speciesId": "chinese-mystery-snail",
+      "maxCount": 3
     }
   ],
   "defaultStock": [
     {
       "speciesId": "goldfish",
       "count": 5
+    },
+    {
+      "speciesId": "chinese-mystery-snail",
+      "count": 2
     }
   ]
 }

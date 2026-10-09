@@ -26,6 +26,8 @@ export type SwimStyle = {
   spine?: Vec2[];
   limbs?: { kind: "hind" | "fore"; joints: Vec2[] }[];
   radial?: { x: number; y: number; radius: number; reach: number };
+  shell?: { x: number; y: number; rx: number; ry: number }[];
+  feelers?: { kind: "tentacle" | "rhinophore" | "gill"; base: Vec2; tip: Vec2; width: number }[];
 };
 
 // 尾の振りや向きの状態は魚ごとに1つだけ持ち、部屋と水槽画面で共有する。

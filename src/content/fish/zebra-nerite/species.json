@@ -1,0 +1,180 @@
+{
+  "id": "zebra-nerite",
+  "displayName": "ゼブラ石巻貝",
+  "realBodyLengthCm": 3,
+  "catalog": {
+    "scientificName": "Neritina natalensis",
+    "originRegionId": "east-africa",
+    "originRegionName": "東アフリカ",
+    "origin": "東アフリカの沿岸の、ソマリアから南アフリカのクワズール・ナタールまでにすむとされます。",
+    "temperament": "藻類を食べます。本水槽では、砂や流木の上をゆっくり這い、ときどき立ち止まって表面の藻を削ります。",
+    "movement": "本水槽では、殻を背負ったまま頭と足を伸び縮みさせて這い、触角を揺らします。叩かれると頭と足を殻に引っ込め、しばらくしてから這い出します。",
+    "habitat": "マングローブや、河口のヨシの茎の上で見られます。成貝は川や河口にすみ、幼生が育つには汽水が要るとされます。本水槽では、マングローブの根が張り出す河口の浅瀬をイメージしています。",
+    "aliases": [
+      "Vittina natalensis",
+      "Zebra nerite snail",
+      "Spotted nerite",
+      "ゼブラ・ネリタ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cycloneritida",
+      "orderJa": "アマオブネガイ目",
+      "family": "Neritidae",
+      "familyJa": "アマオブネガイ科"
+    },
+    "adultSizeCm": 2,
+    "sizeNote": "殻高での値で、最大20mmとする文献の引用があります。1924年の標本の写真には23mm、動物園の紹介には2.5cmとあり、測り方はそろっていません。画面では、触角を含めた幅約3cmで描いています。",
+    "distribution": "東アフリカの沿岸（ソマリアから南アフリカのクワズール・ナタールまで）。",
+    "water": {
+      "salinity": "brackish"
+    },
+    "keeping": "home",
+    "conservation": {
+      "note": "IUCN レッドリストの区分は、今回の調査では確かめられていません（フィンランドの動物園は準絶滅危惧と表示していますが、評価の年と出典は分かりません）。"
+    },
+    "highlights": [
+      "黄色の地に、殻頂から殻口へ黒いジグザグの縞が走る丸い殻が目印です。",
+      "動物園では、縞の形からゼブラとタイガーと呼ぶ2つの色の型を紹介しています。",
+      "成貝は川や河口にすみますが、幼生が育つには汽水が要るとされます。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "gastropod",
+    "tailBeatHz": 0.4,
+    "waveCount": 1.5,
+    "tailSweepRad": 0.18,
+    "verticalFlex": 0.004,
+    "footAnchor": {
+      "x": 0.55,
+      "y": 0.97
+    },
+    "shell": [
+      {
+        "x": 0.6,
+        "y": 0.45,
+        "rx": 0.33,
+        "ry": 0.47
+      }
+    ],
+    "feelers": [
+      {
+        "kind": "tentacle",
+        "base": {
+          "x": 0.22,
+          "y": 0.67
+        },
+        "tip": {
+          "x": 0.01,
+          "y": 0.51
+        },
+        "width": 0.04
+      },
+      {
+        "kind": "tentacle",
+        "base": {
+          "x": 0.24,
+          "y": 0.73
+        },
+        "tip": {
+          "x": 0.15,
+          "y": 0.79
+        },
+        "width": 0.04
+      },
+      {
+        "kind": "tentacle",
+        "base": {
+          "x": 0.22,
+          "y": 0.83
+        },
+        "tip": {
+          "x": 0.18,
+          "y": 0.92
+        },
+        "width": 0.03
+      },
+      {
+        "kind": "tentacle",
+        "base": {
+          "x": 0.27,
+          "y": 0.85
+        },
+        "tip": {
+          "x": 0.24,
+          "y": 0.95
+        },
+        "width": 0.03
+      }
+    ]
+  },
+  "visual": {
+    "fallbackColor": "#b08a2a"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.8,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.07,
+      "burst": 0.105
+    },
+    "turnRateRadPerSec": 0.5,
+    "restFraction": 0.5,
+    "depthRange": [
+      0.1,
+      0.9
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.6,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 1.5,
+        "durationSec": [
+          20,
+          60
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 0.5,
+        "durationSec": [
+          30,
+          120
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "OBIS Neritina natalensis taxon record",
+        "url": "https://obis.org/taxon/818788"
+      },
+      {
+        "title": "Perissinotto et al. 2014 Lake St Lucia gastropods",
+        "url": "https://www.vliz.be/imisdocs/publications/297928.pdf"
+      },
+      {
+        "title": "Korkeasaari Zoo Seeprakotilo",
+        "url": "https://korkeasaari.fi/elain/seeprakotilo/"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 220,
+    "y": 219,
+    "width": 1105,
+    "height": 578
+  }
+}

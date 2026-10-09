@@ -44,9 +44,15 @@ export type BodyPlanTraits = {
    * crawl = 叩いた所と逆へ向き直り、頭を先にして面に沿って這って離れる（両生類）。
    * hunker = その場で立ち止まり、甲を伏せてしばらく動かない（カブトガニ）。砂に潜っている間は反応しない。
    * ウニの hunker は、立ち止まって棘を震わせる。
+   * 巻貝の hunker は、頭と足を殻へ引っ込め、殻を面に下ろす（ウミウシは触角と鰓を縮めて体を丸める）。
    * retract = 尾から巣穴へ素早く引っ込み、しばらくしてからゆっくり体を出す（チンアナゴ）。
    */
   startle: "dart" | "tailFlip" | "scuttle" | "jet" | "crawl" | "hunker" | "retract" | "none";
+  /**
+   * hunker で止まっている長さ。holdSec は構えている秒数の幅（alarmSec）、emergeSec は構えを解いてから歩き出すまでの秒数。
+   * 書かなければ 3〜7秒構え、0.5秒で歩き出す。巻貝は殻にこもる時間が長く、体を出しきってから這い出す。
+   */
+  hunker?: { holdSec: readonly [number, number]; emergeSec: number };
 };
 
 export const BODY_PLANS = {
@@ -253,6 +259,22 @@ export const BODY_PLANS = {
     reverses: false,
     burrowDwelling: false,
     startle: "hunker",
+  },
+  // 巻貝・ウミウシ。斜め上から見た画像（頭が左）。広い足でごくゆっくり面を這い、頭の触角を揺らす。
+  // 巻貝は殻を動かさず、足と頭を這う拍に合わせて伸び縮みさせ、叩くと殻へ引っ込んでしばらくこもる。
+  // 殻のないウミウシは体全体を伸び縮みさせ、外套膜の縁を波打たせ、叩くと背の触角と鰓を縮めて体を丸める。
+  gastropod: {
+    walksOnSurfaces: true,
+    bottomDweller: true,
+    tailKick: false,
+    antennae: false,
+    sideways: false,
+    drifts: false,
+    flaps: false,
+    reverses: false,
+    burrowDwelling: false,
+    startle: "hunker",
+    hunker: { holdSec: [6, 14], emergeSec: 4 },
   },
 } as const satisfies Record<string, BodyPlanTraits>;
 

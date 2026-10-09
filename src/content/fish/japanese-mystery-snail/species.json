@@ -1,0 +1,184 @@
+{
+  "id": "japanese-mystery-snail",
+  "displayName": "オオタニシ",
+  "realBodyLengthCm": 6.5,
+  "catalog": {
+    "scientificName": "Cipangopaludina japonica",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "北海道、本州、四国、九州にすみます。",
+    "temperament": "底の泥や水草に付く細かな藻類などを食べます。本水槽では、泥の底や枯れわらの上をゆっくり這い、ときどき立ち止まって底を削ります。",
+    "movement": "本水槽では、殻を背負ったまま頭と足を伸び縮みさせて這い、触角を揺らします。叩かれると頭と足を殻に引っ込め、しばらくしてから這い出します。",
+    "habitat": "池や沼、水路の、水の止まった所から流れのゆるい所の、泥の底や水草のある環境にすみます。福岡県では、環境のよい山あいのため池が主に残る場所になっています。本水槽では、田んぼの水路の泥の底をイメージしています。",
+    "aliases": [
+      "Heterogen japonica",
+      "Japanese mystery snail"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Architaenioglossa",
+      "orderJa": "タニシ目",
+      "family": "Viviparidae",
+      "familyJa": "タニシ科"
+    },
+    "adultSizeCm": 6,
+    "sizeNote": "殻長での値です（福岡県レッドデータブック2024）。画面では、殻長約6cm、触角を含めた幅約6.5cmで描いています。",
+    "distribution": "北海道、本州、四国、九州。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "note": "環境省のレッドリストでは準絶滅危惧、福岡県レッドデータブック2024では絶滅危惧II類とされます（福岡県の資料による）。ため池や水路の改修、湿地などの開発、農薬の使用で数が減っています。"
+    },
+    "highlights": [
+      "高い円錐形の螺塔をもち、螺層の周りが角張ります。小さな個体ほど角が目立ちます。",
+      "雌雄が分かれていて、卵ではなく仔貝を産みます。",
+      "タニシの仲間は、湿った泥の中で冬を越せるとされます。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "gastropod",
+    "tailBeatHz": 0.35,
+    "waveCount": 1.5,
+    "tailSweepRad": 0.16,
+    "verticalFlex": 0.004,
+    "footAnchor": {
+      "x": 0.55,
+      "y": 0.95
+    },
+    "shell": [
+      {
+        "x": 0.62,
+        "y": 0.55,
+        "rx": 0.31,
+        "ry": 0.42
+      },
+      {
+        "x": 0.3,
+        "y": 0.25,
+        "rx": 0.15,
+        "ry": 0.25
+      }
+    ],
+    "feelers": [
+      {
+        "kind": "tentacle",
+        "base": {
+          "x": 0.22,
+          "y": 0.73
+        },
+        "tip": {
+          "x": 0.0,
+          "y": 0.57
+        },
+        "width": 0.04
+      },
+      {
+        "kind": "tentacle",
+        "base": {
+          "x": 0.22,
+          "y": 0.8
+        },
+        "tip": {
+          "x": 0.14,
+          "y": 0.84
+        },
+        "width": 0.04
+      },
+      {
+        "kind": "tentacle",
+        "base": {
+          "x": 0.21,
+          "y": 0.86
+        },
+        "tip": {
+          "x": 0.18,
+          "y": 0.92
+        },
+        "width": 0.03
+      },
+      {
+        "kind": "tentacle",
+        "base": {
+          "x": 0.25,
+          "y": 0.88
+        },
+        "tip": {
+          "x": 0.25,
+          "y": 0.97
+        },
+        "width": 0.03
+      }
+    ]
+  },
+  "visual": {
+    "fallbackColor": "#3c3a1e"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.8,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.05,
+      "burst": 0.075
+    },
+    "turnRateRadPerSec": 0.5,
+    "restFraction": 0.5,
+    "depthRange": [
+      0.1,
+      0.9
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.6,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 1.5,
+        "durationSec": [
+          20,
+          60
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 0.5,
+        "durationSec": [
+          30,
+          120
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "福岡県レッドデータブック2024 オオタニシ",
+        "url": "https://biodiversity.pref.fukuoka.lg.jp/rdb/rdbs/detail/202401723"
+      },
+      {
+        "title": "農林水産省 生物別環境配慮解説 タニシ類",
+        "url": "https://www.maff.go.jp/j/nousin/keityo/kankyo/pdf/kaisetu_file3.pdf"
+      },
+      {
+        "title": "環境省いきものログ オオタニシ",
+        "url": "https://ikilog.biodic.go.jp/LifeSearch/detail/?life_darwincore_id=11697821"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 129,
+    "y": 153,
+    "width": 1245,
+    "height": 707
+  }
+}

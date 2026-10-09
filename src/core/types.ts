@@ -147,6 +147,16 @@ export type FishSwimStyle = {
    * radius は動かさない体（ヒトデの盤、ウニの殻）の半径、reach は腕の先・棘の先までのふつうの距離（どちらも画像の横幅に対する比率）。
    */
   radial: { x: number; y: number; radius: number; reach: number };
+  /**
+   * 斜め上から見た巻貝の殻。殻を楕円の和で書く（x・rx は画像の横幅、y・ry は高さに対する比率）。螺塔の高い殻は、
+   * 体層と螺塔に1つずつ楕円を置く。殻は動かさず、殻の外が軟体（頭・足）。殻のないウミウシは書かない。
+   */
+  shell: { x: number; y: number; rx: number; ry: number }[];
+  /**
+   * 巻貝・ウミウシの頭の触角（tentacle）、ウミウシの背の触角（rhinophore）と鰓（gill）。base は付け根、tip は先
+   * （画像の横幅・高さに対する比率）、width は動かす範囲の半幅（画像の横幅に対する比率）。付け根を軸に揺らし、驚くと縮める。
+   */
+  feelers: { kind: "tentacle" | "rhinophore" | "gill"; base: Vec2; tip: Vec2; width: number }[];
 };
 
 /** IUCN レッドリストの区分。NE は未評価。 */
