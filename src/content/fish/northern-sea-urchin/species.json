@@ -1,0 +1,129 @@
+{
+  "id": "northern-sea-urchin",
+  "displayName": "キタムラサキウニ",
+  "realBodyLengthCm": 20,
+  "catalog": {
+    "scientificName": "Mesocentrotus nudus",
+    "originRegionId": "northwest-pacific",
+    "originRegionName": "北西太平洋",
+    "origin": "太平洋側の襟裳岬から相模湾まで、日本海側の北海道から対馬まで、サハリン南部から朝鮮半島の沿岸に分布します。北海道ではノナとも呼ばれます。",
+    "temperament": "雑食ですが、主に海藻を食べます。日没と日の出の前後に活発になるという研究があります。数が多い所では、海藻を食べ尽くして藻場の衰退に関わることがあります。本水槽では、薄暗い時間に岩や砂の上を這い、明るい間はあまり動きません。",
+    "movement": "岩の表面を這い、海藻やロープ、網にも登ります。本水槽では、棘をゆるやかに揺らしながら面の上をごくゆっくり這い、叩かれると立ち止まって棘を震わせます。",
+    "habitat": "岩礁の岩の表面で暮らします。北海道の研究では、季節によって深い所と浅い所を行き来することが報告されています。25℃以上の高い水温に弱いとされます。本水槽では、冷たい北の海の岩礁をイメージしています。",
+    "aliases": [
+      "Northern sea urchin",
+      "Strongylocentrotus nudus",
+      "ノナ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Camarodonta",
+      "orderJa": "ホンウニ目",
+      "family": "Strongylocentrotidae",
+      "familyJa": "オオバフンウニ科"
+    },
+    "adultSizeCm": 7,
+    "sizeNote": "棘を除いた殻の直径での値です。漁獲の大きさの例は殻の直径5cmで、北海道のコンブ場では10歳で約7cmになります。最大の大きさは、今回の調査では確かめられていません。画面では、殻の直径約7cm、棘を含めて幅約20cmで描いています。",
+    "distribution": "日本の北海道から相模湾・対馬まで、サハリン南部と朝鮮半島の沿岸に分布します。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "IUCN レッドリストの区分は、今回の調査では確かめられていません。漁業で獲られる種で、数が多い所では藻場の衰退に関わることがあります。"
+    },
+    "highlights": [
+      "殻も棘も濃い紫色です。殻は厚く、下の面は平らで、長い棘と短い棘があります。",
+      "ムラサキウニとは別の属の種です。",
+      "日没と日の出の前後に活発になるという研究があります。",
+      "秋の9〜10月ころに産卵します。寿命は14〜15年とする報告があります。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "urchin",
+    "tailBeatHz": 0.12,
+    "bodyWaveStart": 0.5,
+    "waveCount": 3,
+    "tailSweepRad": 0.04,
+    "verticalFlex": 0,
+    "radial": {
+      "x": 0.507,
+      "y": 0.45,
+      "radius": 0.16,
+      "reach": 0.42
+    },
+    "footAnchor": {
+      "x": 0.507,
+      "y": 0.6
+    }
+  },
+  "visual": {
+    "fallbackColor": "#3a1a3e"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.8,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.004,
+      "burst": 0.008
+    },
+    "turnRateRadPerSec": 0.3,
+    "restFraction": 0.7,
+    "depthRange": [
+      0.1,
+      0.9
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 1,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.5,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 0.8,
+        "durationSec": [
+          20,
+          60
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 0.6,
+        "durationSec": [
+          60,
+          180
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "北海道 キタムラサキウニ",
+        "url": "https://www.pref.hokkaido.lg.jp/sr/gid/fis084.html"
+      },
+      {
+        "title": "水産庁 磯焼け対策ガイドライン 第4章",
+        "url": "https://www.jfa.maff.go.jp/j/gyoko_gyozyo/g_gideline/attach/pdf/index-34.pdf"
+      },
+      {
+        "title": "道総研函館水産試験場 キタムラサキウニ",
+        "url": "https://www.hro.or.jp/fisheries/research/hakodate/section/zoushoku/tpc0530000000hq8/skhn14000000042t.html"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 295,
+    "y": 140,
+    "width": 947,
+    "height": 739
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "id": "randalls-shrimpgoby",
+  "displayName": "ニチリンダテハゼ",
+  "realBodyLengthCm": 9,
+  "swim": {
+    "tailBeatHz": 2.6
+  },
+  "visual": {
+    "fallbackColor": "#c0b39f"
+  },
+  "sourceBodyBounds": {
+    "x": 83,
+    "y": 183,
+    "width": 1416,
+    "height": 638
+  },
+  "preferredZone": {
+    "minX": 0.1,
+    "maxX": 0.9,
+    "minY": 0.8,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.18,
+      "burst": 1.5
+    },
+    "turnRateRadPerSec": 2.5,
+    "restFraction": 0.6,
+    "depthRange": [
+      0.15,
+      0.7
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0.35,
+      "polarization": 0.1
+    },
+    "structureAffinity": 0.7,
+    "habits": [
+      {
+        "type": "homeShelter",
+        "kind": "burrow",
+        "rangeBodyLengths": 2,
+        "visitChancePerMin": 1.3,
+        "visitDurationSec": [
+          8,
+          25
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 2.5,
+        "durationSec": [
+          10,
+          35
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Amblyeleotris randalli",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?genus=Amblyeleotris&tbl=species"
+      },
+      {
+        "title": "Hoese & Steene (1978), Amblyeleotris randalli, a new species of gobiid fish living in association with alphaeid shrimps",
+        "url": "https://www.researchgate.net/publication/265673450_Amblyeleotris_randalli_a_new_species_of_gobiid_fish_living_in_association_with_alphaeid_shrimps"
+      },
+      {
+        "title": "CSIRO CAAB: Sailfin Shrimpgoby",
+        "url": "https://www.cmar.csiro.au/caab/taxon_report.cfm?caab_code=37428041"
+      },
+      {
+        "title": "Australian Museum: Sailfin Shrimpgoby",
+        "url": "https://australian.museum/learn/animals/fishes/sailfin-shrimpgoby-amblyeleotris-randalli/"
+      },
+      {
+        "title": "JAMSTEC BISMaL: ニチリンダテハゼ",
+        "url": "https://www.godac.jamstec.go.jp/bismal/j/view/9015801"
+      },
+      {
+        "title": "Senou, Kobayashi & Kobayashi (2007), Coastal Fishes of the Miyako Group",
+        "url": "https://nh.kanagawa-museum.jp/files/data/pdf/bulletin/36/bul36-8.pdf"
+      },
+      {
+        "title": "Kwajalein Underwater: Amblyeleotris randalli at Pohnpei",
+        "url": "https://www.underwaterkwaj.com/pohnpei/fish/Amblyeleotris-randalli.htm"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Amblyeleotris randalli",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "東インド洋から西太平洋に分布します。カリマンタン島やサバ州からフィジーまで、北は琉球列島、南はオーストラリア北部まで知られています。1978年に、フィリピンのサミロン島で採集された標本をもとに新種として記載されました。",
+    "temperament": "テッポウエビ類と関わって暮らすハゼです。新種として記載されたときから、テッポウエビ類との共生が報告されていますが、相手のエビの種類は今回の調査では確かめられていません。",
+    "movement": "海底の近くで暮らし、砂礫の穴の入口から上半身を出した姿が写真に残されています。本水槽では、巣穴の入口近くの砂の上に止まって周りをうかがい、ときどき巣穴へ戻ります。",
+    "habitat": "熱帯の礁に近い砂底。オーストラリアの資料では、想定される生息水深を15〜48mとしています。ミクロネシアのポンペイ島では水深12mから観察され、水道の棚状の地形や小さな洞穴でも見られました。本水槽では、岩の根元の巣穴を住みかにしています。",
+    "aliases": [
+      "Randall's shrimpgoby",
+      "Sailfin shrimpgoby",
+      "Randall's prawn goby"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Gobiiformes",
+      "orderJa": "ハゼ目",
+      "family": "Gobiidae",
+      "familyJa": "ハゼ科"
+    },
+    "adultSizeCm": 7.3,
+    "sizeNote": "標準体長。新種記載に使われた雌のホロタイプは7.32cmでした。ふつうの大きさや最大の大きさは、今回の調査では確かめられていません。",
+    "distribution": "東インド洋から西太平洋の熱帯域に分布し、日本では宮古諸島など琉球列島で記録されています。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "home",
+    "conservation": {
+      "note": "今回の調査では IUCN の評価を確認できませんでした。"
+    },
+    "highlights": [
+      "第1背びれは高く丸い帆のような形で、後ろ寄りに淡い縁取りのある黒い眼状斑があります。",
+      "白っぽい灰色の体に細いだいだい色の帯が並び、尾の付け根にもだいだい色の弧があります。",
+      "ハゼの仲間ですが、左右の腹びれは付け根の低い膜でつながるだけで、吸盤のような形にはなりません。"
+    ]
+  }
+}

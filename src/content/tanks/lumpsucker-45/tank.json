@@ -4,11 +4,11 @@
   "displayName": "ダンゴウオの岩礁水槽",
   "exhibitName": "Lumpsucker Nook",
   "category": "北の海の岩礁",
-  "description": "海藻とイソギンチャクの付いた岩が並ぶ、冷たい海の岩場を再現した45cm水槽。体長2.5cmほどのダンゴウオと、ひと回り大きなイボダンゴは、多くの時間を底でじっと休んで過ごし、ときどき短く泳いで場所を変えます。",
+  "description": "海藻とイソギンチャクの付いた岩が並ぶ、冷たい海の岩場を再現した45cm水槽。体長2.5cmほどのダンゴウオと、ひと回り大きなイボダンゴ、長い第1背びれのフウセンウオは、多くの時間を底でじっと休んで過ごし、ときどき短く泳いで場所を変えます。",
   "widthCm": 45,
   "heightCm": 26,
   "depthCm": 30,
-  "maxTotalFish": 5,
+  "maxTotalFish": 7,
   "sceneIds": [
     "lumpsucker-45"
   ],
@@ -20,6 +20,10 @@
     {
       "speciesId": "pacific-spiny-lumpsucker",
       "maxCount": 2
+    },
+    {
+      "speciesId": "spotted-lumpsucker",
+      "maxCount": 2
     }
   ],
   "defaultStock": [
@@ -29,6 +33,10 @@
     },
     {
       "speciesId": "pacific-spiny-lumpsucker",
+      "count": 1
+    },
+    {
+      "speciesId": "spotted-lumpsucker",
       "count": 1
     }
   ]

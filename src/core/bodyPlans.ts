@@ -43,6 +43,7 @@ export type BodyPlanTraits = {
    * 漂う生き物の dart は、向きを変えずに羽ばたきを速めて叩いた所から離れる（クリオネ）。
    * crawl = 叩いた所と逆へ向き直り、頭を先にして面に沿って這って離れる（両生類）。
    * hunker = その場で立ち止まり、甲を伏せてしばらく動かない（カブトガニ）。砂に潜っている間は反応しない。
+   * ウニの hunker は、立ち止まって棘を震わせる。
    * retract = 尾から巣穴へ素早く引っ込み、しばらくしてからゆっくり体を出す（チンアナゴ）。
    */
   startle: "dart" | "tailFlip" | "scuttle" | "jet" | "crawl" | "hunker" | "retract" | "none";
@@ -224,6 +225,34 @@ export const BODY_PLANS = {
     reverses: false,
     burrowDwelling: false,
     startle: "dart",
+  },
+  // ヒトデ。真上から見た画像を、斜め上から見下ろした姿として描く。管足で面の上をごくゆっくり滑るように這い、
+  // 体を曲げずに腕の先を少し持ち上げて探る。前後がないので向きを変えず（画像を反転しない）、長く休む。叩いても反応しない。
+  seaStar: {
+    walksOnSurfaces: true,
+    bottomDweller: true,
+    tailKick: false,
+    antennae: false,
+    sideways: false,
+    drifts: false,
+    flaps: false,
+    reverses: false,
+    burrowDwelling: false,
+    startle: "none",
+  },
+  // ウニ。斜め上から見た画像。管足と棘で面の上をごくゆっくり這い、棘をゆるやかに揺らす。
+  // 前後がないので向きを変えず（画像を反転しない）、多くの時間はその場にいる。叩くと立ち止まって棘を震わせる。
+  urchin: {
+    walksOnSurfaces: true,
+    bottomDweller: true,
+    tailKick: false,
+    antennae: false,
+    sideways: false,
+    drifts: false,
+    flaps: false,
+    reverses: false,
+    burrowDwelling: false,
+    startle: "hunker",
   },
 } as const satisfies Record<string, BodyPlanTraits>;
 

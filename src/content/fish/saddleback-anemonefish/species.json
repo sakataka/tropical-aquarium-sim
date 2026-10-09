@@ -1,0 +1,141 @@
+{
+  "id": "saddleback-anemonefish",
+  "displayName": "トウアカクマノミ",
+  "realBodyLengthCm": 10,
+  "swim": {
+    "tailBeatHz": 2.6
+  },
+  "visual": {
+    "fallbackColor": "#5c3018"
+  },
+  "sourceBodyBounds": {
+    "x": 158,
+    "y": 170,
+    "width": 1294,
+    "height": 692
+  },
+  "preferredZone": {
+    "minX": 0.05,
+    "maxX": 0.95,
+    "minY": 0.4,
+    "maxY": 0.9
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.32,
+      "burst": 1.6
+    },
+    "turnRateRadPerSec": 2.6,
+    "restFraction": 0.24,
+    "depthRange": [
+      0.3,
+      0.8
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 1.6,
+      "cohesion": 0.5,
+      "polarization": 0.15
+    },
+    "structureAffinity": 0.85,
+    "habits": [
+      {
+        "type": "homeShelter",
+        "kind": "anemone",
+        "rangeBodyLengths": 2.8,
+        "visitChancePerMin": 1,
+        "visitDurationSec": [
+          5,
+          14
+        ]
+      },
+      {
+        "type": "follow",
+        "chancePerMin": 0.9,
+        "durationSec": [
+          3,
+          9
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Amphiprion polymnus",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?genus=Amphiprion&species=polymnus&tbl=species"
+      },
+      {
+        "title": "Bray 2018, Fishes of Australia: Amphiprion polymnus",
+        "url": "https://fishesofaustralia.net.au/home/species/318"
+      },
+      {
+        "title": "Motomura et al. 2017: Commercial and Bycatch Market Fishes of Panay Island, p.173",
+        "url": "https://www.museum.kagoshima-u.ac.jp/staff/motomura/PhilippineFG_lowres.pdf"
+      },
+      {
+        "title": "Moyer & Steene (1979): Nesting behavior of the anemonefish Amphiprion polymnus",
+        "url": "https://www.jstage.jst.go.jp/article/jji1950/26/2/26_2_209/_pdf"
+      },
+      {
+        "title": "Moyer & Nakazono (1978): Protandrous Hermaphroditism in Six Species of the Anemonefish Genus Amphiprion in Japan",
+        "url": "https://www.jstage.jst.go.jp/article/jji1950/25/2/25_2_101/_pdf"
+      },
+      {
+        "title": "Rattanayuvakorn et al. (2005): Embryonic Development of Saddleback Anemonefish",
+        "url": "https://li01.tci-thaijo.org/index.php/anres/article/download/243346/166064/835888"
+      },
+      {
+        "title": "Rattanayuvakorn et al. (2006): Gonadal Development and Sex Inversion in Saddleback Anemonefish",
+        "url": "https://li01.tci-thaijo.org/index.php/anres/article/download/243548/166192/836706"
+      },
+      {
+        "title": "CSIRO Codes for Australian Aquatic Biota: 37372138",
+        "url": "https://www.cmar.csiro.au/data/caab/taxon_report.cfm?caab_code=37372138"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Amphiprion polymnus",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "東インド洋から西太平洋に分布し、南シナ海からニューアイルランド島、ソロモン諸島、オーストラリア北部、ニューカレドニアまで見られます。北は琉球列島など日本の南部でも記録があります。",
+    "temperament": "宿主のイソギンチャクごとに、成魚のペアと、ふつう2尾ほどの若い魚が暮らします。群れでいちばん大きい個体が雌、2番目に大きい個体が雄になる、雄から雌へ性転換する魚です。",
+    "movement": "宿主のイソギンチャクのそばを離れずに泳ぎます。砂地では、産卵に使う貝殻や葉などを、宿主の下まで押したり引いたりして運びます。追われると、雄は宿主の周りの水中をすばやく回りました。",
+    "habitat": "サンゴ礁に近い、シルトの混じるラグーンや港の砂底。砂に埋まるように生えるイソギンチャクを住みかにし、海草の茂みの中の宿主が多いと報告されています。記録された水深は2〜30mです。本水槽では、砂の上と岩棚にあるイソギンチャクを住みかにしています。",
+    "aliases": [
+      "Saddleback anemonefish",
+      "Saddleback clownfish",
+      "Panda anemonefish",
+      "Perca polymna"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Perciformes",
+      "orderJa": "スズキ目",
+      "family": "Pomacentridae",
+      "familyJa": "スズメダイ科"
+    },
+    "adultSizeCm": 10,
+    "sizeNote": "図鑑では標準体長10cm、最大は全長13cmとされます。野外で巣を構えていたペアには、標準体長10.6cmと10.2cmの組や、7.7cmと7.6cmの組がありました。雌は雄よりわずかに大きくなります。",
+    "distribution": "東インド洋と西太平洋。南シナ海からニューアイルランド島、ソロモン諸島、オーストラリア北部、ニューカレドニアまで分布し、北は琉球列島など日本の南部でも記録があります。",
+    "water": {
+      "salinity": "marine",
+      "temperatureC": [
+        25,
+        28
+      ]
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "IUCN の区分は、今回の調査では確かめられていません。1970年代の沖縄の調査では、津堅島の周りでしか見つかりませんでした。水温は、タイの飼育研究で親魚を飼っていた範囲です。"
+    },
+    "highlights": [
+      "橙褐色の顔と体に、目の後ろの白い帯と、背中から背びれへ続く大きな白い鞍形の斑があります。黒い尾びれは、ふちが白くなります。",
+      "砂地では、貝殻や葉などを宿主のイソギンチャクの下まで運び、そこに卵を産みます。",
+      "卵は雄が口で手入れし、ひれであおいで世話をします。",
+      "群れでいちばん大きい個体が雌になります。雌雄の大きさの差は、ほかのクマノミの仲間ほど大きくありません。"
+    ]
+  }
+}

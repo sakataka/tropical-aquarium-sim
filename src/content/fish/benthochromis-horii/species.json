@@ -1,0 +1,114 @@
+{
+  "id": "benthochromis-horii",
+  "displayName": "ベントクロミス・ホーリー",
+  "realBodyLengthCm": 15,
+  "swim": {
+    "tailBeatHz": 2.3,
+    "tailSweepRad": 0.36
+  },
+  "visual": {
+    "fallbackColor": "#6c6251"
+  },
+  "sourceBodyBounds": {
+    "x": 108,
+    "y": 236,
+    "width": 1395,
+    "height": 615
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.3,
+    "maxY": 0.8
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.45,
+      "burst": 2.2
+    },
+    "turnRateRadPerSec": 2.4,
+    "restFraction": 0.2,
+    "depthRange": [
+      0.2,
+      0.85
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0.3,
+      "polarization": 0.15
+    },
+    "structureAffinity": 0.5,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Benthochromis horii",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=70065"
+      },
+      {
+        "title": "Takahashi (2008): Description of a new cichlid fish species of the genus Benthochromis from Lake Tanganyika（要旨）",
+        "url": "https://www.researchgate.net/publication/230040336_Description_of_a_new_cichlid_fish_species_of_the_genus_Benthochromis_Perciformes_Cichlidae_from_Lake_Tanganyika"
+      },
+      {
+        "title": "FishBase field guide: Benthochromis horii",
+        "url": "https://www.fishbase.se/FieldGuide/FieldGuideSummary.php?GenusName=Benthochromis&SpeciesName=horii"
+      },
+      {
+        "title": "Konings (2015): Benthochromis controversy clarified",
+        "url": "https://cichlidae.com/species.php?content=news&id=2030"
+      },
+      {
+        "title": "Inoue et al. (2025): Behavioral sequences during courtship and territorial defense of male Benthochromis horii in Lake Tanganyika",
+        "url": "https://www.researchgate.net/publication/388231583_Behavioral_sequences_during_courtship_and_territorial_defense_of_male_Benthochromis_horii_in_Lake_Tanganyika"
+      },
+      {
+        "title": "Ronco et al. (2019/2020): The taxonomic diversity of the cichlid fish fauna of ancient Lake Tanganyika",
+        "url": "https://www.researchgate.net/publication/334121424_The_taxonomic_diversity_of_the_cichlid_fish_fauna_of_ancient_Lake_Tanganyika_East_Africa"
+      },
+      {
+        "title": "Ronco, Roesti & Salzburger (2019): Supplementary Information, Table S1",
+        "url": "https://static1.squarespace.com/static/589ae75c2994ca99ff6a5d1d/t/5d5fadca152cc00001cfa54e/1566551500767/rspb20191050supp1.pdf"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Benthochromis horii",
+    "originRegionId": "east-africa",
+    "originRegionName": "東アフリカ",
+    "origin": "東アフリカのタンガニーカ湖の固有種です。模式産地はザンビアのムトンドウェ島沖、水深60mです。タンザニア側のカンブウィンバや、ザンビアのコンベ岬でも雄が観察されています。",
+    "habitat": "深い岩場の、底に近い水中を利用します。原記載に基づく資料では水深60〜126m、2025年の研究では水深28〜36mの岩の上で、雄が繁殖のための場所を守っていました。この展示では、深い岩場の上に広がる青い水中を泳ぎます。",
+    "temperament": "雄は岩の上の砂や藻を取り除いて、直径20cmほどの繁殖のための場所を保ちます。雌には素早い動きと尾を振る動きで求愛し、体の側面を見せる誇示もします。同種の雄やほかの種の魚からは、その場所を守ります。",
+    "movement": "細長い体で、岩の上の水中にとどまって尾を振ります。本水槽では、岩場の上の中層から下のほうを泳ぎます。",
+    "aliases": [
+      "ベンソクロミス・ホーリー"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cichliformes",
+      "orderJa": "シクリッド目",
+      "family": "Cichlidae",
+      "familyJa": "シクリッド科"
+    },
+    "adultSizeCm": 15,
+    "sizeNote": "FishBase の最大は標準体長15.1cmで、原記載からの転載です。大型の雄は標準体長11.7cmを超え、腹びれが標準体長の30%より長くなります。ふつうの成魚の大きさは確かめられていません。展示では、糸のように伸びた尾びれの先まで含めて全長15cm前後を想定しています。",
+    "distribution": "タンガニーカ湖の固有種。ザンビアのムトンドウェ島沖やコンベ岬、タンザニア南部のカンブウィンバなどから記録があります。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2025,
+      "note": "区分と評価年は FishBase の表示で、IUCN の評価の本文は確かめられていません。"
+    },
+    "highlights": [
+      "成魚の雄は暗い褐色の地に真珠のような灰色の線が3本走り、頬と鰓ぶたの下半分が黄色です。雌にはこの線がありません。",
+      "大型の雄は腹びれが長く伸び、尾びれの上下の端も糸のように伸びます。",
+      "観賞魚の世界では、近縁の B. tricoti と混同されてきました。",
+      "卵と仔魚は雌が口の中で守ります。"
+    ]
+  }
+}

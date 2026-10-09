@@ -1,0 +1,130 @@
+{
+  "id": "blackbelly-dwarfgoby",
+  "displayName": "シロオビイソハゼ",
+  "realBodyLengthCm": 2.2,
+  "catalog": {
+    "scientificName": "Eviota atriventris",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "新種として記載されたときには、琉球列島、パラオ、フィリピン、インドネシア、パプアニューギニア、ソロモン諸島、ニューカレドニア、グレートバリアリーフから知られていました。その後、タイ、ブルネイ、マレーシアも分布に加えられています。模式標本は、パラオのコロール島の西で採集されました。",
+    "temperament": "単独か、小さな群れで見られます。危険を感じると、ミドリイシの仲間の枝サンゴの近くに隠れるとされます。",
+    "movement": "枝サンゴの上や枝の間で、底のすぐ上に浮かぶように泳ぎます。水中の動物プランクトンを食べます。本水槽では、サンゴのかけらが積もった岩陰のすぐ上を漂います。",
+    "habitat": "サンゴ礁にすみ、図鑑では水深3〜20mとされます。原記載には、水深20〜36mのサンゴと藻の生えた場所で採集された標本もあります。模式標本は、塊状のハマサンゴが多いパッチリーフで採集されました。",
+    "aliases": [
+      "Blackbelly dwarfgoby",
+      "Neon eviota",
+      "Gold neon pygmy goby"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Gobiiformes",
+      "orderJa": "ハゼ目",
+      "family": "Gobiidae",
+      "familyJa": "ハゼ科"
+    },
+    "adultSizeCm": 1.8,
+    "sizeNote": "標準体長。雄の模式標本は1.71cmで、記載に使われた標本のうち最大の雄は1.82cm、最大の雌は1.74cmでした。専門の図鑑は最大で約2.5cm、FishBase は1.7cmとしています。典型的な大きさは確かめられていません。",
+    "distribution": "琉球列島、タイ、マレーシア、ブルネイ、フィリピン、インドネシア、パラオ、パプアニューギニア、ソロモン諸島、ニューカレドニア、グレートバリアリーフから記録があります。日本では奄美大島の記録があります。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2015,
+      "note": "区分と評価年は FishBase の表示で、IUCN の評価の本文は確かめられていません。"
+    },
+    "highlights": [
+      "透き通った赤橙色の体で、黒い腹の上を、曲がった白い帯がはっきりと横切ります。頭から体には細い金色の線が走ります。",
+      "腹が黒く見えるのは、体の外から透けて見える腹膜の色です。種小名も、この黒い腹にちなみます。",
+      "雄は第1背びれの前の4本のとげが糸のように伸び、4本目がいちばん長くなります。",
+      "以前は別種の E. pellucida と誤って呼ばれていて、2012年に新種として記載されました。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 3.4
+  },
+  "visual": {
+    "fallbackColor": "#b8794a"
+  },
+  "sourceBodyBounds": {
+    "x": 103,
+    "y": 169,
+    "width": 1368,
+    "height": 646
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.55,
+    "maxY": 0.9
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.3,
+      "burst": 1.8
+    },
+    "turnRateRadPerSec": 2.9,
+    "restFraction": 0.45,
+    "depthRange": [
+      0.2,
+      0.8
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 3.5,
+      "cohesion": 0.1,
+      "polarization": 0
+    },
+    "structureAffinity": 0.85,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1,
+        "durationSec": [
+          5,
+          20
+        ]
+      },
+      {
+        "type": "homeShelter",
+        "kind": "cave",
+        "rangeBodyLengths": 6,
+        "visitChancePerMin": 0.5,
+        "visitDurationSec": [
+          5,
+          15
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Eviota atriventris",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=72115"
+      },
+      {
+        "title": "Greenfield & Suzuki 2012: Eviota atriventris, a New Goby Previously Misidentified as Eviota pellucida",
+        "url": "https://doi.org/10.11646/zootaxa.3197.1.3"
+      },
+      {
+        "title": "Greenfield & Winterbottom 2016: A key to the dwarfgoby species (Teleostei: Gobiidae: Eviota)",
+        "url": "https://www.oceansciencefoundation.org/josf/josf24d.pdf"
+      },
+      {
+        "title": "Bray 2020, Fishes of Australia: Neon Eviota, Eviota atriventris",
+        "url": "https://fishesofaustralia.net.au/home/species/1355"
+      },
+      {
+        "title": "国立科学博物館: 奄美大島産魚類目録",
+        "url": "https://www.kahaku.go.jp/albums/abm.php?d=2947&f=abm00003718.pdf&n=52_205.pdf"
+      },
+      {
+        "title": "FishBase: Eviota atriventris",
+        "url": "https://www.fishbase.se/summary/Eviota-atriventris.html"
+      }
+    ]
+  }
+}

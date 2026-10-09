@@ -1,0 +1,120 @@
+{
+  "id": "shortnose-gar",
+  "displayName": "ショートノーズガー",
+  "realBodyLengthCm": 62,
+  "catalog": {
+    "scientificName": "Lepisosteus platostomus",
+    "originRegionId": "north-america",
+    "originRegionName": "北米",
+    "origin": "米国中部から中南部の淡水域に分布し、ミシシッピ水系とルイジアナ州のメキシコ湾岸の川に見られます。五大湖の水系へは、運河を通って広がったと考えられています。",
+    "temperament": "魚のほか、昆虫やザリガニも食べます。増水した川では、陸の昆虫やカエルをよく食べていました。セミが大量に落ちてきた淵では、いちばん大きな個体が上流の端を守り、近づく魚を追い払いました。",
+    "movement": "水面のすぐ下で静かに止まり、ときどき水面へ上がって空気を飲み込みます。獲物にはゆっくり近づき、短く突進して横からくわえます。",
+    "habitat": "流れの緩い川の淵や後背水域、三日月湖に暮らし、ほかのガーより濁った水に強いとされます。本水槽では、ヌマスギと倒木のある北米南部の湿地にいます。",
+    "aliases": [
+      "shortnose gar",
+      "Shortbill Gar",
+      "Stubnose Gar",
+      "ガー"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Lepisosteiformes",
+      "orderJa": "ガー目",
+      "family": "Lepisosteidae",
+      "familyJa": "ガー科"
+    },
+    "adultSizeCm": 62,
+    "sizeNote": "FishBase のよく見られる大きさは全長62.5cmで、ミズーリ州の解説ではふつう約71cmまでです。最大は全長88cmとされます。",
+    "distribution": "ミシシッピ水系とルイジアナ州のメキシコ湾岸の川など、米国中部から中南部に分布します。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2012,
+      "note": "FishBase の表示による評価で、IUCNの原票は確認できていません。"
+    },
+    "highlights": [
+      "吻は同じ仲間のガーより短く、幅があります。",
+      "頭と体には斑点がほとんどなく、背びれ・尻びれ・尾びれに黒い丸い斑点が出ます。",
+      "水面で空気を飲み込み、血管の多いうきぶくろで呼吸します。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 1.0
+  },
+  "visual": {
+    "fallbackColor": "#988667"
+  },
+  "sourceBodyBounds": {
+    "x": 63,
+    "y": 347,
+    "width": 1416,
+    "height": 357
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.08,
+    "maxY": 0.65
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.13,
+      "burst": 0.5
+    },
+    "turnRateRadPerSec": 1.3,
+    "restFraction": 0.5,
+    "depthRange": [
+      0.25,
+      0.85
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 1.8,
+      "cohesion": 0,
+      "polarization": 0.04
+    },
+    "structureAffinity": 0.45,
+    "habits": [
+      {
+        "type": "airBreathing",
+        "breathsPerHour": [
+          4,
+          10
+        ],
+        "style": "rise"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Missouri Department of Conservation: Shortnose Gar",
+        "url": "https://mdc.mo.gov/discover-nature/field-guide/shortnose-gar"
+      },
+      {
+        "title": "Fishes of Texas: Lepisosteus platostomus",
+        "url": "https://fishesoftexas.org/taxa/lepisosteus-platostomus/"
+      },
+      {
+        "title": "Walker et al. (2013), Differences in diet and feeding ecology of similar-sized spotted and shortnose gars during flooding",
+        "url": "https://www.researchgate.net/publication/264453850_Differences_in_diet_and_feeding_ecology_of_similar-sized_spotted_Lepisosteus_oculatus_and_shortnose_Lepisosteus_platostomus_gars_during_flooding_of_a_south-eastern_US_river"
+      },
+      {
+        "title": "Vokoun (2000), Shortnose Gar Foraging on Periodical Cicadas",
+        "url": "https://www.researchgate.net/publication/232662886_Shortnose_Gar_Lepisosteus_platostomus_Foraging_on_Periodical_Cicadas_Magicicada_spp_Territorial_Defense_of_Profitable_Pool_Positions"
+      },
+      {
+        "title": "USFWS (2025), Shortnose Gar Ecological Risk Screening Summary",
+        "url": "https://www.fws.gov/sites/default/files/documents/2025-04/ecological-risk-screening-summary-shortnose-gar.pdf"
+      },
+      {
+        "title": "FishBase: Lepisosteus platostomus",
+        "url": "https://www.fishbase.se/summary/Lepisosteus-platostomus.html"
+      }
+    ]
+  }
+}

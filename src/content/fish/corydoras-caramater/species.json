@@ -1,0 +1,118 @@
+{
+  "id": "corydoras-caramater",
+  "displayName": "コリドラス・カラマーテル",
+  "realBodyLengthCm": 5.5,
+  "swim": {
+    "tailBeatHz": 2.9,
+    "tailSweepRad": 0.43,
+    "mouthAnchor": {
+      "x": 0.02,
+      "y": 0.68
+    }
+  },
+  "visual": {
+    "fallbackColor": "#ac916f"
+  },
+  "sourceBodyBounds": {
+    "x": 68,
+    "y": 146,
+    "width": 1427,
+    "height": 650
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.7,
+    "maxY": 0.94
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.42,
+      "burst": 2.1
+    },
+    "turnRateRadPerSec": 2.4,
+    "restFraction": 0.22,
+    "depthRange": [
+      0.12,
+      0.82
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.4,
+      "cohesion": 0.55,
+      "polarization": 0.28
+    },
+    "structureAffinity": 0.45,
+    "habits": [
+      {
+        "type": "bottomForage"
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.3,
+        "durationSec": [
+          6,
+          24
+        ]
+      },
+      {
+        "type": "airBreathing",
+        "breathsPerHour": [
+          2,
+          6
+        ],
+        "style": "dash"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Tencatt, Couto, Santos & Sousa (2024) A new long-snouted Corydoras from the rio Xingu and rio Tapajós basins. Neotropical Ichthyology 22(1): e230112",
+        "url": "https://www.ni.bio.br/content/v22n1/1982-0224-2023-0112/1982-0224-ni-22-01-e230112.pdf"
+      },
+      {
+        "title": "Eschmeyer's Catalog of Fishes — Corydoras caramater",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=77600"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Corydoras caramater",
+    "originRegionId": "south-america",
+    "originRegionName": "南米",
+    "origin": "ブラジル・パラー州の、シングー川とタパジョス川の水系に分布します。模式産地は、シングー川水系のバカジャイ川です。",
+    "temperament": "群れで暮らす小型の底ものです。タパジョス川水系の小川では、よく似た色のコリドラス2種と混ざった群れが観察されています。",
+    "movement": "砂や落ち葉の底近くで群れて泳ぎます。この展示では、ほかのコリドラスと同じように、底を短く進んでは止まり、ひげで砂を探る動きで表しています。",
+    "habitat": "小さな川や支流にすみます。タパジョス川水系の調査地は、幅1〜3m、深さおよそ30cmまでの緩やかな流れで、細かな砂や砂利、落ち葉、沈んだ枝、水草がありました。",
+    "aliases": [
+      "CW83",
+      "CW083",
+      "Corydoras sp. CW83"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Siluriformes",
+      "orderJa": "ナマズ目",
+      "family": "Callichthyidae",
+      "familyJa": "カリクティス科"
+    },
+    "adultSizeCm": 4.5,
+    "sizeNote": "原記載で成魚とされたシングー川の標本は、標準体長3.6〜4.5cmです。計測した18標本は2.9〜4.9cm、平均3.9cmでした。展示では尾びれを含めて全長5.5cmほどで描いています。",
+    "distribution": "ブラジル・パラー州の固有種です。シングー川水系のバカジャ川、バカジャイ川、ヴォルタ・グランデの右岸の支流などと、タパジョス川上流のジャカレアカンガ周辺から記録されています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "note": "IUCNの公式評価は確かめられていません。2024年の原記載の著者は、分布域の広さから軽度懸念（LC）を提案しています。一方で、ベロモンテ・ダムによる環境の変化や、違法な金採掘への懸念も記しています。"
+    },
+    "highlights": [
+      "円すい形に長く伸びた吻が特徴で、口の端には小さな三角形の皮弁があります。",
+      "生きているときは淡い黄色から橙色を帯び、緑がかった黄色の光沢があります。目を横切る帯は淡く、ぼんやりしています。",
+      "仔魚の吻は短く丸く、成長につれて骨板と成魚に近い模様が現れます。",
+      "流通名CW83で知られていた魚が、2024年に新種として記載されました。"
+    ]
+  }
+}

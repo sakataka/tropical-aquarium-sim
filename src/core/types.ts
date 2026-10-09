@@ -142,6 +142,11 @@ export type FishSwimStyle = {
    * 後脚（hind）は腰・膝・足首・足先の4点、前脚（fore）は肩・肘・手先の3点。左右は体の中心線（footAnchor.y）のどちら側かで決まる。
    */
   limbs: { kind: "hind" | "fore"; joints: Vec2[] }[];
+  /**
+   * 放射相称の体（ヒトデ、ウニ）。x・y は体の中心（ヒトデは盤の中心、ウニは殻の中心。画像の横幅・高さに対する比率）、
+   * radius は動かさない体（ヒトデの盤、ウニの殻）の半径、reach は腕の先・棘の先までのふつうの距離（どちらも画像の横幅に対する比率）。
+   */
+  radial: { x: number; y: number; radius: number; reach: number };
 };
 
 /** IUCN レッドリストの区分。NE は未評価。 */

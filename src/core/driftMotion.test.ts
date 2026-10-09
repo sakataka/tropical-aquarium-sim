@@ -1,9 +1,10 @@
 import { describe, expect, test } from "vitest";
-import { fishCatalog, getTankById } from "./catalog";
+import { fishCatalog, getSceneById, getTankById } from "./catalog";
 import { bellContraction } from "./driftMotion";
 import { createFishFromStock } from "./fishPopulation";
 import { stepSimulation } from "./simulation";
 import { startleFish } from "./startle";
+import { insideTerrain } from "./terrainMotion";
 import type { FishSpeciesDefinition, TankDefinition } from "./types";
 
 // クラゲの種がまだ水槽にないうちも確かめられるよう、既存の魚の定義をクラゲに作り替えて使う。
@@ -91,6 +92,24 @@ describe("drifting jellies", () => {
     const heightCm = species.realBodyLengthCm * fish!.bodyLengthVariance * 1000 / 600;
     expect(fish!.position.y).toBeGreaterThan(TANK.heightCm - TANK.safeMarginCm - heightCm);
     expect(fish!.behaviorMode).toBe("rest");
+  });
+
+  test("an upside-down jelly sinking onto a rock lies on the rock instead of sinking into it", () => {
+    const species = jelly("test-upside-down", { top: 0.65, bottom: 1 });
+    const scene = { ...getSceneById("cube-stones")!, terrain: { surfaces: [], occluders: [], obstacles: [
+      { id: "rock", center: { x: .5, y: .95, depth: .5 }, radius: { x: .25, y: .15 }, depthRadius: .6 }] } };
+    const context = { tank: TANK, scene, species, frame: { x: 0, y: 0, width: 1, height: 1 } };
+    let fish = createFishFromStockWith(species, 1, () => 0.5).map((f) => ({ ...f, position: { x: 30, y: 50 }, depth: .5 }));
+    for (let i = 0; i < 120 * 20; i++) {
+      const previous = fish[0]!;
+      fish = stepSimulation({ tank: TANK, scene, species: { [species.id]: species }, fish, deltaSec: 0.05 }).fish;
+      expect(insideTerrain(fish[0]!.position, fish[0]!.depth, context)).toBe(false);
+      expect(Math.hypot(fish[0]!.position.x - previous.position.x, fish[0]!.position.y - previous.position.y)).toBeLessThan(0.2);
+    }
+    expect(fish[0]!.behaviorMode).toBe("rest");
+    // 岩の上面（回避領域の上端）の近くまで降りて止まる。
+    const rockTop = TANK.heightCm * (.95 - .15) - species.realBodyLengthCm * .2;
+    expect(fish[0]!.position.y).toBeGreaterThan(rockTop - 0.5);
   });
 
   test("jellies do not react to a tap on the glass", () => {

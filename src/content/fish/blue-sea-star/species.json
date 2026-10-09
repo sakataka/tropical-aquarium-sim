@@ -1,0 +1,149 @@
+{
+  "id": "blue-sea-star",
+  "displayName": "アオヒトデ",
+  "realBodyLengthCm": 32,
+  "catalog": {
+    "scientificName": "Linckia laevigata",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "熱帯のインド洋と西太平洋のサンゴ礁に分布します。日本では熊野灘より南で見られ、鹿児島県の本土にも現れます。",
+    "temperament": "サンゴモに覆われた岩の表面や、基質の上の生物膜を食べます。眼で像を捉えることができ、色は見分けられず像も粗いものの、礁へ戻る方向を選ぶのに使われることが実験で確かめられています。本水槽では、岩や砂の上で長く休み、ときどき場所を移します。",
+    "movement": "移動の速さは、今回の調査では確かめられていません。本水槽では、体を曲げずに面の上をごくゆっくり滑るように這い、進む側の腕の先を少し持ち上げます。",
+    "habitat": "サンゴ礁の礁原や斜面で暮らし、水深0〜60mから知られています。グレートバリアリーフでは、藻類に覆われた礁頂や礫の多い所で見られました。本水槽では、サンゴの岩組と白い砂地をイメージしています。",
+    "aliases": [
+      "Blue sea star",
+      "Blue linckia",
+      "Blue seastar"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Valvatida",
+      "orderJa": "アカヒトデ目",
+      "family": "Ophidiasteridae",
+      "familyJa": "ホウキボシ科"
+    },
+    "adultSizeCm": 20,
+    "sizeNote": "腕の長さでの値です。水族館の解説では腕の長さが20cmほどとされます。成体のふつうの直径や最大の大きさは、今回の調査では確かめられていません。90cm水槽に合わせ、画面では腕の長さ約14cm（腕の先から先まで約32cm）の、小さめの個体で描いています。",
+    "distribution": "熱帯のインド洋と西太平洋のサンゴ礁に分布します。日本では熊野灘より南で見られます。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "今のIUCN レッドリストの区分は、今回の調査では確かめられていません（2011年の資料では未評価）。"
+    },
+    "highlights": [
+      "小さな盤から、円筒形の5本の腕が伸びます。",
+      "鮮やかな青のほか、緑がかった青や橙色の個体もいます。色だけで別の種とはされません。",
+      "眼で礁の方向を見分けて戻ることが、実験で確かめられています。",
+      "岩の表面の生物膜やサンゴモの面を食べます。本水槽では、ときどき立ち止まって盤を少し盛り上げます。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "seaStar",
+    "tailBeatHz": 0.05,
+    "bodyWaveStart": 0.5,
+    "waveCount": 2,
+    "tailSweepRad": 0.32,
+    "verticalFlex": 0.02,
+    "radial": {
+      "x": 0.607,
+      "y": 0.514,
+      "radius": 0.077,
+      "reach": 0.45
+    },
+    "footAnchor": {
+      "x": 0.607,
+      "y": 0.514
+    }
+  },
+  "visual": {
+    "fallbackColor": "#2556c8"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.8,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.004,
+      "burst": 0.008
+    },
+    "turnRateRadPerSec": 0.3,
+    "restFraction": 0.7,
+    "depthRange": [
+      0.1,
+      0.9
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 1.2,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.5,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 0.6,
+        "durationSec": [
+          30,
+          90
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 0.5,
+        "durationSec": [
+          60,
+          180
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "JAMSTEC BISMaL, Linckia laevigata アオヒトデ (9005078)",
+        "url": "https://www.godac.jamstec.go.jp/bismal/j/view/9005078"
+      },
+      {
+        "title": "Western Australian Museum Collections, Linckia laevigata",
+        "url": "https://museum.wa.gov.au/online-collections/names/Linckia-laevigata"
+      },
+      {
+        "title": "Laxton (1974), A preliminary study of the biology and ecology of the blue starfish Linckia laevigata on the Australian Great Barrier Reef",
+        "url": "https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1095-8312.1974.tb00713.x"
+      },
+      {
+        "title": "Garm & Nilsson (2014), Visual navigation in starfish: first evidence for the use of vision and eyes in starfish",
+        "url": "https://lup.lub.lu.se/search/publication/5580382a-6139-4fad-9f40-3499ed0fc3b0"
+      },
+      {
+        "title": "いおワールドかごしま水族館、アオヒトデ",
+        "url": "https://ioworld.jp/guide/guide-900"
+      },
+      {
+        "title": "Otwoma & Kochzius (2016), Genetic Population Structure of the Coral Reef Sea Star Linckia laevigata in the Western Indian Ocean and Indo-West Pacific",
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0165552"
+      },
+      {
+        "title": "Animal Diversity Web (2011), Linckia laevigata",
+        "url": "https://animaldiversity.org/accounts/Linckia_laevigata/"
+      },
+      {
+        "title": "National Museum of Natural Science Taiwan, Linckia laevigata",
+        "url": "https://www.nmns.edu.tw/en/our-research/featured/Collection-E00374/"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 182,
+    "y": 39,
+    "width": 1176,
+    "height": 945
+  }
+}

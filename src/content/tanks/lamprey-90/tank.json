@@ -3,12 +3,12 @@
   "order": 175,
   "displayName": "ヤツメウナギの川底水槽",
   "exhibitName": "Lamprey Riverbed",
-  "category": "北日本の冷たい川",
-  "description": "藻の付いた丸石と砂利の川底を、カワヤツメが細長い体を大きくくねらせて泳ぎ、ときどき砂の上で休む120cmの水槽です。",
+  "category": "北半球の冷たい川",
+  "description": "藻の付いた丸石と砂利の川底を再現した120cmの水槽。日本のカワヤツメと、ヨーロッパのヨーロッパカワヤツメ・ヨーロッパスナヤツメが、細長い体を大きくくねらせて泳ぎ、ときどき砂の上で休みます。海で育って川へ戻る種と、一生を川で過ごす小さな種を見比べられます。",
   "widthCm": 120,
   "heightCm": 52,
   "depthCm": 60,
-  "maxTotalFish": 4,
+  "maxTotalFish": 9,
   "sceneIds": [
     "lamprey-90"
   ],
@@ -16,12 +16,28 @@
     {
       "speciesId": "arctic-lamprey",
       "maxCount": 4
+    },
+    {
+      "speciesId": "european-river-lamprey",
+      "maxCount": 2
+    },
+    {
+      "speciesId": "european-brook-lamprey",
+      "maxCount": 3
     }
   ],
   "defaultStock": [
     {
       "speciesId": "arctic-lamprey",
       "count": 3
+    },
+    {
+      "speciesId": "european-river-lamprey",
+      "count": 2
+    },
+    {
+      "speciesId": "european-brook-lamprey",
+      "count": 2
     }
   ]
 }

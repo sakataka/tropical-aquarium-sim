@@ -1,0 +1,128 @@
+{
+  "id": "longnose-lancetfish",
+  "displayName": "ミズウオ",
+  "realBodyLengthCm": 150,
+  "catalog": {
+    "scientificName": "Alepisaurus ferox",
+    "originRegionId": "worldwide",
+    "originRegionName": "世界の海",
+    "origin": "世界の熱帯から冷温帯の外洋に広く分布します。日本では、静岡県の駿河湾にある三保海岸に、冬から春にかけて打ち上げられることが知られています。",
+    "temperament": "魚や甲殻類、イカの仲間などを食べる捕食者です。小さな同種の個体も食べ、大きな個体の胃から仲間が見つかることがあります。",
+    "movement": "外洋の水柱で暮らします。深海の探査では、頭を上にして立つような姿勢でとどまる個体が観察されました。筋肉の性質や姿勢から、待ち伏せ型の捕食者ではないかと考えられています。",
+    "habitat": "外洋の表層から深海の中層まで、水深0〜1800mほどの記録があります。西インド洋の延縄では、水深60〜350mほどの層で漁獲されました。",
+    "aliases": [
+      "Longnose lancetfish",
+      "Long-snouted lancetfish",
+      "Longsnout lancetfish",
+      "Lancetfish",
+      "Handsaw-fish",
+      "Alepisaurus richardsonii",
+      "Alepisaurus altivelis"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Aulopiformes",
+      "orderJa": "ヒメ目",
+      "family": "Alepisauridae",
+      "familyJa": "ミズウオ科"
+    },
+    "adultSizeCm": 150,
+    "sizeNote": "典型的な成魚の大きさは確定しておらず、ここでの値は展示用の目安です。最大は標準体長2.08mとする報告があり、オーストラリア博物館は2.15mと紹介しています。駿河湾に打ち上げられる個体は55〜125cmほどで、生殖腺はまだ未熟でした。",
+    "distribution": "世界の熱帯から冷温帯の海に広く分布し、大西洋のマデイラ島沖やインド洋、日本の駿河湾などで記録されています。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "rarelyDisplayed",
+    "conservation": {
+      "note": "IUCNの評価は、今回の調査では確認できていません。マグロやカジキの延縄で混獲され、胃の中からプラスチックが見つかった例も報告されています。"
+    },
+    "highlights": [
+      "えらぶたの後ろあたりから始まる、帆のように高い背びれを持ち、背中の溝にたたむことができます。",
+      "鱗のない銀色の体と、大きな口に並ぶ鋭い牙が目立ちます。",
+      "胃の中に獲物がほとんど消化されずに残っていることが多く、深海の食物網を調べる手がかりにされています。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 0.8,
+    "mouthAnchor": {
+      "x": 0.0,
+      "y": 0.6
+    }
+  },
+  "visual": {
+    "fallbackColor": "#888d96"
+  },
+  "sourceBodyBounds": {
+    "x": 79,
+    "y": 287,
+    "width": 1424,
+    "height": 389
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.15,
+    "maxY": 0.75
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.1,
+      "burst": 0.8
+    },
+    "turnRateRadPerSec": 1.2,
+    "restFraction": 0.5,
+    "depthRange": [
+      0.25,
+      0.85
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 3,
+      "cohesion": 0,
+      "polarization": 0.02
+    },
+    "structureAffinity": 0,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes — Alepisaurus ferox",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?genus=Alepisaurus&species=ferox&tbl=species"
+      },
+      {
+        "title": "東海大学海洋科学博物館 久保田・佐藤・伊藤 2019 — 深海魚ミズウオの話〜成長について〜",
+        "url": "https://www.muse-tokai.jp/wp/wp-content/uploads/2019/01/0f83d59eac0567699d8f3c35b55f0c4d.pdf"
+      },
+      {
+        "title": "Australian Museum — Longnose Lancetfish",
+        "url": "https://australian.museum/learn/animals/fishes/longnose-lancetfish-alepisaurus-ferox/"
+      },
+      {
+        "title": "Fishes of the Atlantic Coast of Canada — Longnose lancetfish",
+        "url": "https://waves-vagues.dfo-mpo.gc.ca/library-bibliotheque/9973.pdf"
+      },
+      {
+        "title": "NOAA Okeanos Explorer EX1708 — Explorations Far Above the Musician Seamounts",
+        "url": "https://archive.oceanexplorer.noaa.gov/okeanos/explorations/ex1708/logs/sept23/welcome.html"
+      },
+      {
+        "title": "NOAA Fisheries — How an Odd, Cannibalistic Fish Is Helping Us Understand the Mysteries of the Deep",
+        "url": "https://www.fisheries.noaa.gov/feature-story/how-odd-cannibalistic-fish-helping-us-understand-mysteries-deep"
+      },
+      {
+        "title": "Portner et al. 2023 — Harnessing a mesopelagic predator as a biological sampler",
+        "url": "https://www.nature.com/articles/s41598-023-41298-9"
+      },
+      {
+        "title": "Romanov & Zamorov 2007 — Regional Feeding Patterns of the Longnose Lancetfish of the Western Indian Ocean",
+        "url": "https://www.researchgate.net/publication/260156764_Regional_Feeding_Patterns_of_the_Longnose_Lancetfish_Alepisaurus_ferox_Lowe_1833_of_the_Western_Indian_Ocean"
+      },
+      {
+        "title": "Matarese et al. 1989 — Laboratory guide to early life history stages of northeast Pacific fishes",
+        "url": "https://spo.nmfs.noaa.gov/sites/default/files/tr80opt_0_0.pdf"
+      }
+    ]
+  }
+}

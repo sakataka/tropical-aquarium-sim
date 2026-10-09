@@ -1,0 +1,133 @@
+{
+  "id": "marbled-lungfish",
+  "displayName": "プロトプテルス・エチオピクス",
+  "realBodyLengthCm": 100,
+  "swim": {
+    "tailBeatHz": 1.0,
+    "bodyWaveStart": 0.15,
+    "waveCount": 1.25,
+    "tailSweepRad": 0.3,
+    "verticalFlex": 0.04
+  },
+  "visual": {
+    "fallbackColor": "#7a6e5a"
+  },
+  "sourceBodyBounds": {
+    "x": 66,
+    "y": 344,
+    "width": 1435,
+    "height": 459
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.64,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "undulate",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.14,
+      "burst": 0.6
+    },
+    "turnRateRadPerSec": 1.4,
+    "restFraction": 0.5,
+    "depthRange": [
+      0.3,
+      0.9
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0,
+      "polarization": 0.02
+    },
+    "structureAffinity": 0.55,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.0,
+        "durationSec": [
+          12,
+          40
+        ]
+      },
+      {
+        "type": "airBreathing",
+        "breathsPerHour": [
+          4,
+          6
+        ],
+        "style": "rise"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Uganda MAAIF: Aquaculture Training Manual, p. 207",
+        "url": "https://www.agriculture.go.ug/wp-content/uploads/2020/03/MAAIF-AQUACULTURE-MANUAL-FINAL.pdf"
+      },
+      {
+        "title": "Royal Museum for Central Africa: CLOFFA, Protopterus aethiopicus",
+        "url": "https://faunafri.africamuseum.be/cloffa/table/taxon2/view?idtaxon%3Aint=2469"
+      },
+      {
+        "title": "Niabi Zoo: Marbled Lungfish",
+        "url": "https://www.niabizoo.com/wp-content/uploads/2025/01/Marbled-Lungfish.pdf"
+      },
+      {
+        "title": "しまね海洋館アクアス（2011-03-27）",
+        "url": "https://aquas.or.jp/blog/coralleaf/5511/"
+      },
+      {
+        "title": "中西・竹居（2020）プロトプテルス・エチオピクスの乾眠、鳥羽水族館年報16: 47–49",
+        "url": "https://aquarium.co.jp/tobacms/wp-content/uploads/16-2020.pdf"
+      },
+      {
+        "title": "Mlewa & Green (2004), Biology of the marbled lungfish in Lake Baringo, Kenya",
+        "url": "https://www.researchgate.net/publication/230386625_Biology_of_the_marbled_lungfish_Protopterus_aethiopicus_Heckel_in_Lake_Baringo_Kenya"
+      },
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Protopterus",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?tbl=species&genus=Protopterus"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Protopterus aethiopicus",
+    "originRegionId": "east-africa",
+    "originRegionName": "東アフリカ",
+    "origin": "東部・中部アフリカのナイル川、ビクトリア湖、タンガニーカ湖の水系などに分布し、コンゴ川にも記録があります。ケニアのバリンゴ湖の集団は、人の手で持ち込まれたものです。",
+    "temperament": "成魚は貝類を中心に、小魚や昆虫も食べます。持ち込まれたバリンゴ湖の集団は、主に魚を食べていました。魚や無脊椎動物を食べるため、ほかの生き物と一緒に飼えるかは確かめられていません。",
+    "movement": "円筒形の長い体で泳ぎ、糸のように細い胸びれと腹びれを持ちます。肺があり、しまね海洋館アクアスで飼われていた個体は、大きな口を水面に出して空気を吸っていました。",
+    "habitat": "川や湖の岸辺、湿地、氾濫原に暮らし、若魚はパピルスの根が絡む所に見られます。干上がる氾濫原では、泥の中に粘液の繭をつくって乾眠することがあります。この水槽は、倒木の根と苔むした石のある泥底の沼を表しています。",
+    "aliases": [
+      "Marbled lungfish",
+      "Leopard lungfish"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Ceratodontiformes",
+      "orderJa": "ケラトドゥス目",
+      "family": "Protopteridae",
+      "familyJa": "プロトプテルス科"
+    },
+    "adultSizeCm": 100,
+    "sizeNote": "典型的な成魚の大きさは確認できず、ここでの値は展示用の目安です。動物園の解説では3〜6フィート（約0.9〜1.8m）とされ、最大の記録は全長200cm、体重17kgです。バリンゴ湖では、雌は全長70〜76cm、雄は82〜88cmで成熟していました。",
+    "distribution": "東部・中部アフリカのナイル川、ビクトリア湖、タンガニーカ湖の水系と、コンゴ川の水系に分布します。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "note": "Catalog of Fishes に転載された評価で、IUCNの原票は確認できていません。"
+    },
+    "highlights": [
+      "なめらかに見える皮膚の下に鱗が埋まっていて、体とひれに暗い大理石模様が広がります。",
+      "肺を持ち、水面に口を出して空気を吸います。",
+      "雨期には雄の巣穴に雌が卵を産み、雄が卵と若魚を約8週間守ります。"
+    ]
+  }
+}

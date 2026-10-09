@@ -4,11 +4,11 @@
   "displayName": "ハイギョの沼水槽",
   "exhibitName": "Lungfishes",
   "category": "南米・アフリカ・オーストラリアの沼と川",
-  "description": "倒木の根と苔むした石のある泥底を、オーストラリアハイギョ、南米のレピドシレン、アフリカのプロトプテルスが底近くをゆったり泳ぎ、ときどき水面へ空気を吸いに上がる320cmの水槽です。オーストラリアハイギョは明るい間、根の陰で休みます。",
+  "description": "倒木の根と苔むした石のある泥底を、オーストラリアハイギョ、南米のレピドシレン、アフリカのプロトプテルス2種が底近くをゆったり泳ぎ、ときどき水面へ空気を吸いに上がる320cmの水槽です。大理石模様のプロトプテルス・エチオピクスは、糸のような4本のひれを垂らして進みます。オーストラリアハイギョは明るい間、根の陰で休みます。",
   "widthCm": 320,
   "heightCm": 101,
   "depthCm": 120,
-  "maxTotalFish": 5,
+  "maxTotalFish": 7,
   "sceneIds": [
     "lungfish-240"
   ],
@@ -24,6 +24,10 @@
     {
       "speciesId": "west-african-lungfish",
       "maxCount": 2
+    },
+    {
+      "speciesId": "marbled-lungfish",
+      "maxCount": 2
     }
   ],
   "defaultStock": [
@@ -37,6 +41,10 @@
     },
     {
       "speciesId": "west-african-lungfish",
+      "count": 1
+    },
+    {
+      "speciesId": "marbled-lungfish",
       "count": 1
     }
   ]

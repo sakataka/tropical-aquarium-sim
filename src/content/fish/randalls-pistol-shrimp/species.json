@@ -1,0 +1,144 @@
+{
+  "id": "randalls-pistol-shrimp",
+  "displayName": "コトブキテッポウエビ",
+  "realBodyLengthCm": 3.5,
+  "swim": {
+    "bodyPlan": "crustacean",
+    "headStart": 0.33,
+    "tailBeatHz": 0.6,
+    "bodyWaveStart": 0.85,
+    "tailSweepRad": 0,
+    "verticalFlex": 0,
+    "footAnchor": {
+      "x": 0.46,
+      "y": 0.94
+    }
+  },
+  "visual": {
+    "fallbackColor": "#d28b6f"
+  },
+  "sourceBodyBounds": {
+    "x": 32,
+    "y": 160,
+    "width": 1472,
+    "height": 676
+  },
+  "preferredZone": {
+    "minX": 0.1,
+    "maxX": 0.9,
+    "minY": 0.66,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.08,
+      "burst": 0.5
+    },
+    "turnRateRadPerSec": 1.3,
+    "restFraction": 0.55,
+    "depthRange": [
+      0.15,
+      0.7
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 3,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.8,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 2.5,
+        "durationSec": [
+          6,
+          16
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.8,
+        "durationSec": [
+          10,
+          30
+        ]
+      },
+      {
+        "type": "homeShelter",
+        "kind": "burrow",
+        "rangeBodyLengths": 3,
+        "visitChancePerMin": 0.8,
+        "visitDurationSec": [
+          20,
+          60
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Banner & Banner (1980), Alpheus randalli 原記載",
+        "url": "https://research.nhm.org/pdfs/24664/24664.pdf"
+      },
+      {
+        "title": "ITIS: Alpheus randalli TSN 1148058",
+        "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=1148058"
+      },
+      {
+        "title": "Iwata & Hirata (1994), A New Gobiid Fish, Stonogobiops pentafasciata, from Kashiwajima Island",
+        "url": "https://www.jstage.jst.go.jp/article/jji1950/41/2/41_2_189/_pdf/-char/ja"
+      },
+      {
+        "title": "Soyama et al. (2024), Development of a Cavitation Generator Mimicking Pistol Shrimp",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10813229/"
+      },
+      {
+        "title": "城崎マリンワールド Web魚名板 コトブキテッポウエビ",
+        "url": "https://marineworld.hiyoriyama.co.jp/name/sz-2f/09/ikimono-321/"
+      },
+      {
+        "title": "Szczebak, Roger Williams University: Yasha goby reared in captivity",
+        "url": "https://www.larvalcultureproject.org/entry/1-yasha-goby-stonogobiops-yasha-reared-in-captivity-photos-and-videos-included/"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Alpheus randalli",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "1980年に、南太平洋のマルケサス諸島ヌクヒバ島で採集された標本をもとに新種として記載されました。インド洋のモルディブやセーシェルでも、よく似た色のエビが本種と考えられて記録されていますが、採集はされていません。日本では高知県の柏島で、共生ハゼの巣穴にいる記録があります。",
+    "temperament": "砂に巣穴を掘り、ハゼと一緒に暮らすテッポウエビです。模式標本はダテハゼ属のハゼと同居していました。柏島では、キツネメネジリンボウの巣穴にほぼいつも本種がいたと報告されています。水族館の解説では、エビが砂を掘り、ヤシャハゼが外敵を見張るとされます。",
+    "movement": "片方の大きなはさみを勢いよく閉じて水を噴き出し、泡をつくって音を出します。本水槽では、巣穴のまわりの砂の上を脚で歩いて砂をつつき、ときどき巣穴へ戻ります。",
+    "habitat": "砂と細かいサンゴのかけらが混じる海底。模式標本は水深18mで採集されました。柏島では、澄んだ海の細かい砂の斜面で、水深18〜40mの共生ハゼの巣穴に見つかっています。本水槽では、岩の根元にある巣穴のまわりの砂地に暮らしています。",
+    "aliases": [
+      "Randall's pistol shrimp",
+      "Randall's snapping shrimp",
+      "Redbanded snapping shrimp"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Decapoda",
+      "orderJa": "十脚目",
+      "family": "Alpheidae",
+      "familyJa": "テッポウエビ科"
+    },
+    "adultSizeCm": 3.5,
+    "sizeNote": "泡の研究に使われた個体は、触角を除いて約3.5cmでした。新種記載のときの雄の標本2匹は2.8cmと2.5cmです（どこからどこまで測ったかの記載はありません）。ふつうの大きさや最大の大きさは、今回の調査では確かめられていません。",
+    "distribution": "南太平洋のマルケサス諸島で記載され、日本の高知県柏島でも記録があります。インド洋のモルディブやセーシェルの記録は、色と共生の様子から本種と推定されたものです。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "今回の調査では IUCN の評価を確認できませんでした。"
+    },
+    "highlights": [
+      "透き通った白い体に、赤い帯や斑紋が不規則に入ります。歩脚の先は黄色から黄緑色です。",
+      "左右のはさみの大きさが大きく違います。大きなはさみを急に閉じると水が噴き出し、直径3mmほどの泡ができて音が出ます。",
+      "巣穴を掘るエビと、見張り役のハゼが一緒に暮らします。柏島ではキツネメネジリンボウ、水族館ではヤシャハゼとの同居が知られています。"
+    ]
+  }
+}

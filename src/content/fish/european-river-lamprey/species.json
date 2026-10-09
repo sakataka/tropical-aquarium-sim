@@ -1,0 +1,131 @@
+{
+  "id": "european-river-lamprey",
+  "displayName": "ヨーロッパカワヤツメ",
+  "realBodyLengthCm": 40,
+  "swim": {
+    "tailBeatHz": 1.6,
+    "bodyWaveStart": 0.1,
+    "waveCount": 1.3,
+    "tailSweepRad": 0.35,
+    "verticalFlex": 0.06,
+    "mouthAnchor": {
+      "x": 0.02,
+      "y": 0.64
+    }
+  },
+  "visual": {
+    "fallbackColor": "#908471"
+  },
+  "sourceBodyBounds": {
+    "x": 45,
+    "y": 410,
+    "width": 1454,
+    "height": 212
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.6,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "undulate",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.25,
+      "burst": 1.0
+    },
+    "turnRateRadPerSec": 1.8,
+    "restFraction": 0.45,
+    "depthRange": [
+      0.2,
+      0.85
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 1.2,
+      "cohesion": 0.25,
+      "polarization": 0.12
+    },
+    "structureAffinity": 0.6,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.0,
+        "durationSec": [
+          20,
+          60
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Renaud (2011), Lampreys of the World, FAO Species Catalogue for Fishery Purposes No. 5",
+        "url": "https://www.fao.org/4/i2335e/i2335e.pdf"
+      },
+      {
+        "title": "Maitland (2003), Ecology of the River, Brook and Sea Lamprey",
+        "url": "https://publications.naturalengland.org.uk/file/118013"
+      },
+      {
+        "title": "MacDonald (1960), A study of certain aspects of ammocoete biology, University of Glasgow",
+        "url": "https://theses.gla.ac.uk/73665/1/10656428.pdf"
+      },
+      {
+        "title": "Kujawa et al., Rearing river lamprey larvae under controlled conditions, Aquaculture International",
+        "url": "https://link.springer.com/content/pdf/10.1007/s10499-017-0190-6.pdf"
+      },
+      {
+        "title": "Claire Goodwin, National Museums Northern Ireland: River lamprey",
+        "url": "https://www.habitas.org.uk/priority/species.asp?item=5001"
+      },
+      {
+        "title": "JNCC: River lamprey, Annex II species account",
+        "url": "https://sac.jncc.gov.uk/species/S1099/"
+      },
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Lampetra fluviatilis",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=6503"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Lampetra fluviatilis",
+    "originRegionId": "europe",
+    "originRegionName": "ヨーロッパ",
+    "origin": "ヨーロッパの川と、ノルウェー南部からジブラルタルまでの北東大西洋、バルト海、北海、地中海西部の沿岸に分布します。ローモンド湖やラドガ湖のように、海へ下らず湖で育つ集団もあります。",
+    "temperament": "海や湖で育つ時期には、ほかの魚に吸い付いて血や体の組織を利用します。川を遡った後は消化管が縮み、産卵まで餌をとりません。",
+    "movement": "細長い体を大きくくねらせて泳ぎます。日中は口で石に吸い付いて休む姿が観察され、繁殖期の飼育個体は暗くなってから動き出しました。産卵期には複数の成体が口で小石を動かし、産卵床をつくります。",
+    "habitat": "ふつうは川で生まれ、幼生は流れの弱い岸寄りの砂泥に潜って3〜5年ほど過ごします。変態後は河口や沿岸で育ち、再び川を遡って礫底で産卵します。この水槽は、滑らかな石と砂利が広がる冷たい川底を表しています。",
+    "aliases": [
+      "European river lamprey",
+      "river lamprey",
+      "lampern"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Petromyzontiformes",
+      "orderJa": "ヤツメウナギ目",
+      "family": "Petromyzontidae",
+      "familyJa": "ヤツメウナギ科"
+    },
+    "adultSizeCm": 40,
+    "sizeNote": "ポーランドのヴィスワ潟で採集された成熟個体は、雌が41〜45.8cm、雄が36.5〜41.5cmでした。FAOの集約では、成体の全長は8.6〜49.2cmと幅があります。",
+    "distribution": "ヨーロッパの川と、北東大西洋・バルト海・北海・地中海西部の沿岸に分布し、アイスランドも含まれます。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "rarelyDisplayed",
+    "conservation": {
+      "status": "NT",
+      "assessedYear": 2024,
+      "note": "Catalog of Fishes の表示による評価で、IUCNの原票は確認できていません。"
+    },
+    "highlights": [
+      "頭の上に鼻の穴が1つあり、目の後ろに7対のえら穴が並びます。顎も対になったひれもありません。",
+      "海や湖で魚に吸い付いて育ち、川を遡ると産卵まで餌をとりません。",
+      "ウェールズの川では、ヨーロッパスナヤツメと同じ産卵床で産卵した観察があります。産卵を終えると一生を終えます。"
+    ]
+  }
+}

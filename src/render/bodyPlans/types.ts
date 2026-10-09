@@ -25,6 +25,7 @@ export type SwimStyle = {
   legs?: { x: number; y: number; footX: number; footY: number; width: number; beat: 0 | 1 }[];
   spine?: Vec2[];
   limbs?: { kind: "hind" | "fore"; joints: Vec2[] }[];
+  radial?: { x: number; y: number; radius: number; reach: number };
 };
 
 // 尾の振りや向きの状態は魚ごとに1つだけ持ち、部屋と水槽画面で共有する。
@@ -58,6 +59,8 @@ export type MotionState = {
   strokeSec?: number;
   /** 前のフレームで蹴っていたか。蹴り始めを見分ける。 */
   kicking?: boolean;
+  /** ヒトデが体の面の中でゆっくり回った角度（ラジアン）。画像を反転せず、這う間に少しずつ向きが変わる。 */
+  spin?: number;
 };
 
 /** 変形に使う、画像メッシュとその元の形。 */
@@ -91,6 +94,11 @@ export type BodyPlanRenderer = {
   deform: (mesh: BodyMesh, frame: DeformFrame) => void;
   /** 上下へ進むときに体を傾ける割合（既定 1）。体を曲げない生き物は小さくする。 */
   pitchScale?: number;
+  /**
+   * 面の傾きに合わせて体を回す割合（既定 1）。面の多くは奥へ向かって上がる線で、画面の上では急な坂に見えても
+   * 実際には平らなことが多い。平たく伏せる生き物（ヒトデ、ウニ）は小さくし、坂で体が立ち上がって見えないようにする。
+   */
+  surfaceTilt?: number;
   /**
    * 生き物の位置に置く、メッシュ上の固定の点（画像の座標）。接地や向きにかかわらず動かさない。
    * 真上から見たエイは、見下ろした体盤の手前の縁（体盤の中心の真下）にする。既定は、泳ぐ間は画像の中心、

@@ -210,14 +210,26 @@ function settle(fish: FishInstance, species: FishSpeciesDefinition, context: Dri
   range: { min: number; max: number }, xRange: { min: number; max: number }, remainingSec: number, pulsePhase: number,
   currentSeed: () => number): FishInstance {
   const x = clamp(fish.position.x, xRange.min, xRange.max);
-  const y = fish.position.y + clamp((restingY(fish, species, context, range, x) - fish.position.y) * (1 - Math.exp(-2 * deltaSec)),
-    -SINK_CM_PER_SEC * deltaSec, SINK_CM_PER_SEC * deltaSec);
+  const position = constrainRestStep(fish, species, context, deltaSec, {
+    x, y: fish.position.y + clamp((restingY(fish, species, context, range, x) - fish.position.y) * (1 - Math.exp(-2 * deltaSec)),
+      -SINK_CM_PER_SEC * deltaSec, SINK_CM_PER_SEC * deltaSec) });
   return {
-    ...fish, position: { x, y }, velocity: { x: 0, y: deltaSec > 0 ? (y - fish.position.y) / deltaSec : 0 },
+    ...fish, position, velocity: { x: 0, y: deltaSec > 0 ? (position.y - fish.position.y) / deltaSec : 0 },
     pulsePhase, tilt: (fish.tilt ?? 0) * Math.exp(-2 * deltaSec), target: undefined,
     targetKind: "rest", behaviorMode: "rest", behaviorTimeRemainingSec: remainingSec,
     surfaceMotion: undefined, contact: undefined, alarmSec: undefined, seed: currentSeed(),
   };
+}
+
+/**
+ * 底へ沈んで伏せる間と、伏せたまま這う間も、岩（回避領域）の中へは入らない。岩の上に降りたら岩の上で伏せる。
+ * 泳ぐ間と同じ衝突の扱いにしないと、休み終えて泳ぎ出すときに岩の外へ押し出されて位置が飛ぶ。
+ */
+function constrainRestStep(fish: FishInstance, species: FishSpeciesDefinition, context: DriftContext, deltaSec: number,
+  position: Vec2): Vec2 {
+  if (!context.scene?.terrain || deltaSec <= 0) return position;
+  return constrainTerrainStep(fish.position, position, fish.depth,
+    { scene: context.scene, tank: context.tank, species, frame: context.frame });
 }
 
 /**
@@ -252,11 +264,11 @@ function stepBottomPulser(fish: FishInstance, species: FishSpeciesDefinition, co
   const dx = target.x - fish.position.x;
   const crowd = crowding(fish, species, context);
   const vx = clamp(dx * 0.5 + crowd.x * cruise, -cruise, cruise);
-  const position = {
+  const position = constrainRestStep(fish, species, context, deltaSec, {
     x: clamp(fish.position.x + vx * deltaSec, xRange.min, xRange.max),
     // 水中に生まれたときは、ゆっくり沈んで底に伏せる。
     y: fish.position.y + clamp((restY(fish.position.x) - fish.position.y) * (1 - Math.exp(-2 * deltaSec)), -SINK_CM_PER_SEC * deltaSec, SINK_CM_PER_SEC * deltaSec),
-  };
+  });
   return {
     ...fish, position, velocity: { x: vx, y: 0 }, target, habitTimeSec, pulsePhase, tilt: 0,
     targetKind: "rest", behaviorMode: "rest", behaviorTimeRemainingSec: 1,

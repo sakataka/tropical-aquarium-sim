@@ -1,0 +1,141 @@
+{
+  "id": "akamon-mino-shrimp",
+  "displayName": "アカモンミノエビ",
+  "realBodyLengthCm": 10,
+  "catalog": {
+    "scientificName": "Heterocarpus sibogae",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "インド洋から西太平洋に広く分布し、マダガスカルやインドネシア、フィリピン、ニューカレドニア、フランス領ポリネシアなどで記録があります。日本では駿河湾や土佐湾、沖縄県の久米島沖から知られています。",
+    "temperament": "刺激を受けると、口のまわりから青白く光る液を出します。この光で捕食者の目をくらませて身を守るのではないかと考えられています。",
+    "movement": "飼育下では、細い歩脚で底に立ち、長い触角を前へ伸ばしていました。動く速さや昼夜の活動は分かっていません。",
+    "habitat": "深海の底近くにすみ、水深220〜850mほどの記録があります。近縁種が砂泥底に多いのに対し、本種は泥底に多いと紹介されています。",
+    "aliases": [
+      "Mino nylon shrimp",
+      "東方異腕蝦"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Decapoda",
+      "orderJa": "十脚目",
+      "family": "Pandalidae",
+      "familyJa": "タラバエビ科"
+    },
+    "adultSizeCm": 10,
+    "sizeNote": "大きさは頭胸甲長（目のくぼみから甲の後ろの端まで）で測られることが多く、マダガスカル沖の雄8個体は3.1〜3.5cm、久米島沖の5個体は2.5〜3.3cmでした。全長の典型値は確かめられておらず、ここでの値は頭胸甲長から見積もった展示用の目安です。沖縄美ら海水族館は、飼育個体を全長6cmほどと紹介しています。",
+    "distribution": "インド洋から西太平洋に分布します。日本では駿河湾、土佐湾、久米島沖で記録されています。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "IUCNの評価は、今回の調査では確認できていません。"
+    },
+    "highlights": [
+      "腹部の第3節の左右に大きな赤い丸い斑紋が1つずつあり、和名の由来になっています。",
+      "腹部の第1・第2節の背中には板のような高い隆起、第3・第4節には後ろ向きの鋭いとげがあります。",
+      "飼育下で卵をふ化させた研究があり、沖縄美ら海水族館の2019年度の年報では、生後2か月の個体を育てていると報告されています。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "crustacean",
+    "headStart": 0.2,
+    "tailBeatHz": 0.6,
+    "bodyWaveStart": 0.85,
+    "tailSweepRad": 0,
+    "verticalFlex": 0,
+    "footAnchor": {
+      "x": 0.48,
+      "y": 0.94
+    }
+  },
+  "visual": {
+    "fallbackColor": "#cca288"
+  },
+  "sourceBodyBounds": {
+    "x": 19,
+    "y": 96,
+    "width": 1490,
+    "height": 794
+  },
+  "preferredZone": {
+    "minX": 0.1,
+    "maxX": 0.9,
+    "minY": 0.82,
+    "maxY": 0.93
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.06,
+      "burst": 0.4
+    },
+    "turnRateRadPerSec": 1.1,
+    "restFraction": 0.55,
+    "depthRange": [
+      0.3,
+      0.85
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.3,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.8,
+        "durationSec": [
+          10,
+          30
+        ]
+      },
+      {
+        "type": "grazing",
+        "chancePerMin": 1.5,
+        "durationSec": [
+          6,
+          16
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "ITIS — Heterocarpus sibogae (TSN 97076)",
+        "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=0097076"
+      },
+      {
+        "title": "Crosnier 1988 — Sur les Heterocarpus",
+        "url": "https://horizon.documentation.ird.fr/exl-doc/pleins_textes/pleins_textes_5/b_fdi_18-19/25511.pdf"
+      },
+      {
+        "title": "Chace 1985 — Caridean shrimps of the Albatross Philippine Expedition",
+        "url": "https://repository.si.edu/bitstream/handle/10088/5142/SCtZ-0411-Lo_res.pdf"
+      },
+      {
+        "title": "倉持ほか 2005 — 琉球列島久米島沖より採集されたミノエビ属3種",
+        "url": "https://www.hiroshima-u.ac.jp/system/files/13328/1456801016.pdf"
+      },
+      {
+        "title": "沖縄美ら海水族館 — アカモンミノエビ",
+        "url": "https://churaumi.okinawa/sp/fishbook/00000666/"
+      },
+      {
+        "title": "沖縄美ら海水族館 — ミノエビの秘密（2020年4月30日）",
+        "url": "https://churaumi.okinawa/blog/1587889530/"
+      },
+      {
+        "title": "沖縄美ら海水族館 — 令和元年度年報 第16号",
+        "url": "https://churaumi.okinawa/userfiles/files/about/research/r1_nepou.pdf"
+      },
+      {
+        "title": "Jiang, Chan & Shih 2014 — First zoeal stage of three deep-water pandalid shrimps",
+        "url": "https://www.mapress.com/zootaxa/2014/f/z03768p436f.pdf"
+      }
+    ]
+  }
+}

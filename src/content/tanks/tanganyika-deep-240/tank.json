@@ -4,11 +4,11 @@
   "displayName": "タンガニイカ湖の深場水槽",
   "exhibitName": "Tanganyika Depths",
   "category": "タンガニイカ湖の深場",
-  "description": "タンガニイカ湖の深い岩場を再現した240cm水槽。サイプリクロミスの群れが上層を行き交い、フロントーサは中層から下をゆったりと泳ぎます。底では大型のシノドンティス・グラニュロススが砂を探ります。",
+  "description": "タンガニイカ湖の深い岩場を再現した240cm水槽。サイプリクロミスの群れが上層を行き交い、3本の明るい縦線のベントクロミス・ホーリーは長いひれをなびかせて中層を泳ぎ、フロントーサは中層から下をゆったりと泳ぎます。底では大型のシノドンティス・グラニュロススが砂を探ります。",
   "widthCm": 240,
   "heightCm": 97,
   "depthCm": 80,
-  "maxTotalFish": 26,
+  "maxTotalFish": 32,
   "sceneIds": [
     "tanganyika-deep-240"
   ],
@@ -24,6 +24,10 @@
     {
       "speciesId": "granular-synodontis",
       "maxCount": 2
+    },
+    {
+      "speciesId": "benthochromis-horii",
+      "maxCount": 6
     }
   ],
   "defaultStock": [
@@ -38,6 +42,10 @@
     {
       "speciesId": "granular-synodontis",
       "count": 1
+    },
+    {
+      "speciesId": "benthochromis-horii",
+      "count": 4
     }
   ]
 }

@@ -1,0 +1,109 @@
+{
+  "id": "mangrove-red-snapper",
+  "displayName": "ゴマフエダイ",
+  "realBodyLengthCm": 10,
+  "catalog": {
+    "scientificName": "Lutjanus argentimaculatus",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "紅海とインド・西太平洋に広く分布し、東アフリカから中部太平洋の島々、南日本からオーストラリアまで見られます。西表島では、河口の近くで幼魚が採集されています。",
+    "temperament": "魚や甲殻類を食べる捕食者です。上あごの前には、よく発達した犬歯があります。",
+    "movement": "タイのマングローブの河口で追跡された幼魚は、潮が満ちるとよく動き、支流やマングローブ林の中で餌をとっていたと考えられています。河口にとどまる個体もいれば、外へ移っていく個体もいました。",
+    "habitat": "幼魚はマングローブの河口や川の下流で育ち、成長すると沿岸から沖合の礁へ移ります。本展示では、琉球のマングローブの入り江で育つ、細い白い帯のある幼魚の姿を見せています。",
+    "aliases": [
+      "Mangrove red snapper",
+      "Mangrove Jack",
+      "Sciaena argentimaculata"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Perciformes",
+      "orderJa": "スズキ目",
+      "family": "Lutjanidae",
+      "familyJa": "フエダイ科"
+    },
+    "adultSizeCm": 80,
+    "sizeNote": "FishBase のよく見られる大きさは全長80cmで、最大は全長150cmとされます。展示しているのは幼魚の姿で、西表島で採集された幼魚7匹は標準体長6.2〜9.3cmでした。",
+    "distribution": "紅海からインド・西太平洋に分布し、東アフリカから中部太平洋の島々、南日本からオーストラリアまで見られます。地中海の東部と中部には、紅海から入り込んでいます。",
+    "water": {
+      "salinity": "brackish"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2015
+    },
+    "highlights": [
+      "幼魚は赤褐色の体に細い白い横帯が8本ほど並び、頬に水色の線が2本あります。",
+      "成長すると白い帯と頬の線が消え、緑がかった褐色から赤い色になります。",
+      "マングローブの河口で育ち、大きくなると沖合の礁へ移ります。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.0
+  },
+  "visual": {
+    "fallbackColor": "#9d735f"
+  },
+  "sourceBodyBounds": {
+    "x": 102,
+    "y": 188,
+    "width": 1374,
+    "height": 652
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.4,
+    "maxY": 0.9
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.3,
+      "burst": 1.6
+    },
+    "turnRateRadPerSec": 2.1,
+    "restFraction": 0.25,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2,
+      "cohesion": 0,
+      "polarization": 0.05
+    },
+    "structureAffinity": 0.7,
+    "habits": [],
+    "sources": [
+      {
+        "title": "田中ほか（2015）沖縄県西表島産ゴマフエダイの形態的特徴",
+        "url": "https://kindai.repo.nii.ac.jp/record/5358/files/AN0006404-20150331-0030.pdf"
+      },
+      {
+        "title": "国立科学博物館 Fishes of Andaman Sea: Lutjanus argentimaculatus",
+        "url": "https://www.kahaku.go.jp/research/db/zoology/Fishes_of_Andaman_Sea/contents/lutjanidae/02.html"
+      },
+      {
+        "title": "Gomon & Bray, Fishes of Australia: Mangrove Jack",
+        "url": "https://fishesofaustralia.net.au/home/species/548"
+      },
+      {
+        "title": "Zagars et al., Migration patterns of juvenile Lutjanus argentimaculatus in a mangrove estuary in Trang province, Thailand",
+        "url": "https://www.researchgate.net/publication/257556392_Migration_patterns_of_juvenile_Lutjanus_argentimaculatus_in_a_mangrove_estuary_in_Trang_province_Thailand_as_revealed_by_ultrasonic_telemetry"
+      },
+      {
+        "title": "FishBase: Lutjanus argentimaculatus",
+        "url": "https://www.fishbase.se/summary/Lutjanus-argentimaculatus.html"
+      },
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Lutjanus argentimaculatus",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=15550"
+      }
+    ]
+  }
+}

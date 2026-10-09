@@ -4,11 +4,11 @@
   "displayName": "イソギンチャクとクマノミの水槽",
   "exhibitName": "Anemone & Anemonefish",
   "category": "インド太平洋のサンゴ礁",
-  "description": "岩棚の上と砂の上に大きなイソギンチャクを置いた90cmの水槽。クマノミはイソギンチャクのまわりを離れずに泳ぎ、ときどき触手のあいだに身を寄せます。アマノガワテンジクダイは小さな群れで、岩の近くの中層にじっと浮かびます。白地に赤い斑点のイソギンチャクカニダマシは、岩棚と砂の上のイソギンチャクの根元から離れずに暮らします。",
+  "description": "岩棚の上と砂の上に大きなイソギンチャクを置いた90cmの水槽。クマノミとトウアカクマノミはイソギンチャクのまわりを離れずに泳ぎ、ときどき触手のあいだに身を寄せます。アマノガワテンジクダイは小さな群れで、岩の近くの中層にじっと浮かびます。白地に赤い斑点のイソギンチャクカニダマシは、岩棚と砂の上のイソギンチャクの根元から離れずに暮らします。",
   "widthCm": 90,
   "heightCm": 60,
   "depthCm": 45,
-  "maxTotalFish": 16,
+  "maxTotalFish": 19,
   "sceneIds": [
     "anemone-90"
   ],
@@ -24,6 +24,10 @@
     {
       "speciesId": "spotted-porcelain-crab",
       "maxCount": 4
+    },
+    {
+      "speciesId": "saddleback-anemonefish",
+      "maxCount": 3
     }
   ],
   "defaultStock": [
@@ -37,6 +41,10 @@
     },
     {
       "speciesId": "spotted-porcelain-crab",
+      "count": 2
+    },
+    {
+      "speciesId": "saddleback-anemonefish",
       "count": 2
     }
   ]

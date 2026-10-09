@@ -69,9 +69,19 @@ function ellipses(depth: number, context: Context) {
   });
 }
 
+/**
+ * 回避領域の内側か。境界ちょうどは外側とする。許容誤差は置かない。
+ * 押し出し（constrainTerrainStep の「内側から始まった」場合）と同じ判定にしておかないと、
+ * 奥行きの二分探索や接線方向の滑りが「外側」として止めた点が、次の一歩では「内側」と判定され、
+ * 最寄りの外へ押し出されて位置が飛ぶ（止まって休む魚が岩に寄りかかるたびに起きていた）。
+ */
 export function insideTerrain(position: Vec2, depth: number, context: Context) {
-  return ellipses(depth, context).some(({ center, rx, ry }) =>
-    Math.hypot((position.x - center.x) / rx, (position.y - center.y) / ry) < 1 - 1e-9);
+  return ellipses(depth, context).some((ellipse) => ellipseDistance(position, ellipse) < 1);
+}
+
+/** 楕円の中心からの正規化した距離。1 が境界。 */
+function ellipseDistance(position: Vec2, { center, rx, ry }: { center: Vec2; rx: number; ry: number }) {
+  return Math.hypot((position.x - center.x) / rx, (position.y - center.y) / ry);
 }
 
 export function terrainAvoidance(fish: FishInstance, context: Context): Vec2 {
@@ -141,10 +151,21 @@ export function routeTerrainTarget(fish: FishInstance, target: Vec2, context: Co
       if (choice) { point = choice.point; side = choice.side; }
       else if (recovering) {
         // 隣の岩とガラスで両側が塞がったら、まず外側へ離れて回る余地を作る。
-        const outward = waypoint(side, 0);
-        const retreat = { x: Math.max(margin, Math.min(context.tank.widthCm - margin, outward.x)),
-          y: Math.max(margin, Math.min(context.tank.heightCm - margin, outward.y)) };
-        point = reachable(retreat) ? retreat : fish.position;
+        const clampToTank = (p: Vec2) => ({ x: Math.max(margin, Math.min(context.tank.widthCm - margin, p.x)),
+          y: Math.max(margin, Math.min(context.tank.heightCm - margin, p.y)) });
+        const retreat = clampToTank(waypoint(side, 0));
+        // 2つの岩のくぼみに挟まって、離れる先も岩の向こうなら、触れている岩の外向きの法線を合わせた向き
+        // （くぼみの開いている側）へ体長ほど出る。その場を目標にすると、岩へ押す力とつり合って止まったままになる。
+        const opening = solids.reduce((sum, s) => {
+          if (ellipseDistance(fish.position, s) >= 1.25) return sum;
+          const nx = (fish.position.x - s.center.x) / (s.rx * s.rx), ny = (fish.position.y - s.center.y) / (s.ry * s.ry);
+          const norm = Math.hypot(nx, ny);
+          return norm > 1e-12 ? { x: sum.x + nx / norm, y: sum.y + ny / norm } : sum;
+        }, { x: 0, y: 0 });
+        const openingLength = Math.hypot(opening.x, opening.y);
+        const reach = context.species.realBodyLengthCm / Math.max(openingLength, 1e-12);
+        point = reachable(retreat) ? retreat : openingLength > 1e-6
+          ? clampToTank({ x: fish.position.x + opening.x * reach, y: fish.position.y + opening.y * reach }) : fish.position;
       }
     }
   }
@@ -199,10 +220,11 @@ export function pointInPolygon(point: Vec2, polygon: Vec2[]) {
 /** 慣性で回避領域へ接触したら、入口で法線方向を止め、接線方向へ滑らせる。 */
 export function constrainTerrainStep(from: Vec2, to: Vec2, depth: number, context: Context): Vec2 {
   let result = { ...to };
-  for (const { center, rx, ry } of ellipses(depth, context)) {
+  for (const ellipse of ellipses(depth, context)) {
+    const { center, rx, ry } = ellipse;
     const ax = (from.x - center.x) / rx, ay = (from.y - center.y) / ry;
     const bx = (result.x - center.x) / rx, by = (result.y - center.y) / ry;
-    if (Math.hypot(ax, ay) < 1) {
+    if (ellipseDistance(from, ellipse) < 1) {
       // 初期配置や水景切替で内部から始まった場合だけ、最寄りの外へ出す。
       const d = Math.hypot(bx, by);
       const projected = d > .0001 ? { x: center.x + bx / d * rx * 1.001,
@@ -223,10 +245,19 @@ export function constrainTerrainStep(from: Vec2, to: Vec2, depth: number, contex
     const dx = bx - ax, dy = by - ay;
     const a = dx * dx + dy * dy;
     const b = 2 * (ax * dx + ay * dy), c = ax * ax + ay * ay - 1;
-    const discriminant = b * b - 4 * a * c;
-    if (a < 1e-20 || discriminant < 0) continue;
-    const hit = (-b - Math.sqrt(discriminant)) / (2 * a);
-    if (hit < 0 || hit > 1) continue;
+    if (a < 1e-20) continue;
+    let hit: number;
+    if (c <= 0) {
+      // 境界ちょうど（岩に寄りかかって止まった所）から出る。丸め誤差で c が負になっても内側とは扱わず、
+      // 岩へ向かう一歩だけを、その場を接点として接線方向へ滑らせる。
+      if (b >= 0) continue;
+      hit = 0;
+    } else {
+      const discriminant = b * b - 4 * a * c;
+      if (discriminant < 0) continue;
+      hit = (-b - Math.sqrt(discriminant)) / (2 * a);
+      if (hit < 0 || hit > 1) continue;
+    }
     const t = Math.max(0, hit - .001);
     const contact = { x: from.x + (result.x - from.x) * t, y: from.y + (result.y - from.y) * t };
     const nx = (contact.x - center.x) / (rx * rx), ny = (contact.y - center.y) / (ry * ry);

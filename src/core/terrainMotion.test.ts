@@ -60,6 +60,36 @@ describe("depth-aware terrain across habitats", () => {
     expect(insideTerrain(tiny, .5, context)).toBe(false);
   });
 
+  test("a fish stopped exactly on a rock's edge slides along it, neither stuck nor pushed out", () => {
+    const tank = getTankById("cube-30")!;
+    const scene = { ...getSceneById("cube-stones")!, terrain: {
+      surfaces: [], occluders: [], obstacles: [{ id: "rock", center: { x: .5, y: .5, depth: .5 }, radius: { x: .23, y: .17 }, depthRadius: .2 }],
+    } };
+    const context = { tank, scene, species: fishCatalog["ember-tetra"]!, frame: FULL_SURFACE_FRAME };
+    const rx = .23 * tank.widthCm + context.species.realBodyLengthCm * .2, ry = .17 * tank.heightCm + context.species.realBodyLengthCm * .2;
+    const center = { x: tank.widthCm / 2, y: tank.heightCm / 2 };
+    for (let i = 0; i < 360; i++) {
+      // 奥行きの二分探索と同じく、内側と判定されない最も岩に近い点まで寄せる（境界の丸め誤差の上に止まる）。
+      const angle = i * Math.PI / 180;
+      const at = (scale: number) => ({ x: center.x + Math.cos(angle) * rx * scale, y: center.y + Math.sin(angle) * ry * scale });
+      let outside = 1.01, blocked = .99;
+      for (let j = 0; j < 80; j++) {
+        const mid = (outside + blocked) / 2;
+        if (insideTerrain(at(mid), .5, context)) blocked = mid; else outside = mid;
+      }
+      const edge = at(outside);
+      // 岩へ斜めに押しながら進む一歩。
+      const normal = { x: Math.cos(angle) / rx, y: Math.sin(angle) / ry };
+      const n = Math.hypot(normal.x, normal.y);
+      const to = { x: edge.x + (-normal.y / n - normal.x / n) * .05, y: edge.y + (normal.x / n - normal.y / n) * .05 };
+      const next = constrainTerrainStep(edge, to, .5, context);
+      expect(insideTerrain(next, .5, context), `${i}°`).toBe(false);
+      const moved = Math.hypot(next.x - edge.x, next.y - edge.y);
+      expect(moved, `${i}°`).toBeGreaterThan(.02);
+      expect(moved, `${i}°`).toBeLessThanOrEqual(.0708);
+    }
+  });
+
   test("every water scene has usable terrain, and populations remain outside solids and inside glass", () => {
     let grazing = false, hiding = false, changedDepth = false;
     for (const tank of aquariumTanks) for (const sceneId of tank.sceneIds) {

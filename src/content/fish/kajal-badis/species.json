@@ -1,0 +1,112 @@
+{
+  "id": "kajal-badis",
+  "displayName": "ダリオ・カジャル",
+  "realBodyLengthCm": 2.5,
+  "swim": {
+    "tailBeatHz": 2.6
+  },
+  "visual": {
+    "fallbackColor": "#a48163"
+  },
+  "sourceBodyBounds": {
+    "x": 126,
+    "y": 190,
+    "width": 1327,
+    "height": 617
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.5,
+    "maxY": 0.92
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.45,
+      "burst": 3.0
+    },
+    "turnRateRadPerSec": 2.8,
+    "restFraction": 0.4,
+    "depthRange": [
+      0.3,
+      0.95
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 4,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.8,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Britz & Kullander (2013) Dario kajal, a new species of badid fish from Meghalaya, India. Zootaxa 3731",
+        "url": "https://www.mapress.com/zootaxa/2013/f/zt03731p337.pdf"
+      },
+      {
+        "title": "Zakir et al. (2019) First documentation of Dario kajal from Bangladesh",
+        "url": "https://pdfs.semanticscholar.org/8d79/67f2744aff2cbb6c0bc066e0f71cf0286803.pdf"
+      },
+      {
+        "title": "Seriously Fish — Dario kajal",
+        "url": "https://www.seriouslyfish.com/species/dario-kajal"
+      },
+      {
+        "title": "FishBase — Dario kajal",
+        "url": "https://www.fishbase.se/summary/Dario-kajal.html"
+      },
+      {
+        "title": "Eschmeyer's Catalog of Fishes — Dario kajal",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=73026"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Dario kajal",
+    "originRegionId": "south-asia",
+    "originRegionName": "南アジア",
+    "origin": "インド北東部、メガラヤ州のジャインティア丘陵を模式産地として、2013年に新種として記載されました。2019年には、バングラデシュでも記録されています。",
+    "temperament": "飼育の解説では、雄どうしが縄張りを争うとされます。2019年の研究には、劣位の雄として記録された個体の写真も載っています。",
+    "movement": "この仲間は、小さな動物をゆっくり探して食べるとされます。この展示では、スカーレット・ジェムと同じように、底近くの物陰のあいだをゆっくり泳ぎます。",
+    "habitat": "模式産地は標高1320mの小川にできた浅く小さな淵で、水は止まっているか緩やかに流れ、水草はありませんでした。一方、バングラデシュの水路では、浮葉植物や沈水植物の多い場所でも見つかっています。",
+    "aliases": [
+      "Dario sp. Jaintia Hills",
+      "Kajal badis"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Anabantiformes",
+      "orderJa": "キノボリウオ目",
+      "family": "Badidae",
+      "familyJa": "バディス科"
+    },
+    "adultSizeCm": 2,
+    "sizeNote": "原記載で知られていた最大は標準体長2.0cmで、2019年にバングラデシュで計測された雄は2.1cmでした。典型的な成魚の全長は分かっていません。展示では尾びれを含めて全長2.5cmほどで描いています。",
+    "distribution": "インド・メガラヤ州のジャインティア丘陵（メグナ水系）と、バングラデシュのブラマプトラ水系から記録されています。バングラデシュの記録地は、模式産地から約300km離れています。",
+    "water": {
+      "salinity": "freshwater",
+      "temperatureC": [
+        16,
+        24
+      ],
+      "pH": [
+        6.5,
+        7.5
+      ]
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "NE",
+      "note": "FishBase の記載では、IUCNの評価を受けていません。バングラデシュの記録地では、土地利用の拡大や砂の採取で環境が劣化していると報告されています。"
+    },
+    "highlights": [
+      "目の前後を黒い線がまっすぐ通ります。kajal は目の縁を黒く描く化粧墨を指す言葉で、この線にちなんだ名前です。",
+      "雄は上半身だけに二重の帯が並び、背びれの前のほうに黒い斑があります。",
+      "流通名 Dario sp. Jaintia Hills で知られていた魚が、2013年に新種として記載されました。"
+    ]
+  }
+}

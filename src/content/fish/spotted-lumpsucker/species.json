@@ -1,0 +1,134 @@
+{
+  "id": "spotted-lumpsucker",
+  "displayName": "フウセンウオ",
+  "realBodyLengthCm": 8,
+  "catalog": {
+    "scientificName": "Eumicrotremus pacificus",
+    "originRegionId": "northwest-pacific",
+    "originRegionName": "北西太平洋",
+    "origin": "北西太平洋に分布し、オホーツク海南部や南千島から北海道の沖、日本海、東シナ海で知られています。日本では北海道の沿岸のほか、青森県三厩、兵庫県香住、隠岐から記録があります。",
+    "temperament": "繁殖期の成熟した雄は貝殻を自分の場所にして、雌を誘います。野外では巻貝の空き殻の中で卵を守る雄が採集されていますが、水族館では雄が卵を守らなかった例もあります。本水槽では、それぞれ好きな岩や海藻に付いて過ごします。",
+    "movement": "泳ぎは得意ではないとされ、腹の吸盤で岩や海藻に付いて止まります。運ぶ容器を逆さにしても、付いたまま離れなかった個体もいます。",
+    "habitat": "海底近くで暮らします。サハリンのアニワ湾では水深23mの紅藻の茂みで採集され、沿海州の沖では水深130mの記録があります。本水槽では、海藻とイソギンチャクの付いた岩の間で過ごします。",
+    "aliases": [
+      "Balloon lumpfish",
+      "Eumicrotremus pacificus chinensis"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Perciformes",
+      "orderJa": "スズキ目",
+      "family": "Cyclopteridae",
+      "familyJa": "ダンゴウオ科"
+    },
+    "adultSizeCm": 8,
+    "sizeNote": "2019年の研究で測った標本は、標準体長で雌が3.9〜8.1cm、繁殖していない雄が3.6〜5.8cm、繁殖中の雄が5.3〜6.3cmでした。水族館で育った個体は、ふ化から1年7か月で全長8.8cmになりました。最大で20cmとする解説もありますが、測り方は書かれていません。典型的な大きさは確かめられていません。",
+    "distribution": "北西太平洋のオホーツク海南部、南千島、北海道の沖から日本海、東シナ海にかけて分布します。",
+    "water": {
+      "salinity": "marine",
+      "temperatureC": [
+        4,
+        9.5
+      ]
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "IUCN の区分は、今回の調査では確かめられていません。ロシアの博物館の解説では、漁獲の中ではまれな種とされています。水温は、小樽の水族館で親魚を飼っていた範囲です。"
+    },
+    "highlights": [
+      "腹びれが変化した吸盤で、岩や海藻に体を付けて止まります。",
+      "体の前のほうは丸くふくらみ、高い第1背びれは先が後ろへ鎌のように曲がります。体には大小の骨質の突起が並びます。",
+      "繁殖期の雄は顎が伸び、骨質の突起が大きく減ります。",
+      "水族館での繁殖が続けられ、新江ノ島水族館では飼育下で4代目が生まれました。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.8,
+    "tailSweepRad": 0.3
+  },
+  "visual": {
+    "fallbackColor": "#a0602e"
+  },
+  "sourceBodyBounds": {
+    "x": 87,
+    "y": 106,
+    "width": 1400,
+    "height": 774
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.4,
+    "maxY": 0.92
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.25,
+      "burst": 1.0
+    },
+    "turnRateRadPerSec": 2.2,
+    "restFraction": 0.7,
+    "depthRange": [
+      0.1,
+      0.7
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.9,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 3,
+        "durationSec": [
+          15,
+          60
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Eumicrotremus",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?genus=Eumicrotremus&tbl=species"
+      },
+      {
+        "title": "Ueno (1954): Studies on the cyclopterid fishes from northern Japan and adjacent regions I",
+        "url": "https://eprints.lib.hokudai.ac.jp/repo/huscap/all/22827/4(4)_P273-295.pdf"
+      },
+      {
+        "title": "Voskoboinikova & Balanov (2019): Morphological variability of Eumicrotremus pacificus",
+        "url": "https://sev-in.ru/sites/default/files/2021-03/%D0%92%D0%98%20%E2%84%965-19.pdf"
+      },
+      {
+        "title": "鳥羽水族館 生きもの図鑑「フウセンウオ」",
+        "url": "https://aquarium.co.jp/picturebook/eumicrotremus-pacificus.html"
+      },
+      {
+        "title": "Museum of the A.V. Zhirmunsky National Scientific Center of Marine Biology: Eumicrotremus pacificus",
+        "url": "https://www.museumimb.ru/vid151.html"
+      },
+      {
+        "title": "三宅教平（2012）: フウセンウオの繁殖について（第57回水族館技術者研究会）",
+        "url": "https://www.jaza.jp/literatures/1125"
+      },
+      {
+        "title": "新江ノ島水族館（2018-02-13）: フウセンウオの子どもたち展示までの道のり",
+        "url": "https://www.enosui.com/diaryentry.php?eid=04472"
+      },
+      {
+        "title": "新江ノ島水族館（2020-05-21）: 飼育下四世のフウセンウオ誕生",
+        "url": "https://www.enosui.com/diaryentry.php?eid=05303"
+      },
+      {
+        "title": "鳥羽水族館（2018-07-04）: いけいけ！フウセンウオ！",
+        "url": "https://aquarium.co.jp/diary/2018/07/37168"
+      }
+    ]
+  }
+}

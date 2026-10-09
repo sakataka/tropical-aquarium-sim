@@ -4,11 +4,11 @@
   "displayName": "マングローブの入り江水槽",
   "exhibitName": "Mangrove Inlet",
   "category": "琉球のマングローブ",
-  "description": "支柱根が並ぶ琉球のマングローブの入り江を再現した180cm水槽。テッポウウオは水面のすぐ下を仲間と巡り、モノダクティルスの銀色の群れが中層を泳ぎます。スキャットは群れで低い層を回り、支柱根の表面や底をついばみます。",
+  "description": "支柱根が並ぶ琉球のマングローブの入り江を再現した180cm水槽。テッポウウオは水面のすぐ下を仲間と巡り、モノダクティルスの銀色の群れが中層を泳ぎます。スキャットは群れで低い層を回り、支柱根の表面や底をついばみます。白い横帯のあるゴマフエダイの幼魚は、根のそばの低い層を泳ぎます。",
   "widthCm": 180,
   "heightCm": 51,
   "depthCm": 60,
-  "maxTotalFish": 20,
+  "maxTotalFish": 24,
   "sceneIds": [
     "mangrove-180"
   ],
@@ -24,6 +24,10 @@
     {
       "speciesId": "silver-moony",
       "maxCount": 8
+    },
+    {
+      "speciesId": "mangrove-red-snapper",
+      "maxCount": 4
     }
   ],
   "defaultStock": [
@@ -38,6 +42,10 @@
     {
       "speciesId": "silver-moony",
       "count": 6
+    },
+    {
+      "speciesId": "mangrove-red-snapper",
+      "count": 2
     }
   ]
 }

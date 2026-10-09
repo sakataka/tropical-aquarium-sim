@@ -1,0 +1,142 @@
+{
+  "id": "itasenpara-bitterling",
+  "displayName": "イタセンパラ",
+  "realBodyLengthCm": 10,
+  "catalog": {
+    "scientificName": "Acheilognathus longipinnis",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "日本固有種で、富山平野、濃尾平野、琵琶湖・淀川水系に分布します。富山県氷見市では、万尾川水系と仏生寺川水系に生息しています。",
+    "temperament": "繁殖期の雄は、イシガイを中心に単独で縄張りを持ち、近づく魚を追い払います。一方で、貝に近づかない雄と雌が30匹ほどで群れることもあり、群れの中では追い払いは見られませんでした。",
+    "movement": "繁殖期の雄は、二枚貝の出水管に口先を向けて頭を下げる「貝のぞき」をします。群れは近くの深場の、流れのほとんどない場所に集まります。",
+    "habitat": "平野部の川のわんどやたまり、農業用水路、水路につながる浅い沼など、流れの緩い水域にすみます。富山県の万尾川では、岸にヨシやマコモが茂り、川底は砂や泥でした。",
+    "aliases": [
+      "Itasenpara bitterling",
+      "Deep body bitterling",
+      "ビワタナゴ",
+      "Achilognathus longipinnis"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cypriniformes",
+      "orderJa": "コイ目",
+      "family": "Acheilognathidae",
+      "familyJa": "タナゴ科"
+    },
+    "adultSizeCm": 10,
+    "sizeNote": "国立科学博物館は全長10cmと紹介しています。淀川水系の大きな個体は全長13cmに達し、環境省は最大全長を15cmとしています。1年で成熟し、そのときの全長は4〜6cmとされます。",
+    "distribution": "日本固有種で、富山平野、濃尾平野、琵琶湖・淀川水系（琵琶湖そのものを除く）に分布します。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "IUCNの評価は確認できていません。環境省レッドリスト2020では絶滅危惧IA類（CR）です。1974年に国の天然記念物に、1995年に国内希少野生動植物種に指定されています。"
+    },
+    "highlights": [
+      "繁殖期の大きな雄は強い紫紅色になり、大きな背びれと尻びれに真珠色の白い帯が2〜3本入ります。",
+      "秋に雌が生きたイシガイの中へ卵を産み、ふ化した仔魚は貝の中で冬を越して、翌春に泳ぎ出します。",
+      "体高が高く左右にとても薄い体で、口ひげはありません。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.0,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.55
+    }
+  },
+  "visual": {
+    "fallbackColor": "#93828d"
+  },
+  "sourceBodyBounds": {
+    "x": 129,
+    "y": 109,
+    "width": 1341,
+    "height": 804
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.3,
+    "maxY": 0.85
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.4,
+      "burst": 1.8
+    },
+    "turnRateRadPerSec": 2.1,
+    "restFraction": 0.18,
+    "depthRange": [
+      0.15,
+      0.8
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 2.2,
+      "cohesion": 0.35,
+      "polarization": 0.2
+    },
+    "structureAffinity": 0.45,
+    "habits": [
+      {
+        "type": "follow",
+        "chancePerMin": 1.0,
+        "durationSec": [
+          1.5,
+          4
+        ]
+      },
+      {
+        "type": "grazing",
+        "chancePerMin": 1.5,
+        "durationSec": [
+          3,
+          8
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes — longipinnis, spid 1343",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=1343"
+      },
+      {
+        "title": "国立科学博物館 — 日本産淡水魚類データベース イタセンパラ",
+        "url": "https://www.kahaku.go.jp/research/db/zoology/uodas_freshdb/area/cyprinnidae/acheilognathinae/acheilognathus/012.html"
+      },
+      {
+        "title": "京都府 — イタセンパラ",
+        "url": "https://www.pref.kyoto.jp/kisyosyu/1218609757650.html"
+      },
+      {
+        "title": "大阪府立環境農林水産総合研究所 — イタセンパラ",
+        "url": "https://www.knsk-osaka.jp/zukan/zukan_database/tansui/2550b2c26477834/4850b5ac1acf880.html"
+      },
+      {
+        "title": "環境省 — イタセンパラ保護増殖事業",
+        "url": "https://www.env.go.jp/nature/kisho/hogozoushoku/itasenpara.html"
+      },
+      {
+        "title": "西尾ほか 2017 — 富山県氷見市万尾川に生息するイタセンパラの繁殖期の微生息場所利用",
+        "url": "https://www.jstage.jst.go.jp/article/jji/64/1/64_64-25/_pdf"
+      },
+      {
+        "title": "西尾・川上・川本 2019 — 万尾川および保護池のイタセンパラの産卵母貝適性",
+        "url": "https://www.jstage.jst.go.jp/article/jji/66/1/66_18-018/_pdf"
+      },
+      {
+        "title": "池谷・佐川・大原 2012 — イタセンパラの野生復帰を見据えた生息域外保全への取り組み",
+        "url": "https://satokouen.jp/downloads/journal/02_18.pdf"
+      },
+      {
+        "title": "環境省 — 国内希少野生動植物種一覧",
+        "url": "https://www.env.go.jp/nature/kisho/domestic/list.html"
+      }
+    ]
+  }
+}

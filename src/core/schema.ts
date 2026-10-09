@@ -158,6 +158,8 @@ const fishSpeciesDefinitionSchema = z.object({
     }).refine((limb) => limb.joints.length === (limb.kind === "hind" ? 4 : 3), {
       message: "a hind limb has hip, knee, ankle and toe; a fore limb has shoulder, elbow and hand",
     })).min(2),
+    radial: z.object({ x: unit, y: unit, radius: unit.gt(0), reach: unit.gt(0) })
+      .refine((radial) => radial.radius < radial.reach, { message: "radial reach must lie beyond the body radius" }),
   }).partial().optional(),
   visual: z.object({ fallbackColor: z.string().regex(/^#[0-9a-fA-F]{6}$/) }),
   sourceBodyBounds: bodyBoundsSchema,

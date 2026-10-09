@@ -1,0 +1,124 @@
+{
+  "id": "splendid-alfonsino",
+  "displayName": "キンメダイ",
+  "realBodyLengthCm": 35,
+  "catalog": {
+    "scientificName": "Beryx splendens",
+    "originRegionId": "worldwide",
+    "originRegionName": "世界の海",
+    "origin": "世界の熱帯から冷温帯の海に広く分布しますが、東太平洋からは知られていません。日本では、太平洋側は北海道の釧路以南、日本海側は新潟県以南に分布します。",
+    "temperament": "中深層の小魚やエビ、オキアミ、イカの仲間を食べます。海山や尾根、斜面で群れをつくります。",
+    "movement": "昼は海底の近くにいて、夜は底から離れて上の層で餌を探すとまとめられています。水槽での短期間の観察では、胸びれを泳ぎや浮き上がり、姿勢を保つのに使っていました。",
+    "habitat": "大陸棚の縁や斜面、海山の頂や斜面の底近くにすみます。水深25〜1300mの記録があり、ふつうは150mより深いところにいます。日本近海の成魚は水深200〜800mに多いとされます。",
+    "aliases": [
+      "Splendid alfonsino",
+      "Slender alfonsino",
+      "Alfonsino",
+      "Alfonsin",
+      "Lowe's beryx"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Beryciformes",
+      "orderJa": "キンメダイ目",
+      "family": "Berycidae",
+      "familyJa": "キンメダイ科"
+    },
+    "adultSizeCm": 35,
+    "sizeNote": "最大で全長60cm（尾叉長50cm）とされます。日本近海では、尾叉長は4歳で28cm、5歳で30cm、10歳で39cm前後と見積もられています。耳石から26歳と査定された個体も記録されています。",
+    "distribution": "東太平洋を除く世界の熱帯から冷温帯の海に広く分布します。日本では釧路以南の太平洋と新潟県以南の日本海に分布し、地中海の西部でも成熟した個体が記録されています。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2015,
+      "note": "IUCNの評価は、資料に引用された2015年のものです。関東沿岸から伊豆諸島、四国沖の海山を対象にした2025年の資源評価では、2024年の親魚の量は増えていると推定されました。"
+    },
+    "highlights": [
+      "頭や背中、ひれは鮮やかな赤で、腹側は銀色がかった桃色です。とても大きな目と赤い虹彩が目立ちます。",
+      "尻びれは背びれの付け根の後端あたりから始まり、長く続きます。",
+      "卵はばらばらに水中を漂う浮性卵で、深いところで産まれたあと、育ちながら海面近くへ浮かび上がると考えられています。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.0,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.52
+    }
+  },
+  "visual": {
+    "fallbackColor": "#d65a48"
+  },
+  "sourceBodyBounds": {
+    "x": 121,
+    "y": 130,
+    "width": 1355,
+    "height": 705
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.45,
+    "maxY": 0.88
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.25,
+      "burst": 1.6
+    },
+    "turnRateRadPerSec": 2.0,
+    "restFraction": 0.3,
+    "depthRange": [
+      0.3,
+      0.9
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.4,
+      "cohesion": 0.5,
+      "polarization": 0.25
+    },
+    "structureAffinity": 0.3,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes — Beryx",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?genus=Beryx&tbl=species"
+      },
+      {
+        "title": "Fishes of Australia — Alfonsino, Beryx splendens",
+        "url": "https://fishesofaustralia.net.au/home/species/1401"
+      },
+      {
+        "title": "FAO Species Identification Guide — Berycidae (Paxton 1999)",
+        "url": "https://www.fao.org/docrep/pdf/009/x2400e/x2400e14.pdf"
+      },
+      {
+        "title": "水産研究・教育機構 — 令和7年度キンメダイ太平洋の資源評価",
+        "url": "https://www.fra.go.jp/shigen/fisheries_resources/meeting/stock_assessment_meeting/2025/files/sa2025-sc10/fra-sa2025-sc10-01.pdf"
+      },
+      {
+        "title": "JAMSTEC BISMaL — キンメダイ",
+        "url": "https://www.godac.jamstec.go.jp/bismal/j/view/9000493"
+      },
+      {
+        "title": "Di Blasi et al. 2018 — Establishment of Beryx splendens in the western Mediterranean basin",
+        "url": "https://aiep.pensoft.net/article/26795/download/pdf/"
+      },
+      {
+        "title": "Alabsi 2011 — Studies on the behavior of splendid alfonsino using micro data loggers",
+        "url": "https://www.researchgate.net/publication/236586407_Studies_on_the_behavior_of_a_deep-water_fish_the_splendid_alfonsino_Beryx_splendens_using_micro_data_loggers"
+      },
+      {
+        "title": "静岡県水産・海洋技術研究所 — キンメダイ種苗生産研究結果(3) 受精及び卵管理の水温",
+        "url": "https://fish-exp.pref.shizuoka.jp/izu/0006/371/371-3.pdf"
+      }
+    ]
+  }
+}

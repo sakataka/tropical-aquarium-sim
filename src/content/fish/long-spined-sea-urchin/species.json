@@ -1,0 +1,135 @@
+{
+  "id": "long-spined-sea-urchin",
+  "displayName": "ガンガゼ",
+  "realBodyLengthCm": 32,
+  "catalog": {
+    "scientificName": "Diadema setosum",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "インド太平洋に分布し、台湾とその周りの島々にもいます。京都府の丹後では、秋に小さな個体が見られるという2007年の報告があります。",
+    "temperament": "昼は岩の穴に隠れ、夜に出てきて、海藻を歯で削って食べます。藻類のほか、デトリタスや底生の小さな動物も食べた記録があります。本水槽では、明るい間はあまり動かず、暗くなると岩や砂の上を這います。",
+    "movement": "海底の上を移動し、棘を動かします。本水槽では、棘をゆるやかに揺らしながら面の上をごくゆっくり這い、叩かれると立ち止まって棘を震わせます。",
+    "habitat": "浅い海の岩場やサンゴ礁の、岩の下や穴で暮らします。水深0〜30mとする博物館の解説と、潮下帯のおよそ15mまでとする水族館の解説があります。1匹で隠れている個体も、開けた所で集まっている群れも見られます。本水槽では、サンゴの岩組と白い砂地をイメージしています。",
+    "aliases": [
+      "Long-spined sea urchin"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Diadematoida",
+      "orderJa": "ガンガゼ目",
+      "family": "Diadematidae",
+      "familyJa": "ガンガゼ科"
+    },
+    "adultSizeCm": 10,
+    "sizeNote": "棘を除いた殻の直径での値で、10cm以上になるとされます。長い棘は1本15〜20cmあり、棘を含めた大きさは約40cmとされます。90cm水槽に合わせ、画面では殻の直径約8cm、棘の先まで最大約32cmの、やや小さめの個体で描いています。",
+    "distribution": "インド太平洋に分布し、台湾とその周りの島々にもいます。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "IUCN レッドリストの区分は、今回の調査では確かめられていません。日本の磯焼け対策の資料では、数が多い所で藻場に影響することがあるとされます。"
+    },
+    "highlights": [
+      "殻の上の肛門のまわりの橙色の輪と、白い点が目印です。よく似た Diadema savignyi とは、点の模様や肛門の輪などを合わせて見分けます。",
+      "黒く細長い棘は鋭く、刺さると折れて残ることがあります。",
+      "昼は岩の穴に隠れ、夜に出てきて海藻を食べます。",
+      "群れは場所も顔ぶれも大きさも変わり、出入りがあります。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "urchin",
+    "tailBeatHz": 0.2,
+    "bodyWaveStart": 0.5,
+    "waveCount": 3,
+    "tailSweepRad": 0.07,
+    "verticalFlex": 0,
+    "radial": {
+      "x": 0.5,
+      "y": 0.473,
+      "radius": 0.125,
+      "reach": 0.38
+    },
+    "footAnchor": {
+      "x": 0.5,
+      "y": 0.63
+    }
+  },
+  "visual": {
+    "fallbackColor": "#1c1626"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.8,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.004,
+      "burst": 0.008
+    },
+    "turnRateRadPerSec": 0.3,
+    "restFraction": 0.7,
+    "depthRange": [
+      0.1,
+      0.9
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 1,
+      "cohesion": 0.1,
+      "polarization": 0
+    },
+    "structureAffinity": 0.5,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 0.8,
+        "durationSec": [
+          20,
+          60
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 0.6,
+        "durationSec": [
+          60,
+          180
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "台湾国立自然科学博物館 Diadema setosum",
+        "url": "https://www.nmns.edu.tw/en/our-research/featured/Collection-E00423/"
+      },
+      {
+        "title": "水産庁 磯焼け対策ガイドライン ガンガゼ類",
+        "url": "https://www.jfa.maff.go.jp/j/gyoko_gyozyo/g_gideline/attach/pdf/index-34.pdf"
+      },
+      {
+        "title": "京都府海洋センター 丹後の海の生き物 ガンガゼ",
+        "url": "https://www.pref.kyoto.jp/kaiyo/gangaze.html"
+      },
+      {
+        "title": "Pearse & Arch 1969 The Aggregation Behavior of Diadema",
+        "url": "https://micronesica.org/sites/default/files/the_aggregation_behavior_of_diadema_echinodermata_echinoidea_by_pearse_j.s._et_al_-_micronesica_vol._5_no.1_jul._1969_o.pdf"
+      },
+      {
+        "title": "鳥羽水族館 ガンガゼ",
+        "url": "https://aquarium.co.jp/picturebook/diadema-setosum.html"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 218,
+    "y": 36,
+    "width": 1117,
+    "height": 939
+  }
+}

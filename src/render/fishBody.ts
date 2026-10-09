@@ -125,7 +125,7 @@ export class FishBody {
     // 頭が向いている側へ傾ける。反転中は自然に0へ近づく。
     const freeRotation = -this.motion.pitch * Math.cos(this.motion.yaw);
     if (surfaceAngle !== undefined) {
-      const contactRotation = surfaceAngle + (fish.contact?.kind === "mouth" ? -NOSE_DOWN_PITCH_RAD * Math.cos(this.motion.yaw) : 0);
+      const contactRotation = surfaceAngle * (this.renderer.surfaceTilt ?? 1) + (fish.contact?.kind === "mouth" ? -NOSE_DOWN_PITCH_RAD * Math.cos(this.motion.yaw) : 0);
       const targetRotation = fish.surfaceMotion ? contactRotation : blendAngle(freeRotation, contactRotation, fish.contact?.weight ?? 0);
       this.motion.surfaceRotation = this.motion.surfaceRotation === undefined ? targetRotation
         : blendAngle(this.motion.surfaceRotation, targetRotation, 1 - Math.exp(-6 * deltaSec));

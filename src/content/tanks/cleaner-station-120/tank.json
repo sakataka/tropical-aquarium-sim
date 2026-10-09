@@ -4,11 +4,11 @@
   "displayName": "掃除屋のいる岩の水槽",
   "exhibitName": "Cleaning Station",
   "category": "インド太平洋のサンゴ礁",
-  "description": "張り出した岩の下の洞を、ほかの魚が体を掃除してもらいに来る「掃除場」に見立てた120cmの水槽。ホンソメワケベラは洞の入口のまわりを行き来し、アカシマシラヒゲエビは洞の床やサンゴの上を歩いて、ときどき立ち止まって岩をついばみます。キンチャクガニは左右のはさみに小さなイソギンチャクを持って岩や砂の上を横歩きし、殻にイソギンチャクを付けたソメンヤドカリは、底をゆっくり歩き回ります。",
+  "description": "張り出した岩の下の洞を、ほかの魚が体を掃除してもらいに来る「掃除場」に見立てた120cmの水槽。ホンソメワケベラは洞の入口のまわりを行き来し、ソメワケベラはもっと広く泳ぎ回ります。アカシマシラヒゲエビと赤いシロボシアカモエビは洞の床やサンゴの上を歩いて、ときどき立ち止まって岩をついばみます。キンチャクガニは左右のはさみに小さなイソギンチャクを持って岩や砂の上を横歩きし、殻にイソギンチャクを付けたソメンヤドカリは、底をゆっくり歩き回ります。",
   "widthCm": 120,
   "heightCm": 55,
   "depthCm": 50,
-  "maxTotalFish": 13,
+  "maxTotalFish": 18,
   "sceneIds": [
     "cleaner-station-120"
   ],
@@ -28,6 +28,14 @@
     {
       "speciesId": "anemone-hermit-crab",
       "maxCount": 2
+    },
+    {
+      "speciesId": "bicolor-cleaner-wrasse",
+      "maxCount": 2
+    },
+    {
+      "speciesId": "blood-red-fire-shrimp",
+      "maxCount": 3
     }
   ],
   "defaultStock": [
@@ -46,6 +54,14 @@
     {
       "speciesId": "anemone-hermit-crab",
       "count": 1
+    },
+    {
+      "speciesId": "bicolor-cleaner-wrasse",
+      "count": 1
+    },
+    {
+      "speciesId": "blood-red-fire-shrimp",
+      "count": 2
     }
   ]
 }

@@ -1,0 +1,121 @@
+{
+  "id": "blackwing-hatchetfish",
+  "displayName": "ブラックウイング・ハチェットフィッシュ",
+  "realBodyLengthCm": 3.2,
+  "swim": {
+    "tailBeatHz": 2.6,
+    "tailSweepRad": 0.3,
+    "verticalFlex": 0.02
+  },
+  "visual": {
+    "fallbackColor": "#968c7d"
+  },
+  "sourceBodyBounds": {
+    "x": 103,
+    "y": 153,
+    "width": 1377,
+    "height": 634
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.04,
+    "maxY": 0.22
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.5,
+      "burst": 6
+    },
+    "turnRateRadPerSec": 2.4,
+    "restFraction": 0.3,
+    "depthRange": [
+      0,
+      0.2
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.8,
+      "cohesion": 0.6,
+      "polarization": 0.4
+    },
+    "structureAffinity": 0.05,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Galvis et al. (2007) Peces de la Amazonia colombiana con énfasis en especies de interés ornamental, pp.104–105",
+        "url": "https://formacion.cieducar.edu.co/Archivos/Sanabria-Ochoa%202007%20Peces%20Amazonas%20Ornamentales%20Colombia.pdf"
+      },
+      {
+        "title": "Santos et al. (2022) Trophic relationships among three ornamental fish",
+        "url": "https://www.scielo.br/j/bjb/a/5FY7xp3ZtBtZsp7VdQL5Lcm/?format=pdf&lang=en"
+      },
+      {
+        "title": "Piggott et al. (2011) Three fishes in one: cryptic species in an Amazonian floodplain forest specialist",
+        "url": "https://molecularecology.flinders.edu.au/wp-content/uploads/2021/11/80-hatchetfish-11.pdf"
+      },
+      {
+        "title": "FishBase — Carnegiella marthae",
+        "url": "https://www.fishbase.se/summary/Carnegiella-marthae.html"
+      },
+      {
+        "title": "Seriously Fish — Carnegiella marthae",
+        "url": "https://www.seriouslyfish.com/species/carnegiella-marthae"
+      },
+      {
+        "title": "Eschmeyer's Catalog of Fishes — Carnegiella marthae",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=3829"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Carnegiella marthae",
+    "originRegionId": "south-america",
+    "originRegionName": "南米",
+    "origin": "南米のアマゾン川とオリノコ川の流域に分布し、ボリビア、ブラジル、コロンビア、ペルー、ベネズエラで知られます。とくにオリノコ川上流とネグロ川が中心とされます。",
+    "temperament": "小さく臆病な魚とされます。野外では、浸水林の同じ場所で群れて泳いでいるところを採集されています。",
+    "movement": "上向きの口で、水面に落ちてきた小さな虫を食べます。驚くと水面から跳び出すことがあります。",
+    "habitat": "低地の森を流れる黒水の小川や、浸水林（イガポー）にすみます。浅く開けた小さな蛇行部や、岸辺の植物が水に浸かった場所で採集されています。",
+    "aliases": [
+      "Carnegiella marthae marthae",
+      "Blackwing hatchetfish",
+      "Black-winged hatchetfish",
+      "Glass hatchetfish"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Characiformes",
+      "orderJa": "カラシン目",
+      "family": "Gasteropelecidae",
+      "familyJa": "ガステロペレクス科"
+    },
+    "adultSizeCm": 3,
+    "sizeNote": "最大の標準体長は、コロンビアの図鑑で2.8cm、FishBase で2.9cmです。飼育下では全長3.5cmの記録があります。展示では尾びれを含めて全長3.2cmほどで描いています。",
+    "distribution": "アマゾン川とオリノコ川の流域に分布します。コロンビアの図鑑では、オリノコ川上流とネグロ川が主な分布域とされます。",
+    "water": {
+      "salinity": "freshwater",
+      "temperatureC": [
+        20,
+        28
+      ],
+      "pH": [
+        4.0,
+        7.0
+      ]
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2020,
+      "note": "遺伝子の研究では、この種の中に見分けにくい3つの系統が含まれる可能性が示されています。胃の中身の調査から、森から落ちてくる虫が大切な餌であることも指摘されています。"
+    },
+    "highlights": [
+      "胸から腹が手斧のように深く張り出し、大きな胸びれに黒い帯があります。",
+      "胸の下側に細い黒線が平行に並び、竜骨のような腹の縁を黒い線が縁取ります。",
+      "胃の中身は、陸や水の昆虫が中心です。"
+    ]
+  }
+}

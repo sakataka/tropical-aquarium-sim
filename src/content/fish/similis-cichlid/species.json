@@ -1,0 +1,129 @@
+{
+  "id": "similis-cichlid",
+  "displayName": "ネオランプロログス・シミリス",
+  "realBodyLengthCm": 4.5,
+  "swim": {
+    "tailBeatHz": 3.2
+  },
+  "visual": {
+    "fallbackColor": "#867561"
+  },
+  "sourceBodyBounds": {
+    "x": 78,
+    "y": 209,
+    "width": 1401,
+    "height": 610
+  },
+  "preferredZone": {
+    "minX": 0.1,
+    "maxX": 0.9,
+    "minY": 0.74,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.5,
+      "burst": 3.0
+    },
+    "turnRateRadPerSec": 3.0,
+    "restFraction": 0.3,
+    "depthRange": [
+      0.05,
+      0.55
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0.4,
+      "polarization": 0.1
+    },
+    "structureAffinity": 0.8,
+    "habits": [
+      {
+        "type": "homeShelter",
+        "kind": "burrow",
+        "rangeBodyLengths": 6,
+        "visitChancePerMin": 2.0,
+        "visitDurationSec": [
+          3,
+          12
+        ]
+      },
+      {
+        "type": "bottomForage"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Büscher (1992) Neolamprologus similis n. sp. DATZ 45(8)",
+        "url": "https://www.datz.de/images/stories/Erstbeschreibungen/Neolamprologus%20similis-1992-8.pdf"
+      },
+      {
+        "title": "Hummler (1994) Neolamprologus similis. DCG-Info 25(7): 154–158",
+        "url": "https://www.dcg-encyclopedia.de/wp-content/uploads/2011/05/1994-07-S-154-158.pdf"
+      },
+      {
+        "title": "Koblmüller et al. (2007) Reticulate phylogeny of gastropod-shell-breeding cichlids",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC1790888/"
+      },
+      {
+        "title": "Chin (2010) Lamprologus similis. BAS Aquatica, November–December 2010",
+        "url": "https://www.basny.org/Documents/Aquatica/2010/BAS-Aquatica-November-December-2010-COLOR.pdf"
+      },
+      {
+        "title": "Seriously Fish — Neolamprologus similis",
+        "url": "https://www.seriouslyfish.com/species/neolamprologus-similis"
+      },
+      {
+        "title": "Eschmeyer's Catalog of Fishes — Neolamprologus similis",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=61004"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Neolamprologus similis",
+    "originRegionId": "east-africa",
+    "originRegionName": "東アフリカ",
+    "origin": "東アフリカのタンガニーカ湖の固有種です。模式産地は、コンゴ民主共和国側の湖岸、ゾングウェ村の南約5kmです。",
+    "temperament": "ペアと、年齢の違う幼魚からなる小さな家族の群れで暮らすとされます。それぞれが小さな縄張りを持ち、体の側面を見せ合って守ります。",
+    "movement": "底近くの棚や隠れ場所のそばにとどまり、危険を感じると小さな穴へ逃げ込みます。飼育下では、砂を掘って縄張りを作り直します。",
+    "habitat": "原記載では、水深30〜45mの急な岩壁の棚で、砂や細かい堆積物がたまった場所の小さな岩穴を使っていました。のちの研究では、空の巻貝の殻も使って繁殖する種とされます。この展示では、手前の砂地に散らばる貝殻のまわりで暮らします。",
+    "aliases": [
+      "Lamprologus similis"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cichliformes",
+      "orderJa": "シクリッド目",
+      "family": "Cichlidae",
+      "familyJa": "シクリッド科"
+    },
+    "adultSizeCm": 4.5,
+    "sizeNote": "原記載の模式標本は全長4.3cm（標準体長3.5cm）で、採集した最大の個体は全長4.8cmでした。著者は最大で全長約5cmになると見込んでいます。水槽では、雄が雌よりやや大きくなります。",
+    "distribution": "タンガニーカ湖の固有種です。最初の記載では、コンゴ民主共和国側のゾングウェ付近とテンブウェ付近の2か所だけが知られていました。のちの解説では、ザンビアを除く湖の南半分の、東西の岸に分布するとされます。",
+    "water": {
+      "salinity": "freshwater",
+      "temperatureC": [
+        24,
+        27
+      ],
+      "pH": [
+        7.5,
+        9.0
+      ]
+    },
+    "keeping": "home",
+    "conservation": {
+      "note": "IUCNの評価区分は確かめられていません。"
+    },
+    "highlights": [
+      "体の11〜14本の褐色の帯に加えて、背びれの前の頭の後ろにも2本の帯が続きます。よく似たマルチファスキアトゥスと見分ける手がかりです。",
+      "学名の similis は「似ている」という意味で、マルチファスキアトゥスに似た模様にちなみます。",
+      "飼育下では、雌が貝殻の中で産卵し、仔魚は少しずつ殻の外へ出てきます。",
+      "胃の中身からは、カイアシ類や昆虫の幼虫、藻などが見つかっています。"
+    ]
+  }
+}

@@ -4,11 +4,11 @@
   "displayName": "ブラックウォーター水槽",
   "exhibitName": "Blackwater",
   "category": "ネグロ川の黒水",
-  "description": "紅茶色の水に太い根と幹が立ち並ぶ、ネグロ川の浸水林を再現した120cm水槽。ディスカスとアルタムエンゼルは根のあいだの縦に開けた水をゆっくり泳ぎ、リーフフィッシュは落ち葉のように漂って獲物を待ちます。",
+  "description": "紅茶色の水に太い根と幹が立ち並ぶ、ネグロ川の浸水林を再現した120cm水槽。ディスカスとアルタムエンゼルは根のあいだの縦に開けた水をゆっくり泳ぎ、リーフフィッシュは落ち葉のように漂って獲物を待ちます。水面のすぐ下では、ブラックウイング・ハチェットフィッシュの群れが大きな胸びれを広げて泳ぎます。",
   "widthCm": 120,
   "heightCm": 51,
   "depthCm": 45,
-  "maxTotalFish": 12,
+  "maxTotalFish": 20,
   "sceneIds": [
     "amazon-blackwater-120"
   ],
@@ -24,6 +24,10 @@
     {
       "speciesId": "amazon-leaffish",
       "maxCount": 2
+    },
+    {
+      "speciesId": "blackwing-hatchetfish",
+      "maxCount": 8
     }
   ],
   "defaultStock": [
@@ -38,6 +42,10 @@
     {
       "speciesId": "amazon-leaffish",
       "count": 1
+    },
+    {
+      "speciesId": "blackwing-hatchetfish",
+      "count": 6
     }
   ]
 }

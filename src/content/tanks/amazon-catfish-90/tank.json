@@ -4,11 +4,11 @@
   "displayName": "ナマズとプレコの岩場水槽",
   "exhibitName": "Catfish & Plecos",
   "category": "シングー川の岩場",
-  "description": "黒っぽい岩を重ねたシングー川の川底を再現した90cm水槽。ブッシープレコは岩の洞、インペリアルゼブラプレコは岩の隙間を住みかに石や流木の表面をなめ、コリドラス・パンダの群れは砂をつつき、バンジョーキャットは昼は物陰で休みます。",
+  "description": "黒っぽい岩を重ねたシングー川の川底を再現した90cm水槽。ブッシープレコとパナコルス・タンケイは岩の洞、インペリアルゼブラプレコは岩の隙間を住みかに石や流木の表面をなめ、コリドラス・パンダと吻の長いコリドラス・カラマーテルの群れは砂をつつき、バンジョーキャットは昼は物陰で休みます。",
   "widthCm": 90,
   "heightCm": 50,
   "depthCm": 45,
-  "maxTotalFish": 14,
+  "maxTotalFish": 25,
   "sceneIds": [
     "amazon-catfish-90"
   ],
@@ -28,6 +28,14 @@
     {
       "speciesId": "panda-corydoras",
       "maxCount": 10
+    },
+    {
+      "speciesId": "tanke-tiger-pleco",
+      "maxCount": 3
+    },
+    {
+      "speciesId": "corydoras-caramater",
+      "maxCount": 8
     }
   ],
   "defaultStock": [
@@ -46,6 +54,14 @@
     {
       "speciesId": "panda-corydoras",
       "count": 6
+    },
+    {
+      "speciesId": "tanke-tiger-pleco",
+      "count": 2
+    },
+    {
+      "speciesId": "corydoras-caramater",
+      "count": 5
     }
   ]
 }

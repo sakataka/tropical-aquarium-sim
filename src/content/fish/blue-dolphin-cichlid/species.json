@@ -1,0 +1,113 @@
+{
+  "id": "blue-dolphin-cichlid",
+  "displayName": "キルトカラ・モーリー",
+  "realBodyLengthCm": 20,
+  "swim": {
+    "tailBeatHz": 1.6,
+    "tailSweepRad": 0.4
+  },
+  "visual": {
+    "fallbackColor": "#5a80b2"
+  },
+  "sourceBodyBounds": {
+    "x": 89,
+    "y": 158,
+    "width": 1402,
+    "height": 728
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.4,
+    "maxY": 0.88
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "steady",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.25,
+      "burst": 1.2
+    },
+    "turnRateRadPerSec": 1.8,
+    "restFraction": 0.2,
+    "depthRange": [
+      0.2,
+      0.85
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 3,
+      "cohesion": 0,
+      "polarization": 0.04
+    },
+    "structureAffinity": 0.25,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Cyrtocara moorii",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=21129"
+      },
+      {
+        "title": "Boulenger 1902: On new Cichlid Fishes from Lake Nyassa, p.70",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/b/b0/The_annals_and_magazine_of_natural_history_-_zoology%2C_botany%2C_and_geology_%28IA_s7annalsmagazine10londuoft%29.pdf"
+      },
+      {
+        "title": "Maréchal 1991: Cyrtocara, CLOFFA 4, pp.73–74",
+        "url": "https://horizon.documentation.ird.fr/exl-doc/pleins_textes/divers16-03/36707.pdf"
+      },
+      {
+        "title": "Nederlandse Vereniging van Cichlidenliefhebbers: Cyrtocara moorii",
+        "url": "https://www.nvcweb.nl/visbeschrijvingen/malawi/cyrtocara-moorii-boulenger-1902"
+      },
+      {
+        "title": "Lecaudey, Sturmbauer, Singh & Ahi (2019): Molecular mechanisms underlying nuchal hump formation in dolphin cichlid",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6937230/"
+      },
+      {
+        "title": "FishBase: Cyrtocara moorii",
+        "url": "https://fishbase.se/summary/2221"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Cyrtocara moorii",
+    "originRegionId": "east-africa",
+    "originRegionName": "東アフリカ",
+    "origin": "東アフリカのマラウイ湖の固有種で、湖内に広く分布します。模式産地はニアサ湖（現在のマラウイ湖）です。種小名は、採集者のムーアにちなみます。",
+    "habitat": "比較的浅い砂底の上で暮らし、記録された水深は3〜15mです。この展示では、白い砂と花崗岩の岩が点在する湖底を泳ぎます。",
+    "temperament": "砂を掘って餌を探す大型の魚に付き従い、ふつうは1尾が1尾の魚に付きます。何尾もいると、順位ができるとされます。飼育下の研究では、若い成魚の雄が雌を追い、巣を作って縄張りを守りました。",
+    "movement": "砂を掘る魚の鰓ぶたの後ろや下について回り、巻き上がった粒の中から餌を取ります。自分で動物プランクトンや糸状の藻を食べることもあります。本水槽では、砂底に近い水中をゆったりと泳ぎます。",
+    "aliases": [
+      "Blue dolphin cichlid",
+      "Dolphin cichlid",
+      "Hump-head",
+      "Haplochromis moorii"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cichliformes",
+      "orderJa": "シクリッド目",
+      "family": "Cichlidae",
+      "familyJa": "シクリッド科"
+    },
+    "adultSizeCm": 20,
+    "sizeNote": "原記載の1標本は全長18.5cmです。CLOFFA と FishBase は全長20cmとしています。野外では20cmを少し超え、水槽では30cm以上になるとする解説もありますが、測り方は書かれていません。",
+    "distribution": "東アフリカ、マラウイ湖の固有種。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "VU",
+      "assessedYear": 2018,
+      "note": "区分と評価年は FishBase の表示で、IUCN の評価の本文は確かめられていません。食用の漁業と観賞魚に利用されます。"
+    },
+    "highlights": [
+      "成熟した雄は、額が軟らかい組織で丸く盛り上がります。こぶの発達には、細胞の増殖や頭の形づくりにかかわる遺伝子の働きの違いが関係しています。",
+      "砂を掘る大型のシクリッドに付き従い、巻き上がった粒の中から餌を拾います。",
+      "体とひれは青から青紫色です。外見で雌雄を見分けるのは難しく、繁殖期になるとはっきりします。",
+      "卵と仔魚は雌が口の中で守ります。"
+    ]
+  }
+}

@@ -1,7 +1,8 @@
 import { describe, expect, test } from "vitest";
-import { fishCatalog, getTankById } from "./catalog";
+import { fishCatalog, getSceneById, getTankById } from "./catalog";
 import { createFishFromStock } from "./fishPopulation";
 import { stepSimulation } from "./simulation";
+import type { FishInstance } from "./types";
 
 const TANK_60CM = getTankById("asia-60")!;
 
@@ -205,5 +206,71 @@ describe("natural swimming", () => {
     expect(nightDrop).toBeGreaterThan(0.05);
     // 水面に暮らすマーブルハチェットは夜も上層にいる。
     expect(averageDepth("marbled-hatchetfish", "night", 1)).toBeLessThan(0.4);
+  });
+});
+
+describe("resting beside rocks", () => {
+  // 底に並んで重なる2つの岩。重なりのくぼみと、岩と底の間の細いすき間に、休む魚が寄りかかる。
+  const tank = getTankById("cube-30")!;
+  const scene = { ...getSceneById("cube-stones")!, terrain: { surfaces: [], occluders: [], obstacles: [
+    { id: "west", center: { x: .35, y: .9, depth: .5 }, radius: { x: .25, y: .2 }, depthRadius: .1 },
+    { id: "east", center: { x: .68, y: .88, depth: .5 }, radius: { x: .22, y: .22 }, depthRadius: .1 },
+  ] } };
+
+  /** 体長×0.2 だけ広げた回避領域の、いちばん深くめり込んだ所の正規化した距離（1 未満なら内側）。許容誤差を置かずに測る。 */
+  function nearestObstacleDistance(position: { x: number; y: number }, depth: number, bodyLengthCm: number) {
+    let nearest = Infinity;
+    for (const obstacle of scene.terrain.obstacles) {
+      const relativeDepth = (depth - obstacle.center.depth) / obstacle.depthRadius;
+      if (Math.abs(relativeDepth) >= 1) continue;
+      const section = Math.sqrt(1 - relativeDepth * relativeDepth);
+      const rx = obstacle.radius.x * tank.widthCm * section + bodyLengthCm * .2;
+      const ry = obstacle.radius.y * tank.heightCm * section + bodyLengthCm * .2;
+      nearest = Math.min(nearest, Math.hypot((position.x - obstacle.center.x * tank.widthCm) / rx,
+        (position.y - obstacle.center.y * tank.heightCm) / ry));
+    }
+    return nearest;
+  }
+
+  test("pausing fish lean on rocks without seeping in, so they are never pushed out with a jump", () => {
+    // よく止まって休み、薄い岩の手前と奥を行き来する底寄りの小魚。止まっている間も奥行きは動くので、岩の手前で止められる。
+    const species = structuredClone(fishCatalog["ember-tetra"]!);
+    species.ecology.restFraction = .6;
+    species.ecology.depthRange = [.3, .7];
+    species.preferredZone = { ...species.preferredZone, minY: .75, maxY: .95 };
+    const bodyLength = species.realBodyLengthCm;
+    const failures: string[] = [];
+    let touches = 0;
+    for (let seed = 1; seed <= 40; seed++) {
+      const random = seededRandom(seed);
+      let fish: FishInstance[] = createFishFromStock([{ speciesId: species.id, count: 3 }], tank, random).map((f, i) => ({
+        ...f, seed: seed * 7919 + i, bodyLengthVariance: 1,
+        // 岩の輪郭の手前か奥に、ゆっくりした惰性で止まりかけた姿で置く。
+        position: { x: tank.widthCm * (.2 + random() * .6), y: tank.heightCm * (.8 + random() * .1) },
+        velocity: { x: (random() - .5) * .6, y: random() * .4 }, depth: random() < .5 ? .3 : .7,
+        target: undefined, behaviorMode: "pause" as const, behaviorTimeRemainingSec: 1 + random() * 3,
+      }));
+      let inside = 0, worstJump = 0;
+      for (let tick = 0; tick < 1200; tick++) {
+        const previous = fish;
+        fish = stepSimulation({ tank, scene, fish, species: { [species.id]: species }, structurePoints: [], deltaSec: .1 }).fish;
+        for (const [i, f] of fish.entries()) {
+          const p = previous[i]!;
+          const distance = nearestObstacleDistance(f.position, f.depth, bodyLength);
+          if (distance < 1) inside++;
+          if (distance < 1.001) touches++;
+          // 止まっている間は、直前の速さか、休む場所へ寄る最も速い速さ（体長×0.2/秒）より速くは動かない。
+          const resting = (mode: typeof f.behaviorMode) => mode === "pause" || mode === "rest";
+          if (resting(p.behaviorMode) && resting(f.behaviorMode)) {
+            const allowed = Math.max(Math.hypot(p.velocity.x, p.velocity.y), bodyLength * .2) * .1;
+            worstJump = Math.max(worstJump, Math.hypot(f.position.x - p.position.x, f.position.y - p.position.y) - allowed);
+          }
+        }
+      }
+      if (inside > 0 || worstJump > 1e-6) failures.push(`seed ${seed}: inside ${inside} frames, jump ${worstJump.toFixed(3)}cm`);
+    }
+    // 岩に寄りかかる場面が実際に起きていることも確かめる。
+    expect(touches).toBeGreaterThan(1000);
+    expect(failures).toEqual([]);
   });
 });

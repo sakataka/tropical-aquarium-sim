@@ -1,0 +1,139 @@
+{
+  "id": "tanke-tiger-pleco",
+  "displayName": "パナコルス・タンケイ",
+  "realBodyLengthCm": 9,
+  "swim": {
+    "tailBeatHz": 2.2,
+    "tailSweepRad": 0.38,
+    "mouthAnchor": {
+      "x": 0.05,
+      "y": 0.73
+    }
+  },
+  "visual": {
+    "fallbackColor": "#866945"
+  },
+  "sourceBodyBounds": {
+    "x": 57,
+    "y": 138,
+    "width": 1457,
+    "height": 698
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.62,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.2,
+      "burst": 1.4
+    },
+    "turnRateRadPerSec": 1.9,
+    "restFraction": 0.55,
+    "depthRange": [
+      0.4,
+      0.95
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0,
+      "polarization": 0.03
+    },
+    "structureAffinity": 0.9,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 2.0,
+        "durationSec": [
+          10,
+          40
+        ]
+      },
+      {
+        "type": "homeShelter",
+        "kind": "cave",
+        "rangeBodyLengths": 6,
+        "visitChancePerMin": 0.9,
+        "visitDurationSec": [
+          30,
+          120
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.0,
+        "durationSec": [
+          15,
+          50
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Cramer & Melo de Sousa (2016) A New Species of Tiger Pleco Panaqolus from the Xingu Basin, Brazil. PLOS ONE 11: e0165388",
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0165388"
+      },
+      {
+        "title": "Eschmeyer's Catalog of Fishes — Panaqolus species listing",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?genus=Panaqolus&tbl=species"
+      },
+      {
+        "title": "Andreas Tanke — Panaqolus tankei (L398)",
+        "url": "https://www.panaqolus.at/fisch/panaqolus-tankei-l-398/"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Panaqolus tankei",
+    "originRegionId": "south-america",
+    "originRegionName": "南米",
+    "origin": "ブラジル・パラー州のシングー川下流、ベロモンテの滝より下流で知られる小型のプレコです。2016年に新種として記載されるまでは、L398の番号で流通していました。",
+    "temperament": "繁殖させた飼育者の解説では、おとなしく穏やかなプレコとされます。卵は洞穴のような隠れ場所に産むとされます。",
+    "movement": "沈んだ木の表面に張り付いて休み、そのまま木の表面で餌をはみます。原記載には、自然の生息地で沈木に付いている姿の写真が載っています。",
+    "habitat": "低地の川岸に沈んだ倒木や流木のまわりにすみ、ふだんは水深1〜10mで見つかるとされます。この展示では、黒い岩と流木のあいだで、ほかのプレコやコリドラスと暮らします。",
+    "aliases": [
+      "L398",
+      "L 398",
+      "Panaqolus sp. L398",
+      "Panaqolus sp. Vitória do Xingu",
+      "Tanke tiger pleco"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Siluriformes",
+      "orderJa": "ナマズ目",
+      "family": "Loricariidae",
+      "familyJa": "ロリカリア科"
+    },
+    "adultSizeCm": 8,
+    "sizeNote": "原記載で成魚と明記された標本は標準体長6.5〜7.9cmで、計測した101標本の最大は8.3cmでした。展示では尾びれを含めて全長9cmほどで描いています。飼育者は12〜15cmになると紹介していますが、全長か標準体長かは示されていません。",
+    "distribution": "ブラジル・パラー州の、シングー川下流域の固有種とされます。模式産地は、セナドール・ジョゼ・ポルフィリオの南17kmのシングー川本流です。",
+    "water": {
+      "salinity": "freshwater",
+      "temperatureC": [
+        26,
+        29
+      ],
+      "pH": [
+        6,
+        7
+      ]
+    },
+    "keeping": "home",
+    "conservation": {
+      "note": "IUCNの評価区分は確かめられていません。2016年の原記載は、生息域の多くがベロモンテ・ダムの直接の影響域の外にあると見込みつつ、下流の環境を見守る必要があるとしています。"
+    },
+    "highlights": [
+      "黄土色の地に、背の後ろから腹の前へ斜めに下る太い暗色の帯が5〜7本入ります。成長すると、前の帯が割れたり、後ろの帯が逆Y字に枝分かれしたりします。",
+      "腹側の丸い吸盤状の口に、スプーン形の歯が並びます。",
+      "沈んだ木の上で暮らし、木の表面で餌をとります。",
+      "名前は、この魚を研究し、繁殖させた愛好家アンドレアス・タンケにちなみます。"
+    ]
+  }
+}

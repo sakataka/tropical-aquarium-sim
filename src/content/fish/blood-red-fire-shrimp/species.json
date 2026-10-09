@@ -1,0 +1,146 @@
+{
+  "id": "blood-red-fire-shrimp",
+  "displayName": "シロボシアカモエビ",
+  "realBodyLengthCm": 5.5,
+  "swim": {
+    "bodyPlan": "crustacean",
+    "headStart": 0.35,
+    "tailBeatHz": 0.6,
+    "bodyWaveStart": 0.85,
+    "tailSweepRad": 0,
+    "verticalFlex": 0,
+    "footAnchor": {
+      "x": 0.5,
+      "y": 0.95
+    }
+  },
+  "visual": {
+    "fallbackColor": "#b83c33"
+  },
+  "sourceBodyBounds": {
+    "x": 39,
+    "y": 89,
+    "width": 1457,
+    "height": 766
+  },
+  "preferredZone": {
+    "minX": 0.18,
+    "maxX": 0.82,
+    "minY": 0.58,
+    "maxY": 0.92
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.07,
+      "burst": 0.4
+    },
+    "turnRateRadPerSec": 1.3,
+    "restFraction": 0.6,
+    "depthRange": [
+      0.1,
+      0.5
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 1.2,
+      "cohesion": 0.5,
+      "polarization": 0.1
+    },
+    "structureAffinity": 0.95,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 2.5,
+        "durationSec": [
+          6,
+          16
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 2.4,
+        "durationSec": [
+          12,
+          35
+        ]
+      },
+      {
+        "type": "homeShelter",
+        "kind": "cave",
+        "rangeBodyLengths": 6,
+        "visitChancePerMin": 0.8,
+        "visitDurationSec": [
+          15,
+          45
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Bruce (1983), Lysmata debelius new species 原記載",
+        "url": "https://research.nhm.org/pdfs/24888/24888.pdf"
+      },
+      {
+        "title": "Burukovsky (2000), Lysmata splendida の記載と比較",
+        "url": "https://decapoda.nhm.org/pdfs/25044/25044.pdf"
+      },
+      {
+        "title": "ITIS: Lysmata debelius TSN 1173488",
+        "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=1173488"
+      },
+      {
+        "title": "海遊館 生きもの図鑑 シロボシアカモエビ",
+        "url": "https://www.kaiyukan.com/connect/encyclopedia/211.html"
+      },
+      {
+        "title": "Liu et al., Chemical cues mediate social monogamy in a marine caridean shrimp, Lysmata debelius",
+        "url": "https://www.researchgate.net/publication/336815377_Chemical_cues_mediate_social_monogamy_in_a_marine_caridean_shrimp_Lysmata_debelius"
+      },
+      {
+        "title": "Hettiarachchi & Edirisinghe (2016), Captive breeding of Lysmata debelius under Sri Lankan conditions",
+        "url": "https://pdfs.semanticscholar.org/2ea5/d95a0230c1a6e377da051d2e30e352b6c4a5.pdf"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Lysmata debelius",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "1983年に、フィリピンのルソン島東方にあるポリリョ島で採集された標本をもとに新種として記載されました。記載の論文には、スリランカ、インドネシアのバリ島、フィリピンからの採集報告がまとめられています。水族館の解説では、インド洋と太平洋に分布するとされています。",
+    "temperament": "ふつう2匹1組で見られると報告されています。飼育下では、魚の体を掃除します。実験では、見知らぬ同種と会わせた15例すべてで争いが起き、なじみの相手とは1例も争いませんでした。繁殖研究でも、親を組み合わせるときに脚が傷ついて死んだ個体がいました。",
+    "movement": "海底で暮らすエビで、飼育下では岩陰に隠れたり、岩にぶら下がったりする様子が報告されています。本水槽では、長い白い触角を揺らしながら、岩の張り出しの陰や洞の床を脚で歩きます。",
+    "habitat": "岩礁に暮らします。模式標本は、生きたサンゴのない岩場の水深28mで採集されました。採集業者の報告では水深10〜28m、水族館の解説では20〜30mとされています。本水槽では、岩の張り出しの陰にある掃除場所に暮らしています。",
+    "aliases": [
+      "Blood red fire shrimp",
+      "Fire shrimp",
+      "Blood shrimp",
+      "White socks shrimp",
+      "ホワイトソックスシュリンプ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Decapoda",
+      "orderJa": "十脚目",
+      "family": "Lysmatidae",
+      "familyJa": "リスマタ科"
+    },
+    "adultSizeCm": 5.5,
+    "sizeNote": "全長。スリランカの繁殖研究で産卵に成功した親12匹は4.9〜5.6cm、別の行動実験に使われた個体は4.0〜5.6cmでした。ふつうの大きさや最大の大きさは、今回の調査では確かめられていません。",
+    "distribution": "インド洋から太平洋に分布し、スリランカ、インドネシアのバリ島、フィリピンから記録があります。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "今回の調査では IUCN の評価を確認できませんでした。観賞用の野生採集への依存を減らすため、飼育下での繁殖が研究されています。"
+    },
+    "highlights": [
+      "濃い赤の体に、頭胸甲だけ白い点が散ります。腹部の背中側にも白い斑があるよく似たエビは、別種の Lysmata splendida です。",
+      "歩く脚の先が白く、ホワイトソックスシュリンプとも呼ばれます。長い触角も、先の方が白くなります。",
+      "雄として成熟したあと、雄と雌の両方の働きをもつ雌雄同体になります。雌の役目をするときは脱皮の後に交尾し、3〜8時間後に産卵します。"
+    ]
+  }
+}

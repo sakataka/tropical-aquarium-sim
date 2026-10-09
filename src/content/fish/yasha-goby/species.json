@@ -1,0 +1,120 @@
+{
+  "id": "yasha-goby",
+  "displayName": "ヤシャハゼ",
+  "realBodyLengthCm": 5.5,
+  "swim": {
+    "tailBeatHz": 3.2
+  },
+  "visual": {
+    "fallbackColor": "#c1a386"
+  },
+  "sourceBodyBounds": {
+    "x": 120,
+    "y": 171,
+    "width": 1364,
+    "height": 599
+  },
+  "preferredZone": {
+    "minX": 0.1,
+    "maxX": 0.9,
+    "minY": 0.76,
+    "maxY": 0.94
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.15,
+      "burst": 2.0
+    },
+    "turnRateRadPerSec": 2.6,
+    "restFraction": 0.55,
+    "depthRange": [
+      0.15,
+      0.7
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0.45,
+      "polarization": 0.05
+    },
+    "structureAffinity": 0.6,
+    "habits": [
+      {
+        "type": "homeShelter",
+        "kind": "burrow",
+        "rangeBodyLengths": 2,
+        "visitChancePerMin": 1.2,
+        "visitDurationSec": [
+          5,
+          20
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Stonogobiops yasha",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=66555"
+      },
+      {
+        "title": "Yoshino & Shimada (2001), Stonogobiops yasha, a new shrimp-associated goby from Japan（要旨）",
+        "url": "https://link.springer.com/article/10.1007/s10228-001-8164-z"
+      },
+      {
+        "title": "FishBase: Stonogobiops yasha",
+        "url": "https://www.fishbase.se/summary/Stonogobiops_yasha.html"
+      },
+      {
+        "title": "本村・上原（2020）沖永良部島の魚類",
+        "url": "https://www.museum.kagoshima-u.ac.jp/staff/motomura/2020_03_Okinoerabu_Fishes_lowres.pdf"
+      },
+      {
+        "title": "新潟市水族館マリンピア日本海: ヤシャハゼ",
+        "url": "https://www.marinepia.or.jp/picturebook/fish/entry-11929.html"
+      },
+      {
+        "title": "Szczebak (2016), Yasha Goby reared in captivity, CORAL Magazine",
+        "url": "https://www.coralmagazine.com/2016/03/23/video-yasha-goby-stonogobiops-yasha-reared-in-captivity/"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Stonogobiops yasha",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "東インド洋から西太平洋に分布し、インドネシアのバリ島、パラオ、日本の琉球列島と伊豆諸島、ニューカレドニアから知られています。2001年に、沖縄島恩納村の真栄田岬沖、水深38mで採集された標本などをもとに新種として記載されました。",
+    "temperament": "コトブキテッポウエビ（Alpheus randalli）と砂底の巣穴を共にする共生ハゼです。2匹でいることがよくあります。飼育下の繁殖では、雄が巣穴の中の卵や生まれたばかりの仔魚を見守る様子が報告されています。",
+    "movement": "巣穴の入口から数cm上の水中に浮かび、その場にとどまるように泳ぎます。本水槽では、巣穴の近くに浮かんで、ときどき巣穴へ戻ります。",
+    "habitat": "外礁の斜面の砂底で、巣穴の入口付近に暮らします。生息水深は15〜40mとされています。本水槽では、岩の根元にある巣穴を住みかにしています。",
+    "aliases": [
+      "Yasha goby",
+      "Orange-striped shrimpgoby"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Gobiiformes",
+      "orderJa": "ハゼ目",
+      "family": "Gobiidae",
+      "familyJa": "ハゼ科"
+    },
+    "adultSizeCm": 4.7,
+    "sizeNote": "標準体長。最大として記録された雌は4.7cmでした。水族館の解説では体長6cmとされていますが、測り方が違う可能性があります。",
+    "distribution": "東インド洋から西太平洋に分布します。日本では琉球列島、伊豆諸島のほか、小笠原や高知県の柏島でも見られます。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2020
+    },
+    "highlights": [
+      "白い体に、朱色の縦じまが3本通ります。同じ属のキツネメネジリンボウの、斜めの黒い帯とは違う模様です。",
+      "第1背びれの棘が白く長く伸び、先の方に黒い斑があります。いちばん長い棘は、標準体長の64〜109%に達します。",
+      "巣穴の入口から数cm上に浮かび、その場にとどまります。",
+      "飼育下で繁殖に成功しており、1つの巣に100〜500個の卵が産まれ、約6日でふ化した例があります。"
+    ]
+  }
+}

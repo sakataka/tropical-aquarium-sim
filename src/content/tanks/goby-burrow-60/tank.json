@@ -4,11 +4,11 @@
   "displayName": "ハゼの巣穴水槽",
   "exhibitName": "Goby Burrows",
   "category": "サンゴ礁の砂地",
-  "description": "岩の根元に巣穴がある砂地を再現した60cmの水槽。ギンガハゼとキツネメネジリンボウは巣穴の入口近くに浮かんだり砂の上に止まったりして、遠くへは泳ぎ出しません。ときどき巣穴に戻って身を潜めます。",
+  "description": "岩の根元に巣穴がある砂地を再現した60cmの水槽。ギンガハゼ、キツネメネジリンボウ、ニチリンダテハゼ、ヤシャハゼは巣穴の入口近くに浮かんだり砂の上に止まったりして、遠くへは泳ぎ出しません。紅白のコトブキテッポウエビは巣穴のまわりの砂の上を歩き、ときどき巣穴に戻って身を潜めます。",
   "widthCm": 60,
   "heightCm": 42,
   "depthCm": 45,
-  "maxTotalFish": 6,
+  "maxTotalFish": 13,
   "sceneIds": [
     "goby-burrow-60"
   ],
@@ -20,6 +20,18 @@
     {
       "speciesId": "fiveband-shrimpgoby",
       "maxCount": 3
+    },
+    {
+      "speciesId": "randalls-pistol-shrimp",
+      "maxCount": 3
+    },
+    {
+      "speciesId": "randalls-shrimpgoby",
+      "maxCount": 2
+    },
+    {
+      "speciesId": "yasha-goby",
+      "maxCount": 2
     }
   ],
   "defaultStock": [
@@ -30,6 +42,18 @@
     {
       "speciesId": "fiveband-shrimpgoby",
       "count": 2
+    },
+    {
+      "speciesId": "randalls-pistol-shrimp",
+      "count": 2
+    },
+    {
+      "speciesId": "randalls-shrimpgoby",
+      "count": 1
+    },
+    {
+      "speciesId": "yasha-goby",
+      "count": 1
     }
   ]
 }

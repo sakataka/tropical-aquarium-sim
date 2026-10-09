@@ -1,0 +1,134 @@
+{
+  "id": "sunflower-sea-star",
+  "displayName": "サンフラワーシースター",
+  "realBodyLengthCm": 45,
+  "catalog": {
+    "scientificName": "Pycnopodia helianthoides",
+    "originRegionId": "northeast-pacific",
+    "originRegionName": "北東太平洋",
+    "origin": "北東太平洋に分布し、アリューシャン列島から少なくともメキシコのバハ・カリフォルニア北部まで見られます。",
+    "temperament": "ウニなどの底生の無脊椎動物を食べる捕食者で、ウニとケルプの森の食物網に関わります。本水槽では、岩や砂の上で休んではゆっくり場所を移します。",
+    "movement": "移動の速さは、今回の調査では確かめられていません。本水槽では、面の上を滑るように這い、多くの腕の先を少しずつ持ち上げてはしならせます。",
+    "habitat": "潮間帯から潮下帯のケルプの森、岩礁、砂泥底で暮らし、少なくとも水深435mからも知られています。オレゴンでは、年平均の日水温が9〜11.5℃くらいの所に多いという研究があります。本水槽では、カリフォルニアのケルプの森をイメージしています。",
+    "aliases": [
+      "Sunflower sea star",
+      "Sunflower star"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Forcipulatida",
+      "orderJa": "マヒトデ目",
+      "family": "Asteriidae",
+      "familyJa": "マヒトデ科"
+    },
+    "adultSizeCm": 30,
+    "sizeNote": "腕の先から先までの直径です。研究施設では直径30cmを超える個体を親に選んでいます。成体のふつうの大きさや最大の大きさは、今回の調査では確かめられていません。画面では、腕の先から先まで約45cmで描いています。",
+    "distribution": "北東太平洋の、アリューシャン列島から少なくともバハ・カリフォルニア北部までに分布します。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "CR",
+      "assessedYear": 2020,
+      "note": "ヒトデ消耗症候群で大きく数を減らし、IUCN レッドリストでは深刻な危機（CR。2020年評価、2021年公表）です。米国では、絶滅危惧種法の指定が提案されています。"
+    },
+    "highlights": [
+      "腕は成体で最大24本になります。",
+      "ウニなどを食べる底生の捕食者で、ウニとケルプの森の食物網に関わります。",
+      "ヒトデ消耗症候群で大きく数を減らし、保全が急がれています。",
+      "本水槽では、休むとき以外は、多くの腕の先を少しずつ持ち上げては下ろしながら這います。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "seaStar",
+    "tailBeatHz": 0.07,
+    "bodyWaveStart": 0.5,
+    "waveCount": 3,
+    "tailSweepRad": 0.35,
+    "verticalFlex": 0.08,
+    "radial": {
+      "x": 0.5,
+      "y": 0.513,
+      "radius": 0.2,
+      "reach": 0.47
+    },
+    "footAnchor": {
+      "x": 0.5,
+      "y": 0.513
+    }
+  },
+  "visual": {
+    "fallbackColor": "#d0652a"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.8,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.01,
+      "burst": 0.02
+    },
+    "turnRateRadPerSec": 0.3,
+    "restFraction": 0.7,
+    "depthRange": [
+      0.1,
+      0.9
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 1.2,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.5,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 0.3,
+        "durationSec": [
+          20,
+          60
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 0.4,
+        "durationSec": [
+          40,
+          120
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "NOAA Fisheries Sunflower Sea Star",
+        "url": "https://www.fisheries.noaa.gov/species/sunflower-sea-star"
+      },
+      {
+        "title": "Gravem et al. 2021 IUCN assessment",
+        "url": "https://www.reefcheck.org/wp-content/uploads/2021/10/Final_IUCNAssessment.pdf"
+      },
+      {
+        "title": "Star Power early life stages warming study",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12407436/"
+      },
+      {
+        "title": "Seattle Aquarium Sea star",
+        "url": "https://www.seattleaquarium.org/animal/sea-star/"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 260,
+    "y": 14,
+    "width": 1023,
+    "height": 980
+  }
+}

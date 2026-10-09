@@ -686,7 +686,10 @@ function getDesiredVelocity(context: StepContext & {
   const boundary = boundaryVector(fish.position, tank, fish.terrainGoal ? 0 : water.topCm(fish.depth),
     targetKind === "surfaceVisit" || species.preferredZone.maxY <= 0.25,
     bodyPlan.bottomDweller);
-  const zone = inHabit || bodyPlan.bottomDweller ? { x: 0, y: 0 }
+  // 岩に押し付けられて止まり、回り込みから抜け出す間（stuckSec が数え始めた間）は、生活層へ戻る力で岩へ押し戻さない。
+  // 生活層が岩の向こうにあると、その力と岩がつり合って、岩のくぼみで止まったままになる。
+  const escaping = (fish.terrainRoute?.stuckSec ?? 0) > 0;
+  const zone = inHabit || bodyPlan.bottomDweller || escaping ? { x: 0, y: 0 }
     : zoneVector(fish.position, fish.depth, water, species, activity);
   const rawFlock = inHabit ? { x: 0, y: 0 } : schoolingVector(fish, school, species, tank);
   // 群れの引力で後ろ向きに引き戻されると、頻繁に向きが入れ替わってしまう。

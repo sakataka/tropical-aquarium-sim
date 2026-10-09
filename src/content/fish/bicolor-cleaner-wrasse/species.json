@@ -1,0 +1,129 @@
+{
+  "id": "bicolor-cleaner-wrasse",
+  "displayName": "ソメワケベラ",
+  "realBodyLengthCm": 12,
+  "swim": {
+    "tailBeatHz": 2.8
+  },
+  "visual": {
+    "fallbackColor": "#2066c0"
+  },
+  "sourceBodyBounds": {
+    "x": 91,
+    "y": 271,
+    "width": 1358,
+    "height": 452
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.25,
+    "maxY": 0.8
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.6,
+      "burst": 2
+    },
+    "turnRateRadPerSec": 2.7,
+    "restFraction": 0.08,
+    "depthRange": [
+      0.15,
+      0.8
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 4,
+      "cohesion": 0.1,
+      "polarization": 0.05
+    },
+    "structureAffinity": 0.6,
+    "habits": [
+      {
+        "type": "homeShelter",
+        "kind": "cave",
+        "rangeBodyLengths": 9,
+        "visitChancePerMin": 0.5,
+        "visitDurationSec": [
+          5,
+          12
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Labroides bicolor",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?genus=Labroides&species=bicolor&tbl=species"
+      },
+      {
+        "title": "国立科学博物館 Fishes of Andaman Sea: Labroides bicolor",
+        "url": "https://www.kahaku.go.jp/research/db/zoology/Fishes_of_Andaman_Sea/contents/labridae/29.html"
+      },
+      {
+        "title": "Coastal Fishes of the Western Indian Ocean, vol. 4: Labroides bicolor",
+        "url": "https://saiab.ac.za/wp-content/uploads/2022/11/1._wiof_volume_4_text.pdf"
+      },
+      {
+        "title": "Fishes of Australia: Labroides bicolor",
+        "url": "https://fishesofaustralia.net.au/home/species/2296"
+      },
+      {
+        "title": "堀田（2019）魚類を対象とした比較認知科学研究の可能性",
+        "url": "https://www.jstage.jst.go.jp/article/janip/69/2/69_69.1.7/_pdf"
+      },
+      {
+        "title": "Oates, Manica & Bshary (2010), Roving and Service Quality in the Cleaner Wrasse Labroides bicolor",
+        "url": "https://libra.unine.ch/bitstreams/5c717583-d55d-41c3-ada4-b474df1d7440/download"
+      },
+      {
+        "title": "Oates et al. (2012), Relationship between roving behaviour and the diet and client composition of the cleaner fish Labroides bicolor",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/22747814/"
+      },
+      {
+        "title": "Brooker et al. (2025), Competitive cleaning: behavioural variation supports coexistence of two juvenile sympatric cleanerfishes",
+        "url": "https://pdfs.semanticscholar.org/6261/255594171970ad207f59a16809abd0556a0f.pdf"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Labroides bicolor",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "東アフリカや南アフリカの東岸、オマーンから太平洋の中西部まで、北は南日本と小笠原、南はオーストラリアや南太平洋の島々まで分布します。紅海、ペルシャ湾、ハワイからは知られていません。",
+    "temperament": "ほかの魚の体を掃除する掃除魚で、成魚になっても掃除に頼って暮らします。甲殻類の寄生虫と魚の粘液を食べ、ホンソメワケベラと比べた研究では、粘液を多く食べていました。その研究では、36種の魚との接触が観察されています。",
+    "movement": "成魚は広い範囲を泳ぎ回って、掃除の相手に近づきます。仏領ポリネシアのモーレア島では、ホンソメワケベラより行動圏が広く、行動圏の広い個体ほど自分から掃除を始める傾向がありました。幼魚は小さな掃除場所を構えます。本水槽では、岩の張り出しのまわりを中心に、水槽の中を広く行き来します。",
+    "habitat": "サンゴ礁のラグーン、礁原、外側の斜面に暮らし、少なくとも水深40mまで見られます。本水槽では、陰になった岩の張り出しの掃除場所に立ち寄りながら、まわりを泳ぎ回ります。",
+    "aliases": [
+      "Bicolor cleaner wrasse",
+      "Bicolour cleaner wrasse",
+      "Bicolor cleanerfish"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Perciformes",
+      "orderJa": "スズキ目",
+      "family": "Labridae",
+      "familyJa": "ベラ科"
+    },
+    "adultSizeCm": 12.5,
+    "sizeNote": "モーレア島の研究で観察した成魚7匹は9.5〜12.5cmでした（全長か標準体長かは記載なし）。最大は全長14cmとされます。",
+    "distribution": "インド洋から西太平洋に広く分布します。日本では南日本と小笠原で見られます。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2010,
+      "note": "Eschmeyer's Catalog of Fishes が引用する IUCN の評価です。"
+    },
+    "highlights": [
+      "雄は頭が濃い青、体の前半が黒、後半が黄色の2色に分かれます。尾びれには黒い弧状の帯があります。",
+      "幼魚は黒い体に、吻から背へ伸びる鮮やかな黄色の帯があり、成長につれて色が大きく変わります。",
+      "成魚は掃除場所で待つだけでなく、広い範囲を泳ぎ回って掃除の相手を探します。"
+    ]
+  }
+}
