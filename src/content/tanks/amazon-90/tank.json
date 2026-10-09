@@ -4,11 +4,11 @@
   "displayName": "アマゾンの大型水槽",
   "exhibitName": "Amazon Tributary",
   "category": "地域ビオトープ",
-  "description": "南米アマゾン川の支流を思わせる90cmの大型水槽。流木と落ち葉の間をエンゼルフィッシュとテトラの群れが泳ぎ、水面直下にはハチェットが漂います。",
+  "description": "南米アマゾン川の支流を思わせる90cmの大型水槽。流木と落ち葉の間をエンゼルフィッシュとテトラの群れが泳ぎ、水面直下にはハチェットが漂います。細長い尾のリネロリカリアは、底の砂や流木に張りついて休みます。",
   "widthCm": 90,
   "heightCm": 52,
   "depthCm": 45,
-  "maxTotalFish": 50,
+  "maxTotalFish": 52,
   "sceneIds": [
     "amazon-driftwood",
     "amazon-planted"
@@ -41,6 +41,10 @@
     {
       "speciesId": "dwarf-pencilfish",
       "maxCount": 10
+    },
+    {
+      "speciesId": "lanceolate-whiptail-catfish",
+      "maxCount": 2
     }
   ],
   "defaultStock": [
@@ -71,6 +75,10 @@
     {
       "speciesId": "angelfish",
       "count": 2
+    },
+    {
+      "speciesId": "lanceolate-whiptail-catfish",
+      "count": 1
     }
   ]
 }

@@ -1,0 +1,111 @@
+{
+  "id": "tambaqui",
+  "displayName": "タンバキー",
+  "realBodyLengthCm": 100,
+  "catalog": {
+    "scientificName": "Colossoma macropomum",
+    "originRegionId": "south-america",
+    "originRegionName": "南米",
+    "origin": "南米のアマゾン川とオリノコ川の水系に分布します。養殖や観賞魚の放流によって、もともといなかった国や水系にも多く持ち込まれています。",
+    "habitat": "増水期には水に浸かった森へ入って餌をとり、水が引くと濁った本流の、倒木が積み重なった岸辺へ移る成魚が多いとされます。幼魚は濁った川の氾濫原の水域で育ちます。この展示では、沈んだ大木のある広い氾濫原の湖をイメージしています。",
+    "temperament": "植物質を主に食べる雑食魚で、臼のような歯で硬い種子を割ります。小魚を食べていた記録もあり、まったくの草食ではありません。",
+    "movement": "増水が始まると大きな群れで川をさかのぼり、産卵を終えて餌をとる時期には群れが分かれます。中層から底近くを泳ぐ魚とされますが、水面に落ちた果実や浮いた種子を取りにも上がってきます。",
+    "aliases": [
+      "Blackfin pacu",
+      "Black pacu",
+      "Gamitana",
+      "Cachama negra",
+      "Myletes macropomus",
+      "Colossoma nigripinne"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Characiformes",
+      "orderJa": "カラシン目",
+      "family": "Serrasalmidae",
+      "familyJa": "セラサルムス科"
+    },
+    "adultSizeCm": 100,
+    "sizeNote": "全長。1982年の生活史の研究では、少なくとも全長1m、体重30kgに達するとされます。データベースの最大は全長108cm、体重40kgです。発達した卵巣をもつ最も小さな雌は標準体長56cmでした。ふつうの成魚の大きさは分かっていません。",
+    "distribution": "アマゾン川とオリノコ川の水系。ブラジルのソリモンエス川、マデイラ川、マシャード川などで生活史が調べられています。国外や水系の外へは、養殖や観賞魚の放流で多く持ち込まれています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "NT",
+      "assessedYear": 2024,
+      "note": "IUCN の区分は分類台帳の引用で、評価の原文は確認できていません。ブラジルでは2026年に国内の危急種（VU）に指定され、3世代で野生の個体数が30〜40%減ったと推定されています。乱獲や小さな魚の漁獲、氾濫原の劣化が原因に挙げられています。"
+    },
+    "highlights": [
+      "増水期の水に浸かった森で、木から落ちてきた果実や種子を食べます。",
+      "種子を砕いて食べることも、丸のみにしてそのまま運ぶこともあり、森の植物の種を散らす役目も担っています。",
+      "背びれと尾びれの間の脂びれには、大きな成魚になると節のある細い鰭条（すじ）が育ちます。",
+      "酸素の少ない水では下唇がふくらみ、酸素の多い水面の薄い層を取り込みます。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 0.8
+  },
+  "visual": {
+    "fallbackColor": "#696050"
+  },
+  "sourceBodyBounds": {
+    "x": 93,
+    "y": 154,
+    "width": 1368,
+    "height": 718
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.15,
+    "maxY": 0.75
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "steady",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.15,
+      "burst": 0.5
+    },
+    "turnRateRadPerSec": 1.1,
+    "restFraction": 0.15,
+    "depthRange": [0.15, 0.8],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0.5,
+      "polarization": 0.35
+    },
+    "structureAffinity": 0.3,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes — Colossoma macropomum",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=4048"
+      },
+      {
+        "title": "Goulding & Carvalho 1982 — Life history and management of the tambaqui",
+        "url": "https://www.scielo.br/j/rbzool/a/gQRV47qdG65ttvNgnDzb6cd/"
+      },
+      {
+        "title": "Stewart, Smith & Coates 2014 — The origins of adipose fins",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3953844/"
+      },
+      {
+        "title": "USFWS — Tambaquí Ecological Risk Screening Summary",
+        "url": "https://www.fws.gov/sites/default/files/documents/Ecological-Risk-Screening-Summary-Tambaqui.pdf"
+      },
+      {
+        "title": "SINACUI / Ministerio de la Producción 2022 — Manual para una acuicultura sostenible: Cultivo de Gamitana",
+        "url": "https://rnia.produce.gob.pe/wp-content/uploads/2022/08/Manual-de-Gamitana.pdf"
+      },
+      {
+        "title": "Brazil MMA 2026-08-19 — Classificação do tambaqui como espécie vulnerável",
+        "url": "https://www.gov.br/mma/pt-br/noticias-defeso-eleitoral/mma-esclarece-classificacao-do-tambaqui-como-especie-vulneravel-a-extincao"
+      }
+    ]
+  }
+}

@@ -4,11 +4,11 @@
   "displayName": "サンゴ礁の岩陰水槽",
   "exhibitName": "Tiny Reef Dwellers",
   "category": "インド太平洋のサンゴ礁",
-  "description": "ヤギやソフトコーラルが茂るサンゴ礁の岩陰を、間近に眺める30cm水槽。体長2.5cmほどのトリマ・ランタナ、白地に赤い斑点のトリマ・ルブロマクラタム、眼の周りに淡い輪のあるメガネベニハゼが、サンゴのかけらが積もった岩陰を住みかにして、白い砂の上でじっと休みます。黒い腹のシロオビイソハゼは、岩陰のすぐ上を漂うように泳ぎます。",
+  "description": "ヤギやソフトコーラルが茂るサンゴ礁の岩陰を、間近に眺める30cm水槽。体長2.5cmほどのトリマ・ランタナ、白地に赤い斑点のトリマ・ルブロマクラタム、眼の周りに淡い輪のあるメガネベニハゼが、サンゴのかけらが積もった岩陰を住みかにして、白い砂の上でじっと休みます。黒い腹のシロオビイソハゼは、岩陰のすぐ上を漂うように泳ぎます。白地に赤い横帯が並ぶトリマ・カナは、背びれの糸のように伸びた棘をなびかせて岩陰に浮かびます。",
   "widthCm": 30,
   "heightCm": 29,
   "depthCm": 30,
-  "maxTotalFish": 11,
+  "maxTotalFish": 14,
   "sceneIds": [
     "macro-reef-30"
   ],
@@ -28,6 +28,10 @@
     {
       "speciesId": "blackbelly-dwarfgoby",
       "maxCount": 3
+    },
+    {
+      "speciesId": "candycane-pygmygoby",
+      "maxCount": 3
     }
   ],
   "defaultStock": [
@@ -45,6 +49,10 @@
     },
     {
       "speciesId": "blackbelly-dwarfgoby",
+      "count": 2
+    },
+    {
+      "speciesId": "candycane-pygmygoby",
       "count": 2
     }
   ]

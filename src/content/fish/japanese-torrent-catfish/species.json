@@ -1,0 +1,138 @@
+{
+  "id": "japanese-torrent-catfish",
+  "displayName": "アカザ",
+  "realBodyLengthCm": 10,
+  "catalog": {
+    "scientificName": "Liobagrus reinii",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "日本固有種で、本州、四国、九州に分布します。本州では、太平洋側は宮城県より南、日本海側は秋田県より南にいると紹介されています。",
+    "temperament": "浦野川で調べた胃の中身は、面積の割合で約7割が水生昆虫、2割あまりが陸生昆虫で、魚の鱗や植物片も少し見つかりました。繁殖期の卵塊にはどれも雄が付き添っていて、雄が卵を守ると考えられています。",
+    "movement": "夜や、川に濁りが入ったときに餌をとると解説されています。夏の日中は、礫や大きな石の下、岩盤の隙間、岸の植物の根の塊に潜んでいました。",
+    "habitat": "川の石礫底にすみ、大きな石の下や石の間の隙間を使います。流れの速さとすみかの選び方には関係が見られず、岸近くの流れのない場所にもいました。大きな個体ほど大きな石を使っていました。",
+    "aliases": [
+      "Liobagrus reini",
+      "Liobagrus sugubii",
+      "Japanese torrent catfish"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Siluriformes",
+      "orderJa": "ナマズ目",
+      "family": "Amblycipitidae",
+      "familyJa": "アカザ科"
+    },
+    "adultSizeCm": 10,
+    "sizeNote": "国立科学博物館は全長10cmと紹介しています。筑後川水系河原川の調査で最も大きかった個体は、雄が標準体長10.7cm、雌が10.8cmでした。",
+    "distribution": "日本固有種で、本州（太平洋側は宮城県以南、日本海側は秋田県以南）、四国、九州に分布します。2024年には、琵琶湖の水深約50mから未成魚が1尾採集されました。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "rarelyDisplayed",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2019,
+      "note": "IUCN の区分は、Catalog of Fishes に転載された2019年の評価によります。日本の環境省レッドリスト2020では絶滅危惧II類（VU）とされています。"
+    },
+    "highlights": [
+      "口のまわりに4対8本のひげがあり、鱗のない赤褐色の体をしています。",
+      "背びれの後ろには低く長い脂びれがあり、後ろの端で尾びれとつながっています。",
+      "背びれと胸びれの棘は短く鋭く、皮膚に埋もれています。",
+      "田切川で見つかった4つの卵塊には、どれも雄が付き添っていました。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.2,
+    "mouthAnchor": {
+      "x": 0.08,
+      "y": 0.52
+    }
+  },
+  "visual": {
+    "fallbackColor": "#8a5a3a"
+  },
+  "sourceBodyBounds": {
+    "x": 24,
+    "y": 261,
+    "width": 1485,
+    "height": 497
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.8,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.25,
+      "burst": 1.2
+    },
+    "turnRateRadPerSec": 1.9,
+    "restFraction": 0.45,
+    "depthRange": [
+      0.35,
+      0.95
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.0,
+      "cohesion": 0,
+      "polarization": 0.03
+    },
+    "structureAffinity": 0.8,
+    "habits": [
+      {
+        "type": "hideByDay",
+        "durationSec": [
+          40,
+          120
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.2,
+        "durationSec": [
+          10,
+          30
+        ]
+      },
+      {
+        "type": "bottomForage"
+      }
+    ],
+    "sources": [
+      {
+        "title": "国立科学博物館 — 日本の淡水魚類図鑑 アカザ",
+        "url": "https://www.kahaku.go.jp/research/db/zoology/uodas_freshdb/area/bagridae/002.html"
+      },
+      {
+        "title": "Takeshita et al. 2017 — Age and growth of Liobagrus reini in the Kawahara River",
+        "url": "https://www.jstage.jst.go.jp/article/aquaculturesci/65/4/65_409/_pdf/-char/ja"
+      },
+      {
+        "title": "片野・中村・阿部 2006 — アカザの食性",
+        "url": "https://www.jstage.jst.go.jp/article/aquaculturesci1953/54/2/54_2_225/_pdf/-char/ja"
+      },
+      {
+        "title": "Katano et al. 2005 — Summer daytime habitat and population density of the torrent catfish Liobagrus reini in the Urano River",
+        "url": "https://www.researchgate.net/publication/225538622_Summer_daytime_habitat_and_population_density_of_the_torrent_catfish_Liobagrus_reini_in_the_Urano_River"
+      },
+      {
+        "title": "Watanabe 1994 — A note on reproductive ecology of torrent catfish",
+        "url": "https://www.jstage.jst.go.jp/article/jji1950/41/2/41_2_219/_pdf/-char/en"
+      },
+      {
+        "title": "Jordan & Fowler 1903 — A review of the siluroid fishes of Japan",
+        "url": "https://repository.si.edu/bitstream/handle/10088/13700/USNMP-26_1338_1903.pdf"
+      },
+      {
+        "title": "石崎・川瀬 2024 — 琵琶湖から採集されたアカザ",
+        "url": "https://www.museum.kagoshima-u.ac.jp/ichthy/INHFJ_2024_042_031.pdf"
+      }
+    ]
+  }
+}

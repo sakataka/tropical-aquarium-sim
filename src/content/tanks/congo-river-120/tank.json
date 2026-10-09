@@ -4,11 +4,11 @@
   "displayName": "コンゴ川の流木水槽",
   "exhibitName": "Congo River",
   "category": "中央アフリカの川",
-  "description": "コンゴ川の流れを思わせる120cm水槽。コンゴテトラの群れが中層を泳ぎ、ペルヴィカクロミスは根の下の洞を住みかにします。赤いヘミクロミス・リファリリは根のまわりを泳ぎ、シノドンティス・ニグリヴェントリスとエレファントノーズは昼は根の陰に隠れて、暗くなると砂底へ出てきます。",
+  "description": "コンゴ川の流れを思わせる120cm水槽。コンゴテトラの群れが中層を泳ぎ、ペルヴィカクロミスは根の下の洞を住みかにします。赤いヘミクロミス・リファリリは根のまわりを泳ぎ、シノドンティス・ニグリヴェントリスとエレファントノーズは昼は根の陰に隠れて、暗くなると砂底へ出てきます。大きなヌマエビの仲間のアティア・ガボネンシスは、底を歩き、扇のような脚を広げて餌をこし取ります。",
   "widthCm": 120,
   "heightCm": 69,
   "depthCm": 45,
-  "maxTotalFish": 24,
+  "maxTotalFish": 26,
   "sceneIds": [
     "congo-river-120"
   ],
@@ -32,6 +32,10 @@
     {
       "speciesId": "lifalili-jewel-cichlid",
       "maxCount": 4
+    },
+    {
+      "speciesId": "gabon-shrimp",
+      "maxCount": 2
     }
   ],
   "defaultStock": [
@@ -54,6 +58,10 @@
     {
       "speciesId": "lifalili-jewel-cichlid",
       "count": 2
+    },
+    {
+      "speciesId": "gabon-shrimp",
+      "count": 1
     }
   ]
 }

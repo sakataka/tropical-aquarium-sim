@@ -4,11 +4,11 @@
   "displayName": "小型シクリッドの落ち葉水槽",
   "exhibitName": "Dwarf Cichlids",
   "category": "アマゾンの小川",
-  "description": "落ち葉の積もった砂底に流木とヤシの実の洞を置いた60cm水槽。アピストグラマ・カカトゥオイデスは洞を住みかに出入りし、ラミレジィは底近くを小刻みに進み、キーホールシクリッドは流木や落ち葉のまわりを落ち着いて巡ります。",
+  "description": "落ち葉の積もった砂底に流木とヤシの実の洞を置いた60cm水槽。アピストグラマ・カカトゥオイデスは洞を住みかに出入りし、ラミレジィは底近くを小刻みに進み、キーホールシクリッドは流木や落ち葉のまわりを落ち着いて巡ります。茶色の縦帯のエクエスペンシルは、水面近くを泳ぎます。",
   "widthCm": 60,
   "heightCm": 54,
   "depthCm": 36,
-  "maxTotalFish": 10,
+  "maxTotalFish": 16,
   "sceneIds": [
     "amazon-dwarf-cichlids-60"
   ],
@@ -24,6 +24,10 @@
     {
       "speciesId": "keyhole-cichlid",
       "maxCount": 3
+    },
+    {
+      "speciesId": "brown-pencilfish",
+      "maxCount": 6
     }
   ],
   "defaultStock": [
@@ -38,6 +42,10 @@
     {
       "speciesId": "keyhole-cichlid",
       "count": 2
+    },
+    {
+      "speciesId": "brown-pencilfish",
+      "count": 4
     }
   ]
 }

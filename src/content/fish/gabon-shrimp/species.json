@@ -1,0 +1,130 @@
+{
+  "id": "gabon-shrimp",
+  "displayName": "アティア・ガボネンシス",
+  "realBodyLengthCm": 12,
+  "swim": {
+    "bodyPlan": "crustacean",
+    "headStart": 0.25,
+    "tailBeatHz": 0.6,
+    "bodyWaveStart": 0.85,
+    "tailSweepRad": 0,
+    "verticalFlex": 0,
+    "footAnchor": {
+      "x": 0.45,
+      "y": 0.96
+    }
+  },
+  "visual": {
+    "fallbackColor": "#6f8191"
+  },
+  "sourceBodyBounds": {
+    "x": 35,
+    "y": 122,
+    "width": 1466,
+    "height": 753
+  },
+  "preferredZone": {
+    "minX": 0.1,
+    "maxX": 0.9,
+    "minY": 0.72,
+    "maxY": 0.93
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.05,
+      "burst": 0.25
+    },
+    "turnRateRadPerSec": 0.9,
+    "restFraction": 0.75,
+    "depthRange": [
+      0.2,
+      0.6
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.75,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 3,
+        "durationSec": [
+          20,
+          60
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Hobbs & Hart (1982), The shrimp genus Atya (Decapoda: Atyidae), Smithsonian Contributions to Zoology 364",
+        "url": "https://repository.si.edu/bitstreams/77112e19-4ae3-4a53-a383-0a2b43284d75/download"
+      },
+      {
+        "title": "Nwosu (2009), Aspects of the Biology of the Gabon Shrimp Atya gabonensis in the Cross River, Nigeria",
+        "url": "https://makhillpublications.co/view-single-article?doi=jfish.2009.58.61"
+      },
+      {
+        "title": "Obande & Kusemiju (2008), Food and feeding habits of Atya gabonensis in the Lower River Benue",
+        "url": "https://journals.ug.edu.gh/index.php/wajae/article/download/935/604/"
+      },
+      {
+        "title": "Ikpi, Offem & Okey (2013), Length-weight relationship, condition factor and carapace length of Atya gabonensis in Cross River, Nigeria",
+        "url": "https://www.researchgate.net/publication/330293394_LENGTH-WEIGHT_RELATIONSHIP_CONDITION_FACTOR_AND_CARAPACE_LENGTH_OF_Atya_gabonensis_GIEBEL_1875_IN_CROSS_RIVER_NIGERIAl"
+      },
+      {
+        "title": "U.S. Fish & Wildlife Service (2017), Gabon Shrimp Ecological Risk Screening Summary",
+        "url": "https://www.fws.gov/sites/default/files/documents/Ecological-Risk-Screening-Summary-Gabon-Shrimp.pdf"
+      },
+      {
+        "title": "Aquarium tropical du Palais de la Porte Dorée: Crevette bleue du Gabon",
+        "url": "https://www.aquarium-tropical.fr/en/node/3832"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Atya gabonensis",
+    "originRegionId": "west-africa",
+    "originRegionName": "西アフリカ",
+    "origin": "西アフリカのセネガルからガボン、コンゴ川の下流にかけての川で記録されています。コンゴ川下流では、キンシャサ近郊の急流やインガのダム付近で標本が採られています。",
+    "temperament": "群れや縄張りのつくりは分かっていません。岩の隙間や岩の下に身を寄せ、同じ場所にとどまるエビです。",
+    "movement": "前の2対の脚の先にある扇のような毛を開いたり閉じたりして、細かな粒を集めて食べます。後ろの3対の脚で歩き、3番目の脚はとても太く、表面に粒々の突起が並びます。",
+    "habitat": "淡水の川で、岩の隙間や岩の下、流れに引っかかった植物や木のまわりで見つかります。ガーナでは濁った速い流れの岩の下で採られましたが、乾季に緩やかで深い川にいるという報告もあります。本展示では砂底や流木の根元にとどまる姿を見せています。",
+    "aliases": [
+      "Atya sculptata",
+      "Euatya sculptilis",
+      "Gabon shrimp",
+      "African fan shrimp",
+      "African filter shrimp",
+      "Vampire shrimp",
+      "Cameroon fan shrimp"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Decapoda",
+      "orderJa": "十脚目",
+      "family": "Atyidae",
+      "familyJa": "ヌマエビ科"
+    },
+    "adultSizeCm": 12,
+    "sizeNote": "野外の典型的な大きさは確かめられていません。ナイジェリアのクロス川の調査では全長6.5〜14cm、抱卵した雌147匹は6.5〜11cmでした。パリの水族館の紹介では15cmとされますが、測り方は示されていません。本展示ではクロス川の値から全長12cmとしています。",
+    "distribution": "西アフリカのセネガルからガボン、コンゴ川下流の川に分布します。古い文献では南米も分布に含めていましたが、近縁種との混同の可能性があり、確かめられていません。成体は淡水で暮らし、幼生は淡水では育たず、塩水を加えると次の段階へ進んだという記録があります。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "note": "今回の調査では IUCN の評価を確認できていません。ナイジェリアのクロス川では潜水漁で採られていることが報告されています。"
+    },
+    "highlights": [
+      "顔の前で4つの扇のような毛を開閉し、細かな粒を集める",
+      "3番目の脚はとても太く、表面に粒々の突起が並ぶ",
+      "青みがかった灰色から褐色まで、体の色に幅がある"
+    ]
+  }
+}

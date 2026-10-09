@@ -1,0 +1,124 @@
+{
+  "id": "brown-pencilfish",
+  "displayName": "エクエスペンシル",
+  "realBodyLengthCm": 4,
+  "swim": {
+    "tailBeatHz": 2.1,
+    "tailSweepRad": 0.28
+  },
+  "visual": {
+    "fallbackColor": "#9c7a4e"
+  },
+  "sourceBodyBounds": {
+    "x": 64,
+    "y": 233,
+    "width": 1418,
+    "height": 511
+  },
+  "preferredZone": {
+    "minX": 0.1,
+    "maxX": 0.9,
+    "minY": 0.08,
+    "maxY": 0.42
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.38,
+      "burst": 2.4
+    },
+    "turnRateRadPerSec": 2,
+    "restFraction": 0.42,
+    "depthRange": [
+      0.05,
+      0.5
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 2.0,
+      "cohesion": 0.45,
+      "polarization": 0.3
+    },
+    "structureAffinity": 0.6,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes — Nannostomus",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?genus=Nannostomus&tbl=species"
+      },
+      {
+        "title": "Weitzman 1966 — Review of South American characid fishes of subtribe Nannostomina",
+        "url": "https://repository.si.edu/bitstreams/6ab4607e-f299-4fc7-a595-038186d97a55/download"
+      },
+      {
+        "title": "Weitzman 1978 — Three new Nannostomus species and revised key",
+        "url": "https://www.vliz.be/imisdocs/publications/321072.pdf"
+      },
+      {
+        "title": "Brejão 2011 — road impoundments and stream fish assemblages (thesis)",
+        "url": "https://ainfo.cnptia.embrapa.br/digital/bitstream/item/157216/1/Dissertacao-EstradasAlagadosAntropicos.pdf"
+      },
+      {
+        "title": "Benzaquem et al. 2015 — DNA Barcoding in Pencilfishes Reveals Cryptic Diversity across the Brazilian Amazon",
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0112217"
+      },
+      {
+        "title": "Seriously Fish: Nannostomus eques",
+        "url": "https://www.seriouslyfish.com/species/nannostomus-eques/"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Nannostomus eques",
+    "originRegionId": "south-america",
+    "originRegionName": "南米",
+    "origin": "南米のアマゾン川とオリノコ川の水系に分布し、ブラジル、エクアドル、コロンビア、ガイアナ、ペルーで知られます。模式産地は、ブラジルのタバチンガ付近のアマゾン川です。",
+    "habitat": "浅い岸辺のよどみで、葉や枝、水草、根、岸のくぼみに守られた場所を使います。コロンビアでは、落ち葉の積もった黒水の浅い岸で観察されています。この展示では、落ち葉と流木の水景の上層を泳ぎます。",
+    "temperament": "小さく臆病なため、同じくらいの大きさの穏やかな魚と飼うのがよいとされます。雄どうしの争いは、近い仲間ほど目立たないと紹介されています。",
+    "movement": "岸辺の水面近くで小さな物をついばみ、付着した藻などのかけらも取ります。飼育下では、群れが同じ方向を向いて並ぶ様子が紹介されています。",
+    "aliases": [
+      "Brown pencilfish",
+      "Hockeystick pencilfish",
+      "Diptail pencilfish",
+      "ナノストムス・エクエス",
+      "Poecilobrycon eques",
+      "Nannobrycon eques",
+      "Poecilobrycon auratus"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Characiformes",
+      "orderJa": "カラシン目",
+      "family": "Lebiasinidae",
+      "familyJa": "レビアシナ科"
+    },
+    "adultSizeCm": 3.5,
+    "sizeNote": "1966年の改訂で調べた最大の標本は標準体長3.5cmで、水槽で育った雌には3.7cmのものがいました。雄の標本は標準体長2.9〜3.25cmです。販売店は約5cmと紹介していますが、どこからどこまでの長さかは示されていません。展示では尾びれを含めて全長4cmほどの雄として描いています。",
+    "distribution": "アマゾン川流域、オリノコ川流域、ガイアナのエセキボ川水系などに分布します。遺伝子の研究では、この種の中に5つの系統が見つかっています。",
+    "water": {
+      "salinity": "freshwater",
+      "temperatureC": [
+        22,
+        28
+      ],
+      "pH": [
+        4.5,
+        7.5
+      ]
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2023,
+      "note": "Catalog of Fishes の記載によります。IUCN の評価本文は確かめられていません。"
+    },
+    "highlights": [
+      "頭を上げた斜めの姿勢で、浮き草や枝の下にとどまり、そのまま泳ぐことで知られます。",
+      "吻から眼、体側を通って尾びれの下葉まで暗い帯が走り、その上に明るい金色の帯が並びます。",
+      "尾びれは下葉が上葉より大きく、雄は尻びれも大きく広がります。",
+      "夜は縦帯が薄れ、斜めの帯が現れます。脂びれは、ある個体とない個体がいます。"
+    ]
+  }
+}

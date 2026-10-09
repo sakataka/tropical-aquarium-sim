@@ -1,0 +1,121 @@
+{
+  "id": "black-prochilodus",
+  "displayName": "プロキロダス・ニグリカンス",
+  "realBodyLengthCm": 35,
+  "catalog": {
+    "scientificName": "Prochilodus nigricans",
+    "originRegionId": "south-america",
+    "originRegionName": "南米",
+    "origin": "南米のアマゾン川とトカンチンス川の水系に分布し、ボリビア、ブラジル、コロンビア、エクアドル、ガイアナ、ペルーで記録があります。ネグロ川やブランコ川など、アマゾン川北側の支流にはいないようです。",
+    "habitat": "本流や支流、三日月湖、水に浸かった森、サバンナの湖や氾濫地を季節ごとに使います。増水期には成魚が広い氾濫地へ散らばり、水が引くと本流や湖に集まります。この展示では、沈んだ大木のある広い氾濫原の湖をイメージしています。",
+    "temperament": "底や水草の表面を唇と小さな歯でかき取り、微細な藻類や沈んだ有機物（デトリタス）を食べます。大きなナマズなどに食べられる側の魚でもあります。",
+    "movement": "底の近くを泳ぎ、沈木や底の表面に口をつけて付着物をかき取ります。若い魚は群れをつくることが記録されていますが、成魚の群れ方ははっきり分かっていません。",
+    "aliases": [
+      "Black prochilodus",
+      "Boquichico",
+      "Bocachico",
+      "Curimatã",
+      "Prochilodus beni",
+      "Curimatus nigricans"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Characiformes",
+      "orderJa": "カラシン目",
+      "family": "Prochilodontidae",
+      "familyJa": "プロキロダス科"
+    },
+    "adultSizeCm": 35,
+    "sizeNote": "標準体長。ボリビアのマモレ川の研究では、成魚はおよそ標準体長27〜40cm、体重0.6〜1.8kgでした。データベースの最大は雌の標準体長52.5cmで、ペルーの図鑑は50cm・3kgとしていますが、測り方は示されていません。",
+    "distribution": "アマゾン川の本流と西部・南部の支流、トカンチンス川。ラプラタ川やパラグアイ川の古い記録は、標本の見直しによって本種から外されています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2020,
+      "note": "評価の原文は確認できていません。ペルーのロレト州やウカヤリ州では大切な食用魚で、コロンビアのプトゥマヨ川では漁獲の割合が比較的高いと推定されています。"
+    },
+    "highlights": [
+      "前へ突き出せる肉厚の唇は、小さな突起と細かな歯をそなえ、付着物をかき取る道具になります。",
+      "生きているときは銀色で、背と頭が暗く、腹びれが黄橙色を帯びます。",
+      "背びれと尾びれには、不規則に波打つ暗い帯模様が入ります。",
+      "増水して水に浸かったばかりの浅い草地で産卵し、卵や子の世話はしません。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 1.4,
+    "mouthAnchor": {
+      "x": 0.012,
+      "y": 0.585
+    }
+  },
+  "visual": {
+    "fallbackColor": "#99907a"
+  },
+  "sourceBodyBounds": {
+    "x": 86,
+    "y": 120,
+    "width": 1411,
+    "height": 713
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.5,
+    "maxY": 0.9
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "steady",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.25,
+      "burst": 1.4
+    },
+    "turnRateRadPerSec": 1.6,
+    "restFraction": 0.12,
+    "depthRange": [0.3, 0.9],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.6,
+      "cohesion": 0.35,
+      "polarization": 0.25
+    },
+    "structureAffinity": 0.45,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 2,
+        "durationSec": [4, 10]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes — Prochilodus nigricans",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=29883"
+      },
+      {
+        "title": "Castro & Vari 2004 — Detritivores of the South American Fish Family Prochilodontidae, Smithsonian Contributions to Zoology 622",
+        "url": "https://repository.si.edu/bitstreams/8a97db0b-2571-4b89-883a-eec09d6fc54c/download"
+      },
+      {
+        "title": "Loubens & Panfili 1995 — Biologie de Prochilodus nigricans dans le bassin du Mamoré",
+        "url": "https://horizon.documentation.ird.fr/exl-doc/pleins_textes/pleins_textes_6/b_fdi_35-36/42211.pdf"
+      },
+      {
+        "title": "Bonilla-Castillo et al. 2018 — Population dynamics of Prochilodus nigricans in the Putumayo River",
+        "url": "https://horizon.documentation.ird.fr/exl-doc/pleins_textes/divers18-09/010073645.pdf"
+      },
+      {
+        "title": "García-Dávila et al. 2018 — Peces de consumo de la Amazonía Peruana, pp. 114–115",
+        "url": "https://api-repositorio.iiap.gob.pe/server/api/core/bitstreams/5d20b181-50b2-48c8-83b7-34de6b63d80f/content"
+      },
+      {
+        "title": "Tello et al. 1992 — Bioecología de peces de importancia económica de la parte inferior de los ríos Ucayali y Marañón",
+        "url": "https://revistas.iiap.gob.pe/index.php/foliaamazonica/article/download/196/252/460"
+      }
+    ]
+  }
+}

@@ -1,0 +1,162 @@
+{
+  "id": "typus-shrimp",
+  "displayName": "トゲナシヌマエビ",
+  "realBodyLengthCm": 3,
+  "swim": {
+    "bodyPlan": "crustacean",
+    "headStart": 0.24,
+    "tailBeatHz": 0.6,
+    "bodyWaveStart": 0.85,
+    "tailSweepRad": 0,
+    "verticalFlex": 0,
+    "footAnchor": {
+      "x": 0.45,
+      "y": 0.96
+    }
+  },
+  "visual": {
+    "fallbackColor": "#a89a82"
+  },
+  "sourceBodyBounds": {
+    "x": 33,
+    "y": 97,
+    "width": 1457,
+    "height": 759
+  },
+  "preferredZone": {
+    "minX": 0.1,
+    "maxX": 0.9,
+    "minY": 0.82,
+    "maxY": 0.93
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.07,
+      "burst": 0.35
+    },
+    "turnRateRadPerSec": 1.2,
+    "restFraction": 0.62,
+    "depthRange": [
+      0.04,
+      0.3
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 1.4,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.8,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 4,
+        "durationSec": [
+          8,
+          20
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 2,
+        "durationSec": [
+          6,
+          15
+        ]
+      },
+      {
+        "type": "hideByDay",
+        "durationSec": [
+          60,
+          180
+        ]
+      },
+      {
+        "type": "homeShelter",
+        "kind": "crevice",
+        "rangeBodyLengths": 4,
+        "visitChancePerMin": 0.8,
+        "visitDurationSec": [
+          20,
+          60
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "de Mazancourt et al. (2025), Caridina of the Western Indian Ocean islands, European Journal of Taxonomy",
+        "url": "https://europeanjournaloftaxonomy.eu/index.php/ejt/article/download/2995/13471/"
+      },
+      {
+        "title": "de Mazancourt et al. (2020), Caridina from the Solomon Islands, European Journal of Taxonomy 696",
+        "url": "https://www.zobodat.at/pdf/EJT_0696_0001-0086.pdf"
+      },
+      {
+        "title": "Cai et al. (2006), Revision of Stimpson's Japanese atyid shrimps",
+        "url": "https://research.nhm.org/pdfs/25084/25084.pdf"
+      },
+      {
+        "title": "Ohara et al. (2024), Effects of temperature on reproduction of Caridina multidentata and C. typus",
+        "url": "https://www.jstage.jst.go.jp/article/aquaticanimals/2024/0/2024_AA2024-5/_pdf/-char/en"
+      },
+      {
+        "title": "Yamada et al. (2024), Occurrence of amphidromous atyid shrimps in the Banda River",
+        "url": "https://www.jstage.jst.go.jp/article/aquaticanimals/2024/0/2024_AA2024-3/_pdf/-char/en"
+      },
+      {
+        "title": "Kondo et al. (2021), Larval performance of three amphidromous Caridina species",
+        "url": "https://www.jstage.jst.go.jp/article/crustacea/50/0/50_41/_pdf"
+      },
+      {
+        "title": "Topick Aquarium: Australian Amano Shrimp (Caridina typus)",
+        "url": "https://topickaquarium.com/collections/caridina-shrimp/products/australian-amano-shrimp-caridina-typus"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Caridina typus",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "南アフリカからフィジー、オーストラリアから日本やインドまで、インド洋と太平洋の島や沿岸の川に広く分布します。日本では千葉県房総半島の坂田川で、繁殖や季節の出現が調べられています。",
+    "temperament": "群れや縄張りのつくりは分かっていません。昼は岩や石の下に隠れ、夜に外へ出て餌を探します。",
+    "movement": "後ろの3対の脚で石や落ち葉の上を歩き、前の2対の脚の先にある、毛の密に生えた小さなはさみで表面を探ってついばみます。",
+    "habitat": "島や沿岸の川や小川の淡水域で、植物片の多い流れの弱い場所から、流れの強い場所まで見つかっています。坂田川では、落ち葉の積もった砂や小石の底の下流から中流に多く見られました。本展示では石の隙間に身を寄せ、夜に底を歩き回る姿を見せています。",
+    "aliases": [
+      "Caridina exilirostris",
+      "Australian Amano shrimp"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Decapoda",
+      "orderJa": "十脚目",
+      "family": "Atyidae",
+      "familyJa": "ヌマエビ科"
+    },
+    "adultSizeCm": 3,
+    "sizeNote": "体長は30〜40mmとされます（測り方は示されていません）。飼育実験では、眼の後ろから尾節の先までの長さ（額角を含まない）の水槽ごとの平均が、雌で20.0〜24.8mm、雄で18.3〜19.7mmでした。野外でも雌のほうが大きくなります。",
+    "distribution": "南アフリカからフィジー、オーストラリアから日本やインドまで広く分布します。卵からかえった幼生は川を下って塩水の中で育ち、稚エビになると淡水へ戻ります。飼育実験では、幼生は塩分17〜34pptで稚エビまで育ち、4.25pptでは育ちませんでした。",
+    "water": {
+      "salinity": "freshwater",
+      "temperatureC": [
+        20,
+        27
+      ],
+      "pH": [
+        6.5,
+        8
+      ]
+    },
+    "keeping": "home",
+    "conservation": {
+      "note": "今回の調査では IUCN の評価を確認できていません。成エビのすむ川と幼生の育つ塩水域が、川の流れでつながっていることが生活史に欠かせません。"
+    },
+    "highlights": [
+      "額角の背中側にとげがなく、和名の由来になっている",
+      "毛の密に生えた小さなはさみで、石や落ち葉の表面を探る",
+      "半透明の体に斑点や背中の帯があり、色に個体差がある"
+    ]
+  }
+}

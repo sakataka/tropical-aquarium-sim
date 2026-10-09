@@ -1,0 +1,120 @@
+{
+  "id": "shovelnose-sturgeon",
+  "displayName": "ショベルノーズスタージョン",
+  "realBodyLengthCm": 75,
+  "catalog": {
+    "scientificName": "Scaphirhynchus platorynchus",
+    "originRegionId": "north-america",
+    "originRegionName": "北米",
+    "origin": "北米の大きな川、ミシシッピ・ミズーリ水系と、リオグランデ（リオブラボ）水系に分布します。",
+    "temperament": "吻の下にある房状の4本のひげで底を探り、ユスリカやトビケラ、カゲロウ、カワゲラなど水生昆虫の幼虫を主に食べます。",
+    "movement": "底近くを泳ぎ、流れの中では胸びれで体を川底に押しつけて留まります。腹を底につけたまま、体と尾を波打たせて進むこともあります。大きな川の中を長い距離移動します。",
+    "habitat": "大きな川の流れのある本流や川岸沿いの、砂や礫の底に暮らします。冬のカンザス川の追跡では居場所の92%が砂底で、増水時は砂州や倒木の下流にある浅い淵に入りました。本水槽では、丸い石と礫が続く冷たい大河の底をイメージしています。",
+    "aliases": [
+      "Shovelnose sturgeon",
+      "Hackleback",
+      "Switchtail",
+      "Sand sturgeon",
+      "Acipenser platorynchus"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Acipenseriformes",
+      "orderJa": "チョウザメ目",
+      "family": "Acipenseridae",
+      "familyJa": "チョウザメ科"
+    },
+    "adultSizeCm": 75,
+    "sizeNote": "ミズーリ州自然保護局の図鑑では全長約76cm（30インチ）まで、魚類データベースの FishBase では一般的な全長72cm、最大108cm、4.9kgとされます。ここでは典型的な大きさとして75cmとしました。",
+    "distribution": "ミシシッピ・ミズーリ水系とリオグランデ水系の大河に分布します。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "VU",
+      "assessedYear": 2019,
+      "note": "IUCN の区分は魚類データベースからの引用で、評価本文は確認できていません。米国では、見た目のよく似たパリッドスタージョンを守るため、2010年から両種がともにすむ区域で本種の商業漁獲が制限されています。獲りすぎやダム、川の改変が脅威とされます。"
+    },
+    "highlights": [
+      "平たいシャベル形の吻と、細長く骨板に覆われた尾柄をもちます。",
+      "尾びれの上の葉の先が、細い糸のように伸びます。",
+      "胸びれで体を川底に押しつけ、流れの中で留まることができます。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 1.0,
+    "mouthAnchor": {
+      "x": 0.085,
+      "y": 0.8
+    }
+  },
+  "visual": {
+    "fallbackColor": "#7a6c52"
+  },
+  "sourceBodyBounds": {
+    "x": 43,
+    "y": 270,
+    "width": 1476,
+    "height": 437
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.72,
+    "maxY": 0.9
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "steady",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.18,
+      "burst": 0.55
+    },
+    "turnRateRadPerSec": 1.2,
+    "restFraction": 0.25,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0.3,
+      "polarization": 0.2
+    },
+    "structureAffinity": 0.2,
+    "habits": [
+      {
+        "type": "bottomForage"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Missouri Department of Conservation — Shovelnose Sturgeon",
+        "url": "https://mdc.mo.gov/discover-nature/field-guide/shovelnose-sturgeon"
+      },
+      {
+        "title": "Quist et al. 1999 — Overwinter Habitat Use of Shovelnose Sturgeon in the Kansas River",
+        "url": "https://academic.oup.com/tafs/article/128/3/522/7891319"
+      },
+      {
+        "title": "Parsons, Hoover & Killgore 2003 — Station-Holding Ability of Shovelnose Sturgeon",
+        "url": "https://academic.oup.com/najfm/article/23/3/742/7847738"
+      },
+      {
+        "title": "FishBase — Scaphirhynchus platorynchus",
+        "url": "https://www.fishbase.se/summary/2596"
+      },
+      {
+        "title": "USFWS 2010 — Similarity-of-appearance protection of shovelnose sturgeon",
+        "url": "https://www.fws.gov/sites/default/files/federal_register_document/2010-21861.pdf"
+      },
+      {
+        "title": "Eschmeyer's Catalog of Fishes — Scaphirhynchus platorynchus",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=9772"
+      }
+    ]
+  }
+}

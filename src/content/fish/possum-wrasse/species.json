@@ -1,0 +1,124 @@
+{
+  "id": "possum-wrasse",
+  "displayName": "ハシナガベラ",
+  "realBodyLengthCm": 6,
+  "swim": {
+    "tailBeatHz": 2.8
+  },
+  "visual": {
+    "fallbackColor": "#8f3b2a"
+  },
+  "sourceBodyBounds": {
+    "x": 118,
+    "y": 176,
+    "width": 1329,
+    "height": 628
+  },
+  "preferredZone": {
+    "minX": 0.5,
+    "maxX": 0.92,
+    "minY": 0.58,
+    "maxY": 0.9
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.35,
+      "burst": 2.2
+    },
+    "turnRateRadPerSec": 2.9,
+    "restFraction": 0.3,
+    "depthRange": [
+      0.35,
+      0.9
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 4,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.9,
+    "habits": [
+      {
+        "type": "homeShelter",
+        "kind": "crevice",
+        "rangeBodyLengths": 4,
+        "visitChancePerMin": 1,
+        "visitDurationSec": [
+          6,
+          18
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Wetmorella nigropinnata",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?family=Labridae&tbl=species"
+      },
+      {
+        "title": "片山英里 2014: 与論島の魚類「ハシナガベラ」",
+        "url": "https://www.museum.kagoshima-u.ac.jp/staff/motomura/FishesYoron_lowes.pdf"
+      },
+      {
+        "title": "Fishes of Australia, D.J. Bray 2019: Possum Wrasse",
+        "url": "https://fishesofaustralia.net.au/home/species/291"
+      },
+      {
+        "title": "Westneat 2001: FAO Species Identification Guide, Labridae",
+        "url": "https://www.fao.org/4/y0870e/y0870e09.pdf"
+      },
+      {
+        "title": "Randall & Victor 2022: Labridae, Coastal Fishes of the Western Indian Ocean",
+        "url": "https://coralreeffish.com/pubpdfs/Randall%20%26%20Victor%202022%20Labridae%20of%20WIO%20chapter.pdf"
+      },
+      {
+        "title": "Seale 1901: Report of a mission to Guam（Cheilinus nigropinnatus の原記載）",
+        "url": "https://hbs.bishopmuseum.org/pubs-online/pdf/op1-3p17-128.pdf"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Wetmorella nigropinnata",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "インドネシアから太平洋のマーシャル諸島、マルケサス諸島、オエノ島まで分布し、北は琉球列島、南は西オーストラリア、ニューカレドニア、トンガに達します。日本では伊豆から琉球列島で記録されています。",
+    "temperament": "警戒心が強く、すぐに岩の隙間や洞穴へ隠れます。群れの大きさや繁殖の仕組みは、まだ確かめられていません。本水槽では、1尾で岩陰に暮らします。",
+    "movement": "岩や礁のすぐそばに潜み、隙間から出入りしながら、底にすむ小さな無脊椎動物を食べます。夕方に活発になるとされます。本水槽では、右の岩の隙間を住みかにして、岩組みの低いところを泳ぎます。",
+    "habitat": "礁湖や外海側のサンゴ礁の、洞穴や岩の隙間に暮らします。水深1〜30mの記録があります。",
+    "aliases": [
+      "Possum wrasse",
+      "Sharpnose wrasse",
+      "Yellow-banded possum-wrasse",
+      "Cheilinus nigropinnatus",
+      "Wetmorella ocellata"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Perciformes",
+      "orderJa": "スズキ目",
+      "family": "Labridae",
+      "familyJa": "ベラ科"
+    },
+    "adultSizeCm": 6,
+    "sizeNote": "典型的な成魚の大きさは分かっていません。最大の大きさは資料で異なり、オーストラリアの図鑑は全長8cm、FAOの図鑑は全長約6cmとしています。与論島の標本は標準体長4.3cm、マーシャル諸島で採集された標本群は標準体長2.3〜5.7cmでした。",
+    "distribution": "インドネシアから太平洋中部のマーシャル諸島、マルケサス諸島まで。東インド洋ではアンダマン海や西オーストラリアの記録があり、北は琉球列島、南はニューカレドニアとトンガまで分布します。2022年に西インド洋の群れが別種として分けられたため、それより前の資料にある紅海などの広い分布には別種が含まれます。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2010,
+      "note": "Eschmeyer's Catalog of Fishes が引用する IUCN の評価で、2022年に種が分けられる前のものです。"
+    },
+    "highlights": [
+      "えんじ色の体に、眼の後ろと尾の付け根の手前にある2本の黄色い帯が目立ちます。",
+      "背びれと臀びれの後ろに白く縁取られた黒い目玉模様があり、腹びれも大きな黒斑に覆われます。",
+      "細く尖った三角形の吻と小さな口をもち、頭にも大きなうろこがあります。",
+      "幼魚には白い帯が5本ありますが、成長すると2本が太く黄色くなり、ほかは消えるとされます。"
+    ]
+  }
+}

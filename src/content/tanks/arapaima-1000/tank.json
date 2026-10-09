@@ -4,11 +4,11 @@
   "displayName": "ピラルクの大水槽",
   "exhibitName": "Arapaima",
   "category": "アマゾンの氾濫原",
-  "description": "沈んだ大木と広い砂泥の底を、体長2mを超えるピラルクがゆっくり行き来し、ときどき水面へ上がって空気を吸う10mの大水槽です。",
+  "description": "沈んだ大木と広い砂泥の底を、体長2mを超えるピラルクがゆっくり行き来し、ときどき水面へ上がって空気を吸います。増水した森で果実や種子を食べるタンバキーとレッドコロソマは中層をゆったり泳ぎ、プロキロダスは厚い唇で底や流木の表面をかき取ります。アマゾンの氾濫原を再現した10mの大水槽です。",
   "widthCm": 1000,
   "heightCm": 330,
   "depthCm": 400,
-  "maxTotalFish": 3,
+  "maxTotalFish": 14,
   "sceneIds": [
     "arapaima-1000"
   ],
@@ -16,12 +16,36 @@
     {
       "speciesId": "arapaima",
       "maxCount": 3
+    },
+    {
+      "speciesId": "tambaqui",
+      "maxCount": 3
+    },
+    {
+      "speciesId": "red-bellied-pacu",
+      "maxCount": 3
+    },
+    {
+      "speciesId": "black-prochilodus",
+      "maxCount": 6
     }
   ],
   "defaultStock": [
     {
       "speciesId": "arapaima",
       "count": 2
+    },
+    {
+      "speciesId": "tambaqui",
+      "count": 2
+    },
+    {
+      "speciesId": "red-bellied-pacu",
+      "count": 2
+    },
+    {
+      "speciesId": "black-prochilodus",
+      "count": 4
     }
   ]
 }

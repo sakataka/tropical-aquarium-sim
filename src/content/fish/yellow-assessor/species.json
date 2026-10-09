@@ -1,0 +1,123 @@
+{
+  "id": "yellow-assessor",
+  "displayName": "イエローアセッサー",
+  "realBodyLengthCm": 5,
+  "swim": {
+    "tailBeatHz": 3
+  },
+  "visual": {
+    "fallbackColor": "#efc22e"
+  },
+  "sourceBodyBounds": {
+    "x": 70,
+    "y": 171,
+    "width": 1413,
+    "height": 599
+  },
+  "preferredZone": {
+    "minX": 0.12,
+    "maxX": 0.5,
+    "minY": 0.55,
+    "maxY": 0.88
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.4,
+      "burst": 2.4
+    },
+    "turnRateRadPerSec": 3,
+    "restFraction": 0.3,
+    "depthRange": [
+      0.4,
+      0.9
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 2,
+      "cohesion": 0.35,
+      "polarization": 0.1
+    },
+    "structureAffinity": 0.9,
+    "habits": [
+      {
+        "type": "homeShelter",
+        "kind": "cave",
+        "rangeBodyLengths": 3,
+        "visitChancePerMin": 1,
+        "visitDurationSec": [
+          5,
+          15
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Allen & Kuiter 1976: A review of the plesiopid fish genus Assessor, with descriptions of two new species",
+        "url": "https://museum.wa.gov.au/sites/default/files/A%20REVIEW%20OF%20THE%20PLESIOPID%20FISH%20GENUS%20ASSESSOR%2C%20WITH%20DESCRIPTIONS%20OF%20TWO%20NEW%20SPECIES.pdf"
+      },
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Plesiopidae",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?family=Plesiopidae&tbl=species"
+      },
+      {
+        "title": "Fishes of Australia, D.J. Bray 2017: Assessor flavissimus",
+        "url": "https://fishesofaustralia.net.au/home/species/3470"
+      },
+      {
+        "title": "Australian Museum: Yellow Scissortail, Assessor flavissimus",
+        "url": "https://australian.museum/learn/animals/fishes/yellow-scissortail-assessor-flavissimus/"
+      },
+      {
+        "title": "ORA: Yellow Assessor",
+        "url": "https://www.orafarm.com/product/yellow-assessor/"
+      },
+      {
+        "title": "Sea & Reef Aquaculture: Yellow Assessor",
+        "url": "https://www.seaandreef.com/marine-ornamental-fish/assessors/yellow-assessor"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Assessor flavissimus",
+    "originRegionId": "oceania",
+    "originRegionName": "オセアニア",
+    "origin": "パプアニューギニア、オーストラリアのクイーンズランド州北部、珊瑚海の礁に分布します。新種として記載されたときの標本は、ケアンズ沖のピクシー礁で採集されました。",
+    "temperament": "洞窟や割れ目に小さな集まりをつくります。比較的おとなしい一方で敏感で、やや攻撃的な魚がいると隠れたままになり、餌を十分に食べられないことがあります。",
+    "movement": "洞窟や岩棚の下で、ときに逆さになって泳ぎます。小さな甲殻類を食べる動物プランクトン食です。本水槽では、左の岩の張り出しを住みかにして、そのまわりに集まります。",
+    "habitat": "礁の洞窟や割れ目、岩棚の下の陰になった場所に暮らし、水深2〜20mの記録があります。青い近縁種 Assessor macneilli と同じ洞窟で見られることもよくあります。",
+    "aliases": [
+      "Yellow assessor",
+      "Yellow scissortail",
+      "Gold assessor basslet",
+      "Yellow devilfish"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Perciformes",
+      "orderJa": "スズキ目",
+      "family": "Plesiopidae",
+      "familyJa": "タナバタウオ科"
+    },
+    "adultSizeCm": 5,
+    "sizeNote": "典型的な成魚の大きさは分かっていません。最大は全長6cmとされます。新種の記載に使われた標本は標準体長2.5〜4.6cmで、基準となった標本は3.9cmでした。",
+    "distribution": "パプアニューギニア、オーストラリアのクイーンズランド州北部、珊瑚海の礁から記録があります。1976年の記載では、グレートバリアリーフ北部のリザード島、ピクシー礁、ヘイスティングス礁、スパー礁で観察されています。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2022,
+      "note": "Eschmeyer's Catalog of Fishes が引用する IUCN の評価です。"
+    },
+    "highlights": [
+      "鮮やかな黄色の体に、眼の後ろから斜めに走る赤橙色の帯があります。種小名 flavissimus は、この鮮やかな黄色にちなみます。",
+      "背びれと臀びれの外縁近くに赤橙色の帯があり、その外側を細い黒い縁が囲みます。尾びれは二またに分かれます。",
+      "洞窟の天井や岩棚の下で、逆さになって泳ぐことがあります。",
+      "雄が卵を口の中で守るとする資料がある一方、巣に産卵するとする発表もあり、繁殖の方法はまだはっきりしません。"
+    ]
+  }
+}

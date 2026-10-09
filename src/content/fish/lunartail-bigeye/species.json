@@ -1,0 +1,124 @@
+{
+  "id": "lunartail-bigeye",
+  "displayName": "ホウセキキントキ",
+  "realBodyLengthCm": 24,
+  "catalog": {
+    "scientificName": "Priacanthus hamrur",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "紅海からインド・西太平洋に広く分布し、南アフリカからマルケサス諸島やガンビエ諸島まで、北は日本や韓国南部、南はオーストラリアやトンガまで見られます。2023年には宮城県の金華山沖でも採集されました。",
+    "temperament": "小さな群れで見られ、ときには大きな群れをつくります。浮遊性のエビ類（アキアミの仲間）や小魚をよく食べます。",
+    "movement": "キントキダイ科の魚はおもに夜に活動し、昼に餌をとることもあるとされます。昼は岩棚の下やサンゴの塊のそばにいることがあります。",
+    "habitat": "サンゴ礁や岩礁、礁の外側の斜面、深いラグーンの根や物陰のまわりに暮らします。水深20m未満から250m以上まで記録があり、30〜50mで多いとされます。",
+    "aliases": [
+      "Lunartail bigeye",
+      "Moontail bullseye",
+      "Crescent-tailed bigeye"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Perciformes",
+      "orderJa": "スズキ目",
+      "family": "Priacanthidae",
+      "familyJa": "キントキダイ科"
+    },
+    "adultSizeCm": 24,
+    "sizeNote": "典型的な成魚の大きさは確かめられておらず、ここでは約24cmとして表示しています。インドのケララ州沖の漁獲標本（2014〜2015年）は全長12.5〜38.5cmで、平均は23.5cmでした。サウラーシュトラ沖では、雌の半数が全長19.8cmで成熟していました。最大全長は36cmとする資料と40cmとする資料があります。",
+    "distribution": "紅海とインド・西太平洋。南アフリカからマルケサス諸島・ガンビエ諸島まで、北は日本・韓国南部、南はオーストラリア・トンガに及びます。東地中海には、紅海から入ったとされる記録があります。日本では2023年に宮城県金華山沖で採集され、北限が更新されました。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2016
+    },
+    "highlights": [
+      "大きな目と上向きの口をもち、体は体高のある楕円形で、強く平たくなっています。",
+      "銀色がかった桃色の体に赤い横帯が出た姿から、全身が赤い姿まで、体色がすばやく変わります。",
+      "尾びれの後ろの縁は、浅くくぼむか三日月形になります。",
+      "頭や体は、ざらざらしたとげのあるうろこで覆われています。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.0
+  },
+  "visual": {
+    "fallbackColor": "#c9574b"
+  },
+  "sourceBodyBounds": {
+    "x": 98,
+    "y": 142,
+    "width": 1398,
+    "height": 734
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.2,
+    "maxY": 0.85
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.3,
+      "burst": 2.2
+    },
+    "turnRateRadPerSec": 2.3,
+    "restFraction": 0.35,
+    "depthRange": [
+      0.35,
+      0.9
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.3,
+      "cohesion": 0.45,
+      "polarization": 0.2
+    },
+    "structureAffinity": 0.8,
+    "habits": [
+      {
+        "type": "hideByDay",
+        "durationSec": [
+          90,
+          240
+        ]
+      },
+      {
+        "type": "homeShelter",
+        "kind": "cave",
+        "rangeBodyLengths": 5,
+        "visitChancePerMin": 0.6,
+        "visitDurationSec": [
+          20,
+          60
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Starnes 1999: FAO Priacanthidae, pp. 2590 and 2596",
+        "url": "https://www.fao.org/4/x2400e/x2400e46.pdf"
+      },
+      {
+        "title": "Bray 2022: Fishes of Australia: Lunartail Bigeye",
+        "url": "https://fishesofaustralia.net.au/home/species/4462"
+      },
+      {
+        "title": "櫻井ほか 2024: 牡鹿半島周辺海域の南方系29魚種",
+        "url": "https://www.museum.kagoshima-u.ac.jp/ichthy/INHFJ_2024_045_068.pdf"
+      },
+      {
+        "title": "Kizhakudan & Zala 2006: Dynamics of Priacanthus hamrur exploited off Saurashtra coast",
+        "url": "https://eprints.cmfri.org.in/6268/1/3.pdf"
+      },
+      {
+        "title": "Seetha et al. 2018: Fishery, biology and stock status of Priacanthus hamrur exploited off Kerala coast",
+        "url": "https://www.mbai.org.in/uploads/manuscripts/60-1%20ART%204466546814.pdf"
+      }
+    ]
+  }
+}

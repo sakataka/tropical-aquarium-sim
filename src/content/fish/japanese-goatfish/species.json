@@ -1,0 +1,119 @@
+{
+  "id": "japanese-goatfish",
+  "displayName": "ヒメジ",
+  "realBodyLengthCm": 20,
+  "catalog": {
+    "scientificName": "Upeneus japonicus",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "西太平洋に分布し、マレーシアからフィリピン、北は朝鮮半島やピョートル大帝湾、日本まで見られます。日本では北海道から九州南岸までの沿岸と瀬戸内海、東シナ海の大陸棚にいて、琉球列島や小笠原諸島では少なくなります。",
+    "temperament": "群れのつくり方など、ふだんの暮らしぶりはよく分かっていません。小魚やエビ、ヨコエビなどを食べます。",
+    "movement": "海底の近くを泳ぎ、あごの下の黄色い2本のひげで、砂に潜む獲物を探します。このひげで味を感じとります。",
+    "habitat": "沿岸から大陸棚の砂底や砂泥底に暮らします。図鑑ではふつう水深35〜160mで見られるとされますが、伊豆半島では水深15mで採集された記録もあります。",
+    "aliases": [
+      "Japanese goatfish",
+      "Upeneus bensasi",
+      "Mullus bensasi",
+      "ひめいち"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Perciformes",
+      "orderJa": "スズキ目",
+      "family": "Mullidae",
+      "familyJa": "ヒメジ科"
+    },
+    "adultSizeCm": 20,
+    "sizeNote": "ふつう全長20cmほどになるとする資料があります。1993年の再検討で調べられた標本の最大は標準体長15.7cmでした。データベースには標準体長28cmという最大値もありますが、元の論文の表は確かめられていません。東シナ海では尾叉長12cmで成熟した個体があり、大部分は14cm以上で成熟するとされます。",
+    "distribution": "マレーシアからフィリピン、朝鮮半島、ピョートル大帝湾、日本までの西太平洋。日本では北海道から九州南岸の日本海・東シナ海・太平洋沿岸と瀬戸内海に分布します。南の海域の古い記録には、別種との取り違えが疑われるものもあります。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "NE",
+      "note": "未評価とする区分は、Catalog of Fishes と FishBase の表示によります。"
+    },
+    "highlights": [
+      "背側は赤から赤褐色、腹側は白から銀色で、はっきりした縦帯はありません。",
+      "尾びれの上の葉には2〜4本の赤い斜めの帯があり、下の葉はほぼ一様に赤く、後ろの縁が細く黒っぽくなります。",
+      "あごの下の黄色い2本のひげで、海底を探りながら餌を探します。",
+      "南日本では食用にされ、高知では「ひめいち」と呼ばれます。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.2,
+    "mouthAnchor": {
+      "x": 0.005,
+      "y": 0.58
+    }
+  },
+  "visual": {
+    "fallbackColor": "#d9866f"
+  },
+  "sourceBodyBounds": {
+    "x": 121,
+    "y": 174,
+    "width": 1347,
+    "height": 604
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.6,
+    "maxY": 0.93
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.35,
+      "burst": 1.8
+    },
+    "turnRateRadPerSec": 2.2,
+    "restFraction": 0.15,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.8,
+      "cohesion": 0.4,
+      "polarization": 0.25
+    },
+    "structureAffinity": 0.1,
+    "habits": [
+      {
+        "type": "bottomForage"
+      }
+    ],
+    "sources": [
+      {
+        "title": "鳥羽水族館: ヒメジ",
+        "url": "https://aquarium.co.jp/picturebook/upeneus-japonicus.html"
+      },
+      {
+        "title": "Randall, Bauchot & Guézé 1993: Upeneus japonicus, senior synonym of U. bensasi",
+        "url": "https://www.jstage.jst.go.jp/article/jji1950/40/3/40_3_301/_pdf/-char/ja"
+      },
+      {
+        "title": "小枝ほか 2018: 内之浦の魚類、ヒメジ p. 334",
+        "url": "https://www.museum.kagoshima-u.ac.jp/publications/pdf_images/2018_03_Uchinoura_lowres.pdf"
+      },
+      {
+        "title": "Motomura et al. 2012: First Records of the Goatfish Upeneus guttatus from Japan",
+        "url": "https://www.jstage.jst.go.jp/article/specdiv/17/1/17_KJ00008044950/_pdf"
+      },
+      {
+        "title": "高知県 2016年度資料: ヒメジ資源生態",
+        "url": "https://www.pref.kochi.lg.jp/doc/seikahoukokusyo-aohon28/file_contents/himeji.pdf"
+      },
+      {
+        "title": "FishBase: Upeneus japonicus",
+        "url": "https://www.fishbase.se/summary/Upeneus_japonicus.html"
+      }
+    ]
+  }
+}

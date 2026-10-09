@@ -4,11 +4,11 @@
   "displayName": "チョウザメの大型水槽",
   "exhibitName": "Sturgeons & Paddlefish",
   "category": "北半球の冷たい大河",
-  "description": "丸石の並ぶ砂利の川底を、コチョウザメの群れがひげで探りながら巡り、ヘラチョウザメは長い吻を前に向けて中層を休まず泳ぎ続けます。冷たい大河を再現した500cmの水槽です。",
+  "description": "丸石の並ぶ砂利の川底を、コチョウザメの群れがひげで探りながら巡り、ヘラチョウザメは長い吻を前に向けて中層を休まず泳ぎ続けます。北米のレイクスタージョン、ウミチョウザメ、ショベルノーズスタージョンと、シベリアチョウザメも川底を行き来し、短く丸い吻から平たいシャベル形の吻まで見比べられます。冷たい大河を再現した500cmの水槽です。",
   "widthCm": 500,
   "heightCm": 198,
   "depthCm": 150,
-  "maxTotalFish": 10,
+  "maxTotalFish": 16,
   "sceneIds": [
     "sturgeon-400"
   ],
@@ -20,6 +20,22 @@
     {
       "speciesId": "sterlet",
       "maxCount": 8
+    },
+    {
+      "speciesId": "lake-sturgeon",
+      "maxCount": 2
+    },
+    {
+      "speciesId": "shortnose-sturgeon",
+      "maxCount": 2
+    },
+    {
+      "speciesId": "shovelnose-sturgeon",
+      "maxCount": 2
+    },
+    {
+      "speciesId": "siberian-sturgeon",
+      "maxCount": 2
     }
   ],
   "defaultStock": [
@@ -30,6 +46,22 @@
     {
       "speciesId": "sterlet",
       "count": 5
+    },
+    {
+      "speciesId": "lake-sturgeon",
+      "count": 1
+    },
+    {
+      "speciesId": "shortnose-sturgeon",
+      "count": 1
+    },
+    {
+      "speciesId": "shovelnose-sturgeon",
+      "count": 1
+    },
+    {
+      "speciesId": "siberian-sturgeon",
+      "count": 1
     }
   ]
 }

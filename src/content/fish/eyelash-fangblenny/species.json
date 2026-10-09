@@ -1,0 +1,120 @@
+{
+  "id": "eyelash-fangblenny",
+  "displayName": "オウゴンニジギンポ",
+  "realBodyLengthCm": 8,
+  "swim": {
+    "tailBeatHz": 3
+  },
+  "visual": {
+    "fallbackColor": "#b9b36c"
+  },
+  "sourceBodyBounds": {
+    "x": 68,
+    "y": 258,
+    "width": 1403,
+    "height": 535
+  },
+  "preferredZone": {
+    "minX": 0.12,
+    "maxX": 0.9,
+    "minY": 0.3,
+    "maxY": 0.8
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.5,
+      "burst": 2.4
+    },
+    "turnRateRadPerSec": 3,
+    "restFraction": 0.15,
+    "depthRange": [
+      0.2,
+      0.8
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 3,
+      "cohesion": 0.05,
+      "polarization": 0.05
+    },
+    "structureAffinity": 0.6,
+    "habits": [
+      {
+        "type": "homeShelter",
+        "kind": "crevice",
+        "rangeBodyLengths": 8,
+        "visitChancePerMin": 0.4,
+        "visitDurationSec": [
+          4,
+          10
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Meiacanthus atrodorsalis",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=40308"
+      },
+      {
+        "title": "森下・本村 2018: トカラ列島諏訪之瀬島から得られたオウゴンニジギンポ",
+        "url": "https://ir.kagoshima-u.ac.jp/record/15405/files/AA12599025_45_p63-67.pdf"
+      },
+      {
+        "title": "Fishes of Australia, D.J. Bray 2025: Eyelash Fangblenny",
+        "url": "https://fishesofaustralia.net.au/Home/species/1916"
+      },
+      {
+        "title": "Moorhead 2017: Development of culture techniques for the forktail blenny（博士論文）",
+        "url": "https://researchonline.jcu.edu.au/53481/1/53481-moorhead-2017-thesis.pdf"
+      },
+      {
+        "title": "Cheney 2010: Multiple selective pressures apply to a coral reef fish mimic",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2871877/"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Meiacanthus atrodorsalis",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "東インド洋から西太平洋に分布し、インドネシアからカロリン諸島、サモアまで、北は琉球列島、南はオーストラリア北部とニューカレドニアに達します。日本では伊豆半島から琉球列島で散発的に記録されています。",
+    "temperament": "単独かペア、ときに小さな群れで見られます。下あごに毒腺のある大きな牙をもち、身を守るのに使います。飼育下では、同じ種どうしの攻撃や、雄が巣を守る様子が観察されています。",
+    "movement": "礁の近くの水中を泳ぎ、動物プランクトンや底の小さな無脊椎動物を食べます。人が近づくと岩陰へ逃げ込みます。本水槽では、岩組みのまわりの中層を泳ぎ、ときどき右の岩の隙間に立ち寄ります。",
+    "habitat": "礁湖や外海側の礁の斜面、ドロップオフに暮らし、水深1〜30mの記録があります。トカラ列島では、砂の混じるサンゴ礁の、岩の割れ目の流れが少し緩やかなところを泳いでいました。",
+    "aliases": [
+      "Eyelash fangblenny",
+      "Forktail blenny",
+      "Forktail fangblenny",
+      "Petroscirtes atrodorsalis"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Perciformes",
+      "orderJa": "スズキ目",
+      "family": "Blenniidae",
+      "familyJa": "イソギンポ科"
+    },
+    "adultSizeCm": 8,
+    "sizeNote": "典型的な成魚の大きさは分かっていません。最大は全長11cmとされ、尾の糸状の部分を含まない長さと説明されています。トカラ列島で採集された標本は標準体長6.4cmでした。",
+    "distribution": "東インド洋・西太平洋のインドネシアからカロリン諸島、サモアまで。北は琉球列島、南はオーストラリア北部とニューカレドニアまで分布します。日本では伊豆半島から琉球列島に記録があり、2018年にトカラ列島の諏訪之瀬島で標本が得られました。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2014,
+      "note": "Fishes of Australia が掲載する IUCN の評価です。"
+    },
+    "highlights": [
+      "青灰色の頭と体の前半から、黄色い後半と尾へ色が移り変わり、背びれの縁も鮮やかな黄色です。",
+      "眼から背びれの付け根へ、青く縁取られた黒い斜めの帯が走ります。",
+      "尾びれの上下の縁が糸のように伸びます。飼育下では、優位な雄でとくに長く伸びました。",
+      "毒のある牙で身を守る本種に、よく似た姿のイソギンポ Plagiotremus laudandus が擬態し、すぐそばに寄り添って泳ぐことが観察されています。",
+      "雄は巣を守り、胸びれと尾を動かして卵に水を送ります。"
+    ]
+  }
+}

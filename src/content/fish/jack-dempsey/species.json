@@ -1,0 +1,127 @@
+{
+  "id": "jack-dempsey",
+  "displayName": "ジャックデンプシー",
+  "realBodyLengthCm": 17,
+  "swim": {
+    "tailBeatHz": 1.8,
+    "tailSweepRad": 0.4
+  },
+  "visual": {
+    "fallbackColor": "#4f5a4c"
+  },
+  "sourceBodyBounds": {
+    "x": 108,
+    "y": 170,
+    "width": 1329,
+    "height": 694
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.4,
+    "maxY": 0.88
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.3,
+      "burst": 1.4
+    },
+    "turnRateRadPerSec": 2.0,
+    "restFraction": 0.22,
+    "depthRange": [0.2, 0.85],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 3,
+      "cohesion": 0,
+      "polarization": 0.05
+    },
+    "structureAffinity": 0.6,
+    "habits": [
+      {
+        "type": "homeShelter",
+        "kind": "cave",
+        "rangeBodyLengths": 5,
+        "visitChancePerMin": 0.5,
+        "visitDurationSec": [4, 12]
+      },
+      {
+        "type": "follow",
+        "chancePerMin": 0.6,
+        "durationSec": [2, 5]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Rocio octofasciata",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?genus=Rocio&tbl=species"
+      },
+      {
+        "title": "Florida Museum: Jack Dempsey",
+        "url": "https://www.floridamuseum.ufl.edu/discover-fish/florida-fishes-gallery/jack-dempsey/"
+      },
+      {
+        "title": "Miller, Minckley & Norris (2009) Los peces dulceacuícolas de México",
+        "url": "https://www.biodiversidad.gob.mx/pdf/libros/PaguadulceD.pdf"
+      },
+      {
+        "title": "Zworykin, Budaev & Mochek (1998) Male compensatory parental behaviour in Cichlasoma octofasciatum",
+        "url": "https://bio.uib.no/te/papers/Zworykin_1998_Alternative_tactics.pdf"
+      },
+      {
+        "title": "USFWS (2026) Jack Dempsey Ecological Risk Screening Summary",
+        "url": "https://www.fws.gov/sites/default/files/documents/2026-04/ecological-risk-screening-summary-jack-dempsey-mar-2026.pdf"
+      },
+      {
+        "title": "Seriously Fish: Rocio octofasciata",
+        "url": "https://www.seriouslyfish.com/species/rocio-octofasciata/"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Rocio octofasciata",
+    "originRegionId": "central-america",
+    "originRegionName": "中央アメリカ",
+    "origin": "メキシコ南部からベリーズ、グアテマラ、ホンジュラスにかけての大西洋側の水系に分布します。模式産地は、メキシコ・ベラクルス州のコアツァコアルコス水系にあるサラビア川です。",
+    "habitat": "小川や潟湖、湿地、湧水、池、水路にすみ、止水から緩い流れの場所を多く使います。底は泥や砂、礫、岩で、落ち葉や枝が沈み、水草や藻の多い場所でよく採集されます。採集された水深はふつう1m以下です。この展示では、平石と砂底の中米の小川で暮らします。",
+    "temperament": "成熟すると、同じ種類や似た体形の魚に強く出ることがあります。ペアは基質の上に産卵し、両親で卵と子を守ります。",
+    "movement": "石のまわりの中下層を泳ぎます。飼育下では、底床を掘り返す行動が知られています。本水槽では、平石の下の洞を住みかにして出入りします。",
+    "aliases": [
+      "Jack Dempsey",
+      "Jack Dempsey cichlid",
+      "Mojarra castarrica",
+      "Heros octofasciatus",
+      "Cichlasoma octofasciatum",
+      "Archocentrus octofasciatus"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cichliformes",
+      "orderJa": "シクリッド目",
+      "family": "Cichlidae",
+      "familyJa": "シクリッド科"
+    },
+    "adultSizeCm": 21.7,
+    "sizeNote": "ふつうの成魚の大きさは確かめられていません。メキシコの淡水魚の図鑑は最大の標準体長を21.7cmとし、全長25cmとする資料もあります。展示では全長17cm前後の成魚を想定しています。",
+    "distribution": "メキシコ南部、ベリーズ、グアテマラ、ホンジュラスの大西洋側。米国ハワイ州に定着しているほか、オーストラリアなどにも移入の記録があります。",
+    "water": {
+      "salinity": "freshwater",
+      "temperatureC": [20, 30],
+      "pH": [6.5, 8.0]
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2019,
+      "note": "区分と評価年は魚類目録の表示で、IUCN の評価の本文は確かめられていません。"
+    },
+    "highlights": [
+      "暗い褐色の地に、青緑色に光る小さな斑点が頭と体、ひれに並びます。雄では背びれと臀びれの後ろが伸びて尖ります。",
+      "両眼の間に2本の暗い線があり、尾の付け根の上側に小さな暗色の斑があります。",
+      "飼育下の研究では、卵の時期は雌が子のそばにいる時間が長く、孵化すると雄の参加が増えました。雄の参加の度合いには個体差がありました。",
+      "異名のもとになった標本の一つには、アマゾンのマナウス産というラベルがついていましたが、誤りと見直されています。"
+    ]
+  }
+}

@@ -1,0 +1,129 @@
+{
+  "id": "candycane-pygmygoby",
+  "displayName": "トリマ・カナ",
+  "realBodyLengthCm": 2.5,
+  "catalog": {
+    "scientificName": "Trimma cana",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "西太平洋のカリマンタン島とスラウェシ島から、東はマーシャル諸島とフィジー、北はフィリピンまで知られています。新種として記載されたときの標本は、フィリピンのシキホール島で採集されました。",
+    "temperament": "硬いサンゴの表面で、1尾か小さな群れで見られるとされます。飼育下では、雄が岩の下の洞穴を占めて卵を守った例があり、雄どうしは縄張りを争うことがあります。本水槽では、岩陰の近くで数尾がばらばらに過ごします。",
+    "movement": "昼間はサンゴや岩の上にとまって休んでいることが多いと、飼育者が観察しています。本水槽では岩陰の近くにとどまり、泳ぐのは短い距離だけです。",
+    "habitat": "外海側の急な礁斜面に暮らします。記載の資料では水深12〜30.5m、後の図鑑では12〜35mとされています。",
+    "aliases": [
+      "Candycane pygmy goby",
+      "Candy-cane pygmygoby"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Gobiiformes",
+      "orderJa": "ハゼ目",
+      "family": "Gobiidae",
+      "familyJa": "ハゼ科"
+    },
+    "adultSizeCm": 2.2,
+    "sizeNote": "標準体長。記載の基になった雄の標本は2.23cm（2019年の検索表の図の説明では2.33cm）、フィリピンで採集直後に撮影された雄の標本は1.81cmでした。記載に使われた標本の最大は2.45cmです。飼育の情報サイトには2〜4cmとする記載もありますが、測り方が示されていません。典型的な大きさは確かめられていません。",
+    "distribution": "西太平洋のカリマンタン島、スラウェシ島、ハルマヘラ島からフィリピン、パラオ、カロリン諸島、マーシャル諸島、フィジーにかけて記録があります。フィリピンの群れと、ハルマヘラ島・パラオの群れの間には、遺伝子（COI）に3.6%以上の違いがあります。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2015,
+      "note": "FishBase が表示する IUCN の評価で、評価の本文は確かめられていません。"
+    },
+    "highlights": [
+      "白く透ける地に、背から腹まで体を横切る6本の赤い帯と、頭の2本の赤い帯があります。名前は、白地に赤い縞のキャンディケインにちなみます。",
+      "雄では第1背びれの2本目のとげが長く伸び、伏せると尾の付け根まで届くことがあります。",
+      "背びれ、臀びれ、尾びれに黄色い斑点が散らばり、眼のまわりは赤く、瞳の縁に細い黄色の輪があります。",
+      "よく似た Trimma sostra とは、体の帯がはっきり腹まで届き、胸びれの付け根に黒い斑がないことで見分けられます。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 3.4
+  },
+  "visual": {
+    "fallbackColor": "#e8a892"
+  },
+  "sourceBodyBounds": {
+    "x": 78,
+    "y": 161,
+    "width": 1409,
+    "height": 672
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.62,
+    "maxY": 0.94
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.3,
+      "burst": 1.8
+    },
+    "turnRateRadPerSec": 2.9,
+    "restFraction": 0.6,
+    "depthRange": [
+      0.2,
+      0.8
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 3.5,
+      "cohesion": 0.1,
+      "polarization": 0
+    },
+    "structureAffinity": 0.85,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 2.5,
+        "durationSec": [
+          8,
+          30
+        ]
+      },
+      {
+        "type": "homeShelter",
+        "kind": "cave",
+        "rangeBodyLengths": 5,
+        "visitChancePerMin": 0.6,
+        "visitDurationSec": [
+          5,
+          15
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Trimma cana",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?genus=Trimma&tbl=species"
+      },
+      {
+        "title": "Winterbottom 2004: Three new species of Trimma from the central, western and south Pacific, aqua 9(1):7–16",
+        "url": "https://www.researchgate.net/publication/382269540_Three_new_species_of_Trimma_Pisces_Gobiidae_from_the_central_western_and_south_Pacific_aqua_International_Journal_of_Ichthyology"
+      },
+      {
+        "title": "Winterbottom 2019: An illustrated key to the described valid species of Trimma, JOSF 34:1–61",
+        "url": "https://www.oceansciencefoundation.org/josf/josf34a.pdf"
+      },
+      {
+        "title": "Winterbottom et al. 2020: The cryptic cornucopia revisited, JOSF 36:91–132",
+        "url": "https://oceansciencefoundation.org/josf/josf36j.pdf"
+      },
+      {
+        "title": "FishBase: Trimma cana species summary",
+        "url": "https://www.fishbase.se/summary/trimma-cana"
+      },
+      {
+        "title": "Meerwasser-Lexikon: Trimma cana（飼育者の記録）",
+        "url": "https://www.meerwasser-lexikon.de/tiere/392_Trimma_cana.htm"
+      }
+    ]
+  }
+}

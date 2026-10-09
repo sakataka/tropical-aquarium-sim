@@ -4,11 +4,11 @@
   "displayName": "深海ザメの水槽",
   "exhibitName": "Deep-Sea Sharks",
   "category": "大陸斜面の深海",
-  "description": "黒い岩の崖に挟まれた大陸斜面の谷を再現した9mの大水槽。ラブカは細長い体をゆるやかにくねらせて岩の近くを進み、ミツクリザメは柔らかい体で谷の上の暗い水をゆっくり横切ります。",
+  "description": "黒い岩の崖に挟まれた大陸斜面の谷を再現した9mの大水槽。ラブカは細長い体をゆるやかにくねらせて岩の近くを進み、ミツクリザメは柔らかい体で谷の上の暗い水をゆっくり横切ります。6対の鰓孔をもつカグラザメは、大きな体で谷の底近くをゆっくり泳ぎます。",
   "widthCm": 900,
   "heightCm": 293,
   "depthCm": 300,
-  "maxTotalFish": 4,
+  "maxTotalFish": 5,
   "sceneIds": [
     "deep-sharks-600"
   ],
@@ -20,6 +20,10 @@
     {
       "speciesId": "goblin-shark",
       "maxCount": 2
+    },
+    {
+      "speciesId": "bluntnose-sixgill-shark",
+      "maxCount": 1
     }
   ],
   "defaultStock": [
@@ -29,6 +33,10 @@
     },
     {
       "speciesId": "goblin-shark",
+      "count": 1
+    },
+    {
+      "speciesId": "bluntnose-sixgill-shark",
       "count": 1
     }
   ]

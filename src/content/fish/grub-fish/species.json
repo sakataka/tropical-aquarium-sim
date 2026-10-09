@@ -1,0 +1,124 @@
+{
+  "id": "grub-fish",
+  "displayName": "クラカケトラギス",
+  "realBodyLengthCm": 15,
+  "catalog": {
+    "scientificName": "Parapercis sexfasciata",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "長崎を模式産地とする魚で、日本と朝鮮半島から、台湾、中国、インドネシアにかけての東インド洋・西太平洋に分布します。日本では、太平洋側は茨城県、日本海側は青森県から九州南岸までと、瀬戸内海で見られます。",
+    "temperament": "有明海の調査では、さまざまな餌生物を利用する、食性の幅広い魚とされています。底曳網や釣りで混獲され、地域によっては練り製品や塩焼きに使われます。",
+    "movement": "胸びれと腹びれを広げて、底のすぐ上に体を支えてとどまります。瀬戸内海の安芸灘では、昼間の釣りを含む調査で採集されています。",
+    "habitat": "浅い海から大陸棚にかけての砂泥底にすむ底生魚で、出現記録は水深20〜120mにまとまっています。この水景では、砂底に腹を寄せてじっと待つ姿を見せています。",
+    "aliases": [
+      "Percis sexfasciata",
+      "Neopercis sexfasciata",
+      "Grub fish",
+      "Saddled weever",
+      "クラカケギス"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Perciformes",
+      "orderJa": "スズキ目",
+      "family": "Pinguipedidae",
+      "familyJa": "トラギス科"
+    },
+    "adultSizeCm": 15,
+    "sizeNote": "図鑑や水族館は、成長すると体長約20cmになると紹介しています（測り方の記載なし）。九州で採卵した成熟した雌は全長12〜16cmで、ここでは実測に近い全長約15cmとして表示しています。",
+    "distribution": "東インド洋・西太平洋のインドネシア、中国、台湾から、朝鮮半島、日本まで。日本では太平洋側の茨城県、日本海側の青森県から九州南岸までと、瀬戸内海に分布します。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "今回の調査では、IUCN の評価は確認できていません。"
+    },
+    "highlights": [
+      "体の上部に、鞍をかけたようなV字形の暗色斑が4〜5個並びます。",
+      "胸びれの付け根の大きな暗斑、眼の下の暗い帯、尾びれの付け根の上の黒い斑も見分けどころです。",
+      "背びれは、棘の部分と軟らかい部分の間に目立つ切れ込みがなく、ひと続きです。",
+      "卵は透明で水に浮き、12〜17℃の飼育下では受精から70〜75時間ほどでふ化しました。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.4
+  },
+  "visual": {
+    "fallbackColor": "#b58a6a"
+  },
+  "sourceBodyBounds": {
+    "x": 64,
+    "y": 287,
+    "width": 1422,
+    "height": 471
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.8,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.2,
+      "burst": 2.0
+    },
+    "turnRateRadPerSec": 2.4,
+    "restFraction": 0.6,
+    "depthRange": [
+      0.3,
+      0.9
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.3,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 2.0,
+        "durationSec": [
+          10,
+          40
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes — Parapercis sexfasciata",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?genus=Parapercis&tbl=species"
+      },
+      {
+        "title": "加茂水族館 — クラカケトラギス",
+        "url": "https://kamo-kurage.jp/shonaizukan/kurakaketoragisu/"
+      },
+      {
+        "title": "鹿児島大学総合研究博物館 — 内之浦の魚類 2018: クラカケトラギス",
+        "url": "https://www.museum.kagoshima-u.ac.jp/publications/pdf_images/2018_03_Uchinoura_lowres.pdf"
+      },
+      {
+        "title": "水戸 1956 — クラカケギスの卵発生と仔魚期",
+        "url": "https://catalog.lib.kyushu-u.ac.jp/opac_download_md/21402/p507.pdf"
+      },
+      {
+        "title": "坂井ほか 2011 — 瀬戸内海安芸灘の浅海魚類相",
+        "url": "https://www.hiroshima-u.ac.jp/system/files/16900/7.pdf"
+      },
+      {
+        "title": "JAMSTEC BISMaL — クラカケトラギス",
+        "url": "https://www.godac.jamstec.go.jp/bismal/j/view/9014268"
+      },
+      {
+        "title": "環境省 資料4-2 — 第4章 詳細編（案）",
+        "url": "https://www.env.go.jp/council/content/i_13/000385018.pdf"
+      }
+    ]
+  }
+}

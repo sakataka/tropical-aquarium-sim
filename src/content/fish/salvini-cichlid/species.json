@@ -1,0 +1,127 @@
+{
+  "id": "salvini-cichlid",
+  "displayName": "サルビニーシクリッド",
+  "realBodyLengthCm": 11,
+  "swim": {
+    "tailBeatHz": 2.1,
+    "tailSweepRad": 0.4,
+    "mouthAnchor": {
+      "x": 0.007,
+      "y": 0.56
+    }
+  },
+  "visual": {
+    "fallbackColor": "#c9a03a"
+  },
+  "sourceBodyBounds": {
+    "x": 149,
+    "y": 181,
+    "width": 1277,
+    "height": 672
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.35,
+    "maxY": 0.88
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.4,
+      "burst": 1.8
+    },
+    "turnRateRadPerSec": 2.3,
+    "restFraction": 0.18,
+    "depthRange": [0.15, 0.8],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 2.6,
+      "cohesion": 0.25,
+      "polarization": 0.1
+    },
+    "structureAffinity": 0.45,
+    "habits": [
+      {
+        "type": "bottomForage"
+      },
+      {
+        "type": "follow",
+        "chancePerMin": 0.6,
+        "durationSec": [2, 6]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Trichromis salvini",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=16467"
+      },
+      {
+        "title": "McMahan et al. (2015) Taxonomy and systematics of the herichthyins, with the description of eight new Middle American Genera",
+        "url": "https://www.mapress.com/zootaxa/2015/f/zt03999p234.pdf"
+      },
+      {
+        "title": "Pease, Mendoza-Carranza & Winemiller (2018) Feeding ecology and ecomorphology of cichlid assemblages in a large Mesoamerican river delta",
+        "url": "https://aquaticecology.tamu.edu/wp-content/uploads/sites/3/2018/11/243_Pease-et-al-2018-Feeding-ecology-cichlids-large-Mesoamerican-river-delta-EBF.pdf"
+      },
+      {
+        "title": "Soria-Barreto et al. (2019) Trophic ecomorphology of cichlid fishes of Selva Lacandona, Usumacinta, Mexico",
+        "url": "https://aquaticecology.tamu.edu/wp-content/uploads/sites/3/2020/09/266-Soria-Barreto-et-al-2019-EBF.pdf"
+      },
+      {
+        "title": "USFWS (2019) Yellowbelly Cichlid Ecological Risk Screening Summary",
+        "url": "https://www.fws.gov/sites/default/files/documents/Ecological-Risk-Screening-Summary-Yellowbelly-Cichlid.pdf"
+      },
+      {
+        "title": "Seriously Fish: Cichlasoma salvini",
+        "url": "https://www.seriouslyfish.com/species/cichlasoma-salvini/"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Trichromis salvini",
+    "originRegionId": "central-america",
+    "originRegionName": "中央アメリカ",
+    "origin": "メキシコ南部、ベリーズ、グアテマラの大西洋側の水系に分布します。模式産地は、グアテマラのサンタ・イサベル川とペテン・イツァ湖です。",
+    "habitat": "流れの緩い川岸の植生帯や、水草の茂る潟湖で採集されています。メキシコ・タバスコ州のデルタでは、水深0.1〜1.2mの浅い岸辺から見つかりました。この展示では、平石と砂底の中米の小川で暮らします。",
+    "temperament": "飼育下では、繁殖期を中心に強い縄張りをもち、小さな魚を襲うことがあると報告されています。成魚を2尾合わせても、ペアになるとは限りません。",
+    "movement": "岸辺の植生や石のまわりを泳ぎ、底の近くで昆虫の幼虫や、底にたまった有機物（デトリタス）を食べます。本水槽では、砂底と石の間を行き来しながら底をついばみます。",
+    "aliases": [
+      "Yellowbelly cichlid",
+      "Salvini cichlid",
+      "Heros salvini",
+      "Cichlasoma salvini",
+      "Nandopsis salvini",
+      "Heros triagramma"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cichliformes",
+      "orderJa": "シクリッド目",
+      "family": "Cichlidae",
+      "familyJa": "シクリッド科"
+    },
+    "adultSizeCm": 11,
+    "sizeNote": "野外の成魚を調べた研究では、標準体長7.2〜11.9cmの個体が使われました。飼育の解説では雄が約15cm、雌が約11cmとされます。FishBase は最大を標準体長22cmとしています。展示の個体は雌で、全長11cm前後を想定しています。",
+    "distribution": "メキシコ南部、ベリーズ、グアテマラの大西洋側。米国フロリダ州に移入し、定着しています。",
+    "water": {
+      "salinity": "freshwater",
+      "temperatureC": [22, 26],
+      "pH": [6.5, 8.0]
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2018,
+      "note": "区分と評価年は FishBase の表示で、IUCN の評価の本文は確かめられていません。"
+    },
+    "highlights": [
+      "黄色い地に、上下2列の黒い帯が体側を走ります。両眼の間から背びれの前にかけて、ふつう3〜4本の細い線が入ります。",
+      "黄・赤・青緑の色は雌にもあり、繁殖期に鮮やかになります。属名の Trichromis は、この3色にちなみます。",
+      "メキシコの川では、仔魚を守る雌の姿が記録されています。",
+      "食べ物は場所によって違います。デルタでは昆虫の幼虫やデトリタスを含む雑食で、上流の川では水生昆虫と魚をおもに食べていました。"
+    ]
+  }
+}

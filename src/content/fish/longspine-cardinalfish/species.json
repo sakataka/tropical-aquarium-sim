@@ -1,0 +1,108 @@
+{
+  "id": "longspine-cardinalfish",
+  "displayName": "イトヒキテンジクダイ",
+  "realBodyLengthCm": 5,
+  "swim": {
+    "tailBeatHz": 2.2
+  },
+  "visual": {
+    "fallbackColor": "#c8c0a6"
+  },
+  "sourceBodyBounds": {
+    "x": 165,
+    "y": 44,
+    "width": 1274,
+    "height": 922
+  },
+  "preferredZone": {
+    "minX": 0.1,
+    "maxX": 0.9,
+    "minY": 0.3,
+    "maxY": 0.72
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.25,
+      "burst": 1.2
+    },
+    "turnRateRadPerSec": 2.5,
+    "restFraction": 0.4,
+    "depthRange": [
+      0.3,
+      0.85
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1,
+      "cohesion": 0.65,
+      "polarization": 0.3
+    },
+    "structureAffinity": 0.85,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Zoramia leptacanthus",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=15172"
+      },
+      {
+        "title": "Fraser & Lachner 1985: A revision of the cardinalfish subgenera Pristiapogon and Zoramia",
+        "url": "https://repository.si.edu/bitstreams/212fdd1c-48ba-4bc0-8f79-10a76104e70c/download"
+      },
+      {
+        "title": "Greenfield, Langston & Randall 2005: Two new cardinalfishes of the Indo-Pacific genus Zoramia",
+        "url": "https://researcharchive.calacademy.org/research/scipubs/pdfs/v56/proccas_v56_n33.pdf"
+      },
+      {
+        "title": "Fishes of Australia, D.J. Bray 2017: Longspine Cardinalfish",
+        "url": "https://fishesofaustralia.net.au/home/species/3481"
+      },
+      {
+        "title": "Östlund-Nilsson & Nilsson 2004: Breathing with a mouth full of eggs",
+        "url": "https://www.researchgate.net/publication/8416528_Breathing_with_a_mouth_full_of_eggs_Respiratory_consequences_of_mouthbrooding_in_cardinalfish"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Zoramia leptacanthus",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "紅海と西インド太平洋に分布し、東アフリカからマーシャル諸島、トンガ、サモアまで知られています。北は鹿児島、南はオーストラリアとニューカレドニアに達します。",
+    "temperament": "枝状サンゴの上に密な群れをつくります。群れの中でペアをつくるとされ、雄が卵を口の中に入れて守ります。",
+    "movement": "大きな枝状サンゴの塊の上やその中に、群れで集まっています。本水槽では、岩組みのそばの中層に群れで浮かび、ゆっくり泳ぎます。",
+    "habitat": "波の穏やかな湾や礁湖に暮らし、濁った場所にも見られます。枝状のハマサンゴの大きな塊の上に群れ、水深1〜12mの記録があります。",
+    "aliases": [
+      "Longspine cardinalfish",
+      "Threadfin cardinalfish",
+      "Zoramia leptacantha",
+      "Apogon leptacanthus"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Perciformes",
+      "orderJa": "スズキ目",
+      "family": "Apogonidae",
+      "familyJa": "テンジクダイ科"
+    },
+    "adultSizeCm": 5,
+    "sizeNote": "典型的な成魚の大きさは分かっていません。最大は全長6cmとされ、約4000標本を調べた1985年の総説での最大は標準体長4.5cmでした。口に卵を入れていた標本は標準体長2.9〜3.8cm、実験に使われた雄は3.9〜4.1cmです。販売店の資料には最大2.5インチとしながら2〜3インチの個体を扱う記載もありますが、測り方が示されていないため採っていません。",
+    "distribution": "紅海と、東アフリカからマーシャル諸島、トンガ、サモアまでの西インド太平洋。北は鹿児島、南はオーストラリア北部とニューカレドニアまで分布します。紅海の記録は写真によるもので、標本を調べた1985年の総説では東アフリカからサモア、トンガまでとされています。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2022,
+      "note": "Eschmeyer's Catalog of Fishes が引用する IUCN の評価です。"
+    },
+    "highlights": [
+      "半透明の体に、頭の後ろの青と黄橙色の短い帯、青く光る眼が目立ちます。",
+      "第1背びれの2本目のとげが糸のように長く伸び、標準体長の3分の1から3分の2ほどに達します。",
+      "枝状サンゴの上に密な群れをつくります。",
+      "雄が卵を口に入れて守ります。卵を抱えた雄は酸素を取り込みにくくなり、長く泳ぎ続ける力も落ちることが実験で確かめられています。"
+    ]
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "id": "goldstripe-goatfish",
+  "displayName": "アカヒメジ",
+  "realBodyLengthCm": 25,
+  "catalog": {
+    "scientificName": "Mulloidichthys vanicolensis",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "紅海からインド太平洋に広く分布し、ハワイやピトケアン諸島まで、北は日本南部、南はオーストラリアやニュージーランド周辺の島々まで見られます。",
+    "temperament": "昼は群れをつくり、隠れ場所の近くや小さな根のまわりに集まります。マーシャル諸島のエニウェトク環礁では、1,000尾を超える群れが数えられたこともあります。",
+    "movement": "夜になると、1尾か小さな群れで砂地を回って餌を探します。あごの下の2本のひげで、砂の中に潜む小さな甲殻類やゴカイなどを探り当てます。",
+    "habitat": "礁原やラグーン、沿岸や沖合の礁の砂地に暮らし、海草藻場に入ることもあります。図鑑の集計では、水深1〜113mで記録されています。",
+    "aliases": [
+      "Goldstripe goatfish",
+      "Yellowfin goatfish",
+      "Goldenstripe goatfish",
+      "Mulloides vanicolensis"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Perciformes",
+      "orderJa": "スズキ目",
+      "family": "Mullidae",
+      "familyJa": "ヒメジ科"
+    },
+    "adultSizeCm": 25,
+    "sizeNote": "ふつう全長25cmほどになるとされ、最大で全長38cmの記録があります。沖縄の研究では、半数が成熟する大きさは雌で尾叉長19.4cm、雄で16.2cmでした。雌は雄より成長が速く、大きくなります。",
+    "distribution": "紅海からインド太平洋、ハワイ、ピトケアン諸島まで。北は日本南部、南はオーストラリアやニュージーランド周辺の島々に及びます。メキシコを分布に含める資料もあります。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2016
+    },
+    "highlights": [
+      "白から淡い桃色の体に、淡い青で縁どられた黄色い縦帯が1本通り、ひれは黄色です。",
+      "あごの下にある2本の細いひげで、砂の中の餌を探ります。",
+      "昼は群れで集まり、夜は散らばって砂地で餌をとります。夜などには、体に赤い横帯が出ることがあります。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.0,
+    "mouthAnchor": {
+      "x": 0.005,
+      "y": 0.6
+    }
+  },
+  "visual": {
+    "fallbackColor": "#e0c56a"
+  },
+  "sourceBodyBounds": {
+    "x": 127,
+    "y": 194,
+    "width": 1367,
+    "height": 577
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.5,
+    "maxY": 0.92
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.4,
+      "burst": 2.0
+    },
+    "turnRateRadPerSec": 2.2,
+    "restFraction": 0.18,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0.6,
+      "polarization": 0.35
+    },
+    "structureAffinity": 0.3,
+    "habits": [
+      {
+        "type": "bottomForage"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Randall 2001: FAO Mullidae, pp. 3175 and 3183",
+        "url": "https://www.fao.org/4/y0770e/y0770e39.pdf"
+      },
+      {
+        "title": "Bray 2023: Fishes of Australia: Goldstripe Goatfish",
+        "url": "https://fishesofaustralia.net.au/home/species/584"
+      },
+      {
+        "title": "Australian Museum: Goldstripe Goatfish",
+        "url": "https://australian.museum/learn/animals/fishes/goldstripe-goatfish-mulloidichthys-vanicolensis/"
+      },
+      {
+        "title": "Nolan, McConnaughey & Stearns 1975: Fishes Inhabiting Two Small Nuclear Test Craters at Enewetak Atoll",
+        "url": "https://micronesica.org/file/574/download?token=VFFSxw7_"
+      },
+      {
+        "title": "Samejima & Tachihara 2022: Age, growth and reproductive biology of yellowfin goatfish",
+        "url": "https://www.researchgate.net/publication/359009606_Age_growth_and_reproductive_biology_of_a_widespread_coral_reef_fish_yellowfin_goatfish_Mulloidichthys_vanicolensis_Valenciennes_1831"
+      },
+      {
+        "title": "JAMSTEC BISMaL: アカヒメジ",
+        "url": "https://www.godac.jamstec.go.jp/bismal/j/view/9012445"
+      }
+    ]
+  }
+}

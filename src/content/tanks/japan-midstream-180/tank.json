@@ -4,11 +4,11 @@
   "displayName": "川の中流水槽",
   "exhibitName": "Midstream Riffle",
   "category": "日本の川の中流",
-  "description": "玉石と砂利が続く川の中流の瀬を再現した180cm水槽。アユは石の表面をついばみ、オイカワ、カワムツ、ウグイの群れが開けた中層から上層を行き交います。カワヨシノボリとヌマチチブは底の石のあいだで休み、ときどき短く泳ぎ出します。",
+  "description": "玉石と砂利が続く川の中流の瀬を再現した180cm水槽。アユは石の表面をついばみ、オイカワ、カワムツ、ウグイの群れが開けた中層から上層を行き交います。カワヨシノボリとヌマチチブは底の石のあいだで休み、ときどき短く泳ぎ出します。赤褐色の小さなナマズのアカザは、昼は石の下に隠れ、夜になると底へ出てきます。",
   "widthCm": 180,
   "heightCm": 55,
   "depthCm": 60,
-  "maxTotalFish": 26,
+  "maxTotalFish": 28,
   "sceneIds": [
     "japan-midstream-180"
   ],
@@ -36,6 +36,10 @@
     {
       "speciesId": "numachichibu",
       "maxCount": 3
+    },
+    {
+      "speciesId": "japanese-torrent-catfish",
+      "maxCount": 2
     }
   ],
   "defaultStock": [
@@ -62,6 +66,10 @@
     {
       "speciesId": "numachichibu",
       "count": 2
+    },
+    {
+      "speciesId": "japanese-torrent-catfish",
+      "count": 1
     }
   ]
 }

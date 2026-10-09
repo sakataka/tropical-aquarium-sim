@@ -1,0 +1,111 @@
+{
+  "id": "slender-piranha",
+  "displayName": "ピラニア・エロンガータ",
+  "realBodyLengthCm": 25,
+  "catalog": {
+    "scientificName": "Serrasalmus elongatus",
+    "originRegionId": "south-america",
+    "originRegionName": "南米",
+    "origin": "南米のアマゾン川とオリノコ川の水系に分布し、ボリビア、ブラジル、コロンビア、エクアドル、ペルー、ベネズエラで記録があります。",
+    "habitat": "ペルーの図鑑では黒い水の流れにすむとされ、白く濁った水の川や氾濫原の湖、水に浸かった森でも記録されています。この展示では、根の絡む川岸の手前に開けた水があります。",
+    "temperament": "ほかの魚のひれやうろこをかじり取って食べるピラニアで、大きくなると小魚や魚の肉も食べます。同種どうしで争うため、飼育では単独で飼うことがすすめられています。",
+    "movement": "ほかの多くのピラニアより細長い体で、開けた水を泳ぎ回ります。体の形からは、上から下まで水の層を広く使い、湖のさまざまな場所を探って回る魚と考えられています。",
+    "aliases": [
+      "Slender piranha",
+      "Pike piranha",
+      "エロンガータピラニア",
+      "Caribe pinche",
+      "Serrasalmus pingke"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Characiformes",
+      "orderJa": "カラシン目",
+      "family": "Serrasalmidae",
+      "familyJa": "セラサルムス科"
+    },
+    "adultSizeCm": 25,
+    "sizeNote": "ペルーの図鑑では体長25cmとされますが、測り方は示されていません。南米淡水魚の目録での最大は全長30cmで、飼育の解説には標準体長30cmとあります。",
+    "distribution": "アマゾン川とオリノコ川の水系。ペルーのロレト州では、クラライ、ナナイ、ウカヤリ、マラニョン、アマゾナス、プトゥマヨ、ワジャガなどの川で記録されています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2024,
+      "note": "IUCN の区分は分類台帳の引用で、評価の原文は確認できていません。ペルーでは主に地元で食べられる魚です。"
+    },
+    "highlights": [
+      "下あごが上あごより前に出ていて、口は斜めに開きます。",
+      "銀灰色の体で、腹は黄色から赤みを帯び、尾びれの外側が暗くなります。",
+      "ベネズエラの調査では、小さな幼魚の胃がほかの魚のひれでいっぱいになっていました。",
+      "増水が始まるころに繁殖し、その時期には腹が赤みを帯びます。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 1.9,
+    "tailSweepRad": 0.42
+  },
+  "visual": {
+    "fallbackColor": "#958a73"
+  },
+  "sourceBodyBounds": {
+    "x": 68,
+    "y": 171,
+    "width": 1412,
+    "height": 625
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.2,
+    "maxY": 0.8
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.3,
+      "burst": 1.6
+    },
+    "turnRateRadPerSec": 2.1,
+    "restFraction": 0.3,
+    "depthRange": [0.15, 0.8],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.35,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes — Serrasalmus elongatus and S. pingke",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?genus=Serrasalmus&tbl=species"
+      },
+      {
+        "title": "Jégu 2003 — Serrasalminae, Check List of the Freshwater Fishes of South and Central America",
+        "url": "https://horizon.documentation.ird.fr/exl-doc/pleins_textes/divers19-12/010036914.pdf"
+      },
+      {
+        "title": "García-Dávila et al. 2018 — Peces de consumo de la Amazonía Peruana",
+        "url": "https://api-repositorio.iiap.gob.pe/server/api/core/bitstreams/5d20b181-50b2-48c8-83b7-34de6b63d80f/content"
+      },
+      {
+        "title": "Freitas, Costa & Soares 2005 — Ecomorphological correlates of thirteen dominant fish species of Amazonian floodplain lakes",
+        "url": "https://actalb.org/article/627b1140782aad05cd1891fd/pdf/alb-17-3-339.pdf"
+      },
+      {
+        "title": "Nico & Taphorn 1988 — Food Habits of Piranhas in the Low Llanos of Venezuela",
+        "url": "https://www.researchgate.net/publication/259511259_Food_Habits_of_Piranhas_in_the_Low_Llanos_of_Venezuela"
+      },
+      {
+        "title": "Seriously Fish — Serrasalmus elongatus",
+        "url": "https://www.seriouslyfish.com/species/serrasalmus-elongatus"
+      }
+    ]
+  }
+}

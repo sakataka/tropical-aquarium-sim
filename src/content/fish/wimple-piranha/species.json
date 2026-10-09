@@ -1,0 +1,105 @@
+{
+  "id": "wimple-piranha",
+  "displayName": "ウィンプル・ピラニア",
+  "realBodyLengthCm": 12,
+  "catalog": {
+    "scientificName": "Catoprion mento",
+    "originRegionId": "south-america",
+    "originRegionName": "南米",
+    "origin": "南米のアマゾン川西部、オリノコ川、パラグアイ川上流の水系に分布し、ボリビア、ブラジル、コロンビア、ガイアナ、ベネズエラで記録があります。",
+    "habitat": "川や水路と、それにつながる湖沼の、水草が茂る場所に暮らします。オリノコ川では、植物の多い暗い色の水にも澄んだ水にも見られます。この展示では、根の絡む川岸の手前に開けた水があります。",
+    "temperament": "主にほかの魚のうろこを食べる、鱗食に特化したピラニアです。ふだんは単独で暮らし、餌場の水草のまわりに同種が近づくと、威嚇したり攻撃したりします。",
+    "movement": "水草の茂みに身を隠して獲物に近づき、近くから一気に突進します。口を大きく開いてぶつかり、歯でうろこをはがし取ります。",
+    "aliases": [
+      "Wimple piranha",
+      "Serrasalmus mento",
+      "Mylesinus macropterus"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Characiformes",
+      "orderJa": "カラシン目",
+      "family": "Serrasalmidae",
+      "familyJa": "セラサルムス科"
+    },
+    "adultSizeCm": 12,
+    "sizeNote": "標準体長。2020年の分類の見直しで調べた標本は標準体長2.4〜12cm（平均6.4cm）で、大小の個体が混じっています。よく似た別種が分けられる前の資料では、最大で標準体長15cmとされます。",
+    "distribution": "アマゾン川西部、オリノコ川、パラグアイ川上流。アラグアイア川上流、マデイラ川、プルス川、ネグロ川下流などで記録があります。2020年に、よく似た別種カトプリオン・アブスコンディトゥスが分けられました。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2023,
+      "note": "IUCN の区分は分類台帳の引用で、評価の原文は確認できていません。2020年の見直しでは、分布が広く特に脅威も見当たらないとして、低懸念のままとするよう提案されています。"
+    },
+    "highlights": [
+      "菱形の薄い体で、上向きの口から下あごが大きく突き出しています。",
+      "銀色の体に眼を通る暗い帯があり、えらぶたの橙色の斑と、尾びれの付け根の黒いV字模様が目立ちます。",
+      "背びれの前に、前を向いた強いとげが1本あります。",
+      "うろこをはがす実験では、口を平均約120度も開いて突進しました。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2,
+    "tailSweepRad": 0.45
+  },
+  "visual": {
+    "fallbackColor": "#9d8e74"
+  },
+  "sourceBodyBounds": {
+    "x": 127,
+    "y": 103,
+    "width": 1330,
+    "height": 785
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.3,
+    "maxY": 0.85
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.25,
+      "burst": 2
+    },
+    "turnRateRadPerSec": 2.4,
+    "restFraction": 0.4,
+    "depthRange": [0.25, 0.85],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 3,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.75,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes — Catoprion species",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?tbl=species&genus=Catoprion"
+      },
+      {
+        "title": "Mateussi, Melo & Oliveira 2020 — Molecular delimitation and taxonomic revision of the wimple piranha Catoprion",
+        "url": "https://bfmelo.weebly.com/uploads/1/2/9/0/129034341/mateussi_et_al_2020_catoprion.pdf"
+      },
+      {
+        "title": "Janovetz 2005 — Functional morphology of feeding in the scale-eating specialist Catoprion mento",
+        "url": "https://journals.biologists.com/jeb/article/208/24/4757/15917/Functional-morphology-of-feeding-in-the-scale"
+      },
+      {
+        "title": "Nico & Taphorn 1988 — Food Habits of Piranhas in the Low Llanos of Venezuela",
+        "url": "https://www.researchgate.net/publication/259511259_Food_Habits_of_Piranhas_in_the_Low_Llanos_of_Venezuela"
+      },
+      {
+        "title": "USFWS — Wimple Piranha Ecological Risk Screening Summary",
+        "url": "https://www.fws.gov/sites/default/files/documents/Ecological-Risk-Screening-Summary-Wimple-Piranha.pdf"
+      }
+    ]
+  }
+}

@@ -1,0 +1,115 @@
+{
+  "id": "shortnose-sturgeon",
+  "displayName": "ウミチョウザメ",
+  "realBodyLengthCm": 90,
+  "catalog": {
+    "scientificName": "Acipenser brevirostrum",
+    "originRegionId": "north-america",
+    "originRegionName": "北米",
+    "origin": "北米の大西洋岸、カナダのニューブランズウィック州から米国フロリダ州北部までの川と河口に分布します。少なくとも41の湾や川で見つかり、そのうち19で繁殖が確かめられています。",
+    "temperament": "4本のひげで底を探り、突き出す口で餌を底の泥ごと吸い込みます。水生昆虫や甲殻類、ゴカイの仲間、貝を食べ、場所や季節で食べるものが変わります。",
+    "movement": "主に底近くを泳いで餌を探します。冬は越冬場所に密に集まります。河口から沿岸の海を通り、別の川へ移って長く過ごす個体もいます。",
+    "habitat": "川、河口、沿岸の海を使い分け、産卵は淡水の流れの速い礫底で行います。ダムで淡水に閉じ込められた個体群もいます。本水槽では、丸い石と礫が続く冷たい大河の底をイメージしています。",
+    "aliases": [
+      "ショートノーズスタージョン",
+      "ショートノーズチョウザメ",
+      "Shortnose sturgeon",
+      "Huso brevirostrum",
+      "Sterletus brevirostrum",
+      "Acipenser dekayi"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Acipenseriformes",
+      "orderJa": "チョウザメ目",
+      "family": "Acipenseridae",
+      "familyJa": "チョウザメ科"
+    },
+    "adultSizeCm": 90,
+    "sizeNote": "米国海洋大気庁の解説では最大で約1.4m（4.5フィート）、23kg（50ポンド）ほど、カナダの評価書では最大全長143cmとされます。識別図鑑は90cm以下の成魚を図示しており、ここでは90cmとしました。成熟の大きさや年齢は地域で大きく異なり、カナダのセントジョン川では尾叉長50〜80cm、12〜18年で成熟します。",
+    "distribution": "カナダのニューブランズウィック州から米国フロリダ州北部までの、大西洋岸の川・河口・沿岸に分布します。",
+    "water": {
+      "salinity": "brackish"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "米国では分布域全体が絶滅危惧種法の絶滅危惧種に指定され、ワシントン条約の附属書Iに掲載されています。カナダでは2015年に特別懸念と評価されました。ダムによる移動の妨げ、浚渫、水質汚濁、混獲が脅威とされます。"
+    },
+    "highlights": [
+      "短く丸い吻と、背・左右の体側・左右の腹に5列に並ぶ淡い骨板をもちます。",
+      "冬は越冬場所に密に集まり、標識をつけた魚が同じ群れで再び捕まることもあります。",
+      "ある川で産卵し、沿岸の海を通って別の川で長く過ごす個体もいます。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 0.9,
+    "mouthAnchor": {
+      "x": 0.045,
+      "y": 0.72
+    }
+  },
+  "visual": {
+    "fallbackColor": "#6f6a58"
+  },
+  "sourceBodyBounds": {
+    "x": 58,
+    "y": 262,
+    "width": 1438,
+    "height": 446
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.7,
+    "maxY": 0.89
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "steady",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.18,
+      "burst": 0.55
+    },
+    "turnRateRadPerSec": 1.1,
+    "restFraction": 0.2,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0.4,
+      "polarization": 0.25
+    },
+    "structureAffinity": 0.15,
+    "habits": [
+      {
+        "type": "bottomForage"
+      }
+    ],
+    "sources": [
+      {
+        "title": "NOAA Fisheries — Shortnose Sturgeon",
+        "url": "https://www.fisheries.noaa.gov/species/shortnose-sturgeon"
+      },
+      {
+        "title": "Dadswell et al. 1984 — Synopsis of Biological Data on Shortnose Sturgeon",
+        "url": "https://spo.nmfs.noaa.gov/sites/default/files/legacy-pdfs/tr14.pdf"
+      },
+      {
+        "title": "COSEWIC 2015 — Shortnose Sturgeon assessment and status report",
+        "url": "https://www.canada.ca/en/environment-climate-change/services/species-risk-public-registry/cosewic-assessments-status-reports/shortnose-sturgeon-2015.html"
+      },
+      {
+        "title": "Environment Canada 2001 — CITES Identification Guide, Sturgeons and Paddlefish",
+        "url": "https://cites.unia.es/file.php/1/files/CAN-CITES_Sturgeons_Guide.pdf"
+      },
+      {
+        "title": "水産庁 キャビア種コード表",
+        "url": "https://www.jfa.maff.go.jp/j/sigen/attach/pdf/caviar-6.pdf"
+      }
+    ]
+  }
+}

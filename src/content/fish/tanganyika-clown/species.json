@@ -1,0 +1,125 @@
+{
+  "id": "tanganyika-clown",
+  "displayName": "エレトモドゥス・シアノスティクタス",
+  "realBodyLengthCm": 9,
+  "swim": {
+    "tailBeatHz": 2.4,
+    "tailSweepRad": 0.4,
+    "mouthAnchor": {
+      "x": 0.007,
+      "y": 0.51
+    }
+  },
+  "visual": {
+    "fallbackColor": "#4f4a40"
+  },
+  "sourceBodyBounds": {
+    "x": 110,
+    "y": 260,
+    "width": 1362,
+    "height": 558
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.6,
+    "maxY": 0.92
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.3,
+      "burst": 1.6
+    },
+    "turnRateRadPerSec": 2.4,
+    "restFraction": 0.35,
+    "depthRange": [0.3, 0.9],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0,
+      "polarization": 0.05
+    },
+    "structureAffinity": 0.85,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 2,
+        "durationSec": [3, 8]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1,
+        "durationSec": [3, 8]
+      },
+      {
+        "type": "homeShelter",
+        "kind": "crevice",
+        "rangeBodyLengths": 4,
+        "visitChancePerMin": 0.5,
+        "visitDurationSec": [3, 10]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Eretmodus",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?genus=Eretmodus&tbl=species"
+      },
+      {
+        "title": "Morley & Balshine (2003) Reproductive biology of Eretmodus cyanostictus",
+        "url": "https://abel.mcmaster.ca/publications/pdfs/MorlBals2003_EBF.pdf"
+      },
+      {
+        "title": "Steinegger & Taborsky (2007) Asymmetric sexual conflict over parental care in a biparental cichlid",
+        "url": "https://www.behav.iee.unibe.ch/unibe/portal/fak_naturwis/d_dbio/b_ioekev/abt_be/content/e1010340/e1010392/e1012437/e1044378/e1211095/files1229675/Steinegger_BES2007_eng.pdf"
+      },
+      {
+        "title": "Nevado et al. (2013) Water-level fluctuations and metapopulation dynamics",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3763204/"
+      },
+      {
+        "title": "Tanganyika.si: Eretmodus cyanostictus 'Kasakalawe'",
+        "url": "https://www.tanganyika.si/TanganjikaByLocations/Kasakalawe/slides/Eretmodus%20cyanostictus%20%27Kasakalawe%27.html"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Eretmodus cyanostictus",
+    "originRegionId": "east-africa",
+    "originRegionName": "東アフリカ",
+    "origin": "東アフリカのタンガニーカ湖の南部に固有です。模式産地はムビティ岩とキニャムコロです。ここでは、ザンビアのカサカラウェ湾付近の産地型を展示しています。北部の似た魚は、別種の E. marksmithi とされます。",
+    "habitat": "波の当たる明るく浅い岩場に縄張りをもち、岩の表面で餌をとります。カサカラウェ湾の野外研究では、水深1〜3mで観察されました。この展示では、平たい岩が重なる岩場の底近くで暮らします。",
+    "temperament": "縄張りをもつペアと、縄張りをもたない小さめの単独の個体がいます。縄張りの持ち主は同じ種類の相手を追い払います。野外の観察期間中、ペアは一夫一妻を保っていました。",
+    "movement": "岩のそばにとどまり、岩の表面を削るようにして藻をはみます。本水槽では、岩場の底近くを短く泳いでは止まります。",
+    "aliases": [
+      "Tanganyika clown",
+      "タンガニーカ・クラウン",
+      "Striped goby cichlid"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cichliformes",
+      "orderJa": "シクリッド目",
+      "family": "Cichlidae",
+      "familyJa": "シクリッド科"
+    },
+    "adultSizeCm": 9,
+    "sizeNote": "飼育実験の成魚は、標準体長の平均が雌7.0cm、雄7.4cmでした。産地の解説では約9cmとされますが、測り方は書かれていません。野外のペアでは、どの組も雄が雌より大きく、標準体長の差は平均8.4mmでした。展示では全長9cm前後を想定しています。",
+    "distribution": "タンガニーカ湖の南部。タンザニア南部、ザンビア、コンゴ民主共和国南部の湖岸とされます。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "note": "IUCNの評価区分は確かめられていません。"
+    },
+    "highlights": [
+      "丸い口に厚い唇、高い位置の目をもち、頭から背中にかけて明るい青い点が散らばります。",
+      "卵と小さな仔魚は雌が口の中で育て、8〜10日ほどで雄に引き渡します。雄はさらに12〜14日ほど口の中で守ります。",
+      "口で子を守っている親は餌を食べません。野外で調べた31尾は、どれも消化管が空でした。",
+      "産卵は平らな岩の上で行われ、雌は卵を1個ずつ産んではすぐに口へ入れます。"
+    ]
+  }
+}
