@@ -29,9 +29,11 @@
 
 返事をしていない連絡はない（2026年10月9日時点）。
 
-**保管庫で済んでいないこと（2026年10月9日）**: 6種（ヒメツメガエル、コモリガエル、フリソデエビ、キンチャクガニ、ソメンヤドカリ、イソギンチャクカニダマシ）と水景 scene-reef-invertebrates-90 の採用（`adoptions/`）は書いたが、まだ commit・push していない。展示計画（`catalog/exhibit-plan.json`）で、この5種を各水槽の `futureSpecies` から `species` へ移すことも、まだしていない（自動モードの判定で保管庫の編集が止められたため）。カエルの視点（真上から見た図、頭が左、4本の脚を広げる）を正式にしたことも、`consumer/app-requirements-ja.md` に書いてカタログのカエル2種を `styleReady: true` にする。
+**dots は作業を止めている（2026年10月9日、ユーザーより）。** 新しい画像や作り直しの依頼は、再開するまで届かない前提で進める。保管庫にすでにある画像と調査で進められる作業を優先する。
 
 2026年10月9日に保管庫で伝えたこと。
+
+- **カエルの視点**: dots の `frog-dorsal-natural-photo.v1`（真上から見た図、頭が左、4本の脚を広げる）を正式な視点にした（`consumer/app-requirements-ja.md`）。膝と足首が分かるように軽く曲げて広げ、脚が胴や互いに重ならない左右対称に近い絵がよいと伝えた。カタログのヒメツメガエル・コモリガエルは `styleReady: true` にした。6種（カエル2種、フリソデエビ、カニ3種）と水景 scene-reef-invertebrates-90 の採用を記録し、展示計画で5種を `futureSpecies` から `species` へ移した。
 
 - **チンアナゴの視点**: dots の `garden-eel-upright-natural-photo.v1`（体を立てた真横、頭が上で左向き）を正式な視点にした（`consumer/app-requirements-ja.md`）。尾の先まで体全体が見え、首より下がほぼまっすぐな絵がよいと伝えた。カタログのチンアナゴ・ニシキアナゴは `styleReady: true` にした。
 - **エイの視点**: dots の `ray-dorsal-natural-photo.v1`（真上から見た図、頭が左）を正式な視点にした（`consumer/app-requirements-ja.md`）。体盤の縁と尾の先まで、左右対称に近く平らに広げた絵がよいと伝えた。カタログのエイ4種は `styleReady: true` にした。
