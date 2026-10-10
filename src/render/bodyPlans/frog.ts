@@ -148,14 +148,16 @@ function deformFrog(mesh: BodyMesh, frame: DeformFrame) {
     rigs.set(base, rig);
   }
   const stroke = advanceStroke(mesh, frame);
-  // 各骨の新しい付け根と、画像の姿勢からの回転。
-  const moved = rig.bones.map(() => ({ x: 0, y: 0, rotation: 0 }));
+  // 各骨の新しい付け根と、画像の姿勢からの回転。回転の cos・sin は、頂点ごとではなく骨ごとに1度だけ求める
+  // （頂点は570あまりあり、頂点ごとに求めると、カエル1匹の変形が魚50匹ぶんの重さになる）。
+  const moved = rig.bones.map(() => ({ x: 0, y: 0, cos: 1, sin: 0 }));
   rig.limbs.forEach((limb, limbIndex) => {
     let joint = { ...limb.joints[0]! };
     rig.bones.forEach((bone, boneIndex) => {
       if (bone.limb !== limbIndex) return;
       const angle = poseAngle(bone, limb.kind, stroke);
-      moved[boneIndex] = { x: joint.x, y: joint.y, rotation: -bone.side * (angle - bone.angle) };
+      const rotation = -bone.side * (angle - bone.angle);
+      moved[boneIndex] = { x: joint.x, y: joint.y, cos: Math.cos(rotation), sin: Math.sin(rotation) };
       joint = { x: joint.x + Math.cos(angle) * bone.length, y: joint.y - bone.side * Math.sin(angle) * bone.length };
     });
   });
@@ -175,15 +177,15 @@ function deformFrog(mesh: BodyMesh, frame: DeformFrame) {
     const bx = base[vertex * 2]!, by = base[vertex * 2 + 1]!;
     let x = bx * rig.weights[vertex * stride]!;
     let y = (axisY + (by - axisY) * breathe) * rig.weights[vertex * stride]!;
-    rig.bones.forEach((bone, boneIndex) => {
+    for (let boneIndex = 0; boneIndex < rig.bones.length; boneIndex++) {
       const weight = rig.weights[vertex * stride + boneIndex + 1]!;
-      if (weight < 1e-4) return;
-      const { x: jx, y: jy, rotation } = moved[boneIndex]!;
-      const dx = bx - bone.start.x, dy = by - bone.start.y;
-      const cos = Math.cos(rotation), sin = Math.sin(rotation);
+      if (weight < 1e-4) continue;
+      const start = rig.bones[boneIndex]!.start;
+      const { x: jx, y: jy, cos, sin } = moved[boneIndex]!;
+      const dx = bx - start.x, dy = by - start.y;
       x += weight * (jx + dx * cos - dy * sin);
       y += weight * (jy + dx * sin + dy * cos);
-    });
+    }
     const along = x - centerX, lateral = y - axisY;
     positions[vertex * 2] = centerX + along * cosTurn - lateral * sinTurn;
     positions[vertex * 2 + 1] = axisY + (along * sinTurn + lateral * cosTurn) * VIEW_FLATTEN;

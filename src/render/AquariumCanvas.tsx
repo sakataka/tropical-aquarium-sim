@@ -17,6 +17,7 @@ import {
   type TankDefinition,
 } from "../core";
 import { environmentAssets, getScenePlateUrl, loadTexture } from "./assets";
+import { perfEnd, perfStart, registerPerfApp } from "./perfProbe";
 import { reportRenderProblem, watchContextLoss, watchSetup } from "./renderProblems";
 import { BubbleColumns, FloatingMotes } from "./bubbles";
 import { FishLayer, getWaterTint } from "./fishLayer";
@@ -146,6 +147,7 @@ export function AquariumCanvas({
     let resizeObserver: ResizeObserver | undefined;
     const publishedGlass = { x: NaN, y: NaN, width: NaN, height: NaN };
 
+    let unregisterPerf = () => {};
     const progress = watchSetup("水槽");
 
     async function setup() {
@@ -173,6 +175,7 @@ export function AquariumCanvas({
       app.stage.filterArea = app.screen;
       targetHost.appendChild(app.canvas);
       watchContextLoss(app.canvas, "水槽", () => disposed);
+      unregisterPerf = registerPerfApp("tank", app);
       // パネルの開閉など、ウィンドウ以外の理由で枠の大きさが変わっても追従する。
       resizeObserver = new ResizeObserver(() => {
         detachFilterInput(app);
@@ -213,6 +216,7 @@ export function AquariumCanvas({
         elapsedSec += deltaSec;
         habituation = Math.max(0, habituation - deltaSec * 0.025);
         updateRipples(deltaSec);
+        const simulationStart = perfStart();
         if (activeRef.current) fishRef.current = stepSimulation({
           tank,
           species: speciesRef.current,
@@ -223,6 +227,7 @@ export function AquariumCanvas({
             { x: 0, y: 0, ...getGlassSize() }) : undefined,
           lighting: layoutRef.current.lighting,
         }).fish;
+        perfEnd("simulation", simulationStart);
         if (revealedRef.current && revealedAtSec === undefined) revealedAtSec = elapsedSec;
         const effects = reducedMotion.matches || revealedAtSec === undefined
           ? 0
@@ -232,6 +237,7 @@ export function AquariumCanvas({
         publishGlass(glass.width, glass.height);
         fadeScenes(deltaSec);
         if (scenePlate) terrainLayer.layout(scenePlate);
+        const bodiesStart = perfStart();
         fishLayer.update(
           fishRef.current,
           speciesRef.current,
@@ -240,6 +246,7 @@ export function AquariumCanvas({
           deltaSec,
           activeRef.current,
         );
+        perfEnd("bodies", bodiesStart);
         bubbles?.update(glass.width, glass.height, deltaSec, revealedAtSec !== undefined);
         const waterLine = activeScene?.waterLine;
         const waterTop = scenePlate && waterLine
@@ -477,6 +484,7 @@ export function AquariumCanvas({
     return () => {
       disposed = true;
       progress.done();
+      unregisterPerf();
       handleRef.current = null;
       resizeObserver?.disconnect();
       targetHost.removeEventListener("pointerdown", onPointerDown);

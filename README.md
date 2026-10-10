@@ -9,7 +9,7 @@ Demo: https://sakataka.github.io/tropical-aquarium-sim/
 ```bash
 bun install
 bun run dev
-bun run test
+bun run test          # 全テスト（約30秒）。作業中は bun run test:fast（約6秒）
 bun run build
 bun run verify:webview
 ```
@@ -110,7 +110,20 @@ bun run verify:webview
 - 泳層・群泳・構造物への接近・方向転換・夜行性・空気呼吸・照明による活動量、住みか、夜の沈み込み、別種との間合い、ガラスを叩いたときの逃げ方と慣れ
 - 全水景・上限匹数での昼10分・夜10分の連続遊泳（ガラス内、岩との交差なし、詰まりなし）
 
-`bun run verify:webview` は WebKit backend の `Bun.WebView` で、館内図の2段（全階の展示室の一覧と縮小版）と展示室への出入り、URLとブラウザの戻る・進む、展示室から水槽への出入り、設定パネル、水槽ごとの生き物と上限、全水景の切替、照明、環境音、隣の水槽への移動、2部屋の行き来、再読込後の復元、展示室に入ったときの保存の補い、ガラスを叩く操作、1440×960・420×912・912×420の表示を確認します。スクリーンショットは `tmp/webview/` に保存します。
+全水槽を回す最後の項目（`terrainEndurance.test.ts`）は水槽ごとのテストに分けてあり、8つのプロジェクト（`tanks-1`〜`tanks-8`）で並列に流れます。
+
+| コマンド | 内容 |
+|---|---|
+| `bun run test` | 全テスト（約30秒）。commit の前に通す |
+| `bun run test:fast` | 全水槽を回すテストを除いた速いテスト（約6秒）。作業中に使う |
+| `bun run test:tanks -- -t <水槽id>` | 全水槽を回すテストのうち、その水槽だけ |
+| `bun run test:fuzz` | 乱数を毎回変えて全テスト。使った値を `TEST_SEED=<値>` と表示するので、落ちたら同じ値を付けて再現する |
+
+テストの間の `Math.random` は決まった乱数列です（`src/core/testSetup.ts`）。同じテストは毎回同じ結果になります。
+
+`bun run verify:webview` は WebKit backend の `Bun.WebView` で、館内図の2段（全階の展示室の一覧と縮小版）と展示室への出入り、URLとブラウザの戻る・進む、展示室から水槽への出入り、設定パネル、水槽ごとの生き物と上限、全水景の切替、照明、環境音、隣の水槽への移動、2部屋の行き来、再読込後の復元、展示室に入ったときの保存の補い、ガラスを叩く操作、1440×960・420×912・912×420の表示を確認します。スクリーンショットは `tmp/webview/` に保存します。`--halls=<展示室id>,...` で展示室を絞り、`--changed` でまだ commit していない差分から展示室を選びます（`--changed=<ref>` でその commit からの差分、`--dry-run` で選んだ範囲の表示だけ）。
+
+`bun run measure:perf` は描画の重さを測って基準値と比べ、`bun run compare:render -- <前のビルド>` は描画の作りを変えた前後の絵を画素単位で比べます（[性能の計測と基準値](docs/performance.md)）。
 
 ### iPhone 表示
 

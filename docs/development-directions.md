@@ -45,7 +45,7 @@
 
 ## 検証方針
 
-coreはVitest、画面は `bun run verify:webview` の Bun.WebView（WebKit）で検証する。Chrome/Chromium headless は使わない。
+coreはVitest、画面は `bun run verify:webview` の Bun.WebView（WebKit）で検証する。Chrome/Chromium headless は使わない。作業中は `bun run test:fast`、commit の前に `bun run test`（コマンドの一覧は [README](../README.md#検証)）。描画の重さは `bun run measure:perf` で測る（[性能の計測と基準値](performance.md)）。
 
 変更時は、館内図と展示室の行き来、URLと戻る・進む、生き物の匹数上限、水景、保存の復元、照明、環境音、観賞モードを確かめる。生成画像を変えたときは、遮蔽の境界、魚との前後関係、見やすさ、420px幅での横あふれをスクリーンショットで目視する。
 

@@ -10,6 +10,7 @@ import {
 } from "../core";
 import type { FishRoomDefinition, RoomRect } from "../core/room";
 import { getFloorOfHall, getWindowOverscan } from "../core/museum";
+import { perfEnd, perfStart, registerPerfApp } from "./perfProbe";
 import { reportRenderProblem, watchContextLoss, watchSetup } from "./renderProblems";
 import { getScenePlateUrl, getRoomImageUrl, loadTexture } from "./assets";
 import { FishLayer, getWaterTint, type ViewRect } from "./fishLayer";
@@ -119,6 +120,8 @@ export function FishRoom({
     let spotlight = 0;
     let spotlightGlass: RoomRect | undefined;
 
+    let unregisterPerf = () => {};
+
     const progress = watchSetup("部屋");
 
     async function setup() {
@@ -137,6 +140,7 @@ export function FishRoom({
       }
       host.prepend(app.canvas);
       watchContextLoss(app.canvas, "部屋", () => disposed);
+      unregisterPerf = registerPerfApp("room", app);
       app.stage.addChild(world);
 
       for (const placement of fishRoom.tanks) {
@@ -238,6 +242,7 @@ export function FishRoom({
         // 前面ガラスを基準に、側面ガラスから見える部分まで水景を広げる。
         placePlate(view.plate, glassRect, getWindowOverscan(view.tankId), getSceneById(view.loadedSceneId));
       }
+      const simulationStart = perfStart();
       if (activeRef.current) fishRef.current = stepSimulation({
         tank,
         species: fishCatalog,
@@ -247,8 +252,11 @@ export function FishRoom({
         surfaceFrame: getSurfaceFrame(view.plate, glassRect),
         lighting: customization.layout.lighting,
       }).fish;
+      perfEnd("simulation", simulationStart);
       view.terrain.layout(view.plate);
+      const bodiesStart = perfStart();
       view.fish.update(fishRef.current, fishCatalog, tank, glassRect, deltaSec, activeRef.current);
+      perfEnd("bodies", bodiesStart);
     }
 
     async function loadPlate(view: TankView, sceneId: string | undefined) {
@@ -367,6 +375,7 @@ export function FishRoom({
     return () => {
       disposed = true;
       progress.done();
+      unregisterPerf();
       zoomRef.current = null;
       for (const view of views) {
         view.fish.destroy();
