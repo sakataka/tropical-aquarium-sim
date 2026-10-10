@@ -4,11 +4,11 @@
   "displayName": "テナガエビの川水槽",
   "exhibitName": "River Prawns",
   "category": "南日本と琉球列島の川",
-  "description": "丸い石と砂礫の川底に枝が沈む、南日本から琉球列島の川の中流を再現した90cm水槽。流れの緩やかな場所を使うミナミテナガエビと、流れの速い瀬にすむヒラテテナガエビが、砂礫や石、沈んだ枝の上を歩き、立ち止まっては足もとをつつきます。どちらも川で生まれた幼生が海や河口の塩分のある水で育ち、稚エビになって川をのぼるテナガエビの仲間で、はさみ脚の形を見比べられます。",
+  "description": "丸い石と砂礫の川底に枝が沈む、南日本から琉球列島の川の中流を再現した90cm水槽。4種のテナガエビが、砂礫や石、沈んだ枝の上を歩き、立ち止まっては足もとをつつきます。いちばん大きいコンジンテナガエビは、左右のそろった長く大きなはさみ脚と、短い額角が目印です。ザラテテナガエビは、左右で長さも形も違うはさみ脚と、頭胸甲の3本の赤褐色の帯をもち、岸の根や沈んだ枝のかげの、流れのゆるい所にいるエビです。流れの緩やかな場所を使うミナミテナガエビ、流れの速い瀬にすむヒラテテナガエビとあわせて、はさみ脚の形を見比べてください。4種とも、幼生が海や河口の塩分のある水で育ってから川に戻るテナガエビの仲間です。コンジンテナガエビの成体の雄どうしは縄張りを争い、脱皮した直後の個体が襲われた記録もあるので、実際に同じ水槽で飼うには注意が要りますが、ここでは見比べられるよう、4種を同じ水景に置いています。",
   "widthCm": 90,
   "heightCm": 40,
   "depthCm": 45,
-  "maxTotalFish": 6,
+  "maxTotalFish": 5,
   "sceneIds": [
     "river-prawns-90"
   ],
@@ -20,16 +20,32 @@
     {
       "speciesId": "flat-handed-river-prawn",
       "maxCount": 3
+    },
+    {
+      "speciesId": "macrobrachium-lar",
+      "maxCount": 1
+    },
+    {
+      "speciesId": "macrobrachium-australe",
+      "maxCount": 3
     }
   ],
   "defaultStock": [
     {
       "speciesId": "crane-river-prawn",
-      "count": 2
+      "count": 1
     },
     {
       "speciesId": "flat-handed-river-prawn",
-      "count": 2
+      "count": 1
+    },
+    {
+      "speciesId": "macrobrachium-lar",
+      "count": 1
+    },
+    {
+      "speciesId": "macrobrachium-australe",
+      "count": 1
     }
   ]
 }

@@ -1,0 +1,158 @@
+{
+  "id": "macrobrachium-australe",
+  "displayName": "ザラテテナガエビ",
+  "realBodyLengthCm": 7,
+  "catalog": {
+    "scientificName": "Macrobrachium australe",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "マダガスカルやマスカリン諸島などインド洋の島々から、太平洋中部のフランス領ポリネシアやクック諸島まで、島の川に広く分布するテナガエビの仲間です。幼生は海で育ち、川に戻って成長し、繁殖します。",
+    "temperament": "成体が何を食べるか、縄張りをもつかは、この種では確かめられていません。琉球列島では、ミナミテナガエビやコンジンテナガエビ、よく似たナンヨウテナガエビと同じ川で記録されています。",
+    "movement": "本水槽では、川底の砂礫や沈んだ枝の上を脚で歩きます。昼と夜のどちらに活動するかは、この種で調べた資料が見つかっていません。",
+    "habitat": "川の下流や、岸の水草帯など、流れのゆるい場所に多いとされます。琉球列島の同じ川では、よく似たナンヨウテナガエビよりも流れのない場所を好む傾向が報告されています。インドネシアの島では、水草や落ち葉、枯れ木のある泥や砂の底で採集されました。本水槽では、岸の木の根や沈んだ枝のかげの、流れのゆるい所にいるエビとして置いています。",
+    "aliases": [
+      "Palaemon australis"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Decapoda",
+      "orderJa": "十脚目",
+      "family": "Palaemonidae",
+      "familyJa": "テナガエビ科"
+    },
+    "adultSizeCm": 8,
+    "sizeNote": "和歌山県のレッドデータブックの解説では体長8cm近くとされます（性別と測り方は示されていません）。2017年に学名の基準に指定された雄の標本は全長6cm（額角の先から尾節の先まで）で、日本で調べられた雄の標本の頭胸甲の長さは15.4〜26.3mmでした。ふつうの成体の大きさは分かっていません。左右のはさみ脚は、この長さに含めません。本水槽では、全長約7cmの雄として描いています。",
+    "distribution": "マダガスカル、コモロ、マスカリン諸島から、フランス領ポリネシア、クック諸島まで分布します。琉球列島では、沖縄島と石垣島の標本が DNA で確かめられています。口永良部島や和歌山にも DNA で確かめられた記録があり、本州・四国・九州からも報告されていますが、本州の3つの川では、秋に現れたあと冬に姿を消したと報告されています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "rarelyDisplayed",
+    "conservation": {
+      "note": "IUCN の評価本文は確認できていません（分類データベースの索引には軽度懸念の評価へのリンクがありますが、2025年の論文は掲載なしとしていて、食い違っています）。和歌山県のレッドデータブック（2022年）では、情報不足とされています。幼生が海で育つので、川と海がつながっていることが生活史に欠かせません。"
+    },
+    "highlights": [
+      "成体の雄の第2胸脚（はさみ脚）は、左右で長さも形も大きく違います。日本の雄5個体では、長い側が短い側の1.6〜1.8倍でした。",
+      "長い側のはさみ脚は細い円筒形で、とげのような硬い毛がたくさん並びます。短い側は、掌と指の付け根に、短い毛がビロードのように密に生えます。",
+      "体は半透明の灰色から褐色で、頭胸甲の側面に赤褐色の帯が3本あります。ミナミテナガエビにも3本の暗い帯があるので、先がゆるく上を向く額角や、雄のはさみ脚とあわせて見分けます。",
+      "よく似たナンヨウテナガエビは、この種と同じものとされていましたが、2017年に別の種として分けられました。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "crustacean",
+    "headStart": 0.33,
+    "tailBeatHz": 0.6,
+    "bodyWaveStart": 0.85,
+    "tailSweepRad": 0,
+    "verticalFlex": 0,
+    "footAnchor": {
+      "x": 0.6,
+      "y": 0.96
+    }
+  },
+  "visual": {
+    "fallbackColor": "#ab8963"
+  },
+  "sourceBodyBounds": {
+    "x": 33,
+    "y": 187,
+    "width": 1443,
+    "height": 652
+  },
+  "preferredZone": {
+    "minX": 0.1,
+    "maxX": 0.9,
+    "minY": 0.84,
+    "maxY": 0.93
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.06,
+      "burst": 0.4
+    },
+    "turnRateRadPerSec": 1.1,
+    "restFraction": 0.55,
+    "depthRange": [
+      0.3,
+      0.85
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.85,
+    "habits": [
+      {
+        "type": "hideByDay",
+        "durationSec": [
+          60,
+          180
+        ]
+      },
+      {
+        "type": "homeShelter",
+        "kind": "crevice",
+        "rangeBodyLengths": 4,
+        "visitChancePerMin": 0.8,
+        "visitDurationSec": [
+          20,
+          90
+        ]
+      },
+      {
+        "type": "grazing",
+        "chancePerMin": 2.5,
+        "durationSec": [
+          6,
+          16
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.5,
+        "durationSec": [
+          8,
+          20
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Castelin et al. (2017) Cryptic species in Macrobrachium australe and resurrection of M. ustulatum",
+        "url": "https://borea.mnhn.fr/sites/default/files/pdfs/Castelin-australe-2017_0.pdf"
+      },
+      {
+        "title": "Fuke & Imai (2018) First Japanese record of Macrobrachium ustulatum from Okinawa-jima Island",
+        "url": "https://u-ryukyu.repo.nii.ac.jp/record/2010028/files/44-2_Fuke_Imai.pdf"
+      },
+      {
+        "title": "福家・佐藤・清水・乾 (2024) ナンヨウテナガエビの琉球列島における追加記録と新規識別形質",
+        "url": "https://www.jstage.jst.go.jp/article/cancer/33/0/33_41/_pdf/-char/ja"
+      },
+      {
+        "title": "Annawaty et al. (2022) Checklist of the freshwater shrimps from the Banggai Archipelago, Central Sulawesi",
+        "url": "https://pdfs.semanticscholar.org/f60b/fe9b2e90b2f8d650b827fdf7747b21188ab7.pdf"
+      },
+      {
+        "title": "丸山・岡本 (2022) 河川水温が両側回遊性コエビ類個体群の越冬に与える影響",
+        "url": "https://www.jstage.jst.go.jp/article/cancer/31/0/31_5/_pdf"
+      },
+      {
+        "title": "和歌山県レッドデータブック 2022年改訂版 p.480 ザラテテナガエビ",
+        "url": "https://www.pref.wakayama.lg.jp/prefg/032600/yasei/reddata_d/fil/zentai.pdf"
+      },
+      {
+        "title": "WoRMS: Macrobrachium australe, AphiaID 220138",
+        "url": "https://www.marinespecies.org/aphia.php?id=220138&p=taxdetails"
+      },
+      {
+        "title": "Putra et al. (2025) Diversity, distribution, and conservation status of Macrobrachium shrimp in Aceh, Indonesia",
+        "url": "https://www.veterinaryworld.org/Vol.18/August-2025/20.pdf"
+      }
+    ]
+  }
+}

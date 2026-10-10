@@ -1,0 +1,176 @@
+{
+  "id": "macrobrachium-lar",
+  "displayName": "コンジンテナガエビ",
+  "realBodyLengthCm": 12,
+  "catalog": {
+    "scientificName": "Macrobrachium lar",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "東アフリカから琉球列島、マルケサス諸島までの、インド洋と西太平洋の川に広く分布するテナガエビの仲間です。成体は主に淡水で暮らし、幼生は汽水から海水で育ってから、川の暮らしに移ります。",
+    "temperament": "雑食性とされ、人の手で持ち込まれたハワイでは、魚や貝を食べた記録が引用されています。グアムで採集した成体の雄を水槽に入れた実験では、突進や追いかけを伴う縄張り争いが見られ、脱皮した直後の個体が傷つけられたり、食べられたりしました。",
+    "movement": "本水槽では、川底の砂礫や石、沈んだ枝の上を脚で歩きます。野外の調査では、昼は流れに近い大きな岩や倒木の下の暗がりに隠れ、夜も強い光を当てるとすばやく離れました。",
+    "habitat": "一年を通して水の流れる川や沢にすみ、瀬に近い淵も使います。台湾の解説では、石の多い上流から中流に多く、下流にも現れるとされます。本水槽では、丸い石のすき間の多い、琉球や南日本の川の中流をイメージしています。",
+    "aliases": [
+      "monkey river shrimp",
+      "monkey river prawn",
+      "Palaemon lar"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Decapoda",
+      "orderJa": "十脚目",
+      "family": "Palaemonidae",
+      "familyJa": "テナガエビ科"
+    },
+    "adultSizeCm": 19.5,
+    "sizeNote": "オーストラリアの川のテナガエビ類を見直した2004年の研究では、調べられた最大の雄が全長19.5cm、雌が約14.5cmでした（額角の先から尾節の先まで）。FAO の1980年の総説は最大全長を18.1cm、沖縄の水族館の解説は体長を最大約15cm（測り方は示されていません）としています。ふつうの成体の大きさは分かっていません。長いはさみ脚は、この長さに含めません。本水槽では、全長約12cmの雄として描いています。",
+    "distribution": "東アフリカから琉球列島、マルケサス諸島までのインド洋と西太平洋に分布します。琉球列島では、沖縄島、宮古島、石垣島、西表島の標本が記録されています。紀伊半島の南部でも見つかっていますが、和歌山県内で繁殖しているかは分かっていません。ハワイ諸島のものは、人が持ち込んだものです。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "IUCN の評価本文は確認できていません（台湾の生物百科の解説には、軽度懸念と転載されています）。和歌山県のレッドデータブック（2022年）では、情報不足とされています。幼生が海で育つので、川と海がつながっていることが生活史に欠かせません。"
+    },
+    "highlights": [
+      "成体の雄は第2胸脚（はさみ脚）が長く大きくなります。左右は同じ形で、大きさもほぼ同じとする資料と、長さに差が出るとする資料があります。",
+      "額角は短く、ゆるいS字にのびて、先がわずかに上を向きます。はさみの指は内側へ曲がり、閉じてもすき間があきます。",
+      "生きている雄は、暗いオリーブ褐色から灰青色の体に暗い色のはさみ脚をもち、はさみの動く指の付け根に淡い桃色から橙色の斑があります。",
+      "幼生は育つにつれて塩分の高い水を必要とします。フィジーの親エビを使った2014年の飼育実験では、汽水から海水へ移して育て、稚エビへの変態に成功しました。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "crustacean",
+    "headStart": 0.31,
+    "tailBeatHz": 0.6,
+    "bodyWaveStart": 0.85,
+    "tailSweepRad": 0,
+    "verticalFlex": 0,
+    "footAnchor": {
+      "x": 0.52,
+      "y": 0.96
+    }
+  },
+  "visual": {
+    "fallbackColor": "#997e59"
+  },
+  "sourceBodyBounds": {
+    "x": 42,
+    "y": 140,
+    "width": 1455,
+    "height": 721
+  },
+  "preferredZone": {
+    "minX": 0.1,
+    "maxX": 0.9,
+    "minY": 0.84,
+    "maxY": 0.93
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.06,
+      "burst": 0.4
+    },
+    "turnRateRadPerSec": 1.1,
+    "restFraction": 0.55,
+    "depthRange": [
+      0.3,
+      0.85
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 3,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.85,
+    "habits": [
+      {
+        "type": "hideByDay",
+        "durationSec": [
+          60,
+          180
+        ]
+      },
+      {
+        "type": "homeShelter",
+        "kind": "crevice",
+        "rangeBodyLengths": 4,
+        "visitChancePerMin": 0.8,
+        "visitDurationSec": [
+          20,
+          90
+        ]
+      },
+      {
+        "type": "grazing",
+        "chancePerMin": 2,
+        "durationSec": [
+          6,
+          16
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.5,
+        "durationSec": [
+          8,
+          20
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Short (2004) A revision of Australian river prawns, Macrobrachium: M. lar, pp.75–79",
+        "url": "https://www.researchgate.net/publication/226522657_A_Revision_of_Australian_River_Prawns_Macrobrachium_Crustacea_Decapoda_Palaemonidae"
+      },
+      {
+        "title": "Kubo (1940) Studies on Japanese Palaemonoid Shrimps. I. Palaemon: P. lar, pp.23–24",
+        "url": "https://decapoda.nhm.org/pdfs/26031/26031.pdf"
+      },
+      {
+        "title": "Holthuis (1980) FAO species catalogue Vol.1: Macrobrachium lar, pp.96–97",
+        "url": "https://www.fao.org/4/ac477e/ac477e16.pdf"
+      },
+      {
+        "title": "Rismawati et al. (2024) Sexual dimorphism of Macrobrachium lar from southern Sukabumi, West Java",
+        "url": "https://pdfs.semanticscholar.org/92a0/11ecdbe62a44ed0b44e08b1fa9d4d03df937.pdf"
+      },
+      {
+        "title": "Seidel (2003) The Role of Limb Autotomy in the Territorial Behavior of Macrobrachium lar（グアム大学 修士論文）",
+        "url": "https://www.uog.edu/_resources/files/ml/theses/MLThesis_SeidelR.A.pdf"
+      },
+      {
+        "title": "Lal, Seeto & Pickering (2014) Complete larval development of the Monkey River Prawn Macrobrachium lar",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4190279/"
+      },
+      {
+        "title": "Lal et al. (2012) Salinity and temperature requirements for larviculture of Macrobrachium lar（要旨）",
+        "url": "https://www.sciencedirect.com/science/article/abs/pii/S0044848612005236"
+      },
+      {
+        "title": "Strauch & Chacon (2025) Hydrological and Biological Assessment of Nā Wai ʻEhā Streams, Maui（ハワイ州 CWRM PR-2025-01）",
+        "url": "https://files.hawaii.gov/dlnr/cwrm/publishedreports/PR202501.pdf"
+      },
+      {
+        "title": "和歌山県レッドデータブック 2022年改訂版 p.481 コンジンテナガエビ",
+        "url": "https://www.pref.wakayama.lg.jp/prefg/032600/yasei/reddata_d/fil/zentai.pdf"
+      },
+      {
+        "title": "臺灣生命大百科：貪食沼蝦 Macrobrachium lar",
+        "url": "https://taieol.tw/pages/126388/articles"
+      },
+      {
+        "title": "沖縄美ら海水族館：コンジンテナガエビ",
+        "url": "https://oki-churaumi.jp/fishbook/konjintenagaebi/"
+      },
+      {
+        "title": "WoRMS: Macrobrachium lar, AphiaID 220135",
+        "url": "https://www.marinespecies.org/rest/AphiaRecordByAphiaID/220135"
+      }
+    ]
+  }
+}
