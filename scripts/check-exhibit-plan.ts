@@ -17,8 +17,11 @@ import { BUILDINGS, FLOORS } from "./museum-content";
 type PlanTank = {
   id: string; displayName: string; phase: number;
   species: string[]; futureSpecies?: string[];
-  /** 入れたい種の手がかり。needs はまだ描けない体のつくり、varietyOf は改良品種の元の種（種の数には数えない）。 */
-  candidates?: { nameJa: string; scientificName?: string; needs?: string; varietyOf?: string }[];
+  /**
+   * 入れたい種の手がかり。needs はまだ描けない体のつくり、varietyOf は改良品種の元の種（種の数には数えない）。
+   * speciesId があるものは、カタログに登録して dots に依頼した種（画像が届いて採用したら species へ移す）。
+   */
+  candidates?: { nameJa: string; scientificName?: string; needs?: string; varietyOf?: string; speciesId?: string; requested?: string }[];
 };
 type PlanHall = { id: string; displayName: string; tanks: PlanTank[] };
 type PlanFloor = { id: string; buildingId?: string; displayName: string; halls: PlanHall[] };
@@ -116,8 +119,13 @@ for (const tank of planTanks.values()) {
   for (const id of tank.species) placed.set(id, [...(placed.get(id) ?? []), tank.id]);
   for (const id of tank.futureSpecies ?? []) future.set(id, [...(future.get(id) ?? []), tank.id]);
 }
+// dots に依頼して、画像と調査を待っている種。置き場所は、候補に speciesId を書いた水槽。
+const requested = new Map<string, string[]>();
+for (const tank of planTanks.values()) for (const item of tank.candidates ?? []) {
+  if (item.speciesId) requested.set(item.speciesId, [...(requested.get(item.speciesId) ?? []), tank.id]);
+}
 const unplaced = new Set(plan.unplacedSpecies ?? []);
-const homeless = [...catalog.keys()].filter((id) => !placed.has(id) && !future.has(id) && !appSpecies.has(id));
+const homeless = [...catalog.keys()].filter((id) => !placed.has(id) && !future.has(id) && !requested.has(id) && !appSpecies.has(id));
 for (const id of homeless) {
   (unplaced.has(id) ? notes : errors).push(`カタログの種 ${id}（${catalog.get(id)!.nameJa}）の置き場所が計画にありません${unplaced.has(id) ? "（unplacedSpecies に記録済み）" : ""}`);
 }
@@ -162,7 +170,7 @@ const total = {
 };
 
 if (Bun.argv.includes("--json")) {
-  console.log(JSON.stringify({ errors, notes, waiting, capacity, total }, null, 2));
+  console.log(JSON.stringify({ errors, notes, waiting, requested: Object.fromEntries(requested), capacity, total }, null, 2));
 } else {
   console.log(`展示計画 ${plan.schemaVersion}（${planFile.name}）`);
   console.log("\n器の数（開いている数 / 計画の数）");
@@ -176,6 +184,10 @@ if (Bun.argv.includes("--json")) {
   if (waiting.length > 0) {
     console.log(`\n計画で水槽が決まっていて、館にまだいない種（${waiting.length}）`);
     for (const item of waiting) console.log(`  ${item.open ? "取り込める" : "水槽を待つ"}  ${item.id}（${item.nameJa}）→ ${item.tankIds.join(", ")}`);
+  }
+  if (requested.size > 0) {
+    console.log(`\ndots に依頼して、画像と調査を待っている種（${requested.size}）`);
+    for (const [id, tankIds] of requested) console.log(`  ${id}（${catalog.get(id)?.nameJa ?? "カタログにない"}）→ ${tankIds.join(", ")}`);
   }
   if (notes.length > 0) {
     console.log(`\n覚え書き（${notes.length}）`);

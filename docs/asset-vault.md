@@ -32,9 +32,12 @@ dots と Claude Code は直接やりとりできないので、保管庫で連�
 | 向き | 置き場所（Drive のフォルダの中） | スクリプト |
 |---|---|---|
 | dots → 保管庫 | フォルダの直下に、配送の ZIP と外部の JSON | `scripts/receive-vault-delivery.py` |
-| 保管庫 → dots | `from-claude-code/` に、保管庫の文字のファイルの写し（ZIP と JSON）。原画が要るときは `from-claude-code/originals/` に個別に | `scripts/publish-vault-to-dots.py` |
+| 保管庫 → dots | `from-claude-code/` に、保管庫の文字のファイルの写し（ZIP と JSON）と、保存済みの成果物の一覧。原画や参照画像が要るときは `from-claude-code/originals/` に、保管庫と同じパスで個別に | `scripts/publish-vault-to-dots.py` |
+| dots からの連絡 | `to-claude-code/` に Markdown。保管庫の `notes/to-claude-code/` へ写して commit し、返事は今までどおり `consumer/replies/` に同じファイル名で書く（写しに入る） | 手で写す |
 
 保管庫を commit・push したら、`AQUARIUM_ASSET_VAULT=~/Documents/aquarium-assets uv run scripts/publish-vault-to-dots.py --apply` で写しを置き直す（依頼、採否、展示計画、要件、返事、受領の記録。画像は入れない。`latest-snapshot.json` に、写した commit と、前回から変わったファイルがある）。保管庫の HEAD が origin/main と同じで、対象に commit していない変更がないときだけ置ける。古い写しは消さない。
+
+dots に新しい種を頼むときは、(1) `catalog/species-backlog.json` に項目を足し、(2) `uv run --with jsonschema python catalog/build_request.py --ids <種> --request-id <id>` で依頼ファイルを作り、(3) `consumer/assignments/<番号>.json` に担当と付帯情報（依頼ファイルと job ごとの入力のハッシュ、納品先のパス、画風と参照のパス・ハッシュ、基点 commit、ほかの作業の担当）を書き、(4) 展示計画のその水槽の候補に `speciesId` と `requested` を付け、(5) commit・push して写しを置き直す。参照画像は `from-claude-code/originals/` に置く。Drive 経由の間は1種ずつ進め、ジョブの状態（`queue/state`・`queue/current`）は Claude Code は書かない。
 
 dots からの配送の受領は次のとおり。保存完了は、commit のハッシュと、置き直した写しで dots に伝わる。
 
