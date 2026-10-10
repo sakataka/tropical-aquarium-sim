@@ -1,0 +1,124 @@
+{
+  "id": "black-arowana",
+  "displayName": "ブラックアロワナ",
+  "realBodyLengthCm": 65,
+  "catalog": {
+    "scientificName": "Osteoglossum ferreirai",
+    "originRegionId": "south-america",
+    "originRegionName": "南米",
+    "origin": "南米のネグロ川水系（ブラジル）に分布します。模式産地は、ネグロ川の支流ブランコ川の下流にある湖です。コロンビアのオリノコ川水系のビタ川にも繁殖する集団がいますが、もとからいたのか、人が持ち込んだのかは決着していません。",
+    "temperament": "野外での群れ方や、同じ種どうしのかかわりを調べた記録は確かめられていません。この展示では、ほかのアロワナと間を空けて1匹で泳ぎます。雄が卵や仔魚を口の中で守ると解説されています。",
+    "movement": "この展示では、シルバーアロワナと同じように、水面近くを長い背びれと尻びれをなびかせてゆっくり進みます。コロンビアの大学博物館の解説では、水面近くの魚や陸の昆虫を食べ、水の上へ跳びついて捕ることもあるとされます。",
+    "habitat": "ネグロ川流域のブラックウォーターの水域に暮らすとされ、流れの穏やかな所の水面近くを使うと解説されています。水深や流れの速さを測った記録は確かめられていません。本水槽では、根や枝が垂れる熱帯の川の、開けた上層を泳ぎます。",
+    "aliases": [
+      "Black arowana",
+      "Blue arowana",
+      "Arawana negra",
+      "Arawana azul"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Osteoglossiformes",
+      "orderJa": "アロワナ目",
+      "family": "Osteoglossidae",
+      "familyJa": "アロワナ科"
+    },
+    "adultSizeCm": 90,
+    "sizeNote": "FishBase の最大は全長90cmで、カワスイの解説も最大90cmとしています（測り方の記載なし）。コロンビアのビタ川の調査では、雌の半数が成熟する体長が62cmで、成熟した卵巣をもつ雌の例は全長60cmでした。典型的な成魚の大きさの統計はありません。展示では全長65cmほどで描いています。",
+    "distribution": "ブラジルのネグロ川水系に分布します。コロンビアのオリノコ川水系（ビタ川など）にも記録がありますが、人が持ち込んだ可能性が論じられています。",
+    "water": {
+      "salinity": "freshwater",
+      "temperatureC": [
+        24,
+        30
+      ]
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2020,
+      "note": "FishBase が引く IUCN の評価です。観賞魚としての流通と、オリノコ川水系への持ち込みの可能性との関係が、2013年の研究で論じられています。"
+    },
+    "highlights": [
+      "同じ大きさのシルバーアロワナより体が細長く、体高と頭が小さめです。",
+      "成魚は背びれ・尻びれ・尾びれが青みを帯びます。小さいうちの黒と黄色のはっきりした模様は、成長とともに薄れます。",
+      "上向きの口と、下あごの先の1対のひげは、シルバーアロワナと同じです。",
+      "コロンビアのビタ川の調査では、水位が上がる時期の終わりの6〜7月に繁殖し、成熟した雌23匹の卵は1匹あたり38〜217個（平均116個）でした。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 1.0
+  },
+  "visual": {
+    "fallbackColor": "#5c6870"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.05,
+    "maxY": 0.32
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.22,
+      "burst": 0.75
+    },
+    "turnRateRadPerSec": 1.3,
+    "restFraction": 0.15,
+    "depthRange": [
+      0.15,
+      0.8
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 3,
+      "cohesion": 0,
+      "polarization": 0.04
+    },
+    "structureAffinity": 0.35,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes — Osteoglossum ferreirai",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=10143"
+      },
+      {
+        "title": "Leal & de Sant-Anna (2006) Quantitative analysis of interspecific and ontogenetic variation in Osteoglossum species. Zootaxa 1239",
+        "url": "https://doi.org/10.11646/zootaxa.1239.1.4"
+      },
+      {
+        "title": "Escobar et al. (2013) Molecular diagnosis of the arowanas Osteoglossum ferreirai and O. bicirrhosum from the Orinoco and Amazon River basins",
+        "url": "https://pdfs.semanticscholar.org/a0f8/bdd548f1fa067cfad167ea5d821f0fc6fa00.pdf"
+      },
+      {
+        "title": "Gutiérrez, López-Pinto & Sanabria (2009) Aspectos reproductivos de la arawana azul en el río Bita",
+        "url": "https://www.acictios.org/wp-content/uploads/2018/08/Memorias-Acictios-RAB-31-Supl-1-2009.pdf"
+      },
+      {
+        "title": "Yanwirsal (2013) Reproductive styles of Osteoglossomorpha",
+        "url": "https://edoc.hu-berlin.de/bitstreams/08c46ed9-12b2-4f64-90f5-0906dcace804/download"
+      },
+      {
+        "title": "カワスイ 生きもの図鑑 — ブラックアロワナ",
+        "url": "https://school.kawa-sui.com/creature-book/1786/"
+      },
+      {
+        "title": "Universidad Nacional de Colombia — Arawana negra",
+        "url": "https://historianatural.unal.edu.co/expo1/arawana.html"
+      },
+      {
+        "title": "FishBase — Osteoglossum ferreirai",
+        "url": "https://www.fishbase.se/summary/Osteoglossum-ferreirai.html"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 70,
+    "y": 305,
+    "width": 1411,
+    "height": 413
+  }
+}

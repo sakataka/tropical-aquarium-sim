@@ -1,0 +1,124 @@
+{
+  "id": "callipterus-shell-builder",
+  "displayName": "ネオランプロログス・カリプテルス",
+  "realBodyLengthCm": 12,
+  "swim": {
+    "tailBeatHz": 2.2
+  },
+  "visual": {
+    "fallbackColor": "#8c7a58"
+  },
+  "preferredZone": {
+    "minX": 0.14,
+    "maxX": 0.86,
+    "minY": 0.55,
+    "maxY": 0.88
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.25,
+      "burst": 1.2
+    },
+    "turnRateRadPerSec": 2.2,
+    "restFraction": 0.4,
+    "depthRange": [
+      0.15,
+      0.55
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2,
+      "cohesion": 0,
+      "polarization": 0.03
+    },
+    "structureAffinity": 0.8,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes — Neolamprologus callipterus",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=38075"
+      },
+      {
+        "title": "Boulenger (1906) Fourth contribution to the ichthyology of Lake Tanganyika, pp. 559–560, pl. XXXVI fig. 4",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/4/44/Fishes_in_Lake_Tanganyika%2C_1895-1905._Reports_1-4_%28IA_cu31924002880106%29.pdf"
+      },
+      {
+        "title": "von Kuerthy & Taborsky (2015) Alternative reproductive tactics in snail shell-brooding cichlids diverge in energy reserve allocation",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4449759/"
+      },
+      {
+        "title": "Schütz & Taborsky (2005) The influence of sexual selection and ecological constraints on an extreme sexual size dimorphism in a cichlid",
+        "url": "https://www.behav.iee.unibe.ch/e1010340/e1010392/e1012437/e1044378/e1210996/files1221558/Schuetz_AnimBehav2005_eng.pdf"
+      },
+      {
+        "title": "von Kuerthy & Taborsky (2016) Contest versus scramble competition among males pursuing fixed or plastic alternative reproductive tactics",
+        "url": "https://www.behav.iee.unibe.ch/e1010340/e1010392/e1012437/e1044378/e1210996/files1213585/Kuerthy_AnimBehav2016_eng.pdf"
+      },
+      {
+        "title": "Schütz et al. (2017) Sperm-limited males save ejaculates for future matings when competing with superior rivals",
+        "url": "https://www.iee.unibe.ch/unibe/portal/fak_naturwis/d_dbio/b_ioekev/abt_be/content/e1010340/e1010392/e1012437/e1044378/e1210996/files1213576/Schuetz_AnimBehav2017_eng.pdf"
+      },
+      {
+        "title": "Ota et al. (2012) Alternative reproductive tactics in the shell-brooding Lake Tanganyika cichlid Neolamprologus brevis",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3408672/"
+      },
+      {
+        "title": "Konings (1995) Tanganyikan shell-dwellers",
+        "url": "https://www.aiconline.it/articoli-ciclidi/941-cliclidi-del-tanganica/58-tanganyikan-sheldweller-2-95-di-ad-konings"
+      },
+      {
+        "title": "Svensson & Kvarnemo (2023) How sexual and natural selection interact and shape the evolution of nests and nesting behaviour in fishes, supplementary Fig. S1",
+        "url": "https://www.diva-portal.org/smash/get/diva2%3A1782319/FULLTEXT01.pdf"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Neolamprologus callipterus",
+    "originRegionId": "east-africa",
+    "originRegionName": "東アフリカ",
+    "origin": "東アフリカのタンガニーカ湖の固有種です。1906年に、湖岸のムパラとニアムコロの標本から記載されました。",
+    "habitat": "湖の底に、空の巻貝の殻を集めた巣をつくります。ザンビアのウォンジー岬の調査では、水深4〜10mの岩場に巣があり、繁殖にはネオタウマの殻だけが使われていました。湖の北のウビラでは、もっと小さい巻貝の殻が主に使われます。この展示では、貝殻の散らばる砂底の上にとどまります。",
+    "temperament": "大きな雄は、殻の巣とそのまわり約10cmを守り、近づくほかの雄を追い払います。野外の記録では、1つの巣に1日平均16回ほど、ほかの雄が入り込みました。飼育下の実験で2匹の雄を一緒にすると、2匹が同時に巣を持つことはなく、一方が相手を水槽の隅へ追いやりました。巣を持たない若い雄は、群れで動いて餌を探します。",
+    "movement": "大きな雄は、空の殻を口でくわえて運びます。近くから集めるほか、ほかの雄の巣から奪うこともあります。巣を守るあいだは、底のすぐ上に浮いて動かずにいるか、底に座って過ごす時間があり、ほとんど餌を食べません。この展示では、貝殻の散らばる砂底の上をゆっくり見回ります。",
+    "aliases": [
+      "ネオランプロローグス・カリプテルス",
+      "ランプロローグス・カリプテルス",
+      "Lamprologus callipterus",
+      "Lamprologus reticulatus",
+      "Lamprologus steindachneri"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cichliformes",
+      "orderJa": "シクリッド目",
+      "family": "Cichlidae",
+      "familyJa": "シクリッド科"
+    },
+    "adultSizeCm": 12,
+    "sizeNote": "専門家の解説では、雄は12cmとされます（測り方の記載なし）。ザンビアの野外調査では、巣を持つ雄12匹は標準体長10.9〜13.4cm（平均12.1cm）でした。同じ種の矮小雄は標準体長2.3〜3.4cmです。1906年の原記載の3標本は9〜12.5cmでした。展示では、全長12cmほどの巣を持つ雄を描いています（野外の巣を持つ雄としては小さめです）。",
+    "distribution": "タンガニーカ湖の固有種。ザンビアのウォンジー岬やカサカラウェ、コンゴ民主共和国のウビラなどで研究されています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "IUCNの評価区分は確かめられていません。繁殖には合う大きさの空の殻が要り、殻の数と大きさが繁殖に影響します。"
+    },
+    "highlights": [
+      "大きな雄は、自分は入れない空の巻貝の殻を口で運んで集め、雌が卵を産んで子を育てる巣をつくります。",
+      "雌は殻の中で産卵し、10〜14日ほど子を守るとされます。大きな雄は殻に入れないので、殻の口の外から精子を出します。",
+      "同じ種の雄に、殻を集める大きな雄、すきを見て巣に近づく中くらいの雄、雌の横をすり抜けて殻の奥へ入る標準体長3cmほどの矮小雄がいます。",
+      "殻を運ばせる実験では、標準体長9.5cmを超える雄は全員が殻を運べ、9cmに満たない雄は運べませんでした。",
+      "野外の記録では、1つの巣で最大4匹の雌が同時に産卵していました。"
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 67,
+    "y": 214,
+    "width": 1403,
+    "height": 597
+  }
+}

@@ -3,12 +3,12 @@
   "order": 173,
   "displayName": "シーラカンスの洞窟水槽",
   "exhibitName": "Coelacanth Cave",
-  "category": "コモロ諸島の溶岩洞窟",
-  "description": "暗い溶岩の岩壁に囲まれた洞窟の前を、体長1.5mのシーラカンスが胸びれと腹びれを交互に動かしてゆっくり漂います。夜に活動する魚で、明るい間は奥の洞窟で休む450cmの水槽です。",
+  "category": "コモロ諸島とインドネシアの深い岩礁",
+  "description": "暗い溶岩の岩壁に囲まれた洞窟の前を、体長1.5mのシーラカンスが胸びれと腹びれを交互に動かしてゆっくり漂います。夜に活動する魚で、明るい間は奥の洞窟で休みます。ひとまわり小さく褐色がかったインドネシアシーラカンスは、インドネシアの深い岩礁にすむ別の種です。現生の2種を見比べられる450cmの水槽です。",
   "widthCm": 450,
   "heightCm": 239,
   "depthCm": 225,
-  "maxTotalFish": 3,
+  "maxTotalFish": 4,
   "sceneIds": [
     "coelacanth-300"
   ],
@@ -16,12 +16,20 @@
     {
       "speciesId": "coelacanth",
       "maxCount": 3
+    },
+    {
+      "speciesId": "indonesian-coelacanth",
+      "maxCount": 2
     }
   ],
   "defaultStock": [
     {
       "speciesId": "coelacanth",
       "count": 2
+    },
+    {
+      "speciesId": "indonesian-coelacanth",
+      "count": 1
     }
   ]
 }

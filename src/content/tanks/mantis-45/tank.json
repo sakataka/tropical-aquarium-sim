@@ -4,11 +4,11 @@
   "displayName": "シャコの巣穴水槽",
   "exhibitName": "Mantis Shrimp Den",
   "category": "サンゴ礁の砂礫底",
-  "description": "岩の下にU字形の巣穴がある45cmの水槽。モンハナシャコは巣穴の入口から砂の上へ歩き出し、岩のかけらの上を巡っては、ときどき入口で立ち止まってじっと構えます。強い捕食者で仲間どうしでも争うため、1匹だけで展示します。",
+  "description": "岩の下にU字形の巣穴がある45cmの水槽。モンハナシャコは巣穴の入口から砂の上へ歩き出し、岩のかけらの上を巡っては、ときどき入口で立ち止まってじっと構えます。ひとまわり小さいアデヤカフトユビシャコモドキは、サンゴのかけらのまわりを歩きます。体の大きさと色、たたんだ捕脚の模様を見比べてください。どちらも強い捕食者で、実際に同じ水槽で飼うことは勧められませんが、ここでは見比べられるよう、2種を1匹ずつ同じ水景に置いています。",
   "widthCm": 45,
   "heightCm": 35,
   "depthCm": 30,
-  "maxTotalFish": 1,
+  "maxTotalFish": 2,
   "sceneIds": [
     "mantis-45"
   ],
@@ -16,11 +16,19 @@
     {
       "speciesId": "peacock-mantis-shrimp",
       "maxCount": 1
+    },
+    {
+      "speciesId": "ternate-mantis-shrimp",
+      "maxCount": 1
     }
   ],
   "defaultStock": [
     {
       "speciesId": "peacock-mantis-shrimp",
+      "count": 1
+    },
+    {
+      "speciesId": "ternate-mantis-shrimp",
       "count": 1
     }
   ]

@@ -1,0 +1,123 @@
+{
+  "id": "red-dario",
+  "displayName": "ダリオ・ヒスギノン",
+  "realBodyLengthCm": 2.5,
+  "swim": {
+    "tailBeatHz": 2.6
+  },
+  "visual": {
+    "fallbackColor": "#c2552f"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.5,
+    "maxY": 0.92
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.45,
+      "burst": 3.0
+    },
+    "turnRateRadPerSec": 2.8,
+    "restFraction": 0.4,
+    "depthRange": [
+      0.3,
+      0.95
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 4,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.8,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes — Dario",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?genus=Dario&tbl=species"
+      },
+      {
+        "title": "Vidthayanon, Termvidchakorn & Pe (2005) Inland Fishes of Myanmar",
+        "url": "https://www.dof.gov.mm/sites/default/files/2024-12/Inland%20Fishes%20of%20Myanmar.pdf"
+      },
+      {
+        "title": "Britz & Kullander (2013) Dario kajal, a new species of badid fish from Meghalaya, India. Zootaxa 3731",
+        "url": "https://www.mapress.com/zootaxa/2013/f/zt03731p337.pdf"
+      },
+      {
+        "title": "Britz, Kullander & Rüber (2022) Dario tigris and Dario melanogrammus, two new species of miniature chameleon fishes from northern Myanmar. Zootaxa 5138",
+        "url": "https://www.mapress.com/zt/article/view/zootaxa.5138.1.1"
+      },
+      {
+        "title": "Tiwari (2016) Dario hysginon: Breeding and Husbandry of the Red Melon Dario. Amazonas",
+        "url": "https://www.amazonasmagazine.com/2016/12/26/dario-hysginon-breeding-and-husbandry-of-the-red-melon-dario/"
+      },
+      {
+        "title": "Seriously Fish — Dario hysginon",
+        "url": "https://www.seriouslyfish.com/species/dario-hysginon"
+      },
+      {
+        "title": "FishBase — Dario hysginon",
+        "url": "https://www.fishbase.se/summary/Dario-hysginon.html"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Dario hysginon",
+    "originRegionId": "southeast-asia",
+    "originRegionName": "東南アジア",
+    "origin": "ミャンマー北部のエーヤワディー川（イラワジ川）水系に分布します。模式産地は、カチン州モガウンの南の小川です。2002年に新種として記載されました。",
+    "temperament": "繁殖家の飼育記録では、雄は水草の中に縄張りをつくり、雄どうしが背びれと尾びれを広げて張り合います。雌どうしでも、産卵する対への割り込みや攻撃が見られました。",
+    "movement": "ダリオの仲間は、小さな水生の無脊椎動物を食べる小さな捕食者とされます。この展示では、スカーレット・ジェムと同じように、底近くの水草のあいだをゆっくり泳ぎます。",
+    "habitat": "岸辺の植物が茂る小さな川や小川に暮らします。飼育の解説では、模式産地は乾季の水深が約1mで、砂と小石の底に草の多い、ほどほどの流れの小川とされ、水草の多い岸辺のよどみを好むとされます。この展示では、モスと水草の茂みの根元にいます。",
+    "aliases": [
+      "Red melon dario",
+      "Flame red dario",
+      "Red dario"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Anabantiformes",
+      "orderJa": "キノボリウオ目",
+      "family": "Badidae",
+      "familyJa": "バディス科"
+    },
+    "adultSizeCm": 2,
+    "sizeNote": "飼育の解説では、雄は標準体長2.0cmとされます。繁殖家の記録では、最大の雄が約2.2cm、雌は1.2〜1.7cmでした。ミャンマーの魚類の解説書（2005年）は3cmに達するとしますが、測り方の記載がありません。ここでは標準体長の値を使い、展示では尾びれを含めて全長2.5cmほどで描いています。",
+    "distribution": "ミャンマー北部のエーヤワディー川水系。ミッチーナー、マンダレー、インドージー湖が産地として挙げられています。",
+    "water": {
+      "salinity": "freshwater",
+      "temperatureC": [
+        20,
+        24
+      ],
+      "pH": [
+        6.5,
+        7.5
+      ]
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2010,
+      "note": "FishBase が引く IUCN の評価です。2022年に近縁のダリオ・ティグリスが別の種として分けられたあとの再評価は、確かめられていません。"
+    },
+    "highlights": [
+      "雄は煉瓦色から赤褐色で、暗い鱗の縁が細かな網目をつくります。雌は灰色がかった暗い色です。",
+      "成魚の体には縦の帯がなく、目の後ろを通る黒い線もありません。背びれの前のほうに暗い斑があります。",
+      "縞のあるダリオ・ティグリスは、以前はこの種の色違いと考えられていましたが、2022年に別の種として記載されました。",
+      "繁殖家の記録では、卵は2〜3日でかえり、かえったばかりの仔魚は泳ぎ出すまで物の表面に付いていました。"
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 128,
+    "y": 211,
+    "width": 1308,
+    "height": 610
+  }
+}

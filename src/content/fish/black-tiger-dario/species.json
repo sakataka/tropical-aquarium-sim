@@ -1,0 +1,114 @@
+{
+  "id": "black-tiger-dario",
+  "displayName": "ダリオ・ティグリス",
+  "realBodyLengthCm": 2.3,
+  "swim": {
+    "tailBeatHz": 2.6
+  },
+  "visual": {
+    "fallbackColor": "#c98a5e"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.5,
+    "maxY": 0.92
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.45,
+      "burst": 3.0
+    },
+    "turnRateRadPerSec": 2.8,
+    "restFraction": 0.4,
+    "depthRange": [
+      0.3,
+      0.95
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 4,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.8,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes — Dario",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?genus=Dario&tbl=species"
+      },
+      {
+        "title": "Britz, Kullander & Rüber (2022) Dario tigris, original taxon treatment (Plazi), Zootaxa 5138: 2–5",
+        "url": "https://treatment.plazi.org/GgServer/xhtml/BF4DCC0EFFD8FFDAFF7528DFF6D2D279"
+      },
+      {
+        "title": "Britz, Kullander & Rüber (2022) Dario tigris and Dario melanogrammus, two new species of miniature chameleon fishes from northern Myanmar. Zootaxa 5138",
+        "url": "https://www.mapress.com/zt/article/view/zootaxa.5138.1.1"
+      },
+      {
+        "title": "Britz, Kullander & Rüber (2022) original figures (Zenodo)",
+        "url": "https://zenodo.org/records/6552113"
+      },
+      {
+        "title": "Schäfer / Aquarium Glaser (2022) Dario tigris, the Black Tiger was scientifically described",
+        "url": "https://www.aquariumglaser.de/en/25-perchlike-fishes/dario-tigris-the-black-tiger-was-scientifically-described/"
+      },
+      {
+        "title": "Edmondstone (2023) SHOAL New Species 2022",
+        "url": "https://shoalconservation.org/wp-content/uploads/2023/03/New-Species-2022-1.pdf"
+      },
+      {
+        "title": "FishBase — Dario tigris",
+        "url": "https://fishbase.se/summary/Dario_tigris.html"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Dario tigris",
+    "originRegionId": "southeast-asia",
+    "originRegionName": "東南アジア",
+    "origin": "ミャンマー北部のエーヤワディー川（イラワジ川）水系に分布します。カチン州モガウンの南の山あいの小川を模式産地として、2022年に新種として記載されました。",
+    "temperament": "群れ方や縄張りを、この種で調べた記録は確かめられていません。この展示では、ほかのダリオの仲間と同じように、1匹ずつ間を空けて暮らします。輸入業者は、水槽でダリオ・ヒスギノンと交雑しなかったと述べています。",
+    "movement": "泳ぎ方や食べものを、この種で調べた記録は確かめられていません。この展示では、スカーレット・ジェムと同じように、底近くの水草のあいだをゆっくり泳ぎます。原記載の写真の雄は、求愛の色でひれを広げています。",
+    "habitat": "山あいの名のない小川と、ミッチーナーの北の道路沿いの小川、養魚池のまわりの溝から採集されています。水深、流れ、底の様子、水温や水質を測った記録は確かめられていません。少なくとも1か所で、ダリオ・ヒスギノンと同じ場所から見つかっています。この展示では、モスと水草の茂みの根元にいます。",
+    "aliases": [
+      "Black tiger dario",
+      "Black tiger badis"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Anabantiformes",
+      "orderJa": "キノボリウオ目",
+      "family": "Badidae",
+      "familyJa": "バディス科"
+    },
+    "adultSizeCm": 2,
+    "sizeNote": "原記載では、標準体長2cmをわずかに超える小さな魚とされます。タイプ標本で最大のものは標準体長2.12cm、雄のホロタイプは1.67cmでした。FishBase は最大を標準体長1.7cmとしていて、原記載の標本の値と食い違います。ここでは原記載の値を使い、展示では尾びれを含めて全長2.3cmほどで描いています。",
+    "distribution": "ミャンマー北部カチン州のエーヤワディー川水系。モガウンの南と、ミッチーナーの北の小川などから記録されています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "NE",
+      "note": "FishBase の表示では、IUCNの評価を受けていません。"
+    },
+    "highlights": [
+      "雄の体には、まっすぐな縦の帯が8本並びます。前の2本は灰色から黒、後ろの6本は橙赤色です。",
+      "頭の上から首の後ろにかけて、はっきりした小さな黒い点が不規則に3〜4列ほど並びます。雌にもある目印です。",
+      "腹びれは灰色から黒で、前の縁が白っぽい青に光ります。背びれの最初の3本の棘のあいだの膜は黒くなります。",
+      "名前の tigris は虎の意味で、縦の帯にちなみます。「ブラックタイガー」の名で流通していた魚が、標本と遺伝子の比較で2022年に別の種とされました。",
+      "驚いて色があせると、ダリオ・ヒスギノンと見分けにくくなります。"
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 124,
+    "y": 245,
+    "width": 1349,
+    "height": 571
+  }
+}

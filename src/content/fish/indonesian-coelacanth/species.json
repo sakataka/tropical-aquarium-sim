@@ -1,0 +1,127 @@
+{
+  "id": "indonesian-coelacanth",
+  "displayName": "インドネシアシーラカンス",
+  "realBodyLengthCm": 125,
+  "swim": {
+    "tailBeatHz": 0.6,
+    "bodyWaveStart": 0.5,
+    "tailSweepRad": 0.28,
+    "verticalFlex": 0.008
+  },
+  "visual": {
+    "fallbackColor": "#5b5049"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.3,
+    "maxY": 0.85
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.1,
+      "burst": 0.35
+    },
+    "turnRateRadPerSec": 1.0,
+    "restFraction": 0.4,
+    "depthRange": [
+      0.35,
+      0.9
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2,
+      "cohesion": 0,
+      "polarization": 0.05
+    },
+    "structureAffinity": 0.8,
+    "habits": [
+      {
+        "type": "homeShelter",
+        "kind": "cave",
+        "rangeBodyLengths": 8,
+        "visitChancePerMin": 0.4,
+        "visitDurationSec": [
+          40,
+          120
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes — Latimeria menadoensis",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=65288"
+      },
+      {
+        "title": "Wirjoatmodjo & Tjakrawidjaja (2002) Additional descriptive data on the holotype of Latimeria menadoensis. Treubia",
+        "url": "https://ejournal.brin.go.id/treubia/article/download/10226/7894/28852"
+      },
+      {
+        "title": "Saruwatari et al. (2019) Detailed morphology of the seventh specimen of the Indonesian coelacanth",
+        "url": "https://www.jstage.jst.go.jp/article/kmnh/17/0/17_67/_pdf/-char/en"
+      },
+      {
+        "title": "Iwata et al. (2019) Field surveys on the Indonesian coelacanth using remotely operated vehicles from 2005 to 2015",
+        "url": "https://www.jstage.jst.go.jp/article/kmnh/17/0/17_49/_pdf/-char/en"
+      },
+      {
+        "title": "Chappuis et al. (2025) First record of a living coelacanth from North Maluku, Indonesia. Scientific Reports",
+        "url": "https://www.nature.com/articles/s41598-025-90287-7"
+      }
+    ]
+  },
+  "catalog": {
+    "scientificName": "Latimeria menadoensis",
+    "originRegionId": "west-pacific",
+    "originRegionName": "西太平洋",
+    "origin": "インドネシアのスラウェシ島北部、北マルクのハルマヘラ島、西パプアのビアク島から知られます。名前は、スラウェシ島の町マナドにちなみます。西インド洋のシーラカンスとは分布が離れた、別の種です。",
+    "temperament": "無人探査機の調査では、多くは1匹でいて、2匹、3匹、6匹が同じ岩陰に集まっていた記録もあります。6匹が近くにいた場面でも、触れ合ったりかかわり合ったりする様子は見られませんでした。",
+    "movement": "岩や壁の近くで、ひれを1枚ずつゆっくり動かして、その場にとどまるように泳ぎます。流れの向きが変わると、頭を流れの来るほうへ向け直しました。岩の張り出しの下で、腹を天井へ向けた姿勢も観察されています。",
+    "habitat": "急な岩礁の斜面、洞窟や割れ目、岩の張り出しの下で見つかっています。2005〜2015年の調査で出会った水深は約116〜219m、そのときの水温は12.4〜21.5℃でした。日中に洞窟の外の岩の上にいた例もあります。生きた個体を長く飼育した例は確かめられておらず、日本ではアクアマリンふくしまが固定した標本を展示しました。この水槽では、西インド洋のシーラカンスと並べて、現生の2種を見比べます。",
+    "aliases": [
+      "Indonesian coelacanth",
+      "Sulawesi coelacanth",
+      "Manado coelacanth",
+      "ラティメリア・メナドエンシス"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Coelacanthiformes",
+      "orderJa": "シーラカンス目",
+      "family": "Latimeriidae",
+      "familyJa": "ラティメリア科"
+    },
+    "adultSizeCm": 125,
+    "sizeNote": "ホロタイプの雌は全長124cm、7例目の標本（雌）は全長129.6cm・体重22kgでした。無人探査機の調査で、レーザーの間隔から推定された最大は全長137cmです。種としての最大や、典型的な成魚の大きさは確かめられていません。展示では全長125cmほどで描いています。",
+    "distribution": "インドネシアのスラウェシ島北部、北マルク（ハルマヘラ島）、西パプアのビアク島。",
+    "water": {
+      "salinity": "marine",
+      "temperatureC": [
+        12.4,
+        21.5
+      ]
+    },
+    "keeping": "rarelyDisplayed",
+    "conservation": {
+      "status": "VU",
+      "assessedYear": 2008,
+      "note": "IUCN の評価のページは直接確かめられておらず、検索の索引に出る2008年の区分です。2025年の研究も、保全の必要な種として扱い、混獲や観光による撹乱を懸念しています。西インド洋のシーラカンス（CR）とは区分が違います。"
+    },
+    "highlights": [
+      "褐色の地に、不規則な白い斑が散ります。斑の並びは1匹ごとに違い、調査では個体の見分けに使われます。",
+      "第2背びれ、尻びれ、胸びれ、腹びれには肉質の柄があります。第1背びれにはありません。",
+      "尾びれは、上下の大きな葉のあいだに小さな房があり、三つに分かれて見えます。",
+      "2024年には、北マルクの水深約140mで、潜水した研究者が同じ1匹を2日続けて観察しました。",
+      "色だけでは、西インド洋のシーラカンスと確実には見分けられないとされます。"
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 27,
+    "y": 141,
+    "width": 1482,
+    "height": 687
+  }
+}

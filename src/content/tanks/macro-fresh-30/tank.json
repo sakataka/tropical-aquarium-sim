@@ -3,12 +3,12 @@
   "order": 132,
   "displayName": "水草の茂る小川水槽",
   "exhibitName": "Tiny Freshwater Dwellers",
-  "category": "インド北東部の小川",
-  "description": "モスに覆われた流木と水草が茂る熱帯の小川を、間近に眺める30cm水槽。体長2cmほどのスカーレット・ジェムと、黒いアイラインのダリオ・カジャルが、底近くの水草のあいだをゆっくり泳ぎ、1匹ずつ間を空けて暮らします。",
+  "category": "インド北東部とミャンマー北部の小川",
+  "description": "モスに覆われた流木と水草が茂る熱帯の小川を、間近に眺める30cm水槽。体長2cmほどのダリオの仲間4種を見比べます。インドのスカーレット・ジェムと黒いアイラインのダリオ・カジャル、ミャンマーの赤いダリオ・ヒスギノンと縦縞のダリオ・ティグリスが、底近くの水草のあいだをゆっくり泳ぎ、1匹ずつ間を空けて暮らします。",
   "widthCm": 30,
   "heightCm": 30,
   "depthCm": 30,
-  "maxTotalFish": 7,
+  "maxTotalFish": 10,
   "sceneIds": [
     "macro-fresh-30"
   ],
@@ -20,6 +20,14 @@
     {
       "speciesId": "kajal-badis",
       "maxCount": 3
+    },
+    {
+      "speciesId": "red-dario",
+      "maxCount": 3
+    },
+    {
+      "speciesId": "black-tiger-dario",
+      "maxCount": 3
     }
   ],
   "defaultStock": [
@@ -29,6 +37,14 @@
     },
     {
       "speciesId": "kajal-badis",
+      "count": 2
+    },
+    {
+      "speciesId": "red-dario",
+      "count": 2
+    },
+    {
+      "speciesId": "black-tiger-dario",
       "count": 2
     }
   ]

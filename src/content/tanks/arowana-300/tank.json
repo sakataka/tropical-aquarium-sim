@@ -4,11 +4,11 @@
   "displayName": "アロワナの大型水槽",
   "exhibitName": "Arowanas",
   "category": "東南アジアと南米の河川",
-  "description": "浮き葉が重なる水面の下、アジアアロワナとシルバーアロワナが上層をゆったり滑るように巡る300cmの水槽です。岸から垂れる根と倒木の根元が、開けた水の両脇を縁取ります。",
+  "description": "浮き葉が重なる水面の下、アジアアロワナと、南米のシルバーアロワナ、ブラックアロワナが上層をゆったり滑るように巡る300cmの水槽です。ブラックアロワナはシルバーアロワナより体が細長く、背びれ・尻びれ・尾びれが青みを帯びます。岸から垂れる根と倒木の根元が、開けた水の両脇を縁取ります。",
   "widthCm": 300,
   "heightCm": 107,
   "depthCm": 90,
-  "maxTotalFish": 4,
+  "maxTotalFish": 5,
   "sceneIds": [
     "arowana-300"
   ],
@@ -20,6 +20,10 @@
     {
       "speciesId": "silver-arowana",
       "maxCount": 2
+    },
+    {
+      "speciesId": "black-arowana",
+      "maxCount": 2
     }
   ],
   "defaultStock": [
@@ -29,6 +33,10 @@
     },
     {
       "speciesId": "silver-arowana",
+      "count": 1
+    },
+    {
+      "speciesId": "black-arowana",
       "count": 1
     }
   ]

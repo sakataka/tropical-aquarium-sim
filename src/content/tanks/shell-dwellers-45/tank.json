@@ -4,11 +4,11 @@
   "displayName": "タンガニイカ湖の貝殻水槽",
   "exhibitName": "Shell Dwellers",
   "category": "タンガニイカ湖の貝殻の砂底",
-  "description": "空の巻貝の殻が散らばるタンガニイカ湖の砂底を再現した45cm水槽。ネオランプロログス・マルチファスキアトゥスと、頭まで細い横帯の続くネオランプロログス・シミリスは、小さな群れで殻のまわりを短く行き来し、驚くと自分の殻へ飛び込みます。オケラートゥスは1匹ずつ自分の殻の近くで暮らし、底の砂をつついて回ります。大きな頭のブレビスも、自分の殻のそばにとどまって暮らします。",
+  "description": "空の巻貝の殻が散らばるタンガニイカ湖の砂底を再現した45cm水槽。ネオランプロログス・マルチファスキアトゥスと、頭まで細い横帯の続くネオランプロログス・シミリスは、小さな群れで殻のまわりを短く行き来し、驚くと自分の殻へ飛び込みます。オケラートゥスは1匹ずつ自分の殻の近くで暮らし、底の砂をつついて回ります。大きな頭のブレビスも、自分の殻のそばにとどまって暮らします。ひときわ大きなネオランプロログス・カリプテルスの雄は、自分は殻に入れず、空の殻を口で運んで集め、雌が子を育てる巣をつくる魚です。",
   "widthCm": 45,
   "heightCm": 27,
   "depthCm": 30,
-  "maxTotalFish": 19,
+  "maxTotalFish": 20,
   "sceneIds": [
     "shell-dwellers-45"
   ],
@@ -28,6 +28,10 @@
     {
       "speciesId": "brevis-shell-dweller",
       "maxCount": 3
+    },
+    {
+      "speciesId": "callipterus-shell-builder",
+      "maxCount": 1
     }
   ],
   "defaultStock": [
@@ -46,6 +50,10 @@
     {
       "speciesId": "brevis-shell-dweller",
       "count": 2
+    },
+    {
+      "speciesId": "callipterus-shell-builder",
+      "count": 1
     }
   ]
 }
