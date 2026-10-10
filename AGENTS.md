@@ -16,3 +16,9 @@
 - 検証スクリプトは macOS では `Bun.WebView` の WebKit backend を使い、Chrome/Chromium に依存しない。
 - スクリーンショットなどの一時成果物は `tmp/` 以下に出力し、Git管理しない。
 - 実機の Safari と iPhone での確認は行わない（効率が悪いため）。狭い画面は `Bun.WebView` の 420×912 で確かめれば足りる。実機で未確認であることを、やり残しとして報告しなくてよい。
+
+## Codex と Claude Code の分担
+
+- Codex が単独で進める作業は `docs/codex-queue.md` にある（レーンごとの手順書は `docs/agent-lanes/`）。「codex-queue を進めて」と頼まれたら、その文書のとおりに進める。Claude Code のスレッドの入口は `docs/next-steps.md`。
+- 作業は、始める前に `uv run scripts/agent-queue.py claim <レーン> <件数> --by <codex|claude-code>` で担当の印を置く。印のある作業は、ほかのエージェントは取らない。レーンの成果物は、手順書の「書いてよい場所」だけに書く。
+- 絵を見て決める判断（採否、地形、生き物が見えるか）、水槽の構成と説明文、展示計画、UI、アプリのコードは Claude Code が受け持つ。Codex は、レーンの作業の途中で気づいたことを `notes.md` に書き残し、これらを自分では変えない（ユーザーが直接頼んだときは別）。

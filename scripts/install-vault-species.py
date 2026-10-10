@@ -67,10 +67,23 @@ def install(vault: Path, species_id: str, dest: Path, names: dict[str, str]) -> 
         "id": species_id,
         "displayName": names.get(species_id, species_id),
     }
+    # 先に書いておいた下書き（content-drafts/prepared/fish/。docs/codex-queue.md）があれば、中身に使う。
+    prepared_path = ROOT / "content-drafts" / "prepared" / "fish" / species_id / "species.json"
+    used_prepared = "profile" not in species and prepared_path.exists()
+    if used_prepared:
+        species = {**json.loads(prepared_path.read_text()), "id": species_id}
+        # 絵から決まる項目のうち、機械で測れるものを入れる（口先は魚だけ。ひげの長い魚は目で見て直す）。
+        opaque = body.split()[3].point(lambda value: 255 if value > 200 else 0)
+        colors = [pixel[:3] for pixel in body.resize((48, 48)).getdata() if pixel[3] > 200]
+        species["visual"] = {"fallbackColor": "#" + "".join(f"{round(sum(color[i] for color in colors) / len(colors)):02x}" for i in range(3))}
+        swim = species.setdefault("swim", {})
+        if swim.get("bodyPlan", "fish") == "fish" and "mouthAnchor" not in swim:
+            tip = opaque.crop((0, 0, max(2, round(body.width * 0.015)), body.height)).getbbox()
+            swim["mouthAnchor"] = {"x": 0.01, "y": round((tip[1] + tip[3]) / 2 / body.height, 2) if tip else 0.5}
     species["sourceBodyBounds"] = bounds
     species_path.write_text(json.dumps(species, ensure_ascii=False, indent=2) + "\n")
     size = (folder / "body.webp").stat().st_size // 1024
-    print(f"{species_id}: body {left},{top} {right - left}x{bottom - top} -> {body.width}x{body.height} {size}KB")
+    print(f"{species_id}: body {left},{top} {right - left}x{bottom - top} -> {body.width}x{body.height} {size}KB{'（先に書いた下書きを使った）' if used_prepared else ''}")
 
 
 def main() -> None:
