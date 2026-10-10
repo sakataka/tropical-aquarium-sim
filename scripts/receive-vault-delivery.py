@@ -31,6 +31,7 @@ import json
 import os
 import shutil
 import stat
+import subprocess
 import sys
 import tempfile
 import zipfile
@@ -174,6 +175,12 @@ def check(note_file: Path, vault: Path) -> dict:
     }
 
 
+def committed_sha256(vault: Path, commit: str, path: str) -> str | None:
+    """その commit に入っているファイルの SHA-256。入っていなければ None。"""
+    blob = subprocess.run(["git", "-C", str(vault), "cat-file", "blob", f"{commit}:{path}"], capture_output=True)
+    return sha256(blob.stdout) if blob.returncode == 0 else None
+
+
 def apply(result: dict, vault: Path) -> Path:
     """照合に通った配送を保管庫へ置き、受領の記録を書く。途中で失敗しても、置きかけのファイルを残さない。"""
     staging = Path(tempfile.mkdtemp(prefix="aquarium-delivery-"))
@@ -192,6 +199,12 @@ def apply(result: dict, vault: Path) -> Path:
             written.append(target)
         note, manifest = result["note"], result["manifest"]
         by_path = {item["path"]: item for item in manifest["files"]}
+        head = subprocess.run(["git", "-C", str(vault), "rev-parse", "HEAD"], capture_output=True, text=True).stdout.strip() or None
+        # 保管庫にすでにあったファイルが、受領した時点の commit（HEAD）にも同じ中身で入っているか。
+        already = [{
+            "path": path, "sha256": by_path[path]["sha256"].lower(),
+            "committedAtVaultHead": bool(head) and committed_sha256(vault, head, path) == by_path[path]["sha256"].lower(),
+        } for path in result["same"]]
         record = {
             "schemaVersion": "aquarium-delivery-receipt/1",
             "deliveryId": result["deliveryId"],
@@ -202,10 +215,14 @@ def apply(result: dict, vault: Path) -> Path:
             "dependsOn": note.get("dependsOn") or [],
             "baseCommit": note.get("baseCommit"),
             "zip": result["zip"],
+            "verified": "ZIP のサイズと SHA-256、manifest の全ファイルのサイズと SHA-256、パスの安全を照合した",
+            "vaultHeadAtReceipt": head,
             "placed": [{"path": path, "sha256": by_path[path]["sha256"].lower()} for path in result["new"]],
-            "alreadyInVault": [{"path": path, "sha256": by_path[path]["sha256"].lower()} for path in result["same"]],
+            "alreadyInVault": already,
             "entities": sorted({item["entityId"] for item in manifest["files"] if isinstance(item.get("entityId"), str)}),
-            "noteJa": "Drive から受領し、照合して保管庫へ置いた。この記録が GitHub の main にあれば保存完了。",
+            "noteJa": "Drive から受領し、照合して保管庫のローカルへ置いた時点の記録（commit・push の前に書く）。"
+                      "placed のファイルは、この記録と同じ commit で GitHub の main に入る。"
+                      "alreadyInVault のうち committedAtVaultHead が true のものは、vaultHeadAtReceipt の commit に同じ中身で入っている。",
         }
         file = ledger_dir(vault) / f"{result['deliveryId']}.json"
         file.parent.mkdir(parents=True, exist_ok=True)
