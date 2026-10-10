@@ -1,19 +1,24 @@
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import type { AquariumCustomization } from "../core";
 import {
+  buildings,
+  defaultBuilding,
+  getBuildingById,
+  getBuildingOfFloor,
   getFloorById,
   getFloorOfHall,
   getFloorSpeciesCount,
   getHallById,
   getHallLayout,
   getHallSlotsOnFloor,
+  getMapImageUrl,
   getTankSummary,
   isFloorLoaded,
   loadFloor,
-  mapImageUrl,
   museum,
   type HallSlot,
   type HallSummary,
+  type MuseumBuilding,
   type MuseumFloor,
 } from "../core/museum";
 import { playSfx } from "../audio/sfx";
@@ -25,20 +30,25 @@ import { SoundToggle } from "./SoundToggle";
 const PREVIEW_ASPECT = 2;
 
 // 館内図。2段になっている。
-// 1段目は館全体の断面図とフロアガイドで、階を選ぶ。展示室が増えても、ここに並ぶのは階の数だけ。
+// 1段目は建物の断面図とフロアガイドで、階を選ぶ。建物が複数あれば、上の切り替えで建物を選ぶ。
+// 展示室が増えても、ここに並ぶのは1つの建物の階の数だけ。
 // 2段目は選んだ階の展示室の一覧で、開いている展示室には、その展示室の画面の縮小版を映す。
 // 縮小版に要る部屋の絵とガラスの位置は、階を開くときにその階の分だけ読む。
 export function MuseumMap({
+  buildingId,
   floorId,
   lastHallId,
   soundEnabled,
   tanks,
   onEnterHall,
   onOpenZukan,
+  onSelectBuilding,
   onSelectFloor,
   onToggleSound,
 }: {
-  /** 開いている階。なければ館全体の断面図。 */
+  /** 断面図を見せる建物。なければ最初の建物（本館）。階を開いている間は使わない。 */
+  buildingId?: string;
+  /** 開いている階。なければ建物の断面図。 */
   floorId?: string;
   /** 前回見ていた展示室。目印を付ける。 */
   lastHallId?: string;
@@ -47,12 +57,15 @@ export function MuseumMap({
   tanks: Record<string, AquariumCustomization>;
   onEnterHall: (hallId: string) => void;
   onOpenZukan: () => void;
-  onSelectFloor: (floorId?: string) => void;
+  /** 建物の断面図へ。 */
+  onSelectBuilding: (buildingId: string) => void;
+  onSelectFloor: (floorId: string) => void;
   onToggleSound: () => void;
 }) {
   const floor = getFloorById(floorId);
+  const building = getBuildingById(buildingId) ?? defaultBuilding;
   const scrollRef = useRef<HTMLElement>(null);
-  // 階から館全体へ戻ったら、いま見ていた階のフロアガイドにフォーカスを戻す。
+  // 階から建物の断面図へ戻ったら、いま見ていた階のフロアガイドにフォーカスを戻す。
   const returnFloorRef = useRef<string | undefined>(undefined);
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: 0 });
@@ -66,7 +79,8 @@ export function MuseumMap({
   }, [floor]);
 
   const enter = (hallId: string) => { playSfx("tank_switch"); onEnterHall(hallId); };
-  const selectFloor = (next?: string) => { playSfx("ui_tap"); onSelectFloor(next); };
+  const selectFloor = (next: string) => { playSfx("ui_tap"); onSelectFloor(next); };
+  const selectBuilding = (next: string) => { playSfx("ui_tap"); onSelectBuilding(next); };
 
   return (
     <main className={floor ? "museum-map floor-view" : "museum-map"} ref={scrollRef}>
@@ -75,16 +89,18 @@ export function MuseumMap({
           floor={floor}
           key={floor.id}
           lastHallId={lastHallId}
-          onBack={() => selectFloor(undefined)}
+          onBack={() => selectBuilding(floor.buildingId)}
           onEnterHall={enter}
           onSelectFloor={selectFloor}
           tanks={tanks}
         />
       ) : (
         <MuseumOverview
+          building={building}
           lastHallId={lastHallId}
           onEnterHall={enter}
           onOpenZukan={onOpenZukan}
+          onSelectBuilding={selectBuilding}
           onSelectFloor={selectFloor}
         />
       )}
@@ -93,22 +109,25 @@ export function MuseumMap({
   );
 }
 
-// 1段目。館の断面図に階の帯を重ね、横（狭い画面では下）にフロアガイドを置く。
-function MuseumOverview({ lastHallId, onEnterHall, onOpenZukan, onSelectFloor }: {
+// 1段目。建物の断面図に階の帯を重ね、横（狭い画面では下）にフロアガイドを置く。
+function MuseumOverview({ building, lastHallId, onEnterHall, onOpenZukan, onSelectBuilding, onSelectFloor }: {
+  building: MuseumBuilding;
   lastHallId?: string;
   onEnterHall: (hallId: string) => void;
   onOpenZukan: () => void;
+  onSelectBuilding: (buildingId: string) => void;
   onSelectFloor: (floorId: string) => void;
 }) {
   const [activeFloor, setActiveFloor] = useState<string>();
   const lastHall = getHallById(lastHallId);
-  const lastFloorId = lastHallId ? getFloorOfHall(lastHallId)?.id : undefined;
+  const lastFloor = lastHallId ? getFloorOfHall(lastHallId) : undefined;
+  const lastFloorId = lastFloor?.id;
   // 触れた階は、開く前に配置を先読みしておく（小さなチャンク）。
   const highlight = (id: string) => ({
     onPointerEnter: () => { setActiveFloor(id); void loadFloor(id).catch(() => undefined); },
     onPointerLeave: () => setActiveFloor((current) => current === id ? undefined : current),
   });
-  const { width, height, focus } = museum.map;
+  const { width, height, focus } = building.map;
   const plateStyle = {
     "--map-aspect": `${width} / ${height}`,
     "--map-ratio": width / height,
@@ -133,12 +152,35 @@ function MuseumOverview({ lastHallId, onEnterHall, onOpenZukan, onSelectFloor }:
             </button>
           ) : null}
         </div>
+        {buildings.length > 1 ? (
+          <nav aria-label="建物を選ぶ" className="map-buildings">
+            {buildings.map((item) => {
+              const open = buildingStats(item).open;
+              return (
+                <button
+                  aria-current={item.id === building.id ? "page" : undefined}
+                  data-building={item.id}
+                  key={item.id}
+                  onClick={() => item.id !== building.id && onSelectBuilding(item.id)}
+                  type="button"
+                >
+                  <span>{item.displayName}</span>
+                  <small>{open === 0 ? "準備中" : `${open}展示室`}{item.id === lastFloor?.buildingId ? " · 前回" : ""}</small>
+                </button>
+              );
+            })}
+          </nav>
+        ) : null}
       </header>
-      <figure className="map-plate" style={plateStyle}>
+      <figure className="map-plate map-swap" key={building.id} style={plateStyle}>
         <div className="map-canvas">
-          <img alt="水の生き物館の断面図。地上4階と地下2階に、展示室が並ぶ。" draggable={false} src={mapImageUrl} />
+          <img
+            alt={`${building.displayName}の断面図。${building.floors.map((floor) => `${floor.label}「${floor.displayName}」`).join("、")}。`}
+            draggable={false}
+            src={getMapImageUrl(building.id)}
+          />
           {/* 階の帯。操作はフロアガイドのボタンでもできるので、こちらはポインター用にしてフォーカス順に入れない。 */}
-          {museum.floors.map((floor) => {
+          {building.floors.map((floor) => {
             const { open } = floorStats(floor);
             return (
               <button
@@ -151,7 +193,7 @@ function MuseumOverview({ lastHallId, onEnterHall, onOpenZukan, onSelectFloor }:
                 data-floor={floor.id}
                 key={floor.id}
                 onClick={() => onSelectFloor(floor.id)}
-                style={toPercent(floor.mapArea)}
+                style={toPercent(floor.mapArea, building)}
                 tabIndex={-1}
                 type="button"
                 {...highlight(floor.id)}
@@ -166,8 +208,14 @@ function MuseumOverview({ lastHallId, onEnterHall, onOpenZukan, onSelectFloor }:
           })}
         </div>
       </figure>
-      <ol aria-label="フロアガイド" className="map-directory">
-        {museum.floors.map((floor) => {
+      <ol aria-label={`${building.displayName}のフロアガイド`} className="map-directory map-swap" key={`guide-${building.id}`}>
+        {buildings.length > 1 ? (
+          <li className="map-building-note">
+            <strong>{building.displayName}<em>{building.exhibitName}</em></strong>
+            <span>{building.description}</span>
+          </li>
+        ) : null}
+        {building.floors.map((floor) => {
           const { slots, open, tankCount, speciesCount } = floorStats(floor);
           return (
             <li
@@ -222,6 +270,7 @@ function FloorView({ floor, lastHallId, onBack, onEnterHall, onSelectFloor, tank
   tanks: Record<string, AquariumCustomization>;
 }) {
   const layoutReady = useFloorLayout(floor.id);
+  const building = getBuildingOfFloor(floor);
   const { slots, open, tankCount, speciesCount } = floorStats(floor);
   const headingRef = useRef<HTMLHeadingElement>(null);
   // 階を開いたら見出しにフォーカスを移し、読み上げでも階が変わったと分かるようにする。
@@ -230,14 +279,15 @@ function FloorView({ floor, lastHallId, onBack, onEnterHall, onSelectFloor, tank
   return (
     <div className="floor-layout map-level">
       <nav aria-label="階を選ぶ" className="floor-nav">
-        <button className="floor-back" onClick={onBack} title="館内図へ（Esc）" type="button">
-          <BackIcon /><span>館内図</span>
+        <button className="floor-back" onClick={onBack} title={`${building.displayName}の館内図へ（Esc）`} type="button">
+          <BackIcon /><span>{buildings.length > 1 ? building.displayName : "館内図"}</span>
         </button>
         <ol className="floor-switch">
-          {museum.floors.map((item) => (
+          {building.floors.map((item) => (
             <li key={item.id}>
               <button
                 aria-current={item.id === floor.id ? "page" : undefined}
+                data-floor={item.id}
                 onClick={() => item.id !== floor.id && onSelectFloor(item.id)}
                 onPointerEnter={() => void loadFloor(item.id).catch(() => undefined)}
                 type="button"
@@ -249,7 +299,9 @@ function FloorView({ floor, lastHallId, onBack, onEnterHall, onSelectFloor, tank
         </ol>
       </nav>
       <header className="floor-heading">
-        <p className="map-eyebrow">{floor.exhibitLabel} · {floor.exhibitName}</p>
+        <p className="map-eyebrow">
+          {buildings.length > 1 ? `${building.exhibitName} · ` : ""}{floor.exhibitLabel} · {floor.exhibitName}
+        </p>
         <h1 ref={headingRef} tabIndex={-1}>{floor.label}<span>{floor.displayName}</span></h1>
         <p className="map-lede">{floor.description}</p>
         <p className="floor-summary">{open === 0 ? "準備中" : `${open}展示室 · ${tankCount}水槽 · ${speciesCount}種`}</p>
@@ -334,8 +386,12 @@ function floorStats(floor: MuseumFloor) {
   };
 }
 
-function toPercent(area: { x: number; y: number; width: number; height: number }): CSSProperties {
-  const { width, height } = museum.map;
+function buildingStats(building: MuseumBuilding) {
+  return { open: building.floors.reduce((sum, floor) => sum + floorStats(floor).open, 0) };
+}
+
+function toPercent(area: { x: number; y: number; width: number; height: number }, building: MuseumBuilding): CSSProperties {
+  const { width, height } = building.map;
   return {
     left: `${(area.x / width) * 100}%`,
     top: `${(area.y / height) * 100}%`,

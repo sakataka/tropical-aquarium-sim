@@ -1,7 +1,7 @@
 import { describe, expect, test } from "vitest";
 import { getBodyPlan, getBodyPlanId, HEAD_START_PLANS } from "./bodyPlans";
 import { fishCatalog, getLoadedTanks, getSceneById } from "./catalog";
-import { halls as fishRooms, getHallLayout, getSceneSummary, museum, tankSummaries } from "./museum";
+import { buildings, floors, halls as fishRooms, getHallLayout, getSceneSummary, museum, tankSummaries } from "./museum";
 import { visibleSurfaceIntervals, worldPoint } from "./surfaceMotion";
 import { getRenderedSurfaceFrame } from "./testContent";
 import { insideTerrain } from "./terrainMotion";
@@ -14,7 +14,7 @@ const plateImages = import.meta.glob("../content/environment/scenes/*/plate.webp
 const thumbImages = import.meta.glob("../content/environment/scenes/*/thumb.webp");
 const roomImages = import.meta.glob("../content/room/*.webp");
 const roomThumbs = import.meta.glob("../content/room/thumbs/*.webp");
-const museumImages = import.meta.glob("../content/museum/*.webp");
+const museumImages = import.meta.glob("../content/museum/buildings/*/*.webp");
 const folderIds = (files: Record<string, unknown>) => Object.keys(files).map((path) => path.split("/").slice(-2)[0]!).sort();
 const tankFolders = folderIds(import.meta.glob("../content/tanks/*/tank.json"));
 const sceneFolders = folderIds(import.meta.glob("../content/environment/scenes/*/scene.json"));
@@ -46,32 +46,43 @@ describe("content wiring", () => {
   });
 
   test("every room is placed once in a hall slot of the museum, and planned slots have names", () => {
-    const floorIds = museum.floors.map((floor) => floor.id);
+    // 階と展示室の id は URL に使うので、建物をまたいでも重ならない。
+    const buildingIds = buildings.map((building) => building.id);
+    expect(new Set(buildingIds).size).toBe(buildingIds.length);
+    expect(new Set(buildings.map((building) => building.order)).size).toBe(buildingIds.length);
+    expect(museum.buildings.flatMap((building) => building.floors)).toEqual(floors);
+    const floorIds = floors.map((floor) => floor.id);
     expect(new Set(floorIds).size).toBe(floorIds.length);
-    expect(new Set(museum.floors.map((floor) => floor.order)).size).toBe(floorIds.length);
-    const slotIds = museum.floors.flatMap((floor) => floor.halls.map((hall) => hall.id));
+    for (const building of buildings) {
+      expect(building.floors.every((floor) => floor.buildingId === building.id), building.id).toBe(true);
+      expect(new Set(building.floors.map((floor) => floor.order)).size, building.id).toBe(building.floors.length);
+    }
+    const slotIds = floors.flatMap((floor) => floor.halls.map((hall) => hall.id));
     expect(new Set(slotIds).size).toBe(slotIds.length);
     for (const room of fishRooms) expect(slotIds, room.id).toContain(room.id);
-    for (const floor of museum.floors) {
+    for (const floor of floors) {
       for (const hall of floor.halls) {
         if (!fishRooms.some((room) => room.id === hall.id)) expect(hall.displayName, hall.id).toBeTruthy();
       }
     }
   });
 
-  test("the museum map image exists and each floor area sits inside it without overlapping", () => {
-    expect(museumImages[`../content/museum/${museum.map.image}`]).toBeDefined();
-    const { focus } = museum.map;
-    expect(focus.x + focus.width).toBeLessThanOrEqual(museum.map.width);
-    const areas = museum.floors.map((floor) => floor.mapArea);
-    for (const [index, area] of areas.entries()) {
-      expect(area.x + area.width, museum.floors[index]!.id).toBeLessThanOrEqual(museum.map.width);
-      expect(area.y + area.height, museum.floors[index]!.id).toBeLessThanOrEqual(museum.map.height);
-      // 狭い画面で切り出す範囲に、階の範囲が収まる（左の階名の札の分も空ける）。
-      expect(area.x, museum.floors[index]!.id).toBeGreaterThanOrEqual(focus.x + 40);
-      expect(area.x + area.width, museum.floors[index]!.id).toBeLessThanOrEqual(focus.x + focus.width);
-      // 階は上から順に並び、断面図の中でも下の階ほど下にある。
-      if (index > 0) expect(area.y, museum.floors[index]!.id).toBeGreaterThanOrEqual(areas[index - 1]!.y + areas[index - 1]!.height);
+  test("each building's section image exists and each floor area sits inside it without overlapping", () => {
+    for (const building of buildings) {
+      expect(museumImages[`../content/museum/buildings/${building.id}/${building.map.image}`], building.id).toBeDefined();
+      const { focus, width, height } = building.map;
+      expect(focus.x + focus.width, building.id).toBeLessThanOrEqual(width);
+      const areas = building.floors.map((floor) => floor.mapArea);
+      for (const [index, area] of areas.entries()) {
+        const id = building.floors[index]!.id;
+        expect(area.x + area.width, id).toBeLessThanOrEqual(width);
+        expect(area.y + area.height, id).toBeLessThanOrEqual(height);
+        // 狭い画面で切り出す範囲に、階の範囲が収まる（左の階名の札の分も空ける）。
+        expect(area.x, id).toBeGreaterThanOrEqual(focus.x + 40);
+        expect(area.x + area.width, id).toBeLessThanOrEqual(focus.x + focus.width);
+        // 階は上から順に並び、断面図の中でも下の階ほど下にある。
+        if (index > 0) expect(area.y, id).toBeGreaterThanOrEqual(areas[index - 1]!.y + areas[index - 1]!.height);
+      }
     }
   });
 

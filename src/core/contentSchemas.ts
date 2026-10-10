@@ -24,8 +24,9 @@ const hallSlotSchema = z.object({
 });
 
 const floorSchema = z.object({
+  /** 階の id。館全体で重ならないようにする（URL の ?floor= に使う）。 */
   id: z.string().regex(/^[a-z0-9-]+$/),
-  /** 館内図で上から並べる順。上の階ほど小さい。 */
+  /** 建物の断面図で上から並べる順。上の階ほど小さい。 */
   order: z.number().finite(),
   /** 「1階」「地下1階」など。 */
   label: z.string().min(1),
@@ -36,17 +37,31 @@ const floorSchema = z.object({
   displayName: z.string().min(1),
   exhibitName: z.string().min(1),
   description: z.string().min(1),
-  /** 館内図の断面図で、この階の展示フロアが描かれている範囲。展示室はこれを左から等分する。 */
+  /** 建物の断面図で、この階の展示フロアが描かれている範囲。 */
   mapArea: mapAreaSchema,
-  /** この階の展示室の枠を左から順に。館内のどこに展示室があるかは、ここだけで決める。 */
+  /** この階の展示室の枠を順に。館内のどこに展示室があるかは、ここだけで決める。 */
   halls: z.array(hallSlotSchema).min(1),
 });
 
-export const museumSchema = z.object({
+/** 館（museum/museum.json）。建物は museum/buildings/<id>/building.json に1つずつ置く。 */
+export const museumHeaderSchema = z.object({
   displayName: z.string().min(1),
   exhibitName: z.string().min(1),
   lede: z.string().min(1),
-  /** 館内図の断面図。画像は src/content/museum/ に置く。 */
+});
+
+/**
+ * 建物（本館、別館など）。館 → 建物 → 階 → 展示室 → 水槽の順に並ぶ。
+ * 建物を足すときは、museum/buildings/<id>/ に building.json と断面図の絵を置く。
+ */
+export const buildingSchema = z.object({
+  id: z.string().regex(/^[a-z0-9-]+$/),
+  /** 館内図で並べる順。最初の建物を、何も指定せずに開いたときに見せる。 */
+  order: z.number().finite(),
+  displayName: z.string().min(1),
+  exhibitName: z.string().min(1),
+  description: z.string().min(1),
+  /** 建物の断面図。画像は building.json と同じフォルダに置く。 */
   map: z.object({
     image: z.string().regex(/^[\w-]+\.webp$/),
     width: z.number().positive(),
@@ -57,8 +72,11 @@ export const museumSchema = z.object({
   floors: z.array(floorSchema).min(1),
 });
 
-export type MuseumDefinition = z.infer<typeof museumSchema>;
-export type MuseumFloor = z.infer<typeof floorSchema>;
+/** 階。どの建物にあるかは、読み込むときに付ける。階の id は館全体で重ならない。 */
+export type MuseumFloor = z.infer<typeof floorSchema> & { buildingId: string };
+export type MuseumBuilding = Omit<z.infer<typeof buildingSchema>, "floors"> & { floors: MuseumFloor[] };
+/** 館。建物は order の順、階は建物の中で上から順に並ぶ。 */
+export type MuseumDefinition = z.infer<typeof museumHeaderSchema> & { buildings: MuseumBuilding[] };
 export type MuseumMapArea = z.infer<typeof mapAreaSchema>;
 
 const rectSchema = z.object({

@@ -14,7 +14,7 @@
 | 場所 | 書く人 | 中身 |
 |---|---|---|
 | `catalog/species-backlog.json` | Claude Code | 生き物の候補一覧（初回261種） |
-| `catalog/exhibit-plan.json` | Claude Code | 展示計画。階 → 展示室 → 水槽 → 生き物と、水槽ごとの水景の説明 |
+| `catalog/exhibit-plan.json` | Claude Code | 展示計画（第2版）。建物 → 階 → 展示室 → 水槽 → 生き物と、水槽ごとの水景の説明、計画中の水槽に入れたい種の手がかり（`candidates`）。アプリとの食い違いは `bun run plan:check` で見る |
 | `catalog/dots-additions.json` | dots | dots が自分で足す候補 |
 | `consumer/` | Claude Code | dots への依頼文と参照画像（[水景・展示室・館内図の制作依頼](https://github.com/sakataka/aquarium-assets/blob/main/consumer/environment-requests-ja.md)、[今後の生き物の増やし方](https://github.com/sakataka/aquarium-assets/blob/main/consumer/expansion-guidelines-ja.md)） |
 | `queue/requests/` | Claude Code（`dots-` で始まるものは dots） | 実行する依頼。修正は `revisionTarget` 付きの新しい依頼ファイルで出す |
@@ -36,13 +36,22 @@ dots と Claude Code は直接やりとりできないので、保管庫で連�
 
 ## 展示室を開ける流れ
 
-展示室の絵・水景・館内図は、保管庫の `adoptions/`（hall-*・scene-*・museum-section）に採否を記録してから取り込む。水槽の並びと大きさは展示計画（`catalog/exhibit-plan.json`）が正本。
+展示室の絵・水景・館内図は、保管庫の `adoptions/`（hall-*・scene-*・museum-section）に採否を記録してから取り込む。水槽の並びと大きさは展示計画（`catalog/exhibit-plan.json`）が正本。計画中の展示室の枠は、館内図にはすでに「準備中」で出ている（`src/content/museum/buildings/<建物>/building.json` の `halls`）。
+
+0. 計画を確かめる: `bun run plan:check` で、開ける展示室の水槽と、そこに置く種（「水槽を待つ」と出ている種）を見る。展示室や水槽を計画から変えるときは、先に展示計画を直し、`building.json` の枠も同じ並びにする。
 
 1. 水槽の雛形を作る: 開ける水槽ごとに `src/content/tanks/<tank-id>/tank.json` を置き、入る魚を `content-drafts/fish/` から `src/content/fish/` へ移す。まだ開けない水槽（魚以外の生き物を待つものなど）は tank.json を置かない。
 2. 水景を取り込む: `AQUARIUM_ASSET_VAULT=~/Documents/aquarium-assets uv run scripts/install-vault-scene.py <tank-id>...`。水景の id は水槽の id と同じ。dots は中央で切り取る前提で構図を作るので、ガラスが画像より横長な水槽には `framing.plateBottom` を自動で入れる。続けて `uv run scripts/build-scene-thumbs.py`。
 3. 展示室を作る: `AQUARIUM_ASSET_VAULT=... uv run scripts/install-vault-hall.py <hall-id>...`。dots が測った緑のガラスの矩形から `room/<hall-id>.json` を書き、絵の緑を塗る。tank.json のない水槽のガラスには、その水槽の水景を暗く焼き込んで準備中として見せる。続けて `uv run scripts/build-room-thumbs.py`。
 4. 中身を作る: 水槽ごとに `terrain.json`（面・遮蔽・回避・隠れ場所）を絵に合わせて書き、`scene.json` の名前・説明・水の色と、`tank.json` の名前・説明・匹数を決める。見える範囲を切り出した絵に地形を重ねた確認画像で合わせる。
-5. `museum.json` の枠の id と展示室の id が同じなら、館内図で開いた展示室として出る。`bun run test`・`bun run build`・`bun run verify:webview` で確かめる。
+5. `building.json` の枠の id と展示室の id が同じなら、館内図で開いた展示室として出る（枠の `displayName` は消してよい）。`bun run test`・`bun run build`・`bun run plan:check`・`bun run verify:webview` で確かめる。
+
+## 建物を足す流れ
+
+1. 展示計画の `buildings` に建物を、`floors` にその建物の階（`buildingId` を付け、階の id は建物名を頭に付けて館全体で重ならないようにする）を足す。
+2. 断面図の絵を作る（1536×1100。本館の断面図を参照画像にして、階の数だけ水の帯を描く。水槽の数・仕切り・生き物は描かない）。原画は保管庫の `consumer/app-originals/museum/<建物>/` に置く。
+3. `src/content/museum/buildings/<建物>/` に `building.json`（`order`、名前、紹介文、`map`、階と `mapArea`、展示室の枠）と `section.webp` を置く。`mapArea` は絵の水の帯の範囲を画素で測って書く（`content.test.ts` が、絵の中に収まり、上から順に並ぶことを確かめる）。
+4. `bun run plan:check` と、館内図の画面（広い画面と 420×912）で、帯の位置と建物の切り替えを確かめる。
 
 ## 画像の条件
 

@@ -1,0 +1,124 @@
+{
+  "id": "freshwater",
+  "order": 3,
+  "displayName": "川と湖の館",
+  "exhibitName": "Rivers & Lakes Pavilion",
+  "description": "世界の川と湖を大陸ごとにたどり、人と水辺の関わりまでを見せる建物です。北の大陸の冷たい川から熱帯の大河、金魚と外来種、両生類と水生昆虫まで、淡水の生き物を掘り下げます。",
+  "map": {
+    "image": "section.webp",
+    "width": 1536,
+    "height": 1100,
+    "focus": {
+      "x": 220,
+      "width": 1170
+    }
+  },
+  "floors": [
+    {
+      "id": "fresh-north",
+      "order": 1,
+      "label": "3階",
+      "shortLabel": "3F",
+      "exhibitLabel": "Floor 3",
+      "displayName": "北の大陸の川と湖",
+      "exhibitName": "Rivers & Lakes of the Northern Continents",
+      "description": "ヨーロッパ、北アメリカ、東アジアとシベリア。四季のある北の大陸の川と湖の魚を、大陸ごとに見せる階です。",
+      "mapArea": {
+        "x": 320,
+        "y": 346,
+        "width": 920,
+        "height": 142
+      },
+      "halls": [
+        {
+          "id": "europe-rivers",
+          "displayName": "ヨーロッパの川と湖"
+        },
+        {
+          "id": "north-america-rivers",
+          "displayName": "北アメリカの川と湖"
+        },
+        {
+          "id": "east-asia-rivers",
+          "displayName": "東アジアの大河とバイカル湖"
+        }
+      ]
+    },
+    {
+      "id": "fresh-tropics",
+      "order": 2,
+      "label": "2階",
+      "shortLabel": "2F",
+      "exhibitLabel": "Floor 2",
+      "displayName": "熱帯の川をもっと",
+      "exhibitName": "More Tropical Rivers",
+      "description": "オリノコ、パンタナル、ナイルとコンゴ、インドとボルネオ、オセアニア。本館で紹介しきれない熱帯と南半球の川と湖を、地域ごとに掘り下げる階です。",
+      "mapArea": {
+        "x": 320,
+        "y": 510,
+        "width": 920,
+        "height": 138
+      },
+      "halls": [
+        {
+          "id": "orinoco-guiana",
+          "displayName": "オリノコとギアナ高地"
+        },
+        {
+          "id": "pantanal-la-plata",
+          "displayName": "パンタナルとラプラタ"
+        },
+        {
+          "id": "west-africa-nile",
+          "displayName": "ナイルとコンゴ、アフリカの大河"
+        },
+        {
+          "id": "india-borneo",
+          "displayName": "インドとボルネオ"
+        },
+        {
+          "id": "australia-new-guinea",
+          "displayName": "オセアニアの川と湖"
+        }
+      ]
+    },
+    {
+      "id": "fresh-people",
+      "order": 3,
+      "label": "1階",
+      "shortLabel": "1F",
+      "exhibitLabel": "Floor 1",
+      "displayName": "人と水辺",
+      "exhibitName": "People & the Waterside",
+      "description": "金魚と錦鯉、外来種、両生類、水生昆虫、変わった力をもつ魚。人の暮らしのそばにいる水の生き物と、その不思議を見せる階です。",
+      "mapArea": {
+        "x": 320,
+        "y": 670,
+        "width": 920,
+        "height": 122
+      },
+      "halls": [
+        {
+          "id": "ornamental",
+          "displayName": "金魚と錦鯉"
+        },
+        {
+          "id": "invasive",
+          "displayName": "外来種の水辺"
+        },
+        {
+          "id": "amphibians",
+          "displayName": "両生類"
+        },
+        {
+          "id": "aquatic-insects",
+          "displayName": "水生昆虫と田んぼの小さな生き物"
+        },
+        {
+          "id": "special-abilities",
+          "displayName": "変わった力をもつ魚"
+        }
+      ]
+    }
+  ]
+}

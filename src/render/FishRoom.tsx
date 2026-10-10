@@ -9,7 +9,7 @@ import {
   type FishInstance,
 } from "../core";
 import type { FishRoomDefinition, RoomRect } from "../core/room";
-import { getFloorOfHall, getWindowOverscan } from "../core/museum";
+import { getFloorOfHall, getFloorPlaceLabel, getWindowOverscan } from "../core/museum";
 import { perfEnd, perfStart, registerPerfApp } from "./perfProbe";
 import { reportRenderProblem, watchContextLoss, watchSetup } from "./renderProblems";
 import { getScenePlateUrl, getRoomImageUrl, loadTexture } from "./assets";
@@ -478,7 +478,7 @@ export function FishRoom({
       <header className="room-heading">
         <p className="room-eyebrow">{floor ? `${floor.exhibitLabel} · ${floor.exhibitName}` : "Tropical Aquarium"} <span>— {count} habitats, {species} species</span></p>
         <h1>{fishRoom.displayName}</h1>
-        <p className="room-lede">{floor ? `${floor.label}「${floor.displayName}」 · ` : ""}水槽を選ぶと、近くで眺められます</p>
+        <p className="room-lede">{floor ? `${getFloorPlaceLabel(floor)}「${floor.displayName}」 · ` : ""}水槽を選ぶと、近くで眺められます</p>
       </header>
       {/* 左端から始まるスワイプは Safari の「戻る」に使われるので、部屋のスクロールに渡さない。 */}
       <div aria-hidden="true" className="edge-guard" />

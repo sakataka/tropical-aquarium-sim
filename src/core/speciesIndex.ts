@@ -1,5 +1,5 @@
 import { addSpecies, fishCatalog } from "./catalog";
-import { getFloorOfHall, getHallOfTank, getTankSummary, type HallSummary, type TankSummary } from "./museum";
+import { getFloorOfHall, getFloorPlaceLabel, getHallOfTank, getTankSummary, type HallSummary, type TankSummary } from "./museum";
 import type { SpeciesIndexEntry } from "./speciesIndexEntry";
 import type { FishSpeciesDefinition } from "./types";
 
@@ -31,7 +31,8 @@ export function getSpeciesExhibits(entry: Pick<SpeciesIndexEntry, "tankIds">): S
     const tank = getTankSummary(tankId);
     if (!tank) return [];
     const hall = getHallOfTank(tankId);
-    return [{ tank, hall, floorLabel: getFloorOfHall(hall.id)?.label }];
+    const floor = getFloorOfHall(hall.id);
+    return [{ tank, hall, floorLabel: floor && getFloorPlaceLabel(floor) }];
   });
 }
 

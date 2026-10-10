@@ -2,13 +2,15 @@ import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import type { Plugin, ViteDevServer } from "vite";
 import {
-  museumSchema,
+  buildingSchema,
+  museumHeaderSchema,
   roomSchema,
   sceneHeaderSchema,
   sceneTerrainSchema,
   tankSchema,
   type FishRoomDefinition,
   type MuseumDefinition,
+  type MuseumFloor,
   type SceneHeader,
 } from "../src/core/contentSchemas";
 import type { HallLayout, HallSummary, SceneSummary, TankSummary } from "../src/core/contentTypes";
@@ -20,7 +22,7 @@ import type { FishSpeciesDefinition, TankDefinition } from "../src/core/types";
 // 内容ファイル（src/content/）を読み、形と参照を検証して、アプリが読むモジュールを作る。
 // 中央の一覧ファイルを手で書かず、展示室・水槽・水景・生き物のフォルダを置けば載る。
 //
-// - virtual:museum        起動時に読む館の索引。館内図の階と、展示室・水槽の見出しだけを持ち、
+// - virtual:museum        起動時に読む館の索引。館内図の建物と階、展示室・水槽の見出しだけを持ち、
 //                         生き物の数では増えない（展示室と水槽の数に比例する）。
 // - virtual:floor/<id>    階の配置。部屋の絵のガラスの位置と、その階の水景の縮小版・既定の照明。
 //                         館内図でその階を開くときと、その階の展示室に入るときに読む。
@@ -35,7 +37,9 @@ const PREFIX = "virtual:";
 
 type ContentModel = {
   museum: MuseumDefinition;
-  /** 館内図の順（上の階から、階の中は左から）。 */
+  /** すべての階。建物の順、建物の中は上から。 */
+  floors: MuseumFloor[];
+  /** 館内図の順（建物の順、上の階から、階の中は並べた順）。 */
   halls: FishRoomDefinition[];
   tanks: Map<string, TankDefinition>;
   tankHall: Map<string, string>;
@@ -75,8 +79,28 @@ function folders(dir: string, file: string): string[] {
 export function readContent(contentDir: string): ContentModel {
   const files: string[] = [];
   const museumFile = join(contentDir, "museum/museum.json");
-  const museumData = parse(museumFile, files, (value) => museumSchema.parse(value));
-  const museum = { ...museumData, floors: [...museumData.floors].sort((a, b) => a.order - b.order) };
+  const header = parse(museumFile, files, (value) => museumHeaderSchema.parse(value));
+  // 建物は museum/buildings/<id>/building.json に1つずつ置く。フォルダを足せば建物が増える。
+  const buildingDir = join(contentDir, "museum/buildings");
+  const buildings = folders(buildingDir, "building.json").map((id) => {
+    const file = join(buildingDir, id, "building.json");
+    const building = parse(file, files, (value) => buildingSchema.parse(value));
+    if (building.id !== id) throw new ContentError(file, `building id "${building.id}" must match its folder`);
+    if (!existsSync(join(buildingDir, id, building.map.image))) throw new ContentError(file, `image not found: ${building.map.image}`);
+    return {
+      ...building,
+      floors: [...building.floors].sort((a, b) => a.order - b.order).map((floor) => ({ ...floor, buildingId: id })),
+    };
+  }).sort((a, b) => a.order - b.order);
+  if (buildings.length === 0) throw new ContentError(buildingDir, "no buildings found");
+  const museum: MuseumDefinition = { ...header, buildings };
+  const floors = buildings.flatMap((building) => building.floors);
+  // 階と展示室の id は URL に使うので、建物をまたいでも重ならないようにする。
+  const duplicate = (ids: string[]) => ids.find((id, index) => ids.indexOf(id) !== index);
+  const sameFloor = duplicate(floors.map((floor) => floor.id));
+  if (sameFloor) throw new ContentError(buildingDir, `floor "${sameFloor}" is defined more than once`);
+  const sameSlot = duplicate(floors.flatMap((floor) => floor.halls.map((hall) => hall.id)));
+  if (sameSlot) throw new ContentError(buildingDir, `hall "${sameSlot}" is placed more than once`);
 
   const roomDir = join(contentDir, "room");
   const rooms = new Map<string, FishRoomDefinition>();
@@ -87,9 +111,9 @@ export function readContent(contentDir: string): ContentModel {
     if (!existsSync(join(roomDir, room.image))) throw new ContentError(file, `image not found: ${room.image}`);
     rooms.set(room.id, room);
   }
-  const slotIds = museum.floors.flatMap((floor) => floor.halls.map((hall) => hall.id));
+  const slotIds = floors.flatMap((floor) => floor.halls.map((hall) => hall.id));
   for (const room of rooms.values()) {
-    if (!slotIds.includes(room.id)) throw new ContentError(museumFile, `room "${room.id}" is not placed on any floor`);
+    if (!slotIds.includes(room.id)) throw new ContentError(buildingDir, `room "${room.id}" is not placed on any floor`);
   }
   const halls = slotIds.flatMap((id) => rooms.get(id) ?? []);
 
@@ -148,7 +172,7 @@ export function readContent(contentDir: string): ContentModel {
   }
   if (halls.length === 0) throw new ContentError(roomDir, "no rooms found");
 
-  return { museum, halls, tanks, tankHall, scenes, species, files };
+  return { museum, floors, halls, tanks, tankHall, scenes, species, files };
 }
 
 /** モジュールのコードを組み立てる。画像の URL は Vite に解決させるため import にする。 */
@@ -202,7 +226,7 @@ function museumModule(model: ContentModel, contentDir: string): string {
     return { id: tank.id, hallId: room.id, displayName: tank.displayName, sceneIds: tank.sceneIds };
   }));
   // 階の生き物の数（同じ生き物を数えない）。展示室ごとの数を足すと、階の中で重なる種を数え直してしまう。
-  const floorSpeciesCounts = Object.fromEntries(model.museum.floors.map((floor) => [floor.id, new Set(
+  const floorSpeciesCounts = Object.fromEntries(model.floors.map((floor) => [floor.id, new Set(
     model.halls.filter((room) => floorOf(model, room.id) === floor.id).flatMap((room) => room.tanks.flatMap((placement) =>
       model.tanks.get(placement.tankId)!.species.map((slot) => slot.speciesId))),
   ).size]));
@@ -212,21 +236,22 @@ function museumModule(model: ContentModel, contentDir: string): string {
     `export const halls = ${out.literal(halls)};`,
     `export const floorSpeciesCounts = ${out.literal(floorSpeciesCounts)};`,
     `export const tanks = ${out.literal(tanks)};`,
-    `export const mapImageUrl = ${out.literal(out.url(contentPath(`museum/${model.museum.map.image}`)))};`,
+    `export const mapImageUrls = ${out.literal(Object.fromEntries(model.museum.buildings.map((building) =>
+      [building.id, out.url(contentPath(`museum/buildings/${building.id}/${building.map.image}`))])))};`,
     `export const defaultTankId = ${JSON.stringify(firstTank.id)};`,
     `export const hallLoaders = {${model.halls.map((room) =>
       `${JSON.stringify(room.id)}: () => import(${JSON.stringify(`${PREFIX}hall/${room.id}`)})`).join(",")}};`,
-    `export const floorLoaders = {${model.museum.floors.map((floor) =>
+    `export const floorLoaders = {${model.floors.map((floor) =>
       `${JSON.stringify(floor.id)}: () => import(${JSON.stringify(`${PREFIX}floor/${floor.id}`)})`).join(",")}};`,
   ]);
 }
 
 function floorOf(model: ContentModel, hallId: string): string {
-  return model.museum.floors.find((floor) => floor.halls.some((hall) => hall.id === hallId))!.id;
+  return model.floors.find((floor) => floor.halls.some((hall) => hall.id === hallId))!.id;
 }
 
 function floorModule(model: ContentModel, contentDir: string, floorId: string): string {
-  if (!model.museum.floors.some((floor) => floor.id === floorId)) throw new Error(`Unknown floor: ${floorId}`);
+  if (!model.floors.some((floor) => floor.id === floorId)) throw new Error(`Unknown floor: ${floorId}`);
   const out = new ModuleWriter();
   const rooms = model.halls.filter((room) => floorOf(model, room.id) === floorId);
   const halls: HallLayout[] = rooms.map((room) => ({
@@ -334,7 +359,11 @@ function sourceFiles(model: ContentModel, contentDir: string, name: string): str
   if (name.startsWith("hall/")) return ofHalls(model.halls.filter((item) => item.id === name.slice("hall/".length)), true);
   if (name.startsWith("floor/")) {
     const floorId = name.slice("floor/".length);
-    return [join(contentDir, "museum/museum.json"), ...ofHalls(model.halls.filter((item) => floorOf(model, item.id) === floorId), false)];
+    const building = model.floors.find((floor) => floor.id === floorId)?.buildingId;
+    return [
+      ...(building ? [join(contentDir, "museum/buildings", building, "building.json")] : []),
+      ...ofHalls(model.halls.filter((item) => floorOf(model, item.id) === floorId), false),
+    ];
   }
   // 館の索引と図鑑の見出しは、全体から作る。画像の URL の一覧は、ファイルの有無だけで決まる。
   return name === "fish-images" ? [] : model.files;

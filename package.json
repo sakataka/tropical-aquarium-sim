@@ -17,7 +17,8 @@
     "test:fuzz": "TEST_SEED=random vitest run",
     "verify:webview": "bun run scripts/verify-webview.ts",
     "measure:perf": "bun run scripts/measure-performance.ts",
-    "compare:render": "bun run scripts/compare-render.ts"
+    "compare:render": "bun run scripts/compare-render.ts",
+    "plan:check": "bun run scripts/check-exhibit-plan.ts"
   },
   "dependencies": {
     "@fontsource/cormorant-garamond": "^5.3.0",

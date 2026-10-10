@@ -1,3 +1,5 @@
+import { OPEN_HALLS } from "./museum-content";
+
 // 2つのビルドの展示室の絵を、画素単位で比べる。描画の作りを変えたとき（体の変形の計算を速くする、描き方を整理するなど）に、
 // 絵が変わっていないことを確かめる。
 //
@@ -16,8 +18,8 @@ const VIEWPORT = { width: 420, height: 912 };
 /** 絵を読み出すまでに進めるフレーム数（前回からの追加）。読み込み直後、4秒後、14秒後。 */
 const CHECKPOINTS = [3, 240, 600];
 
-const museumJson = await Bun.file("src/content/museum/museum.json").json() as { floors: { halls: { id: string }[] }[] };
-const HALLS = museumJson.floors.flatMap((floor) => floor.halls.map((hall) => hall.id));
+// 開いている展示室だけを比べる（準備中の枠は絵がない）。
+const HALLS = OPEN_HALLS;
 const only = Bun.argv.find((arg) => arg.startsWith("--halls="))?.slice("--halls=".length).split(",");
 for (const id of only ?? []) if (!HALLS.includes(id)) throw new Error(`unknown hall: ${id}`);
 const [before, after = "dist"] = Bun.argv.slice(2).filter((arg) => !arg.startsWith("--"));

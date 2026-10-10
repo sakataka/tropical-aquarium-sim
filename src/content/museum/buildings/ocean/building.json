@@ -1,0 +1,172 @@
+{
+  "id": "ocean",
+  "order": 2,
+  "displayName": "海の館",
+  "exhibitName": "Ocean Pavilion",
+  "description": "世界の海を広く、深く見せる建物です。上の階ほど浅く明るい海、下の階ほど深く暗い海になり、サンゴ礁から岸辺、外洋、背骨のない生き物、深海へと下りていきます。",
+  "map": {
+    "image": "section.webp",
+    "width": 1536,
+    "height": 1100,
+    "focus": {
+      "x": 220,
+      "width": 1170
+    }
+  },
+  "floors": [
+    {
+      "id": "ocean-reefs",
+      "order": 1,
+      "label": "3階",
+      "shortLabel": "3F",
+      "exhibitLabel": "Floor 3",
+      "displayName": "サンゴ礁の世界",
+      "exhibitName": "Coral Reefs of the World",
+      "description": "太陽の光がよく届く、浅く暖かい海。西太平洋、紅海とインド洋、カリブ海のサンゴ礁を、魚のなかまと地域の両方から見比べる階です。",
+      "mapArea": {
+        "x": 320,
+        "y": 272,
+        "width": 920,
+        "height": 132
+      },
+      "halls": [
+        {
+          "id": "butterflies-and-angels",
+          "displayName": "チョウチョウウオとヤッコ"
+        },
+        {
+          "id": "wrasses-and-damsels",
+          "displayName": "ベラ・ブダイ・スズメダイ"
+        },
+        {
+          "id": "red-sea-indian-ocean",
+          "displayName": "紅海とインド洋"
+        },
+        {
+          "id": "caribbean",
+          "displayName": "カリブ海と西大西洋"
+        }
+      ]
+    },
+    {
+      "id": "ocean-shores",
+      "order": 2,
+      "label": "2階",
+      "shortLabel": "2F",
+      "exhibitLabel": "Floor 2",
+      "displayName": "世界の岸辺",
+      "exhibitName": "Shores of the World",
+      "description": "潮だまり、藻場、内湾、漁場。人がいちばんよく出会う岸辺の海を、日本、ヨーロッパ、北大西洋、極地で見比べる階です。食卓の魚もここにいます。",
+      "mapArea": {
+        "x": 320,
+        "y": 424,
+        "width": 920,
+        "height": 118
+      },
+      "halls": [
+        {
+          "id": "japan-tidepools",
+          "displayName": "潮だまりと藻場"
+        },
+        {
+          "id": "japan-coastal",
+          "displayName": "日本の沿岸と食卓の魚"
+        },
+        {
+          "id": "european-seas",
+          "displayName": "ヨーロッパの海"
+        },
+        {
+          "id": "north-atlantic-polar",
+          "displayName": "北大西洋と極地の海"
+        }
+      ]
+    },
+    {
+      "id": "ocean-pelagic",
+      "order": 3,
+      "label": "1階",
+      "shortLabel": "1F",
+      "exhibitLabel": "Ground Floor",
+      "displayName": "外洋",
+      "exhibitName": "The Open Ocean",
+      "description": "岸も底も見えない青い海。泳ぎ続けるマグロやカジキ、サメとエイを、壁一面の大水槽で見せる階です。",
+      "mapArea": {
+        "x": 320,
+        "y": 562,
+        "width": 920,
+        "height": 148
+      },
+      "halls": [
+        {
+          "id": "open-ocean",
+          "displayName": "外洋の回遊魚"
+        },
+        {
+          "id": "sharks-and-rays",
+          "displayName": "サメとエイ"
+        }
+      ]
+    },
+    {
+      "id": "ocean-invertebrates",
+      "order": 4,
+      "label": "地下1階",
+      "shortLabel": "B1",
+      "exhibitLabel": "Basement 1",
+      "displayName": "背骨のない生き物",
+      "exhibitName": "Life Without a Backbone",
+      "description": "クラゲ、エビとカニ、貝とタコとイカ、サンゴとヒトデ。海の生き物の大部分を占める無脊椎動物を、体のつくりごとに間近で見せる階です。",
+      "mapArea": {
+        "x": 320,
+        "y": 734,
+        "width": 920,
+        "height": 128
+      },
+      "halls": [
+        {
+          "id": "jelly-gallery",
+          "displayName": "クラゲ"
+        },
+        {
+          "id": "crustaceans",
+          "displayName": "エビ・カニ・ヤドカリ"
+        },
+        {
+          "id": "molluscs",
+          "displayName": "貝・ウミウシ・タコ・イカ"
+        },
+        {
+          "id": "cnidarians-echinoderms",
+          "displayName": "サンゴ・イソギンチャク・ヒトデ"
+        }
+      ]
+    },
+    {
+      "id": "ocean-deep",
+      "order": 5,
+      "label": "地下2階",
+      "shortLabel": "B2",
+      "exhibitLabel": "Basement 2",
+      "displayName": "深い海",
+      "exhibitName": "The Deep Sea",
+      "description": "太陽の光が届かない海。日本の深海の底と、暗闇・熱水・鯨の骨に頼って暮らす生き物を見せる、館でいちばん深い階です。",
+      "mapArea": {
+        "x": 320,
+        "y": 880,
+        "width": 920,
+        "height": 120
+      },
+      "halls": [
+        {
+          "id": "japan-deep-sea",
+          "displayName": "日本の深海"
+        },
+        {
+          "id": "sunless-sea",
+          "displayName": "光のない海のくらし"
+        }
+      ]
+    }
+  ]
+}

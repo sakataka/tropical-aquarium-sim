@@ -14,7 +14,8 @@ declare module "virtual:museum" {
   /** 階ごとの、見られる生き物の数（同じ生き物を数えない）。 */
   export const floorSpeciesCounts: Record<string, number>;
   export const tanks: import("./core/contentTypes").TankSummary[];
-  export const mapImageUrl: string;
+  /** 建物ごとの断面図の絵。 */
+  export const mapImageUrls: Record<string, string>;
   export const defaultTankId: string;
   export const hallLoaders: Record<string, () => Promise<import("./core/contentTypes").HallModule>>;
   export const floorLoaders: Record<string, () => Promise<import("./core/contentTypes").FloorModule>>;

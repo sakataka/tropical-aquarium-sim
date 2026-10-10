@@ -1,3 +1,5 @@
+import { BUILDINGS, FLOORS, HALL_ORDER } from "./museum-content";
+
 // A free port chosen by the OS, so this check never collides with a LocalWeb app's dev server.
 const probe = Bun.serve({ hostname: "127.0.0.1", port: 0, fetch: () => new Response() });
 const PORT = probe.port;
@@ -10,10 +12,8 @@ const STATE_KEY = "tropical-aquarium.state.v5.r2";
 // 展示室・水槽の名前や数は、内容ファイルから読む（展示室を開けるたびに書き換えずに済むように）。
 type RoomJson = { id: string; order: number; displayName: string; image?: string; tanks: { tankId: string }[] };
 type TankJson = { id: string; displayName: string; sceneIds: string[]; species: { speciesId: string }[]; defaultStock: { speciesId: string; count: number }[] };
-const museumJson = await Bun.file("src/content/museum/museum.json").json() as { floors: { id: string; halls: { id: string }[] }[] };
 const ROOMS: RoomJson[] = [];
 for await (const path of new Bun.Glob("src/content/room/*.json").scan()) ROOMS.push(await Bun.file(path).json());
-const HALL_ORDER = museumJson.floors.flatMap((floor) => floor.halls.map((hall) => hall.id));
 ROOMS.sort((a, b) => HALL_ORDER.indexOf(a.id) - HALL_ORDER.indexOf(b.id));
 const TANKS = new Map<string, TankJson>();
 for await (const path of new Bun.Glob("src/content/tanks/*/tank.json").scan()) {
@@ -87,7 +87,7 @@ const ASIA_HALL = roomOf("asia-60");
 
 type Result = {
   title: string;
-  map: { floors: number; zones: number; halls: string[]; soonHalls: number; previews: number; firstLastHall: boolean; overflowWidth: number };
+  map: { buildings: number; floors: number; zones: number; halls: string[]; soonHalls: number; previews: number; firstLastHall: boolean; overflowWidth: number };
   history: string[];
   zukan: string[];
   roomTanks: number;
@@ -481,7 +481,7 @@ async function main() {
 
     assert(title.includes("熱帯魚"));
     // 館内図は上の階から並ぶ。開いている展示室には縮小版を映し、ほかの枠は準備中。
-    assert(map.floors === museumJson.floors.length && map.zones === museumJson.floors.length
+    assert(map.floors === BUILDINGS[0]!.floors.length && map.zones === BUILDINGS[0]!.floors.length && map.buildings === (BUILDINGS.length > 1 ? BUILDINGS.length : 0)
       && JSON.stringify(map.halls) === JSON.stringify(ROOMS.map((room) => room.displayName))
       && map.soonHalls === HALL_ORDER.length - ROOMS.length && map.previews === ROOMS.length && !map.firstLastHall && map.overflowWidth === 0);
     assert(history.length === 9);
@@ -584,7 +584,7 @@ async function verifyHalls(consoleErrors: string[]) {
     await view.navigate(BASE_URL);
     await sleep(2000);
     assert(await view.evaluate(`document.querySelector('.map-resume')?.textContent?.includes(${JSON.stringify(roomOf("reef-120").displayName)})
-      && !!document.querySelector('.map-floor[data-floor="${floorOf(roomOf("reef-120").id)}"] .hall-last')`));
+      && !!document.querySelector('.map-floor[data-floor="${floorOf(roomOf("reef-120").id).id}"] .hall-last')`));
   }
   return results;
 }
@@ -699,45 +699,76 @@ async function verifyNewFish(view: Bun.WebView, tankId: string, species: [string
   return checked;
 }
 
-// 館内図の1段目（断面図とフロアガイド）を確かめてから、階を1つずつ開いて展示室の一覧と縮小版を数え、1段目へ戻る。
+// 館内図の1段目（建物の断面図とフロアガイド）を確かめてから、建物ごとに階を1つずつ開いて展示室の一覧と縮小版を数え、
+// 最初の建物の1段目へ戻る。
 async function mapSummary(view: Bun.WebView, screenshot?: string) {
-  assert(await view.evaluate(`!!document.querySelector('.museum-map') && !document.querySelector('.floor-view') && location.search === ''`));
+  const atOverview = (building: (typeof BUILDINGS)[number]) => view.evaluate(`!!document.querySelector('.museum-map')
+    && !document.querySelector('.floor-view') && location.search === '${building === BUILDINGS[0] ? "" : `?building=${building.id}`}'`);
+  assert(await atOverview(BUILDINGS[0]!));
   const overview = await view.evaluate(`({
+    buildings: document.querySelectorAll('.map-buildings button').length,
     floors: document.querySelectorAll('.map-floor').length,
     zones: document.querySelectorAll('.map-zone').length,
     firstLastHall: !!document.querySelector('.map-resume') || !!document.querySelector('.map-floor .hall-last'),
     overflowWidth: document.documentElement.scrollWidth - document.documentElement.clientWidth,
-  })`) as Pick<Result["map"], "floors" | "zones" | "firstLastHall" | "overflowWidth">;
+  })`) as Pick<Result["map"], "buildings" | "floors" | "zones" | "firstLastHall" | "overflowWidth">;
   const halls: string[] = [];
   let soonHalls = 0;
   let previews = 0;
   let overflowWidth = overview.overflowWidth;
-  for (const [index, floor] of museumJson.floors.entries()) {
-    await view.evaluate(`(document.querySelector('.map-floor[data-floor="${floor.id}"] button')
-      ?? document.querySelectorAll('.floor-switch button')[${index}])?.click()`);
-    await sleep(1200);
-    const result = await view.evaluate(`({
-      search: location.search,
-      halls: [...document.querySelectorAll('.hall-card:not(.soon) strong')].map((item) => item.textContent),
-      soon: document.querySelectorAll('.hall-card.soon').length,
-      previews: document.querySelectorAll('.hall-card .hall-preview').length,
+  let opened = 0;
+  for (const building of BUILDINGS) {
+    // 建物の切り替えは履歴を増やさず、断面図とフロアガイドがその建物のものに替わる。
+    if (building !== BUILDINGS[0]) {
+      await view.evaluate(`document.querySelector('.map-buildings button[data-building="${building.id}"]')?.click()`);
+      await sleep(700);
+    }
+    assert(await atOverview(building));
+    const shown = await view.evaluate(`({
+      floors: [...document.querySelectorAll('.map-floor')].map((item) => item.dataset.floor),
+      zones: document.querySelectorAll('.map-zone').length,
+      current: document.querySelector('.map-buildings button[aria-current="page"]')?.dataset.building ?? null,
       overflowWidth: document.documentElement.scrollWidth - document.documentElement.clientWidth,
-    })`) as { search: string; halls: string[]; soon: number; previews: number; overflowWidth: number };
-    assert(result.search === `?floor=${floor.id}`);
-    halls.push(...result.halls);
-    soonHalls += result.soon;
-    previews += result.previews;
-    overflowWidth = Math.max(overflowWidth, result.overflowWidth);
-    if (screenshot && index === 2) await Bun.write(`${SCREENSHOT_DIR}/${screenshot}`, await view.screenshot({ format: "png" }));
+    })`) as { floors: string[]; zones: number; current: string | null; overflowWidth: number };
+    assert(JSON.stringify(shown.floors) === JSON.stringify(building.floors.map((floor) => floor.id)) && shown.zones === building.floors.length);
+    assert(BUILDINGS.length === 1 ? shown.current === null : shown.current === building.id);
+    overflowWidth = Math.max(overflowWidth, shown.overflowWidth);
+    for (const floor of building.floors) {
+      await view.evaluate(`(document.querySelector('.map-floor[data-floor="${floor.id}"] button')
+        ?? document.querySelector('.floor-switch button[data-floor="${floor.id}"]'))?.click()`);
+      await sleep(1200);
+      const result = await view.evaluate(`({
+        search: location.search,
+        switchFloors: [...document.querySelectorAll('.floor-switch button')].map((item) => item.dataset.floor),
+        halls: [...document.querySelectorAll('.hall-card:not(.soon) strong')].map((item) => item.textContent),
+        soon: document.querySelectorAll('.hall-card.soon').length,
+        previews: document.querySelectorAll('.hall-card .hall-preview').length,
+        overflowWidth: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+      })`) as { search: string; switchFloors: string[]; halls: string[]; soon: number; previews: number; overflowWidth: number };
+      assert(result.search === `?floor=${floor.id}`);
+      // 階の切り替えに並ぶのは、その建物の階だけ。
+      assert(JSON.stringify(result.switchFloors) === JSON.stringify(building.floors.map((item) => item.id)));
+      halls.push(...result.halls);
+      soonHalls += result.soon;
+      previews += result.previews;
+      overflowWidth = Math.max(overflowWidth, result.overflowWidth);
+      if (screenshot && opened === 2) await Bun.write(`${SCREENSHOT_DIR}/${screenshot}`, await view.screenshot({ format: "png" }));
+      opened += 1;
+    }
+    // 階の一覧から Esc で、その建物の1段目へ戻る。隣の階への切り替えは履歴を増やさない。
+    await view.evaluate(`window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }))`);
+    await sleep(700);
+    assert(await atOverview(building));
   }
-  // 階の一覧から Esc で1段目へ戻る。隣の階への切り替えは履歴を増やさない。
-  await view.evaluate(`window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }))`);
-  await sleep(700);
-  assert(await view.evaluate(`!!document.querySelector('.museum-map') && !document.querySelector('.floor-view') && location.search === ''`));
+  if (BUILDINGS.length > 1) {
+    await view.evaluate(`document.querySelector('.map-buildings button[data-building="${BUILDINGS[0]!.id}"]')?.click()`);
+    await sleep(700);
+  }
+  assert(await atOverview(BUILDINGS[0]!));
   return { ...overview, halls, soonHalls, previews, overflowWidth };
 }
 
-const floorOf = (hallId: string) => museumJson.floors.find((floor) => floor.halls.some((hall) => hall.id === hallId))!.id;
+const floorOf = (hallId: string) => FLOORS.find((floor) => floor.halls.some((hall) => hall.id === hallId))!;
 
 // 展示室を開く。館内図にいなければ Esc で館内図（その階の一覧）へ戻り、展示室の階を開いてから選ぶ。
 async function openHall(view: Bun.WebView, name: string) {
@@ -746,11 +777,23 @@ async function openHall(view: Bun.WebView, name: string) {
     await sleep(900);
   }
   const room = ROOMS.find((item) => item.displayName === name)!;
-  const floorId = floorOf(room.id);
-  const floorIndex = museumJson.floors.findIndex((floor) => floor.id === floorId);
+  const floor = floorOf(room.id);
   if (!await view.evaluate(`!!document.querySelector('.hall-card[data-hall="${room.id}"]')`)) {
-    await view.evaluate(`(document.querySelector('.map-floor[data-floor="${floorId}"] button')
-      ?? document.querySelectorAll('.floor-switch button')[${floorIndex}])?.click()`);
+    // 同じ建物の階の一覧にいれば、上の切り替えで移る。ほかの建物なら、1段目へ戻って建物を選んでから階を開く。
+    const switched = await view.evaluate(`(() => {
+      const button = document.querySelector('.floor-switch button[data-floor="${floor.id}"]');
+      button?.click();
+      return Boolean(button);
+    })()`);
+    if (!switched) {
+      if (await view.evaluate(`!!document.querySelector('.floor-view')`)) {
+        await view.evaluate(`window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }))`);
+        await sleep(700);
+      }
+      await view.evaluate(`document.querySelector('.map-buildings button[data-building="${floor.buildingId}"]')?.click()`);
+      await sleep(500);
+      await view.evaluate(`document.querySelector('.map-floor[data-floor="${floor.id}"] button')?.click()`);
+    }
     await sleep(800);
   }
   const clicked = await view.evaluate(`(() => {
@@ -801,7 +844,7 @@ async function verifyHistory(consoleErrors: string[]) {
   await clickButtonByText(view, "館内図");
   await sleep(1200);
   steps.push(await where());
-  const floor = floorOf(reef.id);
+  const floor = floorOf(reef.id).id;
   assert(JSON.stringify(steps) === JSON.stringify([
     `?hall=${reef.id} ${reef.id}`, "?tank=reef-120 tank", `?tank=${next} tank`,
     `?hall=${reef.id} ${reef.id}`, `?floor=${floor} floor`, " map", `?floor=${floor} floor`, `?hall=${reef.id} ${reef.id}`,
@@ -813,7 +856,7 @@ async function verifyHistory(consoleErrors: string[]) {
   assert(await view.evaluate(`document.querySelector('.room-scroll.ready')?.dataset.room === ${JSON.stringify(reef.id)}`));
   await view.navigate(`${BASE_URL}?floor=${floor}`);
   await sleep(1500);
-  assert(await view.evaluate(`document.querySelectorAll('.hall-card[data-hall] .hall-preview').length === ${ROOMS.filter((room) => floorOf(room.id) === floor).length}`));
+  assert(await view.evaluate(`document.querySelectorAll('.hall-card[data-hall] .hall-preview').length === ${ROOMS.filter((room) => floorOf(room.id).id === floor).length}`));
   return steps;
 }
 

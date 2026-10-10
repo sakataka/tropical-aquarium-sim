@@ -84,6 +84,9 @@ button:focus-visible, input:focus-visible, select:focus-visible {
   min-height: 100%;
 }
 .map-heading { grid-area: heading; padding: 24px 0 22px; }
+/* 建物の切り替えがあるときは、断面図を低くして画面の高さに収める。切り替えの行（85px）と、
+   下の 170px が見出しの実寸（約230px）より小さい分を合わせて引く。 */
+.map-layout:has(.map-buildings) { --buildings-height: 144px; }
 .map-eyebrow {
   margin: 0;
   color: var(--brass);
@@ -101,6 +104,50 @@ button:focus-visible, input:focus-visible, select:focus-visible {
 }
 .map-lede { margin: 12px 0 0; color: var(--muted); font-size: 12.5px; letter-spacing: 0.06em; line-height: 1.8; }
 .map-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+/* 建物の切り替え。建物が複数あるときだけ出す。断面図とフロアガイドが、選んだ建物のものに替わる。 */
+.map-buildings {
+  display: flex;
+  gap: 4px;
+  width: fit-content;
+  max-width: 100%;
+  margin-top: 20px;
+  padding: 3px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(2, 12, 14, 0.45);
+}
+.map-buildings button {
+  display: grid;
+  justify-items: start;
+  gap: 2px;
+  min-width: 0;
+  min-height: 48px;
+  padding: 6px 18px 7px;
+  border: 1px solid transparent;
+  border-radius: 11px;
+  background: transparent;
+  color: var(--muted);
+  text-align: left;
+  transition: background 0.3s, border-color 0.3s, color 0.3s;
+}
+.map-buildings button span {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  white-space: nowrap;
+}
+.map-buildings button small { color: var(--faint); font-size: 10.5px; letter-spacing: 0.06em; white-space: nowrap; }
+.map-buildings button:hover { background: var(--surface); color: var(--ink); }
+.map-buildings button[aria-current="page"] {
+  border-color: rgba(214, 192, 143, 0.45);
+  background: rgba(214, 192, 143, 0.1);
+  color: var(--ink);
+  cursor: default;
+}
+.map-buildings button[aria-current="page"] small { color: var(--accent); }
+/* 建物を替えたときは、断面図とフロアガイドだけを出し直す。 */
+.map-swap { animation: map-in 0.45s var(--ease-out) both; }
 
 /* 断面図。絵の画素で決めた階の範囲を、割合で重ねる。 */
 .map-plate {
@@ -108,7 +155,7 @@ button:focus-visible, input:focus-visible, select:focus-visible {
   position: relative;
   width: min(
     calc(100vw - var(--safe-left) - var(--safe-right) - var(--guide-width) - var(--map-gap) - 32px),
-    calc((100dvh - var(--safe-top) - var(--safe-bottom) - 170px) * var(--map-ratio)),
+    calc((100dvh - var(--safe-top) - var(--safe-bottom) - 170px - var(--buildings-height, 0px)) * var(--map-ratio)),
     1500px
   );
   aspect-ratio: var(--map-aspect);
@@ -187,6 +234,20 @@ button:focus-visible, input:focus-visible, select:focus-visible {
   list-style: none;
   border-top: 1px solid var(--line);
 }
+/* フロアガイドの先頭に、選んだ建物の名前と紹介を出す。 */
+.map-building-note { display: grid; gap: 5px; padding: 14px 4px 14px 0; border-bottom: 1px solid var(--line); }
+.map-building-note strong {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 2px 12px;
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+}
+.map-building-note em { color: var(--brass); font-family: var(--font-latin); font-size: 15px; letter-spacing: 0.02em; }
+.map-building-note span { color: var(--muted); font-size: 11.5px; letter-spacing: 0.04em; line-height: 1.7; }
 .map-floor {
   position: relative;
   border-bottom: 1px solid var(--line);
@@ -419,9 +480,14 @@ button.hall-card:hover {
 .hall-card-text small { color: var(--accent); font-size: 11.5px; letter-spacing: 0.08em; }
 .hall-tanks { color: var(--muted); font-size: 11.5px; line-height: 1.65; }
 .hall-card.soon { border-style: dashed; border-color: var(--line); background: transparent; color: var(--faint); }
+/* 準備中の枠は、縮小版の窓を持たない低いカードにする（準備中の展示室が並ぶ階が、空の窓で埋まらないように）。
+   開いている展示室と同じ行では、行の高さまで伸びる。 */
+.hall-card.soon { grid-template-rows: 1fr auto; }
 .hall-card.soon .hall-card-view {
   display: grid;
   place-items: center;
+  aspect-ratio: auto;
+  min-height: 56px;
   background: rgba(1, 8, 10, 0.35);
   font-size: 11px;
   letter-spacing: 0.24em;
@@ -464,6 +530,9 @@ button.hall-card:hover {
   }
   .map-heading { padding: 40px 0 22px; text-align: center; }
   .map-actions { justify-content: center; }
+  .map-buildings { margin-inline: auto; }
+  .map-buildings button { flex: 1 1 0; justify-items: center; padding-inline: 12px; text-align: center; }
+  .map-building-note { padding-left: 12px; }
   .map-directory { grid-area: directory; }
   .map-plate { width: 100%; aspect-ratio: var(--focus-aspect); }
   .map-canvas { right: auto; left: calc(var(--focus-left) * 100%); width: calc(var(--focus-scale) * 100%); }

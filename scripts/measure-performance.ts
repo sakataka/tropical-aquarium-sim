@@ -1,3 +1,5 @@
+import { HALL_ORDER } from "./museum-content";
+
 // 描画の重さを測る。狭い画面（420×912）で、展示室（全水槽を同時に描く）と、各展示室でいちばん匹数の多い水槽の
 // 水槽画面を開き、1フレームにかかる時間と、その内訳・描画の回数・テクスチャの量・読み込みの量を記録する。
 // 種や水槽を足すたびに悪化していないかを見る。
@@ -70,8 +72,6 @@ type Result = {
 };
 type Baseline = { measuredAt: string; commit: string; machine: string; viewport: string; halls: Result[]; tanks: Result[] };
 
-const museumJson = await Bun.file("src/content/museum/museum.json").json() as { floors: { halls: { id: string }[] }[] };
-const HALL_ORDER = museumJson.floors.flatMap((floor) => floor.halls.map((hall) => hall.id));
 const ROOMS: RoomJson[] = [];
 for await (const path of new Bun.Glob("src/content/room/*.json").scan()) ROOMS.push(await Bun.file(path).json());
 ROOMS.sort((a, b) => HALL_ORDER.indexOf(a.id) - HALL_ORDER.indexOf(b.id));
