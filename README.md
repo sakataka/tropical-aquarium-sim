@@ -10,6 +10,7 @@ Demo: https://sakataka.github.io/tropical-aquarium-sim/
 bun install
 bun run dev
 bun run test          # 全テスト（約30秒）。作業中は bun run test:fast（約6秒）
+bun run typecheck     # Bun 1.4.3 の組み込みチェッカー
 bun run build
 bun run verify:webview
 ```
