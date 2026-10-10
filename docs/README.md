@@ -7,6 +7,7 @@
 | 今の決まり（体験の方針、生き物・水景の決まり、追加の手順、検証） | [開発方向性](development-directions.md) |
 | 展示館の構成とアーキテクチャ（階層、URL、体のつくり、水の種類、図鑑のデータ、数百種への備え） | [水の生き物館 設計](museum-architecture.md) |
 | 画像の制作と取り込み（保管庫 `sakataka/aquarium-assets` の書式） | [アセットの保管庫](asset-vault.md) |
+| 水景の絵から地形の下書きを作る道具（仕組み、評価、人が見るべき点） | [地形の下書き](terrain-drafting.md) |
 | 水槽と展示室の画面、描画、保存形式の仕組み | [複数水槽の設計](multi-tank-design.md) |
 | 描画の重さの測り方、基準値、分かったこと | [性能の計測と基準値](performance.md) |
 | これまでの追加・見直しの記録 | [history/](history/)（日付つき。一覧は [開発方向性の経緯](development-directions.md#経緯)） |
