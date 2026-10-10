@@ -131,10 +131,20 @@ for (const id of homeless) {
 }
 for (const id of appSpecies) if (!placed.has(id)) errors.push(`アプリの種 ${id} が、計画のどの水槽の species にもありません`);
 // 計画では置いてあるが、アプリにまだいない種。水槽が開いていれば取り込める。
-const waiting = [...placed.keys()].filter((id) => !appSpecies.has(id) && catalog.has(id)).map((id) => {
+// 画像が保管庫に届いているか。dots の記録に「生成済み」とあっても、画像のファイルがまだ保存されていない種がある。
+async function hasImage(id: string): Promise<boolean> {
+  const meta = Bun.file(join(vault, "species", id, "meta.json"));
+  if (!await meta.exists()) return false;
+  const { variants } = await meta.json() as { variants: Record<string, { image?: { path: string | null } }> };
+  for (const variant of Object.values(variants)) {
+    if (variant.image?.path && await Bun.file(join(vault, variant.image.path)).exists()) return true;
+  }
+  return false;
+}
+const waiting = await Promise.all([...placed.keys()].filter((id) => !appSpecies.has(id) && catalog.has(id)).map(async (id) => {
   const tankIds = placed.get(id)!;
-  return { id, nameJa: catalog.get(id)!.nameJa, tankIds, open: tankIds.some((tankId) => tanks.has(tankId)) };
-});
+  return { id, nameJa: catalog.get(id)!.nameJa, tankIds, open: tankIds.some((tankId) => tanks.has(tankId)), image: await hasImage(id) };
+}));
 
 // 4. 器の数。
 const capacity = planBuildings.map((building) => {
@@ -183,7 +193,10 @@ if (Bun.argv.includes("--json")) {
   console.log(`  見込み: 置いた種 + 候補の手がかり = 約${total.species + total.candidates}種。水槽1つに平均 ${((total.species + total.candidates) / total.tanks).toFixed(1)}種`);
   if (waiting.length > 0) {
     console.log(`\n計画で水槽が決まっていて、館にまだいない種（${waiting.length}）`);
-    for (const item of waiting) console.log(`  ${item.open ? "取り込める" : "水槽を待つ"}  ${item.id}（${item.nameJa}）→ ${item.tankIds.join(", ")}`);
+    for (const item of waiting) {
+      const status = !item.image ? "画像を待つ" : item.open ? "取り込める" : "水槽を待つ";
+      console.log(`  ${status}  ${item.id}（${item.nameJa}）→ ${item.tankIds.join(", ")}`);
+    }
   }
   if (requested.size > 0) {
     console.log(`\ndots に依頼して、画像と調査を待っている種（${requested.size}）`);
