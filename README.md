@@ -55,7 +55,7 @@ bun run verify:webview
 魚・水景・水槽・展示室は `src/content/` にファイルを置くと自動で読み込みます。追加の手順は [開発方向性](docs/development-directions.md#魚水景水槽展示室を足すときの手順) にあります。
 
 - `fish/<species-id>/species.json`: 学名、原産地、体長、泳層、生態プロファイル（`ecology`）、泳ぎ方（`swim`）、出典
-- `fish/<species-id>/side.png`: 画像生成した横向きの魚画像（頭が左）。`uv run scripts/install-fish-sprite.py <species-id> <PNG>` で取り込み、`uv run scripts/build-fish-sprites.py` で描画用の `body.webp`（体だけを切り出した最大幅720px）を作る
+- `fish/<species-id>/body.webp`: 描画用の横向きの魚画像（頭が左。体だけを切り出した最大幅720px）。原画はこのリポジトリに入れず、保管庫（`sakataka/aquarium-assets`）に置く。新しい種は `scripts/install-vault-species.py` で保管庫から取り込む。古い35種の原画は保管庫の `consumer/app-originals/fish/<species-id>/side.png` にあり、差し替えるときは `scripts/install-fish-sprite.py <species-id> <PNG>` と `scripts/build-fish-sprites.py <species-id>` を使う（どちらも `AQUARIUM_ASSET_VAULT` に保管庫のパスを入れる）
 - `tanks/<tank-id>/tank.json`: 名前、展示ラベル用の英字名（`exhibitName`）、分類、サイズ、使える水景、入れられる魚種と上限、最初の魚
 - `museum/museum.json`: 館の名前と、階の一覧（上からの並び順、「1階」「地下1階」などの表示、英字名、テーマの説明、館内図の絵の中の範囲）と、各階に並ぶ展示室の枠（準備中の枠も含む）
 - `room/*.json` と同じフォルダの `.webp`: 展示室のID（`museum.json` の枠の `id` と同じ）・並び順・見出し（`displayName`）・短い名前（`shortName`）・一枚絵（`image`）と、各水槽のガラスの位置。描画時にガラスをマスクで抜き、実際の水景と魚を合成する

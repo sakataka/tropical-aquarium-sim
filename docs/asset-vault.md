@@ -5,7 +5,7 @@
 ## 決まったこと
 
 - 保管庫は非公開の GitHub リポジトリ [`sakataka/aquarium-assets`](https://github.com/sakataka/aquarium-assets)。手元では `~/Documents/aquarium-assets` に clone し、スクリプトには環境変数 `AQUARIUM_ASSET_VAULT` でパスを渡す。
-- 原画（生き物の真横の画像、水景・展示室・館内図の元画像）と調査は保管庫に置く。このリポジトリには配信用の `body.webp`・`plate.webp` などだけを入れる。
+- 原画（生き物の真横の画像、水景・展示室・館内図の元画像）と調査は保管庫に置く。このリポジトリには配信用の `body.webp`・`plate.webp` などだけを入れる。保管庫ができる前からいた35種の原画（`side.png`）は、保管庫の `consumer/app-originals/fish/<species-id>/` にある（2026年10月10日にこのリポジトリから移した。dots の `species/` とは別の、アプリ側の置き場所）。
 - 受け渡しの書式は dots のキュー形式を正とする（2026年10月4日に、アプリ側の旧案から切り替えた）。運用の詳細は保管庫の `queue/README.md`、アプリ側の要件は `consumer/app-requirements-ja.md` にある。
 - 採用するかどうかは手元で決め、`adoptions/` に記録する。生成物を自動では取り込まない。
 
