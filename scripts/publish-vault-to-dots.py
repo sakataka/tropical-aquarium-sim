@@ -74,48 +74,83 @@ def sha256_file(file: Path) -> str:
 
 
 def build_inventory(vault: Path, head: str) -> dict:
-    """保存済みの成果物と、画風・参照画像の一覧。成果の記録（queue/results）を、保管庫の実際のファイルと照らす。"""
+    """
+    保存済みの成果物と、画風・参照画像の一覧。成果物は job（素材・型・画像か調査・依頼の版）ごとにまとめる。
+    根拠は2つ: dots が GitHub に書いた成果の記録（queue/results）と、Drive 経由の配送の受領の記録（consumer/deliveries）。
+    同じファイルが両方にあれば1件にまとめ、両方の根拠を残す。どのファイルも、保管庫の実際の中身と照らす。
+    """
     tracked = set(git(vault, "ls-files").splitlines())
-    jobs = []
+    in_vault = lambda path, digest: path in tracked and (vault / path).exists() and sha256_file(vault / path) == digest
+    jobs: dict[tuple, dict] = {}
+
+    def job_entry(job_id: str, request_revision) -> dict:
+        entity, variant, kind = (job_id.split(".") + ["", ""])[:3]
+        return jobs.setdefault((job_id, request_revision), {
+            "entityId": entity, "variantId": variant, "kind": kind, "jobId": job_id,
+            "requestRevision": request_revision, "outputRevisions": [], "sources": [], "files": [],
+        })
+
+    def add_file(job: dict, path: str, size, digest: str, **evidence) -> None:
+        known = next((item for item in job["files"] if item["path"] == path and item["sha256"] == digest), None)
+        if not known:
+            known = {"path": path, "size": size, "sha256": digest, "inVault": in_vault(path, digest), "evidence": []}
+            job["files"].append(known)
+        known["evidence"].append(evidence)
+
     for record_file in sorted((vault / "queue/results").glob("*/r*/output-*.json")):
         record = json.loads(record_file.read_text())
-        job_id = record_file.parts[-3]
-        entity, variant, kind = (job_id.split(".") + ["", ""])[:3]
-        files = []
+        job = job_entry(record_file.parts[-3], record.get("requestRevision"))
+        if record.get("outputRevision") not in job["outputRevisions"]:
+            job["outputRevisions"].append(record.get("outputRevision"))
+        if "queue-results" not in job["sources"]:
+            job["sources"].append("queue-results")
+        job.setdefault("savedAt", record.get("savedAt"))
+        job["isCurrent"] = job.get("isCurrent") or record.get("isCurrent")
         for artifact in record.get("artifacts", []):
-            path = artifact["path"]
-            file = vault / path
-            present = path in tracked and file.exists()
-            files.append({
-                "path": path, "size": artifact.get("bytes"), "sha256": artifact.get("sha256"),
-                # その commit に、成果の記録と同じ中身で入っているか。
-                "inVault": present and sha256_file(file) == artifact.get("sha256"),
-            })
-        jobs.append({
-            "entityId": entity, "variantId": variant, "kind": kind, "jobId": job_id,
-            "requestRevision": record.get("requestRevision"), "outputRevision": record.get("outputRevision"),
-            "isCurrent": record.get("isCurrent"), "savedAt": record.get("savedAt"), "files": files,
-        })
-    # Drive 経由で受領した配送。成果の記録（queue/results）は dots が書くので、Drive 経由の分はここで分かるようにする。
+            add_file(job, artifact["path"], artifact.get("bytes"), artifact.get("sha256"),
+                     source="queue-results", record=str(record_file.relative_to(vault)), outputRevision=record.get("outputRevision"))
+
     deliveries = []
     for receipt_file in sorted((vault / "consumer/deliveries").glob("*.json")):
         receipt = json.loads(receipt_file.read_text())
+        relative = str(receipt_file.relative_to(vault))
+        # 受領の記録が main に入った commit。この commit（かそれより前）に、配送のファイルが入っている。
+        saved = git(vault, "log", "--diff-filter=A", "--format=%H", "-1", "--", relative) or None
         delivered = [*receipt.get("placed", []), *receipt.get("alreadyInVault", [])]
+        for item in delivered:
+            parts = item["path"].split("/")
+            # drafts/<素材>/<型>/<image|research>/request-r<N>/attempt-<M>/<ファイル>
+            fallback = len(parts) >= 6 and parts[0] == "drafts" and parts[4].startswith("request-r")
+            job_id = item.get("jobId") or (f"{parts[1]}.{parts[2]}.{parts[3]}" if fallback else None)
+            revision = item.get("requestRevision") or (int(parts[4].removeprefix("request-r")) if fallback else None)
+            if not job_id:
+                continue
+            job = job_entry(job_id, revision)
+            if item.get("outputRevision") is not None and item["outputRevision"] not in job["outputRevisions"]:
+                job["outputRevisions"].append(item["outputRevision"])
+            if "drive-delivery" not in job["sources"]:
+                job["sources"].append("drive-delivery")
+            size = item.get("size") or ((vault / item["path"]).stat().st_size if (vault / item["path"]).exists() else None)
+            add_file(job, item["path"], size, item["sha256"], source="drive-delivery", deliveryId=receipt["deliveryId"],
+                     receipt=relative, savedCommit=saved, outputRevision=item.get("outputRevision"), kind=item.get("kind"))
         deliveries.append({
-            "deliveryId": receipt["deliveryId"], "receivedAt": receipt.get("receivedAt"), "entities": receipt.get("entities", []),
-            "files": [{"path": item["path"], "sha256": item["sha256"],
-                       "inVault": item["path"] in tracked and sha256_file(vault / item["path"]) == item["sha256"]} for item in delivered],
+            "deliveryId": receipt["deliveryId"], "receivedAt": receipt.get("receivedAt"), "receipt": relative, "savedCommit": saved,
+            "entities": receipt.get("entities", []), "placed": len(receipt.get("placed", [])), "alreadyInVault": len(receipt.get("alreadyInVault", [])),
         })
     references = [{"path": path, "size": (vault / path).stat().st_size, "sha256": sha256_file(vault / path)}
                   for path in sorted(tracked) if path.startswith(("styles/", "references/"))]
+    job_list = sorted(jobs.values(), key=lambda job: (job["jobId"], job["requestRevision"] or 0))
     return {
-        "schemaVersion": "aquarium-vault-inventory/1",
-        "purpose": "保管庫（GitHub の main）に保存済みの成果物と、画風・参照画像の一覧。成果物・依頼のメタデータだけで、ジョブの状態は含まない。",
+        "schemaVersion": "aquarium-vault-inventory/2",
+        "purpose": "保管庫（GitHub の main）に保存済みの成果物と、画風・参照画像の一覧。成果物・依頼のメタデータだけで、ジョブの状態は含まない。"
+                   "「保存済み」は保管庫に原本があるという意味で、アプリでの採用（adoptions/）とは別。",
         "vaultCommit": head,
-        "jobCount": len(jobs),
-        "entityCount": len({job["entityId"] for job in jobs}),
-        "missingOrChanged": [file["path"] for group in (jobs, deliveries) for item in group for file in item["files"] if not file["inVault"]],
-        "jobs": jobs,
+        "jobCount": len(job_list),
+        "entityCount": len({job["entityId"] for job in job_list}),
+        "evidenceNoteJa": "files[].evidence の source が queue-results なら dots が GitHub に書いた成果の記録、drive-delivery なら Drive 経由の配送（deliveryId、受領の記録、"
+                          "その記録が main に入った commit）。同じファイルが両方にあれば、1件の files に両方の evidence が付く。inVault は、vaultCommit の保管庫に同じ中身で入っているか。",
+        "missingOrChanged": [file["path"] for job in job_list for file in job["files"] if not file["inVault"]],
+        "jobs": job_list,
         "deliveries": deliveries,
         "styleAndReferenceFiles": references,
     }

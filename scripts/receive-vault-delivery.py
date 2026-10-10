@@ -201,8 +201,14 @@ def apply(result: dict, vault: Path) -> Path:
         by_path = {item["path"]: item for item in manifest["files"]}
         head = subprocess.run(["git", "-C", str(vault), "rev-parse", "HEAD"], capture_output=True, text=True).stdout.strip() or None
         # 保管庫にすでにあったファイルが、受領した時点の commit（HEAD）にも同じ中身で入っているか。
+        def entry(path: str) -> dict:
+            # manifest に書かれた素材の情報も残す（保存済みの成果物の一覧を作るのに使う）。
+            item = by_path[path]
+            return {"path": path, "size": item["size"], "sha256": item["sha256"].lower(),
+                    **{key: item[key] for key in ("entityId", "jobId", "requestRevision", "outputRevision", "kind") if key in item}}
+
         already = [{
-            "path": path, "sha256": by_path[path]["sha256"].lower(),
+            **entry(path),
             "committedAtVaultHead": bool(head) and committed_sha256(vault, head, path) == by_path[path]["sha256"].lower(),
         } for path in result["same"]]
         record = {
@@ -217,7 +223,7 @@ def apply(result: dict, vault: Path) -> Path:
             "zip": result["zip"],
             "verified": "ZIP のサイズと SHA-256、manifest の全ファイルのサイズと SHA-256、パスの安全を照合した",
             "vaultHeadAtReceipt": head,
-            "placed": [{"path": path, "sha256": by_path[path]["sha256"].lower()} for path in result["new"]],
+            "placed": [entry(path) for path in result["new"]],
             "alreadyInVault": already,
             "entities": sorted({item["entityId"] for item in manifest["files"] if isinstance(item.get("entityId"), str)}),
             "noteJa": "Drive から受領し、照合して保管庫のローカルへ置いた時点の記録（commit・push の前に書く）。"
