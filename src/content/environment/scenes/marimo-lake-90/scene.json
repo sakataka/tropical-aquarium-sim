@@ -1,0 +1,11 @@
+{
+  "id": "marimo-lake-90",
+  "order": 109,
+  "displayName": "マリモの転がる湖底",
+  "description": "大小の丸いマリモが、細かい砂と小石の底にいくつも転がる、浅い湖の入り江。両脇には穴の多い黒っぽい溶岩の石が据わり、奥にまばらな水草が立って、澄んだ青緑の水に光の筋が差し込みます。",
+  "defaultLighting": "natural",
+  "waterColor": "#10687e",
+  "framing": {
+    "plateBottom": 0.925
+  }
+}

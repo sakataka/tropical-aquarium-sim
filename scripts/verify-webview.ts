@@ -543,7 +543,8 @@ async function verifyHalls(consoleErrors: string[]) {
       assert(await view.evaluate(`document.querySelector('.room-scroll.ready[data-room="${room.id}"]') && document.querySelectorAll('.room-tank').length === ${room.tanks.length} && document.querySelector('.room-stage canvas') && !document.querySelector('.render-problem')`));
       assert(await view.evaluate(`document.documentElement.scrollWidth === document.documentElement.clientWidth`));
       await Bun.write(`${SCREENSHOT_DIR}/hall-${room.id}-${viewport}.png`, await view.screenshot({ format: "png" }));
-      const tanks = wide ? room.tanks.map((tank) => tank.tankId) : [room.tanks[0]!.tankId];
+      // 狭い画面で開くのは最初の水槽だけ。--narrow-all を付けると、狭い画面でも全水槽に出入りする（小さな生き物が見えるかを確かめるとき）。
+      const tanks = wide || Bun.argv.includes("--narrow-all") ? room.tanks.map((tank) => tank.tankId) : [room.tanks[0]!.tankId];
       for (const tankId of tanks) {
         const tank = TANKS.get(tankId)!;
         if (wide) {

@@ -1,0 +1,141 @@
+{
+  "id": "megalops-cyprinoides",
+  "displayName": "イセゴイ",
+  "realBodyLengthCm": 30,
+  "catalog": {
+    "scientificName": "Megalops cyprinoides",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "紅海と、インド洋から西太平洋の熱帯・亜熱帯の海に広く分布します。東アフリカから太平洋の島々、日本、オーストラリアまで見られ、高知県の四万十川にも記録があります。名前にコイと付きますが、カライワシ目イセゴイ科の魚です。",
+    "temperament": "主に小魚や甲殻類を食べ、主に昼に餌をとるとされます。1998年の四万十川のアカメを守り育てる事業では、大きさの合うイセゴイがアカメと同じ水槽で飼われました。本水槽では、ゆるい群れで向きをそろえて泳ぐ姿で描いています（いつも群れで暮らすかどうかは確かめられていません）。",
+    "movement": "体と尾を使って水の中を泳ぐ魚で、底にとどまる暮らしはしません。水面で空気を取り込み、特別なつくりのうきぶくろで酸素を得ることができます。本水槽では、水の中ほどから上の層を泳ぎ、ときどき空気を吸いに上へ向かいます。",
+    "habitat": "成魚は沿岸の浅い海や河口にすみ、若い魚を中心に汽水域や淡水域へ入り、川や海に近い湖にも現れます。海の側で産卵し、幼生が沿岸や河口へやって来るとされます。本水槽では、海から入ってきた若い魚として、アカメのすむ深い河口の開けた水中にいます。",
+    "aliases": [
+      "Indo-Pacific tarpon",
+      "Pacific tarpon",
+      "Oxeye herring",
+      "Clupea cyprinoides"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Elopiformes",
+      "orderJa": "カライワシ目",
+      "family": "Megalopidae",
+      "familyJa": "イセゴイ科"
+    },
+    "adultSizeCm": 50,
+    "sizeNote": "大きさは資料によって大きく違います。オーストラリアの魚類図鑑（Fishes of Australia）は、ふつう50cmまで、最大は全長152cmとしています。1974年の FAO の資料は、ふつう25〜30cm、最大55cmとしています（どちらの「ふつう」も測り方は示されていません）。図鑑の値は約50cmとしました。インドのケララ州の河口で漁獲された標本は全長13〜38.8cmでした。新江ノ島水族館で1984年から飼われている1匹は、2023年に約50cmと紹介されています。本水槽では、河口に入る若い魚として、画面では全長約30cmで描いています。確かな最大の記録は確かめられていません。",
+    "distribution": "紅海と、インド洋から西太平洋の熱帯・亜熱帯の海に分布し、東アフリカから太平洋の島々、日本、オーストラリアまで見られます。日本では、日本海・東シナ海側は新潟県より南、太平洋側は青森県八戸より南と、琉球列島で記録されています。高知県の四万十川では1996年の記録があります。記録のある場所のすべてで、一年を通してすみ、繁殖しているとは限りません。",
+    "water": {
+      "salinity": "brackish"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "DD",
+      "assessedYear": 2016,
+      "note": "IUCN の区分と評価年は Catalog of Fishes と Fishes of Australia の引用で確かめたもので、評価の本文は確認できていません。情報不足（DD）は、心配がないという意味ではありません。"
+    },
+    "highlights": [
+      "背びれのいちばん後ろの軟条だけが、糸のように長く伸びます。",
+      "大きな銀色のうろこと大きな目、深く二またに分かれた尾びれが目印です。背中は暗い緑色です。",
+      "水面で空気を取り込み、特別なつくりのうきぶくろで酸素を得ることができます。",
+      "透明で帯のような形の幼生（レプトセファルス）を経て、魚の形に変わります。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.0,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.57
+    }
+  },
+  "visual": {
+    "fallbackColor": "#818f86"
+  },
+  "sourceBodyBounds": {
+    "x": 120,
+    "y": 212,
+    "width": 1331,
+    "height": 519
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.12,
+    "maxY": 0.55
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "steady",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.45,
+      "burst": 1.8
+    },
+    "turnRateRadPerSec": 2.0,
+    "restFraction": 0.06,
+    "depthRange": [
+      0.1,
+      0.65
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.8,
+      "cohesion": 0.5,
+      "polarization": 0.55
+    },
+    "structureAffinity": 0.1,
+    "habits": [
+      {
+        "type": "airBreathing",
+        "breathsPerHour": [
+          3,
+          8
+        ],
+        "style": "dash"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Megalops (online updated 21 September 2026)",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?genus=Megalops&tbl=species"
+      },
+      {
+        "title": "与論島の魚類 (2014), 畑晴陵：イセゴイ, p22",
+        "url": "https://www.museum.kagoshima-u.ac.jp/staff/motomura/FishesYoron_lowes.pdf"
+      },
+      {
+        "title": "FAO Species Identification Sheets, Fishing Areas 57,71: Megalopidae / Megalops cyprinoides (1974)",
+        "url": "https://www.fao.org/4/e9163e/e9163e3c.pdf"
+      },
+      {
+        "title": "Gomon & Bray 2019: Megalops cyprinoides, Fishes of Australia",
+        "url": "https://fishesofaustralia.net.au/home/species/1991"
+      },
+      {
+        "title": "高知県内水面漁業センター 平成11年度事業報告 第10巻 (平成13年3月), 表2-1 p53",
+        "url": "https://www.pref.kochi.lg.jp/doc/houkoku11/file_contents/Naisuimen_Houkoku_H11_1.pdf"
+      },
+      {
+        "title": "SANBI Biodiversity Advisor: Megalops cyprinoides",
+        "url": "https://biodiversityadvisor.sanbi.org/search/detail/77930"
+      },
+      {
+        "title": "Renjithkumar & Roshni 2023: Assessment of the fishery, growth, mortality and exploitation of Indo-Pacific tarpon, Iranian Journal of Ichthyology 10(3):172–181",
+        "url": "https://ijichthyol.org/index.php/iji/article/download/979/641/4077"
+      },
+      {
+        "title": "新江ノ島水族館 堀内「えのすいで暮らす長寿の生き物たち」2023-09-15",
+        "url": "https://www.enosui.com/diaryentry.php?eid=06581"
+      },
+      {
+        "title": "新江ノ島水族館 笠川「長生き」2026-09-22",
+        "url": "https://www.enosui.com/diaryentry.php?eid=07675"
+      },
+      {
+        "title": "トンボと自然を考える会 谷崎等「四万十川産アカメ保護育成」宝酒造 平成10年度助成報告 pp31–36",
+        "url": "https://www.takara.co.jp/environment/fund/pdfs/h10report04.pdf"
+      }
+    ]
+  }
+}

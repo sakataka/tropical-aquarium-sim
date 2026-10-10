@@ -1,0 +1,126 @@
+{
+  "id": "acanthopagrus-latus",
+  "displayName": "キチヌ",
+  "realBodyLengthCm": 30,
+  "catalog": {
+    "scientificName": "Acanthopagrus latus",
+    "originRegionId": "east-asia",
+    "originRegionName": "東アジア",
+    "origin": "ベトナム、中国、台湾から朝鮮半島、日本までの、東アジアの沿岸に分布するタイの仲間です。以前はインド洋やオーストラリアまで広く分布する1つの種とされていましたが、2013年の研究で、東アジアのものだけがこの種とされました。",
+    "temperament": "甲殻類、ゴカイの仲間、貝などの動物をよく食べる雑食の魚です。成長の途中で性が変わり、はじめは雄として働き、大きくなると雌になるものが多いとされます。1998年の四万十川のアカメを守り育てる事業では、大きさの合うキチヌが汽水の水槽でアカメと一緒に飼われました。",
+    "movement": "強いとげの並ぶ長い背びれと、二またの尾びれをもつ、体が左右に平たい魚です。本水槽では、水の中ほどから底の近くを、ゆったり泳ぐ姿で描いています。",
+    "habitat": "浅い沿岸の砂地や岩場、内湾、河口や汽水域にすみ、川の下流へも入ります。宮崎県の加江田川の河口では、1985年11月の調査で仔魚や稚魚が採集されています。本水槽では、アカメのすむ深い河口の、砂と礫の底や岩のまわりにいます。",
+    "aliases": [
+      "Yellowfin seabream",
+      "Sparus latus"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Perciformes",
+      "orderJa": "スズキ目",
+      "family": "Sparidae",
+      "familyJa": "タイ科"
+    },
+    "adultSizeCm": 30,
+    "sizeNote": "成魚の代表的な大きさを示す資料は確かめられていません。鹿児島県で採集された大きな標本は、標準体長30.3cm（内之浦湾）と体長31.5cm（鹿児島湾）でした。図鑑の値と画面の大きさは、これを目安に約30cmにしています。四万十川財団の解説は全長50cm、FishBase は最大を尾叉長40cmとしていて、測り方も値も資料によって違います。確かな最大の記録は確かめられていません。目は、館のほかのタイの仲間とそろえてスズキ目としています。",
+    "distribution": "西太平洋の東アジアの沿岸に分布し、ベトナム、中国、台湾から朝鮮半島、日本で見られます。日本では本州・四国・九州の沿岸や河口に分布し、琉球列島にはいません。北の限りは資料によって違い、太平洋側を岩手県より南とする資料と、千葉県より南とする資料があります。高知県の四万十川の魚として地元の財団に紹介され、鹿児島市の永田川の河口や鹿児島湾、内之浦湾でも標本が採集されています。",
+    "water": {
+      "salinity": "brackish"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "DD",
+      "assessedYear": 2009,
+      "note": "IUCN の区分と評価の年は FishBase の表示で確かめたもので、評価の本文は確認できていません。2013年に種が分けられる前の、広い範囲を指す評価かどうかも確かめられていません。情報不足（DD）は、心配がないという意味ではありません。"
+    },
+    "highlights": [
+      "腹びれ、尻びれ、尾びれの下半分が黄色です。背びれは暗い色です。",
+      "黄色い尻びれの付け根の近くに、ひれの膜に沿った黒い筋があります。近い仲間と見分ける目印の1つです。",
+      "よく似たクロダイとは別の種です。ひれの黄色と体の形を合わせて見分けます。",
+      "はじめは雄として働き、体長がおよそ27〜30cmになると、雌になるものが多いとされます。産卵期は秋とされます。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 1.7,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.6
+    }
+  },
+  "visual": {
+    "fallbackColor": "#958f84"
+  },
+  "sourceBodyBounds": {
+    "x": 107,
+    "y": 190,
+    "width": 1368,
+    "height": 619
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.4,
+    "maxY": 0.85
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.32,
+      "burst": 1.3
+    },
+    "turnRateRadPerSec": 1.8,
+    "restFraction": 0.15,
+    "depthRange": [
+      0.25,
+      0.9
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 2.2,
+      "cohesion": 0.3,
+      "polarization": 0.15
+    },
+    "structureAffinity": 0.4,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Acanthopagrus species (updated 21 September 2026)",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?genus=Acanthopagrus&tbl=species"
+      },
+      {
+        "title": "Iwatsuki (2013), Review of the Acanthopagrus latus complex, Journal of Fish Biology 83:64–95",
+        "url": "https://onlinelibrary.wiley.com/doi/abs/10.1111/jfb.12151"
+      },
+      {
+        "title": "松沼瑞樹・福井美乃・本村浩之編 (2016) 鹿児島市の川魚図鑑, p39 キチヌ、p40 クロダイ",
+        "url": "https://www.museum.kagoshima-u.ac.jp/publications/pdf_images/2016_08_freshwater_lowres.pdf"
+      },
+      {
+        "title": "鹿児島大学総合研究博物館 (2018) 内之浦の魚類, 畑晴陵 キチヌ p308",
+        "url": "https://www.museum.kagoshima-u.ac.jp/staff/motomura/2018_03_Uchinoura_lowres.pdf"
+      },
+      {
+        "title": "大阪府立環境農林水産総合研究所 淡水魚図鑑（在来種） キチヌ",
+        "url": "https://www.knsk-osaka.jp/zukan/zukan_database/tansui/2150b2c26b1c855/5650b5bec03768a.html"
+      },
+      {
+        "title": "公益財団法人四万十川財団 四万十川の魚64 キチヌ (2020-06-04)",
+        "url": "https://www.shimanto.or.jp/?p=10965"
+      },
+      {
+        "title": "平野克己・酒井豊・赤崎正人 (1989) 加江田川河口域に出現する仔稚魚の生態, 水産増殖37:289–296",
+        "url": "https://www.jstage.jst.go.jp/article/aquaculturesci1953/37/4/37_4_289/_pdf/-char/ja"
+      },
+      {
+        "title": "谷崎等・トンボと自然を考える会 (1998年度助成報告) 四万十川産アカメ保護育成, pp31–36",
+        "url": "https://www.takara.co.jp/environment/fund/pdfs/h10report04.pdf"
+      },
+      {
+        "title": "FishBase Acanthopagrus latus summary, species6356 (accessed2026-10-10)",
+        "url": "https://www.fishbase.net.br/summary/6356"
+      }
+    ]
+  }
+}

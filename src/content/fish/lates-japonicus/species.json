@@ -1,0 +1,133 @@
+{
+  "id": "lates-japonicus",
+  "displayName": "アカメ",
+  "realBodyLengthCm": 90,
+  "catalog": {
+    "scientificName": "Lates japonicus",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "日本だけにすむ固有種です。高知県と宮崎県を中心とする、南日本の太平洋側の河口や沿岸で見られます。1984年に新種として記載され、基準になった標本は高知県の浦戸湾で採集されました。",
+    "temperament": "飼育個体の高速撮影では、下あごを素早く下げて口を開き、餌を吸い込むように取り込んでいました。四万十川に放した3匹の記録では、餌をとる動きは夜に多く、昼にも見られました。夏の四万十川では、大きな個体どうしが近くを泳ぐ集まりが記録されています。",
+    "movement": "カメラを付けた全長89cmの1匹の観察では、砂や礫の底に近い所を泳いでいました。高知県の浦ノ内湾で追跡された個体は、秋に湾の口の側へ、春に湾の奥の側へ移りました。本水槽では、底に近い層から水の中ほどを、ゆっくり泳ぐ姿で描いています。",
+    "habitat": "大きな川の汽水の河口や内湾、河口に近い沿岸にすみます。四万十川の河口では、コアマモなどの海草の茂みのある水域で仔魚や稚魚が採集されていて、仔魚や稚魚の現れる時期から、産卵は夏と考えられています。本水槽では、砂と礫の底にコアマモの茂みと大きな岩、沈んだ古い木のある、南日本の大きな川の深い河口の夕暮れをイメージしています。",
+    "aliases": [
+      "Japanese lates",
+      "Japanese giant perch",
+      "Japanese snook",
+      "Akame",
+      "マルカ（宮崎県の地方名）"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Perciformes",
+      "orderJa": "スズキ目",
+      "family": "Latidae",
+      "familyJa": "アカメ科"
+    },
+    "adultSizeCm": 90,
+    "sizeNote": "成魚の代表的な大きさを示す資料は確かめられていません。四万十川で追跡された成魚5匹は全長69〜92cmで、図鑑の値と画面の大きさは、この範囲の大きめにあたる約90cmにしています。2025年に三重県で採集された雄は、標準体長58.7cm、全長71.8cmでした。宮崎県の耳川の河口で採集された全長約120cmの魚の写真が大学の研究室から紹介されていて、130cmに達するとする論文もあります。確かな最大の記録は確かめられていません。目は、国内の資料や館のほかの魚とそろえてスズキ目としています（Catalog of Fishes はアジ目 Carangiformes に置いています）。",
+    "distribution": "日本の固有種で、高知県と宮崎県を中心とする南日本の太平洋側の河口や沿岸に分布します。東京湾や相模湾、三重県、和歌山県、大阪湾、香川県、別府湾、鹿児島湾、種子島などでも採集の記録がありますが、そのすべてにすみついているとは限りません。2025年に三重県尾鷲市の定置網で採集された1匹は、たまたま来遊したものと考えられています。",
+    "water": {
+      "salinity": "brackish"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "VU",
+      "assessedYear": 2019,
+      "note": "IUCN の区分と年は、2019年の評価を引用した論文で確かめたもので、評価の本文は確認できていません。環境省レッドリスト2020では絶滅危惧IB類（EN）です。宮崎県では2006年に県の指定希少野生動植物に指定され、県内で許可なく捕まえることなどが規制されています。仔魚や稚魚の育つ河口の海草の茂みを守ることが大切とされています。"
+    },
+    "highlights": [
+      "光が当たると、瞳が赤く反射して見えます。名前はここから付いたとされます。",
+      "体は高く、頭の背中側が目の上で少しくぼみます。口は大きく、下あごが少し前に出ます。",
+      "2つの背びれが近くに並び、太い尾の付け根の先に、後ろの縁が丸い尾びれが付きます。",
+      "日本だけにすむ固有種です。四万十川の河口では、仔魚や稚魚がコアマモなどの海草の茂みのある水域で見つかっています。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 1.0,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.55
+    }
+  },
+  "visual": {
+    "fallbackColor": "#827665"
+  },
+  "sourceBodyBounds": {
+    "x": 62,
+    "y": 211,
+    "width": 1422,
+    "height": 583
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.35,
+    "maxY": 0.68
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "steady",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.18,
+      "burst": 0.6
+    },
+    "turnRateRadPerSec": 1.1,
+    "restFraction": 0.3,
+    "depthRange": [
+      0.3,
+      0.9
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 1.6,
+      "cohesion": 0.25,
+      "polarization": 0.1
+    },
+    "structureAffinity": 0.45,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Lates japonicus Katayama & Taki 1984",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=15807"
+      },
+      {
+        "title": "笹木大地・木村清志 (2025) 三重県におけるアカメの標本に基づく確かな記録. Ichthy 55:69–71",
+        "url": "https://www.museum.kagoshima-u.ac.jp/ichthy/INHFJ_2025_055_069.pdf"
+      },
+      {
+        "title": "Kinoshita et al. (1988) Occurrence of Larval and Juvenile Japanese Snook, Lates japonicus, in the Shimanto Estuary, Japan. JJI 34(4):462–467",
+        "url": "https://www.jstage.jst.go.jp/article/jji1950/34/4/34_4_462/_pdf"
+      },
+      {
+        "title": "Sara Gonzalvo Marro (2017) Habitat use and behavior of Lates japonicus in Shimanto Estuary, an endangered endemic fish in Japan. 博士論文公開要約",
+        "url": "https://repository.dl.itc.u-tokyo.ac.jp/record/50699/files/A33728_summary.pdf"
+      },
+      {
+        "title": "Tanoue et al. (2012) Feeding events of Japanese lates Lates japonicus detected by a high-speed video camera and three-axis micro-acceleration data-logger. Fisheries Science 78:533–538",
+        "url": "https://link.springer.com/article/10.1007/s12562-012-0470-z"
+      },
+      {
+        "title": "Miki et al. (2026; online 2025-07-18) Annual habitat use of Japanese giant perch, Akame (Lates japonicus), using biotelemetry in Uranouchi Bay, Kochi, Japan. Ichthyological Research 73:201–209",
+        "url": "https://link.springer.com/article/10.1007/s10228-025-01033-y"
+      },
+      {
+        "title": "環境省レッドリスト2020 別添資料3 汽水・淡水魚類",
+        "url": "https://www.env.go.jp/press/files/jp/114457.pdf"
+      },
+      {
+        "title": "宮崎県：宮崎県野生動植物の保護に関する条例第11条（指定種一覧）",
+        "url": "https://www.pref.miyazaki.lg.jp/shizen/kurashi/shizen/page00029.html"
+      },
+      {
+        "title": "宮崎大学 岩槻研究室（2008-01-14）Research: Japanese Giant Perch / Lates japonicus",
+        "url": "https://www.cc.miyazaki-u.ac.jp/yuk/research/akame_e.html"
+      },
+      {
+        "title": "桂浜水族館（2018-05-24）ハマスイのアカメたち",
+        "url": "https://katurahama-aq.jp/info/ikimono/2018/05/24/2222"
+      }
+    ]
+  }
+}

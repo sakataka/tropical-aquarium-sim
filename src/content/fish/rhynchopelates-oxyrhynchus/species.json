@@ -1,0 +1,129 @@
+{
+  "id": "rhynchopelates-oxyrhynchus",
+  "displayName": "シマイサキ",
+  "realBodyLengthCm": 20,
+  "catalog": {
+    "scientificName": "Rhynchopelates oxyrhynchus",
+    "originRegionId": "northwest-pacific",
+    "originRegionName": "北西太平洋",
+    "origin": "ベトナム北部、中国南部、台湾から朝鮮半島、ロシア、日本までの北西太平洋に分布します。日本では津軽海峡より南の沿岸と瀬戸内海で見られ、四万十川の河口や汽水域の魚としても地元で紹介されています。",
+    "temperament": "無脊椎動物や魚を食べます。捕まえられると、うきぶくろを使って「グウグウ」という音を出します。四万十川の地元の解説では、産卵期は春から夏とされます。本水槽では、ゆるい群れで泳ぐ姿で描いています（いつも群れで暮らすかどうかは確かめられていません）。",
+    "movement": "とがった吻と小さな口をもつ、やや細長い魚です。幼魚は砂に潜ることがあるとされます。本水槽では、水の中ほどから底の近くを、小さな群れで向きをそろえて泳ぎます。",
+    "habitat": "沿岸の浅い海と、河口や汽水域で暮らし、川の淡水域へも入ります。幼魚は河口や砂浜で見られ、高知市の新堀川では、コアマモの茂みのある潮の入る区間で採集されています。四万十川では、夏に河口から遠く上流までのぼるという地元の解説があります。本水槽では、アカメのすむ深い河口の、コアマモの茂みに近い開けた水中にいます。",
+    "aliases": [
+      "シマイサギ",
+      "スミヒキ",
+      "スミヤキ",
+      "ウタウタイ",
+      "Blotched therapon",
+      "Pelates oxyrhynchus",
+      "Therapon oxyrhynchus"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Perciformes",
+      "orderJa": "スズキ目",
+      "family": "Terapontidae",
+      "familyJa": "シマイサキ科"
+    },
+    "adultSizeCm": 20,
+    "sizeNote": "FAO の資料（2001年）は、ふつう全長18〜23cm、最大は全長約33cmとしています。図鑑の値と画面の大きさは、この「ふつう」の範囲から約20cmにしています。四万十市の解説は20〜25cm（測り方は示されていません）、福井県海浜自然センターの解説は全長30cmとしていて、資料によって違います。鹿児島県の上甑島の池で採集された標本でいちばん大きいものは、標準体長17.6cmでした。成魚の代表的な大きさや確かな最大の記録は確かめられていません。目は、館のほかの魚とそろえてスズキ目としています。",
+    "distribution": "北西太平洋に分布し、ベトナム北部、中国南部、台湾から朝鮮半島、ロシア、日本で見られます。日本では、津軽海峡より南の日本海・東シナ海・太平洋の沿岸と瀬戸内海に分布し、久米島の記録もあります。高知県では四万十川の河口・汽水域や高知市の新堀川、鹿児島県では鹿児島湾、肝属川、上甑島の汽水の池で記録されています。",
+    "water": {
+      "salinity": "brackish"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "IUCN の評価の本文は確認できていません（FishBase の検索表示では未評価とされています）。"
+    },
+    "highlights": [
+      "銀白色の体に、頭の後ろから尾へまっすぐ走る暗い色の帯があります。真ん中の帯は尾びれの付け根まで届きます。",
+      "吻がとがり、口は小さめです。よく似たコトヒキは、帯が弓なりに曲がり、尾びれに幅の広い帯があります。",
+      "捕まえられると、うきぶくろを使って「グウグウ」と音を出します。福井県の三方五湖のあたりでは「ウタウタイ」と呼ばれます。",
+      "成魚の尾びれには、細い暗い線が何本も並びます。幼魚の尾びれは透明です。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.2,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.54
+    }
+  },
+  "visual": {
+    "fallbackColor": "#8e7a6a"
+  },
+  "sourceBodyBounds": {
+    "x": 61,
+    "y": 189,
+    "width": 1426,
+    "height": 615
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.35,
+    "maxY": 0.85
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.45,
+      "burst": 2.0
+    },
+    "turnRateRadPerSec": 2.2,
+    "restFraction": 0.1,
+    "depthRange": [
+      0.2,
+      0.88
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.6,
+      "cohesion": 0.5,
+      "polarization": 0.5
+    },
+    "structureAffinity": 0.25,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes, Rhynchopelates oxyrhynchus (updated 21 September 2026)",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?genus=Rhynchopelates&tbl=species"
+      },
+      {
+        "title": "松沼瑞樹・福井美乃・本村浩之編 (2016) 鹿児島市の川魚図鑑, pp45–46",
+        "url": "https://www.museum.kagoshima-u.ac.jp/publications/pdf_images/2016_08_freshwater_lowres.pdf"
+      },
+      {
+        "title": "鹿児島大学総合研究博物館 (2018) 内之浦の魚類, 小枝圭太 シマイサキp364",
+        "url": "https://www.museum.kagoshima-u.ac.jp/staff/motomura/2018_03_Uchinoura_lowres.pdf"
+      },
+      {
+        "title": "松沼瑞樹・米沢俊彦・本村浩之 (2010) 上甑島汽水湖群の魚類相, Nature of Kagoshima36:79–87, pp80/83",
+        "url": "https://www.museum.kagoshima-u.ac.jp/staff/motomura/2010-04-Fishes%20Koshikijima%20Island_H.pdf"
+      },
+      {
+        "title": "長野博光ほか (2006) 高知県初記録種を含む高知市新堀川の魚類, 四国自然史科学研究3:50–56",
+        "url": "https://www.jstage.jst.go.jp/article/sinh/3/0/3_50/_pdf/-char/ja"
+      },
+      {
+        "title": "四万十市公式ホームページ 四万十川に棲む水生生物について",
+        "url": "https://www.city.shimanto.lg.jp/soshiki/13/1450.html"
+      },
+      {
+        "title": "福井県海浜自然センター シマイサキ",
+        "url": "https://fcnc.pref.fukui.lg.jp/mikatagokofish/848/"
+      },
+      {
+        "title": "FAO (1974) Species Identification Sheets: Pelates oxyrhynchus and Pelates quadrilineatus, THER Pela1–2",
+        "url": "https://www.fao.org/4/e9163e/e9163e4k.pdf"
+      },
+      {
+        "title": "Vari (2001) Terapontidae, FAO Living Marine Resources of the Western Central Pacific, p3313",
+        "url": "https://www.fao.org/4/y0770e/y0770e53.pdf"
+      }
+    ]
+  }
+}

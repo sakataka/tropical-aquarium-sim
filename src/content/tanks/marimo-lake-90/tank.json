@@ -1,0 +1,35 @@
+{
+  "id": "marimo-lake-90",
+  "order": 196,
+  "displayName": "マリモの湖水槽",
+  "exhibitName": "Marimo Lake",
+  "category": "北海道の湖",
+  "description": "細かい砂と小石の底に大小のマリモが転がる、北海道・阿寒湖の浅い入り江を再現した90cm水槽。マリモは波に転がされて丸く育つ藻で、この水槽では水景として見せています。ウキゴリは、ハゼの仲間ですが底から少し離れてふわりと浮かんで止まり、ときどき底に降りて休みます。口のまわりに3対のひげを持つフクドジョウは、砂と小石の底に沿って進み、石のすき間に身を寄せます。どちらも阿寒湖で採集の記録がある魚ですが、マリモのそばで暮らしていたかは確かめられていません。",
+  "widthCm": 90,
+  "heightCm": 43,
+  "depthCm": 45,
+  "maxTotalFish": 7,
+  "sceneIds": [
+    "marimo-lake-90"
+  ],
+  "species": [
+    {
+      "speciesId": "gymnogobius-urotaenia",
+      "maxCount": 4
+    },
+    {
+      "speciesId": "barbatula-oreas",
+      "maxCount": 3
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "gymnogobius-urotaenia",
+      "count": 3
+    },
+    {
+      "speciesId": "barbatula-oreas",
+      "count": 3
+    }
+  ]
+}

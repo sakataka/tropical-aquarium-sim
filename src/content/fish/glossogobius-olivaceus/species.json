@@ -1,0 +1,153 @@
+{
+  "id": "glossogobius-olivaceus",
+  "displayName": "ウロハゼ",
+  "realBodyLengthCm": 16,
+  "catalog": {
+    "scientificName": "Glossogobius olivaceus",
+    "originRegionId": "east-asia",
+    "originRegionName": "東アジア",
+    "origin": "ベトナム北部と中国から、朝鮮半島南部、ロシア、日本までの北西太平洋に分布するハゼです。南日本では、鹿児島市の川や種子島でとれています。",
+    "temperament": "大分県の中津川の調査では、標準体長約3〜6cmの小さな個体は主にエビを、約7〜18cmの大きな個体は魚とエビを食べていました。水槽での観察では、雌と雄が巣の中で卵と精子を交互に出し、巣に付いた卵を主に雄が守りました。",
+    "movement": "底で暮らし、石の下や筒のような空洞に入っています。左右の腹びれは1つにまとまり、盤の形になっています。本水槽では、物かげにひそみ、ときどき砂泥の底へ出てきます。",
+    "habitat": "主に河口や川の下流の汽水域にすみ、砂礫から泥、砂泥の底で、石の下や穴を使います。淡水や海水での記録もあります。瀬戸内海の入り江や河口の浅場では、産卵期に壺や木箱へ入ります。本水槽では、カキ殻の付いた石と沈んだ枝のある、河口の砂泥の底を再現しています。",
+    "aliases": [
+      "Urohaze goby",
+      "土用ハゼ",
+      "黒はぜ",
+      "だぼはぜ",
+      "Gobius olivaceus",
+      "Glossogobius fasciatopunctatus"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Gobiiformes",
+      "orderJa": "ハゼ目",
+      "family": "Gobiidae",
+      "familyJa": "ハゼ科"
+    },
+    "adultSizeCm": 16,
+    "sizeNote": "代表的な成魚の大きさは確かめられていません。岡山県周辺の産卵期のつぼ漁でとれた個体は標準体長7.7〜15.8cm、1986年に巣で産卵していた親魚は雌が全長約18.3cm、雄が全長約18.7cmでした。図鑑の値と画面の大きさは、これらの範囲に収まる全長約16cmにしています。2022年に大分県の中津川でとれた37匹は標準体長3.3〜17.7cmで、FishBase は最大を標準体長17.0cmとしています。鹿児島と和歌山の博物館の解説では、約20cm、または20cm以上になるとされます（測り方は示されていません）。",
+    "distribution": "北西太平洋の、ベトナム北部と中国から、朝鮮半島南部、ロシア、日本までに分布します。南日本では、鹿児島市の稲荷川、甲突川、永田川、愛宕川、鈴川と、種子島でとれています。和歌山県の紀ノ川河口でも観察されています。韓国では2015年に蔚山の河口で初めて採集され、2020年に報告されました。",
+    "water": {
+      "salinity": "brackish"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2024,
+      "note": "IUCN の区分と評価の年は FishBase の転載で確かめたもので、評価の本文は確認できていません。日本のレッドリストでの扱いは確かめられていません。"
+    },
+    "highlights": [
+      "下あごの先が、上あごより前に出ています。頬にはうろこがありません。",
+      "目の後ろから第1背びれの前にかけて、小さな黒い点がいくつかあります。近い仲間と見分ける手がかりです。",
+      "目から吻の先と下あごへ暗色の筋が伸び、尾びれの付け根に暗い斑があります。",
+      "産卵のときに空洞へ入る習性があり、瀬戸内海では、壺を沈めてとる「はぜつぼ漁業」が行われていました。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.2,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.58
+    }
+  },
+  "visual": {
+    "fallbackColor": "#aa9376"
+  },
+  "sourceBodyBounds": {
+    "x": 84,
+    "y": 279,
+    "width": 1373,
+    "height": 453
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.72,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.18,
+      "burst": 2.2
+    },
+    "turnRateRadPerSec": 2.4,
+    "restFraction": 0.65,
+    "depthRange": [
+      0.15,
+      0.8
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.85,
+    "habits": [
+      {
+        "type": "homeShelter",
+        "kind": "crevice",
+        "rangeBodyLengths": 4,
+        "visitChancePerMin": 0.8,
+        "visitDurationSec": [
+          15,
+          50
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 2,
+        "durationSec": [
+          10,
+          30
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Gobius olivaceus / current Glossogobius olivaceus",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=18736"
+      },
+      {
+        "title": "松沼瑞樹・福井美乃・本村浩之 (2016) 鹿児島市の川魚図鑑：ウロハゼ",
+        "url": "https://www.museum.kagoshima-u.ac.jp/publications/pdf_images/2016_08_freshwater_lowres.pdf"
+      },
+      {
+        "title": "和歌山県立自然博物館：紀州の鯊19 ウロハゼ",
+        "url": "https://www.shizenhaku.wakayama-c.ed.jp/goby_kishu_exp/goby_kishu_exp_19.html"
+      },
+      {
+        "title": "明仁親王 (1966) ウロハゼの学名について. 魚類学雑誌13:73–101",
+        "url": "https://www.kunaicho.go.jp/data/paperFile/3/file.pdf"
+      },
+      {
+        "title": "Kwun (2020) First Record of Glossogobius olivaceus from Korea. Korean J. Ichthyol. 32:32–36",
+        "url": "https://www.researchgate.net/publication/340429079_First_Record_of_Glossogobius_olivaceus_Perciformes_Gobiidae_from_Korea"
+      },
+      {
+        "title": "千田哲資・星野暹 (1970) はぜつぼ漁業とウロハゼの生態. 魚類学雑誌17:1–6",
+        "url": "https://www.jstage.jst.go.jp/article/jji1950/17/1/17_1_1/_pdf"
+      },
+      {
+        "title": "千田哲資・和田功 (1970) 水槽内におけるウロハゼの産卵. 魚類学雑誌17:7–13",
+        "url": "https://www.jstage.jst.go.jp/article/jji1950/17/1/17_1_7/_pdf"
+      },
+      {
+        "title": "鈴木伸洋・櫻井信夫・杉原拓郎 (1988) ウロハゼの卵発生と仔稚魚の形態変化. 水産増殖35:203–212",
+        "url": "https://www.jstage.jst.go.jp/article/aquaculturesci1953/35/4/35_4_203/_pdf/-char/ja"
+      },
+      {
+        "title": "Nanjo et al. (2023) Food habits of fishes in salt marsh estuaries in the western Seto Inland Sea, Japan. Ichthyol. Res. 71:305–316",
+        "url": "https://www.researchgate.net/publication/375278563_Food_habits_of_fishes_in_salt_marsh_estuaries_in_the_western_Seto_Inland_Sea_Japan"
+      },
+      {
+        "title": "FishBase: Glossogobius olivaceus",
+        "url": "https://fishbase.se/summary/23693"
+      }
+    ]
+  }
+}

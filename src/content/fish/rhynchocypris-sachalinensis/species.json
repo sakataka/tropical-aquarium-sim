@@ -1,0 +1,129 @@
+{
+  "id": "rhynchocypris-sachalinensis",
+  "displayName": "ヤチウグイ",
+  "realBodyLengthCm": 12,
+  "catalog": {
+    "scientificName": "Rhynchocypris sachalinensis",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "北海道とサハリンに分布する、コイの仲間の小さな魚です。大陸にすむ近い魚の亜種とされたこともあり、種としての扱いには、まだ研究が要るとされています。",
+    "temperament": "旭川地方の沼で1955年に胃の中身を調べた記録では、動物と植物の両方を食べていました。卵は水草の根などに産み付けられます。繁殖期の雄は、ひれが赤くなり、ごく小さな追星が出ます。",
+    "movement": "流れの弱い水域にすむ魚です。群れの大きさや泳ぎ方をくわしく調べた資料は確認できていません。本水槽では、岸の近くの開けた水の中ほどを、数匹でまとまって泳ぐ姿で描いています。",
+    "habitat": "平野の湿地の沼や小川、川の改修のあとに残った旧い川筋にすみます。旭川地方の1950年代の観察では、泥炭の底でヨシの多い池や沼、流れの弱い水路にいました。本水槽では、泥炭の岸がえぐれ、スゲやヨシの根が水中へ垂れる、北海道の湿原をゆっくり流れる川をイメージしています。",
+    "aliases": [
+      "Sakhalin Lake minnow",
+      "Rhynchocypris percnurus sachalinensis",
+      "Phoxinus percnurus sachalinensis"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cypriniformes",
+      "orderJa": "コイ目",
+      "family": "Leuciscidae",
+      "familyJa": "ウグイ科"
+    },
+    "adultSizeCm": 12,
+    "sizeNote": "図鑑では全長12cmとされます（代表的な大きさか最大かは示されていません）。図鑑の値と画面の大きさは、この12cmにしています。約1年飼育した群れは全長5.5〜5.8cmでした。成熟した魚だけを測った大きさと、雄と雌の大きさの違いは確認できていません。",
+    "distribution": "北海道とサハリンに分布します。北海道では、釧路湿原の幌呂地区の排水路と旧幌呂川、旭川地方の沼、十勝平野の氾濫原の池などで記録されています。十勝の2021年の調査では、砂利を採った跡の池に多くいました。サハリンのどこまで分布するかは、資料によって食い違います。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "環境省レッドリスト2020と北海道レッドリスト（魚類編2018）で、どちらも準絶滅危惧です。IUCN の区分は資料によって食い違い、確認できていません。十勝の調査では、人がつくった池も、この魚を含む湿地の魚のすみかになっていました。"
+    },
+    "highlights": [
+      "体は高さがあってずんぐりしていて、うろこはウグイの仲間より細かいです。",
+      "体の横に、小さな暗い斑が不規則に並びます。",
+      "繁殖期の雄は、ひれが赤くなります。雌の赤みは弱く、繁殖期のほかは雄と雌を見分けにくいとされます。",
+      "旭川地方でこの魚が多かった池や沼の水は、1950年代の測定で pH 5.2〜5.4 の酸性でした。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.4,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.57
+    }
+  },
+  "visual": {
+    "fallbackColor": "#a19480"
+  },
+  "sourceBodyBounds": {
+    "x": 115,
+    "y": 264,
+    "width": 1341,
+    "height": 489
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.3,
+    "maxY": 0.75
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.45,
+      "burst": 2.2
+    },
+    "turnRateRadPerSec": 2.4,
+    "restFraction": 0.12,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.8,
+      "cohesion": 0.55,
+      "polarization": 0.5
+    },
+    "structureAffinity": 0.35,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Rhynchocypris sachalinensis",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=56438"
+      },
+      {
+        "title": "小林弘・広瀬穠 (1957) 北海道産ヤチウグイの生態に就て",
+        "url": "https://hokkyodai.repo.nii.ac.jp/record/491/files/8-2-B-18.pdf"
+      },
+      {
+        "title": "国立科学博物館 日本の淡水魚類：ヤチウグイ",
+        "url": "https://www.kahaku.go.jp/research/db/zoology/uodas_freshdb/area/cyprinnidae/leuciscinae/113.html"
+      },
+      {
+        "title": "釧路市立博物館館報418 (2016) 知られざる釧路湿原：湿原でひっそりと生きる魚たち",
+        "url": "https://www.city.kushiro.lg.jp/_res/projects/default_project/_page_/001/002/249/000097002.pdf"
+      },
+      {
+        "title": "北海道開発局 (2012) 釧路湿原自然再生事業 幌呂地区湿原再生実施計画",
+        "url": "https://www.env.go.jp/nature/saisei/kyougi/kushiro/kushiro_plan7.pdf"
+      },
+      {
+        "title": "Nakahashi et al. (2023) Ecological value of gravel pit ponds for floodplain wetland fish",
+        "url": "https://doi.org/10.1111/fwb.14029"
+      },
+      {
+        "title": "Sakai et al. (2006) Phylogenetic and Taxonomic Relationships of Northern Far Eastern Phoxinin Minnows",
+        "url": "https://eprints.lib.hokudai.ac.jp/dspace/bitstream/2115/14529/1/ZS_23_323.pdf"
+      },
+      {
+        "title": "Dyldin et al. (2023) Ichthyofauna of the Fresh and Brackish Waters of Russia and Adjacent Areas. 2. Order Cypriniformes",
+        "url": "https://www.researchgate.net/publication/371470932_Ichthyofauna_of_the_Fresh_and_Brackish_Waters_of_Russia_and_Adjacent_Areas_Annotated_List_with_Taxonomic_Comments_2_Order_Cypriniformes_Suborders_Catostomoidei_Cobitoidei_and_Cyprinoidei"
+      },
+      {
+        "title": "環境省レッドリスト2020 別添資料3：汽水・淡水魚類",
+        "url": "https://www.env.go.jp/press/files/jp/114457.pdf"
+      },
+      {
+        "title": "北海道レッドリスト 魚類編2018 カテゴリー別",
+        "url": "https://www.pref.hokkaido.lg.jp/fs/2/4/8/8/3/3/4/_/redlist_gyorui2018kategory.pdf"
+      }
+    ]
+  }
+}

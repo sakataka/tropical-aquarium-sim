@@ -1,0 +1,146 @@
+{
+  "id": "tridentiger-kuroiwae",
+  "displayName": "ナガノゴリ",
+  "realBodyLengthCm": 10,
+  "catalog": {
+    "scientificName": "Tridentiger kuroiwae",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "種子島・屋久島から琉球列島までの南西諸島に分布する、日本固有のハゼです。奄美大島の役勝川の標本をもとに名前が付けられました。自然の川の個体は、仔魚のころを海の岸近くで過ごし、川へ戻ることが分かっています。",
+    "temperament": "川底で暮らすハゼです。沖縄島の漢那ダムの調査では、卵を守る親を取り除いたオオクチバスの産卵床に集まり、卵を食べるのが見られました。卵を産む場所には、比較的大きな石を使う記録があります。",
+    "movement": "底の近くで暮らし、河口の護岸ブロックの隙間で採集された記録があります。本水槽では、礫と落ち葉の底や岩の上に止まり、短く泳いでは止まる姿で描いています。",
+    "habitat": "河口の汽水域から川の淡水域にすみ、排水路やダムの湖でも見られます。本水槽では、礫と落ち葉の底に大きな岩のある、琉球の川の深い淵をイメージしています。",
+    "aliases": [
+      "Naganogori",
+      "Tridentiger kuroiwae kuroiwae"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Gobiiformes",
+      "orderJa": "ハゼ目",
+      "family": "Oxudercidae",
+      "familyJa": "オクスデルクス科"
+    },
+    "adultSizeCm": 10,
+    "sizeNote": "国立科学博物館の解説では全長10cmとされます（最大か、ふつうの大きさかは示されていません）。徳之島と神奈川県で採集された標本は標準体長3.5〜7.9cmで、鹿児島県の雄の写真には「9cmほど」と添えられています。400cm水槽で見やすいよう、画面でも全長約10cmの大きめの個体で描いています。科は Catalog of Fishes の体系に従ってオクスデルクス科としています（国内の図鑑ではハゼ科とされます）。",
+    "distribution": "種子島・屋久島から琉球列島までの南西諸島に分布します。奄美大島、徳之島、沖縄島、西表島などで記録されています。2014年に神奈川県鎌倉市の川の河口で1匹が採集されましたが、1匹だけの記録で、そこで増えている可能性は低いと考えられています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "rarelyDisplayed",
+    "conservation": {
+      "status": "LC",
+      "note": "IUCN の区分は、環境省の委託による2010年の報告書の一覧（2010年1月時点）で確かめたもので、評価の本文と最新の評価は確認できていません。"
+    },
+    "highlights": [
+      "頭の横に、小さな青から青白い色の点が散らばります。",
+      "第1背びれのとげの先が、糸のように伸びます。尾びれは丸い形です。",
+      "体の色は状態によって変わります。体の横の中央に黒い帯が出ることや、黄色い横帯が出ることがあります。",
+      "沖縄島の漢那ダムの湖では、海へ下らずに世代をつないでいると報告されています。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.6,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.6
+    }
+  },
+  "visual": {
+    "fallbackColor": "#6b6256"
+  },
+  "sourceBodyBounds": {
+    "x": 67,
+    "y": 255,
+    "width": 1429,
+    "height": 471
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.78,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.2,
+      "burst": 2.0
+    },
+    "turnRateRadPerSec": 2.6,
+    "restFraction": 0.6,
+    "depthRange": [
+      0.2,
+      0.85
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.0,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.8,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 2,
+        "durationSec": [
+          8,
+          25
+        ]
+      },
+      {
+        "type": "follow",
+        "chancePerMin": 0.3,
+        "durationSec": [
+          1,
+          2.5
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Tridentiger kuroiwae",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=19018"
+      },
+      {
+        "title": "Wei et al. (2025) Multilocus Molecular Phylogeny Brings Insight Into Systematics and Evolution of Genus Tridentiger. Journal of Zoological Systematics and Evolutionary Research, 9987020",
+        "url": "https://onlinelibrary.wiley.com/doi/full/10.1155/jzs/9987020"
+      },
+      {
+        "title": "国立科学博物館（2009）特別展示「ハゼの世界とその多様性」：ナガノゴリ",
+        "url": "https://www.kahaku.go.jp/plan/2009/12haze/ranking.html"
+      },
+      {
+        "title": "和歌山県立自然博物館「日本のハゼ」：ナガノゴリ",
+        "url": "https://www.shizenhaku.wakayama-c.ed.jp/goby_japanese.html"
+      },
+      {
+        "title": "本村ほか編（2018）奄美群島の魚類 p.362 ナガノゴリ",
+        "url": "https://www.museum.kagoshima-u.ac.jp/staff/motomura/Amami_lowres.pdf"
+      },
+      {
+        "title": "山川宇宙・瀬能宏（2016）相模湾流入河川および沿岸域で記録された注目すべき魚類16種. 神奈川自然誌資料37:44–52",
+        "url": "https://nh.kanagawa-museum.jp/assets/icp/pdf/nhr37_044_052yamakawa.pdf"
+      },
+      {
+        "title": "Mochida & Motomura (2018) An annotated checklist of marine and freshwater fishes of Tokunoshima island. Bulletin of the Kagoshima University Museum 10",
+        "url": "https://www.museum.kagoshima-u.ac.jp/publications/pdf_images/2018_09_TokunoshimaFishes_lowres.pdf"
+      },
+      {
+        "title": "沖縄美ら海水族館 美ら海生き物図鑑：ナガノゴリ",
+        "url": "https://churaumi.okinawa/fishbook/naganogori/"
+      },
+      {
+        "title": "沖縄地方ダム管理フォローアップ委員会（2022）漢那ダム定期報告書概要版",
+        "url": "https://www.dc.ogb.go.jp/kyoku/mizu/dum_fup/r0303_fup_siryou/R3_fup_4_R3nenndo_gaiyouban.pdf"
+      },
+      {
+        "title": "前田健・立原一憲（2015）河川性ハゼ類の加入機構. 日本水産学会誌81(3):480",
+        "url": "https://www.jstage.jst.go.jp/article/suisan/81/3/81_WA2131-10/_pdf"
+      }
+    ]
+  }
+}

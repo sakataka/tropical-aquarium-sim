@@ -3,7 +3,7 @@
   "order": 179,
   "displayName": "巣穴のあいた河口の砂泥底",
   "description": "小さな巣穴の口がいくつも開いた、やわらかい砂泥の底が広がる河口。左手に沈んだ枝、両脇にカキ殻の付いた石があり、奥にはコアマモがまばらに生えて、やや濁った緑褐色の水に光が差し込みます。",
-  "defaultLighting": "evening",
+  "defaultLighting": "natural",
   "waterColor": "#566646",
   "framing": {
     "plateBottom": 0.913

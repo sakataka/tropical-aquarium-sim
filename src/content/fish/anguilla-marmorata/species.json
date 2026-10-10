@@ -1,0 +1,160 @@
+{
+  "id": "anguilla-marmorata",
+  "displayName": "オオウナギ",
+  "realBodyLengthCm": 130,
+  "catalog": {
+    "scientificName": "Anguilla marmorata",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "インド洋から太平洋の島々まで広く分布し、南日本にもすんでいます。日本では、奄美大島や沖縄島の川でくわしく調べられています。外洋で生まれ、川や湖、河口で育ちます。",
+    "temperament": "魚や、底にすむ甲殻類などを食べる肉食の魚です。奄美大島の川で3匹を追跡した調査では、夜に動くことが多い一方で、昼に動くこともありました。川で育つ間は、限られた場所をくり返し使い、ときに離れては戻ってきます。",
+    "movement": "長い体をくねらせて進みます。本水槽では、昼は岩穴にひそみ、暗くなると出てきて底の近くを動き回る姿で描いています。",
+    "habitat": "川や湖などの淡水と、河口の汽水域で育ちます。奄美大島の川の調査では、岸に植物や石の隙間のある所を使っていて、大きな個体ほど川の中のさまざまな場所にいました。本水槽では、大きな岩穴と深い割れ目、沈んだ木の幹のある、琉球の川の深い淵をイメージしています。",
+    "aliases": [
+      "Giant mottled eel",
+      "Marbled eel",
+      "Anguilla mauritiana"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Anguilliformes",
+      "orderJa": "ウナギ目",
+      "family": "Anguillidae",
+      "familyJa": "ウナギ科"
+    },
+    "adultSizeCm": 80,
+    "sizeNote": "大きさは資料によって違います。FAO の資料（1983年）では、ふつう約80cm、最大150cmとされます。かごしま水族館の解説では全長180cm・体重28kgになるとされ、オーストラリア博物館の解説では約2mになるとされます（FAO とオーストラリア博物館の値は、測り方が示されていません）。川の調査で測られた全長は、奄美大島で11.9〜132cm（雄は65.5cmまで、雌は132cmまで）、沖縄島で雄25.8〜70.4cm、雌39.1〜143.7cmでした。図鑑の値は FAO の「ふつう」の大きさにしています。画面では、400cm水槽に合わせ、川で測られた範囲に入る全長約130cmの大きな個体で描いています。",
+    "distribution": "インド洋から太平洋の島々まで広く分布し、南日本にもすんでいます。日本では、奄美大島の役勝川・住用川・川内川・大金久川、沖縄島の13の川、小笠原諸島の八瀬川で調べられています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "note": "IUCN の区分は、IUCN のウナギ類の専門家グループのページと Catalog of Fishes（IUCN 2020 を引用）で確かめたもので、評価の本文は確認できていません。奄美大島の川の研究では、岸の植物や石の隙間、川の中のさまざまな環境を残すことが大切だと指摘されています。"
+    },
+    "highlights": [
+      "黄色がかった灰色からオリーブ色の地に、不規則な暗い茶色のまだら模様があります。腹側は淡い色です。",
+      "背びれ・尾びれ・尻びれがひと続きになり、尾へ向かって細くなる長い体を縁取ります。腹びれはなく、頭のすぐ後ろに小さな胸びれがあります。",
+      "夜に動くことが多い魚ですが、昼に動くこともあります。奄美大島の川で3匹を追跡した調査で分かりました。",
+      "奄美大島と沖縄島の川の調査では、雄は全長約70cmまで、雌は130〜140cm台までの個体が測られています。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 0.8,
+    "bodyWaveStart": 0.08,
+    "waveCount": 1.5,
+    "tailSweepRad": 0.28,
+    "verticalFlex": 0.04,
+    "mouthAnchor": {
+      "x": 0.005,
+      "y": 0.54
+    }
+  },
+  "visual": {
+    "fallbackColor": "#8e7956"
+  },
+  "sourceBodyBounds": {
+    "x": 36,
+    "y": 415,
+    "width": 1465,
+    "height": 165
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.76,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "undulate",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.12,
+      "burst": 0.5
+    },
+    "turnRateRadPerSec": 1.2,
+    "restFraction": 0.55,
+    "depthRange": [
+      0.35,
+      0.95
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 1.2,
+      "cohesion": 0,
+      "polarization": 0.03
+    },
+    "structureAffinity": 0.85,
+    "habits": [
+      {
+        "type": "hideByDay",
+        "durationSec": [
+          40,
+          120
+        ]
+      },
+      {
+        "type": "homeShelter",
+        "kind": "cave",
+        "rangeBodyLengths": 3,
+        "visitChancePerMin": 0.4,
+        "visitDurationSec": [
+          30,
+          90
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 0.8,
+        "durationSec": [
+          15,
+          45
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Itakura & Wakiya (2026) Partial nocturnal behaviour of giant mottled eels in a small river, Amami-Oshima Island, Japan, from acoustic telemetry. J Fish Biol 109:1307–1311",
+        "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13521694/fullTextXML"
+      },
+      {
+        "title": "Itakura & Wakiya (2020) Habitat preference, movements and growth of giant mottled eels in a small subtropical Amami-Oshima Island river. PeerJ 8:e10187",
+        "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7646302/fullTextXML"
+      },
+      {
+        "title": "Wakiya, Itakura & Kaifu (2019) Age, Growth, and Sex Ratios of the Giant Mottled eel. Zoological Studies 58:34",
+        "url": "https://zoolstud.sinica.edu.tw/Journals/58/58-34.pdf"
+      },
+      {
+        "title": "Kita & Tachihara (2020) Age, growth, and gonadal condition of the Giant mottled eel in Okinawa-Jima Island. Environmental Biology of Fishes 103:927–938",
+        "url": "https://link.springer.com/article/10.1007/s10641-020-00994-5"
+      },
+      {
+        "title": "Arai & Chino (2018) Opportunistic migration and habitat use of the giant mottled eel Anguilla marmorata. Scientific Reports 8:5666",
+        "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC5884785/fullTextXML"
+      },
+      {
+        "title": "FAO species identification sheets (1983), Anguillidae, Fishing Area 51: Anguilla marmorata",
+        "url": "https://www.fao.org/4/ad468e/AD468eAQ.pdf"
+      },
+      {
+        "title": "Smithsonian Tropical Research Institute, Shorefishes: Anguilla marmorata",
+        "url": "https://biogeodb.stri.si.edu/sftep/en/thefishes/species/2656"
+      },
+      {
+        "title": "Australian Museum: Giant Mottled Eel, Anguilla marmorata",
+        "url": "https://australian.museum/learn/animals/fishes/giant-mottled-eel-anguilla-marmorata/"
+      },
+      {
+        "title": "いおワールドかごしま水族館：オオウナギ",
+        "url": "https://ioworld.jp/guide/oounagi"
+      },
+      {
+        "title": "IUCN SSC Anguillid Eel Specialist Group",
+        "url": "https://iucn.org/our-union/commissions/group/iucn-ssc-anguillid-eel-specialist-group"
+      }
+    ]
+  }
+}

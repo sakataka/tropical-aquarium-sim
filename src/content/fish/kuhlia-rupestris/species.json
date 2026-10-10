@@ -1,0 +1,131 @@
+{
+  "id": "kuhlia-rupestris",
+  "displayName": "オオクチユゴイ",
+  "realBodyLengthCm": 30,
+  "catalog": {
+    "scientificName": "Kuhlia rupestris",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "アフリカの東岸からインド洋、西太平洋の島々まで広く分布し、日本では神奈川県、高知県、大隅諸島、琉球列島で記録されています。おもに淡水と汽水で育ち、卵を産むのは海だと考えられています。",
+    "temperament": "昆虫などの陸や水の小さな生き物、小魚を食べ、水面に落ちてきた小さな生き物も捕らえます。ニューブリテン島（パプアニューギニア）の川の調査では、深い淵の岩の隙間や倒木のそばに、1匹でとどまる姿が見られました。",
+    "movement": "飼育されている親魚は、水面近くの昆虫へ向かって跳ねることがあります。本水槽では、淵の開けた水の中ほどを、1匹ずつゆったり泳ぐ姿で描いています。",
+    "habitat": "澄んだ川の、岩盤や大きな石のある深みにすみ、倒木や岸の根を隠れ場所にするとされます。西表島のウダラ川では、塩分の低い汽水域の上流側に多く見られました。本水槽では、大きな岩と沈んだ木の幹、岸から下りる根のある、琉球の川の深い淵をイメージしています。",
+    "aliases": [
+      "Rock flagtail",
+      "Jungle perch",
+      "Centropomus rupestris"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Perciformes",
+      "orderJa": "スズキ目",
+      "family": "Kuhliidae",
+      "familyJa": "ユゴイ科"
+    },
+    "adultSizeCm": 25,
+    "sizeNote": "FishBase は、ふつうの大きさを標準体長約25cm、最大を全長45cmとしています（最大は古い報告による値です）。オーストラリアの産卵試験で使われた親魚は尾叉長18.7〜48cmで、45cmより大きい個体もいました。総説では、日本での最も小さい成熟した雄は標準体長12cmと紹介されています（私信による値です）。図鑑の値は FishBase の「ふつう」の大きさにしています。画面では、400cm水槽で見やすいよう、全長約30cmの個体で描いています。目は、館のほかの魚とそろえてスズキ目としています（WoRMS は Centrarchiformes としています）。",
+    "distribution": "南アフリカ・東アフリカからインド洋・西太平洋に分布します。東はカロリン諸島・ツアモツ諸島まで、北は相模湾、南はオーストラリアのクイーンズランド州・ニューカレドニアまでの記録があります。日本では神奈川県、高知県、大隅諸島、琉球列島で記録され、与論島の水路の淡水域や、西表島のウダラ川の汽水域で確かめられています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2019,
+      "note": "IUCN の区分と評価年は FishBase と Catalog of Fishes で確かめたもので、評価の本文は確認できていません。総説では、川と海の行き来を妨げる堰やダム、川の流れや岸の林の変化、漁獲などが、地域ごとの心配として挙げられています。"
+    },
+    "highlights": [
+      "ユゴイの仲間の中でも口が大きく、上あごの後ろの端は目の後ろ半分の下まで届きます。",
+      "尾びれは切れ込みが浅く、上下の角が丸みを帯びます。成魚では、背びれの後ろの部分と尾びれの大部分が黒くなります。",
+      "幼魚の尾びれは透明で、上下に1つずつ、白く縁取られた大きな黒い斑があります。成長すると暗い部分が広がります。",
+      "背中側のうろこは黒く縁取られ、体の横のうろこには黒い短い線や小さな斑があります。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 1.9,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.54
+    }
+  },
+  "visual": {
+    "fallbackColor": "#817d71"
+  },
+  "sourceBodyBounds": {
+    "x": 62,
+    "y": 204,
+    "width": 1429,
+    "height": 605
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.25,
+    "maxY": 0.7
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.35,
+      "burst": 1.6
+    },
+    "turnRateRadPerSec": 2.0,
+    "restFraction": 0.2,
+    "depthRange": [
+      0.2,
+      0.85
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.2,
+      "cohesion": 0,
+      "polarization": 0.05
+    },
+    "structureAffinity": 0.55,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Kuhlia rupestris and related names",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?genus=Kuhlia&species=rupestris&tbl=species"
+      },
+      {
+        "title": "Randall & Randall (2001) Review of the fishes of the genus Kuhlia of the Central Pacific. Pacific Science 55:227–256",
+        "url": "https://scholarspace.manoa.hawaii.edu/bitstreams/8dbde4d9-d82f-4243-8393-050050e93fcd/download"
+      },
+      {
+        "title": "Gelineau et al. (2020) Biology of jungle perch, Kuhlia rupestris, identification of threats and knowledge gaps to improve local and global management. Cybium 44(1):45–55",
+        "url": "https://zenodo.org/records/10493444/files/source.pdf"
+      },
+      {
+        "title": "Amick & Toko (2021) Notes on the ichthyofauna of inland streams of the Whiteman Range, New Britain Island, Papua New Guinea. FishTaxa 20:1–13",
+        "url": "https://www.researchgate.net/publication/352695342_Notes_on_the_ichthyofauna_of_inland_streams_of_the_Whiteman_Range_New_Britain_Island_Papua_New_Guinea"
+      },
+      {
+        "title": "井上ほか（2016）西表島網取湾のウダラ川における魚類群集構造. 魚類学雑誌63(2):63–79",
+        "url": "https://www.jstage.jst.go.jp/article/jji/63/2/63_63-63/_pdf/-char/ja"
+      },
+      {
+        "title": "鹿児島大学総合研究博物館（2014）与論島の魚類：オオクチユゴイ p314",
+        "url": "https://www.museum.kagoshima-u.ac.jp/staff/motomura/FishesYoron_lowes.pdf"
+      },
+      {
+        "title": "沖縄美ら海水族館 美ら海生き物図鑑：オオクチユゴイ",
+        "url": "https://churaumi.okinawa/sp/fishbook/00000477/"
+      },
+      {
+        "title": "Hoskin et al. (2015) Parental contribution to progeny during experimental spawning of jungle perch, Kuhlia rupestris. Marine and Freshwater Research 66:375–380",
+        "url": "https://era.dpi.qld.gov.au/id/eprint/5184/1/MF13313.pdf"
+      },
+      {
+        "title": "Hutchison et al. (2016) Jungle perch Kuhlia rupestris fingerling production manual. FRDC Project 2012/213",
+        "url": "https://era.daf.qld.gov.au/id/eprint/5137/1/FRDC_2012-213-DLD-fingerling%20production%20manual.pdf"
+      },
+      {
+        "title": "FishBase: Kuhlia rupestris summary",
+        "url": "https://www.fishbase.se/summary/7715"
+      }
+    ]
+  }
+}

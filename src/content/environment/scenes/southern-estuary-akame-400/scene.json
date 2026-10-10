@@ -1,0 +1,11 @@
+{
+  "id": "southern-estuary-akame-400",
+  "order": 181,
+  "displayName": "海草の茂みと沈み木の河口",
+  "description": "左に細長い葉の海草の茂みが広がり、右には苔むした大きな岩と、斜めに沈んだ古い木が重なる、夕暮れの深い河口。砂と礫の底に光の網目が揺れ、奥の急な岸は青緑の暗がりへ消えていきます。",
+  "defaultLighting": "evening",
+  "waterColor": "#245a5e",
+  "framing": {
+    "plateBottom": 0.811
+  }
+}

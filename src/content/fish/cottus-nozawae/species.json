@@ -1,0 +1,135 @@
+{
+  "id": "cottus-nozawae",
+  "displayName": "ハナカジカ",
+  "realBodyLengthCm": 15,
+  "catalog": {
+    "scientificName": "Cottus nozawae",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "北海道のほぼ全域と、東北地方の一部の川にすむカジカの仲間です。海へ下らず、一生を川の淡水で過ごします。",
+    "temperament": "水生昆虫を中心に、底の小さな生き物、流れてくる昆虫、小魚、サケの卵なども食べます。春から初夏の繁殖期には、雄が石の下に巣をつくり、卵を守ります。本水槽では、1匹ずつ離れて礫の底にいます。",
+    "movement": "川底で暮らし、石の下などに身を隠して、主に夜に餌をとるとされます。本水槽では、サケの下の礫の底にじっと留まり、ときどき短く泳いで場所を移ります。",
+    "habitat": "主に川の中流から上流の、平瀬の礫の底や淵、石の下にすみます。岩手県では、夏でも水温が20℃を超えない場所にすむと紹介されています。よく似たエゾハナカジカのいない川では下流にもいて、十勝では川のいちばん下流でも記録があります。本水槽では、秋の北海道の川の下流の、冷たい淡水の礫の底にいます。",
+    "aliases": [
+      "ハナカジカ大卵型"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Perciformes",
+      "orderJa": "スズキ目",
+      "family": "Cottidae",
+      "familyJa": "カジカ科"
+    },
+    "adultSizeCm": 15,
+    "sizeNote": "国立科学博物館や国土交通省の解説は、全長15cm、または15cmに達するとしています。岩手県のレッドデータブックは、成魚の体長を7〜12cm（測り方の記載なし）としています。ふつう雄のほうが雌より大きいとされます。500cm水槽で見つけやすいよう、画面では全長15cmの大きめの個体で描いています。種全体の最大の全長は確認できていません。",
+    "distribution": "北海道のほぼ全域と、東北地方の一部の川に分布します。東北では青森県、秋田県、岩手県が挙げられ、宮城県の北部で確認されたという記述もあります。日本固有とする解説と、朝鮮半島やサハリン南部も分布に含める資料があり、国外の分布は資料によって違います。種の基準になった標本は、札幌の石狩川でとれたものです。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2020,
+      "note": "種全体の評価です（Catalog of Fishes に載っている IUCN の区分で、評価の本文は確認できていません）。環境省レッドリスト2020では、東北地方のハナカジカが「絶滅のおそれのある地域個体群（LP）」です（北海道の集団は含みません）。川底が変えられること、石の下のすき間がなくなること、まわりの森や流域が荒れることが、すみかを損なうとされます。"
+    },
+    "highlights": [
+      "幅が広く平たい頭と、鱗のないまだら模様の体、扇のように広がる胸びれが見どころです。",
+      "体は褐色で、横に暗い斑が4つほど並びます。模様の濃さは、地域によって大きく違います。",
+      "よく似たエゾハナカジカと違って、海へ下らず、一生を川で過ごします。",
+      "サケの卵を食べることもあります。繁殖期の雄は石の下の巣で卵を守り、ひれで水を送ったり、巣を掃除したりします。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.6,
+    "tailSweepRad": 0.42,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.52
+    }
+  },
+  "visual": {
+    "fallbackColor": "#8a7556"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.65,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.2,
+      "burst": 1.0
+    },
+    "turnRateRadPerSec": 2.1,
+    "restFraction": 0.6,
+    "depthRange": [
+      0.1,
+      0.75
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.2,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.7,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 2.2,
+        "durationSec": [
+          12,
+          45
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Cottus nozawae Snyder1911, spid43079",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=43079"
+      },
+      {
+        "title": "国立科学博物館 淡水魚類図鑑: ハナカジカ",
+        "url": "https://www.kahaku.go.jp/research/db/zoology/uodas_freshdb/area/cottidae/095.html"
+      },
+      {
+        "title": "国土交通省北海道開発局帯広開発建設部: ハナカジカ 魚類58–59",
+        "url": "https://www.hkd.mlit.go.jp/ob/tisui/kds/pamphlet/ikimono/pdf/ctll1r0000004osahanakajika.pdf"
+      },
+      {
+        "title": "登別市: 登別のめずらしいいきもの No.100 ハナカジカ",
+        "url": "https://www.city.noboribetsu.lg.jp/kankyo/other_02/index.html"
+      },
+      {
+        "title": "岩手県レッドデータブック: ハナカジカ",
+        "url": "https://www2.pref.iwate.jp/~hp0316/rd/rdb/06tansuigyo/0763.html"
+      },
+      {
+        "title": "環境省・生物多様性センター: 淡水魚類分布調査報告 カジカ科",
+        "url": "https://www.biodic.go.jp/reports/4-05/f368.html"
+      },
+      {
+        "title": "Goto1980: ハナカジカ2型の地理的変異とCottus amblystomopsisの形態",
+        "url": "https://www.jstage.jst.go.jp/article/jji1950/27/2/27_2_97/_article/-char/ja"
+      },
+      {
+        "title": "Goto1975: ハナカジカの生態的・形態的分岐I、産卵習性及び初期発育",
+        "url": "https://eprints.lib.hokudai.ac.jp/repo/huscap/all/23545/26%281%29_P31-37.pdf"
+      },
+      {
+        "title": "環境省レッドリスト2020: 汽水・淡水魚類、東北地方のハナカジカ",
+        "url": "https://www.env.go.jp/content/900515981.pdf"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 84,
+    "y": 277,
+    "width": 1394,
+    "height": 480
+  }
+}

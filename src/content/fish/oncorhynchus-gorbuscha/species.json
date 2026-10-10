@@ -1,0 +1,148 @@
+{
+  "id": "oncorhynchus-gorbuscha",
+  "displayName": "カラフトマス",
+  "realBodyLengthCm": 52,
+  "catalog": {
+    "scientificName": "Oncorhynchus gorbuscha",
+    "originRegionId": "north-pacific",
+    "originRegionName": "北太平洋",
+    "origin": "北太平洋の両岸と、その周りの海、北極海側の一部に分布します。海で育ち、繁殖の時期に川へ戻ります。日本では主に北海道の北東部で、オホーツク海と根室海峡へ注ぐ川にのぼります。",
+    "temperament": "川へ戻った成魚は餌をとるのをやめます。雌が砂礫の底に産卵床を掘り、雄が放精すると、雌が埋め戻します。雄どうしは雌をめぐって競います。本水槽では、ゆるい群れになり、ときどき仲間の後を追います。",
+    "movement": "北海道の川には夏から秋にのぼり、主に秋に産卵します。本水槽では、中層から底近くを、群れで向きをそろえて泳ぎます。",
+    "habitat": "川の中流から下流の浅瀬で、流れが比較的速く、川の水がよくしみ込む砂礫の底に産卵します。稚魚は砂礫から出ると、すぐに海へ下ります。本水槽では、礫の底が続く秋の北海道の川の下流をイメージしています。",
+    "aliases": [
+      "Pink salmon",
+      "Humpback salmon",
+      "セッパリマス",
+      "セッパリ",
+      "アオマス",
+      "ホンマス",
+      "Salmo gorbuscha"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Salmoniformes",
+      "orderJa": "サケ目",
+      "family": "Salmonidae",
+      "familyJa": "サケ科"
+    },
+    "adultSizeCm": 52,
+    "sizeNote": "北海道の図鑑は全長45〜60cmとしています。水産研究・教育機構の解説（2005年）は成魚の尾叉長（吻の先から尾びれの切れ込みまで）を45〜60cm、同機構の図鑑は体長40〜65cm（測り方の記載なし）、令和7年度の資源評価は成熟したときの尾叉長を32〜70cmとしていて、測り方と幅が資料で違います。ここでは全長45〜60cmの中ほどの約52cmとして表示しています。種全体の最大の大きさは確認できていません。2024年に、奇数年に産卵する系統を別種 O. gorbuschka とする論文が出て、Catalog of Fishes はこれを有効な種としていますが、ここでは日本や米国の公的機関と同じく、従来の広い意味のカラフトマスとして扱っています。",
+    "distribution": "北太平洋の両岸と、その周りの海、北極海側の一部に自然分布します。日本では主に北海道の北東部で、オホーツク海と根室海峡へ注ぐ川に、産卵のためにのぼります。根室海峡の沿岸では、羅臼川、薫別川、標津川、当幌川、西別川などで、川をのぼった親魚が調べられています。五大湖や白海などには人の手で移され、大西洋側にも定着して広がっています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2020,
+      "note": "種全体の評価です（FishBase に載っている IUCN の区分で、評価の本文は確認できていません）。日本の系群は、令和7年度の資源評価で、資源の水準が低位、動向が減少傾向とされました。2025年の日本の沿岸の漁獲数は速報値で約2.5万尾で、1969年以降の記録で最も少なくなっています。"
+    },
+    "highlights": [
+      "川をのぼる時期の雄は、背びれの前の背中が大きく盛り上がり、吻と顎が伸びて鉤のように曲がります。雌には、この大きな盛り上がりがありません。",
+      "背中と、尾びれの上下の両方に、大きな黒い楕円の斑があります。背びれの後ろにある小さな脂びれにも黒い点があります。",
+      "ふつう2年で成熟して川へ戻り、基本的に一生に一度だけ繁殖して死にます。",
+      "同じくらいの大きさのサケの仲間に比べて、鱗がとても小さい魚です。稚魚には、サケの仲間の幼魚によく見られる体の横の模様（パーマーク）がありません。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 1.2,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.52
+    }
+  },
+  "visual": {
+    "fallbackColor": "#857a6c"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.28,
+    "maxY": 0.82
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "steady",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.28,
+      "burst": 0.85
+    },
+    "turnRateRadPerSec": 1.4,
+    "restFraction": 0.2,
+    "depthRange": [
+      0.15,
+      0.8
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.4,
+      "cohesion": 0.5,
+      "polarization": 0.55
+    },
+    "structureAffinity": 0.2,
+    "habits": [
+      {
+        "type": "follow",
+        "chancePerMin": 1.2,
+        "durationSec": [
+          5,
+          12
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "水産研究・教育機構：日本のサケ科魚類",
+        "url": "https://www.fra.go.jp/shigen/salmon/salmonidae.html"
+      },
+      {
+        "title": "加賀敏樹 (2005) サケ科魚類のプロファイル7：カラフトマス. SALMON 15:12–13",
+        "url": "https://www.fra.go.jp/shigen/salmon/files/salmon15_p12-13.pdf"
+      },
+      {
+        "title": "水産庁・水産研究教育機構 (2026) 令和7年度 国際漁業資源の現況61 カラフトマス 日本系",
+        "url": "https://kokushi.fra.go.jp/R07/R07_61_PIN.pdf"
+      },
+      {
+        "title": "北海道：カラフトマス［樺太鱒］",
+        "url": "https://www.pref.hokkaido.lg.jp/sr/gid/fis021.html"
+      },
+      {
+        "title": "北海道立総合研究機構：カラフトマス・ます小型定置網漁業",
+        "url": "https://www.hro.or.jp/fisheries/h3mfcd0000000gsj/o7u1kr000000019q/o7u1kr000000d4fu/o7u1kr0000007gtz.html"
+      },
+      {
+        "title": "虎尾充・柳本卓 (2017) ミトコンドリアDNA分析による根室海峡沿岸河川に遡上したカラフトマス奇数年級群の集団構造. 北水試研報91:1–7",
+        "url": "https://www.hro.or.jp/upload/41326/kenpou91karafuto.pdf"
+      },
+      {
+        "title": "虎尾充 (2014) 北海道根室海峡沿岸河川で捕獲された小型カラフトマス. 北水試研報86:151–154",
+        "url": "https://www.hro.or.jp/upload/40997/o7u1kr000000g07d.pdf"
+      },
+      {
+        "title": "Alaska Department of Fish and Game: Pink Salmon Species Profile",
+        "url": "https://www.adfg.alaska.gov/index.cfm?adfg=pinksalmon.main"
+      },
+      {
+        "title": "NOAA Fisheries: Pink Salmon",
+        "url": "https://www.fisheries.noaa.gov/species/pink-salmon"
+      },
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Salmo gorbuscha Walbaum 1792",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=10560"
+      },
+      {
+        "title": "FishBase: Oncorhynchus gorbuscha summary",
+        "url": "https://www.fishbase.se/summary/Oncorhynchus_gorbuscha.html"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 84,
+    "y": 238,
+    "width": 1379,
+    "height": 513
+  }
+}

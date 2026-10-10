@@ -1,0 +1,151 @@
+{
+  "id": "paratya-compressa",
+  "displayName": "ヌマエビ",
+  "realBodyLengthCm": 3,
+  "catalog": {
+    "scientificName": "Paratya compressa",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "日本の、海へ注ぐ川にすむヌマエビです。琉球列島では、奄美大島、沖縄島、西表島の川で記録されています。親は川の淡水で暮らし、幼生は塩分のある水で育ちます。以前は同じ種とされていたヌカエビ（Paratya improvisa）は、海へ下らずに一生を淡水で過ごす別の種です。",
+    "temperament": "成体が野外で何を食べるかは、この種では確かめられていません。第1・第2胸脚は、先に刷毛のような毛をもつ小さなはさみ脚です。研究室では、観賞用のエビや魚の人工飼料を毎日与えて親エビを飼っています。",
+    "movement": "本水槽では、石や流木の表面を細い脚で歩き、立ち止まってはついばむ姿で描いています。沖縄県名護市の渓流では、夜に水中を泳ぐ姿が観察されていて、昼にも見られます。",
+    "habitat": "海へ注ぐ川や小川にすみます。沖縄島では河口から約4km上流で、西表島では上流の速い流れで採集され、名護市では渓流の淵や滝つぼで観察されています。千葉県の小さな川では、砂や小石の底に落ち葉のたまる下流から中流に多く、岩手県ではツルヨシなどの密な根の間のゆるい流れで採集されました。本水槽では、琉球の川の石や流木、岸の根のまわりにいるエビとして置いています。",
+    "aliases": [
+      "Paratya compressa compressa",
+      "Ephyra compressa",
+      "エビ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Decapoda",
+      "orderJa": "十脚目",
+      "family": "Atyidae",
+      "familyJa": "ヌマエビ科"
+    },
+    "adultSizeCm": 3,
+    "sizeNote": "全長や体長の確かな値は、今回の調査では見つかっていません。大きさは頭胸甲長（眼のくぼみの後ろの縁から頭胸甲の後ろの端まで。額角・腹部・尾は含みません）で測られています。千葉県の川の成熟した雌23個体は平均7.46mm（5.56〜8.81mm）、雄25個体は平均5.68mm（4.81〜6.27mm）で、雌のほうが大きくなります。沖縄島の卵を抱いた雌2個体は6.6〜6.8mm、西表島の雌は7.1mmでした。図鑑の3cmと画面の体長約3cmは、この頭胸甲長から見積もった雌の目安です。",
+    "distribution": "日本の、海へ注ぐ川に分布します。琉球列島では奄美大島、沖縄島、西表島で記録され、本州では千葉県の房総半島などで調べられています。2023年には岩手県の小本川でも1個体が採集されました。琉球列島の集団は、本州などの集団とは遺伝子の系統が違うことが報告されています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "IUCN の評価と沖縄県の評価は、今回の調査では確かめられていません。岡山県版レッドリスト2025では準絶滅危惧です。宮崎県の川では、国内のほかの地域から持ち込まれたオヤニラミの胃からヌマエビが見つかっています。"
+    },
+    "highlights": [
+      "眼の上に小さなとげ（眼窩上棘）があります。ヌマエビ属の特徴で、ミゾレヌマエビにはありません。歩く脚のすべてに、外肢という細い枝がついているのも特徴です。",
+      "親は川の淡水で暮らし、幼生は塩分のある水で育つ両側回遊のエビです。千葉県の川では4〜8月を中心に卵を抱いた雌が見られ、雌は川に入った翌年の春に育って、約1歳で繁殖すると推定されています。",
+      "琉球列島の集団は、本州などの集団とは遺伝子の系統が違い、沖縄にはまだ名前のついていない別の種が隠れている可能性も指摘されています。",
+      "沖縄県名護市で採集された卵を抱いた雌は、水槽に移したあと、模様が青みから赤みへ変わりました。理由は分かっていません。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "crustacean",
+    "headStart": 0.23,
+    "tailBeatHz": 0.6,
+    "bodyWaveStart": 0.85,
+    "tailSweepRad": 0,
+    "verticalFlex": 0,
+    "footAnchor": {
+      "x": 0.45,
+      "y": 0.96
+    }
+  },
+  "visual": {
+    "fallbackColor": "#bfa982"
+  },
+  "sourceBodyBounds": {
+    "x": 44,
+    "y": 165,
+    "width": 1444,
+    "height": 639
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.84,
+    "maxY": 0.93
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.08,
+      "burst": 0.4
+    },
+    "turnRateRadPerSec": 1.3,
+    "restFraction": 0.6,
+    "depthRange": [
+      0.05,
+      0.4
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 1.2,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.8,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 4.5,
+        "durationSec": [
+          8,
+          22
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 2,
+        "durationSec": [
+          5,
+          14
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "WoRMS / DecaNet Paratya compressa (De Haan, 1844)",
+        "url": "https://www.marinespecies.org/rest/AphiaRecordsByName/Paratya%20compressa?like=false&marine_only=false"
+      },
+      {
+        "title": "Cai & Shokita 2006 Atyid shrimps of the Ryukyu Islands（Paratya の項）",
+        "url": "https://tb.plazi.org/GgServer/xhtml/039A9827FF9DFFFDCBFB89B2FE8AEB8F"
+      },
+      {
+        "title": "池田ほか 2009 両側回遊型ヌマエビにおける日本列島集団と琉球列島集団間の遺伝的分化",
+        "url": "https://www.esj.ne.jp/meeting/abst/56/F2-05.html"
+      },
+      {
+        "title": "塩練・竹内・仁藤 2025 岩手県沿岸河川で採捕されたヌマエビ",
+        "url": "https://www.jstage.jst.go.jp/article/aquaticanimals/2025/0/2025_AA2025-31/_pdf/-char/en"
+      },
+      {
+        "title": "Hamasaki & Dan 2026 Sexual size dimorphism in Paratya compressa",
+        "url": "https://academic.oup.com/jcb/article/46/3/ruag039/8725982"
+      },
+      {
+        "title": "名護博物館 2017 カエルを探しに再び夜の渓流へ！",
+        "url": "https://nagohaku.hatenablog.com/entry/20170218/1487386524"
+      },
+      {
+        "title": "Yamada et al. 2024 Occurrence of amphidromous atyid shrimps in a small stream on the Boso Peninsula",
+        "url": "https://www.jstage.jst.go.jp/article/aquaticanimals/2024/0/2024_AA2024-3/_pdf/-char/en"
+      },
+      {
+        "title": "Hamasaki et al. 2020 Larval performance of amphidromous and landlocked atyid shrimp species in the genus Paratya",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8181156/"
+      },
+      {
+        "title": "Hamasaki, Kondo & Dan 2021 Larval performance of Paratya under different temperature and salinity conditions",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8678617/"
+      },
+      {
+        "title": "岡山県版レッドリスト2025",
+        "url": "https://www.pref.okayama.jp/uploaded/life/965573_9299123_misc.pdf"
+      }
+    ]
+  }
+}

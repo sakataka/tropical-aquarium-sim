@@ -1,0 +1,11 @@
+{
+  "id": "northern-lagoon-180",
+  "order": 112,
+  "displayName": "アマモの草原と貝殻の砂泥底",
+  "description": "細長い葉のアマモが奥と両脇に草原をつくる、北海道東部の浅い汽水湖。貝殻の散らばる砂泥の底が中央から手前へ開け、両脇には褐色の海藻をまとった丸い石があり、緑がかった水に水面からの光が筋になって差し込みます。",
+  "defaultLighting": "natural",
+  "waterColor": "#1f7b84",
+  "framing": {
+    "plateBottom": 0.944
+  }
+}

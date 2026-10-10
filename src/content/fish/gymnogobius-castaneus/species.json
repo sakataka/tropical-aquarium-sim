@@ -1,0 +1,138 @@
+{
+  "id": "gymnogobius-castaneus",
+  "displayName": "ジュズカケハゼ",
+  "realBodyLengthCm": 6.5,
+  "catalog": {
+    "scientificName": "Gymnogobius castaneus",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "北海道と本州、サハリン、ウルップ島に分布する小さなハゼです。以前の「ジュズカケハゼ」には、よく似た別の種が含まれていたことが分かり、いまは広い範囲に分布するものがこの種とされています。",
+    "temperament": "茨城県の涸沼では、春に水中を漂っていた仔魚が、初夏までに底で暮らす稚魚になります。仔魚と稚魚は、育つにつれて、カイアシ類から、ユスリカの幼虫やアミの仲間を多く食べるようになります。繁殖期の雌は、体とひれが暗くなり、黄色い横帯が現れます。",
+    "movement": "釧路湿原の達古武沼の2003年の調査では、岸の近くの砂泥の底に多く、流れの緩い湿原の川にも多くいました。本水槽では、岸の下の底に止まっては、短く泳いで場所を移る姿で描いています。",
+    "habitat": "川や湖の淡水域を中心に、集団によっては塩分の低い汽水域にもすみます。釧路湿原のシラルトロ沼へ流れ込む川で記録された地点のまわりには、ヨシ、ヤナギ、ハンノキが茂っていました。本水槽では、泥炭の岸がえぐれ、スゲやヨシの根が水中へ垂れる、北海道の湿原をゆっくり流れる川をイメージしています。",
+    "aliases": [
+      "Chaenogobius castaneus",
+      "Gobius castaneus",
+      "Chloea castanea"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Gobiiformes",
+      "orderJa": "ハゼ目",
+      "family": "Oxudercidae",
+      "familyJa": "オクスデルクス科"
+    },
+    "adultSizeCm": 6,
+    "sizeNote": "全長の代表的な値と最大の値は確認できていません。札幌の標本15匹は標準体長5.7〜6.6cm、釧路湿原のシラルトロ沼へ流れ込む川で2005年に記録された35匹は標準体長3.4〜5.6cmでした（成魚かどうかは示されていません）。図鑑の値は約6cm、画面は300cm水槽で見やすいよう、札幌の標本の大きいほうに合わせた約6.5cmにしています。茨城県の涸沼では、成魚と判定されたいちばん小さい個体が体長4.2cmでした。科は Catalog of Fishes の体系に従ってオクスデルクス科としています（国内の図鑑や博物館ではハゼ科とされます）。",
+    "distribution": "北海道、本州（青森県から、日本海側は兵庫県まで、太平洋側は神奈川県まで）、サハリン、ウルップ島に分布します。釧路湿原では、塘路湖、達古武沼とそのまわりの川、シラルトロ沼へ流れ込む川で記録されています（当時の同定によります）。中国や朝鮮半島を分布に含める資料もありますが、古い名前の混同を含むおそれがあります。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "環境省レッドリスト2020では準絶滅危惧（NT）です。IUCN の区分は確認できていません。すみかが改変されることと、魚を食べる外来魚に食べられることが、減る要因として挙げられています。"
+    },
+    "highlights": [
+      "背びれは前と後ろの2つに分かれ、尾びれは丸い形です。口は小さく、少し上を向きます。",
+      "繁殖期の雌は、体とひれが暗くなり、黄色い横帯が現れます。",
+      "釧路湿原の達古武沼では、岸の近くの底にこの魚が多く、沖にはイシカリワカサギが多くいました。",
+      "よく似た別の種が何種もいて、ふだんの色の姿を横から見ただけでは、確かには見分けられません。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 3,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.56
+    }
+  },
+  "visual": {
+    "fallbackColor": "#aa9475"
+  },
+  "sourceBodyBounds": {
+    "x": 99,
+    "y": 275,
+    "width": 1350,
+    "height": 452
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.65,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.25,
+      "burst": 2.6
+    },
+    "turnRateRadPerSec": 3,
+    "restFraction": 0.55,
+    "depthRange": [
+      0.1,
+      0.75
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.6,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 2.5,
+        "durationSec": [
+          6,
+          20
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Gobius castaneus / Gymnogobius castaneus",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=21124"
+      },
+      {
+        "title": "向井・渋川・篠崎・杉山・千葉・半澤 (2010) ジュズカケハゼ種群：同胞種群とその現状",
+        "url": "https://www.jstage.jst.go.jp/article/jji/57/2/57_173/_pdf"
+      },
+      {
+        "title": "Stevenson (2002) Systematics and Distribution of Fishes of the Asian Goby Genera Chaenogobius and Gymnogobius",
+        "url": "https://www.jstage.jst.go.jp/article/specdiv/7/3/7_KJ00003893348/_pdf"
+      },
+      {
+        "title": "針生勤・仲島広嗣・高村典子 (2007) 達古武沼と周辺河川における魚類の分布特性と生息状況",
+        "url": "https://www.jstage.jst.go.jp/article/rikusui/68/1/68_1_157/_pdf/-char/ja"
+      },
+      {
+        "title": "EnVision環境保全事務所 (2005) 平成17年度 雷別地区魚類調査 作業報告書",
+        "url": "https://www.rinya.maff.go.jp/hokkaido/kusiro_fc/gyomu/tyousa/pdf/h17_raibetu_gyorui_tyousa.pdf"
+      },
+      {
+        "title": "Shimazu (2014) Digeneans Parasitic in Freshwater Fishes of Japan. II. Gorgoderidae and Orientocreadiidae",
+        "url": "https://www.kahaku.go.jp/albums/abm.php?d=4645&f=abm00000731.pdf&n=BNMNS_A40-2_53-78.pdf"
+      },
+      {
+        "title": "Oguma, Kaneko & Kanou (2022) Seasonal occurrence and food habits of larvae and juveniles of Gymnogobius castaneus in Lake Hinuma",
+        "url": "https://www.jstage.jst.go.jp/article/aquaculturesci/70/1/70_65/_pdf"
+      },
+      {
+        "title": "小熊ほか (2024) 涸沼とその流入河川における絶滅危惧種ジュズカケハゼの底生期稚魚の生息場所利用",
+        "url": "https://www.sfjo-lamer.org/la_mer/lamer.62.1-2/lamer.62.1-2.pdf"
+      },
+      {
+        "title": "北海道大学総合博物館 HUMZ 204650 ジュズカケハゼ（広域分布種）",
+        "url": "https://minna-museum.jp/data/781"
+      },
+      {
+        "title": "環境省レッドリスト2020 別添資料3：汽水・淡水魚類",
+        "url": "https://www.env.go.jp/press/files/jp/114457.pdf"
+      }
+    ]
+  }
+}

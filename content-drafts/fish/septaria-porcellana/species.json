@@ -1,0 +1,190 @@
+{
+  "id": "septaria-porcellana",
+  "displayName": "フネアマガイ",
+  "realBodyLengthCm": 3.8,
+  "catalog": {
+    "scientificName": "Septaria porcellana",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "東インド洋から西太平洋の、沖縄、台湾、東南アジア、ニューギニアなどの川にすむ、笠の形の殻をもつアマオブネガイの仲間です。琉球列島では、奄美大島、沖縄島、久米島、宮古島、石垣島、西表島、与那国島で記録されています。インド洋西部には別の亜種がいます。",
+    "temperament": "石の表面につく藻類を、歯舌で削り取って食べます。本水槽では、石や流木の上をごくゆっくり這い、ときどき立ち止まって表面の藻を削ります。",
+    "movement": "幅の広い足で、硬い面にぴったり付いて這います。本水槽では、低い殻を背負ったまま頭と足を伸び縮みさせて進み、1対の細い触角を揺らします。叩かれると立ち止まって頭を殻の下へ寄せ、しばらくしてから這い出します。",
+    "habitat": "川の汽水域の上の端から淡水の中流・下流にかけて、石や岩などの硬い面に付いています。沖縄島の1969年の調査では、海岸に近い北部の川の、澄んだ水の岩や大きな石に付いていて、イシマキガイと同じ場所にいました。海抜5mより高い所では、まれでした。流れの静かな所から速い所まで記録があり、汚れの少ない川底や護岸のコンクリートでも見られます。本水槽では、琉球の川の石の表面にいる貝として置いています。",
+    "aliases": [
+      "Navicella porcellana",
+      "Patella porcellana",
+      "Septaria suborbicularis"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cycloneritida",
+      "orderJa": "アマオブネガイ目",
+      "family": "Neritidae",
+      "familyJa": "アマオブネガイ科"
+    },
+    "adultSizeCm": 3,
+    "sizeNote": "兵庫県のレッドデータブックは殻径30mm前後、愛媛県のレッドデータブックは3〜4cmとしています。沖縄島の標本の図には最大の寸法で33mmと26mm、2001年の属の見直しには殻長27mmまでとあって、測り方はそろっていません。調べられた集団では、雄は雌より小さい傾向がありました。画面では、触角を含めた幅約3.8cmで描いています。",
+    "distribution": "東インド洋から西太平洋（沖縄、台湾、東南アジア、ニューギニアなど）に分布するとされます。日本では、奄美大島から与那国島までの琉球列島のほか、愛媛県、兵庫県、和歌山県でも記録や調査があります。インド洋西部の集団は、別の亜種（Septaria porcellana borbonica）とされています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "note": "IUCN の評価と沖縄県の評価は、今回の調査では確かめられていません。愛媛県レッドデータブック2014では絶滅危惧I類で、生息地の1つでは、水の汚れが進むにつれて大きく減ったことが記録されています。"
+    },
+    "highlights": [
+      "殻は巻かず、舟を伏せたような低い楕円形の笠の形です。殻のてっぺん（殻頂）は後ろの端にあり、暗い緑褐色から黄褐色の地に、細かな三角形の模様が並びます。",
+      "殻の内側の後ろには、棚のような殻質の板（隔板）があります。石灰質の蓋は足の中に埋まっていて、殻の口をふさぐ働きはなく、足を殻の中へすっかり引っ込めることはできません。",
+      "頭には1対の細い触角があり、その外側の短く幅の広い柄に、小さな眼がついています。",
+      "アマオブネガイの仲間の多くと同じく、ふ化した幼生は川を下って海で育ち、稚貝になって川へ入る両側回遊の暮らしをするとされます。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "gastropod",
+    "tailBeatHz": 0.4,
+    "waveCount": 1.5,
+    "tailSweepRad": 0.18,
+    "verticalFlex": 0.004,
+    "footAnchor": {
+      "x": 0.55,
+      "y": 0.97
+    },
+    "shell": [
+      {
+        "x": 0.61,
+        "y": 0.47,
+        "rx": 0.39,
+        "ry": 0.46
+      },
+      {
+        "x": 0.955,
+        "y": 0.23,
+        "rx": 0.045,
+        "ry": 0.1
+      }
+    ],
+    "feelers": [
+      {
+        "kind": "tentacle",
+        "base": {
+          "x": 0.155,
+          "y": 0.635
+        },
+        "tip": {
+          "x": 0.005,
+          "y": 0.69
+        },
+        "width": 0.035
+      },
+      {
+        "kind": "tentacle",
+        "base": {
+          "x": 0.255,
+          "y": 0.74
+        },
+        "tip": {
+          "x": 0.165,
+          "y": 0.955
+        },
+        "width": 0.035
+      }
+    ]
+  },
+  "visual": {
+    "fallbackColor": "#755838"
+  },
+  "sourceBodyBounds": {
+    "x": 94,
+    "y": 184,
+    "width": 1367,
+    "height": 657
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.8,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.06,
+      "burst": 0.09
+    },
+    "turnRateRadPerSec": 0.5,
+    "restFraction": 0.5,
+    "depthRange": [
+      0.1,
+      0.9
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.6,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 1.5,
+        "durationSec": [
+          20,
+          60
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 0.5,
+        "durationSec": [
+          30,
+          120
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "MolluscaBase / WoRMS Septaria porcellana (Linnaeus, 1758)",
+        "url": "https://www.marinespecies.org/rest/AphiaRecordByAphiaID/818888"
+      },
+      {
+        "title": "Abdou 2021 New taxonomic and phylogeographic data on three nominal species of the genus Septaria",
+        "url": "https://borea.mnhn.fr/sites/default/files/pdfs/Abdou%202021_New%20taxonomic%20and%20phylogeographic%20data%20on%20three%20nominal%20species%20of%20the%20genus%20Septaria.pdf"
+      },
+      {
+        "title": "Haynes 2001 A revision of the genus Septaria Férussac, 1803",
+        "url": "https://verlag.nhm-wien.ac.at/pdfs/103B_177229_Haynes.pdf"
+      },
+      {
+        "title": "Sasaki 1998 Comparative anatomy and phylogeny of the Recent Archaeogastropoda（Septaria porcellana の項）",
+        "url": "https://umdb.um.u-tokyo.ac.jp/DImages/Kankoubutsu/IBulletin/no38/no38008.html"
+      },
+      {
+        "title": "琉球大学資料館（風樹館）収蔵資料目録第6号（2011）",
+        "url": "https://fujukan.skr.u-ryukyu.ac.jp/cmsystem/wp-content/uploads/6kairui.pdf"
+      },
+      {
+        "title": "Davis & Yamaguchi 1969 The Freshwater Gastropoda of Okinawa",
+        "url": "https://www.jstage.jst.go.jp/article/venusjjm/28/3/28_KJ00004342097/_pdf/-char/en"
+      },
+      {
+        "title": "Fukumori 2013 Evolutionary history, species diversity and biogeography of amphidromous neritid gastropods（東京大学博士論文）",
+        "url": "https://repository.dl.itc.u-tokyo.ac.jp/record/7149/files/A30749.pdf"
+      },
+      {
+        "title": "浦添市 環境マップ生き物図鑑 フネアマガイ",
+        "url": "https://www.city.urasoe.lg.jp/sites/urasoe-envmap/zukan/suiseikairui/funeamagai.htm"
+      },
+      {
+        "title": "兵庫県レッドデータブック 貝類 フネアマガイ",
+        "url": "https://www.kankyo.pref.hyogo.lg.jp/application/files/2816/2279/0573/11_funeamagai.pdf"
+      },
+      {
+        "title": "愛媛県レッドデータブック2014 フネアマガイ",
+        "url": "https://www.pref.ehime.jp/reddatabook2014/detail/07_03_003070_5.html"
+      }
+    ]
+  }
+}

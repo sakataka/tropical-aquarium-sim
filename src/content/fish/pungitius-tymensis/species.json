@@ -1,0 +1,153 @@
+{
+  "id": "pungitius-tymensis",
+  "displayName": "エゾトミヨ",
+  "realBodyLengthCm": 6,
+  "catalog": {
+    "scientificName": "Pungitius tymensis",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "北海道とサハリンに分布する、トミヨの仲間です。北海道では、石狩川水系、道北の天北原野、道東の根釧原野など、限られた地域の川や湧き水の池にすみます。",
+    "temperament": "雄は水草などの植物を使って巣を作り、できあがると雌に求愛して巣へ導きます。雄は巣を守り、卵に水を送ります。北海道東部の汐見川で調べた9つの巣は、底から1〜7cmの高さにありました。本水槽では、1尾ずつ間をあけて過ごします。",
+    "movement": "耳石（耳の中にある小さな石）の成分を調べた研究では、汐見川のエゾトミヨは塩分のある水域へ移動せず、淡水にとどまって暮らしていると考えられました。本水槽では、底に近い水草の茂みをゆっくり行き来します。",
+    "habitat": "植物の生えた小さな川にすみます。1960年代の根釧地方の調査では、川の中流から上流と、その近くの湧き水の池にいて、下流ではほとんど見られませんでした。本水槽では、白い花の咲く水草が茂り、砂と小石の底に冷たい水が流れる湧き水の小川をイメージしています。",
+    "aliases": [
+      "Sakhalin ninespine stickleback",
+      "Sakhalin stickleback",
+      "Gasterosteus tymensis",
+      "Pungitius pungitius tymensis"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Gasterosteiformes",
+      "orderJa": "トゲウオ目",
+      "family": "Gasterosteidae",
+      "familyJa": "トゲウオ科"
+    },
+    "adultSizeCm": 6,
+    "sizeNote": "国立科学博物館の解説は全長6cm、FishBase は最大で全長7cmとしています。一方、汐見川で2017年に採集された9匹は標準体長5.6〜7.5cm（平均6.4cm）で、全長7cmを超える魚がいたことになります。成魚のふつうの大きさと、種としての最大の大きさは確かめられていません。ここでは全長約6cmとして表示しています。目は、館のイトヨに合わせてトゲウオ目としています。",
+    "distribution": "ロシアのサハリンと日本の北海道に分布します。北海道では、石狩川水系、道北の天北原野、道東の根釧原野に、とびとびに分布します。道東の湧別川水系でも、2016年に採集された標本をもとに記録されました。",
+    "water": {
+      "salinity": "freshwater",
+      "temperatureC": [
+        6,
+        19
+      ]
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "DD",
+      "assessedYear": 2016,
+      "note": "IUCN の区分は Catalog of Fishes と FishBase に載っている値で、評価の本文は確認できていません（FishBase は2016年の評価、Catalog of Fishes は2017年と記しています）。環境省レッドリスト2020では絶滅危惧II類（VU）、北海道レッドリスト（2018年）では準絶滅危惧です。水温は、汐見川で巣のあった区間の一つで2003年5〜8月に測られた範囲で、この魚が耐えられる範囲や飼育の目安ではありません。巣のあった場所の平均は11.3℃でした。"
+    },
+    "highlights": [
+      "背中に、短くて太めのとげが9〜13本ほど、1本ずつ離れて並びます。イトヨの長い3本のとげとは、数も長さも違います。",
+      "体の横の骨の板は、胸のあたりと尾の付け根に少しあるだけで、体のまん中にはありません。尾の付け根は、同じ川にすむトミヨより短くて太く、尾びれは丸い形です。",
+      "繁殖期の雄は、全身が暗い褐色から黒に近い色になります。本水槽の魚は、この繁殖期の雄の姿です。",
+      "同じ川にすむトミヨの仲間3種のうち、塩分にいちばん弱いと報告されています。雌は、別の種の雄の求愛を強く避けます。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.8,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.53
+    }
+  },
+  "visual": {
+    "fallbackColor": "#4b4332"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.62,
+    "maxY": 0.9
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.35,
+      "burst": 2.2
+    },
+    "turnRateRadPerSec": 2.6,
+    "restFraction": 0.35,
+    "depthRange": [
+      0.2,
+      0.8
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.8,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 0.6,
+        "durationSec": [
+          3,
+          7
+        ]
+      },
+      {
+        "type": "follow",
+        "chancePerMin": 0.4,
+        "durationSec": [
+          2,
+          6
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Pungitius tymensis",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=14658"
+      },
+      {
+        "title": "国立科学博物館 日本の淡水魚類：エゾトミヨ",
+        "url": "https://www.kahaku.go.jp/research/db/zoology/uodas_freshdb/area/gasterosteidae/025.html"
+      },
+      {
+        "title": "町田善康・髙橋洋 (2024) 北海道東部の湧別川に分布するエゾトミヨ. Ichthy 50:6–10",
+        "url": "https://www.museum.kagoshima-u.ac.jp/ichthy/INHFJ_2024_050_006.pdf"
+      },
+      {
+        "title": "町田・鶴田・後藤 (2022) 同属近縁2種との無選択配偶実験で検出されたエゾトミヨの強固な同類交配. 魚類学雑誌 69:195–202",
+        "url": "https://www.jstage.jst.go.jp/article/jji/69/2/69_21-028/_pdf/-char/en"
+      },
+      {
+        "title": "Tsuruta, Machida & Goto (2008) Nesting habitat use and partitioning of three sympatric ninespine sticklebacks. Environmental Biology of Fishes 82:143–150",
+        "url": "https://www.researchgate.net/publication/227106879_Nesting_habitat_use_and_partitioning_of_three_sympatric_ninespine_sticklebacks_genus_Pungitius_Implications_for_reproductive_isolation"
+      },
+      {
+        "title": "Uji et al. (2023) Strontium isotope analysis of otoliths reveals differences in the habitat salinity among three sympatric stickleback species of the genus Pungitius",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10475353/"
+      },
+      {
+        "title": "石城謙吉 (1967) 北海道根釧地域におけるトミヨ属魚類の分布と形態. 動物学雑誌 76:249–254",
+        "url": "https://zdw.zoology.or.jp/PDF/8957/15083.pdf/"
+      },
+      {
+        "title": "FishBase: Pungitius tymensis",
+        "url": "https://www.fishbase.se/summary/23612"
+      },
+      {
+        "title": "環境省レッドリスト2020 新旧対照表（五十音順）",
+        "url": "https://www.env.go.jp/press/files/jp/114458.pdf"
+      },
+      {
+        "title": "北海道レッドリスト 魚類（淡水・汽水）編 改訂版2018年",
+        "url": "https://www.pref.hokkaido.lg.jp/fs/2/4/8/8/3/3/5/_/redlist_gyorui2018gojyuuonjyun.pdf"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 104,
+    "y": 302,
+    "width": 1361,
+    "height": 412
+  }
+}

@@ -1,0 +1,149 @@
+{
+  "id": "oncorhynchus-kisutch",
+  "displayName": "ギンザケ",
+  "realBodyLengthCm": 65,
+  "catalog": {
+    "scientificName": "Oncorhynchus kisutch",
+    "originRegionId": "north-pacific",
+    "originRegionName": "北太平洋",
+    "origin": "ロシア極東の沿海州中部とサハリンから、北太平洋の北部を経て、北米西岸のカリフォルニアまで分布します。日本の沿岸でも、餌を求めて回遊する魚がとれ、北海道の川に迷い込んでのぼった例がありますが、日本で代々産卵している集団は確認されていません。",
+    "temperament": "雌が礫の底に産卵床を掘り、卵を産むのに合わせて雄が放精します。雄どうしは雌をめぐって争い、小さな雄がすきをついて繁殖に加わることもあります。本水槽では、ゆるい群れになり、ときどき仲間の後を追います。",
+    "movement": "海で育ち、生まれた川へ、ふつう秋から初冬に戻ります。河口で水かさが増えるのを待ってからのぼることもあります。本水槽では、中層から底近くを、群れで向きをそろえて泳ぎます。",
+    "habitat": "海沿いの小さな川や、大きな川の支流の、ほどよい流れのある小〜中粒の礫の底に産卵します。稚魚は川で育ち、沈んだ木のある緩い流れや、本流から外れた場所で冬を越します。本水槽では、北太平洋の川へ戻るサケの仲間として、北海道の川をのぼるサケと並べています。",
+    "aliases": [
+      "ギンマス",
+      "Coho salmon",
+      "Silver salmon",
+      "Salmo kisutch"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Salmoniformes",
+      "orderJa": "サケ目",
+      "family": "Salmonidae",
+      "familyJa": "サケ科"
+    },
+    "adultSizeCm": 65,
+    "sizeNote": "水産研究・教育機構の解説（2013年）は、平均的な成魚を体長60〜70cm（測り方の記載なし）、体重3〜5kgとしています。アラスカ州の解説は24〜30インチ（約61〜76cm、測り方の記載なし）です。カナダのチリワック川へ戻った成魚を使った実験では、雌雄を合わせた平均が尾叉長（吻の先から尾びれの切れ込みまで）62.5cmでした。ここでは約65cmとして表示しています。最大の全長は確認できていません。",
+    "distribution": "ロシア極東の沿海州中部とサハリンから、北太平洋の北部を経て、北米西岸のカリフォルニアまで分布します。日本では、沿岸で回遊中の魚がとれ、北海道の川に迷い込んでのぼった例がありますが、代々産卵する集団は確認されていません。北米の五大湖などには、移された集団がいます。2016年には岩手県の川で、大雨のあとに逃げ出した養殖の幼魚がどこに残っているかが調べられました。",
+    "water": {
+      "salinity": "freshwater",
+      "temperatureC": [
+        7,
+        12
+      ]
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2020,
+      "note": "種全体の評価です（IUCN の公式の検索索引で確かめた区分で、評価の本文は確認できていません）。米国では、カリフォルニア中部沿岸など4つの地域の集団が、法律で保護の対象になっています。環境省のレッドリスト2020と海洋生物レッドリスト2017には載っていません。水温は、米国オレゴン州のアンプクア川のダムで1999〜2009年に、一日にのぼる数がいちばん多くなった日平均水温の範囲で、適温を示す値ではありません。"
+    },
+    "highlights": [
+      "川をのぼる時期の雄は、頭と背が暗いオリーブ色から灰黒色に、体の横が赤褐色から深いえび茶色になります。吻と顎は伸びて、強く鉤のように曲がります。",
+      "尾びれの黒い斑は上半分に集まり、下半分にはふつうありません。尾びれの上下の両方に斑があるマスノスケやカラフトマスと見比べられます。",
+      "ふつう3〜4年で成熟します。ふつうの大きさで成熟する雄のほかに、小さいまま早く成熟する雄（ジャック）がいます。",
+      "繁殖を終えると、雌も雄も死にます。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 1.1,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.5
+    }
+  },
+  "visual": {
+    "fallbackColor": "#8c5a50"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.28,
+    "maxY": 0.82
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "steady",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.26,
+      "burst": 0.8
+    },
+    "turnRateRadPerSec": 1.3,
+    "restFraction": 0.22,
+    "depthRange": [
+      0.15,
+      0.8
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.4,
+      "cohesion": 0.5,
+      "polarization": 0.55
+    },
+    "structureAffinity": 0.2,
+    "habits": [
+      {
+        "type": "follow",
+        "chancePerMin": 1.2,
+        "durationSec": [
+          5,
+          12
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "小関右介 (2013) サケ科魚類のプロファイル-11 ギンザケ. SALMON情報7:34–37",
+        "url": "https://www.fra.go.jp/home/kenkyushokai/book/salmon/files/srr007_p34-37.pdf"
+      },
+      {
+        "title": "国立環境研究所 侵入生物DB: ギンザケ",
+        "url": "https://www.nies.go.jp/biodiversity/invasive/DB/detail/50140.html"
+      },
+      {
+        "title": "NOAA Fisheries: Coho Salmon",
+        "url": "https://www.fisheries.noaa.gov/species/coho-salmon"
+      },
+      {
+        "title": "Alaska Department of Fish and Game: Coho Salmon Species Profile",
+        "url": "https://www.adfg.alaska.gov/index.cfm?adfg=cohosalmon.main"
+      },
+      {
+        "title": "Washington Department of Fish & Wildlife: Coho salmon",
+        "url": "https://wdfw.wa.gov/species-habitats/species/oncorhynchus-kisutch"
+      },
+      {
+        "title": "WDFW: Lower Columbia River Steelhead Creel Protocol (2016), Coho salmon identification, p14",
+        "url": "https://wdfw.wa.gov/sites/default/files/publications/01897/wdfw01897.pdf"
+      },
+      {
+        "title": "Raby et al. (2015) Facing the River Gauntlet: Understanding the Effects of Fisheries Capture and Water Temperature on the Physiology of Coho Salmon",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4406555/"
+      },
+      {
+        "title": "LovellFord et al. (2020) Patterns of River Discharge and Temperature Differentially Influence Migration and Spawn Timing for Coho Salmon in the Umpqua River Basin, Oregon",
+        "url": "https://www.fs.usda.gov/pnw/pubs/journals/pnw_2020_lovellFord001.pdf"
+      },
+      {
+        "title": "佐々木系・長谷川功・八谷三和 (2017) 岩手県沿岸河川で起きた養殖ギンザケの逸出とその後の分布様式",
+        "url": "https://www.jstage.jst.go.jp/article/suisan/advpub/0/advpub_17-00012/_pdf/-char/en"
+      },
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Salmo kisatch / valid Oncorhynchus kisutch",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=10574"
+      },
+      {
+        "title": "NOAA Fisheries: Coho Salmon (Protected)",
+        "url": "https://www.fisheries.noaa.gov/species/coho-salmon-protected"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 87,
+    "y": 226,
+    "width": 1392,
+    "height": 534
+  }
+}

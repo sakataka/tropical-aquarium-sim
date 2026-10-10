@@ -1,0 +1,140 @@
+{
+  "id": "gasterosteus-nipponicus",
+  "displayName": "ニホンイトヨ",
+  "realBodyLengthCm": 7.5,
+  "catalog": {
+    "scientificName": "Gasterosteus nipponicus",
+    "originRegionId": "northwest-pacific",
+    "originRegionName": "北西太平洋",
+    "origin": "日本海とオホーツク海を中心に、日本、朝鮮半島、サハリンの沿岸と、そこへ注ぐ川に分布するトゲウオの仲間です。以前はイトヨの「日本海型」と呼ばれ、2014年に別の種として名前が付きました。",
+    "temperament": "雄は植物のかけらで巣を作り、雌を招いて卵を産ませ、卵と生まれた子を守ります。求愛のとき、イトヨの雄はジグザグに泳いで雌に近づきますが、ニホンイトヨの雄は「ローリング」と呼ばれる別の近づき方をすると報告されています。本水槽では、1尾ずつ間をあけて過ごします。",
+    "movement": "根室半島の沼と川で5〜6月に調べた魚は、貝虫類やヨコエビなど、底にいる小さな動物を食べていました。本水槽では、水草の茂みの近くを行き来し、ときどき水草や底をついばみます。",
+    "habitat": "海や河口の汽水域で育ち、繁殖期になると、海と行き来できる川べりの湿地や水路など、流れのほとんどない淡水へ入ります。知られている暮らし方は、海から川へのぼる型と、海や汽水域にとどまる型の2つです。本水槽では、白い花の咲く水草が茂る湧き水の小川へ、産卵のために入ってきた時期の姿をイメージしています。",
+    "aliases": [
+      "Japan Sea stickleback",
+      "Nihon-itoyo",
+      "Japan Sea form of Gasterosteus aculeatus"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Gasterosteiformes",
+      "orderJa": "トゲウオ目",
+      "family": "Gasterosteidae",
+      "familyJa": "トゲウオ科"
+    },
+    "adultSizeCm": 8,
+    "sizeNote": "あわら市の図鑑は全長8cm、佐渡市の解説は全長7〜10cm、福岡県のレッドデータブックは体長9cm（測り方は書かれていません）としています。北海道東部の達古武湖で2007年6月に採集された30匹は、全長6.9〜8.3cm（平均7.6cm）でした。記載論文の標本は標準体長で、雄が5.6〜7.2cm、雌が5.3〜7.9cmです。図鑑の値は約8cmとし、画面では達古武湖の平均に近い約7.5cmにしています。種としての最大の大きさは確かめられていません。目は、館のイトヨに合わせてトゲウオ目としています。",
+    "distribution": "日本海側は九州から北海道、太平洋側は千葉県から北海道、北海道のオホーツク海沿岸、朝鮮半島の南岸と東岸、ロシアの沿海州からサハリンにかけて分布するとされます。これは2014年の記載論文のまとめで、南の地域には、福岡県のように長く確認されていない所もあります。北海道東部の達古武湖や根室半島の沖根辺沼では、繁殖期に淡水域へ入った魚が確かめられています。北海道東部には、イトヨと同じ川にすむ場所があります。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2022,
+      "note": "IUCN の区分は Catalog of Fishes に載っている値で、評価の本文は確認できていません。福岡県のレッドデータブック（2024）では絶滅危惧IA類で、県内では1991年に遠賀川の河口で採集されてから確認されていません。海とつながる淡水の湿地が開発で失われること、川や海岸の改変、水の汚れ、気候の変化が脅威に挙げられています。野外の水温の範囲は確かめられていません。"
+    },
+    "highlights": [
+      "背中に、1本ずつ離れたとげが3本あります。前の2本が長く、3本目は短くて背びれのすぐ前にあります。左右の腹びれにも、ぎざぎざのある長いとげが1本ずつあります。",
+      "体の横には、頭の後ろから尾の付け根まで、骨の板が途切れずに並びます。板の高さは肛門の上あたりで急に低くなり、いちばん高い板の6割に届きません。イトヨと見分ける手がかりの一つです。",
+      "繁殖期の雄は、目と背中、体の横が青くなり、のどから腹が赤みを帯びます。本水槽の魚は、この繁殖期の雄の姿です。赤みの強さは個体によって違います。",
+      "海で育ち、春から初夏に川や沼へ入って産卵します。佐渡の解説では、雄も雌も初夏に1年の一生を終えるとされています。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.6,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.54
+    }
+  },
+  "visual": {
+    "fallbackColor": "#74817d"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.4,
+    "maxY": 0.88
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.4,
+      "burst": 2.4
+    },
+    "turnRateRadPerSec": 2.6,
+    "restFraction": 0.3,
+    "depthRange": [
+      0.2,
+      0.8
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.7,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 0.8,
+        "durationSec": [
+          3,
+          7
+        ]
+      },
+      {
+        "type": "follow",
+        "chancePerMin": 0.5,
+        "durationSec": [
+          2,
+          6
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Gasterosteus nipponicus",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=73300"
+      },
+      {
+        "title": "Higuchi, Sakai & Goto (2014) A new threespine stickleback, Gasterosteus nipponicus sp. nov. Ichthyological Research 61:341–351",
+        "url": "https://www.researchgate.net/publication/308649142_A_new_threespine_stickleback_Gasterosteus_nipponicus_sp_nov_Teleostei_Gasterosteidae_from_the_Japan_Sea_region"
+      },
+      {
+        "title": "Arai et al. (2020) Habitat preference and diverse migration in threespine sticklebacks. Scientific Reports 10:14311",
+        "url": "https://www.nature.com/articles/s41598-020-71400-4"
+      },
+      {
+        "title": "Okude et al. (2026) Shared and Unique Patterns of Genomic Differentiation and Introgression Between Japanese Stickleback Species Across Three Sympatric Sites. Molecular Ecology 35:e70249",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12821563/"
+      },
+      {
+        "title": "福岡県レッドデータブック2024：ニホンイトヨ",
+        "url": "https://biodiversity.pref.fukuoka.lg.jp/rdb/rdbs/detail/202400993"
+      },
+      {
+        "title": "あわら市 北潟湖魚図鑑：ニホンイトヨ",
+        "url": "https://www.city.awara.lg.jp/mokuteki/life/life03/life0303/p012376_d/fil/10.pdf"
+      },
+      {
+        "title": "佐渡市レッドリスト：ニホンイトヨ 種解説",
+        "url": "https://www.city.sado.niigata.jp/uploaded/attachment/29814.pdf#page=10"
+      },
+      {
+        "title": "国立遺伝学研究所 インタビュー「海から川へ、魚はなぜ進出できたのか」",
+        "url": "https://www.nig.ac.jp/interviews/7299/"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 49,
+    "y": 207,
+    "width": 1438,
+    "height": 564
+  }
+}

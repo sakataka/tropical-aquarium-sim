@@ -1,0 +1,147 @@
+{
+  "id": "mugil-cephalus",
+  "displayName": "ボラ",
+  "realBodyLengthCm": 10,
+  "catalog": {
+    "scientificName": "Mugil cephalus",
+    "originRegionId": "worldwide",
+    "originRegionName": "世界の海",
+    "origin": "世界の温帯から熱帯の沿岸や河口に広く分布し、日本でも各地で見られます。海で繁殖し、幼魚は沿岸や河口の汽水域、一部は川の淡水域まで入ります。",
+    "temperament": "若魚は群れをつくります。ハワイの調査では、捕食者に出会うと群れが密にまとまることが観察されました。底にたまった泥や物の表面をついばんで、細かい有機物（デトリタス）や小さな藻類、小さな生き物を食べます。",
+    "movement": "群れで泳ぎ、水面から跳ぶこともあります。本水槽では、若魚が向きをそろえて水の中ほどを泳ぎ、ときどき砂泥の底へ下りてついばむ姿で描いています。",
+    "habitat": "若魚は川の汽水域や、それに続く内湾、沿岸の浅い所にいます。成魚は沿岸の海、河口、潟、川にすみます。揖斐川の下流では、ヨシ原のまわりの干潟を移動の途中で一時的に使うと報告されています。本水槽では、川に入ってきた若魚の群れが、やわらかい砂泥の底にコアマモがまばらに生える河口の浅い所を通る場面をイメージしています。",
+    "aliases": [
+      "Flathead grey mullet",
+      "Striped mullet",
+      "Mugil cephalus cephalus",
+      "ハク",
+      "オボコ",
+      "イナ",
+      "トド"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Mugiliformes",
+      "orderJa": "ボラ目",
+      "family": "Mugilidae",
+      "familyJa": "ボラ科"
+    },
+    "adultSizeCm": 60,
+    "sizeNote": "茨城県の資料では全長60cmになるとされます。FAO の資料では、ふつうは全長35cmまでで、報告された最大は全長91cmです。FishBase では、よく見られる大きさが標準体長50cm、最大が標準体長100cmです。展示しているのは河口で群れる若魚で、鹿児島県の内之浦で採られた幼魚の標本は標準体長5.3cmでした。与論島で採られた標本は標準体長8.9〜11.6cmでした。150cm水槽で群れが見つけやすいよう、画面では全長約10cmの若魚として描いています。",
+    "distribution": "世界の温帯から熱帯の沿岸と河口に広く分布します。日本では各地で見られ、与論島や沖縄島など琉球列島でも標本が採られています。広い意味の「ボラ」には遺伝的に区別できる複数の集団が含まれ、北西太平洋では3つの集団が知られています。沖縄と横須賀の試料からは、そのうち2つが見つかりました。",
+    "water": {
+      "salinity": "brackish"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2022,
+      "note": "IUCN の区分は Catalog of Fishes と FishBase で確かめたもので、評価の本文は確認できていません。評価年は FishBase の表示によります。日本の国や都道府県のレッドリストでの扱いは確かめられていません。"
+    },
+    "highlights": [
+      "若魚は群れで泳ぎます。ハワイの調査では、捕食者に出会うと群れが密にまとまることが観察されています。",
+      "背びれは前後に2つあり、間が広く離れています。胸びれの付け根の上のほうには、小さな青黒い斑があります。",
+      "成魚では、脂瞼（しけん）という透明な膜が目を広くおおい、すき間が細くなります。若魚ではまだ目の縁にとどまるので、丸い目がよく見えます。",
+      "海で繁殖し、幼魚は沿岸や河口、一部は川の淡水域まで入ります。大きくなるにつれてハク・オボコ・イナ・トドなどと呼び名が変わりますが、呼び名は地域によって違います。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.8,
+    "mouthAnchor": {
+      "x": 0.005,
+      "y": 0.52
+    }
+  },
+  "visual": {
+    "fallbackColor": "#a7a497"
+  },
+  "sourceBodyBounds": {
+    "x": 82,
+    "y": 248,
+    "width": 1403,
+    "height": 504
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.2,
+    "maxY": 0.7
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.6,
+      "burst": 2.8
+    },
+    "turnRateRadPerSec": 2.8,
+    "restFraction": 0.08,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "school",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0.7,
+      "polarization": 0.65
+    },
+    "structureAffinity": 0.15,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 1.2,
+        "durationSec": [
+          5,
+          14
+        ]
+      },
+      {
+        "type": "bottomForage"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Mugil cephalus (online version updated 13 Aug 2026)",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=19549"
+      },
+      {
+        "title": "Shen et al. 2011. Plio-Pleistocene sea level and temperature fluctuations in the northwestern Pacific promoted speciation in the globally-distributed flathead mullet Mugil cephalus",
+        "url": "https://link.springer.com/article/10.1186/1471-2148-11-83"
+      },
+      {
+        "title": "与論島の魚類: ボラ p74",
+        "url": "https://www.museum.kagoshima-u.ac.jp/staff/motomura/FishesYoron_lowes.pdf"
+      },
+      {
+        "title": "内之浦の魚類 2018: ボラ p125",
+        "url": "https://www.museum.kagoshima-u.ac.jp/staff/motomura/2018_03_Uchinoura_lowres.pdf"
+      },
+      {
+        "title": "根本隆夫 2011. いばらき魚顔帳: ボラ",
+        "url": "https://www.pref.ibaraki.jp/nourinsuisan/naisuishi/gyogancho/documents/072_bora.pdf"
+      },
+      {
+        "title": "Harrison & Senou 1999. FAO Western Central Pacific Mugilidae: Mugil cephalus p2095",
+        "url": "https://www.fao.org/4/x2400e/x2400e03.pdf"
+      },
+      {
+        "title": "Saleh 2009. FAO Cultured aquatic species fact sheets: Mugil cephalus",
+        "url": "https://www.fao.org/fishery/docs/CDrom/aquaculture/I1129m/file/en/en_flatheadgreymullet.htm"
+      },
+      {
+        "title": "Major 1978. Aspects of estuarine intertidal ecology of juvenile striped mullet, Mugil cephalus, in Hawaii. Fishery Bulletin76(2):299–314",
+        "url": "https://spo.nmfs.noaa.gov/sites/default/files/pdf-content/fish-bull/major%20%282%29.pdf"
+      },
+      {
+        "title": "高崎ほか 2008. 揖斐川下流域のヨシ群落周辺干潟における魚類相",
+        "url": "https://www.jstage.jst.go.jp/article/izu/2/0/2_35/_pdf/-char/ja"
+      },
+      {
+        "title": "FishBase: Mugil cephalus, summary785",
+        "url": "https://fishbase.org/summary/785"
+      }
+    ]
+  }
+}

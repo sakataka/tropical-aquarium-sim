@@ -1,0 +1,151 @@
+{
+  "id": "oncorhynchus-tshawytscha",
+  "displayName": "マスノスケ",
+  "realBodyLengthCm": 90,
+  "catalog": {
+    "scientificName": "Oncorhynchus tshawytscha",
+    "originRegionId": "north-pacific",
+    "originRegionName": "北太平洋",
+    "origin": "アジアではカムチャツカを中心に、アムール川より北からアナディール川まで、北米ではカリフォルニアのサクラメント川から西アラスカまでの川で産卵します。日本には春から初夏に北日本の沿岸へ来遊し、北海道の川をまれにのぼった記録がありますが、日本では繁殖していないとされます。",
+    "temperament": "川をのぼる間は餌をとらず、体に蓄えたエネルギーを移動と成熟に使います。雌が礫の底を掘って産卵し、雄が受精に加わります。本水槽では、ゆるい群れになり、ときどき仲間の後を追います。",
+    "movement": "海で育って、生まれた川へ戻ります。戻る時期や、川で産卵を待つ長さは、季節ごとの群れや川によって違います。米国のコロンビア川の追跡では、水温の高い時期に、支流が合流するあたりなどの冷たい場所を使う個体がいました。本水槽では、中層から底近くを、群れで向きをそろえてゆっくり泳ぎます。",
+    "habitat": "水量の十分な川の本流をよく使い、大きめの礫の底に産卵床をつくります。産卵の適温は12℃以下とする解説があります。本水槽では、北太平洋の川へ戻るサケの仲間として、北海道の川をのぼるサケと並べています。",
+    "aliases": [
+      "キングサーモン",
+      "スケ",
+      "オオスケ",
+      "ラシャ",
+      "ラシャマス",
+      "Chinook salmon",
+      "King salmon",
+      "Spring salmon",
+      "Tyee",
+      "Quinnat",
+      "Blackmouth",
+      "Salmo tshawytscha"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Salmoniformes",
+      "orderJa": "サケ目",
+      "family": "Salmonidae",
+      "familyJa": "サケ科"
+    },
+    "adultSizeCm": 90,
+    "sizeNote": "北海道の図鑑と水産研究・教育機構の報告（2016年）は、ふつう全長約90cm、体重約10kgとしています。さけ・ます資源管理センターの解説（2002年）は、成熟した魚を体長80〜90cm（測り方の記載なし）としています。最大の記録は全長147cm、体重61kgと紹介されています（もとの標本や測定の記録は確かめていません）。2013年の秋に石川県の能登半島の定置網でとれた雄1尾は、尾叉長（吻の先から尾びれの切れ込みまで）62.3cm、体重約3.4kgでした。ここでは全長約90cmとして表示しています。",
+    "distribution": "川で産卵する群れは、アジアではカムチャツカを中心に、アムール川より北からアナディール川まで、北米ではカリフォルニアのサクラメント川から西アラスカまで分布します。海では、アジア側は北海道のあたりまで現れます。日本には春から初夏に北日本の沿岸へ来遊し、北海道の川をまれにのぼった記録がありますが、日本では繁殖せず、定着していないとされます。ニュージーランドには、カリフォルニアの魚が移されて定着しました。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "世界の IUCN 区分は、評価の本文を確かめられていません。米国では、サクラメント川の冬の群れとコロンビア川上流の春の群れなど、9つの地域の群れが法律で保護の対象になっています。環境省のレッドリスト2020と海洋生物レッドリスト2017には載っていません。ダムなどで移動がさえぎられること、すみかが失われたり傷んだりすること、水温が上がることが、地域の群れの問題になっています。"
+    },
+    "highlights": [
+      "ふつう全長約90cm、体重約10kgになる大きなサケの仲間です。同じ水槽のサケ（約65cm）より、ひとまわり大きく見えます。",
+      "体の上半分と背びれ、尾びれの上下の両方に、不ぞろいな黒い斑が散らばります。ギンザケとは、尾びれの斑が上下の両方にあることと、歯の根元の歯茎まで黒いことで見分けます。",
+      "川をのぼる時期の雄は、暗いオリーブ褐色から銅色、赤紫色を帯び、吻と顎が鉤のように曲がります。色は、地域や成熟の進み方、個体によって変わります。",
+      "産卵を終えると雌も雄も死に、その体が、海に由来する養分を川の生態系へ運びます。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 0.9,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.52
+    }
+  },
+  "visual": {
+    "fallbackColor": "#8a7257"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.28,
+    "maxY": 0.82
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "steady",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.2,
+      "burst": 0.6
+    },
+    "turnRateRadPerSec": 1.1,
+    "restFraction": 0.25,
+    "depthRange": [
+      0.15,
+      0.8
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.3,
+      "cohesion": 0.5,
+      "polarization": 0.55
+    },
+    "structureAffinity": 0.2,
+    "habits": [
+      {
+        "type": "follow",
+        "chancePerMin": 1.2,
+        "durationSec": [
+          5,
+          12
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "浦和茂彦 (2002) サケ科魚類のプロファイル-3 マスノスケ. さけ・ます資源管理センターニュース9:9–10",
+        "url": "https://fra.repo.nii.ac.jp/record/2000352/files/salmon09.pdf"
+      },
+      {
+        "title": "飯田真也 (2016) 本州日本海域におけるマスノスケ・カラフトマスの特異的な漁獲. SALMON情報10:44–48",
+        "url": "https://fra.repo.nii.ac.jp/record/2009661/files/sapporo_sk_10_44.pdf"
+      },
+      {
+        "title": "北海道お魚図鑑: マスノスケ［鱒之介］",
+        "url": "https://www.pref.hokkaido.lg.jp/sr/gid/fis022.html"
+      },
+      {
+        "title": "国立環境研究所 侵入生物DB: マスノスケ",
+        "url": "https://www.nies.go.jp/biodiversity/invasive/DB/detail/50170.html"
+      },
+      {
+        "title": "NOAA Fisheries: Chinook Salmon",
+        "url": "https://www.fisheries.noaa.gov/species/chinook-salmon"
+      },
+      {
+        "title": "Alaska Department of Fish and Game: Chinook Salmon Species Profile",
+        "url": "https://www.adfg.alaska.gov/index.cfm?adfg=chinook.printerfriendly"
+      },
+      {
+        "title": "Washington Department of Fish & Wildlife: Chinook salmon",
+        "url": "https://wdfw.wa.gov/species-habitats/species/oncorhynchus-tshawytscha"
+      },
+      {
+        "title": "WDFW (2016) Lower Columbia River Steelhead Creel Protocol, pp12–14,17",
+        "url": "https://wdfw.wa.gov/sites/default/files/publications/01897/wdfw01897.pdf"
+      },
+      {
+        "title": "Keefer et al. (2018) Thermal exposure of adult Chinook salmon and steelhead: Diverse behavioral strategies in a large and warming river system. PLOS ONE13:e0204274",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6150539/"
+      },
+      {
+        "title": "NOAA Fisheries: Chinook Salmon (Protected)",
+        "url": "https://www.fisheries.noaa.gov/species/chinook-salmon-protected"
+      },
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Oncorhynchus chouicha, synonym of O. tshawytscha",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=10602"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 142,
+    "y": 245,
+    "width": 1296,
+    "height": 519
+  }
+}

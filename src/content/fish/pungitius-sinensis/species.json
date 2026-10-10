@@ -1,0 +1,158 @@
+{
+  "id": "pungitius-sinensis",
+  "displayName": "トミヨ",
+  "realBodyLengthCm": 5.5,
+  "catalog": {
+    "scientificName": "Pungitius sinensis",
+    "originRegionId": "east-asia",
+    "originRegionName": "東アジア",
+    "origin": "カムチャツカからアムール川、図們江にかけてと、千島列島、日本列島に分布するトゲウオの仲間です。日本の淡水にすむ型がこの種にあたることが遺伝子の研究で分かり、2025年に和名と学名の対応が決まりました。",
+    "temperament": "繁殖期の雄は縄張りを持ち、水草の枝や葉の間に植物のかけらをまとめて巣を作ります。雄は、産みつけられた卵と、生まれた子を守ります。本水槽では、1尾ずつ間をあけて過ごします。",
+    "movement": "富山県の解説では、ヨコエビやユスリカの幼虫などの小さな動物を食べるとされます。本水槽では、底に近い水草の茂みを行き来し、ときどき水草や底をついばみます。",
+    "habitat": "本州では、湧き水から始まる細い流れや池、扇状地の端の用水路などで、水草のある緩い流れにすみます。石川県の解説では、地下水は水温の変化が小さく、夏でも冷たい水が保たれるとされます。北海道では、川の中流や下流でも採集されています。本水槽では、白い花の咲く水草が茂り、砂と小石の底に冷たい水が流れる湧き水の小川をイメージしています。",
+    "aliases": [
+      "Chinese ninespine stickleback",
+      "トミヨ属淡水型",
+      "はりんこ",
+      "Gasterosteus sinensis",
+      "Pungitius pungitius sinensis"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Gasterosteiformes",
+      "orderJa": "トゲウオ目",
+      "family": "Gasterosteidae",
+      "familyJa": "トゲウオ科"
+    },
+    "adultSizeCm": 6,
+    "sizeNote": "富山県のレッドデータブックは全長約7cm、石川県の解説は体長5〜6cm（測り方は書かれていません）としています。標本の値は標準体長で、北海道東部の汐見川で2017年に採集された7匹が4.0〜6.4cm、研究に使われた北海道の雄が3.8〜5.2cm、雌が4.5〜5.5cmでした。図鑑の値は、2つの解説の間の約6cmにしています。画面では、絵が雄で、研究に使われた雄が雌より小さめだったことから、約5.5cmにしています。種としての最大の大きさは確かめられていません。目は、館のイトヨに合わせてトゲウオ目としています。",
+    "distribution": "北西太平洋のまわりの、カムチャツカからアムール川、図們江にかけてと、千島列島、日本列島に分布します。日本では、北海道と、本州の日本海側は福井県より北、太平洋側は岩手県より北に分布します。富山県の有峰湖の集団は、黒部川の扇状地から持ち込まれたものとされます。中国でこの種とされてきた集団の一部は、遺伝子の研究で別の種と分かりました。",
+    "water": {
+      "salinity": "freshwater",
+      "temperatureC": [
+        6,
+        19
+      ]
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "VU",
+      "assessedYear": 2022,
+      "note": "IUCN の区分は Catalog of Fishes に載っている値で、評価の本文は確認できていません。環境省レッドリスト2020では、本州のトミヨ属淡水型が「絶滅のおそれのある地域個体群（LP）」です。富山県（2025年）では絶滅危惧II類、石川県（2020年）では絶滅危惧I類とされています。湧き水の量が減ること、水路の改修やコンクリート化、水草が減ること、すみかが分かれてしまうこと、水の汚れが脅威に挙げられています。水温は、北海道東部の汐見川で巣のあった区間の一つで2003年5〜8月に測られた範囲で、この魚が耐えられる範囲や飼育の目安ではありません。巣のあった場所の平均は11.3℃でした。"
+    },
+    "highlights": [
+      "背中に、細いとげがふつう9本、1本ずつ離れて並びます。とげは、左、右と交互に傾いて立ちます。",
+      "繁殖期の雄は、全身が黒から暗いオリーブ色になり、腹びれのとげの内側が青く光ります。本水槽の魚は、この繁殖期の雄の姿です。",
+      "尾の付け根は、同じ川にすむエゾトミヨより細くて長く、横にはっきりした張り出しがあります。体の横の骨の板は、頭の後ろから尾まで続くものと、途中で途切れるものがいます。本水槽の魚は、板が続く型です。",
+      "卵を産む準備のできた雌は、雄の腎臓から取り出した物質を溶かした水や、雄の作った巣を浸した水の側に長くとどまることが、2026年の実験で示されました。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.8,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.5
+    }
+  },
+  "visual": {
+    "fallbackColor": "#35362d"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.62,
+    "maxY": 0.9
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.38,
+      "burst": 2.4
+    },
+    "turnRateRadPerSec": 2.6,
+    "restFraction": 0.3,
+    "depthRange": [
+      0.2,
+      0.8
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.8,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 0.8,
+        "durationSec": [
+          3,
+          7
+        ]
+      },
+      {
+        "type": "follow",
+        "chancePerMin": 0.5,
+        "durationSec": [
+          2,
+          6
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Pungitius sinensis",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=14660"
+      },
+      {
+        "title": "Matsumoto, Matsuura & Hanzawa (2025) Redescription of the Chinese ninespine stickleback, Pungitius sinensis. Zootaxa 5728:144–162",
+        "url": "https://www.mapress.com/zt/article/view/zootaxa.5728.1.5"
+      },
+      {
+        "title": "日本魚類学会 (2025) トミヨ Pungitius sinensis の学名確定",
+        "url": "https://www.fish-isj.jp/rename/3176/"
+      },
+      {
+        "title": "町田善康・髙橋洋 (2024) 北海道東部の湧別川に分布するエゾトミヨ. Ichthy 50:6–10",
+        "url": "https://www.museum.kagoshima-u.ac.jp/ichthy/INHFJ_2024_050_006.pdf"
+      },
+      {
+        "title": "Tsuruta, Machida & Goto (2008) Nesting habitat use and partitioning of three sympatric ninespine sticklebacks. Environmental Biology of Fishes 82:143–150",
+        "url": "https://www.researchgate.net/publication/227106879_Nesting_habitat_use_and_partitioning_of_three_sympatric_ninespine_sticklebacks_genus_Pungitius_Implications_for_reproductive_isolation"
+      },
+      {
+        "title": "Uji et al. (2023) Strontium isotope analysis of otoliths reveals differences in habitat salinity among three sympatric Pungitius",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10475353/"
+      },
+      {
+        "title": "Wang et al. (2022) Phylogenomics of Northeast Asian Pungitius sticklebacks. Diversity and Distributions 28:2610–2621",
+        "url": "https://onlinelibrary.wiley.com/doi/full/10.1111/ddi.13423"
+      },
+      {
+        "title": "Nagaya, Yambe & Koya (2026) Ovulating Female of Nine-Spined Sticklebacks (Pungitius sinensis) Are Attracted to Substances Derived From Male Kidneys",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13255013/"
+      },
+      {
+        "title": "北市仁 (2021) 手取川扇状地に生息する希少魚類トミヨ. はくさん 49(2):2–5",
+        "url": "https://www.pref.ishikawa.lg.jp/hakusan/publish/hakusan/documents/hakusan49-2_1.pdf"
+      },
+      {
+        "title": "富山県レッドデータブック2025 淡水魚類：トミヨ属淡水型",
+        "url": "https://www.pref.toyama.jp/documents/49825/08_dai6shou_tansuigyorui.pdf"
+      },
+      {
+        "title": "環境省レッドリスト2020 新旧対照表（五十音順）",
+        "url": "https://www.env.go.jp/press/files/jp/114458.pdf"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 153,
+    "y": 323,
+    "width": 1269,
+    "height": 401
+  }
+}

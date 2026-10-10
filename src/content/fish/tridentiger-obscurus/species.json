@@ -1,0 +1,140 @@
+{
+  "id": "tridentiger-obscurus",
+  "displayName": "チチブ",
+  "realBodyLengthCm": 8,
+  "catalog": {
+    "scientificName": "Tridentiger obscurus",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "日本と朝鮮半島の沿岸に分布するハゼです。学名のもとになった標本は長崎でとれたものです。近縁のヌマチチブは、初めチチブの亜種として記載されましたが、今は別種とされています。",
+    "temperament": "藻類と小さな動物を食べる雑食性とされます。韓国の済州島の調査では、汽水域と潮だまりとで、雌の卵が熟す時期と産卵の時期が違っていました。",
+    "movement": "底で暮らすハゼで、腹びれは吸盤のような形になっています。尼崎運河の調査では、二枚貝の付いた構造物のすき間に入ったり、表面のでこぼこにとどまったりしていました（主に若い魚の観察です）。本水槽では、カキ殻の付いた石や沈んだ枝のそばで、底に止まっては短く泳ぎます。",
+    "habitat": "海に近い川や水路の、潮の満ち引きの影響を受ける場所を好むとされ、近縁のヌマチチブより汽水寄りにすみます。淡水、汽水、海水のどこからも記録があります。鹿児島市では、永田川と和田川、鹿児島湾に注ぐ鈴川の下流でとれています。本水槽では、カキ殻の付いた石のある、河口の砂泥の底を再現しています。",
+    "aliases": [
+      "Dusky tripletooth goby",
+      "Sicydium obscurum",
+      "Tridentiger obscurus obscurus"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Gobiiformes",
+      "orderJa": "ハゼ目",
+      "family": "Oxudercidae",
+      "familyJa": "オクスデルクス科"
+    },
+    "adultSizeCm": 8,
+    "sizeNote": "代表的な成魚の雄の大きさは確かめられていません。農研機構の資料に写真が載る福岡県の雄は約8cmで、図鑑の値と画面の大きさは、これを目安に約8cmにしています（測り方は示されていません）。鹿児島市の川でとれた標本は体長8.7cmと7.7cm、鈴川の標本は標準体長6.4cmでした。「鹿児島市の川魚図鑑」では約15cmになるとされ、FishBase は最大を全長14cmとしています。科は WoRMS と Catalog of Fishes に従ってオクスデルクス科としています（FishBase や国内の図鑑ではハゼ科とされます）。",
+    "distribution": "日本と朝鮮半島に分布します。南日本では、鹿児島市の永田川、和田川、鈴川で標本が得られています。和歌山県では、周参見川と富田川の河口や、汽水の池でとれています。",
+    "water": {
+      "salinity": "brackish"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2023,
+      "note": "IUCN の区分と評価の年は FishBase の転載で確かめたもので、評価の本文は確認できていません。日本のレッドリストでの扱いは確かめられていません。"
+    },
+    "highlights": [
+      "頭に、淡い白の小さな点がびっしりと散らばっています。近縁のヌマチチブは、この点がまばらです。",
+      "胸びれの付け根に、白から黄、橙色の帯があります。",
+      "成魚の雄は、第1背びれのとげの先が膜より長く、糸のように伸びます。本水槽の絵は雄です。",
+      "ヌマチチブとは見た目がよく似ていて、ミトコンドリアDNAでは区別できませんが、核DNAの一部で見分けられます。2種の交雑も報告されています。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.6,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.6
+    }
+  },
+  "visual": {
+    "fallbackColor": "#7d654d"
+  },
+  "sourceBodyBounds": {
+    "x": 69,
+    "y": 187,
+    "width": 1426,
+    "height": 588
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.7,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.2,
+      "burst": 2.0
+    },
+    "turnRateRadPerSec": 2.6,
+    "restFraction": 0.6,
+    "depthRange": [
+      0.2,
+      0.85
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.8,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 2,
+        "durationSec": [
+          8,
+          25
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Sicydium obscurum / current Tridentiger obscurus",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=44014"
+      },
+      {
+        "title": "WoRMS: Tridentiger obscurus (Temminck & Schlegel, 1845)",
+        "url": "https://www.marinespecies.org/rest/AphiaRecordsByName/Tridentiger%20obscurus?like=false&marine_only=false"
+      },
+      {
+        "title": "松沼瑞樹・福井美乃・本村浩之 (2016) 鹿児島市の川魚図鑑：チチブ・ヌマチチブ",
+        "url": "https://www.museum.kagoshima-u.ac.jp/publications/pdf_images/2016_08_freshwater_lowres.pdf"
+      },
+      {
+        "title": "農研機構 (2018) 魚が棲みやすい農業水路を目指して：農業水路の魚類調査・評価マニュアル",
+        "url": "https://www.naro.go.jp/publicity_report/publication/files/agriculturalcanal_manual.pdf"
+      },
+      {
+        "title": "松沼ほか (2009) 鹿児島県における絶滅危惧種クボハゼの記録（鈴川下流の採集記録）. Nature of Kagoshima 35:9–12",
+        "url": "https://www.museum.kagoshima-u.ac.jp/staff/motomura/2009-6-Gymnogobius%20scrobiculatus.pdf"
+      },
+      {
+        "title": "谷ほか (2019) 核DNAマーカーを用いたチチブとヌマチチブの種判別. 魚類学雑誌66:43–52",
+        "url": "https://www.jstage.jst.go.jp/article/jji/66/1/66_18-002/_pdf/-char/ja"
+      },
+      {
+        "title": "角田出 (1987) チチブとヌマチチブのイオン調節. 日本水産学会誌53:1805–1809",
+        "url": "https://www.jstage.jst.go.jp/article/suisan1932/53/10/53_10_1805/_pdf"
+      },
+      {
+        "title": "本原ほか (2024) 尼崎運河直立護岸での二枚貝の付着を活用した新たな魚礁の開発. 土木学会論文集80:24-18177",
+        "url": "https://www.jstage.jst.go.jp/article/jscejj/80/18/80_24-18177/_pdf/-char/ja"
+      },
+      {
+        "title": "Jin et al. (2006) Reproductive Cycle of Dusky Tripletooth Goby Tridentiger obscurus in Jeju Island, Korea. Korean J. Ichthyol. 18:184–192",
+        "url": "https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART001149335"
+      },
+      {
+        "title": "FishBase: Tridentiger obscurus",
+        "url": "https://www.fishbase.se/summary/Tridentiger-obscurus.html"
+      }
+    ]
+  }
+}

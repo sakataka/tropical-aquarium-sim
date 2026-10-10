@@ -1,0 +1,133 @@
+{
+  "id": "eleginus-gracilis",
+  "displayName": "コマイ",
+  "realBodyLengthCm": 32,
+  "catalog": {
+    "scientificName": "Eleginus gracilis",
+    "originRegionId": "north-pacific",
+    "originRegionName": "北太平洋",
+    "origin": "北太平洋と、それに続く北極海にすむタラの仲間です。北海道では、太平洋側は噴火湾より東、日本海側は石狩湾より北で見られ、とくに道東の海に多くいます。",
+    "temperament": "浮遊性の甲殻類のほか、ゴカイの仲間、等脚類、エビの仲間などの底の小さな動物や、魚を食べます。産卵期は冬で、北海道では1月中旬から下旬が盛りとされます。水槽での観察では、決まったつがいや群れを作らず、雌が一度に卵を産み、後を追う雄が精子をかけました。",
+    "movement": "沿岸の底の近くを主に使い、浅い所と深みのあいだを季節で移ります。水槽での観察では、中層と底の近くをゆっくり泳ぎ回りました。本水槽では、貝殻の散らばる砂泥の底の近くをゆっくり泳ぎ、ときどき底をついばみます。",
+    "habitat": "水深150mより浅い沿岸にすみ、汽水の湖にも入ります。湖に一年じゅう残るものと、秋に湖へ入って春に出るものがいるとされます。根室海峡の野付半島のまわりは、北海道の主な産卵場です。厚岸湖では、氷の下に仕掛ける網でとれた親魚が、産卵や卵の研究に使われました。本水槽では、アマモの草原に囲まれた、北海道東部の浅い汽水湖の砂泥の底をイメージしています。",
+    "aliases": [
+      "氷下魚",
+      "カンカイ",
+      "オオマイ（大きな魚の呼び名）",
+      "ゴタッペ（小さな魚の呼び名）",
+      "Saffron cod",
+      "Gadus gracilis",
+      "Eleginus navaga gracilis"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Gadiformes",
+      "orderJa": "タラ目",
+      "family": "Gadidae",
+      "familyJa": "タラ科"
+    },
+    "adultSizeCm": 40,
+    "sizeNote": "北海道の解説では全長約40cmとされます（成魚の平均か最大かは示されていません）。厚岸湖でとれて産卵の実験に使われた親魚は主に体長30〜35cm、根室沖の親魚は主に体長26〜31cmでした（どちらも測り方は示されていません）。本水槽では、厚岸湖の親魚の大きさに合わせ、約32cmの個体として描いています。満1歳の体長は、約18cmとする解説と約20cmとする解説があります。",
+    "distribution": "北太平洋と、それに続く北極海に分布します。北海道では、太平洋側は噴火湾より東、日本海側は石狩湾より北で見られ、とくに道東の海に多くいます。厚岸湖、風蓮湖、温根沼、能取湖など、海とつながる湖でも記録があります。白海やバレンツ海にすむ近縁の Eleginus nawaga は別の種です。",
+    "water": {
+      "salinity": "brackish"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "IUCN の評価は確かめられていません。日本や北海道での区分も確かめられていません。"
+    },
+    "highlights": [
+      "背びれが3つ、しりびれが2つに分かれて並びます。",
+      "上あごが下あごより前に出て、下あごの先に小さなひげが1本あります。ひげの長さは、目の直径の半分より短いとされます。",
+      "血液の中に凍るのを抑える物質があり、氷点下の水でも生きられるとされます。1987年の冬の厚岸湖では、氷の下の水温が−1.8〜−1.7℃でした。",
+      "冬、氷の張った湖で、氷の下に仕掛けた網でとられます。「氷下魚」とも書きます。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 1.8,
+    "mouthAnchor": {
+      "x": 0.015,
+      "y": 0.6
+    }
+  },
+  "visual": {
+    "fallbackColor": "#98886b"
+  },
+  "sourceBodyBounds": {
+    "x": 58,
+    "y": 238,
+    "width": 1434,
+    "height": 477
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.55,
+    "maxY": 0.9
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "steady",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.25,
+      "burst": 1.4
+    },
+    "turnRateRadPerSec": 1.6,
+    "restFraction": 0.2,
+    "depthRange": [
+      0.1,
+      0.75
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 2,
+      "cohesion": 0.2,
+      "polarization": 0.1
+    },
+    "structureAffinity": 0.2,
+    "habits": [
+      {
+        "type": "bottomForage"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Eleginus gracilis",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=12327"
+      },
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Species in Eleginus",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?tbl=species&genus=Eleginus"
+      },
+      {
+        "title": "北海道水産試験場 魚類図鑑 32. コマイ",
+        "url": "https://www.hro.or.jp/upload/36115/o7u1kr00000008p9.pdf"
+      },
+      {
+        "title": "北海道立総合研究機構 稚内水産試験場：コマイ",
+        "url": "https://www.hro.or.jp/fisheries/research/wakkanai/surveys-knowledge-of-fish/inpvt400000007sg/inpvt40000000fzr.html"
+      },
+      {
+        "title": "北海道お魚図鑑：コマイ",
+        "url": "https://www.pref.hokkaido.lg.jp/sr/gid/fis025.html"
+      },
+      {
+        "title": "陳・吉田・桜井 (2005) 北海道周辺海域におけるコマイの成熟、生殖周期及び産卵期の特徴",
+        "url": "https://www.hro.or.jp/upload/36337/komai.pdf"
+      },
+      {
+        "title": "陳・吉田・桜井 (2008) 水槽内で観察されたコマイの産卵行動",
+        "url": "https://www.hro.or.jp/upload/36425/73chinyoshi-01.pdf"
+      },
+      {
+        "title": "陳・吉田・桜井 (2018) コマイ卵および仔魚の正常発生過程",
+        "url": "https://www.hro.or.jp/upload/41309/kenpou933komai1.pdf"
+      },
+      {
+        "title": "北海道大学総合博物館：コマイ HUMZ 216658（能取湖の標本）",
+        "url": "https://minna-museum.jp/data/1228"
+      }
+    ]
+  }
+}

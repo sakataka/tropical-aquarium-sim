@@ -1,0 +1,132 @@
+{
+  "id": "salangichthys-microdon",
+  "displayName": "シラウオ",
+  "realBodyLengthCm": 8.5,
+  "catalog": {
+    "scientificName": "Salangichthys microdon",
+    "originRegionId": "east-asia",
+    "originRegionName": "東アジア",
+    "origin": "日本、朝鮮半島、中国の東部から、アムール川の河口、サハリン、千島列島まで、東アジアの沿岸にすむ魚です。日本では、北海道から九州の河口や沿岸の湖で見られます。名前の似たシロウオはハゼの仲間で、別の魚です。",
+    "temperament": "動物プランクトンを主に食べ、アミの仲間や魚の仔魚も食べます。ほぼ1年で一生を終える魚です。水槽での観察では、雄がしりびれの付け根の鱗を使って雌に体を密着させ、雌は卵を何回かに分けて産みました。",
+    "movement": "厚岸では、上げ潮に乗って湾から湖の中へ移ります。本水槽では、中央の開けた水の中ほどを、群れで向きをそろえて泳ぎます。",
+    "habitat": "浅い河口、沿岸の汽水の湖、内湾と、その近くの海にすみます。厚岸湖の漁場は、湖の口に近い水深2〜4mの、砂とカキ殻の底です。卵は浅い砂や砂礫の底に産みます。霞ヶ浦のように、淡水になった湖にすみ続ける集団もいます。本水槽では、アマモの草原に囲まれた、北海道東部の浅い汽水湖の開けた水をイメージしています。",
+    "aliases": [
+      "Japanese icefish",
+      "白魚",
+      "シラオ",
+      "トノサマウオ",
+      "Salanx microdon"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Osmeriformes",
+      "orderJa": "キュウリウオ目",
+      "family": "Salangidae",
+      "familyJa": "シラウオ科"
+    },
+    "adultSizeCm": 8.5,
+    "sizeNote": "北海道の解説では全長8〜9cmとされ、ここでは約8.5cmとして表示しています。茨城県の解説では体長10cmとされます（測り方は示されていません）。1995年に余市川の河口でとれた成魚の雌13尾は、標準体長の平均が約7cmでした。",
+    "distribution": "東アジアの北西太平洋の沿岸に分布し、日本、朝鮮半島、中国の東部から、アムール川の河口、サハリン、千島列島までの記録があります。日本では、北海道から九州の河口や沿岸の湖で見られます。北海道では、厚岸湾と厚岸湖、網走湖、サロマ湖、クッチャロ湖、石狩川や天塩川の河口などにいます。",
+    "water": {
+      "salinity": "brackish"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "note": "IUCN の区分は Catalog of Fishes に載っているもの（2022年の評価）で、評価の本文は確認できていません。愛知県のレッドデータブックでは絶滅危惧Ⅱ類とされ、河口の埋め立てやしゅんせつ、卵を産む砂の底が減ること、水質の悪化が挙げられています。"
+    },
+    "highlights": [
+      "成魚になっても体が半透明で、中のつくりが透けて見えます。幼い魚のような姿のまま成熟する魚です。",
+      "雌は全身に鱗がありません。雄だけが、しりびれの付け根に1列の鱗を持ちます。本水槽の絵は雌です。",
+      "吻はとがり、下あごが上あごより前に出ます。腹の側には、のどから肛門まで、小さな黒い点が左右2列に並びます。",
+      "網に触れたり水槽の壁にぶつかったりして弱りやすく、飼うのが難しい魚です。島根県の宍道湖自然館ゴビウスは、繁殖させた魚で、一年を通した群れの展示を続けています。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 3.0,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.53
+    }
+  },
+  "visual": {
+    "fallbackColor": "#bcb3ac"
+  },
+  "sourceBodyBounds": {
+    "x": 52,
+    "y": 370,
+    "width": 1441,
+    "height": 288
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.2,
+    "maxY": 0.62
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "steady",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.55,
+      "burst": 2.6
+    },
+    "turnRateRadPerSec": 2.6,
+    "restFraction": 0.08,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "school",
+      "spacingBodyLengths": 1.4,
+      "cohesion": 0.65,
+      "polarization": 0.6
+    },
+    "structureAffinity": 0.1,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Salanx microdon / valid Salangichthys microdon",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=10817"
+      },
+      {
+        "title": "WoRMS: Salangichthys microdon, AphiaID 282650",
+        "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=282650"
+      },
+      {
+        "title": "北海道お魚図鑑：シラウオ",
+        "url": "https://www.pref.hokkaido.lg.jp/sr/gid/fis015.html"
+      },
+      {
+        "title": "北海道立総合研究機構 北海道の漁業図鑑：シラウオ・しらうお小型定置・張待網漁業（厚岸）",
+        "url": "https://www.hro.or.jp/fisheries/h3mfcd0000000gsj/o7u1kr000000019q/o7u1kr000000d4fu/o7u1kr000000bwlt.html"
+      },
+      {
+        "title": "北海道立総合研究機構 中央水産試験場：シラウオの産卵について",
+        "url": "https://www.hro.or.jp/fisheries/research/central/section/shigen/j12s2200000006mg.html"
+      },
+      {
+        "title": "荒山和則 (2011) いばらき魚顔帳：シラウオ",
+        "url": "https://www.pref.ibaraki.jp/nourinsuisan/naisuishi/gyogancho/documents/045_shirauo.pdf"
+      },
+      {
+        "title": "愛知県レッドデータブック：シラウオ",
+        "url": "https://kankyojoho.pref.aichi.jp/rdb/pdf/animals/species/tansuigyo/%E3%82%B7%E3%83%A9%E3%82%A6%E3%82%AA.pdf"
+      },
+      {
+        "title": "山口幹人 (1996) シラウオの飼い方 北水試だより35:7–14",
+        "url": "https://www.hro.or.jp/upload/36487/DAYORI35.PDF"
+      },
+      {
+        "title": "山口幹人 (2006) 石狩川下流域および沿岸域に分布するシラウオの資源生態学的研究 北水試研報70:1–72",
+        "url": "https://www.hro.or.jp/upload/36351/shirauo.pdf"
+      },
+      {
+        "title": "島根県立宍道湖自然館ゴビウス：シラウオ周年展示",
+        "url": "https://www.gobius.jp/shirauo.html"
+      }
+    ]
+  }
+}

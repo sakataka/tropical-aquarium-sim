@@ -1,0 +1,51 @@
+{
+  "id": "southern-estuary-akame-400",
+  "order": 195,
+  "displayName": "南の河口のアカメ水槽",
+  "exhibitName": "Akame of the Southern Estuary",
+  "category": "南日本の大きな川の河口",
+  "description": "砂と礫の底にコアマモの茂みと大きな岩、沈んだ古い木のある、南日本の大きな川の深い河口の夕暮れを再現した400cm水槽。アカメは日本だけにすむ大きな魚で、底に近い層から水の中ほどをゆっくり泳ぎ、光が当たると瞳が赤く反射して見えます。イセゴイ、キチヌ、シマイサキは、アカメと同じ南日本の河口に現れる魚として紹介しています。本水槽では、大きな銀色のうろこのイセゴイが水の中ほどから上の層を、まっすぐな暗い帯のあるシマイサキが中ほどから底の近くを、それぞれゆるい群れで泳ぎます。ひれの黄色いキチヌは、岩のまわりや底の近くをゆったり泳ぎます。",
+  "widthCm": 400,
+  "heightCm": 124,
+  "depthCm": 180,
+  "maxTotalFish": 18,
+  "sceneIds": [
+    "southern-estuary-akame-400"
+  ],
+  "species": [
+    {
+      "speciesId": "lates-japonicus",
+      "maxCount": 3
+    },
+    {
+      "speciesId": "megalops-cyprinoides",
+      "maxCount": 6
+    },
+    {
+      "speciesId": "acanthopagrus-latus",
+      "maxCount": 3
+    },
+    {
+      "speciesId": "rhynchopelates-oxyrhynchus",
+      "maxCount": 6
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "lates-japonicus",
+      "count": 2
+    },
+    {
+      "speciesId": "megalops-cyprinoides",
+      "count": 5
+    },
+    {
+      "speciesId": "acanthopagrus-latus",
+      "count": 3
+    },
+    {
+      "speciesId": "rhynchopelates-oxyrhynchus",
+      "count": 5
+    }
+  ]
+}

@@ -1,0 +1,142 @@
+{
+  "id": "lefua-nikkonis",
+  "displayName": "エゾホトケドジョウ",
+  "realBodyLengthCm": 6,
+  "catalog": {
+    "scientificName": "Lefua nikkonis",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "北海道の湿地や流れの緩い細い川にすむ、ドジョウの仲間です。青森県の下北半島にもいて、その由来は、北海道から移されたとする資料と、自然に南へ広がったと考える研究に分かれています。",
+    "temperament": "水中に浮いている小さな動物から、底にいる小さな動物までを食べます。水族館の水槽で1ペアを観察した記録では、雄が雌を追ってつつき、人工の産卵床に入った雌と雄が寄り添い、体を震わせて産卵しました。",
+    "movement": "1匹で泳いでいることが多いとされます。本水槽では、泥炭の岸の下や垂れた根の近くの底寄りを、1匹ずつゆっくり泳ぐ姿で描いています。",
+    "habitat": "湿地の池や沼、流れの緩やかな細い川、水路などの淡水域。2005年の夏の終わりの調査でこの魚が見つかった5地点は、どこも泥と落ち葉のたまった底で、水深は平均約30cm、水面の流れは平均で毎秒0.8cmでした。本水槽では、泥炭の岸がえぐれ、スゲやヨシの根が水中へ垂れる、北海道の湿原をゆっくり流れる川をイメージしています。",
+    "aliases": [
+      "Hokkaido eight-barbel loach",
+      "エゾホトケ",
+      "Lefua costata nikkonis",
+      "Elxis nikkonis"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cypriniformes",
+      "orderJa": "コイ目",
+      "family": "Nemacheilidae",
+      "familyJa": "フクドジョウ科"
+    },
+    "adultSizeCm": 7,
+    "sizeNote": "図鑑では全長約7cmとされ、雄は5〜6cm、雌は10cmになるものもいるとされます（成魚だけを測った統計や、確かな最大の記録は確認できていません）。絵は雄なので、画面では雄の大きいほうの全長約6cmで描いています。水族館で繁殖に使われた1ペアは、雌が体長6.1cm、雄が4.9cmでした（体長の測り方は示されていません）。",
+    "distribution": "北海道に分布します。釧路湿原では、幌呂地区の排水路と旧幌呂川で記録されています。野幌森林公園とそのまわりのため池や川でも確認されています。青森県の下北半島の集団は、北海道から移されたとする資料と、津軽海峡が陸続きだったころに南へ広がったと考える研究があります。サハリン南部の湖にもいますが、北海道から人が持ち込んだものに由来する可能性が高いとされます。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "環境省レッドリスト2020では絶滅危惧IB類（EN）です（旧い学名 Lefua costata nikkonis で載っています）。IUCN の区分は確認できていません。湿地が減ることと、代わりのすみかになっているため池が改変されることが、保全の課題とされています。"
+    },
+    "highlights": [
+      "ひげは4対8本です。3対は口のまわりに、1対は鼻の穴の所にあります。",
+      "雄には、頭から尾びれの付け根まで、幅の広い暗い帯が走ります。雌の帯ははっきりしません。",
+      "尾びれは縁が丸く、中央に短い黒い筋があります。",
+      "自然の湿地だけでなく、湿地のようになったため池や細い水路も、この魚のすみかになっています。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.6,
+    "mouthAnchor": {
+      "x": 0.06,
+      "y": 0.6
+    }
+  },
+  "visual": {
+    "fallbackColor": "#a48760"
+  },
+  "sourceBodyBounds": {
+    "x": 119,
+    "y": 320,
+    "width": 1305,
+    "height": 373
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.6,
+    "maxY": 0.93
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.35,
+      "burst": 2
+    },
+    "turnRateRadPerSec": 2.6,
+    "restFraction": 0.3,
+    "depthRange": [
+      0.2,
+      0.85
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.65,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.5,
+        "durationSec": [
+          4,
+          12
+        ]
+      },
+      {
+        "type": "bottomForage"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Elxis nikkonis / Lefua nikkonis",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=3399"
+      },
+      {
+        "title": "長津ほか (2007) 絶滅危惧種エゾホトケドジョウの分布と生息環境",
+        "url": "https://www.jstage.jst.go.jp/article/hozen/12/1/12_KJ00004650111/_pdf/-char/ja"
+      },
+      {
+        "title": "青山・佐藤 (2008) 水槽内で観察されたエゾホトケドジョウの産卵",
+        "url": "https://www.jstage.jst.go.jp/article/aquaculturesci/56/4/56_609/_pdf/-char/en"
+      },
+      {
+        "title": "Ohgita & Matsunuma (2020) Morphological comparisons of Lefua costata, L. pleskei and L. nikkonis",
+        "url": "https://www.jstage.jst.go.jp/article/biogeo/22/0/22_9/_pdf/-char/en"
+      },
+      {
+        "title": "Machida et al. (2020) Morphologies and population genetic structures of the eight-barbel loach of the genus Lefua on southern Sakhalin",
+        "url": "https://smakeev.com/userfiles/science/machida_et_al._2020.pdf"
+      },
+      {
+        "title": "国土交通省北海道開発局 (2012) 釧路湿原自然再生事業・幌呂地区湿原再生実施計画",
+        "url": "https://www.env.go.jp/nature/saisei/kyougi/kushiro/kushiro_plan7.pdf"
+      },
+      {
+        "title": "国立環境研究所 侵入生物データベース：エゾホトケドジョウ",
+        "url": "https://www.nies.go.jp/biodiversity/invasive/DB/detail/50760.html"
+      },
+      {
+        "title": "国立科学博物館 日本淡水魚類分布データベース：エゾホトケ",
+        "url": "https://www.kahaku.go.jp/research/db/zoology/uodas_freshdb/area/cobitididae/026.html"
+      },
+      {
+        "title": "北海道開発局 十勝の自然 魚類：エゾホトケドジョウ",
+        "url": "https://www.hkd.mlit.go.jp/ob/tisui/kds/pamphlet/ikimono/ctll1r0000004pym-att/ctll1r0000009eeh.pdf"
+      },
+      {
+        "title": "環境省レッドリスト2020 別添資料3：汽水・淡水魚類",
+        "url": "https://www.env.go.jp/press/files/jp/114457.pdf"
+      }
+    ]
+  }
+}

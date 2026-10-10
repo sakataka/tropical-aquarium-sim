@@ -1,0 +1,149 @@
+{
+  "id": "pandalus-latirostris",
+  "displayName": "ホッカイエビ",
+  "realBodyLengthCm": 10,
+  "catalog": {
+    "scientificName": "Pandalus latirostris",
+    "originRegionId": "northwest-pacific",
+    "originRegionName": "北西太平洋",
+    "origin": "北日本、サハリン、朝鮮半島の沿岸、ロシア極東の沿岸にすむエビです。日本では北海道、青森県、岩手県で確かめられていて、北海道東部では野付湾や厚岸のアマモ場にすんでいます。",
+    "temperament": "付着珪藻のほか、小さな甲殻類、巻貝、ゴカイの仲間、卵、デトリタスなどを食べ、成長につれて食べるものが変わります。若いうちは雄として繁殖し、のちに雌へ変わります。昼と夜のどちらに活動するかは、この種で調べた資料が見つかっていません。",
+    "movement": "アマモの葉の上や葉のあいだ、そのまわりの底を使って暮らします。ふ化したあとも海を長く漂わず、海草のそばで育ちます。本水槽では、アマモの草原のそばの砂泥の底を脚で歩き、立ち止まっては底をついばみます。",
+    "habitat": "海とつながる浅い内湾や沿岸の湖の、海草の茂みにすみます。野付湾の漁場は、水深1〜3mの砂泥の底のアマモ場です。冬は、流れの穏やかな深みや、積もったアマモの葉や泥の中へ移るとされます。野付や能取の塩分は約30（psu）とされ、海水に近い濃さです。本水槽では、奥と両脇に長いアマモの草原が広がる、北海道東部の浅い汽水湖をイメージしています。",
+    "aliases": [
+      "ホッカイシマエビ",
+      "シマエビ",
+      "ツケエビ（大きな個体の呼び名）",
+      "Hokkai shrimp",
+      "Pandalus kessleri"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Decapoda",
+      "orderJa": "十脚目",
+      "family": "Pandalidae",
+      "familyJa": "タラバエビ科"
+    },
+    "adultSizeCm": 12,
+    "sizeNote": "北海道立総合研究機構の解説では、大きい個体で体長12cmとされます（どこからどこまでを測った値かは確かめられていません）。1999年の分類の見直しで調べられた宮古湾の雌2個体は、頭胸甲の長さ（目のくぼみの後ろから測った値）が29.3mmと30.5mmでした。ふつうの成体の大きさを示す資料は見つかっていません。本水槽では、体長約10cmの雌として描いています（長い触角は、この長さに含めません）。",
+    "distribution": "北日本、サハリン、朝鮮半島の沿岸、ロシア極東の沿岸に分布します。日本では北海道、青森県、岩手県で確かめられていて、北海道では野付湾、厚岸湖と厚岸湾、サロマ湖、能取湖などの海草の茂みにすみます。野付と能取の集団のあいだには、遺伝的な違いが報告されています。過去に黒海へ人の手で持ち込まれた記録もあります。",
+    "water": {
+      "salinity": "brackish"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "IUCN の評価も、日本や北海道のレッドリストでの区分も確かめられていません。野付の漁では、とる大きさ、漁の時期、禁漁区を決めて、卵を産む群れを守っていると紹介されています（2013年の資料）。25℃の水に120時間さらした実験では生き残った個体がなく、海草の茂みを保つことと、夏の異常な高温への注意が大切とされています。"
+    },
+    "highlights": [
+      "緑から緑がかった褐色の体に、白から淡い黄色の細い筋が、頭から尾の向きに何本も走ります。",
+      "アマモの葉の上や葉のあいだ、そのまわりの底で暮らします。本水槽では、アマモの草原のそばの底を歩き、底をついばみます。",
+      "若いうちは雄として繁殖し、成長すると雌に変わります。サロマ湖では、ふつう1歳で雄、2歳以上で雌として繁殖します。本水槽の絵は雌です。",
+      "雌は秋から次の春まで、腹の脚に卵を抱えて守ります。飼育の実験では、ふ化から7年生き、雌として何度も成熟した記録があります。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "crustacean",
+    "headStart": 0.24,
+    "tailBeatHz": 0.6,
+    "bodyWaveStart": 0.85,
+    "tailSweepRad": 0,
+    "verticalFlex": 0,
+    "footAnchor": {
+      "x": 0.48,
+      "y": 0.96
+    }
+  },
+  "visual": {
+    "fallbackColor": "#a48c5f"
+  },
+  "sourceBodyBounds": {
+    "x": 80,
+    "y": 147,
+    "width": 1407,
+    "height": 705
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.84,
+    "maxY": 0.93
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.07,
+      "burst": 0.4
+    },
+    "turnRateRadPerSec": 1.2,
+    "restFraction": 0.55,
+    "depthRange": [
+      0.3,
+      0.9
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.8,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 3,
+        "durationSec": [
+          6,
+          18
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.8,
+        "durationSec": [
+          6,
+          18
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "WoRMS / DecaNet: Pandalus latirostris Rathbun, 1902",
+        "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=107650"
+      },
+      {
+        "title": "Komai (1999) A revision of the genus Pandalus. Journal of Natural History 33:1265–1372",
+        "url": "https://research.nhm.org/pdfs/25974/25974.pdf"
+      },
+      {
+        "title": "北海道立総合研究機構：ホッカイエビ 種解説",
+        "url": "https://www.hro.or.jp/upload/36166/o7u1kr0000000cv7.pdf"
+      },
+      {
+        "title": "北海道立総合研究機構 北海道の漁業図鑑：ホッカイエビ・えび打瀬漁業",
+        "url": "https://www.hro.or.jp/fisheries/h3mfcd0000000gsj/o7u1kr000000019q/o7u1kr000000d4fu/o7u1kr000000cfga.html"
+      },
+      {
+        "title": "北海道立総合研究機構 試験研究は今 No.66：藻場とホッカイエビの繁殖戦略（1991）",
+        "url": "https://www.hro.or.jp/fisheries/publication/ima/o7u1kr0000002kmf.html"
+      },
+      {
+        "title": "Onishi, Chiba & Goshima (2001) Reproductive cycle of the protandric shrimp Pandalus latirostris in Saroma Lagoon",
+        "url": "https://www.jstage.jst.go.jp/article/benthos1996/56/1/56_1_9/_article"
+      },
+      {
+        "title": "Kawahara-Miki et al. (2011) Expression profiling without genome sequence information in a non-model species, pandalid shrimp (Pandalus latirostris). PLoS ONE",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3189924/"
+      },
+      {
+        "title": "北海道大学 北方生物圏フィールド科学センター：フィールド紹介（厚岸）",
+        "url": "https://www.fsc.hokudai.ac.jp/KANRYU/field.html"
+      },
+      {
+        "title": "Matsumoto, Azuma & Chiba (2023) Effects of heatwave events on the seagrass-dwelling crustacean Pandalus latirostris in a subarctic lagoon",
+        "url": "https://nodai.repo.nii.ac.jp/records/2000618"
+      }
+    ]
+  }
+}

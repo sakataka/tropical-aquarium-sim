@@ -1,0 +1,150 @@
+{
+  "id": "eleotris-fusca",
+  "displayName": "テンジクカワアナゴ",
+  "realBodyLengthCm": 18,
+  "catalog": {
+    "scientificName": "Eleotris fusca",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "インド洋から太平洋に広く分布し、近年の整理では、太平洋側に広く、西インド洋ではまれとされます。日本では、奄美大島から与那国島までの琉球列島の島々で記録されています。川でかえった仔魚は海で育ち、川へ戻って淡水で暮らします。",
+    "temperament": "落ち葉や石の下にひそみ、近づいた獲物を捕らえます。沖縄島の汀間川の淡水域では、おもにエビの仲間を食べていました。沖縄島の与那川では、卵の付いた石の下に雄が1匹でいるのが見つかり、卵を守っていると考えられています。",
+    "movement": "底の物かげにひそんで暮らす魚です。本水槽では、岩の割れ目や沈んだ木の陰の底でじっとしていて、ときどき短く泳いで場所を変える姿で描いています。",
+    "habitat": "沖縄島の汀間川では、成魚はほぼ淡水域にいました。鹿児島県の川では、岸の植物の根や川底の石の下で採集されています。本水槽では、大きな岩と沈んだ木の幹、礫と落ち葉の底のある、琉球の川の深い淵をイメージしています。",
+    "aliases": [
+      "Dusky sleeper",
+      "Brown gudgeon",
+      "Poecilia fusca"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Gobiiformes",
+      "orderJa": "ハゼ目",
+      "family": "Eleotridae",
+      "familyJa": "カワアナゴ科"
+    },
+    "adultSizeCm": 15,
+    "sizeNote": "ふつうの成魚の大きさは、調査で確かめられていません。沖縄島の調査では、成魚の最大は標準体長15.1cmで、雄も雌も標準体長約5cmで成熟していました。オーストラリアの魚類図鑑サイトでは、最大で全長26cm、標準体長では約18cmになるとされます。図鑑の値は、沖縄島の調査の最大に合わせた約15cmにしています。画面では、400cm水槽で見やすいよう、全長約18cmの大きめの個体で描いています。",
+    "distribution": "インド洋から太平洋に広く分布します。近年の整理では、太平洋側に広く、西インド洋ではまれとされます。日本では、奄美大島、徳之島、沖縄島、石垣島、西表島、与那国島など琉球列島の島々で記録されています。鹿児島県の薩摩半島の川（2019年・2021年）と福島県の富岡川（2023年）でも採集されていますが、そこにすみついているかは分かっていません。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "note": "IUCN の区分は、IUCN の2024年の資料（レッドリスト2023-1版にもとづく一覧）と Catalog of Fishes で確かめたもので、評価の本文は確認できていません。同じ資料では、数の増減は不明とされています。"
+    },
+    "highlights": [
+      "落ち葉や石の下にひそみ、近づいた獲物を捕らえます。",
+      "ハゼに似ていますが、左右の腹びれは別々で、吸盤の形になりません。背びれは2つに分かれ、尾びれは丸い形です。",
+      "体は茶色から暗い茶色で、色の濃さや模様が変わります。ひれには細かい斑点や帯が見られます。",
+      "沖縄島の川では、流れの緩い所の石の裏に産み付けられた卵と、そばにいる雄が見つかっています。仔魚は海で育ち、川へ戻ります。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 1.6,
+    "tailSweepRad": 0.42,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.46
+    }
+  },
+  "visual": {
+    "fallbackColor": "#857057"
+  },
+  "sourceBodyBounds": {
+    "x": 47,
+    "y": 293,
+    "width": 1459,
+    "height": 454
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.74,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.12,
+      "burst": 1.4
+    },
+    "turnRateRadPerSec": 1.8,
+    "restFraction": 0.65,
+    "depthRange": [
+      0.3,
+      0.9
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.85,
+    "habits": [
+      {
+        "type": "homeShelter",
+        "kind": "crevice",
+        "rangeBodyLengths": 4,
+        "visitChancePerMin": 0.4,
+        "visitDurationSec": [
+          20,
+          60
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.5,
+        "durationSec": [
+          10,
+          30
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Eleotris fusca and related names",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?genus=Eleotris&species=fusca&tbl=species"
+      },
+      {
+        "title": "Maeda & Tachihara (2004) Instream distributions and feeding habits of two species of sleeper, Eleotris acanthopoma and Eleotris fusca, in the Teima River, Okinawa Island. Ichthyological Research 51:233–240",
+        "url": "https://link.springer.com/article/10.1007/s10228-004-0224-8"
+      },
+      {
+        "title": "Maeda & Tachihara (2005) Recruitment of amphidromous sleepers Eleotris acanthopoma, Eleotris melanosoma, and Eleotris fusca into the Teima River, Okinawa Island. Ichthyological Research 52:325–335",
+        "url": "https://link.springer.com/article/10.1007/s10228-005-0289-z"
+      },
+      {
+        "title": "Maeda, Yamasaki, Kondo & Tachihara (2008) Reproductive biology and early development of two species of sleeper, Eleotris acanthopoma and Eleotris fusca. Pacific Science 62:327–340",
+        "url": "https://scholarspace.manoa.hawaii.edu/items/c8a9003c-97e5-4889-8c04-5dd2bf9dc244"
+      },
+      {
+        "title": "是枝ほか（2022）薩摩半島から得られた九州初記録10種を含む，鹿児島県本土初記録の暖水性魚類16種. Ichthy 17:20–38",
+        "url": "https://www.museum.kagoshima-u.ac.jp/ichthy/INHFJ_2022_017_020.pdf"
+      },
+      {
+        "title": "松重・望岡（2024）福島県富岡川から石倉カゴを用いて得られた北限記録のテンジクカワアナゴ. Ichthy 47:26–30",
+        "url": "https://www.museum.kagoshima-u.ac.jp/ichthy/INHFJ_2024_047_026.pdf"
+      },
+      {
+        "title": "Mennesson & Keith (2020) Eleotris (Teleostei: Eleotridae) of the Indian Ocean: an overview with the description of three new species. Cybium 44:185–203",
+        "url": "https://borea.mnhn.fr/sites/default/files/fichiers-actus/4-Mennesson%201163%20%5BCybium%202020,%20443%5D_0.pdf"
+      },
+      {
+        "title": "沖縄美ら海水族館 美ら海生き物図鑑：テンジクカワアナゴ",
+        "url": "https://churaumi.okinawa/sp/fishbook/tenjikukawa/"
+      },
+      {
+        "title": "Gomon & Bray (2025) Eleotris fusca. Fishes of Australia",
+        "url": "https://fishesofaustralia.net.au/home/species/4141"
+      },
+      {
+        "title": "IUCN (January 2024) Freshwater fishes of potential interest for inclusion in CMS",
+        "url": "https://iucn.org/sites/default/files/2024-01/freshwater-fishes-of-potential-interest-for-inclusion-in-cms-information-brief.pdf"
+      }
+    ]
+  }
+}

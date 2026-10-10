@@ -1,0 +1,129 @@
+{
+  "id": "hypomesus-olidus",
+  "displayName": "イシカリワカサギ",
+  "realBodyLengthCm": 11,
+  "catalog": {
+    "scientificName": "Hypomesus olidus",
+    "originRegionId": "north-pacific",
+    "originRegionName": "北太平洋",
+    "origin": "北極海と北太平洋のまわりの川や湖に広く分布する、ワカサギの仲間です。日本で自然に分布するのは北海道で、北海道では海へ下る例が知られていません。",
+    "temperament": "カナダのユーコン地方の湖では、主に動物プランクトンを食べ、水面の小さなハエの仲間も食べていました。石狩古川では4月の中ごろから下旬に産卵し、卵は水中へ伸びたヤナギの細い根に付きます。",
+    "movement": "釧路湿原の達古武沼の2003年の調査では、岸の近くより沖に広くいました。群れの密度や泳ぎ方をくわしく調べた資料は確認できていません。本水槽では、開けた流れの中ほどを、向きをそろえた群れで泳ぐ姿で描いています。",
+    "habitat": "下流につながる湖や沼、河跡湖、川の支流にすみます。北海道でこの魚のすむ湖は、底が泥で、浅い所に水草が茂り、枯れた植物の成分で水が茶色を帯びると紹介されています。本水槽では、泥炭の岸がえぐれ、スゲやヨシの根が水中へ垂れる、北海道の湿原をゆっくり流れる川をイメージしています。",
+    "aliases": [
+      "Pond smelt",
+      "Hypomesus sakhalinus",
+      "Salmo olidus"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Osmeriformes",
+      "orderJa": "キュウリウオ目",
+      "family": "Osmeridae",
+      "familyJa": "キュウリウオ科"
+    },
+    "adultSizeCm": 9,
+    "sizeNote": "全長の代表的な値と最大の値は確認できていません。石狩古川で1960年に卵を採った親魚12匹は、体長（下あごの先から尾びれの付け根まで）6.1〜10.9cmでした。石狩で1957年に採られた標本には、同じ測り方で11.7cmのものもいます。図鑑の値は親魚の範囲に入る約9cm、画面は300cm水槽で見やすいよう、親魚の大きいほうに合わせた約11cmにしています。釧路湿原の塘路湖の標本5匹は、標準体長7.4〜8.1cmでした（成熟しているかは確かめられていません）。",
+    "distribution": "北極海と北太平洋のまわりに分布し、北朝鮮・日本からベーリング海まで、カナダの北西準州からアラスカ湾までの記録があります。日本で自然に分布するのは北海道です。釧路湿原では、塘路湖の標本が1997年の分類の見直しでこの種と確かめられ、シラルトロ湖の古い記録と、達古武沼とそのまわりの川での2003年の採集記録があります。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "環境省レッドリスト2020では準絶滅危惧（NT）、北海道レッドリスト（魚類編2018）では情報不足です。IUCN の区分は確認できていません。"
+    },
+    "highlights": [
+      "ワカサギによく似ていて、外見だけで見分けるのは難しいとされます。確かな違いは、うきぶくろにつながる管の位置など、体の中にあります。",
+      "背びれの後ろに、すじのない低い脂びれがあります。付け根が長く、頭の長さの2割を超えます。",
+      "北海道では海へ下る例が知られていませんが、分布域の全体では、汽水や海にもすむとされます。",
+      "カナダのユーコン地方の湖では、成魚の多くが4〜5歳で、9歳を超える魚も記録されました。石狩古川では1年で成熟すると報告されていて、場所によって違いがあります。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 3,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.6
+    }
+  },
+  "visual": {
+    "fallbackColor": "#b3ac9b"
+  },
+  "sourceBodyBounds": {
+    "x": 69,
+    "y": 263,
+    "width": 1400,
+    "height": 464
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.25,
+    "maxY": 0.7
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.6,
+      "burst": 2.8
+    },
+    "turnRateRadPerSec": 2.8,
+    "restFraction": 0.06,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "school",
+      "spacingBodyLengths": 1.6,
+      "cohesion": 0.6,
+      "polarization": 0.55
+    },
+    "structureAffinity": 0.1,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Hypomesus olidus",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?tbl=species&genus=Hypomesus&species=olidus"
+      },
+      {
+        "title": "Saruwatari, López & Pietsch (1997) A revision of the osmerid genus Hypomesus Gill",
+        "url": "https://www.jstage.jst.go.jp/article/specdiv/2/1/2_KJ00003742662/_pdf"
+      },
+      {
+        "title": "Hamada (1961) Taxonomic and ecological studies of the genus Hypomesus of Japan",
+        "url": "https://eprints.lib.hokudai.ac.jp/repo/huscap/all/21833/9%281%29_P1-55.pdf"
+      },
+      {
+        "title": "石狩市・いしかり砂丘の風資料館：石狩のワカサギ",
+        "url": "https://www.city.ishikari.hokkaido.jp/museum/1001801/1004573/1004696.html"
+      },
+      {
+        "title": "環境庁 第2回自然環境保全基礎調査 動物分布調査（淡水魚類）：イシカリワカサギ",
+        "url": "https://www.biodic.go.jp/reports/2-3/a246.html"
+      },
+      {
+        "title": "針生勤・仲島広嗣・高村典子 (2007) 達古武沼と周辺河川における魚類の分布特性と生息状況",
+        "url": "https://www.jstage.jst.go.jp/article/rikusui/68/1/68_1_157/_pdf/-char/ja"
+      },
+      {
+        "title": "deGraaf (1986) Aspects of the Life History of the Pond Smelt in the Yukon and Northwest Territories",
+        "url": "https://pubs.aina.ucalgary.ca/arctic/Arctic39-3-260.pdf"
+      },
+      {
+        "title": "北海道大学総合博物館 HUMZ 235697 イシカリワカサギ 生鮮時標本写真",
+        "url": "https://minna-museum.jp/data/11686"
+      },
+      {
+        "title": "環境省レッドリスト2020 別添資料3：汽水・淡水魚類",
+        "url": "https://www.env.go.jp/press/files/jp/114457.pdf"
+      },
+      {
+        "title": "北海道レッドリスト 魚類編（淡水・汽水）改訂版2018 カテゴリー別",
+        "url": "https://www.pref.hokkaido.lg.jp/fs/2/4/8/8/3/3/4/_/redlist_gyorui2018kategory.pdf"
+      }
+    ]
+  }
+}

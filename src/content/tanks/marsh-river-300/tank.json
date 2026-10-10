@@ -4,11 +4,11 @@
   "displayName": "湿原の川水槽",
   "exhibitName": "Marshland River",
   "category": "北海道の湿原の川",
-  "description": "泥炭の岸がえぐれ、スゲやヨシの根が水中へ垂れる、北海道の湿原をゆっくり流れる川を再現した300cm水槽。イトウは川の中流から下流や湖、汽水域にすむ大きな魚で、開けた流れの中ほどをゆったりと泳ぎます。明け方と夕方に動きが増えるという追跡の結果があります。",
+  "description": "泥炭の岸がえぐれ、スゲやヨシの根が水中へ垂れる、北海道の湿原をゆっくり流れる川を再現した300cm水槽。イトウは川の中流から下流や湖、汽水域にすむ大きな魚で、大きな個体ほど魚を多く食べます。開けた流れの中ほどを、1尾ずつゆったりと巡ります。同じ湿原の水辺にすむ小さな魚として、ヤチウグイ、イシカリワカサギ、エゾホトケドジョウ、ジュズカケハゼを紹介しています。本水槽では、ヤチウグイとイシカリワカサギは数匹でまとまって中層を泳ぎ、エゾホトケドジョウは底寄りを1匹ずつゆっくり泳ぎ、ジュズカケハゼは底に止まっては短く泳いで場所を移ります。",
   "widthCm": 300,
   "heightCm": 109,
   "depthCm": 120,
-  "maxTotalFish": 3,
+  "maxTotalFish": 29,
   "sceneIds": [
     "marsh-river-300"
   ],
@@ -16,12 +16,44 @@
     {
       "speciesId": "sakhalin-taimen",
       "maxCount": 3
+    },
+    {
+      "speciesId": "rhynchocypris-sachalinensis",
+      "maxCount": 8
+    },
+    {
+      "speciesId": "hypomesus-olidus",
+      "maxCount": 10
+    },
+    {
+      "speciesId": "lefua-nikkonis",
+      "maxCount": 4
+    },
+    {
+      "speciesId": "gymnogobius-castaneus",
+      "maxCount": 4
     }
   ],
   "defaultStock": [
     {
       "speciesId": "sakhalin-taimen",
       "count": 2
+    },
+    {
+      "speciesId": "rhynchocypris-sachalinensis",
+      "count": 6
+    },
+    {
+      "speciesId": "hypomesus-olidus",
+      "count": 8
+    },
+    {
+      "speciesId": "lefua-nikkonis",
+      "count": 3
+    },
+    {
+      "speciesId": "gymnogobius-castaneus",
+      "count": 3
     }
   ]
 }

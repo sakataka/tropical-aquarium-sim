@@ -1,0 +1,156 @@
+{
+  "id": "barbatula-oreas",
+  "displayName": "フクドジョウ",
+  "realBodyLengthCm": 12,
+  "catalog": {
+    "scientificName": "Barbatula oreas",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "日本では北海道に自然に分布する、川や湖の底で暮らすドジョウの仲間です。海へは出ず、一生を淡水で過ごします。本州の一部の川には、北海道から持ち込まれた集団がいます。",
+    "temperament": "雑食ですが、水生昆虫など、底にいる小さな動物をよく食べます。昼間は石の下に隠れるとされます。ねばりけのある卵を産み、北海道では4月下旬から7月が産卵期とされます。",
+    "movement": "石や礫の多い川底で、石のすき間を使って暮らします。口は頭の下側に開き、上くちびるのまわりに3対のひげがあります。本水槽では、砂と小石の底に沿って進み、マリモや石のそばで止まって休みます。",
+    "habitat": "川の石や礫の底にすみ、若い魚は、岸近くの流れの緩い所や、水草や礫の間にいます。本水槽では、細かい砂と小石の上にマリモが転がる、阿寒湖の浅い入り江の底をイメージしています。阿寒湖では1872年と1933年に採集された標本が残っていますが、湖のどんな場所にいたのか、マリモのそばで暮らしていたのかは確かめられていません。",
+    "aliases": [
+      "Stone Loach",
+      "Orthrias oreas",
+      "Barbatula toni oreas"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cypriniformes",
+      "orderJa": "コイ目",
+      "family": "Nemacheilidae",
+      "familyJa": "フクドジョウ科"
+    },
+    "adultSizeCm": 15,
+    "sizeNote": "新潟市の水族館は全長約20cmと説明していますが、これが成魚のふつうの大きさか、最大の大きさかは書かれていません。標本の値は標準体長で、阿寒湖で1872年に採集されたものが6.4〜12.9cm、1933年の2匹が10.4cmと11.2cm、神奈川県の金目川（持ち込まれた集団）で調べた雌236匹が6.8〜14.9cmでした。成魚のふつうの大きさは確かめられていないため、図鑑の値は、水族館の値と標本の値の間の約15cmにしています。画面では、阿寒湖の標本に近い約12cmの個体で描いています。",
+    "distribution": "日本での自然の分布は北海道です。新潟県や神奈川県の金目川など、本州の川には持ち込まれた集団がいます。阿寒湖では、1872年8月と1933年8月に採集された標本が、北海道大学に保管されています。日本の外では、韓国を分布に含める資料と、韓国のものを別の集団とする研究があり、範囲ははっきりしていません。",
+    "water": {
+      "salinity": "freshwater",
+      "temperatureC": [
+        0.1,
+        16.8
+      ]
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "IUCN の区分と、環境省や北海道のレッドリストでの扱いは、今回の調査では確かめられていません。北海道の中でも、地域ごとに遺伝的な違いが大きいことが分かっています。北海道から本州などへ持ち込まれた例があり、もとからいる生き物と餌やすみかを取り合うことが心配されています。水温は、網走川水系の駒生川で2014年5月から2015年5月に測られた日ごとの平均の範囲で、この魚が耐えられる範囲や飼育の目安ではありません。"
+    },
+    "highlights": [
+      "口のまわりのひげは3対・6本で、すべて上くちびるの側にあります。ドジョウは5対、エゾホトケドジョウは4対です。",
+      "体は細長く、前のほうは筒のように丸く、尾のほうは左右に平たくなります。小さな鱗が皮ふに埋まっているので、表面はなめらかに見えます。",
+      "成熟した雄は、胸びれが長く幅の広い三角形になり、前のほうのすじが太くなります。本水槽の魚は雌で、胸びれは控えめな形です。",
+      "北の大地の水族館は、石のすき間を作るように水槽の配置を変えたあと、石や流木に強くくっつく卵が産まれたと報告しています（2026年）。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.2,
+    "tailSweepRad": 0.4,
+    "mouthAnchor": {
+      "x": 0.04,
+      "y": 0.58
+    }
+  },
+  "visual": {
+    "fallbackColor": "#a48f5e"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.78,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.22,
+      "burst": 1.4
+    },
+    "turnRateRadPerSec": 2.2,
+    "restFraction": 0.45,
+    "depthRange": [
+      0.3,
+      0.9
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0.2,
+      "polarization": 0.05
+    },
+    "structureAffinity": 0.75,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 2,
+        "durationSec": [
+          5,
+          18
+        ]
+      },
+      {
+        "type": "bottomForage"
+      },
+      {
+        "type": "homeShelter",
+        "kind": "crevice",
+        "rangeBodyLengths": 6,
+        "visitChancePerMin": 0.6,
+        "visitDurationSec": [
+          10,
+          40
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Orthrias oreas / current Barbatula oreas",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=3400"
+      },
+      {
+        "title": "新潟市水族館マリンピア日本海 生物図鑑：フクドジョウ",
+        "url": "https://www.marinepia.or.jp/picturebook/fish/entry-11766.html"
+      },
+      {
+        "title": "国立環境研究所 侵入生物データベース：フクドジョウ",
+        "url": "https://www.nies.go.jp/biodiversity/invasive/DB/detail/50780.html"
+      },
+      {
+        "title": "北海道開発局帯広開発建設部 生物図鑑：フクドジョウ",
+        "url": "https://www.hkd.mlit.go.jp/ob/tisui/kds/pamphlet/ikimono/ctll1r0000004pym-att/ctll1r0000009g9j.pdf"
+      },
+      {
+        "title": "Hatakeyama, Kitano & Machida (2017) Growth and early gonadal development in boreal Barbatula oreas introduced into a temperate river in central Honshu, Japan. Biogeography 19:35–46",
+        "url": "https://www.jstage.jst.go.jp/article/biogeo/19/0/19_35/_pdf/-char/ja"
+      },
+      {
+        "title": "Hatakeyama & Kitano (2018) Reproductive biology of a boreal Nemacheilid loach Barbatula oreas introduced into a temperate river in central Honshu, Japan. Aquaculture Science 66(2):123–131",
+        "url": "https://www.jstage.jst.go.jp/article/aquaculturesci/66/2/66_123/_pdf"
+      },
+      {
+        "title": "大橋慎平ほか (2014) 北海道大学農学部に保管されていた魚類標本コレクション. 北海道大学水産科学研究彙報 64(2):55–69",
+        "url": "https://eprints.lib.hokudai.ac.jp/repo/huscap/all/56738/55-69.pdf"
+      },
+      {
+        "title": "池田兵司 (1937) 日本産ドヂヤウ科魚類ノ雌雄性徴と其分類に就て III. フクドヂヤウ. 動物学雑誌 49(5):173–177",
+        "url": "https://dl.ndl.go.jp/view/prepareDownload?contentNo=1&itemId=info%3Andljp%2Fpid%2F10834376"
+      },
+      {
+        "title": "Tsuji et al. (2026) A practical and cost-effective approach to long-fragment eDNA sequencing for high-resolution genetic diversity assessment. Metabarcoding and Metagenomics 10:657–687",
+        "url": "https://zenodo.org/records/20742875/files/MBMG_article_177614.pdf?download=1"
+      },
+      {
+        "title": "北の大地の水族館 飼育員報告「フクドジョウ産卵」（2026年1月）",
+        "url": "https://onneyu-aq.com/point/2026-1-20/"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 37,
+    "y": 301,
+    "width": 1429,
+    "height": 386
+  }
+}

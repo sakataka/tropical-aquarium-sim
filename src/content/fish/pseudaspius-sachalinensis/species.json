@@ -1,0 +1,132 @@
+{
+  "id": "pseudaspius-sachalinensis",
+  "displayName": "エゾウグイ",
+  "realBodyLengthCm": 25,
+  "catalog": {
+    "scientificName": "Pseudaspius sachalinensis",
+    "originRegionId": "east-asia",
+    "originRegionName": "東アジア",
+    "origin": "北海道と、本州の東北地方から新潟県まで、サハリン、ロシア沿海地方の北部に分布するウグイの仲間です。北海道のエゾウグイは海へ下らず、一生を淡水で過ごします。",
+    "temperament": "屈斜路湖で消化管を調べた研究では、藻類とウチダザリガニが主な餌で、昆虫、小魚、魚の卵も見つかりました。北海道では春から初夏に産卵するとされ、秋のサケの産卵とは時期が違います。本水槽では、群れでまとまって泳ぎます。",
+    "movement": "ゆるやかな瀬や淵の、底に近い層を泳ぎます。福島県の川の調査では、流れの緩い淵、岸の茂み、よどみ、落ち葉のたまる場所で、何匹もまとまって採集されました。本水槽では、サケより下の、中層から礫の底近くを、群れで向きをそろえて泳ぎます。",
+    "habitat": "川のゆるやかな瀬や淵にすみ、屈斜路湖のような湖と、そこへ流れ込む川にもいます。十勝川では、下流域にエゾウグイを含むウグイの仲間が多いとされます。本水槽では、海から戻るサケが通る秋の北海道の川の下流で、一年じゅう川にいる魚として泳いでいます。",
+    "aliases": [
+      "Sakhalin redfin",
+      "Ainu dace",
+      "Ezo dace",
+      "Tribolodon sachalinensis",
+      "Tribolodon ezoe",
+      "Leuciscus sachalinensis"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cypriniformes",
+      "orderJa": "コイ目",
+      "family": "Leuciscidae",
+      "familyJa": "ウグイ科"
+    },
+    "adultSizeCm": 25,
+    "sizeNote": "神奈川県の淡水魚図鑑は、全長25cmほどとしています。北海道の図鑑は体長15〜25cm、秋田県のレッドデータブックは体長20〜30cmで、まれに40cmになるとしています（どちらも測り方の記載なし）。屈斜路湖の刺網の調査では、標準体長（吻の先から尾びれの付け根まで）31〜32cmの魚がいちばん多い年がありました。福島県の川の調査でいちばん大きかった個体は、全長26.3cmでした。ここでは全長約25cmとして表示しています。種全体の最大の全長は確認できていません。科は Catalog of Fishes の体系に従ってウグイ科としています（国内の資料ではコイ科とされます）。",
+    "distribution": "北海道の全域、本州の日本海側は青森県から新潟県、太平洋側は青森県から福島県と、サハリン、ロシア沿海地方の北部に分布します。国内では、川ごとにとびとびに分布しています。福島県の太田川のダムより上流の集団は、県内の別の川から移された魚に由来する可能性が指摘されています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "世界の IUCN 区分は、評価の本文を確かめられていません。環境省レッドリスト2020では、東北地方のエゾウグイが「絶滅のおそれのある地域個体群（LP）」です（北海道の集団は含みません）。秋田県版レッドデータブック2016では絶滅危惧II類です。川の改修、湧き水の減少、すみかの分断、人の手で出会うようになった別の種との交雑が、地域の心配として挙げられています。"
+    },
+    "highlights": [
+      "細長い紡錘形の体で、背は暗い灰褐色からオリーブ色、体の横は銀灰色です。細かな鱗が並びます。",
+      "吻の先が上顎より少し前へ出て、小さめの口がその下に付きます。",
+      "北海道のエゾウグイは海へ下らず、一生を淡水で過ごします。海で育って川へ戻るサケと、暮らし方を見比べられます。",
+      "ウグイやジュウサンウグイによく似ていて、繁殖期でない時期は、見た目だけで見分けるのが難しい魚です。繁殖期には体の横に暗く太い帯が出て、下顎から頬のあたりが赤みを帯びます。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.0,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.55
+    }
+  },
+  "visual": {
+    "fallbackColor": "#a39f8a"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.4,
+    "maxY": 0.86
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.42,
+      "burst": 1.9
+    },
+    "turnRateRadPerSec": 2.1,
+    "restFraction": 0.12,
+    "depthRange": [
+      0.15,
+      0.8
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.8,
+      "cohesion": 0.55,
+      "polarization": 0.55
+    },
+    "structureAffinity": 0.25,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Leuciscus sachalinensis, current Pseudaspius sachalinensis",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=30357"
+      },
+      {
+        "title": "神奈川県 水産技術センター内水面試験場: 淡水魚類図鑑 エゾウグイ",
+        "url": "https://www.pref.kanagawa.jp/docs/a4y/images/ezougui.html"
+      },
+      {
+        "title": "北海道お魚図鑑: ウグイ（エゾウグイとの比較段落）",
+        "url": "https://www.pref.hokkaido.lg.jp/sr/gid/fis008.html"
+      },
+      {
+        "title": "秋田県版レッドデータブック2016 動物I, エゾウグイp95",
+        "url": "https://www.pref.akita.lg.jp/uploads/public/archive_0000010620_00/AkitaRDB2016.pdf"
+      },
+      {
+        "title": "和田敏裕ほか (2021) 原発事故後の福島県浜通り河川で採集されたエゾウグイ. 福島大学地域創造32(2):233–239",
+        "url": "https://ir.lib.fukushima-u.ac.jp/repo/repository/fukuro/R000005559/18-376.pdf"
+      },
+      {
+        "title": "吉川朋子ほか (2024) 屈斜路湖とその周辺の生物相調査報告2―屈斜路湖のウグイ類について―. 玉川大学農学部研究教育紀要9:45–51",
+        "url": "https://tamagawa.repo.nii.ac.jp/record/2000461/files/2_2024_45-51.pdf"
+      },
+      {
+        "title": "国土交通省: 十勝川水系河川整備基本方針 流域及び河川の概要（案）, p12",
+        "url": "https://www.mlit.go.jp/river/shinngikai_blog/shaseishin/kasenbunkakai/shouiinkai/kihonhoushin/dai119kai/06_kihonhoushin.pdf"
+      },
+      {
+        "title": "札幌市豊平川さけ科学館 (2022-05-19): ウグイ3種の婚姻色",
+        "url": "https://salmon-museum.jp/2022/05/19/19052"
+      },
+      {
+        "title": "天野翔太・酒井治己 (2014) 降海性コイ科魚類ウグイ属マルタ2型の形態的分化と地理的分布. 水産大学校研究報告63:17–32",
+        "url": "https://ypir.lib.yamaguchi-u.ac.jp/fu/65/files/138733"
+      },
+      {
+        "title": "環境省レッドリスト2020 汽水・淡水魚類: 東北地方のエゾウグイ",
+        "url": "https://www.env.go.jp/content/900515981.pdf"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 89,
+    "y": 268,
+    "width": 1367,
+    "height": 492
+  }
+}

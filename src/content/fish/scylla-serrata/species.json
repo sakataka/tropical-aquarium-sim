@@ -1,0 +1,151 @@
+{
+  "id": "scylla-serrata",
+  "displayName": "アミメノコギリガザミ",
+  "realBodyLengthCm": 24,
+  "catalog": {
+    "scientificName": "Scylla serrata",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "インド洋から西太平洋の、熱帯と亜熱帯の沿岸に広く分布する大型のカニです。日本では、沖縄島や西表島の河口とマングローブでとれています。",
+    "temperament": "底にすむ動物を食べる肉食性です。西表島で調べた胃の中身は甲殻類と巻貝が主で、魚や植物も見つかりました。稚ガニを一緒に飼った試験では、脱皮したばかりの柔らかい個体が共食いされました。大きく発達したはさみには、人を傷つけるほどの力があります。",
+    "movement": "いちばん後ろの脚は、先が平たい楕円の形をした、泳ぐための脚です。石の下やマングローブの根元に掘った穴に隠れ、満潮のときや夜に出てくるとされます。オーストラリアで成体を追跡した研究では、潮が引いたときから満ちてくるときにかけて、餌を探すような動きが増えました。本水槽では、砂泥の底を横向きに歩き、はさみで底の餌をつまみます。",
+    "habitat": "河口、マングローブ、浅い泥の底など、海と汽水の沿岸にすみます。沖縄県の漫湖では、本種は川や海に近い側に、近縁のアカテノコギリガザミは林の中など陸に近い側の泥に多いと説明されています。本水槽では、小さな巣穴の口がいくつも開いた、河口の砂泥の底を再現しています。",
+    "aliases": [
+      "Giant mud crab",
+      "ノコギリガザミ",
+      "Cancer serratus",
+      "Scylla oceanica"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Decapoda",
+      "orderJa": "十脚目",
+      "family": "Portunidae",
+      "familyJa": "ワタリガニ科"
+    },
+    "adultSizeCm": 15,
+    "sizeNote": "甲幅での値です。代表的な成体の雄の甲幅は確かめられておらず、西表島の調査で、はさみの形から雄の半数が成熟しているとされた甲幅15.1cmを目安に、甲幅約15cmとして表示しています（雌は腹部の形から13.2cm）。沖縄県の解説では甲幅約20cmとされ、のとじま水族館の飼育日記では甲が約20cm、はさみを広げると約40cmとされています。1998年に学名の基準に指定された紅海の雄の標本は甲幅15.3cm、同じ論文の沖縄の標本は雄が甲幅9.6cm、雌が11.7cmでした。150cm水槽に合わせ、画面では、はさみと脚を含めた幅が約24cm（甲幅でおよそ12cm）の小さめの個体で描いています。",
+    "distribution": "インド洋から西太平洋の、熱帯と亜熱帯の沿岸に広く分布します。1998年の分類の見直しでは、紅海、南アフリカ、モーリシャス、オーストラリア、フィリピン、沖縄、台湾南部、フィジー、ニューカレドニアなどの標本が本種と確かめられました。日本では、沖縄島と西表島でとれています。この見直しより前に Scylla serrata とされた記録には、近縁の別の種が含まれていることがあります。",
+    "water": {
+      "salinity": "brackish"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "世界の IUCN 区分は確かめられていません。BISMaL には、徳島県で絶滅危惧Ⅰ類、大分県で準絶滅危惧、宮崎県で「その他の保護上重要な種」とする地方のレッドリストの区分が示されていますが、評価の年は確かめられていません。西表島の漁獲の調査では、未成熟の個体の割合と成熟する大きさをもとに、水揚げしてよい大きさの下限が提案されています。"
+    },
+    "highlights": [
+      "はさみとすべての脚に、多角形の細かい網目模様があります。雄にも雌にもある模様です。",
+      "いちばん後ろの脚の先は、平たい楕円の形をしています。",
+      "甲の前のふちには、左右の目の間に4つの突起があり、その外側に9本ずつ歯が並びます。近縁の種とは、この突起の形や脚の網目で見分けます。",
+      "体の色は、紫、緑、褐色から黒っぽい色までさまざまです。水族館では、脱皮のあとに青緑色があらわれ、網目がはっきりした例があります。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "crab",
+    "tailBeatHz": 0.6,
+    "bodyWaveStart": 0.85,
+    "tailSweepRad": 0,
+    "verticalFlex": 0,
+    "footAnchor": {
+      "x": 0.5,
+      "y": 0.96
+    }
+  },
+  "visual": {
+    "fallbackColor": "#776648"
+  },
+  "sourceBodyBounds": {
+    "x": 35,
+    "y": 165,
+    "width": 1483,
+    "height": 708
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.86,
+    "maxY": 0.94
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.06,
+      "burst": 0.4
+    },
+    "turnRateRadPerSec": 1.0,
+    "restFraction": 0.6,
+    "depthRange": [
+      0.3,
+      0.9
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.7,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 2.5,
+        "durationSec": [
+          8,
+          25
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.5,
+        "durationSec": [
+          10,
+          30
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Keenan, Davie & Mann (1998) A revision of the genus Scylla De Haan, 1833. Raffles Bulletin of Zoology 46(1):217–245",
+        "url": "https://era.dpi.qld.gov.au/id/eprint/8476/1/KeenanDavieMann1998_Scyllarevision_lowres.pdf"
+      },
+      {
+        "title": "BISMaL: Scylla serrata アミメノコギリガザミ",
+        "url": "https://www.godac.jamstec.go.jp/bismal/j/view/9012535"
+      },
+      {
+        "title": "Ogawa et al. (2011) Fishery biology of mud crabs Scylla spp. at Iriomote Island, Japan. Fisheries Science 77:915–927",
+        "url": "https://link.springer.com/article/10.1007/s12562-011-0408-x"
+      },
+      {
+        "title": "Hewitt et al. (2023) Crabs ride the tide: incoming tides promote foraging of Giant Mud Crab (Scylla serrata). Movement Ecology 11:21",
+        "url": "https://link.springer.com/article/10.1186/s40462-023-00384-3"
+      },
+      {
+        "title": "大城信弘：アミメノコギリガザミに関する調査報告書 第6節 食性（沖縄県）",
+        "url": "https://www.pref.okinawa.jp/fish/kenkyu/sikenjo-data/ss/ss.114/64_73.pdf"
+      },
+      {
+        "title": "玉城英信：脱皮後の成長と共食いによるへい死の関係（沖縄県）",
+        "url": "https://www.pref.okinawa.jp/fish/kenkyu/sikenjo-data/ss/ss.114/95_96.pdf"
+      },
+      {
+        "title": "オキナワイキモノラボ：アミメノコギリガザミ",
+        "url": "https://biodiversity.okinawa/video_pages/reference/amimenokogirigazami.html"
+      },
+      {
+        "title": "浦添市 環境学習図鑑：アミメノコギリガザミ",
+        "url": "https://www.city.urasoe.lg.jp/sites/urasoe-envmap/zukan/koukakurui/amimenokogirigazami.htm"
+      },
+      {
+        "title": "漫湖水鳥・湿地センター：ノコギリガザミ類",
+        "url": "https://www.manko-mizudori.net/cylla/"
+      },
+      {
+        "title": "のとじま水族館 (2026) アミメノコギリガザミの分身の術！",
+        "url": "https://www.notoaqua.jp/diary/911"
+      }
+    ]
+  }
+}

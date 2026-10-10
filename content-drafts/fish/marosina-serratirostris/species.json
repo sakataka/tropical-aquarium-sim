@@ -1,0 +1,144 @@
+{
+  "id": "marosina-serratirostris",
+  "displayName": "ヒメヌマエビ",
+  "realBodyLengthCm": 2.5,
+  "catalog": {
+    "scientificName": "Marosina serratirostris",
+    "originRegionId": "west-pacific",
+    "originRegionName": "西太平洋",
+    "origin": "日本からフィリピン、マレーシア、インドネシア、パプアニューギニア、オーストラリア、ソロモン諸島、フィジーまでの、海へ注ぐ川にすむ小さなヌマエビです。日本では、琉球列島の沖縄島と西表島、小笠原諸島の父島と母島で標本が確かめられています。2026年に属が見直され、学名が Caridina serratirostris から Marosina serratirostris に変わりました。",
+    "temperament": "成体が何を食べるか、昼と夜のどちらによく動くかは、この種では確かめられていません。第1・第2胸脚は、先に刷毛のような毛をもつ小さなはさみ脚です。野外では、根や落ち葉、水草の中、石の下で見つかります。",
+    "movement": "本水槽では、石や流木の表面を細い脚で歩き、立ち止まってはついばむ姿で描いています。魚のように尾を振り続けて泳ぐことはありません。",
+    "habitat": "海へ注ぐ川や小川の下流にすみます。西表島では、海から約200mの速い流れや、浅い淡水の流れで採集されています。小笠原諸島では淀みや浅い滝つぼの植物、水に浸かった根、落ち葉の中で、福岡県では流れのゆるい所の植物帯や石の下で見つかっています。本水槽では、琉球の川の石や流木、根のかげにいるエビとして置いています。",
+    "aliases": [
+      "Caridina serratirostris",
+      "エビ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Decapoda",
+      "orderJa": "十脚目",
+      "family": "Atyidae",
+      "familyJa": "ヌマエビ科"
+    },
+    "adultSizeCm": 2.5,
+    "sizeNote": "福岡県レッドデータブック2024は体長25mmとしています（測り方と性別は示されていません）。琉球列島の標本では、卵を抱いた雌の頭胸甲長（眼のくぼみの後ろの縁から頭胸甲の後ろの端まで。額角・腹部・尾は含みません）が4.4〜5.0mmでした。ふつうの成体の全長は分かっていません。画面では、体長約2.5cmの雌として描いています。",
+    "distribution": "日本、フィリピン、マレーシア、インドネシア、パプアニューギニア、オーストラリア、ソロモン諸島、フィジーに分布するとされます。日本では沖縄島、西表島、小笠原諸島の父島・母島で標本が確かめられ、本州の千葉県や京都府、九州の福岡県の川からもこの名前で報告されています。インド洋西部の古い記録の一部は、別の種に改められました。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2013,
+      "note": "2026年の論文が、2013年の IUCN の評価を軽度懸念（LC）として引用しています。評価の本文は確かめておらず、近縁の種が分けられたあとの分布に対する評価でもありません。福岡県レッドデータブック2024では情報不足（DD）で、潮止め堰によって生息環境が失われるおそれが挙げられています。"
+    },
+    "highlights": [
+      "体の色と模様は個体によって大きく違います。暗い帯と淡い帯が交互に並ぶ個体もいれば、ほとんど無地の個体もいて、黄色から赤みがかった体に赤い小さな点が散る個体も記録されています。この館の絵は、暗い帯のある個体です。",
+      "額角は水平で細く、比較的短めです。上の縁に並ぶ細かい歯の列は、眼の後ろの頭胸甲の上まで続きます。",
+      "親は川の淡水で暮らし、幼生は塩分のある水で育つ両側回遊のエビです。実験では、幼生は海水に近い濃い塩分でよく育ち、海水の4分の1ほどの薄さでは稚エビまで育ちませんでした。",
+      "2024〜2026年に、よく似た近縁の種がいくつも記載・再同定されました。インド洋西部の古い記録の一部は、別の種（Marosina henriettae）に改められています。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "crustacean",
+    "headStart": 0.24,
+    "tailBeatHz": 0.6,
+    "bodyWaveStart": 0.85,
+    "tailSweepRad": 0,
+    "verticalFlex": 0,
+    "footAnchor": {
+      "x": 0.45,
+      "y": 0.96
+    }
+  },
+  "visual": {
+    "fallbackColor": "#a28765"
+  },
+  "sourceBodyBounds": {
+    "x": 70,
+    "y": 185,
+    "width": 1403,
+    "height": 622
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.84,
+    "maxY": 0.93
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.08,
+      "burst": 0.4
+    },
+    "turnRateRadPerSec": 1.3,
+    "restFraction": 0.6,
+    "depthRange": [
+      0.05,
+      0.4
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 1.2,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.8,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 4.5,
+        "durationSec": [
+          8,
+          22
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 2,
+        "durationSec": [
+          5,
+          14
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "WoRMS Caridina serratirostris (accepted as Marosina serratirostris)",
+        "url": "https://www.marinespecies.org/aphia.php?p=taxlist&tName=Caridina+serratirostris"
+      },
+      {
+        "title": "Cai 2026 Systematic updates on the Caridina serratirostris species group and the genus Marosina",
+        "url": "https://www.mdpi.com/2073-4441/18/3/387"
+      },
+      {
+        "title": "Cai & Shokita 2006 Report on a collection of freshwater shrimps from the Philippines",
+        "url": "https://research.nhm.org/pdfs/31157/31157.pdf"
+      },
+      {
+        "title": "福家悠介・佐々木哲朗 2025 小笠原諸島に生息するヒメヌマエビ種群のDNAバーコーディング",
+        "url": "https://www.jstage.jst.go.jp/article/cancer/34/0/34_e12/_pdf/-char/ja"
+      },
+      {
+        "title": "de Mazancourt et al. 2020 Solomon's Gold Mine: 24 species of Caridina from the Solomon Islands",
+        "url": "https://www.researchgate.net/publication/343426784_Solomon%27s_Gold_Mine_Description_or_redescription_of_24_species_of_Caridina_Crustacea_Decapoda_Atyidae_freshwater_shrimps_from_the_Solomon_Islands_including_11_new_species"
+      },
+      {
+        "title": "福岡県レッドデータブック2024 ヒメヌマエビ",
+        "url": "https://biodiversity.pref.fukuoka.lg.jp/rdb/rdbs/detail/202401588"
+      },
+      {
+        "title": "Yatsuya, Ueno & Yamashita 2012 Occurrence and distribution of freshwater shrimp in the Isazu and Yura Rivers",
+        "url": "https://www.jstage.jst.go.jp/article/pbr/7/4/7_175/_pdf"
+      },
+      {
+        "title": "Honda, Hamasaki & Dan 2021 Effects of temperature and salinity on larvae of Caridina serratirostris",
+        "url": "https://www.jstage.jst.go.jp/article/aquaticanimals/AA2021/0/AA2021_AA2021-11/_pdf"
+      }
+    ]
+  }
+}

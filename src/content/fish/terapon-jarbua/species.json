@@ -1,0 +1,143 @@
+{
+  "id": "terapon-jarbua",
+  "displayName": "コトヒキ",
+  "realBodyLengthCm": 15,
+  "catalog": {
+    "scientificName": "Terapon jarbua",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "紅海・東アフリカからインド洋、西太平洋に広く分布する魚で、日本では南日本の沿岸で見られます。海と汽水域で暮らし、川の淡水域にも入ります。",
+    "temperament": "群れをつくって暮らします。タイのトラン県の沿岸の調査では、成魚は主に魚と魚の鱗を食べ、幼魚は底の小さな生き物から魚や鱗へと食べ物を移していました。モザンビークの室内実験では、全長7〜8cmの魚が、全長2.4〜3.6cmの小さなエビを食べることが確かめられています。",
+    "movement": "群れで泳ぎます。本水槽では、砂泥の底の上の開けた水の中ほどを、数匹がゆるくまとまって泳ぐ姿で描いています。",
+    "habitat": "浅い沿岸や内湾、河口の汽水域の砂底にすみ、川にも入ります。タイの調査では、幼魚は岸近くの浅い所へ移り、成魚は主に沖合にいました。本水槽では、沈んだ枝やカキ殻の付いた石のある、やや濁った河口の砂泥底の上にいる魚として置いています。",
+    "aliases": [
+      "Jarbua terapon",
+      "Crescent grunter",
+      "Crescent perch",
+      "Sciaena jarbua",
+      "Therapon jarbua",
+      "Holocentrus servus"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Perciformes",
+      "orderJa": "スズキ目",
+      "family": "Terapontidae",
+      "familyJa": "シマイサキ科"
+    },
+    "adultSizeCm": 25,
+    "sizeNote": "鹿児島県の硫黄島の図鑑では全長25cm、千葉県立中央博物館分館の解説では全長30cmになるとされます（どちらも平均か最大かは示されていません）。FishBase では、よく見られる大きさが標準体長25cm、最大が全長36cmです。タイの調査では幼魚が岸近くの浅い所に、成魚が主に沖合にいたので、河口の本水槽では、全長約15cmの小さめの個体で描いています。目は、館のほかの魚とそろえてスズキ目としています（FishBase は Centrarchiformes としています）。",
+    "distribution": "紅海・東アフリカからインド洋、西太平洋に広く分布し、南日本、オーストラリア、サモアなどで記録されています。日本での北の限りは資料によって違い、能登半島・房総半島より南とする解説と、太平洋側は茨城県までとする資料があります。鹿児島県の硫黄島や宮崎県で標本が採られています。地中海でも見つかっていますが、スエズ運河を通って入ったものと考えられています。",
+    "water": {
+      "salinity": "brackish"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2016,
+      "note": "IUCN の区分と評価年は FishBase と Catalog of Fishes で確かめたもので、評価の本文は確認できていません。日本の国や県のレッドリストでの扱いは確かめられていません。"
+    },
+    "highlights": [
+      "銀色の体に、弓なりに下へたわむ暗い帯が3〜4本走ります。近い仲間の Terapon theraps は帯がまっすぐなので、帯の曲がり方が見分けの手がかりになります。",
+      "背びれは、とげのある前半とやわらかい後半がつながり、境に深い切れ込みがあります。前半の上のほうには黒い斑があり、尾びれにも暗い帯が入ります。",
+      "うきぶくろに付いた筋肉を使って音を出します。手で持った全長15〜17cmの魚3匹から、基音170〜260Hzの音が録音されています。",
+      "魚の鱗を食べる習性があります。自分より大きい生きた魚の、体の後ろ半分や尾の付け根から鱗をはぎ取ることが報告されています。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.4,
+    "mouthAnchor": {
+      "x": 0.005,
+      "y": 0.56
+    }
+  },
+  "visual": {
+    "fallbackColor": "#afa58e"
+  },
+  "sourceBodyBounds": {
+    "x": 76,
+    "y": 189,
+    "width": 1396,
+    "height": 646
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.25,
+    "maxY": 0.7
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.5,
+      "burst": 2.4
+    },
+    "turnRateRadPerSec": 2.4,
+    "restFraction": 0.12,
+    "depthRange": [
+      0.2,
+      0.85
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.8,
+      "cohesion": 0.55,
+      "polarization": 0.5
+    },
+    "structureAffinity": 0.2,
+    "habits": [
+      {
+        "type": "follow",
+        "chancePerMin": 0.5,
+        "durationSec": [
+          1.5,
+          3.5
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Sciaena jarbua / Terapon jarbua",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=19627"
+      },
+      {
+        "title": "千葉悟（2013）コトヒキ. 硫黄島と竹島の魚類 p204",
+        "url": "https://www.museum.kagoshima-u.ac.jp/staff/motomura/Ioujima_low_res.pdf"
+      },
+      {
+        "title": "National Museum of Nature and Science: Fishes of Andaman Sea, Terapon jarbua",
+        "url": "https://www.kahaku.go.jp/research/db/zoology/Fishes_of_Andaman_Sea/contents/terapontidae/02.html"
+      },
+      {
+        "title": "千葉県立中央博物館分館 海の博物館: コトヒキ",
+        "url": "https://www.chiba-muse.or.jp/UMIHAKU/shizen/iso/sakana/kotohiki.htm"
+      },
+      {
+        "title": "Golani & Appelbaum-Golani（2010）First record of the Indo-Pacific fish the Jarbua terapon in the Mediterranean",
+        "url": "https://pdfs.semanticscholar.org/bf27/6f6b18c328dae9090f2f6d1d6339ec585492.pdf"
+      },
+      {
+        "title": "Yoknoi（2016）Resource utilization of terapontid fishes Terapon jarbua and Pelates quadrilineatus in coastal area, Trang province",
+        "url": "https://digital.car.chula.ac.th/chulaetd/63116/"
+      },
+      {
+        "title": "Maciá, Abrantes & Paula（2003）Thorn fish Terapon jarbua predation on juvenile white shrimp and brown shrimp",
+        "url": "https://www.researchgate.net/publication/223809823_Thorn_fish_Terapon_jarbua_Forskal_predation_on_juvenile_white_shrimp_Penaeus_indicus_H_Milne_Edwards_and_brown_shrimp_Metapenaeus_monoceros_Fabricius_The_effect_of_turbidity_prey_density_substrate_typ"
+      },
+      {
+        "title": "Whitfield & Blaber（1978）Scale-eating habits of the marine teleost Terapon jarbua",
+        "url": "https://www.researchgate.net/publication/230077834_Scale-eating_habits_of_the_marine_teleost_Terapon_jarbua_Forskal"
+      },
+      {
+        "title": "Parmentier, Fine & Mok（2016）Sound Production by a Recoiling System in the Pempheridae and Terapontidae",
+        "url": "https://orbi.uliege.be/bitstream/2268/195130/1/87_Pempheridae_Terapontidae_2016.pdf"
+      },
+      {
+        "title": "FishBase: Terapon jarbua summary",
+        "url": "https://www.fishbase.se/summary/terapon-jarbua"
+      }
+    ]
+  }
+}

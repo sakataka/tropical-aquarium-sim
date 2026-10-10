@@ -4,24 +4,48 @@
   "displayName": "湧水のトゲウオ水槽",
   "exhibitName": "Spring-fed Stickleback Brook",
   "category": "湧き水の小川",
-  "description": "白い花の咲く水草が茂り、細かい砂が広がる湧き水の小川を再現した60cm水槽。背中に3本のとげを持つイトヨが、水草の近くを行き来します。繁殖期には、雄が植物のかけらと砂で巣を作り、卵と生まれた子を守ります。",
+  "description": "白い花の咲く水草が茂る湧き水の小川の水景に、各地の冷たい水辺にすむトゲウオの仲間4種を集めた、見比べの60cm水槽。背中のとげは、イトヨとニホンイトヨが3本で前の2本が長く、エゾトミヨは短くて太めのものが9〜13本ほど、トミヨは細いものがふつう9本で、尾の付け根もエゾトミヨは短くて太く、トミヨは細くて長い形です。イトヨとニホンイトヨは水草の茂みの近くを、エゾトミヨとトミヨは底に近い茂みを行き来します。どの種も、繁殖期の雄が植物を使って巣を作り、卵を守ります。ニホンイトヨは海や河口で育つ魚で、ここでは産卵のために淡水へ入ってきた時期の姿として紹介しています。",
   "widthCm": 60,
   "heightCm": 36,
   "depthCm": 30,
-  "maxTotalFish": 8,
+  "maxTotalFish": 13,
   "sceneIds": [
     "spring-sticklebacks-60"
   ],
   "species": [
     {
       "speciesId": "threespine-stickleback",
-      "maxCount": 8
+      "maxCount": 4
+    },
+    {
+      "speciesId": "gasterosteus-nipponicus",
+      "maxCount": 3
+    },
+    {
+      "speciesId": "pungitius-tymensis",
+      "maxCount": 3
+    },
+    {
+      "speciesId": "pungitius-sinensis",
+      "maxCount": 3
     }
   ],
   "defaultStock": [
     {
       "speciesId": "threespine-stickleback",
-      "count": 5
+      "count": 3
+    },
+    {
+      "speciesId": "gasterosteus-nipponicus",
+      "count": 2
+    },
+    {
+      "speciesId": "pungitius-tymensis",
+      "count": 2
+    },
+    {
+      "speciesId": "pungitius-sinensis",
+      "count": 2
     }
   ]
 }

@@ -1,0 +1,133 @@
+{
+  "id": "osmerus-dentex",
+  "displayName": "キュウリウオ",
+  "realBodyLengthCm": 22,
+  "catalog": {
+    "scientificName": "Osmerus dentex",
+    "originRegionId": "north-pacific",
+    "originRegionName": "北太平洋",
+    "origin": "北太平洋と北極海の沿岸に広く分布する魚です。日本では北海道の沿岸にいて、太平洋側とオホーツク海側に多く見られます。",
+    "temperament": "噴火湾と山崎川の調査では、小さい個体はエビ、アミ、ヨコエビの仲間を多く食べ、大きい個体は主に小魚を食べていました。ふだんは沿岸で暮らし、春の産卵の時期に川へのぼります。山崎川では、日が沈んでから川へのぼって産卵し、ほとんどが日の出の前に海へ下りました。",
+    "movement": "北太平洋と北極海の魚をまとめた資料では、沿岸の水の中ほどを群れで泳ぐとされます。本水槽では、中央の開けた水の中ほどを、ゆるい群れで泳ぎます。",
+    "habitat": "沿岸の海と、海とつながる汽水の湖や湾にすみ、川の礫の底に卵を産みます。北海道東部では、厚岸湖と厚岸湾のシラウオ漁に混じってとれ、風蓮湖と温根沼では氷の下の漁でもとられます。本水槽では、アマモの草原に囲まれた、北海道東部の浅い汽水湖の開けた水をイメージしています。",
+    "aliases": [
+      "キュウリ",
+      "Pacific rainbow smelt",
+      "Arctic smelt",
+      "Osmerus mordax dentex",
+      "Osmerus eperlanus dentex",
+      "Osmerus eperlanus mordax（北海道の古い文献での学名）"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Osmeriformes",
+      "orderJa": "キュウリウオ目",
+      "family": "Osmeridae",
+      "familyJa": "キュウリウオ科"
+    },
+    "adultSizeCm": 22,
+    "sizeNote": "ふつうの成魚の大きさは資料によって違い、ここでは約22cmとして表示しています。北海道の解説は全長約15cm、北海道立総合研究機構の解説は体長約30cm（測り方は示されていません）としています。2019年に山崎川の河口で調べられた産卵期の魚は、標準体長15.8〜26.4cmでした。噴火湾と山崎川の調査で最も大きかった個体は標準体長26.9cm、全長31.0cmで、耳石から推定した年齢は最高で6.8歳でした。",
+    "distribution": "北太平洋と、白海を含む北極海の沿岸に分布します。日本では北海道の沿岸にいて、太平洋側とオホーツク海側に多く見られます。北海道東部では、厚岸湖と厚岸湾、風蓮湖、温根沼で漁でとれた記録があります。大西洋の Osmerus mordax やヨーロッパの Osmerus eperlanus と同じ種とされたこともありますが、今は別の種とされています。",
+    "water": {
+      "salinity": "brackish"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "note": "IUCN の区分は、IUCN が2024年に公開した淡水魚の一覧に載っているもの（個体数の動向は不明）で、評価の本文と評価年は確認できていません。"
+    },
+    "highlights": [
+      "口が大きく、上あごの後ろの端は、瞳の後ろの縁より後ろまで届きます。下あごは上あごより前に出ます。口の小さいチカと見比べてみてください。",
+      "下あごの先に鋭い大きな歯が2〜4本あり、口の中の骨と舌にも犬歯のような歯があります。大きくなると、主に小魚を食べます。",
+      "とれたての魚からキュウリに似たにおいがすることが、名前の由来です。",
+      "春に川へのぼり、礫の底に卵を産みます。山崎川の観察では、産卵のあとに死ぬ魚は少なく、海へ戻る魚が確かめられました。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.6,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.5
+    }
+  },
+  "visual": {
+    "fallbackColor": "#a39a8d"
+  },
+  "sourceBodyBounds": {
+    "x": 76,
+    "y": 315,
+    "width": 1388,
+    "height": 376
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.3,
+    "maxY": 0.75
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.5,
+      "burst": 2.6
+    },
+    "turnRateRadPerSec": 2.4,
+    "restFraction": 0.08,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.8,
+      "cohesion": 0.5,
+      "polarization": 0.5
+    },
+    "structureAffinity": 0.1,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Osmerus dentex",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=10344"
+      },
+      {
+        "title": "WoRMS: Osmerus dentex, AphiaID 254557",
+        "url": "https://www.marinespecies.org/rest/AphiaRecordByAphiaID/254557"
+      },
+      {
+        "title": "北海道立総合研究機構：新北のさかなたち 15 キュウリウオ",
+        "url": "https://www.hro.or.jp/upload/36103/o7u1kr00000007px.pdf"
+      },
+      {
+        "title": "北海道お魚図鑑：キュウリウオ",
+        "url": "https://www.pref.hokkaido.lg.jp/sr/gid/fis011.html"
+      },
+      {
+        "title": "北海道立総合研究機構 北海道の漁業図鑑：シラウオ・しらうお小型定置・張待網漁業（厚岸。混獲の記録）",
+        "url": "https://www.hro.or.jp/fisheries/h3mfcd0000000gsj/o7u1kr000000019q/o7u1kr000000d4fu/o7u1kr000000bwlt.html"
+      },
+      {
+        "title": "Nam, Nakaya & Takatsu (2021) Age and growth of Pacific rainbow smelt in Funka Bay and the Yamazaki River. Aquaculture Science 69:153–161",
+        "url": "https://www.jstage.jst.go.jp/article/aquaculturesci/69/2/69_153/_pdf"
+      },
+      {
+        "title": "Tran Nguyen Hai Nam (2021) Life history of Pacific rainbow smelt in Funka Bay, Japan（博士論文の要約）",
+        "url": "https://eprints.lib.hokudai.ac.jp/repo/huscap/all/83668/TranNguyenHaiNam_summary.pdf"
+      },
+      {
+        "title": "井口ほか (1997) 北海道噴火湾におけるキュウリウオ雌魚の成熟 日本水産学会誌63:50–55",
+        "url": "https://www.jstage.jst.go.jp/article/suisan1932/63/1/63_1_50/_pdf"
+      },
+      {
+        "title": "USGS/BOEM: Alaska Arctic Marine Fish Ecology Catalog, Arctic Smelt",
+        "url": "https://www.boem.gov/sites/default/files/documents/renewable-energy/Chapter-2-Alaska-Arctic-Marine-Fish-Inventory.pdf"
+      },
+      {
+        "title": "IUCN SSC: Freshwater fishes of potential interest for inclusion in CMS (2024)",
+        "url": "https://iucn.org/sites/default/files/2024-01/freshwater-fishes-of-potential-interest-for-inclusion-in-cms-information-brief.pdf"
+      }
+    ]
+  }
+}

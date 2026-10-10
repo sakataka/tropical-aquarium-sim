@@ -1,0 +1,59 @@
+{
+  "id": "northern-lagoon-180",
+  "order": 197,
+  "displayName": "北の汽水湖水槽",
+  "exhibitName": "Northern Lagoon",
+  "category": "北海道東部の汽水湖",
+  "description": "奥と両脇にアマモの草原が広がり、貝殻の散らばる砂泥の底が開ける、北海道東部の浅い汽水湖を再現した180cm水槽。緑がかった体に淡い色の細い筋が走るホッカイエビが、アマモの草原のそばの底を脚で歩き、立ち止まっては底をついばみます。中央の開けた水では、口の小さいチカと、体の半透明なシラウオがそれぞれ群れで向きをそろえて泳ぎ、口の大きいキュウリウオがゆるい群れで行き交います。背びれが3つに分かれたコマイは、底の近くをゆっくり泳ぎ、ときどき底をついばみます。コマイは「氷下魚」とも書き、冬に氷の張った湖で、氷の下に仕掛けた網でとられる魚です。キュウリウオやコマイはエビや魚も食べるので、実際に同じ水槽で飼うには注意が要りますが、ここでは厚岸湖のような北海道東部の汽水湖にいる生き物として、ひとつの水景で紹介しています。ホッカイエビのすむ野付湾の塩分は、海水に近い濃さです。",
+  "widthCm": 180,
+  "heightCm": 80,
+  "depthCm": 80,
+  "maxTotalFish": 33,
+  "sceneIds": [
+    "northern-lagoon-180"
+  ],
+  "species": [
+    {
+      "speciesId": "pandalus-latirostris",
+      "maxCount": 5
+    },
+    {
+      "speciesId": "hypomesus-japonicus",
+      "maxCount": 10
+    },
+    {
+      "speciesId": "salangichthys-microdon",
+      "maxCount": 10
+    },
+    {
+      "speciesId": "osmerus-dentex",
+      "maxCount": 5
+    },
+    {
+      "speciesId": "eleginus-gracilis",
+      "maxCount": 3
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "pandalus-latirostris",
+      "count": 4
+    },
+    {
+      "speciesId": "hypomesus-japonicus",
+      "count": 8
+    },
+    {
+      "speciesId": "salangichthys-microdon",
+      "count": 8
+    },
+    {
+      "speciesId": "osmerus-dentex",
+      "count": 4
+    },
+    {
+      "speciesId": "eleginus-gracilis",
+      "count": 2
+    }
+  ]
+}

@@ -1,0 +1,151 @@
+{
+  "id": "caridina-leucosticta",
+  "displayName": "ミゾレヌマエビ",
+  "realBodyLengthCm": 3,
+  "catalog": {
+    "scientificName": "Caridina leucosticta",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "日本の、海とつながる川にすむ小さなヌマエビです。本州の静岡県・愛知県・京都府、九州の宮崎県のほか、琉球列島の奄美大島、沖縄島、久米島、西表島で記録されています。卵からかえった幼生は川を下って海で育ち、稚エビになると川へ戻ります。",
+    "temperament": "成体が野外で何を食べるか、縄張りをもつかは、この種では確かめられていません。第1・第2胸脚は小さなはさみ脚で、先に細かい毛の束があります。研究室では、観賞用のエビや魚の人工飼料を毎日与えて親エビを飼っています。",
+    "movement": "本水槽では、石や流木の表面を細い脚で歩き、立ち止まってはついばむ姿で描いています。魚のように尾を振り続けて泳ぐことはありません。昼と夜のどちらによく動くかは、この種では調べられていません。",
+    "habitat": "海とつながる川の、淡水から汽水の区間にすみます。宮崎県の2つの川では下流から中流に見られ、愛知県の豊川では、秋の個体数が岸の植物や流木などの覆いの多さと結びついていました。琉球列島では、よく似たツノナガヌマエビよりも上流側まで見られ、西表島では上流の速い流れからも採集されています。本水槽では、琉球の川の石や流木、岸の根のまわりにいるエビとして置いています。",
+    "aliases": [
+      "Mizore-numaebi",
+      "エビ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Decapoda",
+      "orderJa": "十脚目",
+      "family": "Atyidae",
+      "familyJa": "ヌマエビ科"
+    },
+    "adultSizeCm": 3,
+    "sizeNote": "全長や体長の確かな値は、今回の調査では見つかっていません。大きさは頭胸甲長（眼のくぼみの後ろの縁から頭胸甲の後ろの端まで。額角・腹部・尾は含みません）で測られていて、宮崎県の雌135個体は3.6〜8.4mm、雄117個体は3.9〜7.6mmでした。静岡県の伊豆で採集された卵を抱いた雌には、9.0mmの個体もいます。同じ年齢では、雌のほうが雄より大きくなります。図鑑の3cmと画面の体長約3cmは、この頭胸甲長から見積もった雌の目安です。",
+    "distribution": "確かな分布は日本とされ、本州（静岡県の伊豆、愛知県の豊川、京都府の伊佐津川・由良川）、九州（宮崎県）、琉球列島（奄美大島、沖縄島、久米島、西表島）の、海とつながる川で記録されています。韓国からの報告は、2006年の再検討では別に扱われています。遺伝子の系統は、日本全域に見られる群と、南西諸島に限られる群の2つが知られています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "note": "分類データベース（WoRMS）は IUCN の軽度懸念（LC）の評価にリンクしていますが、評価の年と本文は確かめていません。千葉県のレッドリスト（2019年）では最重要保護生物（A）です。幼生が海で育つので、川と河口、沿岸がつながっていることが生活史に欠かせません。"
+    },
+    "highlights": [
+      "半透明で少し白みがかった緑色の体に、ごく小さな白い点が散っています。色や模様は、個体や状態で変わります。",
+      "額角は細長く、触角の根元の板（触角鱗）の先に届くか、少し超えます。上の縁に並ぶ細かい歯の列は、先の近くで短く途切れます。眼の上にとげがないことも、ヌマエビとの見分けどころです。",
+      "卵は川の淡水でかえり、幼生は流れに乗って海へ下ります。海で育った稚エビが、河口から川へ上ってきます（両側回遊）。京都府の伊佐津川では、6〜9月に卵を抱いた雌が、7〜10月に流れ下る幼生が見られ、寿命は15〜25か月と推定されています。",
+      "幼生は塩分のある水でないと育ちません。実験では、海水の4分の1ほどの薄さから海水そのままの濃さまでで稚エビに育ち、それより薄い水では育ちませんでした。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "crustacean",
+    "headStart": 0.22,
+    "tailBeatHz": 0.6,
+    "bodyWaveStart": 0.85,
+    "tailSweepRad": 0,
+    "verticalFlex": 0,
+    "footAnchor": {
+      "x": 0.47,
+      "y": 0.96
+    }
+  },
+  "visual": {
+    "fallbackColor": "#b9a783"
+  },
+  "sourceBodyBounds": {
+    "x": 44,
+    "y": 138,
+    "width": 1436,
+    "height": 677
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.84,
+    "maxY": 0.93
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.08,
+      "burst": 0.4
+    },
+    "turnRateRadPerSec": 1.3,
+    "restFraction": 0.6,
+    "depthRange": [
+      0.05,
+      0.4
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 1.2,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.8,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 4.5,
+        "durationSec": [
+          8,
+          22
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 2,
+        "durationSec": [
+          5,
+          14
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "WoRMS / DecaNet Caridina leucosticta Stimpson, 1860",
+        "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=586279"
+      },
+      {
+        "title": "Cai, Ng, Shokita & Satake 2006 On the species of Japanese atyid shrimps described by William Stimpson (1860)",
+        "url": "https://research.nhm.org/pdfs/25084/25084.pdf"
+      },
+      {
+        "title": "渡邊純平・狩野泰則 2009 宮崎県南部の2河川におけるエビ類の分布",
+        "url": "https://miyazaki-u.repo.nii.ac.jp/record/3236.1/files/KJ00005104329.pdf"
+      },
+      {
+        "title": "Fujita et al. 2016 Comparative phylogeography of three amphidromous shrimps",
+        "url": "https://www.researchgate.net/publication/311459740_Comparative_phylogeography_to_test_for_predictions_of_marine_larval_dispersal_in_three_amphidromous_shrimps"
+      },
+      {
+        "title": "Yatsuya, Ueno & Yamashita 2012 Occurrence and distribution of freshwater shrimp in the Isazu and Yura Rivers",
+        "url": "https://www.jstage.jst.go.jp/article/pbr/7/4/7_175/_pdf"
+      },
+      {
+        "title": "Yatsuya, Ueno & Yamashita 2013 Life history of the amphidromous shrimp Caridina leucosticta in the Isazu River",
+        "url": "https://academic.oup.com/jcb/article-abstract/33/4/488/2548088"
+      },
+      {
+        "title": "本田陸斗・日野輝明 2022 愛知県豊川中流域に生息する淡水性エビ類の分布と生息環境",
+        "url": "https://www.jstage.jst.go.jp/article/jjeez/33/2/33_53/_pdf"
+      },
+      {
+        "title": "Hamasaki et al. 2020 Dietary effects of phytoplankton and zooplankton on larvae of four Caridina species",
+        "url": "https://www.jstage.jst.go.jp/article/crustacea/49/0/49_225/_pdf"
+      },
+      {
+        "title": "Kondo, Hamasaki & Dan 2021 Larval performance of three amphidromous shrimp species under different temperature and salinity conditions",
+        "url": "https://www.jstage.jst.go.jp/article/crustacea/50/0/50_41/_pdf"
+      },
+      {
+        "title": "千葉県 環境影響評価資料 重要な底生動物（千葉県レッドリスト2019の区分）",
+        "url": "https://www.pref.chiba.lg.jp/doukei/douro/documents/h10-10.pdf"
+      }
+    ]
+  }
+}

@@ -132,7 +132,13 @@ for (const id of homeless) {
 for (const id of appSpecies) if (!placed.has(id)) errors.push(`アプリの種 ${id} が、計画のどの水槽の species にもありません`);
 // 計画では置いてあるが、アプリにまだいない種。水槽が開いていれば取り込める。
 // 画像が保管庫に届いているか。dots の記録に「生成済み」とあっても、画像のファイルがまだ保存されていない種がある。
+// Drive 経由で届いた種は species/ がないので、採用の記録（adoptions/）が指す画像を見る。
 async function hasImage(id: string): Promise<boolean> {
+  const adoption = Bun.file(join(vault, "adoptions", `${id}.json`));
+  if (await adoption.exists()) {
+    const { image } = await adoption.json() as { image?: { path?: string | null } };
+    if (image?.path && await Bun.file(join(vault, image.path)).exists()) return true;
+  }
   const meta = Bun.file(join(vault, "species", id, "meta.json"));
   if (!await meta.exists()) return false;
   const { variants } = await meta.json() as { variants: Record<string, { image?: { path: string | null } }> };

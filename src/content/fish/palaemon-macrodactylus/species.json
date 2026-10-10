@@ -1,0 +1,148 @@
+{
+  "id": "palaemon-macrodactylus",
+  "displayName": "ユビナガスジエビ",
+  "realBodyLengthCm": 5,
+  "catalog": {
+    "scientificName": "Palaemon macrodactylus",
+    "originRegionId": "northwest-pacific",
+    "originRegionName": "北西太平洋",
+    "origin": "日本や韓国など、北西太平洋の沿岸や河口にすむスジエビの仲間です。北アメリカ、ヨーロッパ、南アメリカ、オーストラリアにも、持ち込まれた集団が知られています。宮城県の松島湾の調査では、卵を抱いた雌が4月中旬から10月上旬に見られ、寿命は2年ほどと推定されました。",
+    "temperament": "小さな甲殻類やゴカイの仲間など、動物質のものを主に食べると報告されています。狭い所にたくさん入れた実験では共食いが報告され、繁殖の実験では、いっしょに入れた雄を雌が食べることもありました。",
+    "movement": "底にいるほか、泳ぐこともあり、水草や物のすき間に集まります。本水槽では、砂泥の底や沈んだ枝、カキ殻の付いた石の上を細い脚で歩き、立ち止まってはついばむ姿で描いています。昼と夜のどちらに活動するかは、この種で調べた資料が見つかっていません。",
+    "habitat": "沿岸の海や河口の汽水域にすみます。松島湾では、アマモ場の縁の水深1.5〜2mに沈めた竹の束に隠れていた個体が採集されました。沖縄島の慶佐次川では、満潮のときに海水の影響が届く、礫まじりの砂や泥の川底のあたりで記録されています。ヨーロッパでは、港の浮き桟橋の付着生物や護岸、ヨシの間で見つかっています。本水槽では、河口の砂泥の底で、沈んだ枝やカキ殻の付いた石のまわりにいるエビとして置いています。",
+    "aliases": [
+      "フトユビスジエビ",
+      "Oriental shrimp",
+      "Migrant prawn",
+      "Leander macrodactylus"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Decapoda",
+      "orderJa": "十脚目",
+      "family": "Palaemonidae",
+      "familyJa": "テナガエビ科"
+    },
+    "adultSizeCm": 6,
+    "sizeNote": "ふつうの成体の大きさをまとめた値は見つかっていません。ベルギーの調査で最も大きかった卵を抱いた雌は全長6.1cmで、イギリスのオーウェル川の雌は長さ2.5〜7cmでした（測り方は示されていません）。松島湾の調査では、頭胸甲の長さが雌で16.7mm、雄で11.7mmまでになりました。本水槽では、体長約5cmの雌として描いています。長い触角は、この長さに含めません。",
+    "distribution": "日本と韓国を含む北西太平洋の沿岸と河口に分布します。この種に学名が付けられたときの採集地として、長崎が挙げられています。沖縄島の慶佐次川の下流では、2016年8月の県の調査で4個体が記録されました。北アメリカ、ヨーロッパ、南アメリカ、オーストラリアには、持ち込まれた集団がいます。",
+    "water": {
+      "salinity": "brackish"
+    },
+    "keeping": "rarelyDisplayed",
+    "conservation": {
+      "note": "IUCN の評価は確かめられていません。海の生物のデータベース BISMaL には、東京都のレッドリストで情報不足、兵庫県でCランクという区分が載っていますが、どの年の版かは確かめられていません。"
+    },
+    "highlights": [
+      "体は透明感のある赤褐色から緑色で、細かい色の点が散らばります。背中の真ん中には、白っぽい筋が縦に通ります。",
+      "目の前へのびる額角（がっかく）は細長く、ほぼまっすぐです。上の縁に10〜12個ほど、下の縁に3〜5個の小さな歯が並びます。",
+      "前の2対の脚の先は、小さなはさみになっています。2対目のはさみも細く、テナガエビのような長い腕にはなりません。",
+      "成体と、卵や幼生とでは、耐えられる塩分が違います。アルゼンチンの実験では、成体は塩分5（海水はおよそ34）の水でも2か月後に8割以上が生き残りましたが、同じ塩分では卵は落ち、幼生は育ちませんでした。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "crustacean",
+    "headStart": 0.23,
+    "tailBeatHz": 0.6,
+    "bodyWaveStart": 0.85,
+    "tailSweepRad": 0,
+    "verticalFlex": 0,
+    "footAnchor": {
+      "x": 0.5,
+      "y": 0.97
+    }
+  },
+  "visual": {
+    "fallbackColor": "#b09c76"
+  },
+  "sourceBodyBounds": {
+    "x": 34,
+    "y": 116,
+    "width": 1473,
+    "height": 735
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.84,
+    "maxY": 0.93
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.08,
+      "burst": 0.4
+    },
+    "turnRateRadPerSec": 1.3,
+    "restFraction": 0.58,
+    "depthRange": [
+      0.05,
+      0.6
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 1.4,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.8,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 4,
+        "durationSec": [
+          8,
+          20
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 2,
+        "durationSec": [
+          6,
+          15
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "DecaNet / WoRMS: Palaemon macrodactylus Rathbun, 1902, AphiaID181372",
+        "url": "https://www.marinespecies.org/rest/AphiaRecordByAphiaID/181372"
+      },
+      {
+        "title": "BISMaL: Palaemon macrodactylus ユビナガスジエビ［フトユビスジエビ］",
+        "url": "https://www.godac.jamstec.go.jp/bismal/j/view/9036613"
+      },
+      {
+        "title": "d’Udekem d’Acoz, Faasse, Dumoulin & De Blauwe (2005). Occurrence of the Asian shrimp Palaemon macrodactylus in the southern bight of the North Sea, with a key to the Palaemonidae of north-western Europe. Nederlandse Faunistische Mededelingen 22:95–112.",
+        "url": "https://repository.naturalis.nl/document/94031"
+      },
+      {
+        "title": "Ashelby, Worsfold & Fransen (2004). First records of the oriental prawn Palaemon macrodactylus (Decapoda: Caridea), an alien species in European waters, with a revised key to British Palaemonidae. JMBA84:1041–1050.",
+        "url": "https://decapoda.nhm.org/pdfs/24611/24611.pdf"
+      },
+      {
+        "title": "Kim, Jung Nyun (2012). Invertebrate Fauna of Korea 21(21), Shrimps II. National Institute of Biological Resources. Palaemon macrodactylus pp17–19, Fig5, Plate4.",
+        "url": "https://www.nibr.go.kr/aiibook/catImage/272/Invertebrate%20fauna%20of%20korea%2021_21E.pdf"
+      },
+      {
+        "title": "Omori & Chida (1988). Life History of a Caridean Shrimp Palaemon macrodactylus with Special Reference to the Difference in Reproductive Features among Ages. Nippon Suisan Gakkaishi54(3):365–375.",
+        "url": "https://www.jstage.jst.go.jp/article/suisan1932/54/3/54_3_365/_pdf"
+      },
+      {
+        "title": "沖縄県 (2017). 慶佐次川自然環境再生事業 下流域再生実施計画（汽水区間案）, 平成28年度業務報告書抜粋.",
+        "url": "https://www.pref.okinawa.lg.jp/_res/projects/default_project/_page_/001/004/536/03_h28gyomuhokoku_1.pdf"
+      },
+      {
+        "title": "Vázquez, Ituarte, Bas & Spivak (2013). Effects of temperature and salinity on the ovarian cycle and the embryonic development of the invasive shrimp Palaemon macrodactylus. Journal of Crustacean Biology33(2):218–223.",
+        "url": "https://www.vliz.be/imisdocs/publications/321123.pdf"
+      },
+      {
+        "title": "Vázquez, Bas, Kittlein & Spivak (2015). Effects of temperature and salinity on larval survival and development in the invasive shrimp Palaemon macrodactylus along the reproductive season. Journal of Sea Research99:56–60.",
+        "url": "https://ri.conicet.gov.ar/bitstream/handle/11336/38101/CONICET_Digital_Nro.4dfc4168-fba1-42ef-81d8-dd9914b614ab_A.pdf?sequence=2"
+      }
+    ]
+  }
+}

@@ -1,0 +1,140 @@
+{
+  "id": "acanthogobius-flavimanus",
+  "displayName": "マハゼ",
+  "realBodyLengthCm": 15,
+  "catalog": {
+    "scientificName": "Acanthogobius flavimanus",
+    "originRegionId": "east-asia",
+    "originRegionName": "東アジア",
+    "origin": "日本、朝鮮半島、中国、ロシア極東の沿岸に分布するハゼです。オーストラリア南東部と北アメリカのカリフォルニア沿岸には、移入されています。",
+    "temperament": "京都府舞鶴市でとれた成魚の雌1匹の胃からは、小魚2匹、エビ1匹、ヤゴ1匹が見つかりました。宮崎県の干潟では、砂泥の中にある口が2つのY字形の部屋で、雄と雌の成魚と、壁に産み付けられた卵が見つかっています。この部屋を魚が自分で掘ったのか、ほかの動物の穴を使ったのかは分かっていません。",
+    "movement": "砂や泥の底に接して暮らすハゼです。左右の腹びれは1つにつながり、吸盤のような盤になっています。本水槽では、砂泥の底に止まっては、短く泳いで場所を移ります。",
+    "habitat": "河口や内湾の砂泥の底を主なすみかにします。東京湾の個体の耳石を調べた研究では、川の淡水に入らないもの、一時的に入るものなど、個体によって淡水の使い方が違っていました。京都府舞鶴市では、河口から約4km上流の、砂泥の多い流れのない場所でもとれていて、この個体は淡水で冬を越したと考えられています。本水槽では、小さな巣穴の口がいくつも開いた、河口のやわらかい砂泥の底を再現しています。",
+    "aliases": [
+      "Yellowfin Goby",
+      "Japanese Goby",
+      "Oriental Goby",
+      "Gobius flavimanus",
+      "Aboma snyderi"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Gobiiformes",
+      "orderJa": "ハゼ目",
+      "family": "Oxudercidae",
+      "familyJa": "オクスデルクス科"
+    },
+    "adultSizeCm": 15,
+    "sizeNote": "宮崎県の干潟の巣で見つかった成魚は、雄10匹が全長10.2〜19.4cm、雌10匹が全長10.3〜19.0cmでした。図鑑の値と画面の大きさは、この範囲の中ほどの全長約15cmにしています。日本のふつうの成魚の大きさと最大の大きさは確かめられていません。韓国の釜山の市場で得られた成魚1匹は全長23.4cmで、オーストラリア博物館の解説では約25cm、オーストラリアのニューサウスウェールズ州の解説では最大30cmとされます（どちらも測り方は示されていません）。科は WoRMS と Catalog of Fishes に従ってオクスデルクス科としています（国内の図鑑ではハゼ科とされます）。",
+    "distribution": "日本、朝鮮半島、中国、ロシア極東の沿岸に分布します。南日本では、種子島の廣田川、大浦川、阿嶽川の河口で標本が得られています。2023年の種子島の魚類目録は種子島を分布の南限としていますが、屋久島の記録を引く文献もあります。オーストラリア南東部と北アメリカのカリフォルニア沿岸には移入されています。南シナ海やトンキン湾にすむ近縁の Acanthogobius stigmothonus は、別種とされています。",
+    "water": {
+      "salinity": "brackish"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "IUCN の評価（2022年）のページは読めず、区分は確かめられていません。日本のレッドリストでの扱いも確かめられていません。移入されたオーストラリアでは、在来の生き物と餌やすみ場所を取り合うことが心配されています。"
+    },
+    "highlights": [
+      "目の下から口の後ろの角へ、斜め前下に向かう細い暗色の線があります。",
+      "体の横に暗色の斑が並び、尾びれの付け根にも暗い斑があります。背びれと尾びれには、小さな暗色の点が列になって並びます。",
+      "第1背びれの後ろの黒い斑は稚魚で目立ち、成長すると薄れて、成魚では消えるか、あとが残るだけになります。",
+      "海と川の行き来のしかたは1つではなく、淡水に入らない個体も、一時的に入る個体もいます。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.4,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.58
+    }
+  },
+  "visual": {
+    "fallbackColor": "#ae9c80"
+  },
+  "sourceBodyBounds": {
+    "x": 44,
+    "y": 229,
+    "width": 1462,
+    "height": 508
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.68,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.22,
+      "burst": 2.4
+    },
+    "turnRateRadPerSec": 2.8,
+    "restFraction": 0.55,
+    "depthRange": [
+      0.1,
+      0.75
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.3,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 2.5,
+        "durationSec": [
+          6,
+          20
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Gobius flavimanus / current Acanthogobius flavimanus",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=20255"
+      },
+      {
+        "title": "Motomura (2023) An annotated checklist of marine and freshwater fishes of Tanega-shima and Mage-shima islands. Bulletin of the Kagoshima University Museum 20",
+        "url": "https://www.museum.kagoshima-u.ac.jp/publications/2023_08_Tanegashima_fishes-1.pdf"
+      },
+      {
+        "title": "Shibukawa & Iwata (2013) Review of the East Asian gobiid genus Chaeturichthys（Acanthogobius 群の検索表）. Bull. Natl. Mus. Nat. Sci., Ser. A, Suppl. 7:31–51",
+        "url": "https://www.kahaku.go.jp/albums/abm.php?d=1277&f=abm00001595.pdf&n=7-05.pdf"
+      },
+      {
+        "title": "Dotu & Mito (1955) On the breeding-habits, larvae and young of a goby, Acanthogobius flavimanus. 魚類学雑誌4:153–161",
+        "url": "https://www.jstage.jst.go.jp/article/jji1950/4/4-6/4_4-6_153/_pdf"
+      },
+      {
+        "title": "宮崎一老 (1940) マハゼに就て. 日本水産学会誌9:159–180",
+        "url": "https://www.jstage.jst.go.jp/article/suisan1932/9/4/9_4_159/_pdf/-char/ja"
+      },
+      {
+        "title": "大戸夢木 (2023) 京都府舞鶴市の湧水地帯から採集されたマハゼによる淡水域での越冬の示唆. Ichthy 34:23–27",
+        "url": "https://www.museum.kagoshima-u.ac.jp/ichthy/INHFJ_2023_034_023.pdf"
+      },
+      {
+        "title": "松﨑圭佑・加納光樹・河野博 (2014) 耳石微量元素分析によって明らかにされた東京湾産マハゼの稚魚期での河川遡上履歴. 日本水産学会誌80:928–933",
+        "url": "https://www.jstage.jst.go.jp/article/suisan/80/6/80_14-00040/_article/-char/ja"
+      },
+      {
+        "title": "Australian Museum: Yellowfin Goby, Acanthogobius flavimanus",
+        "url": "https://australian.museum/learn/animals/fishes/yellowfin-goby-acanthogobius-flavimanus/"
+      },
+      {
+        "title": "NSW Department of Primary Industries and Regional Development: Yellowfin Goby (Acanthogobius flavimanus)",
+        "url": "https://www.dpird.nsw.gov.au/dpi/biosecurity/aquatic-biosecurity/aquatic-pests-and-diseases/marine-pests/finfish/yellowfin-goby-acanthogobius-flavimanus"
+      },
+      {
+        "title": "FISHBIO (2014) The yellowfin goby: unusual, but only a little",
+        "url": "https://fishbio.com/unusual-but-only-a-little/"
+      }
+    ]
+  }
+}

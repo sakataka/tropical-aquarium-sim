@@ -3,25 +3,65 @@
   "order": 189,
   "displayName": "サケの遡上水槽",
   "exhibitName": "Salmon Run",
-  "category": "秋の北海道の川",
-  "description": "礫の底が続く秋の北海道の川の下流を再現した500cm水槽。海で育ったサケが、産卵のために川へ戻ってきます。体の横に暗い赤褐色の帯が出た雌が、ゆるい群れで向きをそろえて上流へ向かいます。",
+  "category": "北太平洋へ注ぐ川",
+  "description": "礫の底が続く秋の北の川を再現した500cm水槽。海で育ち、産卵のために北太平洋の川へ戻るサケの仲間を見比べます。日本の川にのぼるサケとカラフトマスに、日本の川では繁殖が知られていないギンザケとマスノスケを並べました。体の横に暗い赤褐色の帯が出たサケの雌、背中の盛り上がったカラフトマスの雄、ひとまわり大きなマスノスケが、ゆるい群れで中層から底近くを泳ぎます。その下を、一生を川で過ごすエゾウグイの群れが行き交い、礫の底にはハナカジカがじっとしています。",
   "widthCm": 500,
   "heightCm": 186,
   "depthCm": 250,
-  "maxTotalFish": 14,
+  "maxTotalFish": 25,
   "sceneIds": [
     "salmon-run-500"
   ],
   "species": [
     {
       "speciesId": "chum-salmon",
-      "maxCount": 14
+      "maxCount": 7
+    },
+    {
+      "speciesId": "oncorhynchus-gorbuscha",
+      "maxCount": 3
+    },
+    {
+      "speciesId": "oncorhynchus-kisutch",
+      "maxCount": 2
+    },
+    {
+      "speciesId": "oncorhynchus-tshawytscha",
+      "maxCount": 2
+    },
+    {
+      "speciesId": "pseudaspius-sachalinensis",
+      "maxCount": 8
+    },
+    {
+      "speciesId": "cottus-nozawae",
+      "maxCount": 3
     }
   ],
   "defaultStock": [
     {
       "speciesId": "chum-salmon",
-      "count": 9
+      "count": 6
+    },
+    {
+      "speciesId": "oncorhynchus-gorbuscha",
+      "count": 3
+    },
+    {
+      "speciesId": "oncorhynchus-kisutch",
+      "count": 2
+    },
+    {
+      "speciesId": "oncorhynchus-tshawytscha",
+      "count": 1
+    },
+    {
+      "speciesId": "pseudaspius-sachalinensis",
+      "count": 6
+    },
+    {
+      "speciesId": "cottus-nozawae",
+      "count": 3
     }
   ]
 }

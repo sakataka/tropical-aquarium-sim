@@ -1,0 +1,191 @@
+{
+  "id": "clithon-retropictum",
+  "displayName": "イシマキガイ",
+  "realBodyLengthCm": 2.8,
+  "catalog": {
+    "scientificName": "Clithon retropictum",
+    "originRegionId": "east-asia",
+    "originRegionName": "東アジア",
+    "origin": "本州から南西諸島、台湾など、東アジアの川や河口にすむ巻貝です。琉球列島では、沖縄島と西表島で確かめられています。淡水でも卵を産みますが、幼生は海で過ごし、稚貝になって川へ入ります。",
+    "temperament": "岩や石の表面につく細かな藻類を食べます。本水槽では、石や流木の上をごくゆっくり這い、ときどき立ち止まって表面の藻を削ります。",
+    "movement": "足で石や岩に付いて這います。本水槽では、殻を背負ったまま頭と足を伸び縮みさせて進み、先の丸い2本の細長い触角を揺らします。叩かれると頭と足を殻に引っ込め、しばらくしてから這い出します。",
+    "habitat": "淡水から汽水の、流れのある所の石や岩に付いています。沖縄島では海抜0〜130mの範囲で採集され、北部の川ではフネアマガイやカワニナと同じ場所にいます。大阪府の神崎川の河口では、一年を通してほとんどが石に付いていて、石の上・横・下の面を使い分けていました。本水槽では、琉球の川の石や流木の表面にいる貝として置いています。",
+    "aliases": [
+      "Clithon retropictus",
+      "Clithon retropicta",
+      "Neritina retropicta",
+      "イシマキ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cycloneritida",
+      "orderJa": "アマオブネガイ目",
+      "family": "Neritidae",
+      "familyJa": "アマオブネガイ科"
+    },
+    "adultSizeCm": 2,
+    "sizeNote": "鳥取県のレッドデータブックは殻高約20mmとしています。西宮市貝類館は標準の殻長を10〜30mmとし、西表島の標本の写真には24.5mm、沖縄島の標本の図には19mmと25mmとあって、測り方はそろっていません。大阪府の神崎川の河口では、生まれた翌年の6月に、殻長約9mmで成熟すると推定されています。画面では、触角を含めた幅約2.8cmで描いています。",
+    "distribution": "本州から南西諸島、台湾などの東アジアに分布するとされます。静岡県、大阪府、高知県、福岡県、沖縄島、西表島、韓国の済州島で、採集や観察の記録があります。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "note": "IUCN の評価と沖縄県の評価は、今回の調査では確かめられていません。鳥取県のレッドデータブック（2022年）では準絶滅危惧（NT）で、川の改修や浚渫ですみかがなくなることが心配されています。"
+    },
+    "highlights": [
+      "螺塔の低い丸い殻は、暗い緑からオリーブ色の地に、小さな三角形や角ばった斑紋が並びます。成貝は、殻のてっぺん（殻頂）がすり減ったり欠けたりしていることが多い貝です。",
+      "淡水でも卵を産みますが、幼生（ベリジャー）は海で過ごす両側回遊の貝です。大阪府の神崎川の河口では、新しい稚貝は主に8〜9月に加わっていました。",
+      "殻に残る成長の筋が年齢の目安になることが、印をつけて放した貝を再び捕まえる調査で確かめられています。野外では、筋が最大で20本の個体が報告されています。",
+      "同じ種でも、汽水の所で採った貝と淡水の所で採った貝では、塩分への強さが違うことが実験で示されています。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "gastropod",
+    "tailBeatHz": 0.4,
+    "waveCount": 1.5,
+    "tailSweepRad": 0.18,
+    "verticalFlex": 0.004,
+    "footAnchor": {
+      "x": 0.5,
+      "y": 0.97
+    },
+    "shell": [
+      {
+        "x": 0.645,
+        "y": 0.465,
+        "rx": 0.36,
+        "ry": 0.465
+      },
+      {
+        "x": 0.94,
+        "y": 0.3,
+        "rx": 0.06,
+        "ry": 0.16
+      }
+    ],
+    "feelers": [
+      {
+        "kind": "tentacle",
+        "base": {
+          "x": 0.265,
+          "y": 0.695
+        },
+        "tip": {
+          "x": 0.005,
+          "y": 0.415
+        },
+        "width": 0.04
+      },
+      {
+        "kind": "tentacle",
+        "base": {
+          "x": 0.3,
+          "y": 0.775
+        },
+        "tip": {
+          "x": 0.055,
+          "y": 0.875
+        },
+        "width": 0.04
+      }
+    ]
+  },
+  "visual": {
+    "fallbackColor": "#594631"
+  },
+  "sourceBodyBounds": {
+    "x": 116,
+    "y": 141,
+    "width": 1307,
+    "height": 719
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.8,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.06,
+      "burst": 0.09
+    },
+    "turnRateRadPerSec": 0.5,
+    "restFraction": 0.5,
+    "depthRange": [
+      0.1,
+      0.9
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.6,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 1.5,
+        "durationSec": [
+          20,
+          60
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 0.5,
+        "durationSec": [
+          30,
+          120
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "MolluscaBase / WoRMS Clithon retropictum (E. von Martens, 1878)",
+        "url": "https://www.marinespecies.org/rest/AphiaRecordByAphiaID/737538"
+      },
+      {
+        "title": "Davis & Yamaguchi 1969 The Freshwater Gastropoda of Okinawa",
+        "url": "https://www.jstage.jst.go.jp/article/venusjjm/28/3/28_KJ00004342097/_pdf/-char/en"
+      },
+      {
+        "title": "Fukumori 2013 Evolutionary history, species diversity and biogeography of amphidromous neritid gastropods（東京大学博士論文）",
+        "url": "https://repository.dl.itc.u-tokyo.ac.jp/record/7149/files/A30749.pdf"
+      },
+      {
+        "title": "浦添市 環境マップ生き物図鑑 イシマキガイ",
+        "url": "https://www.city.urasoe.lg.jp/sites/urasoe-envmap/zukan/suiseikairui/ishimakigai.htm"
+      },
+      {
+        "title": "レッドデータブックとっとり第3版（2022）イシマキガイ",
+        "url": "https://www.pref.tottori.lg.jp/secure/1308351/7shellfish185-203.pdf"
+      },
+      {
+        "title": "西宮市貝類館 標本データ イシマキガイ",
+        "url": "https://shellmuseum.jp/shell_db2/species_data.php?scienm=Clithon+retropicta"
+      },
+      {
+        "title": "Miyajima & Wada 2014 Spatial distribution in relation to life history in Clithon retropictus in the Kanzaki River Estuary",
+        "url": "https://www.jstage.jst.go.jp/article/pbr/9/4/9_207/_pdf/-char/en"
+      },
+      {
+        "title": "平田徹ほか 2015 生息場所と成長からみたイシマキガイの耐塩性",
+        "url": "https://yamanashi.repo.nii.ac.jp/record/1292/files/18825923_16_211-218.pdf"
+      },
+      {
+        "title": "Noseworthy, Lee & Choi 2013 The occurrence of Clithon retropictus in an unusual habitat, northern Jeju Island",
+        "url": "https://www.researchgate.net/publication/260701892_The_occurrence_of_Clithon_retropictus_v_Martens_1879_Gastropoda_Neritidae_in_an_unusual_habitat_northern_Jeju_Island_Republic_of_Korea"
+      },
+      {
+        "title": "Shigemiya & Kato 2001 Age distribution, growth, and lifetime copulation frequency of Clithon retropictus",
+        "url": "https://esj-journals.onlinelibrary.wiley.com/doi/abs/10.1007/PL00012024"
+      }
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "id": "giant-mottled-eel-400",
+  "order": 180,
+  "displayName": "木の根と岩穴の深い淵",
+  "description": "苔むした暗い大岩が両岸に積み重なり、岩の下に広い岩穴と深い割れ目が口を開ける、南の島の川の深い淵。左の岸からは太い木の根が水中へ下り、沈んだ木の幹が礫と落ち葉の底へ斜めに横たわって、緑がかった水に上からの光が筋になって差し込みます。",
+  "defaultLighting": "evening",
+  "waterColor": "#134c52",
+  "framing": {
+    "plateBottom": 0.841
+  }
+}

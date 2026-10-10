@@ -1,0 +1,133 @@
+{
+  "id": "hypomesus-japonicus",
+  "displayName": "チカ",
+  "realBodyLengthCm": 20,
+  "catalog": {
+    "scientificName": "Hypomesus japonicus",
+    "originRegionId": "northwest-pacific",
+    "originRegionName": "北西太平洋",
+    "origin": "黄海の東部、日本海、オホーツク海など、北西太平洋の沿岸にすむ、ワカサギの仲間です。日本では北海道の全域と東北地方の沿岸で見られ、釧路から根室の沿岸に多くいます。地方によっては、チカとワカサギの呼び名が入れ替わることがあります。",
+    "temperament": "岸の近くを群れで泳ぎ、動物プランクトンや、エビの仲間などの小さな甲殻類を食べます。春に砂地の浅瀬で、1尾の雌に何尾もの雄が付いて産卵します。厚岸では、4月下旬から5月下旬が産卵の時期です。",
+    "movement": "冬に氷が張っても活動を続け、冬の漁でとられます。本水槽では、中央の開けた水の中ほどを、群れで向きをそろえて泳ぎます。",
+    "habitat": "冷たい海の浅い沿岸、港、海とつながる湖にすみます。北海道の解説では、一生を海で過ごし、淡水には入らないとされます。厚岸湖の塩分は約25〜30（psu）とされ、海水に近い濃さです。本水槽では、アマモの草原に囲まれた、北海道東部の浅い汽水湖の開けた水をイメージしています。",
+    "aliases": [
+      "Japanese surfsmelt",
+      "ヒメアジ",
+      "ツカ",
+      "オタポッポ",
+      "Osmerus japonicus",
+      "Hypomesus pretiosus japonicus"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Osmeriformes",
+      "orderJa": "キュウリウオ目",
+      "family": "Osmeridae",
+      "familyJa": "キュウリウオ科"
+    },
+    "adultSizeCm": 20,
+    "sizeNote": "北海道の解説では全長約20cmとされます（成魚の平均か最大かは示されていません）。1997年の分類の見直しで調べられた標本は、標準体長6.3〜15.2cmでした（雌雄や年齢を分けていない値です）。寿命は4年ほどとされます。",
+    "distribution": "黄海の東部、日本海、オホーツク海など、北西太平洋の沿岸に分布します。日本では北海道の全域と、東北地方の沿岸（1997年の分類の見直しでは、宮城県の仙台より北）で見られます。北海道東部では釧路から根室の沿岸に多く、厚岸湖でも漁でとられます。",
+    "water": {
+      "salinity": "brackish"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "note": "IUCN の区分は Catalog of Fishes に載っているもの（2022年に公表された評価）で、評価の本文は確認できていません。日本や北海道での区分は確かめられていません。"
+    },
+    "highlights": [
+      "背は黄色がかった褐色、体の横と腹は青みのある銀白色です。岸の近くを群れになって泳ぎます。",
+      "口は小さく、背びれと尾びれのあいだに小さな脂びれがあります。背びれが腹びれより少し前から始まるのが、この種の特徴です。",
+      "冬に氷が張っても活動を続けます。アクアマリンふくしまが2019年に厚岸湖で展示用のチカをとったとき、水温は−1℃でした。",
+      "アクアマリンふくしまは、厚岸湖のチカを大きな水槽で展示し、2021年には水槽での繁殖も報告しています。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.8,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.56
+    }
+  },
+  "visual": {
+    "fallbackColor": "#b2aa9d"
+  },
+  "sourceBodyBounds": {
+    "x": 61,
+    "y": 268,
+    "width": 1416,
+    "height": 432
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.25,
+    "maxY": 0.7
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.6,
+      "burst": 2.8
+    },
+    "turnRateRadPerSec": 2.8,
+    "restFraction": 0.06,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "school",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0.65,
+      "polarization": 0.6
+    },
+    "structureAffinity": 0.1,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Osmerus japonicus Brevoort, 1856 / valid Hypomesus japonicus",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=10257"
+      },
+      {
+        "title": "JAMSTEC BISMaL: Hypomesus japonicus チカ",
+        "url": "https://www.godac.jamstec.go.jp/bismal/j/view/9003762"
+      },
+      {
+        "title": "Saruwatari, López & Pietsch (1997) A revision of the osmerid genus Hypomesus Gill",
+        "url": "https://www.jstage.jst.go.jp/article/specdiv/2/1/2_KJ00003742662/_pdf"
+      },
+      {
+        "title": "北海道お魚図鑑：チカ",
+        "url": "https://www.pref.hokkaido.lg.jp/sr/gid/fis012.html"
+      },
+      {
+        "title": "青森県産業技術センター：水産上重要な魚類・チカ",
+        "url": "https://www.aomori-itc.or.jp/soshiki/suisan_sougou/useful/kaisangyorui/jyuuyougyorui.html"
+      },
+      {
+        "title": "釜石市：釜石海釣り情報・チカ",
+        "url": "https://www.city.kamaishi.iwate.jp/docs/2010011200014/"
+      },
+      {
+        "title": "アクアマリンふくしま：北海道からやってきたチカを展示しました（2019）",
+        "url": "https://www.aquamarine.or.jp/new-animals/oyashio201903/"
+      },
+      {
+        "title": "アクアマリンふくしま：当館で繁殖したチカを展示しました（2023）",
+        "url": "https://www.aquamarine.or.jp/new-animals/20230208/"
+      },
+      {
+        "title": "片寄剛ほか (2020) 岩手県南部の砂浜域砕波帯におけるチカ仔稚魚の出現動態と食性",
+        "url": "https://www.jstage.jst.go.jp/article/suisan/86/6/86_19-00046/_pdf/-char/ja"
+      },
+      {
+        "title": "Honda et al. (2010) Life history and migration of Sakhalin taimen caught from Lake Akkeshi（厚岸湖の概説）",
+        "url": "https://eprints.lib.hokudai.ac.jp/dspace/bitstream/2115/45106/2/IR57-4_416-421.pdf"
+      }
+    ]
+  }
+}

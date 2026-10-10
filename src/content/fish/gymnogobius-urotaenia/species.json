@@ -1,0 +1,153 @@
+{
+  "id": "gymnogobius-urotaenia",
+  "displayName": "ウキゴリ",
+  "realBodyLengthCm": 12,
+  "catalog": {
+    "scientificName": "Gymnogobius urotaenia",
+    "originRegionId": "east-asia",
+    "originRegionName": "東アジア",
+    "origin": "日本、朝鮮半島、ロシア極東、南千島に分布するハゼです。海と川を行き来する集団のほかに、湖や川の淡水だけで一生を過ごす集団がいます。",
+    "temperament": "動物を食べるハゼで、水生昆虫、甲殻類、小魚を食べます。大きな個体ほど魚をよく食べるとされます。石などの下の面に卵を産み、雄が卵を守ります。",
+    "movement": "名前は、水中に浮いていることが多いハゼという意味だと説明されています。底や岸辺から少し離れて浮かんだり、中層を泳いだりします。本水槽では、マリモの転がる底のすぐ上に浮かんで止まり、ときどき底に降りて休みます。",
+    "habitat": "川の流れの緩い所や淵、よどみ、湖や沼にすみ、水草やヨシなどの生えた岸辺を使います。朱太川水系の2011年の調査では、川のまん中では採れず、岸寄りに多くいました。本水槽では、細かい砂と小石の上にマリモが転がる、阿寒湖の浅い入り江の底をイメージしています。阿寒湖では古い採集の記録がありますが、マリモの群落の中での暮らしは確かめられていません。",
+    "aliases": [
+      "Floating Goby",
+      "Chaenogobius urotaenia",
+      "Gobius urotaenia",
+      "ウキゴリ淡水型"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Gobiiformes",
+      "orderJa": "ハゼ目",
+      "family": "Oxudercidae",
+      "familyJa": "オクスデルクス科"
+    },
+    "adultSizeCm": 12,
+    "sizeNote": "弥栄ダムの解説は成魚で全長約13cm、広島県のレッドデータブックは全長8〜15cm、和歌山県立自然博物館は体長12cmほど（測り方は書かれていません）としています。北海道の大沼の標本6匹は、標準体長8.8〜10.9cmでした。ここでは約12cmとして表示しています。種としての最大の大きさは確かめられていません。科は Catalog of Fishes の体系に従ってオクスデルクス科としています（国内の図鑑ではハゼ科とされます）。",
+    "distribution": "日本、朝鮮半島、ロシア極東、南千島に分布します。北海道の大沼や、サハリン南部の湖の標本が調べられています。阿寒湖では、北海道での分布をまとめた1983年の論文に、当時「淡水型」と呼ばれたこの種の採集記録が載っています。いまの阿寒湖にどのくらいいるかは確かめられていません。四国については、分布に含める資料と含めない資料があります。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2022,
+      "note": "IUCN の区分は Catalog of Fishes に載っている値で、評価の本文は確認できていません。広島県（2021年）と大阪府（2014年）のレッドリストでは準絶滅危惧です。川を横切る堰などで遡上が妨げられること、流れの緩い場所や岸辺の植物が減ることが、地域での心配な点に挙げられています。"
+    },
+    "highlights": [
+      "ハゼの仲間ですが、底にじっとしているだけでなく、底から少し離れてふわりと浮かびます。名前の由来とされる姿です。",
+      "頭は大きくて平たく、口は大きくてやや上を向き、下あごが少し前へ出ます。",
+      "背びれは2つに分かれ、前の背びれの後ろの端に、はっきりした黒い斑があります。",
+      "尾びれの付け根の暗い斑は、二股に分かれません。よく似たシマウキゴリでは、ここがY字の形になります。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.6,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.6
+    }
+  },
+  "visual": {
+    "fallbackColor": "#968667"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.72,
+    "maxY": 0.92
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.22,
+      "burst": 2.4
+    },
+    "turnRateRadPerSec": 2.8,
+    "restFraction": 0.55,
+    "depthRange": [
+      0.2,
+      0.7
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.55,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.5,
+        "durationSec": [
+          5,
+          15
+        ]
+      },
+      {
+        "type": "follow",
+        "chancePerMin": 0.3,
+        "durationSec": [
+          1,
+          2.5
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Gobius urotaenia / current Gymnogobius urotaenia",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=18669"
+      },
+      {
+        "title": "Stevenson (2002) Systematics and Distribution of Fishes of the Asian Goby Genera Chaenogobius and Gymnogobius. Species Diversity 7:251–312",
+        "url": "https://www.jstage.jst.go.jp/article/specdiv/7/3/7_KJ00003893348/_pdf"
+      },
+      {
+        "title": "石野健吾・後藤晃・濱田啓吉 (1983) 北海道の淡水魚に関する研究III：ウキゴリ3型の分布",
+        "url": "https://eprints.lib.hokudai.ac.jp/dspace/bitstream/2115/23826/1/34%283%29_P192-207.pdf"
+      },
+      {
+        "title": "中西照幸 (1978) ウキゴリ3型の分布および生態について",
+        "url": "https://eprints.lib.hokudai.ac.jp/repo/huscap/all/23650/29%283%29_P233-242.pdf"
+      },
+      {
+        "title": "和歌山県立自然博物館 紀州の鯊30：ウキゴリ",
+        "url": "https://www.shizenhaku.wakayama-c.ed.jp/goby_kishu_exp/goby_kishu_exp_30.html"
+      },
+      {
+        "title": "和歌山県立自然博物館 紀州の鯊55：スミウキゴリ",
+        "url": "https://www.shizenhaku.wakayama-c.ed.jp/goby_kishu_exp/goby_kishu_exp_55.html"
+      },
+      {
+        "title": "大阪府立環境農林水産総合研究所：ウキゴリ",
+        "url": "https://www.knsk-osaka.jp/zukan/zukan_database/tansui/2550b2c26477834/1650b70fb0df369.html"
+      },
+      {
+        "title": "国土交通省 弥栄ダム周辺の生き物：ウキゴリ",
+        "url": "https://www.cgr.mlit.go.jp/yasaka/ikimono/organism2018/d0022.htm"
+      },
+      {
+        "title": "広島県レッドデータブック2021 魚類：ウキゴリ",
+        "url": "https://www.pref.hiroshima.lg.jp/uploaded/attachment/478773.pdf"
+      },
+      {
+        "title": "Miyazaki & Terui (2016) Difference in habitat use between Gymnogobius opperiens and Gymnogobius urotaenia in the Shubuto River System",
+        "url": "https://link.springer.com/article/10.1007/s10228-015-0501-8"
+      },
+      {
+        "title": "Oto et al. (2023) A key evolutionary step determining osmoregulatory ability for freshwater colonisation in early life stages of fish",
+        "url": "https://journals.biologists.com/jeb/article/226/21/jeb246110/334699/A-key-evolutionary-step-determining-osmoregulatory"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 101,
+    "y": 243,
+    "width": 1378,
+    "height": 460
+  }
+}
