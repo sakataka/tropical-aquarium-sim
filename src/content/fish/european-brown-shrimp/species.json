@@ -1,0 +1,135 @@
+{
+  "id": "european-brown-shrimp",
+  "displayName": "ヨーロッパブラウンシュリンプ",
+  "realBodyLengthCm": 7,
+  "catalog": {
+    "scientificName": "Crangon crangon",
+    "originRegionId": "northeast-atlantic",
+    "originRegionName": "北東大西洋",
+    "origin": "白海から北西ヨーロッパを経てモロッコまでの大西洋岸と、北海、バルト海に分布し、地中海と黒海にもとぎれとぎれに見られるエビジャコの仲間です。北ヨーロッパでは食用にとられ、魚や鳥の大切な餌にもなっています。",
+    "temperament": "ゴカイの仲間、小さな甲殻類、若い貝、小魚、死んだ動物などを食べ、藻類も口にします。まとまって泳ぐ群れの習性は、観察されていません。小さな仲間や、脱皮したばかりの仲間を襲うことがあります。",
+    "movement": "腹の脚を動かして砂に入り、体をゆすり、触角で砂を背中にかけて潜ります。潜ると、眼と触角だけが砂の上に残ります。ふつうは夜や薄暗い時間に活発で、底の上を歩いたり泳いだりします。本水槽では、砂の上を脚で歩く姿で描いています（砂に潜る様子は描いていません）。",
+    "habitat": "沿岸や河口、潟の、砂や泥まじりの砂の底にすみ、ふつう潮間帯から水深20mほどまでで見られます。海草の生えた所にもいます。本水槽では、遠浅の砂浜が続く北海の岸の砂底をイメージしています。",
+    "aliases": [
+      "European brown shrimp",
+      "Brown shrimp",
+      "Common shrimp",
+      "Grey shrimp",
+      "Sand shrimp",
+      "Crangon vulgaris"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Decapoda",
+      "orderJa": "十脚目",
+      "family": "Crangonidae",
+      "familyJa": "エビジャコ科"
+    },
+    "adultSizeCm": 7,
+    "sizeNote": "成体はふつう全長5〜8cmとされます（FAO）。雌のほうが大きく、雄はふつう5cm、雌はふつう7cmとする解説があります。最大は、全長8.9cm（FAO）、8.5cm（MarLIN）、雌9.5cm・雄7.5cm（DORIS）と、資料で違います。ここでは、雌に多い約7cmとして表示しています。長い触角は、この長さに含めません。",
+    "distribution": "白海から北西ヨーロッパを経てモロッコまでの大西洋岸、北海、バルト海に分布し、地中海と黒海では分布がとぎれとぎれです。英国とアイルランドでは、沿岸全域の砂や泥の底に広く記録されています。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "今回の調査では、IUCN の評価は確認できていません。北ヨーロッパで食用にとられています。干潟の埋め立てや底質の消失が、幼いエビの育つ場所に影響しうると指摘されています。"
+    },
+    "highlights": [
+      "砂に潜り、眼と触角だけを砂の上に出して隠れます。",
+      "体は半透明の灰褐色で、細かい斑点やまだら模様があります。色素の細胞を使い、底の色に合わせて色合いを変えられます。",
+      "いちばん前の脚は、先の指を幅の広い掌に折りたたんではさむ形です。2番目の脚は細く、先に小さなはさみがあります。",
+      "眼の間の額角は短く、先が鈍くて歯がありません。",
+      "雌は卵を腹の脚に付けて守ります。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "crustacean",
+    "headStart": 0.24,
+    "tailBeatHz": 0.6,
+    "bodyWaveStart": 0.85,
+    "tailSweepRad": 0,
+    "verticalFlex": 0,
+    "footAnchor": {
+      "x": 0.46,
+      "y": 0.96
+    }
+  },
+  "visual": {
+    "fallbackColor": "#aa9274"
+  },
+  "sourceBodyBounds": {
+    "x": 31,
+    "y": 109,
+    "width": 1473,
+    "height": 735
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.84,
+    "maxY": 0.93
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.08,
+      "burst": 0.4
+    },
+    "turnRateRadPerSec": 1.3,
+    "restFraction": 0.6,
+    "depthRange": [
+      0.05,
+      0.45
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 1.4,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.2,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 2.5,
+        "durationSec": [
+          6,
+          16
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 2,
+        "durationSec": [
+          10,
+          30
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "ITIS: Crangon crangon, TSN 97118",
+        "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=97118"
+      },
+      {
+        "title": "FAO species identification sheet: Crangon crangon",
+        "url": "https://www.fao.org/fishery/docs/CDrom/ARTFIMED/ArtFiWeb/descript/Species/CRACRCRA.HTML"
+      },
+      {
+        "title": "Tiews: FAO Fisheries Synopsis 91, biological data on the common shrimp Crangon crangon",
+        "url": "https://www.fao.org/4/ac765t/AC765T02.htm"
+      },
+      {
+        "title": "Neal, MarLIN: Brown shrimp (Crangon crangon)",
+        "url": "https://www.marlin.ac.uk/species/detail/2031"
+      },
+      {
+        "title": "DORIS: Crangon crangon (Crevette grise européenne)",
+        "url": "https://doris.ffessm.fr/Especes/Crangon-crangon-Crevette-grise-europeenne-1747"
+      }
+    ]
+  }
+}

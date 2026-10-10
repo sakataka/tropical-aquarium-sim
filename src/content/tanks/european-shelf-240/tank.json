@@ -1,0 +1,27 @@
+{
+  "id": "european-shelf-240",
+  "order": 192,
+  "displayName": "大陸棚の沖の底水槽",
+  "exhibitName": "Offshore Shelf Floor",
+  "category": "北東大西洋の大陸棚",
+  "description": "岸から離れた北東大西洋の大陸棚の、水深150mほどの泥と砂の底を再現した240cm水槽。体の高い橙色のカプロス・アペルが、海底の近くから中層を密な群れで泳ぎます。水深40〜700mにすむ魚で、耳石からおよそ30歳と推定された個体もいます。北東大西洋では、2007年以降にこの魚をとる大がかりな漁業が発達しました。",
+  "widthCm": 240,
+  "heightCm": 104,
+  "depthCm": 90,
+  "maxTotalFish": 16,
+  "sceneIds": [
+    "european-shelf-240"
+  ],
+  "species": [
+    {
+      "speciesId": "boarfish",
+      "maxCount": 16
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "boarfish",
+      "count": 10
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "id": "north-sea-sand-300",
+  "order": 190,
+  "displayName": "北海の砂浜水槽",
+  "exhibitName": "North Sea Sandy Shore",
+  "category": "北海の砂浜",
+  "description": "遠浅の砂浜が続く北海の岸の砂底を再現した300cm水槽。細長い銀色のレッサー・サンドイールが、砂の上の開けた水を群れで向きをそろえて泳ぎます。腹びれがなく下あごが突き出たイカナゴの仲間で、魚や海鳥、海獣の餌になります。砂に潜って休む魚ですが、ここでは群れで泳ぐ姿を見せます。ホウボウの仲間のタブ・ガーナードは、青い縁のある胸びれを広げて砂底の近くを泳ぎ、ときどき砂の上で休みます。胸びれの下の軟条が左右3本ずつ膜から離れていて、自然の海ではこれで底を歩くように進み、餌を探ります。砂の上を歩くヨーロッパブラウンシュリンプは、底の色に合わせて色合いを変えられる砂色のエビで、北ヨーロッパでは食用にとられます。夜や薄暗い時間に活発になるので、照明を夕方や夜にするとよく歩き回ります。",
+  "widthCm": 300,
+  "heightCm": 98,
+  "depthCm": 110,
+  "maxTotalFish": 29,
+  "sceneIds": [
+    "north-sea-sand-300"
+  ],
+  "species": [
+    {
+      "speciesId": "lesser-sand-eel",
+      "maxCount": 18
+    },
+    {
+      "speciesId": "tub-gurnard",
+      "maxCount": 3
+    },
+    {
+      "speciesId": "european-brown-shrimp",
+      "maxCount": 8
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "lesser-sand-eel",
+      "count": 12
+    },
+    {
+      "speciesId": "tub-gurnard",
+      "count": 2
+    },
+    {
+      "speciesId": "european-brown-shrimp",
+      "count": 5
+    }
+  ]
+}

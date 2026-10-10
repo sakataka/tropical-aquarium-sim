@@ -1,0 +1,11 @@
+{
+  "id": "north-sea-sand-300",
+  "order": 231,
+  "displayName": "褐藻の石と古い杭の砂底",
+  "description": "細かな波の跡が続く、淡い色の砂の底。左には、ヒバマタの仲間の褐藻をかぶった石が砂に半分埋まり、右の端には海藻の付いた古い木の杭が立ちます。砂の上に細長い貝殻や丸い貝殻が散らばり、灰色がかった青緑の水に、左上から光の筋が差し込みます。",
+  "defaultLighting": "natural",
+  "waterColor": "#276d7c",
+  "framing": {
+    "plateBottom": 0.826
+  }
+}

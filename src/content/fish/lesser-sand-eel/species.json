@@ -1,0 +1,113 @@
+{
+  "id": "lesser-sand-eel",
+  "displayName": "レッサー・サンドイール",
+  "realBodyLengthCm": 15,
+  "catalog": {
+    "scientificName": "Ammodytes tobianus",
+    "originRegionId": "northeast-atlantic",
+    "originRegionName": "北東大西洋",
+    "origin": "東部北大西洋のムルマン沿岸からスペインまでと、アイスランドの南西岸、バルト海の大部分に分布するイカナゴの仲間です。英国とアイルランドのまわりに広く見られ、魚や海鳥、海獣の餌になります。",
+    "temperament": "群れで泳ぎながら、動物プランクトンや大きな珪藻などを食べます。昼は群れで泳ぎ、夜や危険を感じたときは砂に潜るとされ、冬は砂の中で過ごす時間が長くなります。",
+    "movement": "水中を群れで泳ぐ暮らしと、砂に潜って隠れる暮らしを切り替えます。砂に潜っている間も、砂の上の水をすき間から口へ引き込み、えらから出して呼吸します。本水槽では、砂の上の開けた水を、群れで向きをそろえて泳ぎます（砂に潜る様子は描いていません）。",
+    "habitat": "砂の湾や砂浜、潮間帯、河口の海水から汽水の水域にすみ、潮間帯の中ほどから水深30mほどまでの浅い海で見られます。本水槽では、遠浅の砂浜が続く北海の岸をイメージしています。",
+    "aliases": [
+      "Lesser sand eel",
+      "Small sandeel",
+      "Common sand eel",
+      "Lesser sand-eel",
+      "Ammodytes lancea"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Perciformes",
+      "orderJa": "スズキ目",
+      "family": "Ammodytidae",
+      "familyJa": "イカナゴ科"
+    },
+    "adultSizeCm": 15,
+    "sizeNote": "典型的な成魚の大きさは確かめられておらず、ここでは約15cmとして表示しています。標準体長20cmを超えることはまれとされます。2016年の研究でX線写真を撮られた標本は標準体長12.8cmでした（成熟していたかは示されていません）。英仏海峡では、耳石から7歳と推定された個体が記録されています。",
+    "distribution": "東部北大西洋のムルマン沿岸からスペインまでと、アイスランドの南西岸、バルト海の大部分に分布します。地中海ではバレアレス諸島の記録があります。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "DD",
+      "note": "IUCN の区分は WoRMS に載っている表示によるもので、評価の本文は確認できていません。北海のイカナゴの仲間の資源は別種（Ammodytes marinus）を中心に評価されるため、この種だけの状態を分けて評価できないと、2016年の研究が指摘しています。"
+    },
+    "highlights": [
+      "細長い銀色の体で、下あごが上あごより前に出ています。体の側面には、斜めに走る細かい皮膚のひだが並びます。",
+      "長くて低い背びれが1基あり、二またの尾びれは背びれやしりびれとつながっていません。腹びれはありません。",
+      "群れで泳いで餌をとる暮らしと、砂に潜って隠れる暮らしを切り替えます。",
+      "卵は海底に産みつけられ、砂粒にくっつきます。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.8,
+    "tailSweepRad": 0.35
+  },
+  "visual": {
+    "fallbackColor": "#9a937f"
+  },
+  "sourceBodyBounds": {
+    "x": 52,
+    "y": 395,
+    "width": 1438,
+    "height": 222
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.3,
+    "maxY": 0.78
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "steady",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.6,
+      "burst": 2.8
+    },
+    "turnRateRadPerSec": 2.4,
+    "restFraction": 0.06,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "school",
+      "spacingBodyLengths": 1.2,
+      "cohesion": 0.75,
+      "polarization": 0.75
+    },
+    "structureAffinity": 0.05,
+    "habits": [],
+    "sources": [
+      {
+        "title": "WoRMS: Ammodytes tobianus",
+        "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=126752"
+      },
+      {
+        "title": "Naturalis, Fishes of the NE Atlantic and the Mediterranean: Ammodytes tobianus",
+        "url": "https://fishes-fnam.linnaeus.naturalis.nl/linnaeus_ng/app/views/species/taxon.php?id=109523"
+      },
+      {
+        "title": "Rowley 2008, MarLIN: Lesser sand eel (Ammodytes tobianus)",
+        "url": "https://www.marlin.ac.uk/species/detail/2067"
+      },
+      {
+        "title": "Reay 1970: FAO Fisheries Synopsis 82, North Atlantic sandeels",
+        "url": "https://www.fao.org/4/a8703e/a8703e.pdf"
+      },
+      {
+        "title": "Thiel & Knebelsberger 2016: identification of sand lances (ZooKeys 617)",
+        "url": "https://zookeys.pensoft.net/article/8866/download/pdf/283601"
+      },
+      {
+        "title": "Behrens et al. 2007: Oxygen dynamics around buried lesser sandeels Ammodytes tobianus",
+        "url": "https://www.researchgate.net/publication/6468476_Oxygen_dynamics_around_buried_lesser_sandeels_Ammodytes_tobianus_Linnaeus_1785_Mode_of_ventilation_and_oxygen_requirements"
+      }
+    ]
+  }
+}

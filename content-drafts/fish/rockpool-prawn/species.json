@@ -1,0 +1,145 @@
+{
+  "id": "rockpool-prawn",
+  "displayName": "ロックプールプラウン",
+  "realBodyLengthCm": 4.5,
+  "catalog": {
+    "scientificName": "Palaemon elegans",
+    "originRegionId": "northeast-atlantic",
+    "originRegionName": "北東大西洋",
+    "origin": "北東大西洋のノルウェーから南西アフリカまでと、地中海、黒海に分布する、テナガエビ科の小さなエビです。英国とアイルランドの沿岸に広く見られます。もともといなかったカスピ海、アラル海、北アメリカの東岸などにも入りこんでいます。",
+    "temperament": "藻類、生き物のかけらなどの有機物、小さな甲殻類、ゴカイの仲間、貝の仲間などを食べる雑食性です。24時間の実験では、小さなヨコエビの仲間を捕らえて食べました。群れ方や縄張りは分かっていません。",
+    "movement": "底や海藻の表面を脚で歩き、泳いで移ることもあります。本水槽では、小石の底や岩の上をゆっくり歩き、立ち止まってはついばみます。",
+    "habitat": "潮間帯の中ほどの潮だまり、岩礁、浅い藻場や海草の茂みにすみ、濃い海藻の中や陰になる所に身を寄せます。砂底や桟橋などでも見つかります。北の海では、冬に沖の深い所へ移るものがいます。本水槽では、英国やフランスの磯の潮だまりをイメージしています。",
+    "aliases": [
+      "Rockpool prawn",
+      "European rock shrimp",
+      "Palaemon minans",
+      "Palaemonella gracilis",
+      "Leander squilla elegans"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Decapoda",
+      "orderJa": "十脚目",
+      "family": "Palaemonidae",
+      "familyJa": "テナガエビ科"
+    },
+    "adultSizeCm": 4.5,
+    "sizeNote": "体長は30〜60mm、最大63mmとされます（測り方は詳しく示されていません）。雄は28〜50mm、雌は30〜63mmで、雌のほうが大きくなります。FAO は最大で全長約60mmとしています。ここでは約4.5cmとして表示しています。長い触角は、この長さに含めません。",
+    "distribution": "北東大西洋のノルウェーから南西アフリカまでと、マカロネシアの島々、地中海、黒海に分布します。カスピ海、アラル海、北アメリカ東岸などに入りこんでいて、北アメリカでは2010年にマサチューセッツ州で初めて記録されました。バルト海の西部では、もとからいる大西洋の系統と、あとから入った黒海の系統の両方が見つかっています。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "今回の調査では、IUCN の評価は確認できていません。カスピ海やアラル海、北アメリカの東岸などでは、外から入った種として記録されています。"
+    },
+    "highlights": [
+      "透明な体に赤褐色の線が走り、腹の節には横向きの帯があります。",
+      "脚の関節は黄色っぽく、2番目の脚のはさみの掌は青くなります。",
+      "額角は短く、まっすぐか少し上向きで、上の縁にふつう7〜9本、下の縁にふつう3本の歯があります。",
+      "雌は脱皮のあとに交尾し、卵を腹の脚に付けて抱えます。ふ化した幼生は、水中を漂う時期を過ごしてから底の暮らしに移ります。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "crustacean",
+    "headStart": 0.24,
+    "tailBeatHz": 0.6,
+    "bodyWaveStart": 0.85,
+    "tailSweepRad": 0,
+    "verticalFlex": 0,
+    "footAnchor": {
+      "x": 0.45,
+      "y": 0.96
+    }
+  },
+  "visual": {
+    "fallbackColor": "#b6a07d"
+  },
+  "sourceBodyBounds": {
+    "x": 45,
+    "y": 141,
+    "width": 1456,
+    "height": 723
+  },
+  "preferredZone": {
+    "minX": 0.1,
+    "maxX": 0.9,
+    "minY": 0.82,
+    "maxY": 0.93
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.08,
+      "burst": 0.4
+    },
+    "turnRateRadPerSec": 1.3,
+    "restFraction": 0.58,
+    "depthRange": [
+      0.05,
+      0.6
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 1.4,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.8,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 4,
+        "durationSec": [
+          8,
+          20
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 2,
+        "durationSec": [
+          6,
+          15
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "PESI / DecaNet: Palaemon elegans",
+        "url": "https://www.eu-nomen.eu/portal/taxon.php?GUID=urn%3Alsid%3Amarinespecies.org%3Ataxname%3A107614"
+      },
+      {
+        "title": "Neal 2008, MarLIN: Rockpool prawn (Palaemon elegans)",
+        "url": "https://www.marlin.ac.uk/species/detail/2035"
+      },
+      {
+        "title": "Leibniz-IOW: Steckbrief Palaemon elegans (2011)",
+        "url": "https://www.io-warnemuende.de/files/bio/ag-benthische-organismen/pdf/Steckbrief_Palaemon_elegans_Deutsch.pdf"
+      },
+      {
+        "title": "Holthuis 1980: FAO Species Catalogue, Shrimps and Prawns of the World (Palaemon elegans)",
+        "url": "https://www.fao.org/4/ac477e/ac477e18.pdf"
+      },
+      {
+        "title": "Salem Sound Coastwatch / Massachusetts: Palaemon elegans identification card",
+        "url": "https://www.mass.gov/doc/peleganspdf/download"
+      },
+      {
+        "title": "Smithsonian NEMESIS: Palaemon elegans",
+        "url": "https://invasions.si.edu/nemesis/species_summary/96466/1000"
+      },
+      {
+        "title": "Persson et al. 2008: Trophic role of the omnivorous grass shrimp Palaemon elegans in a Swedish eelgrass system",
+        "url": "https://www.researchgate.net/publication/240809550_Trophic_role_of_the_omnivorous_grass_shrimp_Palaemon_elegans_in_a_Swedish_eelgrass_system"
+      },
+      {
+        "title": "Dove et al. 2026: Replacing the locals? (Biological Invasions)",
+        "url": "https://link.springer.com/article/10.1007/s10530-026-03837-z"
+      }
+    ]
+  }
+}

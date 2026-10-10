@@ -1,0 +1,119 @@
+{
+  "id": "tub-gurnard",
+  "displayName": "タブ・ガーナード",
+  "realBodyLengthCm": 35,
+  "catalog": {
+    "scientificName": "Chelidonichthys lucerna",
+    "originRegionId": "northeast-atlantic",
+    "originRegionName": "北東大西洋",
+    "origin": "東大西洋のノルウェーからモーリタニアまでと、北海、バルト海の西部、地中海、黒海に分布するホウボウの仲間です。底曳網などでとられ、食用にされます。",
+    "temperament": "単独か小さな群れで見られます。アドリア海の調査では、幼い魚は甲殻類を中心に食べ、大きな魚ほど魚を食べる割合が増えていました。貝やイカの仲間、ゴカイの仲間も食べます。",
+    "movement": "胸びれの下の軟条が左右3本ずつ膜から離れていて、これを使って底を歩くように進み、底の餌を探ります。底を離れて活発に泳ぐこともできます。本水槽では、砂底の近くを泳ぎ、ときどき砂の上で休みます。",
+    "habitat": "砂、泥まじりの砂、礫の底にすみ、水深およそ20〜300mで見られます。河口に入ることもあり、若い魚は浅い湾や岸辺にも現れます。本水槽では、遠浅の砂浜が続く北海の岸の砂底をイメージしています。",
+    "aliases": [
+      "Tub gurnard",
+      "Sapphirine gurnard",
+      "Yellow gurnard",
+      "Tubfish",
+      "Trigla lucerna",
+      "Chelidonichthys lucernus",
+      "Trigla corax"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Perciformes",
+      "orderJa": "スズキ目",
+      "family": "Triglidae",
+      "familyJa": "ホウボウ科"
+    },
+    "adultSizeCm": 35,
+    "sizeNote": "ふつう35cmほどで、最大75cmとされます（図鑑の値で、測り方は示されていません）。多くは50cmを超えないとする解説もあります。ウェールズ北西部の調査で測られた魚は、雌が全長10.4〜57.5cm、雄が全長10.5〜41.0cmで、半数が成熟する大きさは雌が全長27.7cm、雄が全長29.1cmでした。目は、館のほかの魚とそろえてスズキ目としています。",
+    "distribution": "東大西洋のノルウェーからモーリタニアまでと、マデイラ諸島、カナリア諸島、北海、バルト海の西部、地中海、マルマラ海、黒海に分布します。ギニア湾より南の古い記録は、別種だった可能性があるとされます。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "note": "IUCN の区分は Catalog of Fishes に載っている表示（2015年）によるもので、評価の本文は確認できていません。水揚げではホウボウの仲間をまとめて数えることがあり、種ごとの評価が難しいと、2018年の研究が指摘しています。"
+    },
+    "highlights": [
+      "胸びれの下の軟条が左右3本ずつ膜から離れていて、これを使って底を歩くように進み、餌を探ります。",
+      "大きな三角形の頭は骨の板に覆われ、隆起や棘があります。体の鱗はとても小さく、皮膚に埋もれています。",
+      "胸びれには青い縁があり、中央に黒い斑と淡い青の点が出る個体もいます。驚くと胸びれを広げて、この色を見せるとされます。",
+      "浮き袋に付いた筋肉を使って音を出すとされます。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 1.8
+  },
+  "visual": {
+    "fallbackColor": "#9c7b67"
+  },
+  "sourceBodyBounds": {
+    "x": 54,
+    "y": 146,
+    "width": 1441,
+    "height": 679
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.6,
+    "maxY": 0.9
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.25,
+      "burst": 1.3
+    },
+    "turnRateRadPerSec": 1.9,
+    "restFraction": 0.4,
+    "depthRange": [
+      0.25,
+      0.85
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2,
+      "cohesion": 0,
+      "polarization": 0.03
+    },
+    "structureAffinity": 0.15,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.5,
+        "durationSec": [
+          10,
+          40
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Chelidonichthys lucerna",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=24013"
+      },
+      {
+        "title": "Naturalis, Fishes of the NE Atlantic and the Mediterranean: Trigla lucerna",
+        "url": "https://fishes-fnam.linnaeus.naturalis.nl/linnaeus_ng/app/views/species/nsr_taxon.php?id=109929"
+      },
+      {
+        "title": "DORIS: Chelidonichthys lucerna (Grondin-perlon)",
+        "url": "https://doris.ffessm.fr/ref/specie/875"
+      },
+      {
+        "title": "Vallisneri et al. 2011: body size, maturity and diet of the tub gurnard in the Adriatic Sea",
+        "url": "https://acta.izor.hr/acta/pdf/52_1_pdf/52_1_13.pdf"
+      },
+      {
+        "title": "McCarthy & Marriott 2018: age, growth and maturity of tub gurnard in Northwest Wales",
+        "url": "https://pure.bangor.ac.uk/ws/portalfiles/portal/20049712/McCarthy_Marriott_Tub_gurnard_JAI_2018.pdf"
+      }
+    ]
+  }
+}

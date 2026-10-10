@@ -1,0 +1,11 @@
+{
+  "id": "european-shelf-240",
+  "order": 236,
+  "displayName": "ウミエラと巣穴の泥底",
+  "description": "岸から遠い大陸棚の、灰褐色の泥と泥まじりの砂の底。盛り土に囲まれた巣穴が口を開け、細いウミエラがまばらに立ちます。左の低い岩と転がる石には白いカイメンとヒドロ虫が付き、暗い青の水にマリンスノーが漂います。",
+  "defaultLighting": "cool",
+  "waterColor": "#0d3557",
+  "framing": {
+    "plateBottom": 0.935
+  }
+}

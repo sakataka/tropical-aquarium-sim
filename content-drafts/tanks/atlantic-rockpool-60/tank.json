@@ -1,0 +1,27 @@
+{
+  "id": "atlantic-rockpool-60",
+  "order": 191,
+  "displayName": "大西洋の潮だまり水槽",
+  "exhibitName": "Atlantic Rock Pool",
+  "category": "北東大西洋の磯の潮だまり",
+  "description": "褐色の海藻が垂れる岩壁と小石の底の、北東大西洋の磯の潮だまりを再現した60cm水槽。体長4.5cmほどのロックプールプラウンが、小石の底や低い石の上をゆっくり歩き、立ち止まってはついばみます。透明な体に赤褐色の細い線が走り、脚の関節は黄色、2番目の脚のはさみは掌が青いエビです。藻も小さな生き物も食べる雑食で、ヨーロッパの磯の潮だまりにすみ、カスピ海や北アメリカの東岸などにも入りこんでいます。",
+  "widthCm": 60,
+  "heightCm": 41,
+  "depthCm": 40,
+  "maxTotalFish": 6,
+  "sceneIds": [
+    "atlantic-rockpool-60"
+  ],
+  "species": [
+    {
+      "speciesId": "rockpool-prawn",
+      "maxCount": 6
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "rockpool-prawn",
+      "count": 5
+    }
+  ]
+}

@@ -1,0 +1,123 @@
+{
+  "id": "boarfish",
+  "displayName": "カプロス・アペル",
+  "realBodyLengthCm": 14,
+  "catalog": {
+    "scientificName": "Capros aper",
+    "originRegionId": "northeast-atlantic",
+    "originRegionName": "北東大西洋",
+    "origin": "東大西洋のノルウェーからセネガルまでと、アゾレス諸島、マデイラ諸島、地中海に分布します。2012年の研究は、北東大西洋で2007年以降にこの魚をとる大がかりな漁業が発達したと記しています。",
+    "temperament": "密な群れをつくります。小さな口を筒のように前へ伸ばして小さな甲殻類を捕らえ、貝やイカの仲間、ゴカイの仲間も食べます。雌と雄は一年を通して同じ群れにいると考えられています。",
+    "movement": "海底の近くから中層までを使う魚で、いつも底に張りついているわけではありません。本水槽では、泥と砂の底の少し上を、群れで向きをそろえて泳ぎます。",
+    "habitat": "水深40〜700mで見られ、岩礁やサンゴのまわりのほか、砂や泥の底の上にも現れます。本水槽では、岸から離れた北東大西洋の大陸棚の、水深150mほどの泥と砂の底をイメージしています。",
+    "aliases": [
+      "Boarfish",
+      "ボアフィッシュ",
+      "Boar-fish",
+      "Cuckoofish",
+      "Sanglier",
+      "Zeus aper"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Acanthuriformes",
+      "orderJa": "ニザダイ目",
+      "family": "Caproidae",
+      "familyJa": "ヒシダイ科"
+    },
+    "adultSizeCm": 14,
+    "sizeNote": "ふつう標準体長13cm（FishBase）、およそ16cm（DORIS。測り方は示されていません）とされ、最大は全長30cmです。北東大西洋の調査では、いちばん多かった大きさは全長12cmで、雌は雄より大きくなり、成長の式から求めた頭打ちの大きさの平均は雌が全長16.5cm、雄が全長14.4cmでした。ここでは全長約14cmとして表示しています。目は、今の FishBase などに合わせてニザダイ目としています（2012年の論文はスズキ目としています）。",
+    "distribution": "東大西洋のノルウェーからセネガルまでと、アゾレス諸島、マデイラ諸島、地中海、マルマラ海に分布します。黒海を分布に含める資料もあります。英国とアイルランドでは、南西の沖で記録されています。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2014,
+      "note": "IUCN の区分は Catalog of Fishes と FishBase、評価の年は FishBase に載っている表示によるもので、評価の本文は確認できていません。フランスのビスケー湾の秋の底魚調査では、とれた魚に占める数の割合が、1973年の0.27%から2000年には16.43%に増えました（2002年は5.9%）。"
+    },
+    "highlights": [
+      "体は高く、左右に強く平たい楕円形で、大きな眼をもちます。額はへこみ、突き出た口先の小さな口は、筒のように前へ伸びます。",
+      "背びれは、棘の部分と軟らかい部分の間が深く切れ込みますが、付け根はつながっています。",
+      "体は桃色から橙赤色で、腹側は淡い色です。2010年の標本では、成熟した雄に赤と白の帯があり、成熟した雌は帯のない一様な淡い赤から橙色でした。",
+      "耳石の輪を数えた研究では、雌で30歳、雄で29歳と推定された個体がいました。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.3,
+    "tailSweepRad": 0.4
+  },
+  "visual": {
+    "fallbackColor": "#cc8863"
+  },
+  "sourceBodyBounds": {
+    "x": 167,
+    "y": 74,
+    "width": 1268,
+    "height": 850
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.4,
+    "maxY": 0.85
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.4,
+      "burst": 1.8
+    },
+    "turnRateRadPerSec": 2.3,
+    "restFraction": 0.12,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "school",
+      "spacingBodyLengths": 1.3,
+      "cohesion": 0.75,
+      "polarization": 0.65
+    },
+    "structureAffinity": 0.2,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Capros aper",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=14571"
+      },
+      {
+        "title": "Sweet 2008, MarLIN: Boar fish (Capros aper)",
+        "url": "https://www.marlin.ac.uk/species/detail/168"
+      },
+      {
+        "title": "DORIS: Capros aper (Sanglier)",
+        "url": "https://doris.ffessm.fr/Especes/Capros-aper-Sanglier-3764"
+      },
+      {
+        "title": "FishBase: Capros aper",
+        "url": "https://www.fishbase.se/summary/Capros-aper.html"
+      },
+      {
+        "title": "Hüssy et al. 2012: Age verification of boarfish (Capros aper) in the Northeast Atlantic",
+        "url": "https://academic.oup.com/icesjms/article/69/1/34/670178"
+      },
+      {
+        "title": "Hüssy et al. 2012: Sexual dimorphism in size, age, maturation and growth of boarfish",
+        "url": "https://academic.oup.com/icesjms/article/69/10/1729/623663"
+      },
+      {
+        "title": "Farrell et al. 2012: Oocyte development and maturity classification of boarfish",
+        "url": "https://academic.oup.com/icesjms/article/69/4/498/635181"
+      },
+      {
+        "title": "Blanchard & Vandermeirsch 2005: Warming and exponential abundance increase of boarfish in the Bay of Biscay (1973–2002)",
+        "url": "https://comptes-rendus.academie-sciences.fr/biologies/articles/en/10.1016/j.crvi.2004.12.006/"
+      }
+    ]
+  }
+}
