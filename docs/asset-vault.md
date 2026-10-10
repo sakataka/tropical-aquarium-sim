@@ -27,7 +27,16 @@ dots と Claude Code は直接やりとりできないので、保管庫で連�
 
 ## Drive 経由の受領（2026年10月10日から）
 
-dots が GitHub へ直接置けない間は、dots が Google Drive のフォルダに配送を置き、Claude Code が照合して保管庫へ置き、commit・push する。GitHub（`sakataka/aquarium-assets`）が正本であることは変わらない。dots は GitHub を読めるので、保存完了は commit のハッシュで伝える。
+**dots の窓口は Google Drive だけにし、GitHub への commit・push は Claude Code が行う**（2026年10月10日、ユーザーより。dots が GitHub へ置けず、PNG も GitHub から取れなかったため。dots の側がうまく動くようになるまで続ける）。GitHub（`sakataka/aquarium-assets`）が正本であることは変わらない。
+
+| 向き | 置き場所（Drive のフォルダの中） | スクリプト |
+|---|---|---|
+| dots → 保管庫 | フォルダの直下に、配送の ZIP と外部の JSON | `scripts/receive-vault-delivery.py` |
+| 保管庫 → dots | `from-claude-code/` に、保管庫の文字のファイルの写し（ZIP と JSON）。原画が要るときは `from-claude-code/originals/` に個別に | `scripts/publish-vault-to-dots.py` |
+
+保管庫を commit・push したら、`AQUARIUM_ASSET_VAULT=~/Documents/aquarium-assets uv run scripts/publish-vault-to-dots.py --apply` で写しを置き直す（依頼、採否、展示計画、要件、返事、受領の記録。画像は入れない。`latest-snapshot.json` に、写した commit と、前回から変わったファイルがある）。保管庫の HEAD が origin/main と同じで、対象に commit していない変更がないときだけ置ける。古い写しは消さない。
+
+dots からの配送の受領は次のとおり。保存完了は、commit のハッシュと、置き直した写しで dots に伝わる。
 
 - Drive のフォルダは、この Mac では Google Drive のデスクトップアプリでローカルのフォルダとして見える: `~/Library/CloudStorage/GoogleDrive-sakataka@gmail.com/マイドライブ/aquarium-dot-delivery/`。読むだけで、書き換えない。
 - 1回の配送は、ZIP 1個（`aquarium-delivery-<配送ID>.zip`）と、外部の小さな JSON 1個（`aquarium-delivery-<配送ID>.delivery.json`）。外部の JSON に配送ID・ZIP のサイズと SHA-256・依存する配送（`dependsOn`）・前の配送（`previousDeliveryId`。追跡用）があり、ZIP の直下の `manifest.json` に、各ファイルの保管庫でのパス・サイズ・SHA-256・素材ID・jobId・revision・種類（`image`・`research`・`provenance`・`qa`）がある。

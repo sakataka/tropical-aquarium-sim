@@ -45,7 +45,7 @@
 
 - **展示計画の第2版**: 建物の段（`buildings`）と、計画中の水槽の `storyJa`・`candidates` を足した（`consumer/expansion-guidelines-ja.md` の「展示館の今の形」を書き直した）。`candidates` は手がかりで、学名・和名・その水槽に合うかは dots の調査で確かめてほしいこと、計画中の展示室と水槽の絵は dots が止まっている間は Codex で少しずつ作ること、爬虫類・哺乳類・鳥は水族館にいそうなものを載せる前提で候補に入れたこと、改良品種は同じ種として数えること、外来種は「外来種の水辺」だけに置くことを書いた。
 
-**dots からは Google Drive 経由で受け取る（2026年10月10日）。** dots が GitHub へ直接置けなくなったので、dots が Drive のフォルダ（この Mac では `~/Library/CloudStorage/GoogleDrive-sakataka@gmail.com/マイドライブ/aquarium-dot-delivery/`。Google Drive のデスクトップアプリを入れてある）に配送（ZIP と外部の JSON）を置き、こちらが `scripts/receive-vault-delivery.py` で照合して保管庫へ置き、commit・push して、その commit のハッシュを dots に返す。形と手順は [アセットの保管庫の「Drive 経由の受領」](asset-vault.md#drive-経由の受領2026年10月10日から)。dots は GitHub を読めるので、こちらが push した内容（展示計画の第2版など）は届いている。配送に入るのは画像・調査・出典・QA だけで、ジョブ状態（`queue/state`）は受け取らず、こちらで代わりに書くこともしない。443バイトの試験 ZIP は、Chrome・Drive のコネクタ・デスクトップアプリの3経路でハッシュが一致した。受領スクリプトは作り物の配送で確かめただけで、dots の実際の配送（保管庫に保存済みの1種を再配送してもらう試験）はまだ受けていない。項目名はこちらの案を dots に渡してあり、dots の返事で変わるかもしれない。Drive のコネクタ（Claude の接続）は、フォルダの一覧と小さなファイルの確認には使えるが、中身を会話に通すので画像を含む ZIP には使わない。
+**dots の窓口は Google Drive だけにし、GitHub への commit・push は Claude Code が行う（2026年10月10日、ユーザーより）。** dots は GitHub へ置けず、PNG も GitHub から取れなかった（文字のファイルは読める）。dots の側がうまく動くようになるまで、この形を続ける。Drive のフォルダは、この Mac では `~/Library/CloudStorage/GoogleDrive-sakataka@gmail.com/マイドライブ/aquarium-dot-delivery/`（Google Drive のデスクトップアプリを入れてある）。dots → 保管庫は、dots がフォルダの直下に配送（ZIP と外部の JSON）を置き、こちらが `scripts/receive-vault-delivery.py` で照合して保管庫へ置き、commit・push する。保管庫 → dots は、`scripts/publish-vault-to-dots.py --apply` で、保管庫の文字のファイルの写しを `from-claude-code/` に置く（保管庫を push するたびに置き直す）。形と手順は [アセットの保管庫の「Drive 経由の受領」](asset-vault.md#drive-経由の受領2026年10月10日から)。配送に入るのは画像・調査・出典・QA だけで、ジョブ状態（`queue/state`）は受け取らず、こちらで代わりに書くこともしない（状態を誰がどこで持つかは、dots と決める）。確かめたこと: 443バイトの試験 ZIP は Chrome・Drive のコネクタ・デスクトップアプリの3経路でハッシュが一致。こちらが Drive に置いた PNG の原本1枚（カプロス・アペル、2.3MB）を、dots がバイト単位で一致して取得できた。受領スクリプトは作り物の配送15通りで確かめた。まだ確かめていないこと: dots の実際の配送（保管庫に保存済みのカプロス・アペルの画像と調査の再配送。dots が準備中）。項目名はこちらの案を dots に渡してあり、dots の返事で変わるかもしれない。dots からの連絡（これまでの `notes/to-claude-code/`）を Drive でどう受けるかも未定。Drive のコネクタ（Claude の接続）は、フォルダの一覧と小さなファイルの確認には使えるが、中身を会話に通すので画像を含む ZIP には使わない。dots から合図を受け取る仕組みはないので、配送が届いたかは、スレッドの始めにこちらから見る（下の「作業の始めに」）。
 
 **dots は作業を止めている（2026年10月9日、ユーザーより）。** 新しい画像や作り直しの依頼は、再開するまで届かない前提で進める。保管庫にすでにある画像と調査で進められる作業を優先する。復旧の時期は分からない（ユーザーが OpenAI のサポートに問い合わせ中で、状況は随時共有してもらう）。その間、水景・展示室の絵は Codex の画像生成で数十枚まで作ってよい（下の「方針」）。
 
@@ -93,7 +93,7 @@
 1. このリポジトリで `git pull` する（別のエージェントが直したコミットが入っていることがある）。
 2. `cd ~/Documents/aquarium-assets && git pull` のあと、`bun run plan:check`（このリポジトリで）で計画とアプリの食い違いがないことを見てから、`notes/to-claude-code/` を見る。Drive に配送が届いていないかも見る（`AQUARIUM_ASSET_VAULT=~/Documents/aquarium-assets uv run scripts/receive-vault-delivery.py`。表示だけ）。`consumer/replies/` に同じ名前の返事がないものが未対応。ユーザーが「どっち」と言うときは、音声入力で dots のこと。
 3. 判断を返す。返事は `consumer/replies/<同じファイル名>` に置く。不足や不備は、返事か、`revisionTarget` 付きの修正依頼（`queue/requests/app-review-NNN.b1.json`、`queue/schemas/request.schema.json` で検証する）で伝える。
-4. 採否は `adoptions/` に記録する。保管庫の変更も commit・push する。
+4. 採否は `adoptions/` に記録する。保管庫の変更も commit・push し、そのあと `uv run scripts/publish-vault-to-dots.py --apply` で Drive の写しを置き直す（dots は Drive の写しを読む）。
 
 ## 届いた生き物を取り込む手順
 
