@@ -15,3 +15,4 @@
 - 標準コマンドは `bun run verify:webview`。
 - 検証スクリプトは macOS では `Bun.WebView` の WebKit backend を使い、Chrome/Chromium に依存しない。
 - スクリーンショットなどの一時成果物は `tmp/` 以下に出力し、Git管理しない。
+- 実機の Safari と iPhone での確認は行わない（効率が悪いため）。狭い画面は `Bun.WebView` の 420×912 で確かめれば足りる。実機で未確認であることを、やり残しとして報告しなくてよい。
