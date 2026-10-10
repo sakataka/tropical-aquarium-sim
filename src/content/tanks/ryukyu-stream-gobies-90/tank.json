@@ -4,11 +4,11 @@
   "displayName": "滝をのぼるハゼ水槽",
   "exhibitName": "Waterfall-climbing Gobies",
   "category": "琉球列島の渓流",
-  "description": "琉球列島の渓流の、小さな滝の下の淵を再現した90cm水槽。ボウズハゼは藻の付いた岩に寄って藻をはみ、砂礫の底に降りて休みます。川で生まれて海で育ち、川へ戻ると腹びれの吸盤と口を交互に使って滝や急流の岩を登る魚です。",
+  "description": "琉球列島の渓流の、小さな滝の下の淵を再現した90cm水槽。ボウズハゼは藻の付いた岩に寄って藻をはみ、砂礫の底に降りて休みます。腹びれの吸盤と口を交互に使って、滝や急流の岩を登る魚です。ナンヨウボウズハゼの雌は、淡い体に2本の暗い帯があり、岩に取りついて藻を削り取るように食べます。クロヨシノボリは川底で暮らすハゼで、胸びれの付け根に三日月の形の暗い斑があります。銀色のユゴイは、淵の中ほどを小さな群れで泳ぎます。4種とも、海で育った稚魚が川をのぼってくる魚です。",
   "widthCm": 90,
   "heightCm": 50,
   "depthCm": 45,
-  "maxTotalFish": 4,
+  "maxTotalFish": 14,
   "sceneIds": [
     "ryukyu-stream-gobies-90"
   ],
@@ -16,11 +16,35 @@
     {
       "speciesId": "japanese-rock-climbing-goby",
       "maxCount": 4
+    },
+    {
+      "speciesId": "stiphodon-percnopterygionus",
+      "maxCount": 5
+    },
+    {
+      "speciesId": "rhinogobius-brunneus",
+      "maxCount": 3
+    },
+    {
+      "speciesId": "kuhlia-marginata",
+      "maxCount": 4
     }
   ],
   "defaultStock": [
     {
       "speciesId": "japanese-rock-climbing-goby",
+      "count": 3
+    },
+    {
+      "speciesId": "stiphodon-percnopterygionus",
+      "count": 3
+    },
+    {
+      "speciesId": "rhinogobius-brunneus",
+      "count": 2
+    },
+    {
+      "speciesId": "kuhlia-marginata",
       "count": 3
     }
   ]

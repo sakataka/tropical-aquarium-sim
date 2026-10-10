@@ -1,0 +1,147 @@
+{
+  "id": "stiphodon-percnopterygionus",
+  "displayName": "ナンヨウボウズハゼ",
+  "realBodyLengthCm": 4.5,
+  "catalog": {
+    "scientificName": "Stiphodon percnopterygionus",
+    "originRegionId": "west-pacific",
+    "originRegionName": "西太平洋",
+    "origin": "日本、台湾、中国、ベトナム、フィリピン、マリアナ諸島、パラオなど、西太平洋の川に分布するハゼです。川で孵化した仔魚は海へ下り、育ってから川へ戻ります。",
+    "temperament": "岩に付いた藻を削り取るように食べ、小さな底生動物も食べます。飼育下では、雌はゆるく集まり、雄は繁殖のときにゆるい縄張りを持つと報告されています。卵は川の石の下の面に産み、雄が守ります。",
+    "movement": "岩の表面に取りついて藻をはみ、低い姿勢で岩の上にとどまります。左右の腹びれは1つの吸盤になっています。",
+    "habitat": "澄んだ川の、岩や礫の多い川底。淵の縁や淵の頭など、流れのやや緩い所にもすみます。本水槽では、小さな滝の下の、藻の付いた岩と丸い石のある淵をイメージしています。",
+    "aliases": [
+      "黑鰭枝牙鰕虎"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Gobiiformes",
+      "orderJa": "ハゼ目",
+      "family": "Oxudercidae",
+      "familyJa": "オクスデルクス科"
+    },
+    "adultSizeCm": 4.5,
+    "sizeNote": "施設の図鑑では全長4〜5cmほどとされます（平均か最大かは示されていません）。標準体長の最大は、雌で4.2cm、雄または性別の分からない個体で3.7cmと報告されています。沖縄島の調査では、雌雄とも標準体長約2cmで成熟していました。科は、館のほかのハゼとそろえてオクスデルクス科としています（Catalog of Fishes の体系です。WoRMS はハゼ科としています）。",
+    "distribution": "西太平洋の日本、台湾、中国、ベトナム、フィリピン、マリアナ諸島、パラオに分布します。日本では琉球列島と小笠原諸島が主な記録地で、南日本の太平洋岸でもときどき見つかります。2021年には徳島県の伊座利川で雌1匹が採集され、県内で初めての記録になりました。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "DD",
+      "assessedYear": 2011,
+      "note": "IUCN の区分と評価年は FishBase などの転載で確かめたもので、評価の本文は確認できていません。環境省の評価は確認できていません。"
+    },
+    "highlights": [
+      "丸い吻の下に開く口で、岩に付いた藻を削り取るように食べます。",
+      "左右の腹びれが1つの吸盤になっていて、低い姿勢で岩の上にとどまります。",
+      "展示しているのは雌です。淡い黄褐色の体に、黒褐色の縦の帯が2本走ります。",
+      "雄は第1背びれが鎌の形に伸び、青緑や橙色の強い色が出ます。",
+      "川で孵化した仔魚は海へ下ります。沖縄島の耳石の調査では、海で過ごす期間は78〜146日（平均99日）と推定されています。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 3,
+    "mouthAnchor": {
+      "x": 0.03,
+      "y": 0.6
+    }
+  },
+  "visual": {
+    "fallbackColor": "#9e8e7a"
+  },
+  "sourceBodyBounds": {
+    "x": 81,
+    "y": 279,
+    "width": 1407,
+    "height": 432
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.5,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.25,
+      "burst": 2.4
+    },
+    "turnRateRadPerSec": 3,
+    "restFraction": 0.5,
+    "depthRange": [
+      0.15,
+      0.8
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0.15,
+      "polarization": 0
+    },
+    "structureAffinity": 0.85,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 3,
+        "durationSec": [
+          4,
+          12
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 2.5,
+        "durationSec": [
+          6,
+          20
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "井藤・難波・庄野 (2021) 徳島県初記録のナンヨウボウズハゼ. Ichthy 15:10–16",
+        "url": "https://www.museum.kagoshima-u.ac.jp/ichthy/INHFJ_2021_015_010.pdf"
+      },
+      {
+        "title": "Yamasaki & Tachihara (2006) Reproductive biology and morphology of eggs and larvae of Stiphodon percnopterygionus. Ichthyological Research 53:13–18",
+        "url": "https://link.springer.com/article/10.1007/s10228-005-0307-1"
+      },
+      {
+        "title": "Yamasaki, Maeda & Tachihara (2007) Pelagic larval duration and morphology at recruitment of Stiphodon percnopterygionus. Raffles Bulletin of Zoology Supplement 14:209–214",
+        "url": "https://lkcnhm.nus.edu.sg/app/uploads/2017/06/s14rbz25_Yamasaki-pp209-214.pdf"
+      },
+      {
+        "title": "漫湖水鳥・湿地センター: ナンヨウボウズハゼ",
+        "url": "https://www.manko-mizudori.net/percnopterygionus/"
+      },
+      {
+        "title": "和歌山県立自然博物館: 紀州の鯊44 ナンヨウボウズハゼ (2012)",
+        "url": "https://www.shizenhaku.wakayama-c.ed.jp/goby_kishu_exp/goby_kishu_exp_44.html"
+      },
+      {
+        "title": "臺灣魚類資料庫: Stiphodon percnopterygionus",
+        "url": "https://fishdb.sinica.edu.tw/taxon/381856-fishdb"
+      },
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Stiphodon",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?genus=Stiphodon&tbl=species"
+      },
+      {
+        "title": "WoRMS: Stiphodon percnopterygionus Watson & Chen, 1998",
+        "url": "https://www.marinespecies.org/aphia.php?id=282899&p=taxdetails"
+      },
+      {
+        "title": "FishBase: Stiphodon percnopterygionus species summary",
+        "url": "https://www.fishbase.se/summary/Stiphodon-percnopterygionus"
+      },
+      {
+        "title": "Seriously Fish: Stiphodon percnopterygionus",
+        "url": "https://www.seriouslyfish.com/species/stiphodon-percnopterygionus"
+      }
+    ]
+  }
+}

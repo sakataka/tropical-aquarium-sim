@@ -1,0 +1,154 @@
+{
+  "id": "rhinogobius-brunneus",
+  "displayName": "クロヨシノボリ",
+  "realBodyLengthCm": 7,
+  "catalog": {
+    "scientificName": "Rhinogobius brunneus",
+    "originRegionId": "east-asia",
+    "originRegionName": "東アジア",
+    "origin": "日本海側は秋田県より南、太平洋側は千葉県より南から南西諸島までと、韓国の南東の沿岸に分布するハゼです。仔魚は海へ下り、育ってから川へ戻ります。",
+    "temperament": "沖縄島の源河川の調査では、水生昆虫の幼虫、貝、藻を食べていました。雄は浅い瀬の石の下を巣にして卵を守り、雄どうしは巣の場所をめぐって争います。",
+    "movement": "川底で暮らすハゼです。左右の腹びれは1つにつながり、盤の形になっています。",
+    "habitat": "流れの緩い淵などにすみ、短い小さな川にもいます。沖縄島の源河川では、中流から上流、源流までに分布していました。本水槽では、小さな滝の下の、藻の付いた岩と丸い石のある淵をイメージしています。",
+    "aliases": [
+      "Dark Yoshinobori Goby",
+      "Rhinogobius sp. DA",
+      "黒色型",
+      "Gobius brunneus"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Gobiiformes",
+      "orderJa": "ハゼ目",
+      "family": "Oxudercidae",
+      "familyJa": "オクスデルクス科"
+    },
+    "adultSizeCm": 7,
+    "sizeNote": "西表島の川で調べた成熟した個体の全長は、雄13匹が6.3〜9.4cm（平均7.9cm）、雌12匹が4.7〜7.5cm（平均5.9cm）でした。図鑑の値と画面の大きさは、この雄と雌の平均の間の約7cmにしています。種全体のふつうの大きさと最大の大きさは確認できていません。韓国で採集された成熟した雄2匹は、標準体長4.3cmと4.4cmでした。科は Catalog of Fishes の体系に従ってオクスデルクス科としています（国内の図鑑ではハゼ科とされます）。",
+    "distribution": "日本海側は秋田県より南、太平洋側は千葉県より南の本州から南西諸島までと、韓国の南東の沿岸（巨済島、加徳島）に分布します。琉球列島では、沖縄島の源河川と西表島の川で調べられています。韓国の記録は2025年に初めて報告されました。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "DD",
+      "assessedYear": 2023,
+      "note": "IUCN の区分は IUCN の2024年の資料で、評価年は FishBase の転載で確かめたもので、評価の本文は確認できていません。松山市のレッドデータブック（2012）では情報不足とされ、川の改修、川と海の行き来が断たれること、瀬切れが挙げられています。"
+    },
+    "highlights": [
+      "川底で暮らすハゼで、石の上や底に止まっている姿が見られます。",
+      "胸びれの付け根に、三日月の形をした暗い斑があります。",
+      "体の横に並ぶ細い暗色の列が、尾びれの付け根で「八」の字を横にした形に分かれます。",
+      "目の前から吻の先へ、赤い帯が伸びます。",
+      "雄は浅い瀬の石の下を巣にして、卵を守ります。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 3,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.5
+    }
+  },
+  "visual": {
+    "fallbackColor": "#978972"
+  },
+  "sourceBodyBounds": {
+    "x": 76,
+    "y": 279,
+    "width": 1412,
+    "height": 459
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.55,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.25,
+      "burst": 2.6
+    },
+    "turnRateRadPerSec": 3,
+    "restFraction": 0.55,
+    "depthRange": [
+      0.1,
+      0.75
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.7,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 2.5,
+        "durationSec": [
+          6,
+          20
+        ]
+      },
+      {
+        "type": "follow",
+        "chancePerMin": 0.3,
+        "durationSec": [
+          1,
+          2.5
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Gobius brunneus / current Rhinogobius brunneus",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=18986"
+      },
+      {
+        "title": "Jeon et al. (2025) First Record of Rhinogobius brunneus from Korea. ASED 41(4):304–312",
+        "url": "https://www.e-sciencecentral.org/upload/ASED/pdf/ased-41-4-304.pdf"
+      },
+      {
+        "title": "Kano, Nishida & Nakajima (2012) Waterfalls drive parallel evolution in a freshwater goby. Ecology and Evolution 2:1805–1817",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3433985/"
+      },
+      {
+        "title": "平嶋健太郎・立原一憲 (2006) 沖縄島源河川におけるヨシノボリ属魚類の分布と食性. 魚類学雑誌53:71–76",
+        "url": "https://www.jstage.jst.go.jp/article/jji1950/53/1/53_1_71/_pdf"
+      },
+      {
+        "title": "Takahashi, Kohda & Yanagisawa (2001) Male–male competition for large nests as a determinant of male mating success in a Japanese stream goby, Rhinogobius sp. DA",
+        "url": "https://link.springer.com/article/10.1007/s10228-001-8121-x"
+      },
+      {
+        "title": "新潟市水族館マリンピア日本海：クロヨシノボリ",
+        "url": "https://www.marinepia.or.jp/picturebook/fish/entry-12374.html"
+      },
+      {
+        "title": "大阪府立環境農林水産総合研究所：クロヨシノボリ",
+        "url": "https://www.knsk-osaka.jp/zukan/zukan_database/tansui/2150b2c26b1c855/5250b6ad0a3a00c.html"
+      },
+      {
+        "title": "和歌山県立自然博物館：紀州の鯊20 クロヨシノボリ",
+        "url": "https://www.shizenhaku.wakayama-c.ed.jp/goby_kishu_exp/goby_kishu_exp_20.html"
+      },
+      {
+        "title": "レッドデータブックまつやま2012：クロヨシノボリ",
+        "url": "https://www.city.matsuyama.ehime.jp/shisei/hozen/red/group4/22/"
+      },
+      {
+        "title": "IUCN (January 2024) Freshwater fishes of potential interest for inclusion in CMS",
+        "url": "https://iucn.org/sites/default/files/2024-01/freshwater-fishes-of-potential-interest-for-inclusion-in-cms-information-brief.pdf"
+      },
+      {
+        "title": "FishBase: Rhinogobius brunneus, IUCN status excerpt",
+        "url": "https://www.fishbase.se/country/CountrySpeciesSummary.php?c_code=704&genusname=Rhinogobius&speciesname=brunneus"
+      }
+    ]
+  }
+}

@@ -1,0 +1,141 @@
+{
+  "id": "kuhlia-marginata",
+  "displayName": "ユゴイ",
+  "realBodyLengthCm": 13,
+  "catalog": {
+    "scientificName": "Kuhlia marginata",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "東インド洋から西太平洋に分布し、日本では茨城県より南の太平洋岸から琉球列島で見られます。海で育った稚魚が川へ入り、淡水で成長して、成熟すると産卵のために海の側へ下ります。",
+    "temperament": "小さな群れで泳ぎます。パプアニューギニアの川の調査では、5匹までの群れが記録されました。小魚や甲殻類などを食べるとされ、夜に餌をとるという解説もあります。",
+    "movement": "淵を活発に泳ぎます。本水槽では、淵の開けた水の中ほどを泳ぐ姿で描いています。",
+    "habitat": "汽水域から川の中流までの、淵や流れの緩い瀬。本水槽では、小さな滝の下の、藻の付いた岩と丸い石のある淵をイメージしています。",
+    "aliases": [
+      "Dark-margined flagtail",
+      "Spotted flagtail",
+      "ミキュウ",
+      "Dules marginatus"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Perciformes",
+      "orderJa": "スズキ目",
+      "family": "Kuhliidae",
+      "familyJa": "ユゴイ科"
+    },
+    "adultSizeCm": 20,
+    "sizeNote": "図鑑では全長約20cmとされます（平均か最大かは示されていません）。沖縄島の源河川の調査では、標準体長の最大は雌18.9cm、雄11.6cmで、成熟していた最も小さい個体は雌9.6cm、雄8.4cmでした。90cm水槽に合わせ、画面では全長約13cmの、小さめの個体で描いています。目は、館のほかの魚とそろえてスズキ目としています（WoRMS は Centrarchiformes としています）。",
+    "distribution": "東インド洋から西太平洋に分布します。スリランカ・アンダマン諸島からカロリン諸島、ウォリス・フツナまで、南日本からオーストラリア北部・ニューカレドニアまでの記録があります。日本では茨城県より南の太平洋岸、大隅諸島、琉球列島で見られます。沖縄島の源河川では、下流から中流で稚魚から成熟した魚までが採集されています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2019,
+      "note": "IUCN の区分と評価年は Catalog of Fishes と FishBase で確かめたもので、評価の本文は確認できていません。静岡県のレッドデータブック（2019）では要注目種とされ、河口の水門、川や護岸の改修、水質の悪化による環境の変化が挙げられています。"
+    },
+    "highlights": [
+      "淵の開けた所を、小さな群れで活発に泳ぎます。",
+      "銀色の体の背中側に、細かい暗い斑が散らばります。斑の目立たない個体もいます。",
+      "二またの尾びれは後ろの縁が暗く縁取られます。両端に赤から橙の色が出ることがあります。",
+      "海で育った稚魚が川へ入り、淡水で成長します。成熟すると産卵のために海の側へ下ることが、耳石の調査から分かっています。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.4,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.57
+    }
+  },
+  "visual": {
+    "fallbackColor": "#939088"
+  },
+  "sourceBodyBounds": {
+    "x": 72,
+    "y": 206,
+    "width": 1409,
+    "height": 556
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.25,
+    "maxY": 0.7
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.5,
+      "burst": 2.4
+    },
+    "turnRateRadPerSec": 2.4,
+    "restFraction": 0.12,
+    "depthRange": [
+      0.2,
+      0.85
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 2.4,
+      "cohesion": 0.4,
+      "polarization": 0.2
+    },
+    "structureAffinity": 0.3,
+    "habits": [
+      {
+        "type": "follow",
+        "chancePerMin": 0.5,
+        "durationSec": [
+          1.5,
+          3.5
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Dules marginatus / valid Kuhlia marginata",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=20497"
+      },
+      {
+        "title": "WoRMS: Kuhlia marginata, AphiaID 278245",
+        "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=278245"
+      },
+      {
+        "title": "Randall & Randall (2001) Review of the fishes of the genus Kuhlia of the Central Pacific. Pacific Science 55:227–256",
+        "url": "https://scholarspace.manoa.hawaii.edu/bitstreams/8dbde4d9-d82f-4243-8393-050050e93fcd/download"
+      },
+      {
+        "title": "Oka & Tachihara (2008) Migratory history of the spotted flagtail, Kuhlia marginata. Environmental Biology of Fishes 81:321–327",
+        "url": "https://www.researchgate.net/publication/264545076_Migratory_history_of_the_spotted_flagtail_Kuhlia_marginata"
+      },
+      {
+        "title": "Amick & Toko (2021) Notes on the ichthyofauna of inland streams of the Whiteman Range, New Britain Island, Papua New Guinea. FishTaxa 20:1–13",
+        "url": "https://www.researchgate.net/publication/352695342_Notes_on_the_ichthyofauna_of_inland_streams_of_the_Whiteman_Range_New_Britain_Island_Papua_New_Guinea"
+      },
+      {
+        "title": "沖縄美ら海水族館：ユゴイ",
+        "url": "https://churaumi.okinawa/sp/fishbook/1487838478/"
+      },
+      {
+        "title": "鹿児島大学総合研究博物館：与論島の魚類、ユゴイ pp312–314",
+        "url": "https://www.museum.kagoshima-u.ac.jp/staff/motomura/FishesYoron_lowes.pdf"
+      },
+      {
+        "title": "静岡県レッドデータブック2019動物編：ユゴイ、p223",
+        "url": "https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/686/2-5_fish02_rdbshiz2019ani.pdf"
+      },
+      {
+        "title": "中央研究院・臺灣魚類資料庫：Kuhlia marginata",
+        "url": "https://fishdb.sinica.edu.tw/taxon/381907-fishdb"
+      },
+      {
+        "title": "FishBase: Kuhlia marginata summary",
+        "url": "https://www.fishbase.se/summary/Kuhlia-marginata.html"
+      }
+    ]
+  }
+}
