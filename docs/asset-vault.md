@@ -25,6 +25,22 @@
 
 dots と Claude Code は直接やりとりできないので、保管庫で連絡する。保管庫を触る作業を始めるときは、`git pull` のあと、まず `notes/to-claude-code/`（dots からの連絡）を確認し、返事は `consumer/replies/` に同じファイル名で置く。dots は作業の記録を `docs/` にも残す。
 
+## Drive 経由の受領（2026年10月10日から）
+
+dots が GitHub へ直接置けない間は、dots が Google Drive のフォルダに配送を置き、Claude Code が照合して保管庫へ置き、commit・push する。GitHub（`sakataka/aquarium-assets`）が正本であることは変わらない。dots は GitHub を読めるので、保存完了は commit のハッシュで伝える。
+
+- Drive のフォルダは、この Mac では Google Drive のデスクトップアプリでローカルのフォルダとして見える: `~/Library/CloudStorage/GoogleDrive-sakataka@gmail.com/マイドライブ/aquarium-dot-delivery/`。読むだけで、書き換えない。
+- 1回の配送は、ZIP 1個（`aquarium-delivery-<配送ID>.zip`）と、外部の小さな JSON 1個（`aquarium-delivery-<配送ID>.delivery.json`）。外部の JSON に配送ID・ZIP のサイズと SHA-256・依存する配送（`dependsOn`）・前の配送（`previousDeliveryId`。追跡用）があり、ZIP の直下の `manifest.json` に、各ファイルの保管庫でのパス・サイズ・SHA-256・素材ID・jobId・revision・種類（`image`・`research`・`provenance`・`qa`）がある。
+- 配送に入るのは画像・調査・出典・QA だけ。`queue/state` などのジョブ状態は受け取らない（GitHub 側で拒否された状態の更新を、こちらで代わりに書かない）。
+
+手順:
+
+1. `AQUARIUM_ASSET_VAULT=~/Documents/aquarium-assets uv run scripts/receive-vault-delivery.py` で、届いている配送を照合し、置く内容を見る（何も書かない）。
+2. 問題がなければ `--apply` を付けて置く。保管庫の `drafts/` の下にファイルが置かれ、受領の記録 `consumer/deliveries/<配送ID>.json` が書かれる。ここまでが「受領」。
+3. 保管庫で差分を確かめ、commit・push する。受領の記録が GitHub の main に入った時点が「保存完了」。その commit のハッシュを dots に返す。
+
+スクリプトは、次のときに何も置かずに止まる: ZIP やファイルのサイズ・SHA-256 が合わない、`drafts/` の外や保管庫の外へ出るパスがある、manifest に書かれていないファイルが ZIP にある、保管庫に同じパスで中身の違うファイルがある（上書きしない）、同じ配送IDで ZIP のハッシュが違う、依存する配送が未受領。同じパス・同じ中身のファイルと、受領済みの配送は飛ばすので、同じ配送を二度流しても何も起きない。
+
 ## 生き物を取り込む流れ
 
 1. 草案を確かめる: 画像は自動検査（外接矩形、見切れ、離れたもや）とコンタクトシートの目視で判断し、`adoptions/` に記録する。直したいものは修正依頼にまとめる。
