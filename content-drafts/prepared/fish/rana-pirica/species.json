@@ -1,0 +1,123 @@
+{
+  "id": "rana-pirica",
+  "displayName": "エゾアカガエル",
+  "realBodyLengthCm": 5,
+  "catalog": {
+    "scientificName": "Rana pirica",
+    "originRegionId": "east-asia",
+    "originRegionName": "東アジア",
+    "origin": "北海道、サハリン、千島列島に分布するカエルです。夏には森林床や草地、湿地、川岸で暮らします。",
+    "temperament": "成体は昆虫、クモ、ミミズなどの小さな動物を食べます。融雪期に浅い水辺へ集まり、球状の卵のかたまりを産みます。",
+    "movement": "季節によって陸と水辺を使い分けます。道東では、秋に川へ移動して河床の落ち葉の中で冬を越す集団が調べられています。本水槽では、浅い水辺と泥の岸を背景に、陸上で暮らす成体を紹介します。",
+    "habitat": "成体は森林床や草地、湿地、川岸で暮らし、春には浅い池や水たまり、流れの緩い場所で繁殖します。本水槽では、浅い水辺と草、泥の岸がある風景を背景に紹介します。",
+    "aliases": [
+      "Ezo Brown Frog",
+      "Hokkaido Frog"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Anura",
+      "orderJa": "無尾目",
+      "family": "Ranidae",
+      "familyJa": "アカガエル科"
+    },
+    "adultSizeCm": 5.5,
+    "sizeNote": "頭胴長は吻の先から総排泄孔までで、脚を含みません。原記載の北海道の標本では、雄の平均は約5.5cm（4.89〜6.1cm）、雌は約6.4cm（5.73〜7.2cm）でした。図鑑の値は雄の平均を丸めた5.5cmです。円山動物園は大きさを約5cmとしていますが、測り方は明示していません。画面の横幅は仮に5cmとし、脚を含む採用画像の長さとの対応は確認が必要です。",
+    "distribution": "北海道、サハリン、千島列島に分布します。北海道では釧路・阿寒の繁殖調査や、道東の湿原の川での越冬地の研究が行われています。日本だけにすむ種ではありません。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2020,
+      "note": "IUCNのLCという区分と2020年の評価年は、公式DOIの検索索引で確認された情報です。2023年に公表されていますが、評価本文は直接確認できていません。北海道レッドリスト2015では、利尻島・礼文島・奥尻島の個体群が地域を限定して指定されています。"
+    },
+    "highlights": [
+      "目の後ろに暗い帯があり、背中の左右には隆起した線が走ります。",
+      "前脚の指は4本、後脚の趾は5本で、後足に水かきがあります。",
+      "春は浅い水辺で繁殖し、夏は陸上の林や草地でも暮らします。",
+      "道東には、秋に川へ移動して河床の落ち葉の中で冬を越す集団があります。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "frog",
+    "bodyWaveStart": 0.62
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.65,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.6,
+      "burst": 3
+    },
+    "turnRateRadPerSec": 2.5,
+    "restFraction": 0.45,
+    "depthRange": [
+      0.7,
+      0.95
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.4,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 2.5,
+        "durationSec": [
+          15,
+          60
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Frost / AMNH, Amphibian Species of the World 6.2: Rana pirica Matsui, 1991",
+        "url": "https://amphibiansoftheworld.amnh.org/Amphibia/Anura/Ranidae/Rana/Rana-pirica"
+      },
+      {
+        "title": "Matsui (1991). Original Description of the Brown Frog from Hokkaido, Japan (Genus Rana). Japanese Journal of Herpetology 14(2):63–78. DOI 10.5358/hsj1972.14.2_63",
+        "url": "https://www.jstage.jst.go.jp/article/hsj1972/14/2/14_2_63/_pdf"
+      },
+      {
+        "title": "札幌市円山動物園「エゾアカガエル」2025年3月28日更新",
+        "url": "https://www.city.sapporo.jp/zoo/073-j.html"
+      },
+      {
+        "title": "帯広市・おびひろ動物園「エゾアカガエル」2025年10月20日更新",
+        "url": "https://www.city.obihiro.hokkaido.jp/zoo/shokai/hachurui/1021493.html"
+      },
+      {
+        "title": "Miura, Watanabe & Negishi (2017; online 2016). Leaf litter patches in stream create overwintering habitats for Ezo brown frog (Rana pirica). Limnology 18:9–16. DOI 10.1007/s10201-016-0491-x",
+        "url": "https://link.springer.com/article/10.1007/s10201-016-0491-x"
+      },
+      {
+        "title": "三浦一輝（平成27年度）北海道大学環境科学院 修士論文内容の要旨「河川希少種の陸への波及効果：カワシンジュガイ属はエゾアカガエルの越冬地を提供するか？」",
+        "url": "https://www.ees.hokudai.ac.jp/kigaku/wp-content/uploads/2022/05/abstract2015_miura.pdf"
+      },
+      {
+        "title": "Kuzmin, Sato, Nakabayashi, Maslova & Narumi (2006). Ecological observations on the Ezo brown frog on Hokkaido. Russian Journal of Herpetology 13(2):117–119. DOI 10.30906/1026-2296-2006-13-2-117-119",
+        "url": "https://www.researchgate.net/publication/301838998_Ecological_observations_on_the_Ezo_brown_frog_Rana_pirica_Matsui_1991_on_Hokkaido_island_Japan"
+      },
+      {
+        "title": "北海道レッドリスト【両生類・爬虫類編】改訂版（2015年）カテゴリー別",
+        "url": "https://www.pref.hokkaido.lg.jp/fs/2/4/2/1/2/2/2/_/redlist_ryouseihatyuu2015kategory.pdf"
+      },
+      {
+        "title": "IUCN SSC Amphibian Specialist Group (2023). Rana pirica. e.T58696A174047295",
+        "url": "https://doi.org/10.2305/IUCN.UK.2023-1.RLTS.T58696A174047295.en"
+      }
+    ]
+  }
+}

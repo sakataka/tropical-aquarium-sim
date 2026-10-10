@@ -1,0 +1,120 @@
+{
+  "id": "salamandrella-keyserlingii",
+  "displayName": "キタサンショウウオ",
+  "realBodyLengthCm": 12,
+  "catalog": {
+    "scientificName": "Salamandrella keyserlingii",
+    "originRegionId": "east-asia",
+    "originRegionName": "東アジア",
+    "origin": "ユーラシア北部に広く分布するサンショウウオです。日本では北海道の釧路湿原周辺と、十勝の上士幌町の限られた地域で見られます。",
+    "temperament": "繁殖期以外の成体は、湿原に隣接する低木林や林床で暮らし、小さな陸上の無脊椎動物を食べます。春には水辺に入り、繁殖します。",
+    "movement": "成体は陸上の地表近くで暮らします。釧路の成体を用いた実験でも、足場へ上がって水の外で多くの時間を過ごす姿が観察されています。本水槽では、林の水辺を背景に、陸上生活をする成体の姿を紹介します。",
+    "habitat": "湿原に隣接する林で暮らし、春の繁殖には止水やごく緩い流れを利用します。幼生は水中で育ち、夏に変態して陸へ上がります。本水槽では、落ち葉と泥、苔の付いた石、小枝のある早春の林の水辺を背景に紹介します。",
+    "aliases": [
+      "Siberian Salamander",
+      "Siberian Newt",
+      "Dybowski's Salamander",
+      "Hynobius keyserlingii"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Caudata",
+      "orderJa": "有尾目",
+      "family": "Hynobiidae",
+      "familyJa": "サンショウウオ科"
+    },
+    "adultSizeCm": 12,
+    "sizeNote": "環境省の解説では、成体の全長は約12cm、頭胴長は約6cmです。図鑑と画面には、尾を含む全長の概数12cmを用いています。釧路の成体の頭胴長は、雄の平均が約5.76cm、雌が約6.17cmと報告されていますが、総排泄孔の後端までの値で、全長とは異なります。",
+    "distribution": "ユーラシア北部に広く分布し、ロシア、カザフスタン、モンゴル、中国、日本で見られます。サハリンや千島にも分布します。日本では、釧路湿原周辺と十勝の上士幌町の限られた地域に生息します。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "note": "IUCNのLCという区分は2024年の論文での二次引用に基づきます。最新の評価本文と評価年は確認できていません。環境省の第5次レッドリスト（2026年）では絶滅危惧IB類（EN）です。湿原の改変や分断、繁殖域の消失が課題とされています。"
+    },
+    "highlights": [
+      "前脚も後脚も、足先の指は4本です。",
+      "暗い褐色の体の背中に、黄褐色からオリーブ褐色の帯が続きます。",
+      "胴の側面には、肋溝と呼ばれる浅い溝が並びます。",
+      "春は水辺で繁殖し、幼生は夏に変態して陸へ上がります。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "walker",
+    "tailBeatHz": 2,
+    "bodyWaveStart": 0.58,
+    "waveCount": 0.85,
+    "tailSweepRad": 0.4,
+    "verticalFlex": 0.012
+  },
+  "preferredZone": {
+    "minX": 0.06,
+    "maxX": 0.94,
+    "minY": 0.85,
+    "maxY": 0.97
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "undulate",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.25,
+      "burst": 1.5
+    },
+    "turnRateRadPerSec": 1.5,
+    "restFraction": 0.55,
+    "depthRange": [
+      0.7,
+      0.95
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 1.2,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.6,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.5,
+        "durationSec": [
+          15,
+          60
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Frost: Amphibian Species of the World 6.2 — Salamandrella keyserlingii Dybowski, 1870",
+        "url": "https://amphibiansoftheworld.amnh.org/Amphibia/Caudata/Hynobiidae/Hynobiinae/Salamandrella/Salamandrella-keyserlingii"
+      },
+      {
+        "title": "竹中践 2026. キタサンショウウオ. 環境省編 第5次レッドデータブック pp.461–465",
+        "url": "https://ikilog.biodic.go.jp/rl_rdb/a/726.html"
+      },
+      {
+        "title": "釧路市立博物館 市指定天然記念物キタサンショウウオ（2024年5月9日更新）",
+        "url": "https://www.city.kushiro.lg.jp/museum/bunkazai/1005708/kinenbutsu/1005711.html"
+      },
+      {
+        "title": "Takeshita et al. 2020. Projection range of eDNA analysis in marshes: a suggestion from the Siberian salamander inhabiting Kushiro marsh. PeerJ 8:e9764",
+        "url": "https://da.lib.kobe-u.ac.jp/da/kernel/90007424/90007424.pdf"
+      },
+      {
+        "title": "Hasumi & Borkin 2012. Age and body size of Salamandrella keyserlingii: a difference in altitudes, latitudes, and temperatures. Organisms Diversity & Evolution 12:167–181",
+        "url": "https://www.gfbs-home.de/fileadmin/user_upload/ode2mods/ode/ode12/ode12_0167/article.pdf"
+      },
+      {
+        "title": "照井滋晴・深津恵太 2024. 釧路湿原周辺の太陽光発電事業地内におけるキタサンショウウオの卵嚢の移転. 保全生態学研究29(2),2333",
+        "url": "https://www.jstage.jst.go.jp/article/hozen/29/2/29_2333/_html/-char/ja"
+      },
+      {
+        "title": "Liu et al. 2024. Phylogenetic relationships and genetic differentiation of two Salamandrella species as revealed via COI gene from Northeastern China. PLoS ONE 19:e0298221",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10866476/"
+      }
+    ]
+  }
+}

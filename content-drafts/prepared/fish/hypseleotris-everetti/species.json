@@ -1,0 +1,104 @@
+{
+  "id": "hypseleotris-everetti",
+  "displayName": "タナゴモドキ",
+  "realBodyLengthCm": 6,
+  "catalog": {
+    "scientificName": "Hypseleotris everetti",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "北西太平洋の日本、台湾、香港、フィリピン、パラオに分布します。日本では琉球列島で記録され、海で育った幼生が川へ入る生活史を持つとされています。",
+    "temperament": "危険を感じると、水生植物の茂みに入ります。大学と水族館で、冷凍赤虫や乾燥オキアミを使った飼育の記録があります。野生で食べる餌の内訳は、今回の調査では確かめられていません。",
+    "movement": "植物のある、流れの緩い場所の中層を泳ぎます。本水槽では、岸から垂れる根や草のそばを泳ぐ姿で描いています。",
+    "habitat": "低地の川の下流や、植物のある水路・湿地にすみ、淡水域と河口の汽水域を利用します。本水槽では、暗い川石と落ち葉、岸の根がある、琉球の小川の穏やかな岸辺をイメージしています。",
+    "aliases": [
+      "イーブー",
+      "Asterropteryx everetti",
+      "Ophiocara gracilis"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Gobiiformes",
+      "orderJa": "ハゼ目",
+      "family": "Eleotridae",
+      "familyJa": "カワアナゴ科"
+    },
+    "adultSizeCm": 7.5,
+    "sizeNote": "2023年の分類の見直しでは、標準体長の上限を約7.5cmとしていますが、標本一覧には標準体長7.6cmの雌も載っています。沖縄県の旧資料は体長約6cmとし、測り方は明示していません。図鑑の値は標準体長の概数7.5cmです。画面の全長は仮に6cmとしています。調査に全長の値はなく、体長や標準体長から換算した値ではありません。",
+    "distribution": "北西太平洋の日本、台湾、香港、フィリピン、パラオに分布します。日本では奄美大島、沖縄島、久米島、宮古島、石垣島、由布島、西表島で記録されています。静岡県でも未成魚が採集されていますが、すみついているかは分かっていません。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "環境省レッドリスト2020では絶滅危惧IB類（EN）、沖縄県の2017年のレッドデータブックでは絶滅危惧II類（VU）です。IUCNのDDという転載情報は評価本文と分類の範囲を確認できていないため、世界の区分は保留しています。"
+    },
+    "highlights": [
+      "タナゴに似た、左右に薄い体をしていますが、カワアナゴの仲間です。",
+      "左右の腹びれは別々で、吸盤にはなっていません。",
+      "雌のひれは主に透明で、尾びれの付け根の下半分に小さな暗い斑があります。",
+      "危険を感じると、岸辺の水生植物の茂みに入ります。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.4
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.25,
+    "maxY": 0.7
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.5,
+      "burst": 2.4
+    },
+    "turnRateRadPerSec": 2.4,
+    "restFraction": 0.12,
+    "depthRange": [
+      0.2,
+      0.85
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.4,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.6,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Keith & Mennesson (2023) Revision of Hypseleotris (Teleostei: Eleotridae) from Indo-Pacific Islands using molecular and morphometric approaches, with description of one new species. Zoological Journal of the Linnean Society 198:1035–1069",
+        "url": "https://academic.oup.com/zoolinnean/article/198/4/1035/7150892"
+      },
+      {
+        "title": "横山智洋・中江雅典 (2024) 静岡県から得られた北限記録のタナゴモドキ. Ichthy 42:1–4",
+        "url": "https://www.museum.kagoshima-u.ac.jp/ichthy/INHFJ_2024_042_001.pdf"
+      },
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Hypseleotris species records",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?genus=Hypseleotris&tbl=species"
+      },
+      {
+        "title": "前田健 (2017) タナゴモドキ. 改訂・沖縄県の絶滅のおそれのある野生生物 第3版 動物編 pp275–276",
+        "url": "https://www.pref.okinawa.jp/_res/projects/default_project/_page_/001/004/628/gyorui.pdf"
+      },
+      {
+        "title": "富田峻平ほか (2016) 絶滅危惧種タナゴモドキ集団の高い遺伝的多様性と遺伝的均一性. 魚類学雑誌63:27–32",
+        "url": "https://www.jstage.jst.go.jp/article/jji/63/1/63_63-27/_pdf/-char/en"
+      },
+      {
+        "title": "環境省レッドリスト2020 汽水・淡水魚類 pp13–14",
+        "url": "https://www.env.go.jp/press/files/jp/114457.pdf"
+      },
+      {
+        "title": "沖縄美ら海水族館 美ら海生き物図鑑：タナゴモドキ",
+        "url": "https://churaumi.okinawa/sp/fishbook/00000482/"
+      }
+    ]
+  }
+}
