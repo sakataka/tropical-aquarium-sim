@@ -59,7 +59,7 @@ dots からの配送の受領は次のとおり。保存完了は、commit の�
 1. 草案を確かめる: 画像は自動検査（外接矩形、見切れ、離れたもや）とコンタクトシートの目視で判断し、`adoptions/` に記録する。直したいものは修正依頼にまとめる。
 2. 画像を取り込む: `AQUARIUM_ASSET_VAULT=~/Documents/aquarium-assets uv run scripts/install-vault-species.py --all-adopted`（または species-id を並べる）。採用した原画から `body.webp` と `sourceBodyBounds` を作り、`content-drafts/fish/<id>/` に置く。
 3. 下書きを書く: `content-drafts/fish/<id>/species.json` に、調査（`species/<id>/meta.json` が指す `research.json`。Drive 経由で届いた種は `species/` がないので、`drafts/<id>/<variant>/research/request-rN/attempt-N/research.json` を直接読む）から生態・図鑑の項目を出典つきで書く。`src/core/drafts.test.ts` が形を検証する。
-4. 展示室を開けるときに `content-drafts/fish/<id>/` を `src/content/fish/<id>/` へ移し、水槽の `tank.json` に足す。アプリが読むのは `src/content/` だけ。
+4. 展示室を開けるときに `content-drafts/fish/<id>/` を `src/content/fish/<id>/` へ移し、水槽の `tank.json` に足す。アプリが読むのは `src/content/` だけ。開けてから準備中に戻した水槽は、仕上げた `tank.json` と水景の `scene.json`・`terrain.json` を `content-drafts/tanks/<tank-id>/`・`content-drafts/scenes/<tank-id>/` に残す（`plate.webp` は保管庫から作り直せるので残さない）。
 
 修正版の画像が届いたら、`adoptions/` を書き換えて手順2をやり直す（`species.json` があれば `sourceBodyBounds` だけを書き換える）。
 
