@@ -1,7 +1,6 @@
 import type {
   ActivityPeriod,
   AquariumScene,
-  FishHabit,
   FishInstance,
   FishSpeciesDefinition,
   LightingId,
