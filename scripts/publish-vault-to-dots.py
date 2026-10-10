@@ -34,6 +34,7 @@ import os
 import subprocess
 import sys
 from datetime import datetime, timezone, timedelta
+from functools import cache
 from pathlib import Path
 
 DEFAULT_DELIVERY_DIR = "~/Library/CloudStorage/GoogleDrive-sakataka@gmail.com/マイドライブ/aquarium-dot-delivery"
@@ -65,22 +66,24 @@ def git(vault: Path, *args: str, binary: bool = False):
     return result.stdout if binary else result.stdout.decode().strip()
 
 
-def sha256_file(file: Path) -> str:
-    digest = hashlib.sha256()
-    with file.open("rb") as stream:
-        for chunk in iter(lambda: stream.read(1 << 20), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
-
-
 def build_inventory(vault: Path, head: str) -> dict:
     """
     保存済みの成果物と、画風・参照画像の一覧。成果物は job（素材・型・画像か調査・依頼の版）ごとにまとめる。
     根拠は2つ: dots が GitHub に書いた成果の記録（queue/results）と、Drive 経由の配送の受領の記録（consumer/deliveries）。
     同じファイルが両方にあれば1件にまとめ、両方の根拠を残す。どのファイルも、保管庫の実際の中身と照らす。
     """
-    tracked = set(git(vault, "ls-files").splitlines())
-    in_vault = lambda path, digest: path in tracked and (vault / path).exists() and sha256_file(vault / path) == digest
+    # 画像は未commit変更の検査対象から除いてあるため、作業ツリーではなく指定commitを読む。
+    tracked = set(git(vault, "ls-tree", "-r", "--name-only", head).splitlines())
+
+    def read_committed(path: str) -> bytes:
+        return git(vault, "cat-file", "blob", f"{head}:{path}", binary=True)
+
+    @cache
+    def committed_info(path: str) -> tuple[int, str]:
+        content = read_committed(path)
+        return len(content), hashlib.sha256(content).hexdigest()
+
+    in_vault = lambda path, digest: path in tracked and committed_info(path)[1] == digest
     jobs: dict[tuple, dict] = {}
 
     def job_entry(job_id: str, request_revision) -> dict:
@@ -97,8 +100,10 @@ def build_inventory(vault: Path, head: str) -> dict:
             job["files"].append(known)
         known["evidence"].append(evidence)
 
-    for record_file in sorted((vault / "queue/results").glob("*/r*/output-*.json")):
-        record = json.loads(record_file.read_text())
+    for relative in sorted(path for path in tracked if len(Path(path).parts) == 5
+                           and Path(path).match("queue/results/*/r*/output-*.json")):
+        record_file = vault / relative
+        record = json.loads(read_committed(relative))
         job = job_entry(record_file.parts[-3], record.get("requestRevision"))
         if record.get("outputRevision") not in job["outputRevisions"]:
             job["outputRevisions"].append(record.get("outputRevision"))
@@ -111,11 +116,11 @@ def build_inventory(vault: Path, head: str) -> dict:
                      source="queue-results", record=str(record_file.relative_to(vault)), outputRevision=record.get("outputRevision"))
 
     deliveries = []
-    for receipt_file in sorted((vault / "consumer/deliveries").glob("*.json")):
-        receipt = json.loads(receipt_file.read_text())
-        relative = str(receipt_file.relative_to(vault))
+    for relative in sorted(path for path in tracked if len(Path(path).parts) == 3
+                           and Path(path).match("consumer/deliveries/*.json")):
+        receipt = json.loads(read_committed(relative))
         # 受領の記録が main に入った commit。この commit（かそれより前）に、配送のファイルが入っている。
-        saved = git(vault, "log", "--diff-filter=A", "--format=%H", "-1", "--", relative) or None
+        saved = git(vault, "log", head, "--diff-filter=A", "--format=%H", "-1", "--", relative) or None
         delivered = [*receipt.get("placed", []), *receipt.get("alreadyInVault", [])]
         for item in delivered:
             parts = item["path"].split("/")
@@ -130,14 +135,14 @@ def build_inventory(vault: Path, head: str) -> dict:
                 job["outputRevisions"].append(item["outputRevision"])
             if "drive-delivery" not in job["sources"]:
                 job["sources"].append("drive-delivery")
-            size = item.get("size") or ((vault / item["path"]).stat().st_size if (vault / item["path"]).exists() else None)
+            size = item.get("size") or (committed_info(item["path"])[0] if item["path"] in tracked else None)
             add_file(job, item["path"], size, item["sha256"], source="drive-delivery", deliveryId=receipt["deliveryId"],
                      receipt=relative, savedCommit=saved, outputRevision=item.get("outputRevision"), kind=item.get("kind"))
         deliveries.append({
             "deliveryId": receipt["deliveryId"], "receivedAt": receipt.get("receivedAt"), "receipt": relative, "savedCommit": saved,
             "entities": receipt.get("entities", []), "placed": len(receipt.get("placed", [])), "alreadyInVault": len(receipt.get("alreadyInVault", [])),
         })
-    references = [{"path": path, "size": (vault / path).stat().st_size, "sha256": sha256_file(vault / path)}
+    references = [{"path": path, "size": committed_info(path)[0], "sha256": committed_info(path)[1]}
                   for path in sorted(tracked) if path.startswith(("styles/", "references/"))]
     job_list = sorted(jobs.values(), key=lambda job: (job["jobId"], job["requestRevision"] or 0))
     return {
