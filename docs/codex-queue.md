@@ -4,7 +4,7 @@ Codex が、Claude Code の動いていない間も単独で進められる作�
 
 ## 考え方
 
-- **レーンで分ける。** 作業の種類ごとに「レーン」を決め、レーンごとに、読むもの・書いてよい場所・合否の確かめ方を手順書に書く。レーンの成果物は、アプリが読む場所（`src/`）ともテストが読む場所（`content-drafts/fish/`）とも別のフォルダに置くので、書きかけのファイルが Claude Code の作業やテストを止めない。
+- **レーンで分ける。** 作業の種類ごとに「レーン」を決め、レーンごとに、読むもの・書いてよい場所・合否の確かめ方を手順書に書く。レーンの成果物は、アプリが読む場所（`src/`）ともテストが読む場所（`content-drafts/fish/`）とも別のフォルダ（または非公開の保管庫）に置くので、書きかけのファイルが Claude Code の作業やテストを止めない。
 - **作業の一覧は、ファイルの有無から組み立てる。** 一覧のファイルを手で書き換えない。`uv run scripts/agent-queue.py status` が、レーンごとの未着手・作業中・済みの数を出す。
 - **担当の印を置いてから始める。** `uv run scripts/agent-queue.py claim <レーン> <件数> --by codex` が、先頭から未着手の作業に印（`claim.json`）を置いて id を返す。印のある作業は、ほかのエージェントは取らない。12時間たっても成果物のない印は無効になり、ほかのエージェントが引き取れる。
 - **どのレーンも、Claude Code も同じ手順で進められる。** Codex が止まっていても作業は止まらない。逆に、Codex が先に済ませてあれば、Claude Code はその成果物を使う（例: 種の下書きがあれば、`install-vault-species.py` がそれを取り込む）。
@@ -14,7 +14,7 @@ Codex が、Claude Code の動いていない間も単独で進められる作�
 
 1. 始める前に `git pull`（このリポジトリ）と、`cd ~/Documents/aquarium-assets && git pull`（保管庫。読むだけ）。
 2. `uv run scripts/agent-queue.py claim <レーン> <件数> --by codex` で印を置く。件数の指定がなければ5件。
-3. レーンの手順書どおりに、印を置いた作業の成果物だけを書く。**書いてよいのは、手順書の「書いてよい場所」だけ。** `src/`、`content-drafts/fish/`、`docs/`、`scripts/`、保管庫（`~/Documents/aquarium-assets`）、Drive のフォルダは書き換えない。
+3. レーンの手順書どおりに、印を置いた作業の成果物だけを書く。**書いてよいのは、手順書の「書いてよい場所」だけ。** `src/`、`content-drafts/fish/`、`docs/`、`scripts/`、Drive のフォルダは書き換えない。保管庫（`~/Documents/aquarium-assets`）は、手順書が保管庫の中の場所を指定しているレーンで、その場所だけを書く。**このリポジトリは GitHub で公開されているので、ほかのサイトから集めた一覧や本文を置かない。**
 4. 手順書の「確かめる」を通す。通らない作業は成果物を消し、`uv run scripts/agent-queue.py release <レーン> <id>` で印を外して、理由を最後の報告に書く。
 5. commit は、自分の成果物のパスだけを指定して行う（`git add -A` を使わない。同じ checkout で Claude Code が別の作業をしていることがある）。メッセージの末尾に `Assisted-by: Codex` を付け、push する。commit・push ができない環境（サンドボックスなど）では、ファイルを残して、その旨を報告に書く。
 6. 最後に、進めた作業の id、通した確かめ、`notes.md` に書いた気になる点の要約を報告する。`bun run test`・`bun run build`・`bun run verify:webview`・開発サーバーは流さない（手順書にあるものだけ流す）。
@@ -24,7 +24,7 @@ Codex が、Claude Code の動いていない間も単独で進められる作�
 | レーン | 何をするか | 書いてよい場所 | 手順書 |
 |---|---|---|---|
 | `species-prepare` | dots の調査が保管庫に届いた種の、図鑑の文と動きの値の下書きを先に書いておく | `content-drafts/prepared/fish/<id>/` | [agent-lanes/species-prepare.md](agent-lanes/species-prepare.md) |
-| `aquarium-census` | 日本の水族館で飼育・展示されている生き物を、館ごとに出典つきで集める | `research/aquarium-census/` | [agent-lanes/aquarium-census.md](agent-lanes/aquarium-census.md) |
+| `aquarium-census` | 日本の水族館で飼育・展示されている生き物を、館ごとに出典つきで集める | 保管庫の `research/aquarium-census/`（非公開。このリポジトリには置かない） | [agent-lanes/aquarium-census.md](agent-lanes/aquarium-census.md) |
 
 指定がないときは、`species-prepare` を5件、次に `aquarium-census` を3件の順で進める（`status` で未着手が0のレーンは飛ばす）。
 

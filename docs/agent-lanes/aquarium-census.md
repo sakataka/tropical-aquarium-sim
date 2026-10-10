@@ -10,7 +10,7 @@
 
 ## 作業の単位と、書いてよい場所
 
-書いてよいのは `research/aquarium-census/` の中だけ。作業は `uv run scripts/agent-queue.py claim aquarium-census <件数> --by <名前>` が返したものを進める。
+**このリポジトリは GitHub で公開されている。館ごとの飼育種の一覧は、公開のリポジトリに置かない。** 成果物は、非公開の保管庫（`~/Documents/aquarium-assets`）の `research/aquarium-census/` に置く。書いてよいのはその中だけで、保管庫のほかの場所は書き換えない。commit・push も保管庫のリポジトリで、自分の成果物のパスだけを指定して行う（保管庫への書き込みがサンドボックスで止まるときは、Codex を `--add-dir ~/Documents/aquarium-assets` を付けて起動するか、書き込みの許可を求める）。下に出てくるパスは、どれも保管庫の中のもの。作業は `uv run scripts/agent-queue.py claim aquarium-census <件数> --by <名前>` が返したものを進める。
 
 1. **`setup`（最初の1回）**: 出発点を確かめ、館の一覧を作る。
    - `research/aquarium-census/sources.md`: 使える情報源と使えない情報源、その理由。確かめるもの: 日本動物園水族館協会（JAZA）の飼育動物の検索（あるか、館ごとの種が引けるか、利用の条件）、各館の公式サイトの生き物図鑑・展示生物の一覧、年報・飼育動物一覧の PDF、自治体の公開資料。

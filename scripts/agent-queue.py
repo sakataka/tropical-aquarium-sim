@@ -54,9 +54,14 @@ def species_prepare_tasks() -> list[tuple[str, str]]:
     return [(species_id, f"order {order} {name}") for order, species_id, name in sorted(tasks)]
 
 
+def census_base() -> Path:
+    # 館ごとの飼育種の一覧は、公開のこのリポジトリではなく、非公開の保管庫に置く。
+    return vault_path() / "research" / "aquarium-census"
+
+
 def census_tasks() -> list[tuple[str, str]]:
     """日本の水族館の飼育種の調査。最初の1件は出発点の確認（setup）、あとは館ごと。"""
-    base = ROOT / "research" / "aquarium-census"
+    base = census_base()
     tasks = [("setup", "出発点の確認と館の一覧づくり")]
     listing = base / "facilities.json"
     if listing.exists():
@@ -74,13 +79,13 @@ LANES = {
     },
     "aquarium-census": {
         "tasks": census_tasks,
-        "dir": lambda task_id: ROOT / "research" / "aquarium-census" / "facilities" / task_id,
+        "dir": lambda task_id: census_base() / "facilities" / task_id,
         "done": "species.json",
         "playbook": "docs/agent-lanes/aquarium-census.md",
     },
 }
 # setup の成果物は館の一覧そのもの。
-CENSUS_SETUP_DONE = ROOT / "research" / "aquarium-census" / "facilities.json"
+CENSUS_SETUP_DONE = census_base() / "facilities.json"
 
 
 def state(lane: str, task_id: str) -> tuple[str, dict | None]:
