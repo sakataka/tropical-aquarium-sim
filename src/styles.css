@@ -21,12 +21,14 @@
   --brass: #d6c08f;
   --ink: #ecf1ea;
   --muted: #9cb1ab;
-  --faint: #6c8782;
+  --faint: #8da69f;
   /* フィッシュルーム（明るい部屋）の文字色。 */
   --room-paper: #efe9df;
   --room-ink: #22302b;
   --room-muted: #5c6a64;
   --room-brass: #8f7a52;
+  --radius-label: 4px;
+  --panel-inset: 24px;
   --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   /* ノッチやホームバーを避ける余白。横向きのスマホでは左右に効く。 */
@@ -72,7 +74,7 @@ button:focus-visible, input:focus-visible, select:focus-visible {
 .map-level { animation: map-level-in 0.5s var(--ease-out) both; }
 @keyframes map-level-in { from { opacity: 0; transform: translateY(8px); } }
 .map-layout {
-  --guide-width: clamp(300px, 26vw, 380px);
+  --guide-width: clamp(320px, 26vw, 380px);
   --map-gap: clamp(28px, 3.4vw, 56px);
   display: grid;
   grid-template-columns: auto var(--guide-width);
@@ -235,7 +237,7 @@ button:focus-visible, input:focus-visible, select:focus-visible {
   border-top: 1px solid var(--line);
 }
 /* フロアガイドの先頭に、選んだ建物の名前と紹介を出す。 */
-.map-building-note { display: grid; gap: 5px; padding: 14px 4px 14px 0; border-bottom: 1px solid var(--line); }
+.map-building-note { display: grid; gap: 8px; padding: 16px 4px 18px 0; border-bottom: 1px solid var(--line); }
 .map-building-note strong {
   display: flex;
   flex-wrap: wrap;
@@ -257,7 +259,7 @@ button:focus-visible, input:focus-visible, select:focus-visible {
   display: grid;
   grid-template-columns: 52px minmax(0, 1fr) 18px;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
   width: 100%;
   min-height: 44px;
   padding: 12px 4px 13px 0;
@@ -281,21 +283,19 @@ button:focus-visible, input:focus-visible, select:focus-visible {
 .map-floor.active::before { opacity: 1; }
 .map-floor.active > button > .icon { color: var(--accent); transform: translateX(2px); }
 .floor-tag { display: grid; align-self: start; justify-items: start; gap: 4px; }
-.floor-tag strong { color: var(--brass); font-family: var(--font-latin); font-size: 26px; font-weight: 500; line-height: 1; }
+.floor-tag strong { color: var(--brass); font-family: var(--font-latin); font-size: 32px; font-weight: 500; line-height: 1; }
 .floor-tag span { color: var(--faint); font-size: 10.5px; letter-spacing: 0.06em; white-space: nowrap; }
-.floor-body { display: grid; gap: 3px; min-width: 0; }
+.floor-body { display: grid; gap: 5px; min-width: 0; }
 .floor-name {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 2px 12px;
+  display: grid;
+  gap: 2px;
   font-family: var(--font-display);
   font-size: 19px;
   font-weight: 500;
   letter-spacing: 0.14em;
 }
-.floor-name em { color: var(--brass); font-family: var(--font-latin); font-size: 15px; letter-spacing: 0.02em; }
-.floor-meta { display: flex; align-items: center; gap: 8px; color: var(--accent); font-size: 11.5px; letter-spacing: 0.08em; }
+.floor-name em { color: var(--muted); font-family: var(--font-latin); font-size: 15px; letter-spacing: 0.02em; }
+.floor-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; color: var(--muted); font-size: 11.5px; letter-spacing: 0.08em; }
 .floor-hall-names { display: flex; flex-wrap: wrap; gap: 0 4px; color: var(--muted); font-size: 11.5px; line-height: 1.65; }
 .floor-hall-names > span:not(:last-child)::after { content: " ·"; color: var(--faint); }
 .floor-hall-names > .soon { color: var(--faint); }
@@ -326,7 +326,7 @@ button:focus-visible, input:focus-visible, select:focus-visible {
   gap: 10px;
   min-height: 44px;
   padding: 0 18px 0 14px;
-  border-radius: 999px;
+  border-radius: var(--radius-label);
   color: var(--ink);
   font-size: 13.5px;
   letter-spacing: 0.1em;
@@ -431,18 +431,19 @@ button:focus-visible, input:focus-visible, select:focus-visible {
   gap: 4px 18px;
   margin: 6px 0 0;
   font-family: var(--font-display);
-  font-size: clamp(30px, 3vw, 40px);
+  font-size: clamp(22px, 2.2vw, 28px);
   font-weight: 500;
-  letter-spacing: 0.2em;
+  color: var(--brass);
+  letter-spacing: 0.12em;
 }
 .floor-heading h1:focus { outline: none; }
-.floor-heading h1 span { font-size: 0.62em; letter-spacing: 0.16em; color: var(--muted); }
+.floor-heading h1 span { font-size: 1.35em; letter-spacing: 0.12em; color: var(--ink); }
 .floor-heading .map-lede { max-width: 46em; }
 .floor-summary { margin: 8px 0 0; color: var(--accent); font-size: 12px; letter-spacing: 0.1em; }
 .floor-halls {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
-  gap: 18px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 30px 28px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -454,9 +455,9 @@ button:focus-visible, input:focus-visible, select:focus-visible {
   grid-template-rows: auto 1fr;
   overflow: hidden;
   padding: 0;
-  border: 1px solid var(--line-strong);
-  border-radius: 10px;
-  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-label);
+  background: transparent;
   text-align: left;
   transition: background 0.3s, border-color 0.3s, transform 0.4s var(--ease-out), box-shadow 0.4s;
 }
@@ -475,10 +476,10 @@ button.hall-card:hover {
   background: linear-gradient(180deg, #0b2a2d, #051416);
 }
 .hall-card-view > .hall-last { position: absolute; top: 10px; right: 10px; z-index: 1; background: rgba(3, 16, 18, 0.8); }
-.hall-card-text { display: grid; align-content: start; gap: 3px; padding: 12px 16px 14px; }
-.hall-card-text strong { font-family: var(--font-display); font-size: 17px; font-weight: 500; letter-spacing: 0.12em; }
-.hall-card-text small { color: var(--accent); font-size: 11.5px; letter-spacing: 0.08em; }
-.hall-tanks { color: var(--muted); font-size: 11.5px; line-height: 1.65; }
+.hall-card-text { display: grid; align-content: start; gap: 8px; padding: 20px 22px 22px; }
+.hall-card-text strong { font-family: var(--font-display); font-size: 22px; font-weight: 500; letter-spacing: 0.12em; }
+.hall-card-text small { color: var(--brass); font-size: 12px; letter-spacing: 0.08em; }
+.hall-tanks { color: var(--muted); font-size: 12px; line-height: 1.85; }
 .hall-card.soon { border-style: dashed; border-color: var(--line); background: transparent; color: var(--faint); }
 /* 準備中の枠は、縮小版の窓を持たない低いカードにする（準備中の展示室が並ぶ階が、空の窓で埋まらないように）。
    開いている展示室と同じ行では、行の高さまで伸びる。 */
@@ -517,6 +518,14 @@ button.hall-card:hover {
 .hall-preview-glass { position: absolute; display: block; overflow: hidden; }
 .hall-preview-glass > img { opacity: 0; transition: opacity 0.5s; }
 
+/* デスクトップの幅が狭いときも、フロアガイドの各階を同じ画面内に収める。 */
+@media (min-width: 901px) and (max-width: 1300px) {
+  .map-floor > button { padding-block: 9px 10px; }
+  .floor-body { gap: 3px; }
+  .floor-name { font-size: 18px; line-height: 1.25; }
+  .floor-name em { font-size: 14px; }
+}
+
 /* 狭い画面では建物のあたりだけを切り出して大きく見せる。 */
 @media (max-width: 900px) {
   .map-layout {
@@ -550,7 +559,9 @@ button.hall-card:hover {
   .floor-switch button { justify-content: center; width: 100%; padding: 0 4px; }
   .floor-switch button span { display: none; }
   .floor-heading { padding: 16px 0 20px; }
-  .floor-halls { gap: 14px; }
+  .floor-halls { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .hall-card-text { padding: 16px 18px 18px; }
+  .hall-card-text strong { font-size: 20px; }
 }
 
 /* ───────── フィッシュルーム ───────── */
@@ -904,7 +915,7 @@ button.hall-card:hover {
 
 /* 鑑賞モードは水槽を画面いっぱいに、設定モードは横（狭い画面では下）にパネルを出す。 */
 .tank-screen {
-  --panel-width: min(420px, 38vw);
+  --panel-width: min(460px, 40vw);
   --sheet-height: 56dvh;
   --glow: 0.72;
   --glass-x: 50vw;
@@ -1309,11 +1320,11 @@ button.hall-card:hover {
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: start;
   gap: 10px 12px;
-  padding: 26px 20px 18px 28px;
+  padding: 28px var(--panel-inset) 20px;
 }
 .panel-eyebrow {
-  margin: 0 0 2px;
-  color: var(--muted);
+  margin: 0 0 6px;
+  color: var(--brass);
   font-family: var(--font-latin);
   font-size: 17px;
   font-style: italic;
@@ -1358,13 +1369,14 @@ button.hall-card:hover {
 .panel-tabs {
   flex: none;
   display: flex;
-  gap: 28px;
-  margin: 0 20px 0 28px;
+  gap: 8px;
+  margin: 0 var(--panel-inset);
   border-bottom: 1px solid var(--line);
 }
 .panel-tabs button {
   position: relative;
-  min-height: 44px;
+  flex: 1;
+  min-height: 48px;
   padding: 0 1px;
   border: 0;
   background: transparent;
@@ -1380,8 +1392,8 @@ button.hall-card:hover {
   left: 0;
   right: 0;
   bottom: -1px;
-  height: 1px;
-  background: var(--ink);
+  height: 2px;
+  background: var(--brass);
   transform: scaleX(0);
   transition: transform 0.5s var(--ease-out);
 }
@@ -1398,7 +1410,7 @@ button.hall-card:hover {
   scrollbar-color: rgba(139, 206, 205, 0.3) transparent;
 }
 .panel-content {
-  padding: 22px 20px max(28px, env(safe-area-inset-bottom)) 28px;
+  padding: 24px var(--panel-inset) max(28px, env(safe-area-inset-bottom));
   animation: panel-in 0.6s var(--ease-out);
 }
 @keyframes panel-in { from { opacity: 0; transform: translateY(8px); } }
@@ -1445,21 +1457,22 @@ button.hall-card:hover {
 .capacity.full .capacity-bar span { background: var(--brass); }
 
 /* 魚のカード */
-.fish-catalog-list { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+.fish-catalog-list { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; }
 .fish-catalog-card {
   display: grid;
   grid-template-columns: 100px minmax(0, 1fr);
   overflow: hidden;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  background: var(--surface);
+  border: 0;
+  border-top: 1px solid var(--line);
+  border-radius: 0;
+  background: transparent;
   transition: border-color 0.3s, background 0.3s;
   content-visibility: auto;
   contain-intrinsic-size: auto 170px;
 }
 .fish-catalog-card.stocked {
   border-color: rgba(143, 220, 211, 0.26);
-  background: linear-gradient(150deg, rgba(40, 96, 96, 0.26), rgba(8, 34, 36, 0.32));
+  background: linear-gradient(90deg, rgba(40, 96, 96, 0.14), transparent);
 }
 .fish-portrait {
   display: grid;
@@ -1470,7 +1483,7 @@ button.hall-card:hover {
 }
 .fish-portrait img {
   width: 100%;
-  height: 72px;
+  height: 88px;
   object-fit: contain;
   filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.32));
   transition: filter 0.4s, opacity 0.4s, transform 0.8s var(--ease-out);
@@ -1478,7 +1491,7 @@ button.hall-card:hover {
 .fish-catalog-card:hover .fish-portrait img { transform: translateX(3px) scale(1.04); }
 /* 入れていない魚は少し沈め、水槽にいる魚と見分けられるようにする。 */
 .fish-catalog-card:not(.stocked) .fish-portrait img { opacity: 0.6; filter: saturate(0.5) drop-shadow(0 6px 10px rgba(0, 0, 0, 0.3)); }
-.fish-catalog-copy { display: flex; flex-direction: column; gap: 6px; min-width: 0; padding: 14px 12px 10px 14px; }
+.fish-catalog-copy { display: flex; flex-direction: column; gap: 8px; min-width: 0; padding: 18px 0 16px 16px; }
 .fish-catalog-copy h3 {
   margin: 0;
   font-family: var(--font-display);
@@ -1488,7 +1501,7 @@ button.hall-card:hover {
   letter-spacing: 0.06em;
 }
 .fish-catalog-copy .scientific {
-  margin: -5px 0 0;
+  margin: -2px 0 0;
   color: var(--muted);
   font-family: var(--font-latin);
   font-size: 15px;
@@ -1496,9 +1509,9 @@ button.hall-card:hover {
 }
 .trait-list { display: flex; flex-wrap: wrap; gap: 4px; margin: 2px 0 0; padding: 0; list-style: none; }
 .trait-list li {
-  padding: 1px 8px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
+  padding: 1px 6px 1px 0;
+  border: 0;
+  border-radius: 0;
   color: #b2c8c3;
   font-size: 10.5px;
   line-height: 1.6;
@@ -1519,10 +1532,11 @@ button.hall-card:hover {
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  margin-top: 2px;
+  flex-wrap: wrap;
+  margin-top: 4px;
 }
 .fish-card-footer .zukan-link {
-  min-height: 32px;
+  min-height: 44px;
   padding: 0 2px;
   border: 0;
   background: none;
@@ -1546,8 +1560,8 @@ button.hall-card:hover {
 .count-control button {
   display: grid;
   place-items: center;
-  width: 34px;
-  height: 34px;
+  width: 44px;
+  height: 44px;
   padding: 0;
   border: 0;
   border-radius: 50%;
@@ -1625,7 +1639,7 @@ button.hall-card:hover {
   padding: 8px 12px;
   text-align: left;
   border: 1px solid var(--line);
-  border-radius: 14px;
+  border-radius: var(--radius-label);
   background: var(--surface);
   transition: border-color 0.3s, background 0.3s;
 }
@@ -1650,7 +1664,7 @@ button.hall-card:hover {
 .sound-settings {
   overflow: hidden;
   border: 1px solid var(--line);
-  border-radius: 14px;
+  border-radius: var(--radius-label);
   background: var(--surface);
 }
 .sound-toggle {
@@ -1721,12 +1735,13 @@ button.hall-card:hover {
     box-shadow: 0 -20px 60px rgba(0, 0, 0, 0.36);
     transform: translateY(100%);
   }
-  .panel-heading { padding: 18px 16px 12px 22px; }
+  .control-panel { --panel-inset: 22px; }
+  .panel-heading { padding: 18px var(--panel-inset) 12px; }
   .panel-eyebrow { font-size: 15px; }
   .panel-title h1 { font-size: 21px; }
   .panel-spec { margin-top: 4px; }
-  .panel-tabs { margin: 0 16px 0 22px; }
-  .panel-content { padding: 18px 16px max(24px, env(safe-area-inset-bottom)) 22px; }
+  .panel-tabs { margin: 0 var(--panel-inset); }
+  .panel-content { padding: 18px var(--panel-inset) max(24px, env(safe-area-inset-bottom)); }
   .tank-screen.editing .hud-bar { right: var(--safe-right); }
   /* シートを開いているあいだは、水槽の上の操作を減らす（拡大はピンチでできる）。 */
   .tank-screen.editing .hud-zoom { visibility: hidden; }
@@ -1768,7 +1783,7 @@ button.hall-card:hover {
 
 @media (max-width: 520px) {
   .fish-catalog-card { grid-template-columns: 84px minmax(0, 1fr); }
-  .fish-portrait img { height: 60px; }
+  .fish-portrait img { height: 72px; }
   .theme-grid { gap: 14px 10px; }
 }
 
@@ -1831,8 +1846,8 @@ button.hall-card:hover {
   .caption-species { max-height: 1.45em; margin-top: 3px; gap: 0 10px; font-size: 10.5px; letter-spacing: 0.02em; }
   .caption-species small { margin-left: 3px; font-size: 12px; }
   .panel-close { width: 44px; height: 44px; }
-  .panel-tabs { gap: 22px; }
-  .count-control button { width: 40px; height: 40px; }
+  .panel-tabs { gap: 8px; }
+  .count-control button { width: 44px; height: 44px; }
   .render-problem { top: var(--safe-top); left: var(--safe-left); right: var(--safe-right); }
   /* 指で選ぶ画面では、どれがどの水槽か分かるよう番号を常に出す。 */
   .room-tank-label { bottom: calc(100% + 30px); opacity: 1; transform: translate(-50%, 0); }
