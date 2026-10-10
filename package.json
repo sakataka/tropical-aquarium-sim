@@ -12,6 +12,9 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "test": "vitest run",
+    "test:fast": "vitest run --project unit",
+    "test:tanks": "vitest run --project 'tanks-*'",
+    "test:fuzz": "TEST_SEED=random vitest run",
     "verify:webview": "bun run scripts/verify-webview.ts"
   },
   "dependencies": {

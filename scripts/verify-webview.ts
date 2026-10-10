@@ -8,20 +8,75 @@ const SCREENSHOT_DIR = "tmp/webview";
 const STATE_KEY = "tropical-aquarium.state.v5.r2";
 
 // 展示室・水槽の名前や数は、内容ファイルから読む（展示室を開けるたびに書き換えずに済むように）。
-type RoomJson = { id: string; order: number; displayName: string; tanks: { tankId: string }[] };
+type RoomJson = { id: string; order: number; displayName: string; image?: string; tanks: { tankId: string }[] };
 type TankJson = { id: string; displayName: string; sceneIds: string[]; species: { speciesId: string }[]; defaultStock: { speciesId: string; count: number }[] };
 const museumJson = await Bun.file("src/content/museum/museum.json").json() as { floors: { id: string; halls: { id: string }[] }[] };
 const ROOMS: RoomJson[] = [];
 for await (const path of new Bun.Glob("src/content/room/*.json").scan()) ROOMS.push(await Bun.file(path).json());
 const HALL_ORDER = museumJson.floors.flatMap((floor) => floor.halls.map((hall) => hall.id));
 ROOMS.sort((a, b) => HALL_ORDER.indexOf(a.id) - HALL_ORDER.indexOf(b.id));
-// 影響する展示室だけを確かめるときは --halls=<展示室id>,... を渡す（展示室と水槽の出入りだけを、2つの画面幅で見る）。
-const ONLY_HALLS = Bun.argv.find((arg) => arg.startsWith("--halls="))?.slice("--halls=".length).split(",");
-for (const id of ONLY_HALLS ?? []) if (!ROOMS.some((room) => room.id === id)) throw new Error(`unknown hall: ${id}`);
 const TANKS = new Map<string, TankJson>();
 for await (const path of new Bun.Glob("src/content/tanks/*/tank.json").scan()) {
   const tank = await Bun.file(path).json() as TankJson;
   TANKS.set(tank.id, tank);
+}
+// 影響する展示室だけを確かめるときは --halls=<展示室id>,... を渡す（展示室と水槽の出入りだけを、2つの画面幅で見る）。
+// --changed は、まだ commit していない差分から展示室を選ぶ（--changed=<ref> なら、その commit からの差分）。
+const CHANGED = Bun.argv.find((arg) => arg === "--changed" || arg.startsWith("--changed="));
+const ONLY_HALLS = CHANGED ? await hallsFromChanges(CHANGED.split("=")[1] ?? "HEAD")
+  : Bun.argv.find((arg) => arg.startsWith("--halls="))?.slice("--halls=".length).split(",");
+for (const id of ONLY_HALLS ?? []) if (!ROOMS.some((room) => room.id === id)) throw new Error(`unknown hall: ${id}`);
+// --dry-run は、選んだ範囲を表示するだけで終わる。
+if (Bun.argv.includes("--dry-run")) {
+  console.log(ONLY_HALLS ? `展示室: ${ONLY_HALLS.join(", ")}` : "全体（全展示室・全水槽・図鑑・履歴）");
+  process.exit(0);
+}
+
+/**
+ * 差分のファイルから、確かめる展示室を選ぶ。内容ファイル（展示室・水槽・水景・生き物）と、魚以外の体のつくりの
+ * 描き方だけが変わっていれば、それを使う展示室を返す。描画の共通部分や画面の作りが変わっていれば undefined
+ * （全体を検証する）。画面に出るものが何も変わっていなければ、何もせずに終わる。
+ */
+async function hallsFromChanges(base: string): Promise<string[] | undefined> {
+  const files = [
+    ...(await Bun.$`git diff --name-only ${base}`.text()).split("\n"),
+    ...(await Bun.$`git ls-files --others --exclude-standard`.text()).split("\n"),
+  ].filter(Boolean);
+  const bodyPlanOf = new Map<string, string>();
+  for await (const path of new Bun.Glob("src/content/fish/*/species.json").scan()) {
+    const species = await Bun.file(path).json() as { id: string; swim?: { bodyPlan?: string } };
+    bodyPlanOf.set(species.id, species.swim?.bodyPlan ?? "fish");
+  }
+  const hallsOfTanks = (match: (tank: TankJson) => boolean) =>
+    ROOMS.filter((room) => room.tanks.some((placement) => match(TANKS.get(placement.tankId)!))).map((room) => room.id);
+  const halls = new Set<string>();
+  const broad: string[] = [];
+  for (const file of files) {
+    const content = /^src\/content\/(room|tanks|environment\/scenes|fish)\/(?:thumbs\/)?([^/.]+)/.exec(file);
+    const bodyPlan = /^src\/render\/bodyPlans\/(\w+)\.ts$/.exec(file)?.[1];
+    if (content?.[1] === "room") {
+      // 部屋の絵は、展示室の id と違う名前のことがある（room.json の image）。
+      const room = ROOMS.find((item) => item.id === content[2]) ?? ROOMS.find((item) => (item.image ?? "").startsWith(`${content[2]}.`));
+      if (room) halls.add(room.id); else broad.push(file);
+    } else if (content?.[1] === "tanks") hallsOfTanks((tank) => tank.id === content[2]).forEach((id) => halls.add(id));
+    else if (content?.[1] === "environment/scenes") hallsOfTanks((tank) => tank.sceneIds.includes(content[2]!)).forEach((id) => halls.add(id));
+    else if (content?.[1] === "fish") hallsOfTanks((tank) => tank.species.some((slot) => slot.speciesId === content[2])).forEach((id) => halls.add(id));
+    else if (bodyPlan && bodyPlan !== "fish" && bodyPlan !== "index" && bodyPlan !== "types") {
+      hallsOfTanks((tank) => tank.species.some((slot) => bodyPlanOf.get(slot.speciesId) === bodyPlan)).forEach((id) => halls.add(id));
+    } else if (/^(src|vite|public)\/|^(index\.html|vite\.config\.ts|package\.json|bun\.lock)$/.test(file)
+      && !/\.test\.tsx?$|^src\/core\/test(Setup|Content)\.ts$/.test(file)) broad.push(file);
+  }
+  if (broad.length > 0) {
+    console.log(`差分が画面の共通部分に及ぶので、全体を検証します: ${broad.slice(0, 5).join(", ")}${broad.length > 5 ? ` ほか${broad.length - 5}件` : ""}`);
+    return undefined;
+  }
+  if (halls.size === 0) {
+    console.log(`${base} からの差分に、画面に出るものの変更はありません。画面検証は不要です。`);
+    process.exit(0);
+  }
+  const selected = HALL_ORDER.filter((id) => halls.has(id));
+  console.log(`差分から選んだ展示室（${selected.length}室）: ${selected.join(", ")}`);
+  return selected;
 }
 let SPECIES_COUNT = 0;
 for await (const _ of new Bun.Glob("src/content/fish/*/species.json").scan()) SPECIES_COUNT++;

@@ -311,6 +311,35 @@ function speciesIndexModule(model: ContentModel): string {
   ].join("\n");
 }
 
+/**
+ * モジュールが読む内容ファイル。変わったら作り直すように、そのモジュールが使うものだけを監視に登録する。
+ * 全モジュールに全ファイルを登録すると、種の数×ファイルの数に比例して遅くなる
+ * （373種のときに、全種を読むテストの準備が毎回11秒かかっていた）。
+ */
+function sourceFiles(model: ContentModel, contentDir: string, name: string): string[] {
+  const room = (id: string) => join(contentDir, "room", `${id}.json`);
+  const tank = (id: string) => join(contentDir, "tanks", id, "tank.json");
+  const scene = (id: string) => ["scene.json", "terrain.json"].map((file) => join(contentDir, "environment/scenes", id, file));
+  const species = (id: string) => join(contentDir, "fish", id, "species.json");
+  const ofHalls = (rooms: FishRoomDefinition[], withSpecies: boolean) => {
+    const tanks = rooms.flatMap((item) => item.tanks.map((placement) => model.tanks.get(placement.tankId)!));
+    return [
+      ...rooms.map((item) => room(item.id)),
+      ...tanks.map((item) => tank(item.id)),
+      ...[...new Set(tanks.flatMap((item) => item.sceneIds))].flatMap(scene),
+      ...(withSpecies ? [...new Set(tanks.flatMap((item) => item.species.map((slot) => slot.speciesId)))].map(species) : []),
+    ];
+  };
+  if (name.startsWith("species/")) return [species(name.slice("species/".length))];
+  if (name.startsWith("hall/")) return ofHalls(model.halls.filter((item) => item.id === name.slice("hall/".length)), true);
+  if (name.startsWith("floor/")) {
+    const floorId = name.slice("floor/".length);
+    return [join(contentDir, "museum/museum.json"), ...ofHalls(model.halls.filter((item) => floorOf(model, item.id) === floorId), false)];
+  }
+  // 館の索引と図鑑の見出しは、全体から作る。画像の URL の一覧は、ファイルの有無だけで決まる。
+  return name === "fish-images" ? [] : model.files;
+}
+
 export function contentModules(contentDir: string): Plugin {
   let model: ContentModel | undefined;
   const isContentFile = (file: string) => file.startsWith(contentDir) && file.endsWith(".json");
@@ -332,8 +361,8 @@ export function contentModules(contentDir: string): Plugin {
     load(id) {
       if (!id.startsWith(`\0${PREFIX}`)) return undefined;
       model ??= readContent(contentDir);
-      for (const file of model.files) this.addWatchFile(file);
       const name = id.slice(1 + PREFIX.length);
+      for (const file of sourceFiles(model, contentDir, name)) this.addWatchFile(file);
       if (name === "museum") return museumModule(model, contentDir);
       if (name === "species-index") return speciesIndexModule(model);
       if (name === "fish-images") return fishImagesModule(model, contentDir);

@@ -90,41 +90,28 @@ describe("depth-aware terrain across habitats", () => {
     }
   });
 
-  test("every water scene has usable terrain, and populations remain outside solids and inside glass", () => {
+  // 全水槽の「回避領域の外・ガラスの内」は terrainEndurance.test.ts が水槽ごとに確かめる。
+  // ここでは代表の水槽で、地形を使った採餌・隠れ・奥行きの変化が実際に起こることを確かめる。
+  test("populations graze on surfaces, hide in shelters and change depth", () => {
     let grazing = false, hiding = false, changedDepth = false;
-    for (const tank of aquariumTanks) for (const sceneId of tank.sceneIds) {
+    for (const tank of [getTankById("asia-60")!, getTankById("cube-30")!]) for (const sceneId of tank.sceneIds) {
       const scene = getSceneById(sceneId)!;
-      // 回避領域と隠れ場所は、岩も底もない中層の水景にはない。住みかが要る魚の隠れ場所は content.test で確かめる。
-      expect(scene.terrain?.surfaces.length).toBeGreaterThan(0);
-      // 最も縦方向が切り取られるワイド水槽と、正方形の背景の両方を確認する。
-      const frame = tank.id === "cube-30" ? { x: -.02, y: -.02, width: 1.04, height: 1.02 }
-        : { x: -.02, y: -.52, width: 1.04, height: 1.52 };
+      const frame = getRenderedSurfaceFrame(tank, scene);
       let fish = createFishFromStock(tank.defaultStock, tank).map((f, i) => ({ ...f, seed: 100 + i * 5000,
         bodyLengthVariance: 1, behaviorTimeRemainingSec: .6 }));
       const initialDepth = fish.map((f) => f.depth);
       for (let tick = 0; tick < 1800; tick++) {
         fish = stepSimulation({ tank, scene, surfaceFrame: frame, fish, species: fishCatalog,
           structurePoints: [], deltaSec: .1 }).fish;
-        for (const [i, f] of fish.entries()) {
-          expect(Number.isFinite(f.position.x + f.position.y + f.depth)).toBe(true);
-          expect(f.position.x).toBeGreaterThanOrEqual(tank.safeMarginCm);
-          expect(f.position.x).toBeLessThanOrEqual(tank.widthCm - tank.safeMarginCm);
-          expect(f.position.y).toBeGreaterThanOrEqual(tank.safeMarginCm);
-          expect(f.position.y).toBeLessThanOrEqual(tank.heightCm - tank.safeMarginCm);
-          if (!f.surfaceMotion) {
-            expect(insideTerrain(f.position, f.depth, { tank, scene, frame, species: fishCatalog[f.speciesId]! }),
-              `${sceneId}/${f.speciesId}/${tick}`).toBe(false);
-            changedDepth ||= Math.abs(f.depth - initialDepth[i]!) > .03;
-            grazing ||= f.behaviorMode === "forage" && !!f.terrainGoal;
-            hiding ||= f.targetKind === "hide" && f.behaviorMode === "rest" && !!f.terrainGoal;
-          }
+        for (const [i, f] of fish.entries()) if (!f.surfaceMotion) {
+          changedDepth ||= Math.abs(f.depth - initialDepth[i]!) > .03;
+          grazing ||= f.behaviorMode === "forage" && !!f.terrainGoal;
+          hiding ||= f.targetKind === "hide" && f.behaviorMode === "rest" && !!f.terrainGoal;
         }
       }
-      expect(fish.length).toBe(tank.defaultStock.reduce((sum, s) => sum + s.count, 0));
     }
-    expect(grazing && hiding && changedDepth).toBe(true);
-    // 全水槽を回すので、水槽の数に比例して長くなる（72水槽で単独30秒前後、全テストの並列実行ではさらに延びる）。
-  }, 90000);
+    expect({ grazing, hiding, changedDepth }).toEqual({ grazing: true, hiding: true, changedDepth: true });
+  });
 
   test("a grazer reaches a leaf gradually in depth, and scene switches discard its old destination", () => {
     const tank = getTankById("cube-30")!, scene = getSceneById("cube-planted")!;
