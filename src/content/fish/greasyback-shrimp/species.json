@@ -1,0 +1,140 @@
+{
+  "id": "greasyback-shrimp",
+  "displayName": "ヨシエビ",
+  "realBodyLengthCm": 3.5,
+  "catalog": {
+    "scientificName": "Metapenaeus ensis",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "インド東岸・スリランカから日本、オーストラリアまで、インド・西太平洋に分布するクルマエビの仲間です。幼いうちは河口や浅い内湾で育ち、成長すると沖合の泥や砂泥の底へ移ります。",
+    "temperament": "群れ方や縄張りは分かっていません。潟では植物質を中心に、沖合では雑食で暮らすという報告があります。卵は水中に放たれ、雌が腹に抱えて守ることはありません。",
+    "movement": "細い脚で砂泥の底を歩きます。幼いエビは脚を動かして砂に潜り、全長約15mmの10匹を使った試験では、半数が潜り終えるまでに約5分かかりました。",
+    "habitat": "幼体は河口、潟、沿岸の浅場、泥の干潟などで育ちます。愛知県の人工海浜では、浮泥のたまった柔らかい底に多く見つかりました。本水槽では、川の水と海の水がまじる河口の砂泥底をイメージしています。",
+    "aliases": [
+      "greasyback shrimp",
+      "offshore greasyback shrimp",
+      "シラサエビ",
+      "Penaeus ensis"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Decapoda",
+      "orderJa": "十脚目",
+      "family": "Penaeidae",
+      "familyJa": "クルマエビ科"
+    },
+    "adultSizeCm": 14,
+    "sizeNote": "成体は体長7〜14cmがふつうで（FAO。測り方は示されていません）、全長の最大は雌18.9cm、雄15.4cmとされます。大阪湾の調査では、額角の付け根から測った体長の最大が雌17.5cm、雄14.4cmでした。展示しているのは河口で育つ幼体で、淀川の河口で試験に使われた幼体は体長27〜40mmでした。",
+    "distribution": "インド東岸・スリランカから日本、オーストラリアまでのインド・西太平洋に分布します。日本では、大阪湾で成長と移動が、三河湾で放流した幼体の様子が調べられています。",
+    "water": {
+      "salinity": "brackish"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "IUCN の評価は確認できていません。東アジア、東南アジア、オーストラリア北部で漁業や養殖に使われています。淀川の河口は幼体の育つ場所で、底の水の酸素が大きく減ると影響を受けるおそれがあります。"
+    },
+    "highlights": [
+      "幼いエビは、細い脚を動かして砂や泥に潜ります。",
+      "河口や浅い内湾で育ち、成長すると沖合の泥や砂泥の底へ移ります。",
+      "胸の5対の脚のうち、前の3対の先に小さなはさみがあります。",
+      "幼体の体の表面には毛がなく、成体になるとふつう細かい毛で覆われます。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "crustacean",
+    "headStart": 0.23,
+    "tailBeatHz": 0.6,
+    "bodyWaveStart": 0.85,
+    "tailSweepRad": 0,
+    "verticalFlex": 0,
+    "footAnchor": {
+      "x": 0.46,
+      "y": 0.96
+    }
+  },
+  "visual": {
+    "fallbackColor": "#b29b76"
+  },
+  "sourceBodyBounds": {
+    "x": 35,
+    "y": 103,
+    "width": 1464,
+    "height": 738
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.84,
+    "maxY": 0.93
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.08,
+      "burst": 0.4
+    },
+    "turnRateRadPerSec": 1.3,
+    "restFraction": 0.6,
+    "depthRange": [
+      0.05,
+      0.45
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 1.4,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.3,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 2.5,
+        "durationSec": [
+          6,
+          16
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 2,
+        "durationSec": [
+          10,
+          30
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Chan (1998) FAO Western Central Pacific: Shrimps and Prawns",
+        "url": "https://www.vliz.be/imisdocs/publications/391450.pdf"
+      },
+      {
+        "title": "Miquel (1982) Le genre Metapenaeus: taxonomie, biologie et pêches mondiales",
+        "url": "https://repository.naturalis.nl/document/149010"
+      },
+      {
+        "title": "Ariyama & Sano (2015) Growth, reproduction and ontogenetic migration of the greasyback shrimp in Osaka Bay",
+        "url": "https://www.jstage.jst.go.jp/article/pbr/10/1/10_55/_pdf/-char/en"
+      },
+      {
+        "title": "Yamochi, Ariyama & Sano (1995) Occurrence and Hypoxic Tolerance of the Juvenile Metapenaeus ensis at the Mouth of the Yodo River",
+        "url": "https://www.jstage.jst.go.jp/article/fishsci1994/61/3/61_3_391/_pdf/-char/en"
+      },
+      {
+        "title": "東三河漁協青年部連絡協議会：平成24年度活動報告 ヨシエビの放流事業",
+        "url": "https://www.yutakanaumi.jp/assets/file/pdf/information/activities-report/H24_activities-report.pdf"
+      },
+      {
+        "title": "大阪府立環境農林水産総合研究所：ヨシエビ",
+        "url": "https://www.knsk-osaka.jp/zukan/zukan_database/osakawan/8050b3250f4abcc/7750c18cfcd21db.html"
+      },
+      {
+        "title": "ITIS: Metapenaeus ensis, TSN 95814",
+        "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=95814"
+      }
+    ]
+  }
+}

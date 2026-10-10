@@ -1,0 +1,165 @@
+{
+  "id": "flat-handed-river-prawn",
+  "displayName": "ヒラテテナガエビ",
+  "realBodyLengthCm": 8,
+  "catalog": {
+    "scientificName": "Macrobrachium japonicum",
+    "originRegionId": "east-asia",
+    "originRegionName": "東アジア",
+    "origin": "紀伊半島から琉球列島、小笠原諸島、韓国、台湾の川に分布するテナガエビの仲間です。川で繁殖し、流れ下った幼生は海や汽水で育ち、稚エビになって川をのぼります。",
+    "temperament": "肉食性が強く、魚を捕らえて食べることもあるとされます。雄は大きなはさみを争いに使います。",
+    "movement": "川底の石の上を脚で歩きます。昼は石のすき間や大きな石の下に隠れるとされ、宮古諸島の来間島の湧き水の井戸では、夜に活動する姿が観察されています。",
+    "habitat": "川の淡水域の、礫の多い瀬を主に使います。四万十川では、河口から11〜83km上流までの範囲で見つかっています。本水槽では、丸い石のすき間の多い、琉球や南日本の川の中流をイメージしています。",
+    "aliases": [
+      "flat-handed river prawn",
+      "ヤマトテナガエビ",
+      "Palaemon japonicus",
+      "Palaemon boninensis"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Decapoda",
+      "orderJa": "十脚目",
+      "family": "Palaemonidae",
+      "familyJa": "テナガエビ科"
+    },
+    "adultSizeCm": 9,
+    "sizeNote": "徳之島の施設の解説では全長約92mmとされます。ライデンの博物館にある日本産の標本7点は43〜84mm（測り方は示されていません）で、四万十川で調べられた2,429個体の頭胸甲の長さは3.2〜32.9mmでした。成体の雄のはさみ脚は体より長くなりますが、この長さは体長に含めません。",
+    "distribution": "紀伊半島から琉球列島、小笠原諸島、韓国、台湾に分布します。2025年には新潟県の佐渡の川で採集され、県内で初めての記録として報告されました。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "IUCN の評価は確認できていません。四万十川では、テナガエビ類として漁獲されています。海と川がつながっていることが、生活史に欠かせません。"
+    },
+    "highlights": [
+      "和名は、平たい第2胸脚（はさみ脚）に由来します。成体の雄では、はさみ脚が体より長くなります。",
+      "はさみ脚の掌は細長くやや平たく、指は掌より短く、表面にうろこのような小さな突起が並びます。",
+      "第3腹節と第4腹節の間の暗い横帯が、日本のほかのテナガエビ2種との見分けどころです。",
+      "川で生まれた幼生は海や汽水で育ち、稚エビになって川をのぼります。四万十川では、6〜9月に多くの雌が卵を抱いていました。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "crustacean",
+    "headStart": 0.31,
+    "tailBeatHz": 0.6,
+    "bodyWaveStart": 0.85,
+    "tailSweepRad": 0,
+    "verticalFlex": 0,
+    "footAnchor": {
+      "x": 0.56,
+      "y": 0.96
+    }
+  },
+  "visual": {
+    "fallbackColor": "#8a7452"
+  },
+  "sourceBodyBounds": {
+    "x": 37,
+    "y": 85,
+    "width": 1463,
+    "height": 773
+  },
+  "preferredZone": {
+    "minX": 0.1,
+    "maxX": 0.9,
+    "minY": 0.84,
+    "maxY": 0.93
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.06,
+      "burst": 0.4
+    },
+    "turnRateRadPerSec": 1.1,
+    "restFraction": 0.55,
+    "depthRange": [
+      0.3,
+      0.85
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 3,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.85,
+    "habits": [
+      {
+        "type": "hideByDay",
+        "durationSec": [
+          60,
+          180
+        ]
+      },
+      {
+        "type": "homeShelter",
+        "kind": "crevice",
+        "rangeBodyLengths": 4,
+        "visitChancePerMin": 0.8,
+        "visitDurationSec": [
+          20,
+          90
+        ]
+      },
+      {
+        "type": "grazing",
+        "chancePerMin": 2,
+        "durationSec": [
+          6,
+          16
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.5,
+        "durationSec": [
+          8,
+          20
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Holthuis (1950) Siboga Palaemonidae revision: Macrobrachium japonicum, pp.200–203",
+        "url": "https://decapoda.nhm.org/pdfs/17152/17152-002.pdf"
+      },
+      {
+        "title": "Yu & Miyake (1972) Taiwan Macrobrachium: M. japonicum, pp.47–49",
+        "url": "https://decapoda.nhm.org/pdfs/26832/26832.pdf"
+      },
+      {
+        "title": "藤田 (2018) 宮古諸島の標本に基づく甲殻類記録（宮古島市の博物館紀要22号）",
+        "url": "https://www.city.miyakojima.lg.jp/soshiki/kyouiku/syougaigakusyu/hakubutsukan/files/kiyou22fujita.pdf"
+      },
+      {
+        "title": "平賀 (2019) 四万十川の Macrobrachium 3種の流程分布と体サイズ",
+        "url": "https://www.jstage.jst.go.jp/article/suisan/advpub/0/advpub_18-00056/_pdf/-char/ja"
+      },
+      {
+        "title": "浜野龍夫：甲殻類に配慮した川づくりに関する研究",
+        "url": "https://www.kasen.or.jp/Portals/0/pdf_jyosei/jyosei02c_140.pdf"
+      },
+      {
+        "title": "徳之島世界遺産センター：Macrobrachium japonicum",
+        "url": "https://tokunoshima-whcc.com/en/discover-world-heritage-wildlife/animals/b1-a-37/"
+      },
+      {
+        "title": "新江ノ島水族館 (2026-07-18) 大内：地味に新しい",
+        "url": "https://www.enosui.com/diaryentry.php?eid=07610"
+      },
+      {
+        "title": "清水・石澤・石川 (2026) 新潟県で初めて採集されたヒラテテナガエビの記録（マリンピア日本海 公開抄録）",
+        "url": "https://www.marinepia.or.jp/study/proceeding/entry-12334.html"
+      },
+      {
+        "title": "和田ほか (2001) 淡水産テナガエビ科4種の色素胞による第1・第2ゾエアの種判別",
+        "url": "https://ypir.lib.yamaguchi-u.ac.jp/fu/429/files/138511"
+      }
+    ]
+  }
+}

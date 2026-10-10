@@ -1,0 +1,160 @@
+{
+  "id": "crane-river-prawn",
+  "displayName": "ミナミテナガエビ",
+  "realBodyLengthCm": 9,
+  "catalog": {
+    "scientificName": "Macrobrachium formosense",
+    "originRegionId": "east-asia",
+    "originRegionName": "東アジア",
+    "origin": "本州中部から琉球列島・小笠原諸島、台湾、中国南東部の川に分布するテナガエビの仲間です。川で育って繁殖し、幼生は河口や沿岸の塩分のある水で育ってから、稚エビになって川をのぼります。",
+    "temperament": "水草の間や石の下に隠れて暮らします。群れ方や縄張りの広さは分かっていません。成体の雄は、太く長い第2胸脚（はさみ脚）を左右にもちます。",
+    "movement": "川底の石や砂の上を脚で歩きます。魚のように尾を振って泳ぎ続けることはなく、石の下や水草の間に身を寄せます。",
+    "habitat": "浅い砂地の川や小川の、比較的流れの緩やかな場所にすみ、淡水から汽水の水域で記録されています。本水槽では、丸い石のすき間の多い、琉球や南日本の川の中流をイメージしています。",
+    "aliases": [
+      "crane river prawn",
+      "Palaemon riukiuensis",
+      "Palaemon similis"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Decapoda",
+      "orderJa": "十脚目",
+      "family": "Palaemonidae",
+      "familyJa": "テナガエビ科"
+    },
+    "adultSizeCm": 10,
+    "sizeNote": "図鑑では体長10cm内外とされ、原記載も約4インチ（約10cm）としています。中国・広東省で調べられた雄の標本は全長3.9〜9.8cm（額角の先から尾節の後端まで）でした。長いはさみ脚は、この長さに含めません。",
+    "distribution": "本州中部から琉球列島・小笠原諸島、台湾の川に分布し、中国南東部でも記録されています。2025年には新潟県上越市の川で1個体が採集され、県内で初めての記録として報告されました。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "rarelyDisplayed",
+    "conservation": {
+      "note": "IUCN の評価本文は確認できていません（分類データベースの索引には、軽度懸念の評価へのリンクがあります）。幼生が川を下って塩分のある水域へ届くことが、生活史に欠かせません。"
+    },
+    "highlights": [
+      "成体の雄は第2胸脚（はさみ脚）が太く長くなり、左右がほぼ同じ大きさと形です。",
+      "川で生まれた幼生は河口や沿岸の塩分のある水で育ち、稚エビになって川をのぼります。",
+      "雌は小さな卵をたくさん腹の脚に抱えます。九州南部の八房川では、5〜9月に卵を抱いた雌が見られました。",
+      "水草の間や石の下に隠れ、比較的流れの緩やかな場所を使います。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "crustacean",
+    "headStart": 0.35,
+    "tailBeatHz": 0.6,
+    "bodyWaveStart": 0.85,
+    "tailSweepRad": 0,
+    "verticalFlex": 0,
+    "footAnchor": {
+      "x": 0.6,
+      "y": 0.96
+    }
+  },
+  "visual": {
+    "fallbackColor": "#765e43"
+  },
+  "sourceBodyBounds": {
+    "x": 32,
+    "y": 85,
+    "width": 1465,
+    "height": 778
+  },
+  "preferredZone": {
+    "minX": 0.1,
+    "maxX": 0.9,
+    "minY": 0.84,
+    "maxY": 0.93
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.06,
+      "burst": 0.4
+    },
+    "turnRateRadPerSec": 1.1,
+    "restFraction": 0.55,
+    "depthRange": [
+      0.3,
+      0.85
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.8,
+    "habits": [
+      {
+        "type": "hideByDay",
+        "durationSec": [
+          60,
+          180
+        ]
+      },
+      {
+        "type": "homeShelter",
+        "kind": "crevice",
+        "rangeBodyLengths": 4,
+        "visitChancePerMin": 0.8,
+        "visitDurationSec": [
+          20,
+          90
+        ]
+      },
+      {
+        "type": "grazing",
+        "chancePerMin": 2.5,
+        "durationSec": [
+          6,
+          16
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.5,
+        "durationSec": [
+          8,
+          20
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Guo & He (2008) Macrobrachium from Guangdong Province",
+        "url": "https://decapoda.nhm.org/pdfs/30468/30468.pdf"
+      },
+      {
+        "title": "浦添市 環境マップ図鑑：ミナミテナガエビ",
+        "url": "https://www.city.urasoe.lg.jp/sites/urasoe-envmap/zukan/koukakurui/minamitenagaebi.htm"
+      },
+      {
+        "title": "大富潤・中林直行 (1999) 九州南部八房川におけるミナミテナガエビの成熟と産卵",
+        "url": "https://www.jstage.jst.go.jp/article/suisan1932/65/3/65_3_473/_pdf"
+      },
+      {
+        "title": "Hiraga et al. (2021) Downstream drifting of Macrobrachium larvae in the Shimanto River",
+        "url": "https://www.jstage.jst.go.jp/article/pbr/16/4/16_P160409/_pdf"
+      },
+      {
+        "title": "清水哉多 (2026) 新潟県で初めて採集されたミナミテナガエビの記録（マリンピア日本海 公開抄録）",
+        "url": "https://www.marinepia.or.jp/study/proceeding/entry-12335.html"
+      },
+      {
+        "title": "Spence Bate (1868) On a new genus, with four new species, of freshwater prawns",
+        "url": "https://darwin-online.org.uk/converted/pdf/1868_Bate_Prawns_A6784.pdf"
+      },
+      {
+        "title": "Huang & Mao (2021) Hillstream Decapod Crustaceans of Shenzhen",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9168895/"
+      },
+      {
+        "title": "ITIS: Macrobrachium formosense, TSN 96275",
+        "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=96275"
+      }
+    ]
+  }
+}

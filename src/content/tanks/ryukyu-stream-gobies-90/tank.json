@@ -1,0 +1,27 @@
+{
+  "id": "ryukyu-stream-gobies-90",
+  "order": 185,
+  "displayName": "滝をのぼるハゼ水槽",
+  "exhibitName": "Waterfall-climbing Gobies",
+  "category": "琉球列島の渓流",
+  "description": "琉球列島の渓流の、小さな滝の下の淵を再現した90cm水槽。ボウズハゼは藻の付いた岩に寄って藻をはみ、砂礫の底に降りて休みます。川で生まれて海で育ち、川へ戻ると腹びれの吸盤と口を交互に使って滝や急流の岩を登る魚です。",
+  "widthCm": 90,
+  "heightCm": 50,
+  "depthCm": 45,
+  "maxTotalFish": 4,
+  "sceneIds": [
+    "ryukyu-stream-gobies-90"
+  ],
+  "species": [
+    {
+      "speciesId": "japanese-rock-climbing-goby",
+      "maxCount": 4
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "japanese-rock-climbing-goby",
+      "count": 3
+    }
+  ]
+}

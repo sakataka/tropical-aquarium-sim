@@ -18,6 +18,7 @@
 | `catalog/dots-additions.json` | dots | dots が自分で足す候補 |
 | `consumer/` | Claude Code | dots への依頼文と参照画像（[水景・展示室・館内図の制作依頼](https://github.com/sakataka/aquarium-assets/blob/main/consumer/environment-requests-ja.md)、[今後の生き物の増やし方](https://github.com/sakataka/aquarium-assets/blob/main/consumer/expansion-guidelines-ja.md)） |
 | `queue/requests/` | Claude Code（`dots-` で始まるものは dots） | 実行する依頼。修正は `revisionTarget` 付きの新しい依頼ファイルで出す |
+| `consumer/app-originals/` | Claude Code | アプリ側で作った原画。保管庫ができる前からいた35種（`fish/`）、Codex の画像生成で作った館内図の断面図（`museum/`）と、展示室の絵・水景（`environment/<entityId>/`。下の「展示室を開ける流れ」） |
 | `adoptions/<speciesId>.json` | Claude Code | 採否（`accepted`、修正を頼んで仮に使う `accepted-provisional`）と、採用した画像の path と sha256 |
 | `queue/state`・`queue/current`・`queue/results`・`drafts/`・`species/`・`vault-index.json` | dots | 状態、草案、種ごとの最新の草案 |
 
@@ -57,7 +58,7 @@ dots からの配送の受領は次のとおり。保存完了は、commit の�
 
 1. 草案を確かめる: 画像は自動検査（外接矩形、見切れ、離れたもや）とコンタクトシートの目視で判断し、`adoptions/` に記録する。直したいものは修正依頼にまとめる。
 2. 画像を取り込む: `AQUARIUM_ASSET_VAULT=~/Documents/aquarium-assets uv run scripts/install-vault-species.py --all-adopted`（または species-id を並べる）。採用した原画から `body.webp` と `sourceBodyBounds` を作り、`content-drafts/fish/<id>/` に置く。
-3. 下書きを書く: `content-drafts/fish/<id>/species.json` に、調査（`species/<id>/meta.json` が指す `research.json`）から生態・図鑑の項目を出典つきで書く。`src/core/drafts.test.ts` が形を検証する。
+3. 下書きを書く: `content-drafts/fish/<id>/species.json` に、調査（`species/<id>/meta.json` が指す `research.json`。Drive 経由で届いた種は `species/` がないので、`drafts/<id>/<variant>/research/request-rN/attempt-N/research.json` を直接読む）から生態・図鑑の項目を出典つきで書く。`src/core/drafts.test.ts` が形を検証する。
 4. 展示室を開けるときに `content-drafts/fish/<id>/` を `src/content/fish/<id>/` へ移し、水槽の `tank.json` に足す。アプリが読むのは `src/content/` だけ。
 
 修正版の画像が届いたら、`adoptions/` を書き換えて手順2をやり直す（`species.json` があれば `sourceBodyBounds` だけを書き換える）。
@@ -66,7 +67,15 @@ dots からの配送の受領は次のとおり。保存完了は、commit の�
 
 展示室の絵・水景・館内図は、保管庫の `adoptions/`（hall-*・scene-*・museum-section）に採否を記録してから取り込む。水槽の並びと大きさは展示計画（`catalog/exhibit-plan.json`）が正本。計画中の展示室の枠は、館内図にはすでに「準備中」で出ている（`src/content/museum/buildings/<建物>/building.json` の `halls`）。
 
-0. 計画を確かめる: `bun run plan:check` で、開ける展示室の水槽と、そこに置く種（「水槽を待つ」と出ている種）を見る。展示室や水槽を計画から変えるときは、先に展示計画を直し、`building.json` の枠も同じ並びにする。
+**Codex の画像生成で絵を作るとき**（dots が止まっている間。2026年10月10日に「琉球の川と河口」で通した）:
+
+- 絵の説明は、dots の草案の `prompt.txt`（共通の条件）に、展示計画の `sceneEn`（水景）や、階の `interiorEn` とガラスの並び・縦横比（展示室）を足して書く。同じ階の既存の絵2枚を参照画像として渡す。`codex exec` は標準入力を閉じて流す（開いたままだと入力を待って止まる）。
+- 展示室の絵は、パネルの大きさの目安（画素）を説明に書く。書かないと、大型の水槽が細長い帯になりやすい。
+- できた絵は `AQUARIUM_ASSET_VAULT=... uv run scripts/place-codex-environment.py <hall-…|scene-…> --image <PNG> --prompt <txt> --ref <参照画像の保管庫のパス>...` で、保管庫の `consumer/app-originals/environment/<entityId>/`（原画、説明、作った記録）に置き、`adoptions/` に採用を記録する。展示室の絵は、ガラスの緑を #00FF00 にそろえて矩形を測り（dots と同じ形の `green-normalization-qa.json`）、測った縦横比を展示計画の `glassAspect` と水槽の高さに書く。
+- あとの取り込み（下の2と3）は、dots の絵と同じスクリプトで通る。
+- 水景を作るときに、地形の下書きに使う案内の絵（遮蔽にする物体の塗り分け版、隠れ場所の印の版）も一緒に作る（[地形の下書き](terrain-drafting.md#案内の絵を使う2026年10月10日)）。
+
+0. 計画を確かめる: `bun run plan:check` で、開ける展示室の水槽と、そこに置く種（「水槽を待つ」と出ている種。「画像を待つ」は、画像が保管庫にまだ届いていない種）を見る。展示室や水槽を計画から変えるときは、先に展示計画を直し、`building.json` の枠も同じ並びにする。
 
 1. 水槽の雛形を作る: 開ける水槽ごとに `src/content/tanks/<tank-id>/tank.json` を置き、入る魚を `content-drafts/fish/` から `src/content/fish/` へ移す。まだ開けない水槽（魚以外の生き物を待つものなど）は tank.json を置かない。
 2. 水景を取り込む: `AQUARIUM_ASSET_VAULT=~/Documents/aquarium-assets uv run scripts/install-vault-scene.py <tank-id>...`。水景の id は水槽の id と同じ。dots は中央で切り取る前提で構図を作るので、ガラスが画像より横長な水槽には `framing.plateBottom` を自動で入れる。続けて `uv run scripts/build-scene-thumbs.py`。

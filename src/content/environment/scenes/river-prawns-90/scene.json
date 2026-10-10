@@ -1,0 +1,11 @@
+{
+  "id": "river-prawns-90",
+  "order": 178,
+  "displayName": "丸石と沈み枝の川底",
+  "description": "苔のついた丸い石が両岸に重なり、左の岸から木の根と沈んだ枝が砂礫の川底へ伸びる、南の川の中流。石の下には暗いすき間があり、緑がかった澄んだ水に陽ざしが筋になって差し込みます。",
+  "defaultLighting": "evening",
+  "waterColor": "#1f737a",
+  "framing": {
+    "plateBottom": 0.897
+  }
+}

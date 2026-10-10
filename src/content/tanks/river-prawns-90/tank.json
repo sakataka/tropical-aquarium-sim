@@ -1,0 +1,35 @@
+{
+  "id": "river-prawns-90",
+  "order": 186,
+  "displayName": "テナガエビの川水槽",
+  "exhibitName": "River Prawns",
+  "category": "南日本と琉球列島の川",
+  "description": "丸い石と砂礫の川底に枝が沈む、南日本から琉球列島の川の中流を再現した90cm水槽。流れの緩やかな場所を使うミナミテナガエビと、流れの速い瀬にすむヒラテテナガエビが、砂礫や石、沈んだ枝の上を歩き、立ち止まっては足もとをつつきます。どちらも川で生まれた幼生が海や河口の塩分のある水で育ち、稚エビになって川をのぼるテナガエビの仲間で、はさみ脚の形を見比べられます。",
+  "widthCm": 90,
+  "heightCm": 40,
+  "depthCm": 45,
+  "maxTotalFish": 6,
+  "sceneIds": [
+    "river-prawns-90"
+  ],
+  "species": [
+    {
+      "speciesId": "crane-river-prawn",
+      "maxCount": 3
+    },
+    {
+      "speciesId": "flat-handed-river-prawn",
+      "maxCount": 3
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "crane-river-prawn",
+      "count": 2
+    },
+    {
+      "speciesId": "flat-handed-river-prawn",
+      "count": 2
+    }
+  ]
+}

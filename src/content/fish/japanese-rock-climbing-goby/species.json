@@ -1,0 +1,168 @@
+{
+  "id": "japanese-rock-climbing-goby",
+  "displayName": "ボウズハゼ",
+  "realBodyLengthCm": 12,
+  "catalog": {
+    "scientificName": "Sicyopterus japonicus",
+    "originRegionId": "east-asia",
+    "originRegionName": "東アジア",
+    "origin": "日本の太平洋側を中心とする川と、琉球列島、台湾に分布するハゼです。川で生まれた仔魚は海へ下り、育ってから川へ戻ります。",
+    "temperament": "石に生えた藻を削り取って食べます。藻をはんでいる間は、近づいた同じ種を追い払うとされ、アユとも石の上の餌場を取り合います。",
+    "movement": "腹びれの吸盤と口で岩に吸い付き、流れの速い瀬でも石の上にとどまります。口と吸盤を交互に前へ進めて、滝や急流の岩を登ります。",
+    "habitat": "川の中流から上流の、流れが速く石や岩の多い川底。本水槽では、小さな滝の下の、藻の付いた岩と丸い石のある淵をイメージしています。",
+    "aliases": [
+      "Monk goby",
+      "Japanese rock-climbing goby",
+      "Sicydium japonicum",
+      "イーブ",
+      "ボウズゴリ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Gobiiformes",
+      "orderJa": "ハゼ目",
+      "family": "Oxudercidae",
+      "familyJa": "オクスデルクス科"
+    },
+    "adultSizeCm": 12,
+    "sizeNote": "図鑑では全長12cmとされます（平均か最大かは示されていません）。台湾の資料は体長15cm（測り方は不明）とし、東京大学の保存標本には標準体長13.3cmのものがあります。科は、館のほかのハゼとそろえてオクスデルクス科としています（ハゼ科のボウズハゼ亜科とする資料もあります）。",
+    "distribution": "日本の太平洋側を中心とする川、琉球列島、台湾に分布します。北の記録として、2019年に宮城県の3つの川で成魚が、2016年に岩手県の気仙川の河口で稚魚が採集されています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "IUCN と環境省の評価は確認できていません。神奈川県では絶滅危惧II類とされています。"
+    },
+    "highlights": [
+      "左右の腹びれが1つの吸盤になっていて、口と交互に使って滝や急流の岩を登ります。",
+      "丸い吻の下に開く口と厚い上唇で、石に生えた藻を削り取って食べます。",
+      "川で生まれた仔魚は海へ下ります。和歌山県の太田川の調査では、平均217日ほど海で育ってから川へ戻っていました。",
+      "体側に約10本の暗い横帯があり、体の色が暗くなると目立たなくなります。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.8,
+    "mouthAnchor": {
+      "x": 0.05,
+      "y": 0.74
+    }
+  },
+  "visual": {
+    "fallbackColor": "#887659"
+  },
+  "sourceBodyBounds": {
+    "x": 45,
+    "y": 255,
+    "width": 1452,
+    "height": 446
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.5,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.22,
+      "burst": 2.2
+    },
+    "turnRateRadPerSec": 2.8,
+    "restFraction": 0.55,
+    "depthRange": [
+      0.15,
+      0.8
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.85,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 3,
+        "durationSec": [
+          5,
+          16
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 2.5,
+        "durationSec": [
+          8,
+          25
+        ]
+      },
+      {
+        "type": "follow",
+        "chancePerMin": 0.4,
+        "durationSec": [
+          1,
+          2.5
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "国立科学博物館 日本の淡水魚類データベース：ボウズハゼ",
+        "url": "https://www.kahaku.go.jp/research/db/zoology/uodas_freshdb/area/gobiidae/gobiinae/104.html"
+      },
+      {
+        "title": "山口安男・荒山和則（2011）いばらき魚顔帳：ボウズハゼ",
+        "url": "https://www.pref.ibaraki.jp/nourinsuisan/naisuishi/gyogancho/documents/070_bouzuhaze.pdf"
+      },
+      {
+        "title": "栃木県なかがわ水遊園：ボウズハゼ",
+        "url": "https://tnap.jp/creature/detail.php?id=168"
+      },
+      {
+        "title": "沖縄美ら海水族館 美ら海生き物図鑑：ボウズハゼ",
+        "url": "https://churaumi.okinawa/sp/fishbook/00000465/"
+      },
+      {
+        "title": "神奈川県 水産技術センター内水面試験場：淡水魚類図鑑 ボウズハゼ",
+        "url": "https://www.pref.kanagawa.jp/docs/a4y/images/bouzuhaze.html"
+      },
+      {
+        "title": "臺灣魚類資料庫：Sicyopterus japonicus (Tanaka, 1909)",
+        "url": "https://fishdb.sinica.edu.tw/taxon/381850-fishdb"
+      },
+      {
+        "title": "Fukui（1979）On the Rock-climbing Behavior of the Goby, Sicyopterus japonicus",
+        "url": "https://www.jstage.jst.go.jp/article/jji1950/26/1/26_1_84/_article/-char/en"
+      },
+      {
+        "title": "Maie, Schoenfuss & Blob（2012）Performance and scaling of a novel locomotor structure: adhesive capacity of climbing gobiid fishes",
+        "url": "https://journals.biologists.com/jeb/article/215/22/3925/11125/Performance-and-scaling-of-a-novel-locomotor"
+      },
+      {
+        "title": "Christy & Maie（2019）Adhesive force and endurance during waterfall climbing in Sicyopterus japonicus",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/30979386/"
+      },
+      {
+        "title": "旗 薫（2020）宮城県内の河川で採集された県内初記録となる暖水性魚類. 伊豆沼・内沼研究報告14:69–80",
+        "url": "https://www.jstage.jst.go.jp/article/izu/14/0/14_69/_pdf"
+      },
+      {
+        "title": "飯田 碧（2010）和歌山県太田川におけるボウズハゼの生活史に関する研究：東京大学学位論文要旨",
+        "url": "https://gakui.dl.itc.u-tokyo.ac.jp/cgi-bin/gazo.cgi?no=125827"
+      },
+      {
+        "title": "Oyama et al. Report on specimens of the subfamily Sicydiinae deposited in The University Museum, The University of Tokyo, pp.119–132",
+        "url": "https://umdb.um.u-tokyo.ac.jp/DImages/Doubutsu/IFish/Material_Reports_PDF/pdf139/pdf139_119-132.pdf"
+      },
+      {
+        "title": "WEB魚図鑑：ボウズハゼ",
+        "url": "https://zukan.com/fish/internal853"
+      }
+    ]
+  }
+}

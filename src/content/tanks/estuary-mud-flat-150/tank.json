@@ -1,0 +1,27 @@
+{
+  "id": "estuary-mud-flat-150",
+  "order": 187,
+  "displayName": "河口の砂泥底水槽",
+  "exhibitName": "Estuary Sand & Mud",
+  "category": "南日本の河口",
+  "description": "川の水と海の水がまじる河口の、やわらかい砂と泥の底を再現した150cm水槽。ヨシエビは幼いうちを河口や浅い内湾で過ごし、成長すると沖合の泥や砂泥の底へ移るエビで、ここでは幼体が細い脚で砂泥の底をゆっくり歩きます。体長3.5cmほどと小さいので、砂の上をよく探してみてください。",
+  "widthCm": 150,
+  "heightCm": 62,
+  "depthCm": 60,
+  "maxTotalFish": 10,
+  "sceneIds": [
+    "estuary-mud-flat-150"
+  ],
+  "species": [
+    {
+      "speciesId": "greasyback-shrimp",
+      "maxCount": 10
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "greasyback-shrimp",
+      "count": 8
+    }
+  ]
+}
