@@ -96,6 +96,16 @@ def build_inventory(vault: Path, head: str) -> dict:
             "requestRevision": record.get("requestRevision"), "outputRevision": record.get("outputRevision"),
             "isCurrent": record.get("isCurrent"), "savedAt": record.get("savedAt"), "files": files,
         })
+    # Drive 経由で受領した配送。成果の記録（queue/results）は dots が書くので、Drive 経由の分はここで分かるようにする。
+    deliveries = []
+    for receipt_file in sorted((vault / "consumer/deliveries").glob("*.json")):
+        receipt = json.loads(receipt_file.read_text())
+        delivered = [*receipt.get("placed", []), *receipt.get("alreadyInVault", [])]
+        deliveries.append({
+            "deliveryId": receipt["deliveryId"], "receivedAt": receipt.get("receivedAt"), "entities": receipt.get("entities", []),
+            "files": [{"path": item["path"], "sha256": item["sha256"],
+                       "inVault": item["path"] in tracked and sha256_file(vault / item["path"]) == item["sha256"]} for item in delivered],
+        })
     references = [{"path": path, "size": (vault / path).stat().st_size, "sha256": sha256_file(vault / path)}
                   for path in sorted(tracked) if path.startswith(("styles/", "references/"))]
     return {
@@ -104,8 +114,9 @@ def build_inventory(vault: Path, head: str) -> dict:
         "vaultCommit": head,
         "jobCount": len(jobs),
         "entityCount": len({job["entityId"] for job in jobs}),
-        "missingOrChanged": [file["path"] for job in jobs for file in job["files"] if not file["inVault"]],
+        "missingOrChanged": [file["path"] for group in (jobs, deliveries) for item in group for file in item["files"] if not file["inVault"]],
         "jobs": jobs,
+        "deliveries": deliveries,
         "styleAndReferenceFiles": references,
     }
 
