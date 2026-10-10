@@ -1,5 +1,6 @@
 import {
   lazy,
+  startTransition,
   Suspense,
   useCallback,
   useEffect,
@@ -251,8 +252,12 @@ export default function App() {
   }, [phase]);
 
   const enterTank = useCallback((tankId: string) => {
-    setState((current) => ({ ...current, activeTankId: tankId }));
-    setPhase({ kind: "toTank", tankReady: false });
+    // 水槽の描画部品を初めて読むときも、寄り終えた展示室を映したまま、読めたらすぐ水槽を重ねる
+    // （トランジションにしないと、React が待つ表示を挟むぶん、初回だけ 0.3 秒ほど重ねるのが遅れる）。
+    startTransition(() => {
+      setState((current) => ({ ...current, activeTankId: tankId }));
+      setPhase({ kind: "toTank", tankReady: false });
+    });
   }, []);
   const handleRoomReady = useCallback(() => setPhase((current) =>
     current.kind === "toRoom" ? { ...current, roomReady: true } : current
@@ -383,7 +388,11 @@ export default function App() {
         />
       ) : null}
       {phase.kind !== "map" && !hallReady ? <HallLoading /> : null}
-      <Suspense fallback={<HallLoading />}>
+      {/* 遅れて読む画面（展示室・水槽・図鑑）は、それぞれ自分の Suspense で待つ。ひとつにまとめると、
+          ある画面の描画部品を初めて読む間、すでに映っている画面まで React に隠される（展示室から初めて
+          水槽へ寄り終えた瞬間に暗転し、戻った展示室が灯る演出をやり直して明るく光る）。
+          前の画面を重ねて残している間は、待つ表示を出さない。 */}
+      <Suspense fallback={showTank ? null : <HallLoading />}>
       {showRoom && hallReady ? (
         <FishRoom
           active={phase.kind === "room" || phase.kind === "toRoom"}
@@ -396,6 +405,7 @@ export default function App() {
           tanks={state.tanks}
         />
       ) : null}
+      </Suspense>
       {/* 部屋の後ろに置き、寄っている間は .room-scroll.zooming から隠す。 */}
       {phase.kind === "room" ? (
         <>
@@ -405,6 +415,7 @@ export default function App() {
           <SoundToggle className="room-sound" enabled={state.preferences.soundEnabled} onToggle={toggleSound} />
         </>
       ) : null}
+      <Suspense fallback={showRoom ? null : <HallLoading />}>
       {showTank && tank && customization ? (
         <TankScreen
           active={phase.kind !== "toRoom"}
@@ -437,6 +448,9 @@ export default function App() {
           tank={tank}
         />
       ) : null}
+      </Suspense>
+      {/* 図鑑は館内図か水槽の上に開くので、読む間は下の画面をそのまま見せる。 */}
+      <Suspense fallback={null}>
       {zukan ? (
         <Zukan
           onClose={closeZukan}
