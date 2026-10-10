@@ -42,8 +42,9 @@ dots に新しい種を頼むときは、(1) `catalog/species-backlog.json` に�
 
 dots からの配送の受領は次のとおり。保存完了は、commit のハッシュと、置き直した写しで dots に伝わる。
 
-- Drive のフォルダは、この Mac では Google Drive のデスクトップアプリでローカルのフォルダとして見える: `~/Library/CloudStorage/GoogleDrive-sakataka@gmail.com/マイドライブ/aquarium-dot-delivery/`。読むだけで、書き換えない。
+- Drive のフォルダは、この Mac では Google Drive のデスクトップアプリでローカルのフォルダとして見える: `~/Library/CloudStorage/GoogleDrive-sakataka@gmail.com/マイドライブ/aquarium-dot-delivery/`。読むだけで、書き換えない。アプリが止まっていると、ファイルの一覧は見えても中身が「Operation timed out」で読めない。`pgrep -lf "Google Drive"` で確かめ、止まっていたら `open -a "Google Drive"` で起動して20秒ほど待つ。
 - 1回の配送は、ZIP 1個（`aquarium-delivery-<配送ID>.zip`）と、外部の小さな JSON 1個（`aquarium-delivery-<配送ID>.delivery.json`）。外部の JSON に配送ID・ZIP のサイズと SHA-256・依存する配送（`dependsOn`）・前の配送（`previousDeliveryId`。追跡用）があり、ZIP の直下の `manifest.json` に、各ファイルの保管庫でのパス・サイズ・SHA-256・素材ID・jobId・revision・種類（`image`・`research`・`provenance`・`qa`）がある。
+- 作業リスト（`consumer/work-queue/`）の種は、dots が speciesId（学名由来）・画像の説明を決めて作る。カタログの項目は配送に入らないので、採用するときに、画像の `generation.json` の `normalizedJob`（subjectEn・framingEn）と `research.json`（和名・英名・別名・飼育区分）から `catalog/dots-additions.json` へ写す（2026年10月10日。dots には `catalog-entry.json` は要らないと伝えた）。
 - 配送に入るのは画像・調査・出典・QA だけ。`queue/state` などのジョブ状態は受け取らない（GitHub 側で拒否された状態の更新を、こちらで代わりに書かない）。
 
 手順:
@@ -71,6 +72,7 @@ dots からの配送の受領は次のとおり。保存完了は、commit の�
 
 - 絵の説明は、dots の草案の `prompt.txt`（共通の条件）に、展示計画の `sceneEn`（水景）や、階の `interiorEn` とガラスの並び・縦横比（展示室）を足して書く。同じ階の既存の絵2枚を参照画像として渡す。`codex exec` は標準入力を閉じて流す（開いたままだと入力を待って止まる）。
 - 展示室の絵は、パネルの大きさの目安（画素）を説明に書く。書かないと、大型の水槽が細長い帯になりやすい。
+- 幅3m 以上の大きな水槽の水景は、絵の幅が実際に何 m にあたるかと、物の大きさ（落ち葉は絵の幅の1.5%以下、石は 0.5〜1m など）を説明に書く。書かないと、落ち葉や礫の大きい接写になり、大きな魚が小さく見える（「北の川とサケの遡上」のサケの水景で描き直した）。
 - できた絵は `AQUARIUM_ASSET_VAULT=... uv run scripts/place-codex-environment.py <hall-…|scene-…> --image <PNG> --prompt <txt> --ref <参照画像の保管庫のパス>...` で、保管庫の `consumer/app-originals/environment/<entityId>/`（原画、説明、作った記録）に置き、`adoptions/` に採用を記録する。展示室の絵は、ガラスの緑を #00FF00 にそろえて矩形を測り（dots と同じ形の `green-normalization-qa.json`）、測った縦横比を展示計画の `glassAspect` と水槽の高さに書く。
 - あとの取り込み（下の2と3）は、dots の絵と同じスクリプトで通る。
 - 水景を作るときに、地形の下書きに使う案内の絵（遮蔽にする物体の塗り分け版、隠れ場所の印の版）も一緒に作る（[地形の下書き](terrain-drafting.md#案内の絵を使う2026年10月10日)）。
@@ -80,7 +82,7 @@ dots からの配送の受領は次のとおり。保存完了は、commit の�
 1. 水槽の雛形を作る: 開ける水槽ごとに `src/content/tanks/<tank-id>/tank.json` を置き、入る魚を `content-drafts/fish/` から `src/content/fish/` へ移す。まだ開けない水槽（魚以外の生き物を待つものなど）は tank.json を置かない。
 2. 水景を取り込む: `AQUARIUM_ASSET_VAULT=~/Documents/aquarium-assets uv run scripts/install-vault-scene.py <tank-id>...`。水景の id は水槽の id と同じ。dots は中央で切り取る前提で構図を作るので、ガラスが画像より横長な水槽には `framing.plateBottom` を自動で入れる。続けて `uv run scripts/build-scene-thumbs.py`。
 3. 展示室を作る: `AQUARIUM_ASSET_VAULT=... uv run scripts/install-vault-hall.py <hall-id>...`。dots が測った緑のガラスの矩形から `room/<hall-id>.json` を書き、絵の緑を塗る。tank.json のない水槽のガラスには、その水槽の水景を暗く焼き込んで準備中として見せる。続けて `uv run scripts/build-room-thumbs.py`。
-4. 中身を作る: 水槽ごとに `terrain.json`（面・遮蔽・回避・隠れ場所）を絵に合わせて書き、`scene.json` の名前・説明・水の色と、`tank.json` の名前・説明・匹数を決める。見える範囲を切り出した絵に地形を重ねた確認画像で合わせる。
+4. 中身を作る: 水槽ごとに `terrain.json`（面・遮蔽・回避・隠れ場所）を絵に合わせて書き（下書きの道具 `draft-terrain.py` は、3で展示室を取り込んでから流す。先に流すと、ガラスの縦横比が分からず、見える範囲を外した枠で下書きが出る）、`scene.json` の名前・説明・水の色と、`tank.json` の名前・説明・匹数を決める。見える範囲を切り出した絵に地形を重ねた確認画像で合わせる。
 5. `building.json` の枠の id と展示室の id が同じなら、館内図で開いた展示室として出る（枠の `displayName` は消してよい）。`bun run test`・`bun run build`・`bun run plan:check`・`bun run verify:webview` で確かめる。
 
 ## 建物を足す流れ
