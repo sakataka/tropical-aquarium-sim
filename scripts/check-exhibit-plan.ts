@@ -16,7 +16,9 @@ import { BUILDINGS, FLOORS } from "./museum-content";
 
 type PlanTank = {
   id: string; displayName: string; phase: number;
-  species: string[]; futureSpecies?: string[]; candidates?: { nameJa: string; scientificName?: string; needs?: string }[];
+  species: string[]; futureSpecies?: string[];
+  /** 入れたい種の手がかり。needs はまだ描けない体のつくり、varietyOf は改良品種の元の種（種の数には数えない）。 */
+  candidates?: { nameJa: string; scientificName?: string; needs?: string; varietyOf?: string }[];
 };
 type PlanHall = { id: string; displayName: string; tanks: PlanTank[] };
 type PlanFloor = { id: string; buildingId?: string; displayName: string; halls: PlanHall[] };
@@ -132,7 +134,11 @@ const capacity = planBuildings.map((building) => {
   const halls = floors.flatMap((floor) => floor.halls);
   const all = halls.flatMap((hall) => hall.tanks);
   const species = new Set(all.flatMap((tank) => tank.species));
-  const candidates = new Set(all.flatMap((tank) => (tank.candidates ?? []).map((item) => item.scientificName ?? item.nameJa)));
+  // 改良品種は同じ種の姿の違いなので、種の手がかりには数えない。
+  const candidates = new Set(all.flatMap((tank) => (tank.candidates ?? []).filter((item) => !item.varietyOf)
+    .map((item) => item.scientificName ?? item.nameJa)));
+  const waitingBodyPlan = new Set(all.flatMap((tank) => (tank.candidates ?? []).filter((item) => item.needs && !item.varietyOf)
+    .map((item) => item.scientificName ?? item.nameJa)));
   return {
     id: building.id,
     displayName: building.displayName,
@@ -145,6 +151,7 @@ const capacity = planBuildings.map((building) => {
     speciesInApp: [...species].filter((id) => appSpecies.has(id)).length,
     futureSpecies: new Set(all.flatMap((tank) => tank.futureSpecies ?? [])).size,
     candidates: candidates.size,
+    candidatesNeedingBodyPlan: waitingBodyPlan.size,
   };
 });
 const sum = (key: keyof (typeof capacity)[number]) => capacity.reduce((total, item) => total + (item[key] as number), 0);
@@ -161,7 +168,7 @@ if (Bun.argv.includes("--json")) {
   console.log("\n器の数（開いている数 / 計画の数）");
   for (const item of capacity) {
     console.log(`  ${item.displayName}: ${item.floors}階 · 展示室 ${item.openHalls}/${item.halls} · 水槽 ${item.openTanks}/${item.tanks}`
-      + ` · 種 ${item.speciesInApp}/${item.species}（待ち ${item.futureSpecies}、候補の手がかり ${item.candidates}）`);
+      + ` · 種 ${item.speciesInApp}/${item.species}（待ち ${item.futureSpecies}、候補の手がかり ${item.candidates}、うち体のつくり待ち ${item.candidatesNeedingBodyPlan}）`);
   }
   console.log(`  合計: 展示室 ${total.openHalls}/${total.halls} · 水槽 ${total.openTanks}/${total.tanks} · 館にいる種 ${total.speciesInApp}`
     + ` · 計画で置いた種 ${total.species} · 候補の手がかり ${total.candidates}`);
