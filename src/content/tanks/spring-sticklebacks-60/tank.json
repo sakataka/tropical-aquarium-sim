@@ -1,0 +1,27 @@
+{
+  "id": "spring-sticklebacks-60",
+  "order": 188,
+  "displayName": "湧水のトゲウオ水槽",
+  "exhibitName": "Spring-fed Stickleback Brook",
+  "category": "湧き水の小川",
+  "description": "白い花の咲く水草が茂り、細かい砂が広がる湧き水の小川を再現した60cm水槽。背中に3本のとげを持つイトヨが、水草の近くを行き来します。繁殖期には、雄が植物のかけらと砂で巣を作り、卵と生まれた子を守ります。",
+  "widthCm": 60,
+  "heightCm": 36,
+  "depthCm": 30,
+  "maxTotalFish": 8,
+  "sceneIds": [
+    "spring-sticklebacks-60"
+  ],
+  "species": [
+    {
+      "speciesId": "threespine-stickleback",
+      "maxCount": 8
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "threespine-stickleback",
+      "count": 5
+    }
+  ]
+}

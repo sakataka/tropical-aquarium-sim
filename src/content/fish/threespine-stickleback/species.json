@@ -1,0 +1,134 @@
+{
+  "id": "threespine-stickleback",
+  "displayName": "イトヨ",
+  "realBodyLengthCm": 6.5,
+  "catalog": {
+    "scientificName": "Gasterosteus aculeatus",
+    "originRegionId": "northern-hemisphere",
+    "originRegionName": "北半球",
+    "origin": "北太平洋、大西洋、北海、バルト海、地中海、黒海などと、その周りの川や湖に広く分布する小さな魚です。海から川へのぼって産卵する型と、川や池にとどまる型があります。",
+    "temperament": "繁殖期でないときは群れを作ります。繁殖期の雄は縄張りを持ち、植物のかけらと砂で巣を作って、卵と生まれた子を守ります。本水槽では、1尾ずつ、またはゆるい小さな群れで過ごします。",
+    "movement": "水草の多い浅い場所で活動し、水中や底近くの小さな動物を捕らえます。本水槽では、水草の茂みの近くを行き来し、ときどき水草や底をついばみます。",
+    "habitat": "水草の多い浅い場所、池、湖、川の下流、河口や沿岸にすみます。本水槽では、白い花の咲く水草が茂り、細かい砂が広がる湧き水の小川をイメージしています。",
+    "aliases": [
+      "Three-spined stickleback",
+      "Threespine stickleback",
+      "Gasterosteus gymnurus",
+      "Gasterosteus leiurus",
+      "Gasterosteus trachurus"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Gasterosteiformes",
+      "orderJa": "トゲウオ目",
+      "family": "Gasterosteidae",
+      "familyJa": "トゲウオ科"
+    },
+    "adultSizeCm": 6.5,
+    "sizeNote": "ふつう5〜8cmとされますが、全長か標準体長かは資料に示されていません。海で育つものは最大11cmとされ、スペインの淡水のものは全長5cmを超えないとされます。地域や暮らし方で大きさが違うため、ここでは約6.5cmとして表示しています。目の分類は2016年の総説に従っています。",
+    "distribution": "北太平洋、大西洋、北海、バルト海、地中海、黒海などと周りの流域、ユーラシア北部、北アメリカに分布します。日本では、海で育つ系統が主に太平洋側にいて、本州中部の湧き水の池や小川には淡水だけで暮らす集団がいます。日本海とオホーツク海の系統は別種のニホンイトヨとされ、北海道東部では2種が同じ場所にいる例があります。",
+    "water": {
+      "salinity": "freshwater",
+      "temperatureC": [
+        4,
+        20
+      ]
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2024,
+      "note": "種全体の評価です（Catalog of Fishes に載っている IUCN の区分）。日本では、湧き水の枯渇、埋め立て、河口の堰などによって、すみかが失われたり移動が妨げられたりしているとされます。水温は、専門団体の解説がこの魚の好む範囲として挙げる値で、野外で測った範囲ではありません。津屋川の湧き水の支流は、ほぼ一年じゅう約15℃とされます。"
+    },
+    "highlights": [
+      "背中に、1本ずつ離れたとげがふつう3本並びます。前の2本が長く、3本目は背びれのすぐ前にあります。左右の腹びれにもとげがあります。",
+      "体にふつうの鱗がなく、体の横に骨の板が並びます。板が全身に続く型、前と尾の付け根だけの型、前だけの型があります。",
+      "繁殖期の雄は頬と腹が赤橙色になり、植物のかけらと砂を、腎臓から出る粘る物質でまとめて巣を作ります。本水槽の魚は、繁殖期でないときの姿です。",
+      "雄はジグザグに泳いで雌を巣へ導き、卵に胸びれで水を送ります。生まれた子もしばらく守ります。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.6,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.52
+    }
+  },
+  "visual": {
+    "fallbackColor": "#978b6d"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.4,
+    "maxY": 0.88
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.4,
+      "burst": 2.4
+    },
+    "turnRateRadPerSec": 2.6,
+    "restFraction": 0.3,
+    "depthRange": [
+      0.2,
+      0.8
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 2.2,
+      "cohesion": 0.3,
+      "polarization": 0.15
+    },
+    "structureAffinity": 0.7,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 0.8,
+        "durationSec": [
+          3,
+          7
+        ]
+      },
+      {
+        "type": "follow",
+        "chancePerMin": 0.5,
+        "durationSec": [
+          3,
+          8
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Gasterosteus",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?tbl=species&genus=Gasterosteus"
+      },
+      {
+        "title": "DORIS: Gasterosteus aculeatus（Épinoche à trois épines）",
+        "url": "https://doris.ffessm.fr/Especes/Gasterosteus-aculeatus-Epinoche-a-trois-epines-1449"
+      },
+      {
+        "title": "Kitano & Mori 2016. Conserving Japanese sticklebacks",
+        "url": "https://www.jstage.jst.go.jp/article/ggs/91/2/91_15-00082/_pdf"
+      },
+      {
+        "title": "スペイン政府 EIDOS 11009: Gasterosteus aculeatus（Ictiofauna continental española 2011）",
+        "url": "https://iepnb.gob.es/en/areas-tematicas/especies-silvestres/eidos/11009"
+      },
+      {
+        "title": "環境省 2022 環境DNA参考配列資料（トゲウオ科の和名）",
+        "url": "https://www.biodic.go.jp/edna/reports/2_shiryou2_MPT_2022_3.pdf"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 100,
+    "y": 231,
+    "width": 1346,
+    "height": 532
+  }
+}

@@ -1,0 +1,142 @@
+{
+  "id": "chum-salmon",
+  "displayName": "サケ",
+  "realBodyLengthCm": 65,
+  "catalog": {
+    "scientificName": "Oncorhynchus keta",
+    "originRegionId": "north-pacific",
+    "originRegionName": "北太平洋",
+    "origin": "北太平洋とその付属海、北極海の沿岸に広く分布します。川で生まれて海で育ち、成熟すると川へ戻って産卵します。",
+    "temperament": "川をのぼる時期には餌をとらず、体に蓄えたエネルギーで過ごします。雌は体を傾け、尾びれで礫を払って産卵床を掘ります。本水槽では、ゆるい群れになり、ときどき仲間の後を追います。",
+    "movement": "韓国の川での追跡では、昼は深い日陰にとどまり、夕方から夜に上流へ進む傾向がありました。本水槽では、中層から底近くを、群れで向きをそろえて泳ぎます。",
+    "habitat": "卵は川底の礫の中に産み、上から礫や砂をかぶせます。日本の秋の群れは、水温の安定した湧き水のある場所をよく使います。本水槽では、礫の底が続く秋の北海道の川の下流をイメージしています。",
+    "aliases": [
+      "シロザケ",
+      "アキアジ",
+      "秋サケ",
+      "シャケ",
+      "Chum salmon",
+      "Dog salmon",
+      "Keta salmon",
+      "トキシラズ（回遊の段階や漁の時期による呼び名）",
+      "ケイジ（未成熟の個体）"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Salmoniformes",
+      "orderJa": "サケ目",
+      "family": "Salmonidae",
+      "familyJa": "サケ科"
+    },
+    "adultSizeCm": 65,
+    "sizeNote": "日本のサケの平均的な大きさは、尾叉長（吻の先から尾びれの切れ込みまで）で約65cm、体重約3.5kgとされます。国立環境研究所は全長65cmと示していて、測り方が資料で違います。ここでは約65cmとして表示しています。標津での実験で測った雌6尾は、平均で尾叉長約62cm、体重約2.6kgでした。最大は尾叉長100cmとされます。",
+    "distribution": "北太平洋とその付属海、北極海の沿岸に広く分布します。2012年の総説では、日本で例年のぼる川の南限は、太平洋側が千葉県、日本海側が佐賀県とされています。韓国北東部の川にものぼります。",
+    "water": {
+      "salinity": "freshwater",
+      "temperatureC": [
+        4,
+        10
+      ]
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2020,
+      "note": "種全体の評価です（FishBase に載っている IUCN の区分）。アラスカでは系群ごとに減少・安定・増加とさまざまで、米国西海岸では2つの集団が保護の対象です。水温は、日本の秋の群れが産卵によく使う湧き水の場所の値です。韓国の川では、のぼる時期に9.5〜18.4℃が測られています。"
+    },
+    "highlights": [
+      "川をのぼる時期の雌は、体の横に暗い赤褐色の帯や斑が並びます。雄のように顎が強く曲がったり、大きな歯が目立ったりはしません。",
+      "川で生まれて海で育ち、成熟すると川へ戻ります。川をのぼる間は餌をとりません。",
+      "雌は尾びれで川底の礫を払って産卵床を掘り、卵を産むと礫をかぶせます。",
+      "一生に一度だけ繁殖し、産卵を終えると死にます。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 1.1,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.57
+    }
+  },
+  "visual": {
+    "fallbackColor": "#8f7865"
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.28,
+    "maxY": 0.82
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "steady",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.26,
+      "burst": 0.8
+    },
+    "turnRateRadPerSec": 1.3,
+    "restFraction": 0.22,
+    "depthRange": [
+      0.15,
+      0.8
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.4,
+      "cohesion": 0.5,
+      "polarization": 0.55
+    },
+    "structureAffinity": 0.2,
+    "habits": [
+      {
+        "type": "follow",
+        "chancePerMin": 1.2,
+        "durationSec": [
+          5,
+          12
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "永沢亨 2012. サケ科魚類のプロファイル10 サケ（SALMON情報 6:22–25）",
+        "url": "https://www.fra.go.jp/home/kenkyushokai/book/salmon/files/srr006_p22-25.pdf"
+      },
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Oncorhynchus keta",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?genus=Oncorhynchus&species=keta&tbl=species"
+      },
+      {
+        "title": "NOAA Fisheries: Chum salmon",
+        "url": "https://www.fisheries.noaa.gov/species/chum-salmon"
+      },
+      {
+        "title": "USFWS Chum salmon fact sheet",
+        "url": "https://www.fws.gov/sites/default/files/documents/2024-05/chum-salmon-fact-sheet.pdf"
+      },
+      {
+        "title": "Kim et al. 2025. Behavioral patterns of Chum salmon during spawning migration across the coastal water-river continuum in Northeastern Korea",
+        "url": "https://www.nature.com/articles/s41598-025-97890-8.pdf"
+      },
+      {
+        "title": "Makiguchi, Abe & Ichimura 2025. Novel insights into sex-specific differences in heart rate variability and autonomic nervous system regulation during spawning behavior in chum salmon",
+        "url": "https://www.frontiersin.org/journals/physiology/articles/10.3389/fphys.2025.1511476/full"
+      },
+      {
+        "title": "国立環境研究所 侵入生物DB サケ",
+        "url": "https://www.nies.go.jp/biodiversity/invasive/DB/detail/50820.html"
+      },
+      {
+        "title": "FishBase: Oncorhynchus keta",
+        "url": "https://www.fishbase.se/summary/Oncorhynchus-keta.html"
+      }
+    ]
+  },
+  "sourceBodyBounds": {
+    "x": 61,
+    "y": 222,
+    "width": 1441,
+    "height": 522
+  }
+}

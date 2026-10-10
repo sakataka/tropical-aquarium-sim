@@ -1,0 +1,11 @@
+{
+  "id": "marsh-river-300",
+  "order": 110,
+  "displayName": "泥炭の岸と倒木の川",
+  "description": "スゲやヨシの根が垂れる、えぐれた泥炭の岸が両側に張り出す湿原の川。左手前に苔むした倒木が横たわり、暗い泥炭と砂利の底は、開けた流れの奥で明るい砂地へ変わっていきます。",
+  "defaultLighting": "natural",
+  "waterColor": "#305d69",
+  "framing": {
+    "plateBottom": 0.864
+  }
+}

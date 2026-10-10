@@ -1,0 +1,11 @@
+{
+  "id": "salmon-run-500",
+  "order": 111,
+  "displayName": "倒木と落ち葉の礫底",
+  "description": "左に根を広げた太い倒木が斜めに沈み、苔むした大きな丸石が両岸に重なる、秋の北の川の下流。赤や黄の落ち葉が漂う澄んだ水に光の筋が差し込み、中央に開けた細かな礫の底が、奥へ明るく続きます。",
+  "defaultLighting": "natural",
+  "waterColor": "#147287",
+  "framing": {
+    "plateBottom": 0.872
+  }
+}
