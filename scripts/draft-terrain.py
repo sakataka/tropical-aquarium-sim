@@ -82,6 +82,14 @@ MIN_NEARNESS = 0.12
 MIN_TEXTURE = 3.0
 
 
+# 遮蔽にする物体を塗り分けた版（--occluders）の色と、その段の遮蔽の depth。手書きの地形の depth の並びに合わせた。
+GUIDE_TIERS = [("front", (255, 0, 0), 0.3), ("middle", (255, 255, 0), 0.42), ("back", (0, 0, 255), 0.55)]
+# 隠れ場所に印を付けた版（--shelters）の印の色。
+GUIDE_MARKER = (255, 0, 255)
+# 塗りや印とみなす色の近さ（RGB の各成分の差の上限）。
+GUIDE_TOLERANCE = 70
+
+
 # ---------------------------------------------------------------- 水景・水槽の読み込み
 
 
@@ -98,13 +106,16 @@ class Subject:
     hand: dict | None = None  # 既存の手書きの terrain.json 全体
     shelter_kinds: list[str] = field(default_factory=list)  # 水槽の生き物が住みかにする隠れ場所の種類
     max_body_cm: float = 0.0
+    occluder_guide: Path | None = None  # 遮蔽にする物体を、手前=赤・中=黄・奥=青で塗った版
+    shelter_guide: Path | None = None  # 隠れ場所にマゼンタの丸を付けた版
 
 
 def read_json(path: Path) -> dict:
     return json.loads(path.read_text())
 
 
-def load_subject(arg: str, aspect: float | None, plate_bottom: float | None) -> Subject:
+def load_subject(arg: str, aspect: float | None, plate_bottom: float | None,
+                 occluder_guide: Path | None = None, shelter_guide: Path | None = None) -> Subject:
     path = Path(arg).expanduser()
     if (SCENES / arg / "plate.webp").exists():
         folder = SCENES / arg
@@ -144,6 +155,7 @@ def load_subject(arg: str, aspect: float | None, plate_bottom: float | None) -> 
         subject.aspect = aspect
     if plate_bottom:
         subject.scene = {**subject.scene, "framing": {"plateBottom": plate_bottom}}
+    subject.occluder_guide, subject.shelter_guide = occluder_guide, shelter_guide
     return subject
 
 
@@ -212,6 +224,8 @@ class Analysis:
     d_far: float
     notes: list[str]
     debug: dict = field(default_factory=dict)
+    guide_layers: list[np.ndarray] | None = None  # 塗り分けた版から読んだ、手前・中・奥の物体のマスク
+    guide_markers: list[tuple[float, float]] | None = None  # 印を付けた版から読んだ、隠れ場所の位置 (px)
 
 
 def floor_profile(disparity: np.ndarray, columns: tuple[int, int], top: int, d_far: float) -> np.ndarray:
@@ -229,6 +243,32 @@ def floor_profile(disparity: np.ndarray, columns: tuple[int, int], top: int, d_f
     size = max(3, round(0.015 * height)) | 1
     smooth = cv2.blur(profile.astype(np.float32).reshape(-1, 1), (1, size)).ravel().astype(np.float64)
     return np.maximum.accumulate(smooth)
+
+
+def guide_mask(path: Path, color: tuple[int, int, int], size: tuple[int, int]) -> np.ndarray:
+    """案内の絵から、指定の色で塗られた画素を作業用の大きさで返す。"""
+    image = cv2.imread(str(path), cv2.IMREAD_COLOR)
+    if image is None:
+        sys.exit(f"画像を読めません: {path}")
+    near = (np.abs(image[..., ::-1].astype(int) - np.array(color)) <= GUIDE_TOLERANCE).all(axis=2)
+    return cv2.resize(near.astype(np.uint8), size, interpolation=cv2.INTER_AREA).astype(bool)
+
+
+def read_guides(subject: Subject, analysis: "Analysis") -> None:
+    height, width = analysis.disparity.shape
+    x0, y0, x1, y1 = analysis.frame
+    inside = np.zeros((height, width), bool)
+    inside[analysis.water_top:y1, x0:x1] = True
+    if subject.occluder_guide:
+        analysis.guide_layers = [guide_mask(subject.occluder_guide, color, (width, height)) & inside for _, color, _ in GUIDE_TIERS]
+        analysis.notes.append("遮蔽と回避領域は、塗り分けた版（--occluders）の物体から作った")
+    if subject.shelter_guide:
+        marks = guide_mask(subject.shelter_guide, GUIDE_MARKER, (width, height))
+        count, _, stats, centroids = cv2.connectedComponentsWithStats(marks.astype(np.uint8), connectivity=8)
+        analysis.guide_markers = [(float(cx), float(cy)) for (cx, cy), stat in zip(centroids[1:], stats[1:])
+                                  if stat[cv2.CC_STAT_AREA] >= 4 and inside[int(cy), int(cx)]]
+        analysis.notes.append(f"隠れ場所は、印を付けた版（--shelters）の印 {len(analysis.guide_markers)} 個から作った: "
+                              "入口の位置と種類（cave・crevice・burrow など）を絵で確かめる")
 
 
 def analyze(subject: Subject, model_name: str) -> Analysis:
@@ -291,8 +331,10 @@ def analyze(subject: Subject, model_name: str) -> Analysis:
     inside[water_top:y1, x0:x1] = True
     floor &= inside
     solid &= inside
-    return Analysis(rgb=rgb, disparity=disparity, u=u, frame=(x0, y0, x1, y1), water_top=water_top, floor=floor,
-                    solid=solid, floor_rows=floor_rows, d_front=d_front, d_far=d_far, notes=notes)
+    analysis = Analysis(rgb=rgb, disparity=disparity, u=u, frame=(x0, y0, x1, y1), water_top=water_top, floor=floor,
+                        solid=solid, floor_rows=floor_rows, d_front=d_front, d_far=d_far, notes=notes)
+    read_guides(subject, analysis)
+    return analysis
 
 
 # ---------------------------------------------------------------- 地形の下書き
@@ -363,6 +405,7 @@ def draft_terrain(subject: Subject, analysis: Analysis) -> dict:
         return name if used[name] == 1 else f"{name}-{used[name]}"
 
     # ---- 物体（底から立ち上がるもの）。細い茎や枝は落とす。
+    guided = a.guide_layers is not None
     solid = clean(a.solid, small)
     # 底に沿った薄い帯（底の凹凸や、当てはめのずれ）は物体にしない。
     tall = cv2.getStructuringElement(cv2.MORPH_RECT, (1, max(3, round(0.06 * frame_h))))
@@ -378,13 +421,16 @@ def draft_terrain(subject: Subject, analysis: Analysis) -> dict:
         if touches_floor or touches_side:
             grounded |= mask
     solid = grounded
+    if guided:
+        # 塗り分けた版があれば、どれを物体にするかはそれに従う（奥行きの推定からは選ばない）。
+        solid = clean(np.logical_or.reduce(a.guide_layers), small)
 
     # ---- 遮蔽: 手前から奥へ、近さの境目ごとに「そこまでの物体」を重ねていく。
     # 奥の段の多角形は手前の段を含む。どれも同じ絵の切り抜きなので、重なっても見た目は変わらない。
     pieces: list[dict] = []
     covered = np.zeros_like(solid)
-    for layer_name, limit in LAYERS:
-        layer = clean(solid & (u_smooth <= limit), small)
+    for index, (layer_name, limit) in enumerate(LAYERS):
+        layer = clean(solid & (np.logical_or.reduce(a.guide_layers[:index + 1]) if guided else u_smooth <= limit), small)
         for mask, stats in components(layer, 0.004 * frame_area):
             fresh = mask & ~covered
             if fresh.sum() < 0.004 * frame_area or fresh.sum() < 0.2 * mask.sum():
@@ -395,7 +441,8 @@ def draft_terrain(subject: Subject, analysis: Analysis) -> dict:
             polygon = cv2.approxPolyDP(max(contours, key=cv2.contourArea), 0.0035 * width, True)[:, 0, :]
             if len(polygon) < 3:
                 continue
-            pieces.append({"layer": layer_name, "depth": object_depth(float(np.median(u_smooth[fresh]))),
+            pieces.append({"layer": layer_name,
+                           "depth": GUIDE_TIERS[index][2] if guided else object_depth(float(np.median(u_smooth[fresh]))),
                            "area": int(fresh.sum()), "cx": float(np.mean(np.nonzero(fresh)[1])), "mask": mask, "fresh": fresh,
                            "polygon": [{"x": r3(px / (width - 1)), "y": r3(py / (height - 1))} for px, py in polygon]})
         covered |= layer
@@ -502,7 +549,7 @@ def draft_terrain(subject: Subject, analysis: Analysis) -> dict:
     structure_points = [{"x": ledge["peak"]["x"], "y": ledge["peak"]["y"]} for ledge in ledges[:3]]
 
     # ---- 回避領域: 手前と中ほどの物体の太い部分ごとに、軸に平行な楕円を1つ。
-    core = clean(solid & (u_smooth <= LAYERS[1][1]), large)
+    core = clean(solid & (np.logical_or.reduce(a.guide_layers[:2]) if guided else u_smooth <= LAYERS[1][1]), large)
     top_limit = a.water_top + 0.16 * water_h
     min_gap = max(0.06 * frame_w, (1.4 * subject.max_body_cm / tank["widthCm"] * frame_w) if tank else 0)
     wall_gap = max(0.07 * frame_w, (0.8 * subject.max_body_cm / tank["widthCm"] * frame_w) if tank else 0)
@@ -537,8 +584,9 @@ def draft_terrain(subject: Subject, analysis: Analysis) -> dict:
         top = max(top, top_limit)
         if bottom - top < 0.08 * frame_h or right - left < 0.04 * frame_w:
             continue
+        tier_depth = GUIDE_TIERS[0 if (mask & a.guide_layers[0]).sum() >= 0.5 * mask.sum() else 1][2] if guided else None
         ellipses.append({"left": left, "right": right, "top": top, "bottom": bottom, "masks": [mask],
-                         "u": [float(np.median(u_smooth[mask]))]})
+                         "u": [float(np.median(u_smooth[mask]))], "depths": [tier_depth]})
     ellipses.sort(key=lambda item: item["left"])
     merged: list[dict] = []
     for ellipse in ellipses:
@@ -550,6 +598,7 @@ def draft_terrain(subject: Subject, analysis: Analysis) -> dict:
                                 bottom=max(previous["bottom"], ellipse["bottom"]))
                 previous["masks"] += ellipse["masks"]
                 previous["u"] += ellipse["u"]
+                previous["depths"] += ellipse["depths"]
                 continue
             # まとめると広すぎるときは、向かい合う縁を引いてすき間を空ける。
             middle = (previous["right"] + ellipse["left"]) / 2
@@ -583,7 +632,8 @@ def draft_terrain(subject: Subject, analysis: Analysis) -> dict:
         cx, cy = (ellipse["left"] + ellipse["right"]) / 2, (ellipse["top"] + ellipse["bottom"]) / 2
         rx, ry = (ellipse["right"] - ellipse["left"]) / 2, (ellipse["bottom"] - ellipse["top"]) / 2
         # 手書きの地形と同じ並び: 遮蔽の面（と上面）のすぐ奥から、岩の芯が始まる。上面へ向かう魚は楕円の手前を通れる。
-        depth = float(np.mean([object_depth(value) for value in ellipse["u"]])) + OBSTACLE_DEPTH_RADIUS + 0.03
+        depth = float(np.mean(ellipse["depths"] if guided else [object_depth(value) for value in ellipse["u"]])) \
+            + OBSTACLE_DEPTH_RADIUS + 0.03
         ellipse["obstacle"] = {"id": unique(f"{side_name(cx)}-mass"),
                                "center": {"x": r3(cx / (width - 1)), "y": r3(cy / (height - 1)), "depth": round(depth, 2)},
                                "radius": {"x": round(min(0.999, rx / width), 3), "y": round(min(0.999, ry / height), 3)},
@@ -604,7 +654,20 @@ def draft_terrain(subject: Subject, analysis: Analysis) -> dict:
         rx, ry = (ellipse["right"] - ellipse["left"]) / 2 + pad_x, (ellipse["bottom"] - ellipse["top"]) / 2 + pad_y
         reach &= ((grid_x - cx) / rx) ** 2 + ((grid_y - cy) / ry) ** 2 > 1
     kinds = [kind for kind in subject.shelter_kinds if kind in ("cave", "crevice")]
-    hides = sorted(pieces, key=lambda piece: -piece["area"])[:3]
+    for px, py in a.guide_markers or []:
+        # 印は岩のすき間や穴の口にある。回避領域の楕円に掛かる印は、その岩の芯より奥の depth に置く（手書きの並びと同じ）。
+        behind = [e["obstacle"]["center"]["depth"] + OBSTACLE_DEPTH_RADIUS + 0.08 for e in merged if "obstacle" in e and
+                  ((px - (e["left"] + e["right"]) / 2) / ((e["right"] - e["left"]) / 2 + pad_x)) ** 2 +
+                  ((py - (e["top"] + e["bottom"]) / 2) / ((e["bottom"] - e["top"]) / 2 + pad_y)) ** 2 <= 1]
+        on_floor = bool(a.floor[int(py), int(px)]) and not solid[int(py), int(px)]
+        depth = max(behind) if behind else sand_depth(float(u_smooth[int(py), int(px)])) if on_floor else 0.6
+        shelter = {"id": unique(f"{side_name(px)}-{'burrow' if on_floor else 'gap'}"), "x": r3(px / (width - 1)),
+                   "y": r3(py / (height - 1)), "depth": round(min(0.9, depth), 2), "px": px, "py": py}
+        wanted = [kind for kind in subject.shelter_kinds if (kind == "burrow") == on_floor]
+        if wanted:
+            shelter["kind"] = wanted[len(shelters) % len(wanted)]
+        shelters.append(shelter)
+    hides = [] if a.guide_markers is not None else sorted(pieces, key=lambda piece: -piece["area"])[:3]
     for index, piece in enumerate(hides):
         candidates = cv2.erode(piece["mask"].astype(np.uint8), np.ones((small, small), np.uint8)).astype(bool) & reach
         # 物体の足もと（下から3割）に限る。草むらの上のほうの暗がりは隠れ場所にしない。
@@ -1047,8 +1110,10 @@ def save_draft(subject: Subject, draft: dict, analysis: Analysis, compare: bool,
 
 
 def command_draft(args: argparse.Namespace) -> None:
+    if (args.occluders or args.shelters) and len(args.targets) != 1:
+        sys.exit("--occluders と --shelters は、水景を1つだけ指定したときに使えます")
     for name in args.targets:
-        subject = load_subject(name, args.aspect, args.plate_bottom)
+        subject = load_subject(name, args.aspect, args.plate_bottom, args.occluders, args.shelters)
         draft, analysis, seconds = make_draft(subject, args.model)
         folder = save_draft(subject, draft, analysis, args.compare, args.debug)
         terrain = draft["terrain"]
@@ -1102,6 +1167,8 @@ def main() -> None:
     draft.add_argument("--plate-bottom", type=float, help="scene.json の framing.plateBottom を仮に指定する")
     draft.add_argument("--model", choices=sorted(MODELS), default="small")
     draft.add_argument("--debug", action="store_true", help="解析の途中経過（底と物体のマスク、奥行き）を debug.jpg に出す")
+    draft.add_argument("--occluders", type=Path, help="遮蔽にする物体を、手前=赤・中=黄・奥=青で塗った版の画像")
+    draft.add_argument("--shelters", type=Path, help="隠れ場所にマゼンタの丸を付けた版の画像")
     draft.set_defaults(run=command_draft)
     evaluation = commands.add_parser("evaluate", help="既存の手書きの地形と比べる")
     evaluation.add_argument("targets", nargs="*", help="水景の id（省くと全部）")
