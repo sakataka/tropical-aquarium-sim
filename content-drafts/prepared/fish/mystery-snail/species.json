@@ -1,0 +1,104 @@
+{
+  "id": "mystery-snail",
+  "displayName": "スパイクトップアップルスネール",
+  "realBodyLengthCm": 8.5,
+  "catalog": {
+    "scientificName": "Pomacea diffusa",
+    "originRegionId": "south-america",
+    "originRegionName": "南米",
+    "origin": "ボリビア、ペルー、ブラジルのアマゾン水系を原産とする、淡水の巻貝です。フロリダでは持ち込まれた個体が定着しています。",
+    "temperament": "大学の解説では、主に腐った植物を食べるとされています。動物の遺骸を食べることも報告されています。生きた水草を食べないと保証するものではありません。",
+    "movement": "この種の移動速度や昼夜の活動は、今回の調査では確認できていません。画面での移動は、巻貝の手本に合わせた、ゆっくり這って休む姿として仮に設定しています。",
+    "habitat": "淡水の川、池、湿地にすみます。野外で利用する水深や隠れ場所の詳しい条件は、今回の調査では確認できていません。",
+    "aliases": [
+      "spike-topped applesnail",
+      "Pomacea bridgesii diffusa"
+    ]
+  },
+  "profile": {
+    "adultSizeCm": 5,
+    "taxonomy": {
+      "order": "Architaenioglossa",
+      "orderJa": "タニシ目",
+      "family": "Ampullariidae",
+      "familyJa": "リンゴガイ科"
+    },
+    "sizeNote": "成体の殻高は40〜60mmと大学の解説に記されています。図鑑では範囲の中ほどの殻高5cmを目安にしています。これは体を伸ばした長さや、触角を含む横幅ではありません。野生型だけの最大値は確認できていません。",
+    "distribution": "熱帯・亜熱帯の南アメリカ、ボリビア、ペルー、ブラジルのアマゾン水系が原産とされます。フロリダの分布は移入によるものです。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "IUCNの世界評価は確認できていません。米国の侵入リスク評価と、種が絶滅するリスクの評価は区別しています。"
+    },
+    "highlights": [
+      "球状の殻に、突出した螺塔があります。",
+      "主に腐った植物を食べると大学が解説しています。",
+      "リンゴガイ属の仲間は肺と鰓を持ちます。",
+      "「ミステリースネール」などの流通名だけでは、ほかのリンゴガイ類と区別できません。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "gastropod",
+    "tailBeatHz": 0.35,
+    "waveCount": 1.5,
+    "tailSweepRad": 0.16,
+    "verticalFlex": 0.004
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.8,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.04,
+      "burst": 0.06
+    },
+    "turnRateRadPerSec": 0.5,
+    "restFraction": 0.5,
+    "depthRange": [
+      0.1,
+      0.9
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.6,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 1.5,
+        "durationSec": [
+          20,
+          60
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 0.5,
+        "durationSec": [
+          30,
+          120
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "US Fish and Wildlife Service Pomacea diffusa ERSS",
+        "url": "https://www.fws.gov/sites/default/files/documents/2025-04/ecological-risk-screening-summary-spike-topped-applesnail.pdf"
+      },
+      {
+        "title": "University of Florida IFAS Applesnails of Florida",
+        "url": "https://ask.ifas.ufl.edu/publication/in598"
+      }
+    ]
+  }
+}

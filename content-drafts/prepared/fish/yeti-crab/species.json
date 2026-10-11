@@ -1,0 +1,103 @@
+{
+  "id": "yeti-crab",
+  "displayName": "キワ・ヒルスタ",
+  "realBodyLengthCm": 17,
+  "catalog": {
+    "scientificName": "Kiwa hirsuta",
+    "originRegionId": "pacific",
+    "originRegionName": "太平洋",
+    "origin": "太平洋南極海嶺の熱水噴出域で発見された、異尾類の仲間です。原記載では、近接する3つの熱水域から報告されています。",
+    "temperament": "採集時に損傷した二枚貝の組織を食べる姿が観察され、原記載は雑食の可能性を述べています。普段の食物の割合は分かっていません。",
+    "movement": "熱水域の海底で暮らす種です。移動速度や昼夜の活動は確認できていません。本水槽では、海底の面をゆっくり歩き、ときどき休む姿で仮に描いています。",
+    "habitat": "活動する熱水噴出域の、枕状の玄武岩や煙突の基部で観察されています。原記載の3地点の水深は2204〜2228mです。本水槽では、暗い鉱物の煙突、枕状の岩、細菌の膜を思わせる海底を再現しています。",
+    "aliases": [
+      "Yeti crab"
+    ]
+  },
+  "profile": {
+    "adultSizeCm": 5.2,
+    "taxonomy": {
+      "order": "Decapoda",
+      "orderJa": "十脚目",
+      "family": "Kiwaidae",
+      "familyJa": "キワ科"
+    },
+    "sizeNote": "図鑑では、額角を除く甲長約5.2cmを目安にしています。原記載の雄ホロタイプ1個体は、額角を除く甲長51.5mm、額角を含む甲長58.6mm、全長88.4mmでした。種の平均や最大、甲幅、脚を広げた幅は確認できていません。",
+    "distribution": "原記載では、太平洋南極海嶺の約1.5kmの区間にある3つの熱水域から報告されています。この確認範囲を、キワ属全体の分布とは扱っていません。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "IUCNの世界評価や、種全体の個体数の増減は確認できていません。局所的な観察密度を、世界の個体数や飼育に必要な群れの大きさとは扱っていません。"
+    },
+    "highlights": [
+      "はさみ脚と歩脚に、毛のような剛毛が密に生えています。",
+      "眼は著しく退縮し、色素を欠きます。",
+      "剛毛の上には、糸状の細菌が集まっています。",
+      "付着細菌には炭素固定や硫黄代謝の潜在能力が示されていますが、細菌の栽培や摂食の割合は未確認です。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "crab",
+    "tailBeatHz": 0.6,
+    "bodyWaveStart": 0.85,
+    "tailSweepRad": 0,
+    "verticalFlex": 0
+  },
+  "preferredZone": {
+    "minX": 0.12,
+    "maxX": 0.88,
+    "minY": 0.86,
+    "maxY": 0.94
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.04,
+      "burst": 0.3
+    },
+    "turnRateRadPerSec": 1,
+    "restFraction": 0.65,
+    "depthRange": [
+      0.3,
+      0.9
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.7,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 2.5,
+        "durationSec": [
+          8,
+          25
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.5,
+        "durationSec": [
+          15,
+          40
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Macpherson et al. 2005 Kiwa hirsuta original treatment",
+        "url": "https://zenodo.org/records/4891315"
+      },
+      {
+        "title": "Goffredi et al. 2008 Epibiotic bacteria on Kiwa hirsuta",
+        "url": "https://enviromicro-journals.onlinelibrary.wiley.com/doi/10.1111/j.1462-2920.2008.01684.x"
+      }
+    ]
+  }
+}
