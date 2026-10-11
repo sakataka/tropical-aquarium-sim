@@ -1,0 +1,116 @@
+{
+  "id": "abbottina-rivularis",
+  "displayName": "ツチフキ",
+  "realBodyLengthCm": 10,
+  "catalog": {
+    "scientificName": "Abbottina rivularis",
+    "originRegionId": "east-asia",
+    "originRegionName": "東アジア",
+    "origin": "中国東部・北東部や日本の一部に分布する、小型の底生魚です。日本系統と大陸系統があり、琵琶湖の内湖にも生息記録があります。",
+    "temperament": "底の砂泥を口に含み、小さな動物や有機物を食べます。繁殖期の雄は浅い泥の巣をつくり、卵を守ります。",
+    "movement": "底で餌を探す魚です。本水槽では、ヨシや水草の近くの砂泥底を、短い移動と休息を繰り返しながら探る姿で描いています。",
+    "habitat": "琵琶湖の内湖で生息と繁殖が調べられています。本水槽では、ヨシの根元や水草、沈んだ枝のある岸辺と内湖の砂泥底を再現しています。"
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cypriniformes",
+      "orderJa": "コイ目",
+      "family": "Gobionidae",
+      "familyJa": "カマツカ科"
+    },
+    "adultSizeCm": 10,
+    "sizeNote": "機関の解説にある全長10cmを目安にしています。琵琶湖博物館の「体長4〜8cm」は測り方が不明です。内湖の調査標本には雌74mm、雄87mmの標準体長があり、全長へ換算していません。",
+    "distribution": "東アジアの中国東部・北東部と日本の一部に分布します。日本の本州・九州の系統に加え、大陸由来系統の導入も認められます。琵琶湖水系での在来性は未解決です。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "note": "世界のLCはCASによるIUCN公表分の二次確認です。原評価本文と評価年は確認できていません。国内の環境省レッドリスト2020では絶滅危惧IB類（EN）です。大陸由来系統との交雑や水路改修が課題とされています。"
+    },
+    "highlights": [
+      "カマツカより短く太い体と、下向きの口を持ちます。",
+      "上顎に短い口ひげが1対あります。",
+      "雄は泥底に浅い巣をつくり、卵を守ります。",
+      "琵琶湖博物館では繁殖と育成が記録されています。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 3
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.55,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.25,
+      "burst": 2.6
+    },
+    "turnRateRadPerSec": 3,
+    "restFraction": 0.55,
+    "depthRange": [
+      0.35,
+      0.95
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.7,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 2.5,
+        "durationSec": [
+          6,
+          20
+        ]
+      },
+      {
+        "type": "bottomForage"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Gobio rivularis / Abbottina rivularis",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=3628"
+      },
+      {
+        "title": "国立科学博物館：ツチフキ",
+        "url": "https://www.kahaku.go.jp/research/db/zoology/uodas_freshdb/area/cyprinnidae/gobioninae/080.html"
+      },
+      {
+        "title": "琵琶湖博物館2022：ツチフキ日本で初繁殖認定",
+        "url": "https://www.biwahaku.jp/2022/04/post_94.html"
+      },
+      {
+        "title": "中島・中川2007：琵琶湖の堅田内湖に生息するツチフキの繁殖期",
+        "url": "https://www.hitohaku.jp/publication/HN17_p13-18-1.pdf"
+      },
+      {
+        "title": "アクア・トトぎふ 堀江真2019：繁殖期は一段落",
+        "url": "https://aquatotto.com/%E7%B9%81%E6%AE%96%E6%9C%9F%E3%81%AF%E4%B8%80%E6%AE%B5%E8%90%BD/"
+      },
+      {
+        "title": "国立環境研究所 侵入生物DB：ツチフキ",
+        "url": "https://www.nies.go.jp/biodiversity/invasive/DB/detail/50450.html"
+      },
+      {
+        "title": "岡田ほか2023：1978年以来の再確認となった京都府宇治川産のツチフキ",
+        "url": "https://www.museum.kagoshima-u.ac.jp/ichthy/INHFJ_2023_035_010.pdf"
+      },
+      {
+        "title": "環境省レッドリスト2020：汽水・淡水魚類",
+        "url": "https://www.env.go.jp/content/900515981.pdf"
+      }
+    ]
+  }
+}

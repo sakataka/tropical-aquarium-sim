@@ -1,0 +1,104 @@
+{
+  "id": "zebra-mantis-shrimp",
+  "displayName": "トラフシャコ",
+  "realBodyLengthCm": 27,
+  "catalog": {
+    "scientificName": "Lysiosquilla maculata",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "西部インド洋から日本、オーストラリア、ハワイに至るインド西太平洋に分布する、大型のシャコです。",
+    "temperament": "砂泥底の巣穴で待ち伏せし、魚やエビなどの獲物を捕らえます。持続的な雌雄のつがい生活も紹介されています。",
+    "movement": "通常は体の多くを巣穴に残し、眼や触角を出して獲物を待ちます。本水槽では、巣穴のある砂の面の近くにとどまる姿で仮に描いています。",
+    "habitat": "潮間帯から浅い潮下帯の砂泥底に深い巣穴を作ります。本水槽では、砂と泥の断面、丸い巣穴の入口、掘り出した砂の小山を備えた水景を再現しています。"
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Stomatopoda",
+      "orderJa": "口脚目",
+      "family": "Lysiosquillidae",
+      "familyJa": "トラフシャコ科"
+    },
+    "adultSizeCm": 38.5,
+    "sizeNote": "再記載が引用する既報最大全長は38.5cmで、水族館や博物館は約40cmと説明します。再記載で調べた雄は10.9〜27cm TL、雌は8.1〜33.5cm TLです。画面は雄の制作指定に合わせ、全長27cmを目安にしています。全長は額板の先から尾節の先までで、触角や伸ばした捕脚は含みません。図鑑の38.5cmは代表的な平均成体長ではありません。",
+    "distribution": "インド西太平洋に広く分布し、日本では紀伊半島以南と解説されています。ガラパゴスまでとする博物館解説もありますが、再記載の標本分布との対応は未確認です。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "今回の調査では現行IUCNの種別評価本文を確認できていません。食用利用の記載だけから個体群の減少や保全区分を判断していません。"
+    },
+    "highlights": [
+      "淡い地色に暗い横帯が並びます。",
+      "T字形に見える眼柄の先に、横長の複眼があります。",
+      "捕脚には鋭い歯が並び、動く獲物を捕らえる刺突型です。",
+      "短い背甲の後ろに、胸部と腹部の節が続きます。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "crustacean",
+    "tailBeatHz": 0.6,
+    "bodyWaveStart": 0.85,
+    "tailSweepRad": 0,
+    "verticalFlex": 0
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.55,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.06,
+      "burst": 0.4
+    },
+    "turnRateRadPerSec": 1.1,
+    "restFraction": 0.8,
+    "depthRange": [
+      0.3,
+      0.85
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.85,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 2.5,
+        "durationSec": [
+          20,
+          60
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Ahyong & Lin2022, Phylogenetic appraisal of Lysiosquillidae",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9579857/"
+      },
+      {
+        "title": "Ahyong2001, Revision of the Australian Stomatopod Crustacea",
+        "url": "https://journals.australian.museum/media/Uploads/Journals/17907/1333_complete.pdf"
+      },
+      {
+        "title": "沖縄美ら海水族館、トラフシャコ",
+        "url": "https://churaumi.okinawa/sp/fishbook/00000335/"
+      },
+      {
+        "title": "Andrew Hosie, Western Australian Museum, Zebra Mantis Shrimp",
+        "url": "https://museum.wa.gov.au/creature-feature-zebra-mantis-shrimp"
+      },
+      {
+        "title": "deVries, Murphy & Patek2012, Strike mechanics of an ambush predator: the spearing mantis shrimp",
+        "url": "https://doi.org/10.1242/jeb.075317"
+      }
+    ]
+  }
+}

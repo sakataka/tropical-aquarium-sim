@@ -1,0 +1,114 @@
+{
+  "id": "bluespine-unicornfish",
+  "displayName": "テングハギ",
+  "realBodyLengthCm": 50,
+  "catalog": {
+    "scientificName": "Naso unicornis",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "紅海からインド太平洋に広く分布するニザダイの仲間です。日本南部でも標本が記録されています。",
+    "temperament": "ホンダワラ類などの大型の藻を食べます。昼の採餌と夜の礁の隙間での休息が多く見られますが、夜にも活動した追跡個体があります。",
+    "movement": "群れで採餌する姿が観察されています。本水槽では、岩の段の周りを行き来し、ときどき藻のある面へ寄る姿で描いています。",
+    "habitat": "沿岸のサンゴ礁や岩礁、礁湖から外礁まで利用します。大型個体も藻を食べに浅い場所へ入ります。本水槽では、藻の生えた岩の段と砂の水路がある、波の当たる礁の縁を再現しています。"
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Acanthuriformes",
+      "orderJa": "ニザダイ目",
+      "family": "Acanthuridae",
+      "familyJa": "ニザダイ科"
+    },
+    "adultSizeCm": 50,
+    "sizeNote": "FAOの一般的な全長50cmを図鑑と画面の目安にしています。FAOの最大は70cm TLですが、Fishes of AustraliaとFishBaseは70cm FL（尾叉長）と記し、測り方が異なります。単純に換算していません。目と科の和名は館の既存のハギ類にそろえています。",
+    "distribution": "紅海、東アフリカからハワイ・フランス領ポリネシア、日本、オーストラリア方面までのインド太平洋に分布します。北方の出現記録だけでは繁殖や越冬の定着を示せません。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2010,
+      "note": "FishBaseが引用するIUCNのLC、評価日2010年5月7日による二次確認です。原評価本文は未取得です。CASやFishes of Australiaが挙げる2012年は公表年として区別しています。"
+    },
+    "highlights": [
+      "眼の前に角状の突起があります。",
+      "尾柄の左右各側に2枚の骨質板があり、その周りは鮮やかな青色です。",
+      "成魚では尾びれの上下の先が細長く伸びます。",
+      "大型の褐藻を食べる様子が、野外の実験で観察されています。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.0
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.25,
+    "maxY": 0.7
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.4,
+      "burst": 1.8
+    },
+    "turnRateRadPerSec": 2.2,
+    "restFraction": 0.15,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.6,
+      "cohesion": 0.45,
+      "polarization": 0.5
+    },
+    "structureAffinity": 0.6,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 4,
+        "durationSec": [
+          4,
+          12
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog: Naso unicornis",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=19108"
+      },
+      {
+        "title": "Randall 2001. FAO Acanthuridae, Naso unicornis p3680",
+        "url": "https://www.fao.org/4/y0870e/y0870e30.pdf"
+      },
+      {
+        "title": "Bray 2019. Bluespine Unicornfish, Fishes of Australia",
+        "url": "https://fishesofaustralia.net.au/home/species/2201"
+      },
+      {
+        "title": "Australian Museum Bluespine Unicornfish",
+        "url": "https://australian.museum/learn/animals/fishes/bluespine-unicornfish-naso-unicornis/"
+      },
+      {
+        "title": "Meyer & Holland 2005. Movement patterns, home range size and habitat utilization of Naso unicornis",
+        "url": "https://www.researchgate.net/publication/226255601_Movement_patterns_home_range_size_and_habitat_utilization_of_the_bluespine_unicornfish_Naso_unicornis_Acanthuridae_in_a_Hawaiian_marine_reserve"
+      },
+      {
+        "title": "Hoey & Bellwood 2009. Limited Functional Redundancy in a High Diversity System",
+        "url": "https://reefresilience.org/pdf/Hoey_Bellwood_2009.pdf"
+      },
+      {
+        "title": "FishBase Naso unicornis summary",
+        "url": "https://www.fishbase.se/summary/Naso-unicornis.html"
+      },
+      {
+        "title": "Arai & Sato 2007. Prominent ornaments and rapid color change: use of horns as a social and reproductive signal in unicornfish",
+        "url": "https://www.researchgate.net/publication/226061276_Prominent_ornaments_and_rapid_color_change_use_of_horns_as_a_social_and_reproductive_signal_in_unicornfish_Acanthuridae_Naso"
+      }
+    ]
+  }
+}

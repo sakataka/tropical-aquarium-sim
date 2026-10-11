@@ -1,0 +1,101 @@
+{
+  "id": "bignose-unicornfish",
+  "displayName": "サザナミトサカハギ",
+  "realBodyLengthCm": 55,
+  "catalog": {
+    "scientificName": "Naso vlamingii",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "東アフリカやインド洋から太平洋の島々に広く分布する、大型のニザダイの仲間です。日本でも標本記録があります。",
+    "temperament": "成魚は主に水中の動物プランクトンを食べます。単独、ペア、採餌の群れが見られ、採餌時に大きな個体が小さな個体を追う観察もあります。",
+    "movement": "礁斜面の上の開けた水中で餌を探します。本水槽では、岩の上の広い水中を、数匹がまとまって行き来する姿で描いています。",
+    "habitat": "深い礁湖や外洋側のサンゴ礁、礁斜面の上の開放水域を利用します。本水槽では、藻の生えた岩の段と砂の水路がある、波の当たる礁の縁を再現しています。"
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Acanthuriformes",
+      "orderJa": "ニザダイ目",
+      "family": "Acanthuridae",
+      "familyJa": "ニザダイ科"
+    },
+    "adultSizeCm": 55,
+    "sizeNote": "2019年の種解説は最大全長55cm、Fishes of Australiaは最大全長60cmとします。図鑑と画面では約55cmを目安にしています。337.6mmの岩手県標本は標準体長であり、全長へ換算していません。目と科の和名は館の既存のハギ類にそろえています。",
+    "distribution": "インド太平洋の広い範囲に記録され、日本では南部だけでなく岩手県でも標本が得られています。ハワイでの写真記録は、繁殖集団の定着を確認したものではありません。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2012,
+      "note": "CASが示すIUCNのLCと評価年2012による二次確認です。IUCNの原評価本文や最新の更新は取得できていません。"
+    },
+    "highlights": [
+      "額の丸い隆起が特徴です。",
+      "青い点や縦の線と、眼から額への青い帯があります。",
+      "尾柄の左右に固定した骨質板が2枚ずつあります。",
+      "成魚は水中の動物プランクトンを主に食べます。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 1.8
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.25,
+    "maxY": 0.7
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.45,
+      "burst": 2.0
+    },
+    "turnRateRadPerSec": 2.2,
+    "restFraction": 0.15,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.6,
+      "cohesion": 0.45,
+      "polarization": 0.5
+    },
+    "structureAffinity": 0.5,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Eschmeyer Catalog of Fishes: Naso vlamingii",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?family=Acanthuridae&tbl=species"
+      },
+      {
+        "title": "Randall et al.2019 Five New Records of Fishes for the Hawaiian Islands",
+        "url": "https://oceansciencefoundation.org/josf/josf33d.pdf"
+      },
+      {
+        "title": "野村ほか2021 岩手県宮古市から得られたサザナミトサカハギの北限記録",
+        "url": "https://www.museum.kagoshima-u.ac.jp/ichthy/INHFJ_2021_006_051.pdf"
+      },
+      {
+        "title": "Bray2017 Fishes of Australia: Bignose Unicornfish",
+        "url": "https://fishesofaustralia.net.au/home/species/2202"
+      },
+      {
+        "title": "Fishes of the Maldives, Naso vlamingii printed322",
+        "url": "https://www.fao.org/4/ad471e/ad471e53.pdf"
+      },
+      {
+        "title": "Georgia Aquarium Bignose Unicornfish",
+        "url": "https://www.georgiaaquarium.org/animal/bignose-unicornfish/"
+      },
+      {
+        "title": "Abesamis & Russ2005 Density-dependent spillover from a marine reserve",
+        "url": "https://researchonline.jcu.edu.au/6230/1/6230_Abesamis_%26_Russ_2005.pdf"
+      }
+    ]
+  }
+}

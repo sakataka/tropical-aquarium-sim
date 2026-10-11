@@ -1,0 +1,98 @@
+{
+  "id": "australian-spotted-jellyfish",
+  "displayName": "ナンヨウタコクラゲ",
+  "realBodyLengthCm": 11,
+  "catalog": {
+    "scientificName": "Phyllorhiza punctata",
+    "originRegionId": "west-pacific",
+    "originRegionName": "西太平洋",
+    "origin": "主な原産域はオーストラリアから東南アジアにかけての西太平洋とされます。日本でも採集記録のあるクラゲです。",
+    "temperament": "多くの集団は体内の共生藻から光合成産物を受け取り、小さな動物プランクトンも食べます。共生藻を持たない集団もあります。",
+    "movement": "傘を細かく拍動させて泳ぐ姿が、水族館で記録されています。本水槽では、上からの柔らかな光を受け、青い水中を漂いながら泳ぐ姿で描いています。",
+    "habitat": "沿岸の湾、礁湖、河口域から開けた沿岸の水中に出現します。本水槽では、海のクラゲを見やすくするため、広い青い水中と底の砂を組み合わせています。"
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Rhizostomeae",
+      "orderJa": "根口クラゲ目",
+      "family": "Mastigiidae",
+      "familyJa": "タコクラゲ科"
+    },
+    "adultSizeCm": 50,
+    "sizeNote": "文献集成には傘の直径が最大50cmに達するとの記載があります。日本の採集個体は傘径37cmと11cmで、成熟段階は未確認です。60cm水槽に合わせ、画面では傘径約11cmの個体で描いています。図鑑の50cmは成体の到達サイズで、ふつうの大きさではありません。",
+    "distribution": "西太平洋のオーストラリアから東南アジアが主な原産域とされます。長崎県と鹿児島県には原著による採集記録があり、北米や地中海などには移入記録がまとめられています。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "今回の調査ではIUCNの種別評価を確認できていません。移入先での大発生による漁業への影響は、原産域の絶滅リスクとは別の話題です。"
+    },
+    "highlights": [
+      "半球形の傘に小さな白い点がたくさんあります。",
+      "傘の下には枝分かれした8本の口腕があります。",
+      "口腕から伸びる細い付属器は、先が白く膨らみます。",
+      "泳ぐときの流れが、小さな餌を捕らえる面へ運びます。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "jelly",
+    "tailBeatHz": 0.9,
+    "tailSweepRad": 0.13,
+    "waveCount": 1
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.25,
+    "maxY": 0.7
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.12,
+      "burst": 0.3
+    },
+    "turnRateRadPerSec": 0.5,
+    "restFraction": 0.1,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "group",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0,
+    "habits": [],
+    "sources": [
+      {
+        "title": "WoRMS accepted record, Phyllorhiza punctata AphiaID135298",
+        "url": "https://www.marinespecies.org/rest/AphiaRecordByAphiaID/135298"
+      },
+      {
+        "title": "Smithsonian Environmental Research Center NEMESIS: Phyllorhiza punctata",
+        "url": "https://invasions.si.edu/nemesis/calnemo/species_summary/51829"
+      },
+      {
+        "title": "Takauchi et al. (2024), First records of Phyllorhiza punctata from Nagasaki and Kagoshima",
+        "url": "https://www.researchgate.net/publication/384188307_First_records_of_Phyllorhiza_punctata_von_Lendenfeld_1884_Cnidaria_Scyphozoa_Mastigiidae_from_Nagasaki_and_Kagoshima_Prefectures_Japan"
+      },
+      {
+        "title": "新江ノ島水族館 2019-02-01 今週のおすすめ",
+        "url": "https://www.enosui.com/diaryentry.php?eid=04824"
+      },
+      {
+        "title": "新江ノ島水族館 2025-09-09 水玉・ドット・点々",
+        "url": "https://www.enosui.com/diaryentry.php?eid=07304"
+      },
+      {
+        "title": "D’Ambra, Costello & Bentivegna (2001), Flow and prey capture by Phyllorhiza punctata",
+        "url": "https://link.springer.com/article/10.1023/A:1011832222174"
+      }
+    ]
+  }
+}

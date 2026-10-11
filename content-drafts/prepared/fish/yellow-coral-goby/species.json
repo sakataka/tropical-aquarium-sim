@@ -1,0 +1,111 @@
+{
+  "id": "yellow-coral-goby",
+  "displayName": "キイロサンゴハゼ",
+  "realBodyLengthCm": 3.52,
+  "catalog": {
+    "scientificName": "Gobiodon okinawae",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "インド太平洋のサンゴ礁にすむ、小さな黄色いハゼです。沖縄の八重山諸島で得られた標本を基に記載されました。",
+    "temperament": "生きたサンゴと強く結びついて暮らします。地域の観察では、枝サンゴに群れでとどまる姿と、ペアで暮らす姿の両方が報告されています。",
+    "movement": "サンゴの群体の上部へ出たり、群体間を移動したりする姿が報告されています。本水槽では、枝の上と隙間を行き来する小さな集まりとして描いています。",
+    "habitat": "岸近くの保護された礁や湾の枝状サンゴを利用します。本水槽では、枝状ミドリイシと塊状のサンゴ、枝の隙間が見える砂礫の水景を再現しています。"
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Gobiiformes",
+      "orderJa": "ハゼ目",
+      "family": "Gobiidae",
+      "familyJa": "ハゼ科"
+    },
+    "adultSizeCm": 3.52,
+    "sizeNote": "原記載の17標本の全長は16.2〜35.2mm、標準体長は13.1〜29.9mmです。図鑑と画面では、その全長の上端35.2mm（3.52cm）を目安にしています。標本の成熟段階は未指定で、一般的な成魚長や種の絶対最大ではありません。",
+    "distribution": "ココス・キーリング諸島からマーシャル・ソロモン諸島、日本南部などのインド太平洋に分布すると目録に記載されています。八重山諸島の嘉弥真島と石垣島には原記載の採集記録があります。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "home",
+    "conservation": {
+      "status": "LC",
+      "note": "CASが引用するIUCNのLCによる二次確認です。2019年は引用される公表分として扱い、原評価本文と実施年を直接確認していないため評価年の欄は省略しました。"
+    },
+    "highlights": [
+      "小さな体は黄色く、生きたサンゴと結びついて暮らします。",
+      "原記載では全長35.2mmまでの標本が調べられました。",
+      "サンゴの群体の上部へ出て、群体間を移動する姿が報告されています。",
+      "飼育実験では、成体が雌と雄の両方向へ性機能を変えられる可能性が示されています。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 3
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.25,
+    "maxY": 0.7
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.25,
+      "burst": 2.6
+    },
+    "turnRateRadPerSec": 3,
+    "restFraction": 0.55,
+    "depthRange": [
+      0.2,
+      0.8
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.6,
+      "cohesion": 0.45,
+      "polarization": 0.5
+    },
+    "structureAffinity": 0.7,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 2.5,
+        "durationSec": [
+          6,
+          20
+        ]
+      },
+      {
+        "type": "homeShelter",
+        "kind": "crevice",
+        "rangeBodyLengths": 4,
+        "visitChancePerMin": 0.5,
+        "visitDurationSec": [
+          5,
+          15
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer Catalog: Gobiodon okinawae",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=18745"
+      },
+      {
+        "title": "Sawada, Arai & Abe 1972: Gobiodon okinawae, a new coral-goby",
+        "url": "https://www.jstage.jst.go.jp/article/jji1950/19/2/19_2_57/_pdf"
+      },
+      {
+        "title": "Cole & Hoese 2001: Gonad morphology, colony demography and evidence for hermaphroditism",
+        "url": "https://link.springer.com/article/10.1023/A:1011032228716"
+      },
+      {
+        "title": "Swanson et al.2021: Yellow coral goby trade in Banggai Laut District",
+        "url": "https://bioflux.com.ro/docs/2021.259-273.pdf"
+      },
+      {
+        "title": "Nilsson et al.2007: Hypoxia tolerance and air-breathing ability correlate with habitat preference in coral-dwelling fishes",
+        "url": "https://jean-paulhobbs.weebly.com/uploads/2/8/0/9/28093327/nilsson_et_al_2007a_hypoxia_tolerence_airbreathing_coral_reefs.pdf"
+      }
+    ]
+  }
+}

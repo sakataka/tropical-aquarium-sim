@@ -1,0 +1,116 @@
+{
+  "id": "japanese-spider-crab",
+  "displayName": "タカアシガニ",
+  "realBodyLengthCm": 300,
+  "catalog": {
+    "scientificName": "Macrocheira kaempferi",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "日本の太平洋岸の深い海にすむ、大きなカニです。長い脚を広げ、砂や岩のある海底を歩きます。",
+    "temperament": "海底の有機物や死んだ魚などの動物質、無脊椎動物、藻類を食べると水族館が解説しています。",
+    "movement": "成体は泳がず、海底を歩き回ります。本水槽では、広い砂泥の斜面をゆっくり歩き、石の周りで休む姿で描いています。",
+    "habitat": "大陸棚から斜面の砂地・岩場にすみます。本水槽では、散らばる岩や小石、岩の棚を備えた駿河湾の暗い斜面を再現しています。"
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Decapoda",
+      "orderJa": "十脚目",
+      "family": "Macrocheiridae",
+      "familyJa": "タカアシガニ科"
+    },
+    "adultSizeCm": 20,
+    "sizeNote": "図鑑では甲幅約20cmを目安にしています。2026年研究の成体期の標本範囲は雄13.1〜29.1cm、雌17.0〜21.8cmです。水族館は左右のはさみ先端間が3.8mに達すると解説しています。1000cm水槽に合わせ、画面では脚を広げた幅約300cmの個体で描いています。甲幅と脚の幅を測定換算した値ではなく、表示上の目安です。",
+    "distribution": "日本の太平洋岸に分布し、伊豆大島周辺にも採集記録があります。大陸棚から斜面の海底に暮らす種です。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "今回の調査ではIUCNの種別評価本文を確認できていません。2026年研究の寿命推定は成長モデルによるもので、実測寿命や飼育の保証年数ではありません。"
+    },
+    "highlights": [
+      "8本の歩脚と2本のはさみ脚を持ちます。",
+      "雄のはさみ脚は、歩脚よりも著しく長くなります。",
+      "左右のはさみ先端の幅が3.8mに達すると解説される大型種です。",
+      "水族館では擬岩や仕切りに登る姿も観察されています。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "crab",
+    "tailBeatHz": 0.6,
+    "bodyWaveStart": 0.85,
+    "tailSweepRad": 0,
+    "verticalFlex": 0
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.55,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.04,
+      "burst": 0.3
+    },
+    "turnRateRadPerSec": 0.8,
+    "restFraction": 0.6,
+    "depthRange": [
+      0.5,
+      0.95
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.25,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 2.5,
+        "durationSec": [
+          8,
+          25
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.5,
+        "durationSec": [
+          10,
+          30
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "OBIS taxon 346131: Macrocheira kaempferi",
+        "url": "https://portal.obis.org/taxon/346131"
+      },
+      {
+        "title": "AZA Aquatic Invertebrate TAG (2025): Japanese Spider Crab Care Manual, 2nd edition",
+        "url": "https://assets.speakcdn.com/assets/2332/aza_japanese_spider_crab_care_manual.pdf"
+      },
+      {
+        "title": "Monterey Bay Aquarium: Japanese spider crab",
+        "url": "https://www.montereybayaquarium.org/animals-the-ocean/animals-a-to-z/japanese-spider-crab"
+      },
+      {
+        "title": "名古屋港水族館：タカアシガニの給餌タイム、実はちょっと大変…？",
+        "url": "https://nagoyaaqua.jp/study/column/31358/"
+      },
+      {
+        "title": "岡本一利（2026）：タカアシガニの相対成長と脱皮成長",
+        "url": "https://fish-exp.pref.shizuoka.jp/03research/bull_pdf/59/02_okamoto_etal.pdf"
+      },
+      {
+        "title": "東京都島しょ農林水産総合センター（2001）：珍魚採集報告第6号 タカアシガニ",
+        "url": "https://www.ifarc.metro.tokyo.lg.jp/archive/27,2599,55,228.html"
+      }
+    ]
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "id": "brook-trout",
+  "displayName": "カワマス",
+  "realBodyLengthCm": 20,
+  "catalog": {
+    "scientificName": "Salvelinus fontinalis",
+    "originRegionId": "north-america",
+    "originRegionName": "北米",
+    "origin": "北アメリカ東部を原産とするイワナの仲間です。五大湖から大西洋側、南へアパラチア山地の川に分布します。日本にも導入されています。",
+    "temperament": "水生・陸生の無脊椎動物を食べ、大きな個体は魚も捕食します。繁殖期には雄が他の雄を追う姿も記載されています。",
+    "movement": "冷たい流れや遮蔽物の近くを利用します。本水槽では、日陰の流れの中を泳ぎ、沈んだ枝や岩の近くで休む姿で描いています。",
+    "habitat": "冷たい川や湧水の渓流、湖、一部の個体群では河口域にも暮らします。本水槽では、落ち葉や沈んだ枝、苔のある岩を備えたアパラチアの森の渓流を再現しています。"
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Salmoniformes",
+      "orderJa": "サケ目",
+      "family": "Salmonidae",
+      "familyJa": "サケ科"
+    },
+    "adultSizeCm": 20,
+    "sizeNote": "マサチューセッツ州の小河川では成魚の多くが6〜8インチ（約15.2〜20.3cm）とされます。測る端点は示されていません。図鑑は約20cmを目安にし、画面では全長約20cmとして仮に描いています。原記載を整理した論文の基準標本は、本文178.8mm SLと表170.8mm SLで食い違いがあり、統合していません。",
+    "distribution": "北アメリカ東部の五大湖から大西洋側、アパラチア山地を南へジョージア州まで分布します。日本での導入記録は原産域と区別しています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "note": "CASが引用するIUCNのLCによる二次確認です。2024年は引用の年として扱い、原評価本文と実施年を直接確認していないため評価年の欄は省略しました。州の保全優先区分とは別です。"
+    },
+    "highlights": [
+      "暗い緑色の背には虫食いのような模様があります。",
+      "体側の赤い斑点には青い輪が見られます。",
+      "腹びれと尻びれの前縁は白く、その後ろに暗色が沿います。",
+      "雌は礫底に産卵床を掘り、受精卵を礫で覆います。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.0
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.25,
+    "maxY": 0.7
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.38,
+      "burst": 1.7
+    },
+    "turnRateRadPerSec": 2.0,
+    "restFraction": 0.3,
+    "depthRange": [
+      0.3,
+      0.9
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.4,
+      "cohesion": 0,
+      "polarization": 0.04
+    },
+    "structureAffinity": 0.7,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Eschmeyer Catalog: Salvelinus fontinalis",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?genus=Salvelinus&tbl=species"
+      },
+      {
+        "title": "US Fish and Wildlife Service: Brook trout",
+        "url": "https://www.fws.gov/species/brook-trout-salvelinus-fontinalis"
+      },
+      {
+        "title": "MassWildlife2025: Brook trout",
+        "url": "https://www.mass.gov/info-details/brook-trout"
+      },
+      {
+        "title": "MassWildlife: Trout identification",
+        "url": "https://www.mass.gov/info-details/trout-identification-and-fishing-tips"
+      },
+      {
+        "title": "Stauffer & King2014: Designation of a neotype for brook trout",
+        "url": "https://ecosystems.psu.edu/research/labs/stauffer/publications/2010-present/brook-trout-neotype.pdf/%40%40download/file/brook%20trout%20neotype.pdf"
+      },
+      {
+        "title": "国立環境研究所: Invasive Species of Japan, Salvelinus fontinalis",
+        "url": "https://www.nies.go.jp/biodiversity/invasive/DB/detail/50190e.html"
+      },
+      {
+        "title": "Pelletier & Forrester2025: Brook trout summer habitat selection",
+        "url": "https://academic.oup.com/tafs/article/154/1/7/8081929"
+      }
+    ]
+  }
+}

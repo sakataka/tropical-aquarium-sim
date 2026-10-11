@@ -1,0 +1,92 @@
+{
+  "id": "european-grayling",
+  "displayName": "ヨーロピアン・グレイリング",
+  "realBodyLengthCm": 35,
+  "catalog": {
+    "scientificName": "Thymallus thymallus",
+    "originRegionId": "europe",
+    "originRegionName": "ヨーロッパ",
+    "origin": "中部・北部・東部ヨーロッパからウラル山脈まで分布する、サケ科の魚です。長く高い背びれが目立ちます。",
+    "temperament": "底や流れの中の昆虫、甲殻類、軟体動物などを食べ、水面の昆虫も拾います。大きな個体が小魚を食べることもあります。",
+    "movement": "流れの中で位置を保ち、群れをつくると解説されています。本水槽では、澄んだ広い水中に数匹が並び、流れを受ける姿で描いています。",
+    "habitat": "冷涼で酸素の豊富な川の、きれいな礫底と滑らかな流れを利用します。本水槽では、丸い石や礫、流れになびく水草、岸の木の根を備えた北ヨーロッパの冷たい川を再現しています。"
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Salmoniformes",
+      "orderJa": "サケ目",
+      "family": "Salmonidae",
+      "familyJa": "サケ科"
+    },
+    "adultSizeCm": 35,
+    "sizeNote": "DORISの成魚の一般的な長さ35cmを図鑑の目安にしています。同資料には50cmの大型例もありますが、測る端点は未指定です。画面では全長約35cmとして仮に描いています。これらは種全体の平均や確実な最大全長を示す値ではありません。",
+    "distribution": "中部・北部・東部ヨーロッパからウラル山脈まで分布します。上部ロワールやアドリア海側の在来グレイリングは、近縁の別種との区別が必要です。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "note": "CASが引用するIUCNのLCによる二次確認です。引用の2024年を評価実施年とはしていません。原評価本文は未読です。世界の区分と、地域的な減少や旧フランス区分は分けて扱います。"
+    },
+    "highlights": [
+      "旗のように長く高い背びれは紫色系の光沢を持ちます。",
+      "背びれの後ろには、小さな脂びれがあります。",
+      "春には産卵する礫場へ上流に移動します。",
+      "産卵時には雄が背びれで雌の背を覆う動作が記載されています。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 1.1
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.25,
+    "maxY": 0.7
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "steady",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.26,
+      "burst": 0.8
+    },
+    "turnRateRadPerSec": 1.3,
+    "restFraction": 0.22,
+    "depthRange": [
+      0.15,
+      0.8
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.6,
+      "cohesion": 0.45,
+      "polarization": 0.5
+    },
+    "structureAffinity": 0.2,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Eschmeyer Catalog10801 Thymallus thymallus",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=10801"
+      },
+      {
+        "title": "DORIS2169 Ombre commun, updated2019",
+        "url": "https://doris.ffessm.fr/ref/specie/2169"
+      },
+      {
+        "title": "ONEMA spawning habitat sheet served by OFB",
+        "url": "https://patbiodiv.ofb.fr/sites/default/files/media/document/2017-09/Fiche_Ombre_commun.pdf"
+      },
+      {
+        "title": "Weiss et al.2020 online /2021 print Thymallus systematics",
+        "url": "https://link.springer.com/article/10.1007/s13127-020-00468-7"
+      },
+      {
+        "title": "Rahimnejad et al.2021 juvenile protein/lipid feeding trial",
+        "url": "https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2021.715636/full"
+      }
+    ]
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "id": "snubnose-pompano",
+  "displayName": "マルコバン",
+  "realBodyLengthCm": 65,
+  "catalog": {
+    "scientificName": "Trachinotus blochii",
+    "originRegionId": "indo-pacific",
+    "originRegionName": "インド太平洋",
+    "origin": "紅海からインド西太平洋の沿岸に分布する魚です。成魚はサンゴ礁や岩礁の周辺を利用します。",
+    "temperament": "貝類など、硬い殻を持つ底生の小動物を食べます。咽頭の歯で殻を砕くと解説されています。",
+    "movement": "小型魚は浅い岸辺で、成魚は沖合で群れるとされています。本水槽では、広い開放水域をまとまって泳ぐ姿で描いています。",
+    "habitat": "成魚は沿岸のサンゴ礁や岩礁の縁を利用し、幼魚は波打ち際や浅い砂泥底に見られます。本水槽では、礁の突き出した岩と砂礫、その先に広がる青い水中を再現しています。"
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Carangiformes",
+      "orderJa": "アジ目",
+      "family": "Carangidae",
+      "familyJa": "アジ科"
+    },
+    "adultSizeCm": 65,
+    "sizeNote": "FAOで調べた大型標本の全長65cmを図鑑と画面の目安にしています。同じ標本は尾叉長55.5cmです。一方、Fishes of Australiaは最大110cm FL、美ら海水族館は「体長」50cmとし、測り方と対象が異なります。65cmを種の絶対最大や平均とはしていません。科は館のアジ類とFAOに合わせてアジ科としています（現CASはTrachinotidae）。",
+    "distribution": "紅海、東アフリカ、インド洋からインド西太平洋の島々、オーストラリア方面まで分布します。三浦半島の原著記録は幼魚であり、成魚の繁殖定着を示すものではありません。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2017,
+      "note": "CASが掲示するIUCNのLCと2017年評価による二次確認です。原評価本文とその後の更新は取得できていません。"
+    },
+    "highlights": [
+      "丸い鼻先と、高く平たい銀色の体を持ちます。",
+      "背びれと尻びれの前方が鎌のように長く伸びます。",
+      "尾びれは深く二股に分かれます。",
+      "小さな口で食べた貝などの殻を、咽頭の歯で砕きます。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 1.2,
+    "bodyWaveStart": 0.45,
+    "tailSweepRad": 0.42
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.25,
+    "maxY": 0.7
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "steady",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.45,
+      "burst": 1.4
+    },
+    "turnRateRadPerSec": 1.4,
+    "restFraction": 0.04,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "school",
+      "spacingBodyLengths": 1.3,
+      "cohesion": 0.75,
+      "polarization": 0.78
+    },
+    "structureAffinity": 0.05,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Eschmeyer Catalog: Trachinotus blochii",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=34724"
+      },
+      {
+        "title": "Smith-Vaniz FAO Western Indian Ocean identification sheet CARAN Trachin10",
+        "url": "https://www.fao.org/4/ad468e/AD468eCF.pdf"
+      },
+      {
+        "title": "Bray2022 Fishes of Australia: Snubnose Dart",
+        "url": "https://fishesofaustralia.net.au/home/species/2993"
+      },
+      {
+        "title": "萩原2025 マルコバンの三浦半島相模湾岸からの記録",
+        "url": "https://www.museum.yokosuka.kanagawa.jp/wp/wp-content/uploads/2025/04/s72-6_Hagiwara_2025.pdf"
+      },
+      {
+        "title": "沖縄美ら海水族館 マルコバン",
+        "url": "https://churaumi.okinawa/sp/fishbook/00000538/"
+      },
+      {
+        "title": "鳥羽水族館 マルコバン",
+        "url": "https://aquarium.co.jp/picturebook/trachinotus-blochii.html"
+      },
+      {
+        "title": "Fisher et al.2018 Relative influence of environmental factors on multi-species coral reef fish aggregations",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6303027/"
+      }
+    ]
+  }
+}

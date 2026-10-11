@@ -1,0 +1,108 @@
+{
+  "id": "carpenter-prawn",
+  "displayName": "スジエビモドキ",
+  "realBodyLengthCm": 4,
+  "catalog": {
+    "scientificName": "Palaemon serrifer",
+    "originRegionId": "east-asia",
+    "originRegionName": "東アジア",
+    "origin": "東アジアの沿岸に記録される、半透明の小さなエビです。日本では潮だまりや転石のある岸辺で観察されています。",
+    "temperament": "飼育研究では成体が動物性の肉片を食べ、浮遊幼生はアルテミアを食べて育ちました。これだけで野外の食物割合や、魚を掃除する習性が分かるわけではありません。",
+    "movement": "着底した個体は潮だまりや転石の底から採集されています。本水槽では、砂や小石、岩の面を脚で歩き、ときどき止まる姿で描いています。",
+    "habitat": "岩礁の潮だまり、転石帯、砂泥や砂礫の干潟に記録があります。本水槽では、穴や隙間のある磯の岩と海藻、貝殻混じりの砂の潮だまりを再現しています。"
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Decapoda",
+      "orderJa": "十脚目",
+      "family": "Palaemonidae",
+      "familyJa": "テナガエビ科"
+    },
+    "adultSizeCm": 4,
+    "sizeNote": "幡豆の干潟の解説は成体の体長を約4cmとし、図鑑と画面はこれを目安にしています。額角の先から尾までの測定端点は未指定です。館山湾の雄7.6mm、雌11.35mmは眼窩後縁からの頭胸甲長で、体長への換算はしていません。画面の4cmには触角を含めません。",
+    "distribution": "日本の館山湾や江奈湾などの沿岸で記録があります。韓国の潮だまりでも成長と繁殖が調べられ、南シナ海の分類資料にも記載されています。",
+    "water": {
+      "salinity": "marine"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "今回の調査ではIUCNの種別評価本文を確認できていません。地域の採集や成長・繁殖研究は、世界の絶滅リスクや現在の個体数を示すものではありません。"
+    },
+    "highlights": [
+      "体は半透明で、腹部の節の付近に細い縞があります。",
+      "額角はおおむね水平に伸び、先端へ細くなります。",
+      "長い糸状の触角と、細い胸脚を持ちます。",
+      "浮遊する幼生と、底に暮らす着底後の個体では生活場所が異なります。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "crustacean",
+    "tailBeatHz": 0.6,
+    "bodyWaveStart": 0.85,
+    "tailSweepRad": 0,
+    "verticalFlex": 0
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.55,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.06,
+      "burst": 0.4
+    },
+    "turnRateRadPerSec": 1.1,
+    "restFraction": 0.55,
+    "depthRange": [
+      0.3,
+      0.85
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.85,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.5,
+        "durationSec": [
+          8,
+          20
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "ITIS Palaemon serrifer TSN96523",
+        "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=96523"
+      },
+      {
+        "title": "Li, Bruce & Manning2004 Some palaemonid shrimps from northern South China Sea",
+        "url": "https://decapoda.nhm.org/pdfs/18891/18891.pdf"
+      },
+      {
+        "title": "伊藤円・渡邊精一・村野正昭1991 イソスジエビとスジエビモドキの成長と繁殖",
+        "url": "https://www.jstage.jst.go.jp/article/suisan1932/57/7/57_7_1229/_pdf"
+      },
+      {
+        "title": "総合地球環境学研究所・東海大学2016 幡豆の干潟探索ガイドブック p25",
+        "url": "https://www.chikyu.ac.jp/CAPABILITY/img/books/hazu_guide.pdf"
+      },
+      {
+        "title": "OWS江奈湾干潟生きもの図鑑 スジエビモドキ",
+        "url": "https://www.ows-npo.org/zukan/ena/180/sp-e0253.html"
+      },
+      {
+        "title": "Kim2008 Growth, Fecundity, Egg Size and Recruitment of Palaemon serrifer: KCI掲載要旨",
+        "url": "https://www.kci.go.kr/kciportal/landing/article.kci?arti_id=ART001245729"
+      }
+    ]
+  }
+}
