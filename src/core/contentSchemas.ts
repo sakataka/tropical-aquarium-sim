@@ -51,6 +51,13 @@ export const museumHeaderSchema = z.object({
 });
 
 /**
+ * 既読の最初の状態（museum/seen-baseline.json）。水槽ごとの、既読とみなす種。
+ * 閲覧の記録を取り始めた時点（2026年10月10日の終わり）で館にあった水槽と種を、Git の履歴から書き出したもの。
+ * 既読の保存がない人は、ここから始まる（src/core/seen.ts）。あとから足した水槽や種は書き足さない。
+ */
+export const seenBaselineSchema = z.record(z.string(), z.array(z.string()));
+
+/**
  * 建物（本館、別館など）。館 → 建物 → 階 → 展示室 → 水槽の順に並ぶ。
  * 建物を足すときは、museum/buildings/<id>/ に building.json と断面図の絵を置く。
  */

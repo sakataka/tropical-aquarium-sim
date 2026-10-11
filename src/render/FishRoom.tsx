@@ -16,12 +16,16 @@ import { getScenePlateUrl, getRoomImageUrl, loadTexture } from "./assets";
 import { FishLayer, getWaterTint, type ViewRect } from "./fishLayer";
 import { frameGlass, getInitialZoom, getRenderOptions } from "./tankFraming";
 import { playSfx } from "../audio/sfx";
+import type { UnseenSpecies } from "../core/seen";
+import { NewMark } from "../ui/NewMark";
 import { getSurfaceFrame, placePlate, TerrainLayer } from "./terrainLayer";
 import { lerp, smoothstep } from "../core/math";
 
 type FishRoomProps = {
   room: FishRoomDefinition;
   tanks: Record<string, AquariumCustomization>;
+  /** 水槽ごとの、まだ見ていない種。載っている水槽に NEW の印を付ける。 */
+  unseen?: UnseenSpecies;
   fishRefs: Record<string, MutableRefObject<FishInstance[]>>;
   /** 水槽画面から戻ったときは、その水槽に寄った状態から引いて始める。 */
   returningFrom?: string;
@@ -61,10 +65,12 @@ const ZOOM_OUT_HOLD_SEC = 0.4;
 const CURTAIN_COLOR = 0x031416;
 /** 水槽にカーソルを合わせたとき、ほかを落とす暗さ。 */
 const SPOTLIGHT_DIM = 0.32;
+const NEW_TANK_LABEL = "まだ見ていない生き物がいる水槽";
 
 export function FishRoom({
   room: fishRoom,
   tanks,
+  unseen,
   fishRefs,
   returningFrom,
   active = true,
@@ -449,8 +455,10 @@ export function FishRoom({
         {fishRoom.tanks.map((placement, index) => {
           const tank = getTankById(placement.tankId);
           if (!tank) return null;
+          const isNew = unseen?.[tank.id] !== undefined;
           return (
             <button
+              aria-description={isNew ? NEW_TANK_LABEL : undefined}
               aria-label={`${tank.displayName}を眺める`}
               className={hovered === tank.id ? "room-tank lit" : "room-tank"}
               key={tank.id}
@@ -471,6 +479,8 @@ export function FishRoom({
                 <em>No. {String(index + 1).padStart(2, "0")}</em>
                 <strong>{tank.displayName}</strong>
               </span>
+              {/* 名前はカーソルを合わせたときだけ出すので、印は名前の上に分けて置き、いつも見せる。ガラスには重ねない。 */}
+              {isNew ? <span aria-hidden="true" className="room-tank-new"><NewMark label={NEW_TANK_LABEL} /></span> : null}
             </button>
           );
         })}
@@ -506,7 +516,10 @@ export function FishRoom({
               <span className="index-copy">
                 <strong>{tank.displayName}</strong>
                 <em>{tank.exhibitName}</em>
-                <small>{tank.widthCm}cm · {countFish(tanks[tank.id])}匹</small>
+                <small>
+                  {tank.widthCm}cm · {countFish(tanks[tank.id])}匹
+                  {unseen?.[tank.id] ? <NewMark label={NEW_TANK_LABEL} /> : null}
+                </small>
               </span>
             </button>
           );

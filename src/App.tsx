@@ -38,6 +38,7 @@ import { MapIcon } from "./ui/icons";
 import { TankScreen } from "./ui/TankScreen";
 import { useAmbientSound } from "./audio/useAmbientSound";
 import { loadInitialState, useHistorySync, type Phase, type ZukanView, type SwitchDirection } from "./navigation";
+import { useSeenTanks } from "./useSeenTanks";
 import "./styles.css";
 
 
@@ -54,6 +55,7 @@ type FishRefs = Record<string, MutableRefObject<FishInstance[]>>;
 const TANK_LEAVE_MS = 420;
 
 const CROSSFADE_MS = 400;
+const NO_SPECIES: readonly string[] = [];
 
 export default function App() {
   const [initial] = useState(loadInitialState);
@@ -70,6 +72,8 @@ export default function App() {
   const [saveFailed, setSaveFailed] = useState(false);
   const [audioUnlocked, setAudioUnlocked] = useState(false);
   const [renderProblem, setRenderProblem] = useState<string | null>(null);
+  // まだ見ていない水槽と生き物。館内図・展示室・水槽の画面に NEW の印を出し、水槽の画面に入ると既読にする。
+  const { unseen, markSeen } = useSeenTanks();
 
   useEffect(() => {
     const onProblem = (event: Event) => setRenderProblem((current) =>
@@ -345,6 +349,7 @@ export default function App() {
           onToggleSound={toggleSound}
           soundEnabled={state.preferences.soundEnabled}
           tanks={state.tanks}
+          unseen={unseen}
         />
       ) : null}
       {phase.kind !== "map" && !hallReady ? <HallLoading /> : null}
@@ -363,6 +368,7 @@ export default function App() {
           onReady={handleRoomReady}
           returningFrom={returningFrom}
           tanks={state.tanks}
+          unseen={unseen}
         />
       ) : null}
       </Suspense>
@@ -403,9 +409,11 @@ export default function App() {
             preferences: { ...current.preferences, ...update },
           }))}
           onReady={handleTankReady}
+          onSeen={() => markSeen(tank.id)}
           preferences={state.preferences}
           saveFailed={saveFailed}
           tank={tank}
+          unseenSpeciesIds={unseen ? unseen[tank.id] ?? NO_SPECIES : undefined}
         />
       ) : null}
       </Suspense>

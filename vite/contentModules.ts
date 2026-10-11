@@ -7,6 +7,7 @@ import {
   roomSchema,
   sceneHeaderSchema,
   sceneTerrainSchema,
+  seenBaselineSchema,
   tankSchema,
   type FishRoomDefinition,
   type MuseumDefinition,
@@ -31,6 +32,8 @@ import type { FishSpeciesDefinition, TankDefinition } from "../src/core/types";
 // - virtual:fish-images   全種の体の画像の URL。展示室と図鑑の一覧で使う。
 // - virtual:species/<id>  生き物1種。図鑑で解説を開くときに読む。
 // - virtual:species-index 図鑑の一覧に使う全種の見出し。図鑑を開くときに読む。
+// - virtual:tank-species  水槽ごとの今の種の並びと、既読の最初の状態。まだ見ていない水槽と生き物の印（NEW）に使う。
+//                         生き物の数で増えるので館の索引には入れず、起動後に読む。
 
 const SAFE_MARGIN_CM = 2;
 const PREFIX = "virtual:";
@@ -45,6 +48,8 @@ type ContentModel = {
   tankHall: Map<string, string>;
   scenes: Map<string, { header: SceneHeader; terrain: unknown }>;
   species: Map<string, FishSpeciesDefinition>;
+  /** 既読の最初の状態。水槽ごとの、既読とみなす種。 */
+  seenBaseline: Record<string, string[]>;
   files: string[];
 };
 
@@ -171,8 +176,10 @@ export function readContent(contentDir: string): ContentModel {
     if (!tanks.has(tankId)) throw new ContentError(join(roomDir, `${hallId}.json`), `tank not found: ${tankId}`);
   }
   if (halls.length === 0) throw new ContentError(roomDir, "no rooms found");
+  // なくなった水槽や種が残っていても害はない（今の水槽の種だけを比べる）ので、参照は確かめない。
+  const seenBaseline = parse(join(contentDir, "museum/seen-baseline.json"), files, (value) => seenBaselineSchema.parse(value));
 
-  return { museum, floors, halls, tanks, tankHall, scenes, species, files };
+  return { museum, floors, halls, tanks, tankHall, scenes, species, seenBaseline, files };
 }
 
 /** モジュールのコードを組み立てる。画像の URL は Vite に解決させるため import にする。 */
@@ -336,6 +343,16 @@ function speciesIndexModule(model: ContentModel): string {
   ].join("\n");
 }
 
+function tankSpeciesModule(model: ContentModel): string {
+  // 館内図の順（展示室の順、展示室の中の水槽の順）。開いている展示室の水槽だけが載る。
+  const tankSpecies = Object.fromEntries(model.halls.flatMap((room) => room.tanks.map((placement) =>
+    [placement.tankId, model.tanks.get(placement.tankId)!.species.map((slot) => slot.speciesId)])));
+  return [
+    `export const tankSpecies = ${jsonParse(tankSpecies)};`,
+    `export const seenBaseline = ${jsonParse(model.seenBaseline)};`,
+  ].join("\n");
+}
+
 /**
  * モジュールが読む内容ファイル。変わったら作り直すように、そのモジュールが使うものだけを監視に登録する。
  * 全モジュールに全ファイルを登録すると、種の数×ファイルの数に比例して遅くなる
@@ -365,7 +382,7 @@ function sourceFiles(model: ContentModel, contentDir: string, name: string): str
       ...ofHalls(model.halls.filter((item) => floorOf(model, item.id) === floorId), false),
     ];
   }
-  // 館の索引と図鑑の見出しは、全体から作る。画像の URL の一覧は、ファイルの有無だけで決まる。
+  // 館の索引と図鑑の見出し、水槽ごとの種の並びは、全体から作る。画像の URL の一覧は、ファイルの有無だけで決まる。
   return name === "fish-images" ? [] : model.files;
 }
 
@@ -383,6 +400,7 @@ export function contentModules(contentDir: string): Plugin {
     name: "content-modules",
     resolveId(source) {
       if (source === `${PREFIX}museum` || source === `${PREFIX}species-index` || source === `${PREFIX}fish-images` ||
+        source === `${PREFIX}tank-species` ||
         source.startsWith(`${PREFIX}floor/`) || source.startsWith(`${PREFIX}hall/`) ||
         source.startsWith(`${PREFIX}species/`)) return `\0${source}`;
       return undefined;
@@ -395,6 +413,7 @@ export function contentModules(contentDir: string): Plugin {
       if (name === "museum") return museumModule(model, contentDir);
       if (name === "species-index") return speciesIndexModule(model);
       if (name === "fish-images") return fishImagesModule(model, contentDir);
+      if (name === "tank-species") return tankSpeciesModule(model);
       if (name.startsWith("floor/")) return floorModule(model, contentDir, name.slice("floor/".length));
       if (name.startsWith("hall/")) return hallModule(model, name.slice("hall/".length));
       if (name.startsWith("species/")) return speciesModule(model, name.slice("species/".length));

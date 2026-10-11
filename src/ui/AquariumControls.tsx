@@ -14,6 +14,7 @@ import {
 import { getSceneSummary } from "../core/museum";
 import { getFishImageUrl } from "../render/assetUrls";
 import { CheckIcon, CloseIcon, MinusIcon, PlusIcon } from "./icons";
+import { NewMark } from "./NewMark";
 import { playSfx } from "../audio/sfx";
 
 type PanelTab = "fish" | "scene" | "viewing";
@@ -37,6 +38,8 @@ type AquariumControlsProps = {
   onOpenZukan: (speciesId: string) => void;
   tank: TankDefinition;
   customization: AquariumCustomization;
+  /** この水槽に入った時点で、まだ見ていなかった種。NEW の印を付ける。 */
+  newSpeciesIds?: readonly string[];
   preferences: AquariumPreferences;
   saveFailed: boolean;
   panelRef: RefObject<HTMLElement | null>;
@@ -52,6 +55,7 @@ export function AquariumControls({
   onOpenZukan,
   tank,
   customization,
+  newSpeciesIds,
   preferences,
   saveFailed,
   panelRef,
@@ -138,7 +142,10 @@ export function AquariumControls({
                       <img alt="" loading="lazy" src={getFishImageUrl(species.id)} />
                     </div>
                     <div className="fish-catalog-copy">
-                      <h3>{species.displayName}</h3>
+                      <h3>
+                        {species.displayName}
+                        {newSpeciesIds?.includes(species.id) ? <NewMark label="まだ見ていない生き物" /> : null}
+                      </h3>
                       <p className="scientific">{species.catalog.scientificName}</p>
                       <ul className="trait-list" aria-label={`${species.displayName}の特徴`}>
                         <li>{species.realBodyLengthCm}cm</li>

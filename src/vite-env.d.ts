@@ -21,6 +21,12 @@ declare module "virtual:museum" {
   export const floorLoaders: Record<string, () => Promise<import("./core/contentTypes").FloorModule>>;
 }
 
+/** 水槽ごとの今の種の並びと、既読の最初の状態。起動後に読む。 */
+declare module "virtual:tank-species" {
+  export const tankSpecies: import("./core/contentTypes").TankSpeciesModule["tankSpecies"];
+  export const seenBaseline: import("./core/contentTypes").TankSpeciesModule["seenBaseline"];
+}
+
 /** 図鑑の全種の見出しと、1種ずつ読む関数。 */
 declare module "virtual:species-index" {
   const entries: import("./core/speciesIndexEntry").SpeciesIndexEntry[];

@@ -1,6 +1,7 @@
 // ビルド時に内容ファイルから作るモジュール（vite/contentModules.ts）の形。
 // 起動時に読むのは館の索引（virtual:museum）だけ。階の配置（virtual:floor/<id>）は館内図で階を開くときに、
 // 展示室の中身（virtual:hall/<id>）と生き物（virtual:species/<id>）は、その展示室に入るときや図鑑で開くときに読む。
+// 水槽ごとの種の並び（virtual:tank-species）は、起動後に読む。
 import type { FishRoomDefinition } from "./contentSchemas";
 import type { AquariumScene, FishSpeciesDefinition, LightingId, TankDefinition } from "./types";
 
@@ -60,4 +61,12 @@ export type HallModule = {
 /** 生き物のモジュール（virtual:species/<id>）。図鑑で解説を開くときに読む。 */
 export type SpeciesModule = {
   default: FishSpeciesDefinition;
+};
+
+/** 水槽ごとの種の並びのモジュール（virtual:tank-species）。起動後に読み、まだ見ていない水槽と生き物の印に使う。 */
+export type TankSpeciesModule = {
+  /** 水槽ごとの、今の種の並び。開いている展示室の水槽だけ。 */
+  tankSpecies: Readonly<Record<string, readonly string[]>>;
+  /** 既読の保存がないときの、既読の最初の状態（museum/seen-baseline.json）。 */
+  seenBaseline: Readonly<Record<string, readonly string[]>>;
 };

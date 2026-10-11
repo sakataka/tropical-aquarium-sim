@@ -50,6 +50,8 @@ export function TankScreen({
   onSwitchTank,
   onToggleSound,
   onOpenZukan,
+  onSeen,
+  unseenSpeciesIds,
   leaving,
   arriving,
 }: {
@@ -68,6 +70,10 @@ export function TankScreen({
   onSwitchTank: (direction: SwitchDirection) => void;
   onToggleSound: () => void;
   onOpenZukan: (speciesId: string) => void;
+  /** この水槽を見た。今の種を既読にする。 */
+  onSeen: () => void;
+  /** この水槽の、まだ見ていない種。水槽ごとの種の並びを読めるまでは undefined。 */
+  unseenSpeciesIds: readonly string[] | undefined;
   /** 隣の水槽へ移るため、この水槽を流し消しているところ。 */
   leaving?: SwitchDirection;
   /** 隣の水槽から移ってきたところ。 */
@@ -83,6 +89,8 @@ export function TankScreen({
   const editingRef = useRef(editing);
   const onBackToRoomRef = useRef(onBackToRoom);
   const onSwitchTankRef = useRef(onSwitchTank);
+  const onSeenRef = useRef(onSeen);
+  onSeenRef.current = onSeen;
   editingRef.current = editing;
   onBackToRoomRef.current = onBackToRoom;
   onSwitchTankRef.current = onSwitchTank;
@@ -91,6 +99,16 @@ export function TankScreen({
   const speciesList = useRef(tank.species
     .map((slot) => fishCatalog[slot.speciesId])
     .filter((species) => species !== undefined)).current;
+
+  // 水槽に入った時点で未読だった種を控えてから、この水槽を既読にする（館内図や展示室の NEW は、ここで消える）。
+  // この画面は水槽ごとに作り直すので、隣の水槽へ移ったときや URL で直接開いたときも、入ったことになる。
+  // 控えた種の行には、水槽を出るまで NEW を出し続ける（何が新しいかを見られるように）。
+  const [newSpeciesIds, setNewSpeciesIds] = useState<readonly string[]>();
+  useEffect(() => {
+    if (newSpeciesIds || !unseenSpeciesIds) return;
+    setNewSpeciesIds(unseenSpeciesIds);
+    onSeenRef.current();
+  }, [newSpeciesIds, unseenSpeciesIds]);
 
   // 操作がしばらくないと、鑑賞モードの操作ボタンを消し、設定パネルも閉じる。
   useEffect(() => {
@@ -295,6 +313,7 @@ export function TankScreen({
 
       <AquariumControls
         customization={customization}
+        newSpeciesIds={newSpeciesIds}
         onClose={() => { playSfx("panel_close"); setEditing(false); }}
         panelRef={panelRef}
         onOpenZukan={onOpenZukan}

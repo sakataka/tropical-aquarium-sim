@@ -21,9 +21,11 @@ import {
   type MuseumBuilding,
   type MuseumFloor,
 } from "../core/museum";
+import { countUnseenTanks, type UnseenSpecies } from "../core/seen";
 import { playSfx } from "../audio/sfx";
 import { HallPreview } from "./HallPreview";
 import { BackIcon, BookIcon, ChevronRightIcon } from "./icons";
+import { NewMark, unseenTanksLabel } from "./NewMark";
 import { SoundToggle } from "./SoundToggle";
 
 /** 階の一覧の縮小版の縦横比。展示室の絵より少し横長にして、水槽の並びを大きく見せる。 */
@@ -34,12 +36,14 @@ const PREVIEW_ASPECT = 2;
 // 展示室が増えても、ここに並ぶのは1つの建物の階の数だけ。
 // 2段目は選んだ階の展示室の一覧で、開いている展示室には、その展示室の画面の縮小版を映す。
 // 縮小版に要る部屋の絵とガラスの位置は、階を開くときにその階の分だけ読む。
+// まだ見ていない水槽（unseen）のある建物・階・展示室には NEW の印を付け、どちらへ進めば未読があるかを示す。
 export function MuseumMap({
   buildingId,
   floorId,
   lastHallId,
   soundEnabled,
   tanks,
+  unseen,
   onEnterHall,
   onOpenZukan,
   onSelectBuilding,
@@ -55,6 +59,8 @@ export function MuseumMap({
   soundEnabled: boolean;
   /** 水槽ごとの今の設定。縮小版に今の水景を映す（入ったことのない水槽は既定の水景）。 */
   tanks: Record<string, AquariumCustomization>;
+  /** 水槽ごとの、まだ見ていない種。読めるまでは undefined（印なし）。 */
+  unseen?: UnseenSpecies;
   onEnterHall: (hallId: string) => void;
   onOpenZukan: () => void;
   /** 建物の断面図へ。 */
@@ -93,6 +99,7 @@ export function MuseumMap({
           onEnterHall={enter}
           onSelectFloor={selectFloor}
           tanks={tanks}
+          unseen={unseen}
         />
       ) : (
         <MuseumOverview
@@ -102,6 +109,7 @@ export function MuseumMap({
           onOpenZukan={onOpenZukan}
           onSelectBuilding={selectBuilding}
           onSelectFloor={selectFloor}
+          unseen={unseen}
         />
       )}
       <SoundToggle className="map-sound" enabled={soundEnabled} onToggle={onToggleSound} />
@@ -110,13 +118,14 @@ export function MuseumMap({
 }
 
 // 1段目。建物の断面図に階の帯を重ね、横（狭い画面では下）にフロアガイドを置く。
-function MuseumOverview({ building, lastHallId, onEnterHall, onOpenZukan, onSelectBuilding, onSelectFloor }: {
+function MuseumOverview({ building, lastHallId, onEnterHall, onOpenZukan, onSelectBuilding, onSelectFloor, unseen }: {
   building: MuseumBuilding;
   lastHallId?: string;
   onEnterHall: (hallId: string) => void;
   onOpenZukan: () => void;
   onSelectBuilding: (buildingId: string) => void;
   onSelectFloor: (floorId: string) => void;
+  unseen?: UnseenSpecies;
 }) {
   const [activeFloor, setActiveFloor] = useState<string>();
   const lastHall = getHallById(lastHallId);
@@ -155,7 +164,7 @@ function MuseumOverview({ building, lastHallId, onEnterHall, onOpenZukan, onSele
         {buildings.length > 1 ? (
           <nav aria-label="建物を選ぶ" className="map-buildings">
             {buildings.map((item) => {
-              const open = buildingStats(item).open;
+              const { open, newTanks } = buildingStats(item, unseen);
               return (
                 <button
                   aria-current={item.id === building.id ? "page" : undefined}
@@ -166,6 +175,7 @@ function MuseumOverview({ building, lastHallId, onEnterHall, onOpenZukan, onSele
                 >
                   <span>{item.displayName}</span>
                   <small>{open === 0 ? "準備中" : `${open}展示室`}{item.id === lastFloor?.buildingId ? " · 前回" : ""}</small>
+                  {newTanks > 0 ? <NewMark label={unseenTanksLabel(newTanks)} /> : null}
                 </button>
               );
             })}
@@ -181,7 +191,7 @@ function MuseumOverview({ building, lastHallId, onEnterHall, onOpenZukan, onSele
           />
           {/* 階の帯。操作はフロアガイドのボタンでもできるので、こちらはポインター用にしてフォーカス順に入れない。 */}
           {building.floors.map((floor) => {
-            const { open } = floorStats(floor);
+            const { open, newTanks } = floorStats(floor, unseen);
             return (
               <button
                 aria-hidden="true"
@@ -202,6 +212,7 @@ function MuseumOverview({ building, lastHallId, onEnterHall, onOpenZukan, onSele
                 <span className="zone-label">
                   {floor.displayName}
                   <small>{open === 0 ? "準備中" : `${open}室`}{floor.id === lastFloorId ? " · 前回" : ""}</small>
+                  {newTanks > 0 ? <NewMark label={unseenTanksLabel(newTanks)} /> : null}
                 </span>
               </button>
             );
@@ -216,7 +227,7 @@ function MuseumOverview({ building, lastHallId, onEnterHall, onOpenZukan, onSele
           </li>
         ) : null}
         {building.floors.map((floor) => {
-          const { slots, open, tankCount, speciesCount } = floorStats(floor);
+          const { slots, open, tankCount, speciesCount, newTanks } = floorStats(floor, unseen);
           return (
             <li
               className={[
@@ -243,6 +254,7 @@ function MuseumOverview({ building, lastHallId, onEnterHall, onOpenZukan, onSele
                   <span className="floor-meta">
                     {open === 0 ? "準備中" : `${open}展示室 · ${tankCount}水槽 · ${speciesCount}種`}
                     {floor.id === lastFloorId ? <em className="hall-last">前回</em> : null}
+                    {newTanks > 0 ? <NewMark count={newTanks} label={unseenTanksLabel(newTanks)} /> : null}
                   </span>
                   <span className="floor-hall-names">
                     {slots.map((slot) => (
@@ -261,13 +273,14 @@ function MuseumOverview({ building, lastHallId, onEnterHall, onOpenZukan, onSele
 }
 
 // 2段目。階の展示室を、縮小版つきのカードで並べる。上に階の切り替えを置く。
-function FloorView({ floor, lastHallId, onBack, onEnterHall, onSelectFloor, tanks }: {
+function FloorView({ floor, lastHallId, onBack, onEnterHall, onSelectFloor, tanks, unseen }: {
   floor: MuseumFloor;
   lastHallId?: string;
   onBack: () => void;
   onEnterHall: (hallId: string) => void;
   onSelectFloor: (floorId: string) => void;
   tanks: Record<string, AquariumCustomization>;
+  unseen?: UnseenSpecies;
 }) {
   const layoutReady = useFloorLayout(floor.id);
   const building = getBuildingOfFloor(floor);
@@ -283,19 +296,23 @@ function FloorView({ floor, lastHallId, onBack, onEnterHall, onSelectFloor, tank
           <BackIcon /><span>{buildings.length > 1 ? building.displayName : "館内図"}</span>
         </button>
         <ol className="floor-switch">
-          {building.floors.map((item) => (
-            <li key={item.id}>
-              <button
-                aria-current={item.id === floor.id ? "page" : undefined}
-                data-floor={item.id}
-                onClick={() => item.id !== floor.id && onSelectFloor(item.id)}
-                onPointerEnter={() => void loadFloor(item.id).catch(() => undefined)}
-                type="button"
-              >
-                <strong>{item.shortLabel}</strong><span>{item.displayName}</span>
-              </button>
-            </li>
-          ))}
+          {building.floors.map((item) => {
+            const { newTanks } = floorStats(item, unseen);
+            return (
+              <li key={item.id}>
+                <button
+                  aria-current={item.id === floor.id ? "page" : undefined}
+                  data-floor={item.id}
+                  onClick={() => item.id !== floor.id && onSelectFloor(item.id)}
+                  onPointerEnter={() => void loadFloor(item.id).catch(() => undefined)}
+                  type="button"
+                >
+                  <strong>{item.shortLabel}</strong><span>{item.displayName}</span>
+                  {newTanks > 0 ? <NewMark dot label={unseenTanksLabel(newTanks)} /> : null}
+                </button>
+              </li>
+            );
+          })}
         </ol>
       </nav>
       <header className="floor-heading">
@@ -313,6 +330,7 @@ function FloorView({ floor, lastHallId, onBack, onEnterHall, onSelectFloor, tank
               <HallCard
                 last={slot.id === lastHallId}
                 layoutReady={layoutReady}
+                newTanks={countUnseenTanks(slot.room.tankIds, unseen)}
                 onEnter={onEnterHall}
                 room={slot.room}
                 tanks={tanks}
@@ -339,9 +357,11 @@ function useFloorLayout(floorId: string): boolean {
   return ready;
 }
 
-function HallCard({ last, layoutReady, onEnter, room, tanks }: {
+function HallCard({ last, layoutReady, newTanks, onEnter, room, tanks }: {
   last: boolean;
   layoutReady: boolean;
+  /** まだ見ていない水槽の数。 */
+  newTanks: number;
   onEnter: (hallId: string) => void;
   room: HallSummary;
   tanks: Record<string, AquariumCustomization>;
@@ -353,6 +373,7 @@ function HallCard({ last, layoutReady, onEnter, room, tanks }: {
       <span className="hall-card-view">
         {layout ? <HallPreview aspect={PREVIEW_ASPECT} hall={layout} tanks={tanks} /> : null}
         {last ? <em className="hall-last">前回の展示室</em> : null}
+        {newTanks > 0 ? <NewMark count={newTanks} label={unseenTanksLabel(newTanks)} /> : null}
       </span>
       <span className="hall-card-text">
         <strong>{room.displayName}</strong>
@@ -375,7 +396,8 @@ function SoonCard({ slot }: { slot: HallSlot }) {
   );
 }
 
-function floorStats(floor: MuseumFloor) {
+// 準備中の枠には水槽がないので、NEW の水槽は開いている展示室だけで数える。
+function floorStats(floor: MuseumFloor, unseen?: UnseenSpecies) {
   const slots = getHallSlotsOnFloor(floor.id);
   const rooms = slots.flatMap((slot) => slot.room ?? []);
   return {
@@ -383,11 +405,16 @@ function floorStats(floor: MuseumFloor) {
     open: rooms.length,
     tankCount: rooms.reduce((sum, room) => sum + room.tankIds.length, 0),
     speciesCount: getFloorSpeciesCount(floor.id),
+    newTanks: rooms.reduce((sum, room) => sum + countUnseenTanks(room.tankIds, unseen), 0),
   };
 }
 
-function buildingStats(building: MuseumBuilding) {
-  return { open: building.floors.reduce((sum, floor) => sum + floorStats(floor).open, 0) };
+function buildingStats(building: MuseumBuilding, unseen?: UnseenSpecies) {
+  const floors = building.floors.map((floor) => floorStats(floor, unseen));
+  return {
+    open: floors.reduce((sum, floor) => sum + floor.open, 0),
+    newTanks: floors.reduce((sum, floor) => sum + floor.newTanks, 0),
+  };
 }
 
 function toPercent(area: { x: number; y: number; width: number; height: number }, building: MuseumBuilding): CSSProperties {

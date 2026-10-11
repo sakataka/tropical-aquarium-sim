@@ -8,6 +8,7 @@ const HOST = "127.0.0.1";
 const BASE_URL = `http://${HOST}:${PORT}/`;
 const SCREENSHOT_DIR = "tmp/webview";
 const STATE_KEY = "tropical-aquarium.state.v5.r2";
+const SEEN_KEY = "tropical-aquarium.seen.v1";
 
 // 展示室・水槽の名前や数は、内容ファイルから読む（展示室を開けるたびに書き換えずに済むように）。
 type RoomJson = { id: string; order: number; displayName: string; image?: string; tanks: { tankId: string }[] };
@@ -78,6 +79,13 @@ async function hallsFromChanges(base: string): Promise<string[] | undefined> {
   console.log(`差分から選んだ展示室（${selected.length}室）: ${selected.join(", ")}`);
   return selected;
 }
+// まだ見ていない水槽と生き物（NEW の印）。保存を消して開くと、既読の最初の状態（seen-baseline.json）から始まる。
+const SEEN_BASELINE = await Bun.file("src/content/museum/seen-baseline.json").json() as Record<string, string[]>;
+const unseenSpecies = (tankId: string) => TANKS.get(tankId)!.species.map((slot) => slot.speciesId)
+  .filter((id) => !(SEEN_BASELINE[tankId] ?? []).includes(id));
+/** 展示室の NEW の水槽。visited は、この回にもう入った水槽。 */
+const newTanksIn = (room: RoomJson, visited: ReadonlySet<string>) => room.tanks.map((tank) => tank.tankId)
+  .filter((id) => !visited.has(id) && unseenSpecies(id).length > 0);
 let SPECIES_COUNT = 0;
 for await (const _ of new Bun.Glob("src/content/fish/*/species.json").scan()) SPECIES_COUNT++;
 const tankName = (id: string) => TANKS.get(id)!.displayName;
@@ -538,8 +546,21 @@ async function verifyHalls(consoleErrors: string[]) {
     await sleep(2000);
     // 館内図では、どの水景や生き物の画像もまだ要求しない。
     assert(await view.evaluate(`!performance.getEntriesByType('resource').some(r => /\\/(plate|body)\\.webp$/.test(r.name))`));
-    for (const room of ROOMS.filter((item) => !ONLY_HALLS || ONLY_HALLS.includes(item.id))) {
-      await openHall(view, room.displayName);
+    // まだ見ていない水槽のある建物・階に NEW の印が出る。階の行には、その階の NEW の水槽の数も出る。
+    const visited = new Set<string>();
+    let recheckedTank = false;
+    await assertMapMarks(view, visited);
+    await Bun.write(`${SCREENSHOT_DIR}/map-new-${viewport}.png`, await view.screenshot({ format: "png" }));
+    const rooms = ROOMS.filter((item) => !ONLY_HALLS || ONLY_HALLS.includes(item.id));
+    for (const room of rooms) {
+      // 階の一覧では、展示室のカードに NEW の水槽の数が、階の切り替えに NEW のある階の点が出る。
+      const shown = await openHall(view, room.displayName, `floor-new-${room.id}-${viewport}.png`);
+      const fresh = newTanksIn(room, visited);
+      assert(shown.cardNewTanks === fresh.length);
+      assert(JSON.stringify(shown.floorDots) === JSON.stringify(FLOORS.filter((floor) => floor.buildingId === floorOf(room.id).buildingId)
+        .map((floor) => ROOMS.some((item) => floorOf(item.id).id === floor.id && newTanksIn(item, visited).length > 0))));
+      // 展示室では、NEW の水槽の名前に印が付く（ガラスの上と、下の目録）。
+      assert(JSON.stringify(await roomNewTanks(view)) === JSON.stringify(fresh));
       assert(await view.evaluate(`document.querySelector('.room-scroll.ready[data-room="${room.id}"]') && document.querySelectorAll('.room-tank').length === ${room.tanks.length} && document.querySelector('.room-stage canvas') && !document.querySelector('.render-problem')`));
       assert(await view.evaluate(`document.documentElement.scrollWidth === document.documentElement.clientWidth`));
       await Bun.write(`${SCREENSHOT_DIR}/hall-${room.id}-${viewport}.png`, await view.screenshot({ format: "png" }));
@@ -561,10 +582,38 @@ async function verifyHalls(consoleErrors: string[]) {
         assert(await view.evaluate(`(() => {const text=document.querySelector('.caption-species')?.textContent ?? ''; return ${JSON.stringify(names)}.every((label) => text.includes(label));})()`));
         assert(await view.evaluate(`document.documentElement.scrollWidth === document.documentElement.clientWidth`));
         await Bun.write(`${SCREENSHOT_DIR}/tank-${tankId}-${viewport}.png`, await view.screenshot({ format: "png" }));
+        // 水槽に入ると、その水槽の今の種が既読として保存される。入った時点で未読だった種の行には、水槽を出るまで NEW が残る。
+        const wasNew = unseenSpecies(tankId);
+        visited.add(tankId);
+        assert(await view.evaluate(`${JSON.stringify(tank.species.map((slot) => slot.speciesId))}
+          .every((id) => JSON.parse(localStorage.getItem("${SEEN_KEY}"))["${tankId}"].includes(id))`));
+        if (wasNew.length > 0) {
+          assert(await panelNewSpecies(view) === wasNew.length);
+          await view.evaluate(`document.querySelector('.fish-catalog-card .new-mark')?.scrollIntoView({ block: 'center' })`);
+          await sleep(300);
+          await Bun.write(`${SCREENSHOT_DIR}/tank-${tankId}-new-${viewport}.png`, await view.screenshot({ format: "png" }));
+          await clickByLabel(view, "閉じて眺める");
+          await sleep(500);
+        }
         await clickButtonByText(view, "展示室に戻る");
         await sleep(2200);
         assert(await view.evaluate(`!!document.querySelector('.room-scroll.ready[data-room="${room.id}"]')`));
+        // 展示室に戻ると、見た水槽の印だけが消えている。
+        assert(JSON.stringify(await roomNewTanks(view)) === JSON.stringify(newTanksIn(room, visited)));
+        // 入り直すと、種の行の印も消えている（最初の NEW の水槽で1回だけ確かめる）。
+        if (wasNew.length > 0 && !recheckedTank) {
+          recheckedTank = true;
+          await view.evaluate(`Array.from(document.querySelectorAll(".room-tank-list button"))
+            .find((button) => button.textContent?.includes(${JSON.stringify(tank.displayName)}))?.click()`);
+          await sleep(2800);
+          assert(await panelNewSpecies(view) === 0);
+          await clickByLabel(view, "閉じて眺める");
+          await sleep(500);
+          await clickButtonByText(view, "展示室に戻る");
+          await sleep(2200);
+        }
       }
+      if (wide) await Bun.write(`${SCREENSHOT_DIR}/hall-${room.id}-seen-${viewport}.png`, await view.screenshot({ format: "png" }));
       results.push({ viewport, hall: room.id, tanks: tanks.length });
     }
     // ガラスを軽く叩くと、魚が驚く（短い押し下げだけを叩いた操作として扱い、ドラッグは含めない）。
@@ -586,8 +635,51 @@ async function verifyHalls(consoleErrors: string[]) {
     await sleep(2000);
     assert(await view.evaluate(`document.querySelector('.map-resume')?.textContent?.includes(${JSON.stringify(roomOf("reef-120").displayName)})
       && !!document.querySelector('.map-floor[data-floor="${floorOf(roomOf("reef-120").id).id}"] .hall-last')`));
+    // 見た水槽の印は、開き直しても消えたまま。見なかった水槽の印は残る。
+    visited.add("reef-120");
+    await assertMapMarks(view, visited);
+    await Bun.write(`${SCREENSHOT_DIR}/map-seen-${viewport}.png`, await view.screenshot({ format: "png" }));
   }
   return results;
+}
+
+/** 館内図の1段目の NEW の印が、まだ見ていない水槽のある建物・階にだけ付いている。 */
+async function assertMapMarks(view: Bun.WebView, visited: ReadonlySet<string>) {
+  const newOnFloor = (floorId: string) => ROOMS.filter((room) => floorOf(room.id).id === floorId)
+    .reduce((sum, room) => sum + newTanksIn(room, visited).length, 0);
+  const shown = await view.evaluate(`({
+    buildings: [...document.querySelectorAll('.map-buildings button')].map((item) => [item.dataset.building, !!item.querySelector('.new-mark')]),
+    zones: [...document.querySelectorAll('.map-zone')].map((item) => [item.dataset.floor, !!item.querySelector('.new-mark')]),
+    floors: [...document.querySelectorAll('.map-floor')].map((item) =>
+      [item.dataset.floor, Number(item.querySelector('.new-mark b')?.textContent ?? 0), item.querySelector('.new-mark')?.getAttribute('aria-label') ?? null]),
+  })`) as { buildings: [string, boolean][]; zones: [string, boolean][]; floors: [string, number, string | null][] };
+  const floors = BUILDINGS[0]!.floors.map((floor) => [floor.id, newOnFloor(floor.id)] as const);
+  assert(JSON.stringify(shown.floors) === JSON.stringify(floors.map(([id, count]) => [id, count, count > 0 ? `未読の水槽が${count}台` : null])));
+  assert(JSON.stringify(shown.zones) === JSON.stringify(floors.map(([id, count]) => [id, count > 0])));
+  if (BUILDINGS.length > 1) {
+    assert(JSON.stringify(shown.buildings) === JSON.stringify(BUILDINGS.map((building) =>
+      [building.id, building.floors.some((floor) => newOnFloor(floor.id) > 0)])));
+  }
+}
+
+/** 展示室の画面で NEW の印が付いている水槽。ガラスの上の印と、下の目録の印が同じ水槽に付いている。 */
+async function roomNewTanks(view: Bun.WebView): Promise<string[]> {
+  const shown = await view.evaluate(`({
+    room: document.querySelector('.room-scroll')?.dataset.room,
+    glass: [...document.querySelectorAll('.room-tank')].map((item) => !!item.querySelector('.new-mark')),
+    list: [...document.querySelectorAll('.room-tank-list button')].map((item) => !!item.querySelector('.new-mark')),
+  })`) as { room: string; glass: boolean[]; list: boolean[] };
+  assert(JSON.stringify(shown.glass) === JSON.stringify(shown.list));
+  const room = ROOMS.find((item) => item.id === shown.room)!;
+  assert(room.tanks.length === shown.list.length);
+  return room.tanks.map((tank) => tank.tankId).filter((_, index) => shown.list[index]);
+}
+
+/** 設定パネルを開き、生き物の一覧で NEW の印が付いている種の行の数を返す。 */
+async function panelNewSpecies(view: Bun.WebView): Promise<number> {
+  await clickButtonByText(view, "設定");
+  await sleep(700);
+  return Number(await view.evaluate(`document.querySelectorAll('.fish-catalog-card .new-mark').length`));
 }
 
 // 既存の4水槽は全水景を鑑賞画面で描画し、水槽ごとに最後の選択を再読込して確認する。
@@ -772,7 +864,8 @@ async function mapSummary(view: Bun.WebView, screenshot?: string) {
 const floorOf = (hallId: string) => FLOORS.find((floor) => floor.halls.some((hall) => hall.id === hallId))!;
 
 // 展示室を開く。館内図にいなければ Esc で館内図（その階の一覧）へ戻り、展示室の階を開いてから選ぶ。
-async function openHall(view: Bun.WebView, name: string) {
+// 開く前の階の一覧に出ていた NEW の印（展示室のカードの水槽の数と、階の切り替えの点）を返す。
+async function openHall(view: Bun.WebView, name: string, screenshot?: string) {
   if (!await view.evaluate(`!!document.querySelector('.museum-map')`)) {
     await view.evaluate(`window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }))`);
     await sleep(900);
@@ -797,14 +890,20 @@ async function openHall(view: Bun.WebView, name: string) {
     }
     await sleep(800);
   }
-  const clicked = await view.evaluate(`(() => {
+  if (screenshot) await Bun.write(`${SCREENSHOT_DIR}/${screenshot}`, await view.screenshot({ format: "png" }));
+  const shown = await view.evaluate(`(() => {
     const card = document.querySelector('.hall-card[data-hall="${room.id}"]');
+    const marks = {
+      cardNewTanks: Number(card?.querySelector('.new-mark b')?.textContent ?? 0),
+      floorDots: [...document.querySelectorAll('.floor-switch button')].map((item) => !!item.querySelector('.new-mark')),
+    };
     card?.click();
-    return Boolean(card);
-  })()`);
-  assert(clicked);
+    return card ? marks : null;
+  })()`) as { cardNewTanks: number; floorDots: boolean[] } | null;
+  assert(shown);
   await sleep(2500);
   assert(await view.evaluate(`!!document.querySelector('.room-scroll.ready')`));
+  return shown;
 }
 
 // 館内図・階の一覧・展示室・水槽が URL に映り、ブラウザの戻る・進むで行き来できる。隣の水槽への移動は履歴を増やさない。
