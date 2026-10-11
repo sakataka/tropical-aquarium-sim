@@ -13,7 +13,7 @@ Codex が、Claude Code の動いていない間も単独で進められる作�
 ## 決まり（どのレーンでも）
 
 1. 始める前に `git pull`（このリポジトリ）と、`cd ~/Documents/aquarium-assets && git pull`（保管庫。読むだけ）。
-2. `uv run scripts/agent-queue.py claim <レーン> <件数> --by codex` で印を置く。件数の指定がなければ5件。
+2. `uv run scripts/agent-queue.py claim <レーン> <件数> --by codex` で印を置く。件数の指定がなければ10件。
 3. レーンの手順書どおりに、印を置いた作業の成果物だけを書く。**書いてよいのは、手順書の「書いてよい場所」だけ。** `src/`、`content-drafts/fish/`、`docs/`、`scripts/`、Drive のフォルダは書き換えない。保管庫（`~/Documents/aquarium-assets`）は、手順書が保管庫の中の場所を指定しているレーンで、その場所だけを書く。**このリポジトリは GitHub で公開されているので、ほかのサイトから集めた一覧や本文を置かない。**
 4. 手順書の「確かめる」を通す。通らない作業は成果物を消し、`uv run scripts/agent-queue.py release <レーン> <id>` で印を外して、理由を最後の報告に書く。
 5. commit は、自分の成果物のパスだけを指定して行う（`git add -A` を使わない。同じ checkout で Claude Code が別の作業をしていることがある）。メッセージの末尾に `Assisted-by: Codex` を付け、push する。commit・push ができない環境（サンドボックスなど）では、ファイルを残して、その旨を報告に書く。
@@ -26,7 +26,9 @@ Codex が、Claude Code の動いていない間も単独で進められる作�
 | `species-prepare` | dots の調査が保管庫に届いた種の、図鑑の文と動きの値の下書きを先に書いておく | `content-drafts/prepared/fish/<id>/` | [agent-lanes/species-prepare.md](agent-lanes/species-prepare.md) |
 | `aquarium-census` | 日本の水族館で飼育・展示されている生き物を、館ごとに出典つきで集める | 保管庫の `research/aquarium-census/`（非公開。このリポジトリには置かない） | [agent-lanes/aquarium-census.md](agent-lanes/aquarium-census.md) |
 
-指定がないときは、`species-prepare` を5件、次に `aquarium-census` を3件の順で進める（`status` で未着手が0のレーンは飛ばす）。
+指定がないときは、`species-prepare` を10件進める（未着手が10件より少なければ、あるだけ。0件ならその旨を報告して終わる）。`aquarium-census` は、名指しで頼まれたときだけ進める（2026年10月11日、ユーザーより。当面の目標は展示計画の約1,300種で、飼育種の調査はそのあとの広げ方を決めるための、急がない作業）。
+
+`species-prepare` の未着手は、Claude Code が dots の配送を受領して保管庫に置いたときに増える（`uv run scripts/agent-queue.py status` で数が分かる）。
 
 ## レーンを足すとき（Claude Code がやる）
 
