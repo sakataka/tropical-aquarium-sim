@@ -1,0 +1,114 @@
+{
+  "id": "ischikauia-steenackeri",
+  "displayName": "ワタカ",
+  "realBodyLengthCm": 30,
+  "catalog": {
+    "scientificName": "Ischikauia steenackeri",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "琵琶湖・淀川水系に自然分布する日本固有の魚です。アユ種苗に混じった移送などで、本来の分布域外にも定着しています。",
+    "temperament": "成魚は暖かい時期に水草を中心に食べ、それ以外の時期には動物も食べる雑食性です。幼魚はミジンコや水生昆虫なども利用します。",
+    "movement": "小さな上向きの口と、付け根が長い臀びれが特徴です。本水槽では数匹でまとまって泳ぐ姿で描いています。",
+    "habitat": "ヨシ帯や内湖、流れの乏しいワンドや水路の植物帯を利用します。本水槽では、奥の浅い場所にある水草と広い水域のつながりをイメージしています。",
+    "aliases": [
+      "Wataka",
+      "ワタコ",
+      "セムシ",
+      "ウマウオ"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cypriniformes",
+      "orderJa": "コイ目",
+      "family": "Xenocyprididae",
+      "familyJa": "クセノキプリス科"
+    },
+    "adultSizeCm": 30,
+    "sizeNote": "全長約30cmと解説されます。目・科は、館の同じ科のオイカワに合わせてコイ目・クセノキプリス科としています。",
+    "distribution": "琵琶湖・淀川水系が自然分布域です。自然分布域外には移入した個体群がいます。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "環境省レッドリスト2020では絶滅危惧IA類（CR）です。滋賀県の2015年評価は絶滅危惧種と紹介されています。現在のIUCN評価は今回の調査では未確認です。"
+    },
+    "highlights": [
+      "頭が小さく、少し上を向く小さな口をもっています。",
+      "臀びれの付け根が長く、側線は体の下方へ湾曲します。",
+      "暖かい時期の成魚は水草を中心に食べますが、一年中植物だけを食べるわけではありません。",
+      "ヨシ帯や内湖など、植物のある穏やかな水域を利用します。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 1.9
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.25,
+    "maxY": 0.7
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "steady",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.4,
+      "burst": 1.8
+    },
+    "turnRateRadPerSec": 1.9,
+    "restFraction": 0.08,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.4,
+      "cohesion": 0.6,
+      "polarization": 0.55
+    },
+    "structureAffinity": 0.2,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 0.8,
+        "durationSec": [
+          3,
+          7
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer Catalog of Fishes: Opsariichthys steenackeri",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=3388"
+      },
+      {
+        "title": "琵琶湖環境科学研究センター ワタカ",
+        "url": "https://www.lberi.jp/iframe_dir/data/ischikauia-steenacheri/"
+      },
+      {
+        "title": "国立環境研究所 侵入生物DB ワタカ",
+        "url": "https://www.nies.go.jp/biodiversity/invasive/DB/detail/50600.html"
+      },
+      {
+        "title": "国立科学博物館 日本の淡水魚 ワタカ",
+        "url": "https://www.kahaku.go.jp/research/db/zoology/uodas_freshdb/area/cyprinnidae/cultrinae/118.html"
+      },
+      {
+        "title": "国土交通省 弥栄ダム ワタカ",
+        "url": "https://www.cgr.mlit.go.jp/yasaka/ikimono/organism2018/d0004.htm"
+      },
+      {
+        "title": "喜多明2011 いばらき魚顔帳 ワタカ",
+        "url": "https://www.pref.ibaraki.jp/nourinsuisan/naisuishi/gyogancho/documents/082_wataka.pdf"
+      },
+      {
+        "title": "環境省 レッドリスト2020 魚類",
+        "url": "https://www.env.go.jp/press/files/jp/114458.pdf"
+      }
+    ]
+  }
+}

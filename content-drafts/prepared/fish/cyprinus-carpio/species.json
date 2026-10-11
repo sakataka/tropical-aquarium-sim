@@ -1,0 +1,108 @@
+{
+  "id": "cyprinus-carpio",
+  "displayName": "コイ（野生型）",
+  "realBodyLengthCm": 60,
+  "catalog": {
+    "scientificName": "Cyprinus carpio",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "琵琶湖には、日本在来系統に近いコイが残っています。ここでは、その細長い体形をもつ野生型の姿を紹介します。外見だけで在来系統や交雑の有無は判定できません。",
+    "temperament": "湖底で餌を探す姿が観察されています。在来型の消化管などの形から、飼育型より動物食に適している可能性が指摘されています。",
+    "movement": "春には湖岸のヨシ帯や内湖、河川へ移動する姿が観察されています。本水槽では数匹でまとまって泳ぐ姿で描いています。",
+    "habitat": "琵琶湖の沖合で在来型に近い個体が多く採集された研究があります。春には浅い植物帯も利用します。本水槽では、丸石と砂が深みへ続く斜面の底近くを泳ぐ姿を描いています。",
+    "aliases": []
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cypriniformes",
+      "orderJa": "コイ目",
+      "family": "Cyprinidae",
+      "familyJa": "コイ科"
+    },
+    "adultSizeCm": 60,
+    "sizeNote": "一般的なコイの概説では全長約60cmです。琵琶湖博物館の収蔵資料には最大体長530mmとの記載もありますが、測定端点は未確認です。琵琶湖の在来系統だけの代表的な成体全長は確かめられていません。",
+    "distribution": "琵琶湖に日本在来系統に近い個体が残っています。すべての琵琶湖のコイが在来系統という意味ではありません。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "琵琶湖のコイ在来型は、環境省レッドリスト2020で絶滅のおそれのある地域個体群（LP）とされます。2025年の論文が引用する評価です。在来型に対応するIUCN評価は今回の調査では未確認です。"
+    },
+    "highlights": [
+      "口のまわりには、前方の短いひげと口角付近の長いひげがそれぞれ1対あります。",
+      "遺伝的に調べた在来型は、飼育型より細長い体形をもつ傾向があります。",
+      "深い湖と岸辺の植物帯の両方を利用し、春には浅い場所へ移動します。",
+      "野生型らしい体形だけでは、在来系統か交雑個体かを見分けられません。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.0
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.55,
+    "maxY": 0.92
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.4,
+      "burst": 1.6
+    },
+    "turnRateRadPerSec": 2.0,
+    "restFraction": 0.15,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.8,
+      "cohesion": 0.45,
+      "polarization": 0.55
+    },
+    "structureAffinity": 0.3,
+    "habits": [
+      {
+        "type": "bottomForage"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer Catalog of Fishes: Cyprinus carpio",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=3028"
+      },
+      {
+        "title": "琵琶湖博物館収蔵資料 コイ",
+        "url": "https://jmapps.ne.jp/ikimono/det.html?data_id=7909"
+      },
+      {
+        "title": "国立科学博物館 日本の淡水魚 コイ",
+        "url": "https://www.kahaku.go.jp/research/db/zoology/uodas_freshdb/area/cyprinnidae/cyprininae/052.html"
+      },
+      {
+        "title": "国立環境研究所 琵琶湖のコイの生態調査",
+        "url": "https://www.nies.go.jp/biwakobranch/projects/biologingcarp.html"
+      },
+      {
+        "title": "NIES2019 Life of native carp in Lake Biwa",
+        "url": "https://www.nies.go.jp/biwakoi/en/koi.html"
+      },
+      {
+        "title": "国環研ニュース36巻5号 日本在来系統のコイ",
+        "url": "https://www.nies.go.jp/pr/publications/news/36/36-5/36-5-03.html"
+      },
+      {
+        "title": "Atsumi et al.2017 Morphological characteristics of genetically identified native carp",
+        "url": "https://onlinelibrary.wiley.com/doi/10.1111/jfb.13213"
+      },
+      {
+        "title": "馬渕・西田・吉田2025 琵琶湖岸自然ヨシ帯の産着卵",
+        "url": "https://www.museum.kagoshima-u.ac.jp/ichthy/INHFJ_2025_053_001.pdf"
+      }
+    ]
+  }
+}

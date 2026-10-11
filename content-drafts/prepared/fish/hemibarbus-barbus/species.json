@@ -1,0 +1,102 @@
+{
+  "id": "hemibarbus-barbus",
+  "displayName": "ニゴイ",
+  "realBodyLengthCm": 50,
+  "catalog": {
+    "scientificName": "Hemibarbus barbus",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "琵琶湖のほぼ全域と瀬田川に記録があります。国内の資料がニゴイをHemibarbus barbusとして扱う分類に沿って紹介します。",
+    "temperament": "砂をつついたり掘ったりして、底の小動物を探します。琵琶湖の映像調査では、単独のほか2〜6尾の小群も観察されています。",
+    "movement": "長い吻の下にある小さな口で、底砂を探ります。本水槽では、丸石の間の砂底に沿って泳ぐ姿を描いています。",
+    "habitat": "湖や河川の淡水域にすみ、流れの緩い砂底を利用します。産卵時には川底へ散らした卵が礫に付着します。本水槽では、砂と丸石が深みへ続く湖底をイメージしています。",
+    "aliases": [
+      "Barbel Steed"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cypriniformes",
+      "orderJa": "コイ目",
+      "family": "Gobionidae",
+      "familyJa": "カマツカ科"
+    },
+    "adultSizeCm": 50,
+    "sizeNote": "全長約50cmとする概説と、40〜60cmとする概説があります。国内資料のHemibarbus barbusを保持していますが、CASではHemibarbus labeoの異名として扱われます。",
+    "distribution": "琵琶湖と瀬田川に記録があります。国内の分布については、四国を含むかどうかなど資料間に違いがあります。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "国内のニゴイという分類範囲に対応する、現在のIUCN評価と全国の保全区分は今回の調査では未確認です。"
+    },
+    "highlights": [
+      "長い吻の下に小さな口があり、口の端には短いひげが1対あります。",
+      "コイと比べると背びれの付け根が短く、尾びれは深く二又に分かれます。",
+      "砂をつつき、砂の中の小動物を探す姿が観察されています。",
+      "川底へ散らした粘着性の卵は礫に付き、砂の中には埋められません。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.8
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.5,
+    "maxY": 0.92
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.55,
+      "burst": 2.6
+    },
+    "turnRateRadPerSec": 2.8,
+    "restFraction": 0.12,
+    "depthRange": [
+      0.15,
+      0.8
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.6,
+      "cohesion": 0.55,
+      "polarization": 0.55
+    },
+    "structureAffinity": 0.45,
+    "habits": [
+      {
+        "type": "bottomForage"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer Catalog of Fishes: Gobio barbus",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=2146"
+      },
+      {
+        "title": "国立科学博物館 日本の淡水魚 ニゴイ",
+        "url": "https://www.kahaku.go.jp/research/db/zoology/uodas_freshdb/area/cyprinnidae/gobioninae/087.html"
+      },
+      {
+        "title": "琵琶湖環境科学研究センター ニゴイ",
+        "url": "https://www.lberi.jp/iframe_dir/data/hemibarbus-barbus/index.html"
+      },
+      {
+        "title": "新潟市水族館 ニゴイ",
+        "url": "https://www.marinepia.or.jp/picturebook/fish/entry-11611.html"
+      },
+      {
+        "title": "吉田誠2018年度 河川基金 コイ目線の琵琶湖ドキュメンタリー",
+        "url": "https://www.kasen.or.jp/wp-content/uploads/2024/03/be97e31ec39f5b46a904ce8481233416.pdf"
+      },
+      {
+        "title": "柳生将之2025 河川の砂利底で産卵するニゴイ",
+        "url": "https://www.lserc.pref.nagano.lg.jp/column/column-18208/"
+      }
+    ]
+  }
+}

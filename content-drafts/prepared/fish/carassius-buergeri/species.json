@@ -1,0 +1,107 @@
+{
+  "id": "carassius-buergeri",
+  "displayName": "ニゴロブナ",
+  "realBodyLengthCm": 35,
+  "catalog": {
+    "scientificName": "Carassius buergeri grandoculis",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "国内の資料では、琵琶湖・淀川水系の固有亜種として扱われます。ここではニゴロブナをCarassius buergeri grandoculisとして紹介します。",
+    "temperament": "成魚は動物プランクトンやユスリカの幼虫を主に食べます。ふなずしの材料として利用されてきた魚です。",
+    "movement": "秋冬は深い場所を利用し、春夏には繁殖のため岸辺へ移動すると解説されます。本水槽では数匹でまとまって泳ぐ姿で描いています。",
+    "habitat": "成魚は沖合の底層を利用し、繁殖期には沿岸の植物帯へ向かいます。仔魚は岸辺のヨシ帯を育つ場所として使います。本水槽では、丸石と砂が深みへ続く湖底の近くを泳ぐ姿を描いています。",
+    "aliases": [
+      "Nigoro-buna",
+      "Carassius auratus grandoculis"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cypriniformes",
+      "orderJa": "コイ目",
+      "family": "Cyprinidae",
+      "familyJa": "コイ科"
+    },
+    "adultSizeCm": 35,
+    "sizeNote": "全長約35cmとする概説と、15〜35cmとする概説幅があります。環境省の生息環境資料には全長約40cmまでとの記載もあります。国内の亜種名を保持していますが、CASではCarassius grandoculisをCarassius auratusの異名として扱います。",
+    "distribution": "国内資料では琵琶湖・淀川水系に固有とされ、宇治川にも記録があります。富山県への移入記録は自然分布と区別します。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "環境省レッドリスト2020では絶滅危惧IB類（EN）です。京都府の2015年評価は要注目種です。今回の国内の亜種に対応するIUCN評価は未確認です。"
+    },
+    "highlights": [
+      "体高が低めで頭が大きく、顎の下の輪郭が角張るのが特徴です。",
+      "冬の深場から沿岸の植物帯へ向かう、季節による場所の使い分けがあります。",
+      "仔魚が育つヨシ帯と、成魚が利用する沖合では役割が異なります。",
+      "ふなずしの材料として利用されてきました。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.0
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.55,
+    "maxY": 0.92
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.4,
+      "burst": 1.6
+    },
+    "turnRateRadPerSec": 2.0,
+    "restFraction": 0.15,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.8,
+      "cohesion": 0.45,
+      "polarization": 0.55
+    },
+    "structureAffinity": 0.3,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Eschmeyer Catalog of Fishes: Carassius grandoculis",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=2011"
+      },
+      {
+        "title": "国立環境研究所 琵琶湖標本DB ニゴロブナ",
+        "url": "https://www.nies.go.jp/biwako_specimens/contents/species.php?spid=65"
+      },
+      {
+        "title": "琵琶湖環境科学研究センター ニゴロブナ",
+        "url": "https://www.lberi.jp/iframe_dir/data/carassius-buergeri-grandoculis/index.html"
+      },
+      {
+        "title": "大阪府立環境農林水産総合研究所 ニゴロブナ",
+        "url": "https://www.knsk-osaka.jp/zukan/zukan_database/tansui/3850b2c288a93a2/6750b6f58957101.html"
+      },
+      {
+        "title": "国立科学博物館 日本の淡水魚 ニゴロブナ",
+        "url": "https://www.kahaku.go.jp/research/db/zoology/uodas_freshdb/area/cyprinnidae/cyprininae/088.html"
+      },
+      {
+        "title": "環境省 詳細検討対象種ごとの生息環境保全等調査結果",
+        "url": "https://www.env.go.jp/content/000187000.pdf"
+      },
+      {
+        "title": "京都府レッドデータブック2015 ニゴロブナ",
+        "url": "https://www.pref.kyoto.jp/kankyo/rdb/bio/db/fis0034.html"
+      },
+      {
+        "title": "環境省 レッドリスト2020 魚類",
+        "url": "https://www.env.go.jp/press/files/jp/114458.pdf"
+      }
+    ]
+  }
+}

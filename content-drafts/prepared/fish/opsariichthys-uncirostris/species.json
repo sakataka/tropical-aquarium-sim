@@ -1,0 +1,99 @@
+{
+  "id": "opsariichthys-uncirostris",
+  "displayName": "ハス",
+  "realBodyLengthCm": 30,
+  "catalog": {
+    "scientificName": "Opsariichthys uncirostris",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "日本での本来の分布は琵琶湖・淀川水系です。三方五湖にも過去の在来記録がありますが、現在の生息状況は今回の調査では確かめられていません。",
+    "temperament": "成魚は主に小魚を食べます。幼若期には動物プランクトンなどの小動物も利用します。",
+    "movement": "琵琶湖と流入河川を行き来し、繁殖期に川へ入ることが調査されています。本水槽では数匹でまとまって泳ぐ姿で描いています。",
+    "habitat": "湖や、それにつながる大きな河川にすみ、繁殖には浅い砂底や砂礫底を利用します。本水槽では、青緑色の深みへ続く広い水域の上部を泳ぐ姿を描いています。",
+    "aliases": [
+      "Three-lips",
+      "Opsariichthys uncirostris uncirostris"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cypriniformes",
+      "orderJa": "コイ目",
+      "family": "Xenocyprididae",
+      "familyJa": "クセノキプリス科"
+    },
+    "adultSizeCm": 30,
+    "sizeNote": "全長25〜30cmとする概説と、約30cmとする成魚の概説があります。画面と図鑑には後者の全長30cmを使っています。",
+    "distribution": "琵琶湖・淀川水系に自然分布します。アユ種苗に混じった移送などで、本来の分布域外にも持ち込まれています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "環境省レッドリスト2020では、日本のハス（Opsariichthys uncirostris uncirostris）は絶滅危惧II類（VU）です。現在のIUCN評価は今回の調査では未確認です。"
+    },
+    "highlights": [
+      "下顎の突出部と上顎のくぼみがかみ合い、口の線が「へ」の字のように曲がります。",
+      "成魚は主に小魚を食べる魚です。",
+      "繁殖期には、湖から流入河川へ入る姿が調査されています。",
+      "細長く平たい体をもち、背中は青灰色で、体の側面と腹は銀白色です。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.7
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.12,
+    "maxY": 0.62
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.7,
+      "burst": 3.0
+    },
+    "turnRateRadPerSec": 2.8,
+    "restFraction": 0.08,
+    "depthRange": [
+      0.1,
+      0.75
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 2.2,
+      "cohesion": 0.45,
+      "polarization": 0.55
+    },
+    "structureAffinity": 0.2,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Eschmeyer Catalog of Fishes: Leuciscus uncirostris",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=3239"
+      },
+      {
+        "title": "琵琶湖環境科学研究センター ハス",
+        "url": "https://www.lberi.jp/iframe_dir/data/opsariichthys-uncirostris-uncirostris/"
+      },
+      {
+        "title": "国土交通省中国地方整備局 弥栄ダム ハス",
+        "url": "https://www.cgr.mlit.go.jp/yasaka/ikimono/organism2018/d0005.htm"
+      },
+      {
+        "title": "滋賀県立大学 フィールドワークで採れる魚類",
+        "url": "https://www.usp.ac.jp/gakubu/kankyo/gakubu/fisheries/japaneseFW3.html"
+      },
+      {
+        "title": "Maruyama et al.2018 Environmental DNA and spawning migration of three-lips",
+        "url": "https://onlinelibrary.wiley.com/doi/10.1002/ece3.4653"
+      },
+      {
+        "title": "環境省 レッドリスト2020 魚類",
+        "url": "https://www.env.go.jp/press/files/jp/114458.pdf"
+      }
+    ]
+  }
+}

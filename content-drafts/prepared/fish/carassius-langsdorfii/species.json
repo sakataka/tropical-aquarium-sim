@@ -1,0 +1,114 @@
+{
+  "id": "carassius-langsdorfii",
+  "displayName": "ギンブナ",
+  "realBodyLengthCm": 25,
+  "catalog": {
+    "scientificName": "Carassius langsdorfii",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "日本の魚で、琵琶湖では沿岸や内湖、河川、水路、ため池などに見られます。現在の分類と、古い資料が挙げる広い分布範囲は区別して紹介します。",
+    "temperament": "底の小動物や藻類を食べ、場合によっては動物プランクトンも利用します。",
+    "movement": "雨の後には浅い植物帯へ集まり、植物に付く卵を産みます。本水槽では数匹でまとまって泳ぐ姿で描いています。",
+    "habitat": "低地の淀みや合流点付近、沼などの穏やかな水域を利用します。本水槽では、奥の浅い水草のある場所から砂底までを泳ぐ姿を描いています。",
+    "aliases": [
+      "Gin-buna",
+      "マブナ",
+      "Carassius auratus langsdorfii"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cypriniformes",
+      "orderJa": "コイ目",
+      "family": "Cyprinidae",
+      "familyJa": "コイ科"
+    },
+    "adultSizeCm": 25,
+    "sizeNote": "全長約25cmとする概説があります。三重県の図鑑では全長10〜30cm、琵琶湖の解説では15〜30cmとされます。",
+    "distribution": "現在のCASでは日本に分布するとされます。琵琶湖では沿岸や内湖、河川、水路、ため池などに見られます。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2013,
+      "note": "CASが引用するIUCNの2013年評価です。IUCNの原評価本文は未確認で、現在の評価を確認した値ではありません。滋賀県の2010年版では要注目種と紹介されています。"
+    },
+    "highlights": [
+      "臀びれが始まる位置より後ろで胴が急に細まり、尾の付け根は比較的高くなっています。",
+      "三倍体では、精子を発生のきっかけに使い、父親の遺伝子を子へ伝えない雌性発生が知られます。",
+      "すべてのギンブナが同じ倍数性や一つのクローン系統というわけではありません。",
+      "雨の後に浅い植物帯へ集まり、植物に付く卵を産みます。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.0
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.5,
+    "maxY": 0.92
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.4,
+      "burst": 1.6
+    },
+    "turnRateRadPerSec": 2.0,
+    "restFraction": 0.15,
+    "depthRange": [
+      0.15,
+      0.85
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.8,
+      "cohesion": 0.45,
+      "polarization": 0.55
+    },
+    "structureAffinity": 0.3,
+    "habits": [
+      {
+        "type": "bottomForage"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer Catalog of Fishes: Carassius langsdorfii",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=2012"
+      },
+      {
+        "title": "琵琶湖環境科学研究センター ギンブナ",
+        "url": "https://www.lberi.jp/iframe_dir/data/carassius-sp/index.html"
+      },
+      {
+        "title": "国立環境研究所 侵入生物DB ギンブナ",
+        "url": "https://www.nies.go.jp/biodiversity/invasive/DB/detail/50520.html"
+      },
+      {
+        "title": "東京都島しょ農林水産総合センター ギンブナ",
+        "url": "https://www.ifarc.metro.tokyo.lg.jp/archive/27,932,55,225.html"
+      },
+      {
+        "title": "北海道大学 生物科学科 ギンブナ",
+        "url": "https://www2.sci.hokudai.ac.jp/dept/bio/organism/612"
+      },
+      {
+        "title": "劉ほか1980 ギンブナ倍数体の日本における分布",
+        "url": "https://www.jstage.jst.go.jp/article/suisan1932/46/4/46_4_413/_article/-char/ja/"
+      },
+      {
+        "title": "前田ほか2001 広島県と山口県の三倍体ギンブナ",
+        "url": "https://hiroshima.repo.nii.ac.jp/records/2023904"
+      },
+      {
+        "title": "三重県 水産研究所 ギンブナ",
+        "url": "https://www.pref.mie.lg.jp/suigi/hp/16190017503.htm"
+      }
+    ]
+  }
+}
