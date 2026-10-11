@@ -154,6 +154,8 @@ export function stepSurfaceWalker(fish: FishInstance, species: FishSpeciesDefini
     }
     motion.flee = flee.remainingSec > 0 ? flee : undefined;
     const sampled = sampleSurface(surface, motion.progress, tank, frame);
+    motion.speedCmPerSec = deltaSec > 0 ? Math.hypot(sampled.position.x - before.position.x,
+      sampled.position.y - before.position.y, (sampled.depth - before.depth) * tank.depthCm) / deltaSec : 0;
     motion.angle = sampled.angle;
     if (!motion.flee) {
       motion.pauseSec = 1.2 + random() * 1.8;
@@ -218,6 +220,8 @@ export function stepSurfaceWalker(fish: FishInstance, species: FishSpeciesDefini
   }
   const sampled = sampleSurface(surface, motion.progress, tank, frame);
   motion.angle = sampled.angle;
+  motion.speedCmPerSec = wasPaused || deltaSec === 0 ? 0 : Math.hypot(sampled.position.x - before.position.x,
+    sampled.position.y - before.position.y, (sampled.depth - before.depth) * tank.depthCm) / deltaSec;
   const velocity = wasPaused || deltaSec === 0 ? { x: 0, y: 0 } : {
     x: (sampled.position.x - before.position.x) / deltaSec,
     y: (sampled.position.y - before.position.y) / deltaSec,

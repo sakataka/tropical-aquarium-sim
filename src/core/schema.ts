@@ -147,7 +147,8 @@ const fishSpeciesDefinitionSchema = z.object({
       }),
     legs: z.array(z.object({
       x: unit, y: unit, footX: unit, footY: unit, width: unit.gt(0), beat: z.union([z.literal(0), z.literal(1)]),
-    }).refine((leg) => leg.y < leg.footY, { message: "a leg's foot must be below its root" })).min(2),
+      knee: z.object({ x: unit, y: unit }).optional(),
+    })).min(2),
     spine: z.array(z.object({ x: unit, y: unit })).min(3)
       .refine((points) => points.every((point, i) => i === 0 || point.y > points[i - 1]!.y), {
         message: "spine points must run from the neck down to the tail tip",
@@ -174,6 +175,13 @@ const fishSpeciesDefinitionSchema = z.object({
   sourceBodyBounds: bodyBoundsSchema,
   preferredZone: preferredZoneSchema,
   ecology: ecologySchema,
+}).superRefine((species, ctx) => {
+  // 真横の両生類は足が付け根より下。斜めから見たカニの奥側の脚には、この制約を当てない。
+  if (species.swim?.bodyPlan === "crab") return;
+  species.swim?.legs?.forEach((leg, index) => {
+    if (leg.y >= leg.footY) ctx.addIssue({ code: "custom", path: ["swim", "legs", index],
+      message: "a leg's foot must be below its root" });
+  });
 }) satisfies z.ZodType<FishSpeciesDefinition>;
 
 export function parseFishSpeciesDefinition(value: unknown): FishSpeciesDefinition {

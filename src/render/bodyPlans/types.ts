@@ -22,7 +22,7 @@ export type SwimStyle = {
   fins?: { x: number; y: number; radius: number }[];
   tailStartY?: number;
   wings?: { rootX: number; y: number; top: number; bottom: number };
-  legs?: { x: number; y: number; footX: number; footY: number; width: number; beat: 0 | 1 }[];
+  legs?: { x: number; y: number; knee?: Vec2; footX: number; footY: number; width: number; beat: 0 | 1 }[];
   spine?: Vec2[];
   limbs?: { kind: "hind" | "fore"; joints: Vec2[] }[];
   radial?: { x: number; y: number; radius: number; reach: number };
@@ -41,6 +41,9 @@ export type MotionState = {
   pitch: number;
   /** エビやカニの脚の運び。歩く速さに合わせて進む。 */
   stridePhase: number;
+  /** カニの脚の周期と横歩きの向き。停止・再開・折り返しで滑らかにつなぐ。 */
+  strideHz?: number;
+  strideDirection?: number;
   clockSec: number;
   surfaceRotation?: number;
   detailPhase: number;

@@ -30,6 +30,8 @@ export type SurfaceMotion = {
   pauseSec: number;
   grazing: boolean;
   angle: number;
+  /** 奥行きも含む面の上の移動速度（cm/秒）。画面の位置が変わらない区間でも脚を運べる。 */
+  speedCmPerSec?: number;
   /** 砂に潜って休んでいる間（習性 burrow）。pauseSec が尽きると砂から出て歩き出す。 */
   burrowed?: boolean;
   /** 驚いて尾を打ち、後ろ向きに跳ね退いている間。向き（facing）は変えない。 */
@@ -128,10 +130,11 @@ export type FishSwimStyle = {
    */
   wings: { rootX: number; y: number; top: number; bottom: number };
   /**
-   * 歩く生き物（両生類）の脚。x・y は付け根（肩・腰）、footX・footY は足先、width は脚の太さ（画像の横幅に対する比率）。
+   * 歩く生き物の脚。x・y は付け根、footX・footY は足先、width は脚の太さ（画像の横幅に対する比率）。
+   * カニは斜めから見た画像の関節を knee に書く。足先が付け根より上に写る脚もある。
    * beat が同じ脚は同じ拍で運び、0 と 1 の組は半拍ずらす（手前の前脚と奥の後脚、奥の前脚と手前の後脚を組にする）。
    */
-  legs: { x: number; y: number; footX: number; footY: number; width: number; beat: 0 | 1 }[];
+  legs: { x: number; y: number; knee?: Vec2; footX: number; footY: number; width: number; beat: 0 | 1 }[];
   /**
    * 体を立てた画像（チンアナゴ）の体の中心線。首の付け根（体がほぼ縦になる所）から尾の先まで、上から順に並べる
    * （画像の横幅・高さに対する比率）。最初の点より上の頭と曲がった首は、形を保ったまま動かす。
