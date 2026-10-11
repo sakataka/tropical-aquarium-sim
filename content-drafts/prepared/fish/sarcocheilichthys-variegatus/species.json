@@ -1,0 +1,123 @@
+{
+  "id": "sarcocheilichthys-variegatus",
+  "displayName": "ビワヒガイ",
+  "realBodyLengthCm": 20,
+  "catalog": {
+    "scientificName": "Sarcocheilichthys variegatus microoculus",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "琵琶湖・淀川水系の固有分類群として扱われる、ヒガイの琵琶湖型です。ここでは国内資料の亜種名でいうビワヒガイを紹介しています。",
+    "temperament": "底にいる水生昆虫の幼虫や小型の巻貝、動物プランクトン、藻類などを食べます。雌は産卵管を使い、淡水二枚貝の中に卵を産みます。",
+    "movement": "水底近くを泳いで餌を探します。本水槽では、ヨシ原の前に開けた底近くを泳ぎ、砂泥の底へ寄る姿で描いています。",
+    "habitat": "淡水の湖や川の下流にすみ、開けた砂礫底を利用します。産卵には、緩い流れや水草、生きた二枚貝が関わります。本水槽では、ヨシの根元や沈んだ枝、水草のある琵琶湖の岸辺と、湖につながる内湖をイメージしています。",
+    "aliases": [
+      "Biwa-higai",
+      "Sarcocheilichthys microoculus"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cypriniformes",
+      "orderJa": "コイ目",
+      "family": "Gobionidae",
+      "familyJa": "カマツカ科"
+    },
+    "adultSizeCm": 20,
+    "sizeNote": "公的解説では全長12〜20cm、別の概説では全長20cmとされます。図鑑と画面では全長約20cmの成魚を想定しています。琵琶湖博物館の最大「体長」158.1mmは測定基準が不明で、全長の値とは統合していません。学名は国内資料の亜種名を併記しています。",
+    "distribution": "ビワ型の自然分布の核は琵琶湖と瀬田川で、国内資料では琵琶湖・淀川水系の固有分類群とされます。他地域に持ち込まれた集団もあります。親種全体の日本・朝鮮半島の分布を、このビワ型の分布へ広げていません。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "ビワ型に限定した世界のIUCN区分は確認できていません。琵琶湖博物館の解説では滋賀県レッドリスト2020の希少種です。環境省2020のカワヒガイやアブラヒガイの区分は転用していません。"
+    },
+    "highlights": [
+      "銀灰色の体には、不規則な暗い雲のような模様があります。",
+      "胸びれの付け根の上に、半月形の暗い斑があります。",
+      "背びれには黒い横帯があり、尾びれは深く二またに分かれます。",
+      "雌は淡水二枚貝の中へ卵を産みます。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 3
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.55,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.25,
+      "burst": 2.6
+    },
+    "turnRateRadPerSec": 3,
+    "restFraction": 0.55,
+    "depthRange": [
+      0.35,
+      0.95
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.7,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 2.5,
+        "durationSec": [
+          6,
+          20
+        ]
+      },
+      {
+        "type": "bottomForage"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Sarcocheilichthys genus species records",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?genus=Sarcocheilichthys&tbl=species"
+      },
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: microoculus Mori 1927",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=30618"
+      },
+      {
+        "title": "Hosoya (1982), Classification of the Cyprinid Genus Sarcocheilichthys from Japan, with Description of a New Species",
+        "url": "https://www.jstage.jst.go.jp/article/jji1950/29/2/29_2_127/_pdf"
+      },
+      {
+        "title": "琵琶湖博物館電子図鑑：ビワヒガイ",
+        "url": "https://jmapps.ne.jp/ikimono/det.html?data_id=7934"
+      },
+      {
+        "title": "滋賀県琵琶湖環境科学研究センター：ビワヒガイ",
+        "url": "https://www.lberi.jp/iframe_dir/data/sarcocheilichthys-variegatus-microoculus/index.html"
+      },
+      {
+        "title": "国立環境研究所 侵入生物DB：ビワヒガイ",
+        "url": "https://www.nies.go.jp/biodiversity/invasive/DB/detail/50660.html"
+      },
+      {
+        "title": "Kokita et al. (2021), Gudgeon fish with and without genetically determined countershading coexist in heterogeneous littoral environments of an ancient lake",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8495823/"
+      },
+      {
+        "title": "藤岡ほか (2021)：魚類6種による昼夜のホンモロコ仔魚捕食",
+        "url": "https://www.jstage.jst.go.jp/article/aquaculturesci/69/1/69_87/_article/-char/ja/"
+      },
+      {
+        "title": "環境省レッドリスト2020：汽水・淡水魚類",
+        "url": "https://www.env.go.jp/content/900515981.pdf"
+      }
+    ]
+  }
+}

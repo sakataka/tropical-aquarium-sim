@@ -1,0 +1,129 @@
+{
+  "id": "squalidus-chankaensis",
+  "displayName": "スゴモロコ",
+  "realBodyLengthCm": 12,
+  "catalog": {
+    "scientificName": "Squalidus chankaensis biwae",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "琵琶湖・淀川水系の固有魚として扱われる、スゴモロコの琵琶湖型です。ここでは国内資料の亜種名でいうSqualidus chankaensis biwaeを紹介しています。",
+    "temperament": "底の近くを群れで泳ぎ、水生昆虫やヨコエビ、小型の巻貝、浮遊動物などを食べます。冬には、さらに深い場所へ移動するとされます。",
+    "movement": "砂底や砂泥底の近くを群れで泳ぎます。本水槽では、ヨシ原から湖側に続く開けた底近くを、向きをそろえて泳ぐ姿で描いています。",
+    "habitat": "琵琶湖の開けた砂底や砂泥底を利用します。成魚が内湖を使うかについては、資料の説明が一致していません。本水槽では、ヨシ原の外側へ開けた湖岸の底をイメージしています。",
+    "aliases": [
+      "Sugomoroko",
+      "Gobio biwae",
+      "Gnathopogon biwae",
+      "Squalidus biwae"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cypriniformes",
+      "orderJa": "コイ目",
+      "family": "Gobionidae",
+      "familyJa": "カマツカ科"
+    },
+    "adultSizeCm": 12,
+    "sizeNote": "公的解説では全長10〜12cm、別の概説では全長12cmとされます。図鑑と画面では全長約12cmの成魚を想定しています。琵琶湖博物館の最大「体長」190mmは測定基準や標本内訳が不明で、一般的な全長との大きな差は未解決です。学名は国内資料の亜種名を併記しています。",
+    "distribution": "対象の琵琶湖型は、琵琶湖・淀川水系の固有魚とされます。博物館には本湖や周辺の水路、内湖などの標本記録がありますが、生活段階や現在の常住性とは区別します。関東平野、静岡県、高知県などの記録は国内移入とされます。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "親種と琵琶湖型の範囲を照合した世界のIUCN区分は確認できていません。環境省レッドリスト2020では琵琶湖型が絶滅危惧II類（VU）、滋賀県レッドリスト2020では希少種とされます。湖底環境の悪化や外来魚の捕食が減少要因に挙げられます。"
+    },
+    "highlights": [
+      "細い体と低い尾の付け根、相対的に大きな目が特徴です。",
+      "低い位置の口に、細いひげがあります。",
+      "体の横に、不規則な暗い点が約10個並びます。",
+      "開けた砂底や砂泥底の近くを群れで泳ぎます。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.8
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.55,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.6,
+      "burst": 2.8
+    },
+    "turnRateRadPerSec": 2.8,
+    "restFraction": 0.08,
+    "depthRange": [
+      0.35,
+      0.95
+    ],
+    "social": {
+      "grouping": "school",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0.65,
+      "polarization": 0.6
+    },
+    "structureAffinity": 0.15,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 2.5,
+        "durationSec": [
+          6,
+          20
+        ]
+      },
+      {
+        "type": "bottomForage"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Squalidus chankaensis and related names",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?tbl=species&genus=Squalidus&species=chankaensis"
+      },
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Gobio biwae",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=29437"
+      },
+      {
+        "title": "滋賀県琵琶湖環境科学研究センター：スゴモロコ",
+        "url": "https://www.lberi.jp/iframe_dir/data/squalidus-chankaensis-biwae/index.html"
+      },
+      {
+        "title": "国立環境研究所 侵入生物データベース：スゴモロコ",
+        "url": "https://www.nies.go.jp/biodiversity/invasive/DB/detail/50670.html"
+      },
+      {
+        "title": "琵琶湖博物館電子図鑑：スゴモロコ",
+        "url": "https://jmapps.ne.jp/ikimono/det.html?data_id=7939"
+      },
+      {
+        "title": "大阪府立環境農林水産総合研究所：スゴモロコ属の魚",
+        "url": "https://www.knsk-osaka.jp/zukan/station/osaka/tansui/sugohikaku.html"
+      },
+      {
+        "title": "滋賀県立大学：日本の淡水魚・主な魚の繁殖と育成場所",
+        "url": "https://www.usp.ac.jp/gakubu/kankyo/gakubu/fisheries/japaneseFW3.html"
+      },
+      {
+        "title": "環境省：水生生物保全に係る水質環境基準の類型指定関係資料・琵琶湖表",
+        "url": "https://www.env.go.jp/press/files/jp/13285.pdf"
+      },
+      {
+        "title": "琵琶湖博物館 うみんど第7号：淡水魚の繁殖",
+        "url": "https://www.biwahaku.jp/publication/umindo/volume7/umind7e.html"
+      },
+      {
+        "title": "環境省レッドリスト2020：汽水・淡水魚類",
+        "url": "https://www.env.go.jp/content/900515981.pdf"
+      }
+    ]
+  }
+}
