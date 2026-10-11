@@ -41,10 +41,12 @@ from pathlib import Path
 import cv2
 import numpy as np
 
+sys.dont_write_bytecode = True  # scripts/ に __pycache__ を作らない
+import plate_frame  # 見える範囲の計算。確認画像を出す scripts/tank-view.py と共通。
+
 ROOT = Path(__file__).resolve().parent.parent
 SCENES = ROOT / "src" / "content" / "environment" / "scenes"
 TANKS = ROOT / "src" / "content" / "tanks"
-ROOMS = ROOT / "src" / "content" / "room"
 FISH = ROOT / "src" / "content" / "fish"
 OUT = ROOT / "tmp" / "terrain-drafts"
 MODELS = {
@@ -150,15 +152,7 @@ def load_subject(arg: str, aspect: float | None, plate_bottom: float | None,
         tank = next((t for t in (read_json(p) for p in sorted(TANKS.glob("*/tank.json"))) if arg in t["sceneIds"]), None)
         if tank:
             subject.tank = tank
-            for room_path in sorted(ROOMS.glob("*.json")):
-                room = read_json(room_path)
-                for placement in room["tanks"]:
-                    if placement["tankId"] == tank["id"]:
-                        glass, window = placement["glass"], placement["window"]
-                        subject.aspect = glass["width"] * room["aspectRatio"] / glass["height"]
-                        subject.overscan = (window["width"] / glass["width"], window["height"] / glass["height"])
-            if subject.aspect is None:
-                subject.aspect = tank["widthCm"] / tank["heightCm"]
+            subject.aspect, subject.overscan = plate_frame.tank_glass(tank)
             kinds: list[str] = []
             for slot in tank["species"]:
                 species_path = FISH / slot["speciesId"] / "species.json"
@@ -184,14 +178,8 @@ def load_subject(arg: str, aspect: float | None, plate_bottom: float | None,
 
 def visible_frame(subject: Subject, width: int, height: int) -> tuple[float, float, float, float]:
     """前面ガラスに映る範囲（画像に対する比率の x0, y0, x1, y1）。src/core/plateFraming.ts の framePlate と同じ計算。"""
-    aspect = subject.aspect or width / height
-    scale = max(aspect * subject.overscan[0] / width, subject.overscan[1] / height)
-    plate_w, plate_h = width * scale, height * scale
-    x = (aspect - plate_w) / 2
-    bottom = subject.scene.get("framing", {}).get("plateBottom", 1)
-    anchor = min(1.0, max(1 / plate_h, bottom))
-    y = 1 - anchor * plate_h
-    return (max(0.0, -x / plate_w), max(0.0, -y / plate_h), min(1.0, (aspect - x) / plate_w), min(1.0, (1 - y) / plate_h))
+    return plate_frame.visible_frame(subject.aspect or width / height, subject.overscan,
+                                     subject.scene.get("framing", {}).get("plateBottom", 1), width, height)
 
 
 # ---------------------------------------------------------------- 奥行きの推定

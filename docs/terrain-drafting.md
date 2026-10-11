@@ -47,6 +47,8 @@ uv run scripts/draft-terrain.py stats
 3. `tmp/terrain-drafts/<id>/terrain.json` を手で直す（下の「人が必ず見るべき点」）。または `--write` で置いてから直す。
 4. `bun run test:tanks -- -t <水槽id>` と `bun run test:fast` で確かめる。
 
+手直しした地形を絵に重ねて確かめるには [`scripts/tank-view.py`](../scripts/tank-view.py)（`--terrain` で書き込む前の案、`--zoom` で拡大）、泳がせて種ごとの高さ・隠れる割合・縁で切れる割合を見るには [`scripts/tank-probe.ts`](../scripts/tank-probe.ts) を使う。水槽1つを仕上げる手順は [水槽の仕上げ](agent-lanes/tank-finish.md) にまとめた。
+
 初回は奥行き推定のモデル（約100MB）と Python の依存（torch など）を取りに行く。奥行きの推定結果は `tmp/terrain-drafts/.cache/` に置き、2回目からは使い回す。
 
 ## 所要時間
