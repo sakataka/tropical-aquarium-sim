@@ -146,9 +146,6 @@ export default function App() {
     return () => window.clearTimeout(idle);
   }, [phase.kind]);
   const lastTankByRoom = useRef<Record<string, string>>({});
-  // 館内図の「前回の展示室」は、保存データがあるか、この回に展示室を見たあとだけ付ける。
-  const visitedRef = useRef(initial.restored);
-  if (phase.kind !== "map") visitedRef.current = true;
   lastTankByRoom.current[room.id] = activeTankId;
 
   useAmbientSound(
@@ -341,7 +338,6 @@ export default function App() {
         <MuseumMap
           buildingId={phase.buildingId}
           floorId={phase.floorId}
-          lastHallId={visitedRef.current ? room.id : undefined}
           onSelectBuilding={showBuilding}
           onSelectFloor={showFloor}
           onEnterHall={enterHall}

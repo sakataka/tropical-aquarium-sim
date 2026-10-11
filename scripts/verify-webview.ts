@@ -166,7 +166,7 @@ async function main() {
     await view.reload();
     await sleep(2500);
 
-    // 館内図から始まり、階ごとの展示室を選べる。初めての訪問では「前回の展示室」を付けない。
+    // 館内図から始まり、階ごとの展示室を選べる。「前回」の表示は出さない。
     const title = String(await view.evaluate("document.title"));
     const map = await mapSummary(view, "map-floor-1440x960.png");
     await Bun.write(`${SCREENSHOT_DIR}/map-1440x960.png`, await view.screenshot({ format: "png" }));
@@ -633,11 +633,11 @@ async function verifyHalls(consoleErrors: string[]) {
     })()`);
     await sleep(350);
     assert(await view.evaluate(`document.querySelector('.aquarium-canvas').dataset.glassTaps === '1'`));
-    // 開き直すと館内図から始まり、前回の展示室へ戻る近道と、その階の目印が出る。
+    // 開き直すと館内図から始まり、保存済みの訪問があっても「前回」の表示は出ない。
     await view.navigate(BASE_URL);
     await sleep(2000);
-    assert(await view.evaluate(`document.querySelector('.map-resume')?.textContent?.includes(${JSON.stringify(roomOf("reef-120").displayName)})
-      && !!document.querySelector('.map-floor[data-floor="${floorOf(roomOf("reef-120").id).id}"] .hall-last')`));
+    assert(await view.evaluate(`!document.querySelector('.map-resume, .hall-last, .hall-card.last')
+      && !document.querySelector('.museum-map')?.textContent?.includes('前回')`));
     // 見た水槽の印は、開き直しても消えたまま。見なかった水槽の印は残る。
     visited.add("reef-120");
     await assertMapMarks(view, visited);

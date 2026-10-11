@@ -6,9 +6,7 @@ import {
   getBuildingById,
   getBuildingOfFloor,
   getFloorById,
-  getFloorOfHall,
   getFloorSpeciesCount,
-  getHallById,
   getHallLayout,
   getHallSlotsOnFloor,
   getMapImageUrl,
@@ -40,7 +38,6 @@ const PREVIEW_ASPECT = 2;
 export function MuseumMap({
   buildingId,
   floorId,
-  lastHallId,
   soundEnabled,
   tanks,
   unseen,
@@ -54,8 +51,6 @@ export function MuseumMap({
   buildingId?: string;
   /** 開いている階。なければ建物の断面図。 */
   floorId?: string;
-  /** 前回見ていた展示室。目印を付ける。 */
-  lastHallId?: string;
   soundEnabled: boolean;
   /** 水槽ごとの今の設定。縮小版に今の水景を映す（入ったことのない水槽は既定の水景）。 */
   tanks: Record<string, AquariumCustomization>;
@@ -94,7 +89,6 @@ export function MuseumMap({
         <FloorView
           floor={floor}
           key={floor.id}
-          lastHallId={lastHallId}
           onBack={() => selectBuilding(floor.buildingId)}
           onEnterHall={enter}
           onSelectFloor={selectFloor}
@@ -104,8 +98,6 @@ export function MuseumMap({
       ) : (
         <MuseumOverview
           building={building}
-          lastHallId={lastHallId}
-          onEnterHall={enter}
           onOpenZukan={onOpenZukan}
           onSelectBuilding={selectBuilding}
           onSelectFloor={selectFloor}
@@ -118,19 +110,14 @@ export function MuseumMap({
 }
 
 // 1段目。建物の断面図に階の帯を重ね、横（狭い画面では下）にフロアガイドを置く。
-function MuseumOverview({ building, lastHallId, onEnterHall, onOpenZukan, onSelectBuilding, onSelectFloor, unseen }: {
+function MuseumOverview({ building, onOpenZukan, onSelectBuilding, onSelectFloor, unseen }: {
   building: MuseumBuilding;
-  lastHallId?: string;
-  onEnterHall: (hallId: string) => void;
   onOpenZukan: () => void;
   onSelectBuilding: (buildingId: string) => void;
   onSelectFloor: (floorId: string) => void;
   unseen?: UnseenSpecies;
 }) {
   const [activeFloor, setActiveFloor] = useState<string>();
-  const lastHall = getHallById(lastHallId);
-  const lastFloor = lastHallId ? getFloorOfHall(lastHallId) : undefined;
-  const lastFloorId = lastFloor?.id;
   // 触れた階は、開く前に配置を先読みしておく（小さなチャンク）。
   const highlight = (id: string) => ({
     onPointerEnter: () => { setActiveFloor(id); void loadFloor(id).catch(() => undefined); },
@@ -155,11 +142,6 @@ function MuseumOverview({ building, lastHallId, onEnterHall, onOpenZukan, onSele
           <button className="map-zukan" onClick={onOpenZukan} type="button">
             <BookIcon /><span>図鑑</span><small>館の生き物を調べる</small>
           </button>
-          {lastHall ? (
-            <button className="map-resume" onClick={() => onEnterHall(lastHall.id)} type="button">
-              <small>前回の展示室</small><span>{lastHall.displayName}</span><ChevronRightIcon />
-            </button>
-          ) : null}
         </div>
         {buildings.length > 1 ? (
           <nav aria-label="建物を選ぶ" className="map-buildings">
@@ -174,7 +156,7 @@ function MuseumOverview({ building, lastHallId, onEnterHall, onOpenZukan, onSele
                   type="button"
                 >
                   <span>{item.displayName}</span>
-                  <small>{open === 0 ? "準備中" : `${open}展示室`}{item.id === lastFloor?.buildingId ? " · 前回" : ""}</small>
+                  <small>{open === 0 ? "準備中" : `${open}展示室`}</small>
                   {newTanks > 0 ? <NewMark label={unseenTanksLabel(newTanks)} /> : null}
                 </button>
               );
@@ -211,7 +193,7 @@ function MuseumOverview({ building, lastHallId, onEnterHall, onOpenZukan, onSele
                 <span className="zone-sign">{floor.shortLabel}</span>
                 <span className="zone-label">
                   {floor.displayName}
-                  <small>{open === 0 ? "準備中" : `${open}室`}{floor.id === lastFloorId ? " · 前回" : ""}</small>
+                  <small>{open === 0 ? "準備中" : `${open}室`}</small>
                   {newTanks > 0 ? <NewMark label={unseenTanksLabel(newTanks)} /> : null}
                 </span>
               </button>
@@ -253,7 +235,6 @@ function MuseumOverview({ building, lastHallId, onEnterHall, onOpenZukan, onSele
                   <span className="floor-name">{floor.displayName}<em>{floor.exhibitName}</em></span>
                   <span className="floor-meta">
                     {open === 0 ? "準備中" : `${open}展示室 · ${tankCount}水槽 · ${speciesCount}種`}
-                    {floor.id === lastFloorId ? <em className="hall-last">前回</em> : null}
                     {newTanks > 0 ? <NewMark count={newTanks} label={unseenTanksLabel(newTanks)} /> : null}
                   </span>
                   <span className="floor-hall-names">
@@ -273,9 +254,8 @@ function MuseumOverview({ building, lastHallId, onEnterHall, onOpenZukan, onSele
 }
 
 // 2段目。階の展示室を、縮小版つきのカードで並べる。上に階の切り替えを置く。
-function FloorView({ floor, lastHallId, onBack, onEnterHall, onSelectFloor, tanks, unseen }: {
+function FloorView({ floor, onBack, onEnterHall, onSelectFloor, tanks, unseen }: {
   floor: MuseumFloor;
-  lastHallId?: string;
   onBack: () => void;
   onEnterHall: (hallId: string) => void;
   onSelectFloor: (floorId: string) => void;
@@ -328,7 +308,6 @@ function FloorView({ floor, lastHallId, onBack, onEnterHall, onSelectFloor, tank
           <li key={slot.id}>
             {slot.room ? (
               <HallCard
-                last={slot.id === lastHallId}
                 layoutReady={layoutReady}
                 newTanks={countUnseenTanks(slot.room.tankIds, unseen)}
                 onEnter={onEnterHall}
@@ -357,8 +336,7 @@ function useFloorLayout(floorId: string): boolean {
   return ready;
 }
 
-function HallCard({ last, layoutReady, newTanks, onEnter, room, tanks }: {
-  last: boolean;
+function HallCard({ layoutReady, newTanks, onEnter, room, tanks }: {
   layoutReady: boolean;
   /** まだ見ていない水槽の数。 */
   newTanks: number;
@@ -369,10 +347,9 @@ function HallCard({ last, layoutReady, newTanks, onEnter, room, tanks }: {
   const layout = layoutReady ? getHallLayout(room.id) : undefined;
   const tankNames = room.tankIds.flatMap((tankId) => getTankSummary(tankId)?.displayName ?? []);
   return (
-    <button className={last ? "hall-card last" : "hall-card"} data-hall={room.id} onClick={() => onEnter(room.id)} type="button">
+    <button className="hall-card" data-hall={room.id} onClick={() => onEnter(room.id)} type="button">
       <span className="hall-card-view">
         {layout ? <HallPreview aspect={PREVIEW_ASPECT} hall={layout} tanks={tanks} /> : null}
-        {last ? <em className="hall-last">前回の展示室</em> : null}
         {newTanks > 0 ? <NewMark count={newTanks} label={unseenTanksLabel(newTanks)} /> : null}
       </span>
       <span className="hall-card-text">
