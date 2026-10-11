@@ -1,0 +1,136 @@
+{
+  "id": "pseudorasbora-pumila",
+  "displayName": "シナイモツゴ",
+  "realBodyLengthCm": 8,
+  "catalog": {
+    "scientificName": "Pseudorasbora pumila",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "本州のフォッサマグナより北東側に自然分布する日本固有種です。東北地方や新潟県・長野県を中心に、ため池や流れの緩い水路にすみます。",
+    "temperament": "底にいる小動物、プランクトン、付着藻類などを食べます。繁殖期の雄は産卵場所になわばりを作り、卵を守ります。",
+    "movement": "本水槽では、開けた水の中ほどから底近くを数匹でまとまって泳ぎ、ときどき仲間の後を追う姿で描いています。",
+    "habitat": "植物に囲まれた池沼や農業用のため池、流れの緩い水路にすみます。泥底や砂泥底を利用します。本水槽では、昔ながらの農村の小川を思わせる、砂や細かな砂利、石積みの隙間、水草の根元がある水辺をイメージしています。",
+    "aliases": [
+      "Shinai-motsugo",
+      "ポン",
+      "Pseudorasbora pumila pumila"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cypriniformes",
+      "orderJa": "コイ目",
+      "family": "Gobionidae",
+      "familyJa": "カマツカ科"
+    },
+    "adultSizeCm": 8,
+    "sizeNote": "公式資料の最大全長は約8cmで、成魚の平均全長は確認できていません。図鑑と画面では全長約8cmの成魚として表示しています。再記載の雄レクトタイプは標準体長63.0mm（SL）、別の雄標本の大きい方は71.3mmSLですが、全長や種全体の最大値には換算していません。",
+    "distribution": "自然分布は本州のフォッサマグナより北東側で、東北地方、新潟県・長野県を中心とします。北海道の集団は本州からの国内移入とされ、自然分布とは区別します。琵琶湖原産としては扱っていません。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "EN",
+      "assessedYear": 2017,
+      "note": "IUCNのENと評価年はFishBaseの二次表示による確認で、原評価の本文は確認できていません。環境省レッドリスト2020では絶滅危惧IA類（CR）です。ため池の改変や管理不足、モツゴの侵入・交雑などが脅威とされます。"
+    },
+    "highlights": [
+      "大きめの頭と、短く厚みのある尾の付け根が特徴です。",
+      "普通色の成魚には、体の横に暗い縦帯があります。",
+      "側線は体の前方だけにあり、色の縦帯とは別のものです。",
+      "繁殖期の雄は産卵場所を守り、卵を保護します。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 3.0,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.54
+    }
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.3,
+    "maxY": 0.8
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.6,
+      "burst": 2.8
+    },
+    "turnRateRadPerSec": 2.9,
+    "restFraction": 0.1,
+    "depthRange": [
+      0.1,
+      0.75
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.7,
+      "cohesion": 0.5,
+      "polarization": 0.5
+    },
+    "structureAffinity": 0.3,
+    "habits": [
+      {
+        "type": "follow",
+        "chancePerMin": 0.4,
+        "durationSec": [
+          1,
+          2.5
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Pseudorasbora pumila and related names",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?tbl=species&genus=Pseudorasbora&species=pumila"
+      },
+      {
+        "title": "Kawase & Hosoya (2015): Pseudorasbora pugnax, a new species of minnow from Japan, and redescription of P. pumila",
+        "url": "https://pfeil-verlag.de/wp-content/uploads/2015/05/ief25_4_01.pdf"
+      },
+      {
+        "title": "環境省 令和6年度国内希少野生動植物種新規指定候補種の概要（2024-12-06会議資料）",
+        "url": "https://www.env.go.jp/content/000270289.pdf"
+      },
+      {
+        "title": "青森県産業技術センター：シナイモツゴ",
+        "url": "https://www.aomori-itc.or.jp/soshiki/suisan_naisuimen/naisuimen/shinaimotsugo.html"
+      },
+      {
+        "title": "長野県 環境審議会資料（2015-11-17）：シナイモツゴ保護回復事業計画案・資料編",
+        "url": "https://www.pref.nagano.lg.jp/kankyo/kensei/soshiki/shingikai/ichiran/kankyo/documents/151117shiryo3.pdf"
+      },
+      {
+        "title": "長野県：希少野生動植物保護回復事業計画（シナイモツゴ）",
+        "url": "https://www.pref.nagano.lg.jp/shizenhogo/kurashi/shizen/hogo/kisyoyasei/jorei/documents/27sinaimotugo.pdf"
+      },
+      {
+        "title": "大阪府立環境農林水産総合研究所：シナイモツゴ",
+        "url": "https://www.knsk-osaka.jp/zukan/zukan_database/tansui/2750b34e3c47c34/2650b6fded3f428.html"
+      },
+      {
+        "title": "環境省レッドリスト2020 別添資料3 汽水・淡水魚類",
+        "url": "https://www.env.go.jp/content/900515981.pdf"
+      },
+      {
+        "title": "FishBase: Pseudorasbora pumila",
+        "url": "https://www.fishbase.se/summary/22924"
+      }
+    ]
+  },
+  "visual": {
+    "fallbackColor": "#91826e"
+  },
+  "sourceBodyBounds": {
+    "x": 93,
+    "y": 218,
+    "width": 1391,
+    "height": 557
+  }
+}

@@ -1,0 +1,127 @@
+{
+  "id": "sarcocheilichthys-biwaensis",
+  "displayName": "アブラヒガイ",
+  "realBodyLengthCm": 20,
+  "catalog": {
+    "scientificName": "Sarcocheilichthys biwaensis",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "琵琶湖だけにすむ固有のヒガイです。主に北湖の岸の岩礁にいて、南湖ではまれとされます。琵琶湖に流れ込む川には分布しないとされています。",
+    "temperament": "トビケラやユスリカの幼虫、小さな巻貝、藻類を食べます。4月下旬から6月上旬に、淡水の二枚貝の体の中（外套腔）へ卵を産み込みます。",
+    "movement": "水底に近いところを泳いで餌を探します。本水槽では、岩場のすぐ上から底近くをゆっくり泳ぎ、礫と粗い砂の底へ寄って餌を探す姿で描いています。",
+    "habitat": "湖岸の岩礁や小石の多い岸を使い、底近くの砂礫の底や礫の底で餌をとります。本水槽では、大きな岩が積み重なり、そのまわりに礫と粗い砂の底がある、琵琶湖の北の岸の岩場を再現しています。",
+    "aliases": [
+      "Abura-higai"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cypriniformes",
+      "orderJa": "コイ目",
+      "family": "Gobionidae",
+      "familyJa": "カマツカ科"
+    },
+    "adultSizeCm": 20,
+    "sizeNote": "琵琶湖環境科学研究センターの解説にある全長20cmを、図鑑と画面の目安にしています（平均か最大かは示されていません）。種の基準になった雄の標本（ホロタイプ）は、全長161.5mm、標準体長135.3mmでした。",
+    "distribution": "日本の琵琶湖の固有種です。主に北湖の沿岸の岩礁域にいて、南湖ではまれとされ、流入河川には分布しないとされます。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "IUCN の区分は、評価の本文を確認できていません。環境省レッドリスト2020では絶滅危惧IA類（CR）、滋賀県の2020年版では絶滅危惧種で、滋賀県の指定希少野生動植物種にも指定されています。岸の環境が変えられたこと、外来魚に食べられること、観賞用にとられることが、減った理由に挙げられています。"
+    },
+    "highlights": [
+      "体は鈍いつやのある黄褐色から暗褐色で、腹まで暗い色をしています。和名の「アブラ」は、この濃い黄褐色の体にちなむとされます。",
+      "えらぶたの後ろ、胸びれの付け根の上に、半月の形の暗い斑があります。",
+      "淡水の二枚貝の中に、桃色の卵を産み込みます。",
+      "ビワヒガイの色ちがいなのか、分かれはじめた別の種なのかは、2021年の研究でも結論が出ていません。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.8,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.59
+    }
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.5,
+    "maxY": 0.92
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.55,
+      "burst": 2.6
+    },
+    "turnRateRadPerSec": 2.8,
+    "restFraction": 0.12,
+    "depthRange": [
+      0.15,
+      0.8
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.55,
+    "habits": [
+      {
+        "type": "bottomForage"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Sarcocheilichthys biwaensis Hosoya 1982",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=8621"
+      },
+      {
+        "title": "Hosoya (1982), Classification of the Cyprinid Genus Sarcocheilichthys from Japan, with Description of a New Species",
+        "url": "https://www.jstage.jst.go.jp/article/jji1950/29/2/29_2_127/_pdf"
+      },
+      {
+        "title": "Kokita et al. (2021), Gudgeon fish with and without genetically determined countershading coexist in heterogeneous littoral environments of an ancient lake",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8495823/"
+      },
+      {
+        "title": "滋賀県琵琶湖環境科学研究センター：アブラヒガイ",
+        "url": "https://www.lberi.jp/iframe_dir/data/sarcocheilichthys-biwaensis/index.html"
+      },
+      {
+        "title": "大阪府立環境農林水産総合研究所：アブラヒガイ",
+        "url": "https://www.knsk-osaka.jp/zukan/zukan_database/tansui/2750b34e3c47c34/6550b5776b5c0f2.html"
+      },
+      {
+        "title": "琵琶湖博物館：アクリルガラス交換にともなう一部展示水槽の閉鎖について",
+        "url": "https://www.biwahaku.jp/2026/08/post_315.html"
+      },
+      {
+        "title": "環境省レッドリスト2020：汽水・淡水魚類",
+        "url": "https://www.env.go.jp/content/900515981.pdf"
+      },
+      {
+        "title": "滋賀県：指定希少野生動植物種一覧（2020年版カテゴリー併記）",
+        "url": "https://www.pref.shiga.lg.jp/file/attachment/5467588.pdf"
+      },
+      {
+        "title": "滋賀県告示第142号：指定希少野生動植物種の指定",
+        "url": "https://www.pref.shiga.lg.jp/site/jourei/reiki_int/reiki_honbun/k001RG00001690.html"
+      }
+    ]
+  },
+  "visual": {
+    "fallbackColor": "#7f6741"
+  },
+  "sourceBodyBounds": {
+    "x": 67,
+    "y": 244,
+    "width": 1417,
+    "height": 514
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "id": "biwa-reed-shore-120",
+  "order": 199,
+  "displayName": "ヨシ原と内湖水槽",
+  "exhibitName": "Reed Shore and Lagoon of Lake Biwa",
+  "category": "琵琶湖のヨシ原と内湖",
+  "description": "琵琶湖の岸のヨシ原と、湖につながる内湖を再現した120cm水槽。ヨシの根元から水草の茂る砂泥の浅瀬が続き、春には魚が卵を産みに集まってくる場所です。底に半分埋まった二枚貝は、水景として見せています。ホンモロコは中層を群れで泳ぐ琵琶湖の固有種で、繁殖期になると岸辺の植物の茂みや内湖へ寄ってきます。底近くには2種のモロコがいます。体の横に暗い点が並ぶ細身のスゴモロコは向きをそろえた群れで泳ぎ、それより体高があって点の列が目立たないデメモロコは、数匹でゆるくまとまります。シロヒレタビラは、えらぶたの後ろの小さな暗青色の斑と、尾へ続く青緑色の帯が目印です。背びれに黒い帯のあるビワヒガイは、底近くをゆっくり泳いで餌を探します。この2種は、どちらも雌が淡水二枚貝の中に卵を産みます。砂泥の底では、長い鼻先の下に口のあるカマツカが砂を口に取り込みながら餌を探し、それより短く太い体のツチフキが、砂泥を口に含んで小さな動物などを食べます。",
+  "widthCm": 120,
+  "heightCm": 58,
+  "depthCm": 50,
+  "maxTotalFish": 24,
+  "sceneIds": [
+    "biwa-reed-shore-120"
+  ],
+  "species": [
+    {
+      "speciesId": "honmoroko",
+      "maxCount": 7
+    },
+    {
+      "speciesId": "sarcocheilichthys-variegatus",
+      "maxCount": 2
+    },
+    {
+      "speciesId": "squalidus-chankaensis",
+      "maxCount": 6
+    },
+    {
+      "speciesId": "squalidus-japonicus",
+      "maxCount": 4
+    },
+    {
+      "speciesId": "acheilognathus-tabira",
+      "maxCount": 4
+    },
+    {
+      "speciesId": "pseudogobio-esocinus",
+      "maxCount": 2
+    },
+    {
+      "speciesId": "abbottina-rivularis",
+      "maxCount": 2
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "honmoroko",
+      "count": 5
+    },
+    {
+      "speciesId": "sarcocheilichthys-variegatus",
+      "count": 1
+    },
+    {
+      "speciesId": "squalidus-chankaensis",
+      "count": 5
+    },
+    {
+      "speciesId": "squalidus-japonicus",
+      "count": 3
+    },
+    {
+      "speciesId": "acheilognathus-tabira",
+      "count": 3
+    },
+    {
+      "speciesId": "pseudogobio-esocinus",
+      "count": 1
+    },
+    {
+      "speciesId": "abbottina-rivularis",
+      "count": 2
+    }
+  ]
+}

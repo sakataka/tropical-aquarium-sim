@@ -1,0 +1,11 @@
+{
+  "id": "biwa-deep-lake-180",
+  "order": 175,
+  "displayName": "沈んだ枝と丸い岩の深い湖底",
+  "description": "細かい灰色の泥と砂の底に小石が散らばり、右には暗い丸い岩が重なり、左には沈んだ枝が横たわる、冷たい湖の深み。水草はなく、遠い水面からの淡い光が底に揺れ、青緑の水は奥へ行くほど暗く沈んでいきます。",
+  "defaultLighting": "cool",
+  "waterColor": "#2a6f80",
+  "framing": {
+    "plateBottom": 0.942
+  }
+}

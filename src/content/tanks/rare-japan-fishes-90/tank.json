@@ -1,0 +1,83 @@
+{
+  "id": "rare-japan-fishes-90",
+  "order": 198,
+  "displayName": "日本の希少な淡水魚水槽",
+  "exhibitName": "Rare Freshwater Fishes of Japan",
+  "category": "日本各地の川と里の水辺",
+  "description": "砂と細かい砂利の底に二枚貝が半ば埋もれ、片側に石積み、反対側に草の根の垂れる土の岸がある、昔ながらの里の小川を思わせる90cm水槽。各地で守られている希少な淡水魚8種を集めて紹介する水槽で、同じ場所にすむ魚たちではありません。関東地方のミヤコタナゴは口の両端に短いひげがあり、繁殖期の雄は体に青紫の光沢が出て、頬や腹側が朱赤に色づきます。もとは東北・関東を中心に湖沼や水路に分布していたゼニタナゴは、鱗が細かく、口にひげがありません。どちらも二枚貝の中に卵を産むタナゴで、底の二枚貝は水景として見せています。アユモドキは、かつては琵琶湖・淀川水系や山陽地方の川に分布し、いまは京都府と岡山県の一部の水系に残るとされる魚です。切れ込みの深い尾びれと、口のまわりの3対の短いひげが目印で、底近くを泳ぎ、ときどき石積みのすき間に身を寄せます。伊勢湾・三河湾に注ぐ川にすむ小型のナマズのネコギギは、口のまわりに4対のひげがあります。夜行性で、明るい間は石積みのそばの底でじっとしていることが多く、ときどき石のすき間に入ります。体の横に暗い縦帯のあるシナイモツゴは本州のフォッサマグナより北東側、帯がほとんど目立たないウシモツゴは伊勢湾周辺の魚で、よく似た2種を見比べられます。細い銀白色のヒナモロコは、中国大陸と朝鮮半島のほか、日本では九州北西部に分布するとされる小魚で、数匹でまとまって水の中ほどを泳ぎます。西日本と朝鮮半島南部のオヤニラミは、えらぶたの後ろにある目のような模様が目印で、物陰で待ち、水生昆虫や小魚などを捕らえます。小魚を食べる魚もいるので、実際の飼育ではこの8種を一緒にはしません。",
+  "widthCm": 90,
+  "heightCm": 45,
+  "depthCm": 45,
+  "maxTotalFish": 20,
+  "sceneIds": [
+    "rare-japan-fishes-90"
+  ],
+  "species": [
+    {
+      "speciesId": "pseudorhodeus-tanago",
+      "maxCount": 4
+    },
+    {
+      "speciesId": "acheilognathus-typus",
+      "maxCount": 3
+    },
+    {
+      "speciesId": "parabotia-curtus",
+      "maxCount": 1
+    },
+    {
+      "speciesId": "tachysurus-ichikawai",
+      "maxCount": 2
+    },
+    {
+      "speciesId": "pseudorasbora-pumila",
+      "maxCount": 3
+    },
+    {
+      "speciesId": "pseudorasbora-pugnax",
+      "maxCount": 3
+    },
+    {
+      "speciesId": "aphyocypris-chinensis",
+      "maxCount": 4
+    },
+    {
+      "speciesId": "coreoperca-kawamebari",
+      "maxCount": 1
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "pseudorhodeus-tanago",
+      "count": 3
+    },
+    {
+      "speciesId": "acheilognathus-typus",
+      "count": 2
+    },
+    {
+      "speciesId": "parabotia-curtus",
+      "count": 1
+    },
+    {
+      "speciesId": "tachysurus-ichikawai",
+      "count": 1
+    },
+    {
+      "speciesId": "pseudorasbora-pumila",
+      "count": 2
+    },
+    {
+      "speciesId": "pseudorasbora-pugnax",
+      "count": 2
+    },
+    {
+      "speciesId": "aphyocypris-chinensis",
+      "count": 3
+    },
+    {
+      "speciesId": "coreoperca-kawamebari",
+      "count": 1
+    }
+  ]
+}

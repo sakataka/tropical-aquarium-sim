@@ -1,0 +1,149 @@
+{
+  "id": "palaemon-paucidens",
+  "displayName": "スジエビ",
+  "realBodyLengthCm": 5.5,
+  "catalog": {
+    "scientificName": "Palaemon paucidens",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "川や池、湖にすむ、体の透けた淡水のエビです。琵琶湖には、湖の中で暮らす集団がいます。以前は広く1つの種とされていましたが、DNA の研究で A・B・C の型に分けられ、B型の一部はキタノスジエビという別の種とされています。",
+    "temperament": "琵琶湖の研究では、冬に深い場所へ移った個体も冬眠せず、体の活動を保って餌をとり続けていると結論されています。雌は腹の脚に卵を抱え、ふ化した幼生は水中を漂って育ちます。昼と夜のどちらによく動くかは、琵琶湖の集団では確かめられていません。",
+    "movement": "琵琶湖では、春と夏は浅い場所、秋と冬は深い場所へ移ることが知られています。ただし、冬も岸の浅い場所や内湖に残る個体がいます。本水槽では、沈んだ枝の上や、奥の泥と砂の底、丸い岩の上を細い脚で歩き、ときどき立ち止まります。",
+    "habitat": "滋賀県の2024年度の調査は、琵琶湖の水深70〜90mの湖底でスジエビの分布を調べています。2025年1月の観測では、沖の湖底の水温は8.4℃でした。浅い場所では、岸の植物の根もとや礫のすき間を使うとされます。本水槽では、夏も冷たい湖の深みの、細かい泥と砂の底や沈んだ枝、丸い岩を歩くエビとして置いています。",
+    "aliases": [
+      "Lake Prawn"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Decapoda",
+      "orderJa": "十脚目",
+      "family": "Palaemonidae",
+      "familyJa": "テナガエビ科"
+    },
+    "adultSizeCm": 5,
+    "sizeNote": "新潟市水族館マリンピア日本海の解説は体長約5cm、国土交通省太田川河川事務所の解説は約5.5cmとしています。どちらも、どこからどこまでを測ったかは示されていません。琵琶湖の調査では、雌のほうが雄より大きいという結果でした。180cm水槽で見えやすいよう、画面では体長約5.5cmの個体で描いています（触角は含めません）。",
+    "distribution": "川、池、湖から見つかっていて、広く見られる種とされます。琵琶湖には湖の中で暮らす集団がいます。地域ごとの集団の分布には、人が移した影響もあると考えられています。いまの狭い意味でのスジエビの自然分布の全体は、確かめられていません。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "IUCN と国のレッドリストでの区分は確かめられていません。新潟市と新潟県では準絶滅危惧とされています（地域の評価で、評価の年は確かめられていません）。広く見られる種ですが、地域ごとに遺伝的に違う集団があり、保全のうえで大切な集団もあるとされます。滋賀県は、琵琶湖の湖底の酸素が1Lあたり2mgを下回ると、生存や分布に影響が出るおそれがあるとしています。2024年の秋には、水深90mの2地点で死んだ個体が見られ、生きた個体は主に80mより浅い側にいました。"
+    },
+    "highlights": [
+      "体は透明で、腹に暗い褐色の筋模様があります。",
+      "頭の先に伸びる額角（がっかく）には、上の縁に5〜7個、下の縁に2〜4個の歯が並びます。",
+      "前から1番目と2番目の脚の先がはさみになっていて、2番目のほうが長くなります。脚の関節は橙黄色を帯びます。",
+      "琵琶湖では、秋と冬に深い場所へ移る個体と、岸の浅い場所で冬を越す個体がいます。深い場所へ移っても冬眠はしません。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "crustacean",
+    "headStart": 0.25,
+    "tailBeatHz": 0.6,
+    "bodyWaveStart": 0.85,
+    "tailSweepRad": 0,
+    "verticalFlex": 0,
+    "footAnchor": {
+      "x": 0.48,
+      "y": 0.89
+    }
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.84,
+    "maxY": 0.93
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.08,
+      "burst": 0.4
+    },
+    "turnRateRadPerSec": 1.3,
+    "restFraction": 0.6,
+    "depthRange": [
+      0.3,
+      0.7
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 1.2,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.8,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 4.5,
+        "durationSec": [
+          8,
+          22
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 2,
+        "durationSec": [
+          5,
+          14
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "張・柳本2025: スジエビ種群の造雄腺ホルモン遺伝子",
+        "url": "https://www.jstage.jst.go.jp/article/aquaticanimals/2025/0/2025_AA2025-4/_article/-char/ja/"
+      },
+      {
+        "title": "池田・武田2023: 普通種スジエビの保全遺伝学",
+        "url": "https://www.jstage.jst.go.jp/article/fishgenetics/52/2/52_57/_html/-char/en"
+      },
+      {
+        "title": "張ほか2018: 2タイプ判別DNAマーカーと分布",
+        "url": "https://www.jstage.jst.go.jp/article/suisan/84/4/84_17-00082/_article/-char/ja"
+      },
+      {
+        "title": "国交省太田川河川事務所 スジエビ",
+        "url": "https://www.cgr.mlit.go.jp/ootagawa/Bio/shell/index312.htm"
+      },
+      {
+        "title": "新潟市水族館マリンピア日本海 スジエビ",
+        "url": "https://www.marinepia.or.jp/picturebook/invertebrate/entry-11439.html"
+      },
+      {
+        "title": "Wu et al. 2018: 浅場越冬個体のeDNA検出",
+        "url": "https://www.journals.uchicago.edu/doi/10.1086/697542"
+      },
+      {
+        "title": "Wu et al. 2019: 琵琶湖スジエビの季節移動と生活史",
+        "url": "https://esajournals.onlinelibrary.wiley.com/doi/10.1002/ecs2.2628"
+      },
+      {
+        "title": "滋賀県2024年度: 第一湖盆スジエビ・イサザ分布",
+        "url": "https://www.pref.shiga.lg.jp/documents/24284/5604633.pdf"
+      },
+      {
+        "title": "滋賀県2025年1月24日: 沖合湖底の酸素と生息状況",
+        "url": "https://www.pref.shiga.lg.jp/file/attachment/5515216.pdf"
+      },
+      {
+        "title": "滋賀県 北湖沖合湖底の酸素量とスジエビ等",
+        "url": "https://www.pref.shiga.lg.jp/suisan-s/14222.html"
+      }
+    ]
+  },
+  "visual": {
+    "fallbackColor": "#aa9871"
+  },
+  "sourceBodyBounds": {
+    "x": 46,
+    "y": 145,
+    "width": 1450,
+    "height": 739
+  }
+}

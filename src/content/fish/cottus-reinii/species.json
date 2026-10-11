@@ -1,0 +1,140 @@
+{
+  "id": "cottus-reinii",
+  "displayName": "ウツセミカジカ",
+  "realBodyLengthCm": 12,
+  "catalog": {
+    "scientificName": "Cottus reinii",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "日本固有の種とされるカジカの仲間です。ここでは、海へ下らずに琵琶湖で育つ湖沼型の集団を紹介しています。琵琶湖では、とくに北湖と、湖に流れ込む川の中流から下流にすみます。",
+    "temperament": "水生昆虫や甲殻類など、底にいる小さな動物を捕らえて食べます。川で調べた集団では冬から春（主に2〜4月）に繁殖し、石を使った巣に卵のかたまりがいくつもあって、巣ごとに雄が守っていました。",
+    "movement": "主に底で暮らす魚です。本水槽では、扇のように大きな胸びれを広げて石のそばの底に伏せ、ときどき短く泳いで場所を移る姿で描いています。",
+    "habitat": "湖岸の砂礫の底と、湖に流れ込む川の礫の底を使います。湖では沖の深い細かな泥の底も大切なすみかで、春から初夏には湖から川へ上る魚もいます。本水槽では、琵琶湖の北の岸の岩場の、礫と粗い砂の底にいます。",
+    "aliases": [
+      "Utsusemi-kazika",
+      "カジカ小卵型"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Perciformes",
+      "orderJa": "スズキ目",
+      "family": "Cottidae",
+      "familyJa": "カジカ科"
+    },
+    "adultSizeCm": 12,
+    "sizeNote": "全長での値です。琵琶湖環境科学研究センターの解説は全長9〜12cm、国立科学博物館の解説は全長12cmとしていて、図鑑と画面では12cmを目安にしています。川で調べた集団では、半分の個体が成熟している大きさが、雄で標準体長6.8cm、雌で5.32cmでした。最大の全長は確認できていません。",
+    "distribution": "種としては日本固有とされます。琵琶湖の湖沼型は、琵琶湖（とくに北湖）と、流入河川の中・下流域にすみます。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2019,
+      "note": "Catalog of Fishes に載っている IUCN の区分で、評価の本文は確認できていません。環境省レッドリスト2020では、カジカ小卵型として絶滅危惧IB類（EN）です（琵琶湖の集団だけの評価ではありません）。滋賀県レッドデータブック2015では分布上重要種とされています。湖と川を行き来できることと、深い湖底の環境を守ることが大切とされます。"
+    },
+    "highlights": [
+      "低く幅の広い頭と、扇のように大きな胸びれが見どころです。なめらかな体は褐色で、暗い鞍のような斑が重なります。",
+      "岸の礫の底だけでなく、沖の深い細かな泥の底でも、一年を通して記録されています。",
+      "仔魚は湖の中を浮いて暮らし、やがて底に降ります。",
+      "雄は石を使った巣で卵を守ります。野生での寿命は2〜3年とされます。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.6,
+    "tailSweepRad": 0.42,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.56
+    }
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.75,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.2,
+      "burst": 1
+    },
+    "turnRateRadPerSec": 2.1,
+    "restFraction": 0.6,
+    "depthRange": [
+      0.1,
+      0.75
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.2,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.7,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 2.2,
+        "durationSec": [
+          12,
+          45
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Cottus reinii Hilgendorf 1879",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=43088"
+      },
+      {
+        "title": "琵琶湖環境科学研究センター: ウツセミカジカ（細谷和海・川瀬成吾、2020年3月更新）",
+        "url": "https://www.lberi.jp/iframe_dir/data/cottus-reinii/index.html"
+      },
+      {
+        "title": "大阪府立環境農林水産総合研究所: ウツセミカジカ",
+        "url": "https://www.knsk-osaka.jp/zukan/zukan_database/tansui/2750b34e3c47c34/9850b711fbd26e5.html"
+      },
+      {
+        "title": "国立科学博物館 日本の淡水魚類: ウツセミカジカ",
+        "url": "https://www.kahaku.go.jp/research/db/zoology/uodas_freshdb/area/cottidae/022.html"
+      },
+      {
+        "title": "Fujioka, Sakai & Ide (2015): Horizontal and vertical distribution of Cottus reinii in Lake Biwa. Biogeography 17:13–20",
+        "url": "https://www.jstage.jst.go.jp/article/biogeo/17/0/17_13/_pdf/-char/ja"
+      },
+      {
+        "title": "Fujioka, Kido & Uenishi (2021): Sexual Maturation and Spawning of Cottus reinii in the Chinai River. Biogeography 23:46–51",
+        "url": "https://www.jstage.jst.go.jp/article/biogeo/23/0/23_46/_pdf/-char/ja"
+      },
+      {
+        "title": "Fujioka & Kido (2021): Upstream migration of Cottus reinii from Lake Biwa to the Ado River. Biogeography 23:74–79",
+        "url": "https://www.jstage.jst.go.jp/article/biogeo/23/0/23_74/_pdf/-char/ja"
+      },
+      {
+        "title": "環境省レッドリスト2020: 汽水・淡水魚類",
+        "url": "https://www.env.go.jp/content/900515981.pdf"
+      },
+      {
+        "title": "のとじま水族館: 生きもの図鑑、川や湖の魚たち",
+        "url": "https://www.notoaqua.jp/book/?cat=8&page=10"
+      },
+      {
+        "title": "琵琶湖博物館 はしかけニューズレター160号（2021年8月1日）、p3",
+        "url": "https://www.biwahaku.jp/uploads/HNL160.pdf"
+      }
+    ]
+  },
+  "visual": {
+    "fallbackColor": "#8f795d"
+  },
+  "sourceBodyBounds": {
+    "x": 59,
+    "y": 271,
+    "width": 1459,
+    "height": 473
+  }
+}

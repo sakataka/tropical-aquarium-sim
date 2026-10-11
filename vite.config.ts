@@ -19,6 +19,9 @@ if (process.env.TEST_SEED === "random") console.log(`TEST_SEED=${testSeed}`);
 export default defineConfig({
   base: process.env.VITE_BASE_PATH ?? "./",
   plugins: [react(), contentModules(fileURLToPath(new URL("./src/content/", import.meta.url)))],
+  // サブエージェントの git worktree と一時成果物の変更で、開発サーバーが画面を読み込み直さないようにする
+  // （画面検証の途中で読み込み直すと、結果が崩れる）。
+  server: { watch: { ignored: ["**/.claude/**", "**/tmp/**"] } },
   test: {
     setupFiles: ["src/core/testSetup.ts"],
     env: { TEST_SEED: testSeed },

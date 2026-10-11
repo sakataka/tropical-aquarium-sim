@@ -1,0 +1,51 @@
+{
+  "id": "biwa-rocky-shore-180",
+  "order": 200,
+  "displayName": "琵琶湖の岩礁水槽",
+  "exhibitName": "Rocky Shore of Lake Biwa",
+  "category": "琵琶湖の岩礁",
+  "description": "角ばった大きな岩が積み重なり、岩の下に洞が口を開ける、琵琶湖の北の岸の岩場を再現した180cm水槽。手前には礫まじりの明るい砂の底が広がります。イワトコナマズは琵琶湖・淀川水系に固有のナマズで、暗い体に黄褐色の不規則な斑紋があります。夜行性とされ、明るい間は洞のそばの底で休んでいることが多く、ときどき洞に出入りします。アブラヒガイは琵琶湖だけにすむヒガイで、腹まで暗い色をした黄褐色の体で、岩場のすぐ上から底近くを泳ぎ、底へ寄って餌を探します。ウツセミカジカは、扇のように大きな胸びれを広げて底に伏せます。岩場に一年中いる魚ではなく、沖の深い泥の底も大切なすみかです。ヤマトカワニナは、琵琶湖で十数種に分かれたカワニナの仲間の1つで、黒っぽい三角の殻を背負って砂の底や石の上をゆっくり這います。イワトコナマズは小魚やエビを、アブラヒガイは小さな巻貝を食べるので、実際の飼育ではこの顔ぶれを一緒にはしません。",
+  "widthCm": 180,
+  "heightCm": 76,
+  "depthCm": 70,
+  "maxTotalFish": 10,
+  "sceneIds": [
+    "biwa-rocky-shore-180"
+  ],
+  "species": [
+    {
+      "speciesId": "silurus-lithophilus",
+      "maxCount": 1
+    },
+    {
+      "speciesId": "sarcocheilichthys-biwaensis",
+      "maxCount": 4
+    },
+    {
+      "speciesId": "cottus-reinii",
+      "maxCount": 2
+    },
+    {
+      "speciesId": "semisulcospira-niponica",
+      "maxCount": 3
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "silurus-lithophilus",
+      "count": 1
+    },
+    {
+      "speciesId": "sarcocheilichthys-biwaensis",
+      "count": 3
+    },
+    {
+      "speciesId": "cottus-reinii",
+      "count": 2
+    },
+    {
+      "speciesId": "semisulcospira-niponica",
+      "count": 3
+    }
+  ]
+}

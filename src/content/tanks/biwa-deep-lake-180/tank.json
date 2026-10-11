@@ -1,0 +1,43 @@
+{
+  "id": "biwa-deep-lake-180",
+  "order": 201,
+  "displayName": "深い湖のビワマスとクニマス水槽",
+  "exhibitName": "Deep Lakes of Japan",
+  "category": "日本の深い湖",
+  "description": "細かい泥と砂の底に小石が散らばり、右に暗い丸い岩、左に沈んだ枝が横たわる、夏も冷たい湖の深みを再現した180cm水槽。日本の深い湖にすむ魚を、湖の違いをこえて並べて見せます。ビワマスは琵琶湖だけにすむサケの仲間で、暗い背と銀色の体で、中層をゆっくり行き来します。クニマスは琵琶湖の魚ではなく、もとは秋田県の田沢湖だけにすんでいた魚です。田沢湖では絶滅しましたが、卵が移されていた山梨県の西湖で子孫が生き残っていたことが、2010年に確かめられました。ふだんの銀色の姿はヒメマスによく似ていて、ビワマスと同じ中層を泳ぎます。琵琶湖だけにすむ小さなハゼのイサザは、底の少し上に浮かんで止まり、短く泳いでは、ときどき底に降りて休みます。湖では、昼は深い底にいて、日が沈むと浅い層へのぼりますが、この上下の動きは本水槽では再現していません。ビワマスは湖でイサザを食べるので、実際の飼育では一緒にしません。ここでは、冷たく深い湖にすむ生き物として、ひとつの水景で紹介しています。",
+  "widthCm": 180,
+  "heightCm": 79,
+  "depthCm": 80,
+  "maxTotalFish": 11,
+  "sceneIds": [
+    "biwa-deep-lake-180"
+  ],
+  "species": [
+    {
+      "speciesId": "oncorhynchus-biwaensis",
+      "maxCount": 3
+    },
+    {
+      "speciesId": "oncorhynchus-kawamurae",
+      "maxCount": 3
+    },
+    {
+      "speciesId": "gymnogobius-isaza",
+      "maxCount": 5
+    }
+  ],
+  "defaultStock": [
+    {
+      "speciesId": "oncorhynchus-biwaensis",
+      "count": 2
+    },
+    {
+      "speciesId": "oncorhynchus-kawamurae",
+      "count": 2
+    },
+    {
+      "speciesId": "gymnogobius-isaza",
+      "count": 4
+    }
+  ]
+}

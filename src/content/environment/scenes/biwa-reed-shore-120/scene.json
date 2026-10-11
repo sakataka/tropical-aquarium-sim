@@ -1,0 +1,11 @@
+{
+  "id": "biwa-reed-shore-120",
+  "order": 173,
+  "displayName": "ヨシの根と二枚貝の内湖",
+  "description": "ヨシの茎と根が岸をつくり、砂泥の底に二枚貝が半分埋まる、琵琶湖の岸辺と内湖の浅瀬。奥まで水草が茂り、右手にはヤナギの枝が沈んでいます。ヒシの葉が浮く水面から、緑がかった水に光の筋が差し込みます。",
+  "defaultLighting": "natural",
+  "waterColor": "#466b4f",
+  "framing": {
+    "plateBottom": 0.988
+  }
+}

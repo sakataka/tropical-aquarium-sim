@@ -1,0 +1,193 @@
+{
+  "id": "semisulcospira-niponica",
+  "displayName": "ヤマトカワニナ",
+  "realBodyLengthCm": 3.1,
+  "catalog": {
+    "scientificName": "Semisulcospira niponica",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "琵琶湖の水系だけにすむ固有のカワニナです。琵琶湖の岸のところどころと、瀬田川の上流にいます。",
+    "temperament": "飼育下では、藻類を食べることが報告されています。本水槽では、礫まじりの砂の底や石の上をごくゆっくり這い、ときどき立ち止まって表面を削ります。",
+    "movement": "本水槽では、殻を背負ったまま頭と足を伸び縮みさせて這い、触角を揺らします。叩かれると頭と足を殻に引っ込め、しばらくしてから這い出します。",
+    "habitat": "浅い岩礁や礫、港の硬い面にすみ、水際から水深1mほどまでで見られることが多い巻貝です。同じ場所に、同じカワニナ属の別の種がいくつもいることがあります。本水槽では、岩場の手前の礫まじりの明るい砂の底を這い、砂に据わった石にも上がります。",
+    "aliases": [
+      "Biwamelania niponica",
+      "Melania niponica"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Sorbeoconcha",
+      "orderJa": "吸腔目",
+      "family": "Semisulcospiridae",
+      "familyJa": "カワニナ科"
+    },
+    "adultSizeCm": 2.8,
+    "sizeNote": "殻高（殻のてっぺんから底までの高さ）での値で、成貝は約28mmとされます。南湖の1つの集団で大きな個体を10個体ずつ測った研究では、雄が22.1〜26.2mm、雌が26.9〜30.0mmでした。殻のてっぺんはすり減っていることが多く、殻高の値はその影響を受けます。画面では、大きめの雌にあたる殻高約3cmで描いています。目の名前（吸腔目）は、国内の図鑑で使われる書き方に合わせています。",
+    "distribution": "日本の琵琶湖水系の固有種で、琵琶湖の沿岸と瀬田川の上流に分布します。京都府の琵琶湖疏水や宇治川などにも古い名前での記録がありますが、いまの狭い意味のヤマトカワニナにあたるかどうかは確かめられていません。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "いまの狭い意味のヤマトカワニナを対象にした IUCN の区分は、確認できていません。環境省のレッドリストの準絶滅危惧（NT）と、滋賀県の2020年版の分布上重要種は、分類が見直される前の評価で、この種には一部が当てはまるとされます。"
+    },
+    "highlights": [
+      "黒から黒褐色の、三角形に近い殻をもちます。殻のてっぺんはすり減っていることが多く、3〜6層が残ります。",
+      "殻の表面には小さな粒が斜めの列になって並び、殻の口の近くでは弱くなります。",
+      "雌は卵を産まず、体の中の育児嚢で胎児を育てます。成熟した雌は平均で約50の胎児をもち、胎児の殻は丸く、ベージュの地に太い暗い帯があります。",
+      "2022年に発表された研究で、それまでヤマトカワニナとされていた貝の中から、トキタマカワニナ、チクブカワニナ、コンペイトウカワニナの3つの新種が分けられました。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "gastropod",
+    "tailBeatHz": 0.35,
+    "waveCount": 1.5,
+    "tailSweepRad": 0.16,
+    "verticalFlex": 0.004,
+    "footAnchor": {
+      "x": 0.55,
+      "y": 0.975
+    },
+    "shell": [
+      {
+        "x": 0.635,
+        "y": 0.64,
+        "rx": 0.345,
+        "ry": 0.235
+      },
+      {
+        "x": 0.835,
+        "y": 0.8,
+        "rx": 0.15,
+        "ry": 0.135
+      },
+      {
+        "x": 0.72,
+        "y": 0.36,
+        "rx": 0.245,
+        "ry": 0.17
+      },
+      {
+        "x": 0.805,
+        "y": 0.13,
+        "rx": 0.135,
+        "ry": 0.13
+      }
+    ],
+    "feelers": [
+      {
+        "kind": "tentacle",
+        "base": {
+          "x": 0.21,
+          "y": 0.825
+        },
+        "tip": {
+          "x": 0.01,
+          "y": 0.75
+        },
+        "width": 0.04
+      },
+      {
+        "kind": "tentacle",
+        "base": {
+          "x": 0.2,
+          "y": 0.895
+        },
+        "tip": {
+          "x": 0.02,
+          "y": 0.975
+        },
+        "width": 0.04
+      }
+    ]
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.8,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.05,
+      "burst": 0.075
+    },
+    "turnRateRadPerSec": 0.5,
+    "restFraction": 0.5,
+    "depthRange": [
+      0.1,
+      0.9
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 1.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.6,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 1.5,
+        "durationSec": [
+          20,
+          60
+        ]
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 0.5,
+        "durationSec": [
+          30,
+          120
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "滋賀県琵琶湖環境科学研究センター：ヤマトカワニナ（澤田直人、2026年3月更新）",
+        "url": "https://www.lberi.jp/iframe_dir/data/semisulcospira-niponica/index.html"
+      },
+      {
+        "title": "澤田直人・福家悠介：琵琶湖から現生カワニナの3新種を発見（京都大学研究発表、2022-08-31）",
+        "url": "https://www.kyoto-u.ac.jp/ja/research-news/2022-08-31-1"
+      },
+      {
+        "title": "京都大学：琵琶湖から現生カワニナの3新種を発見・研究内容説明PDF",
+        "url": "https://www.kyoto-u.ac.jp/sites/default/files/2022-08/220831_sawada-97b3384ce9de2bb33fb0027d966b3ecd.pdf"
+      },
+      {
+        "title": "GBIF Backbone Taxonomy: Semisulcospira niponica (E.A.Smith, 1876)",
+        "url": "https://www.gbif.org/species/8022071"
+      },
+      {
+        "title": "Sawada & Nakano (2022), Insights into sex-related size and shape dimorphism in Semisulcospira niponica",
+        "url": "https://academic.oup.com/mollus/article/88/2/eyac013/6584758"
+      },
+      {
+        "title": "Hamazaki & Miura (2024), Highly biased sex ratios in the twelve species of the freshwater snail genus Semisulcospira in and around Lake Biwa",
+        "url": "https://academic.oup.com/mollus/article/90/2/eyae011/7668641"
+      },
+      {
+        "title": "京都府レッドデータブック2015：ヤマトカワニナ（近藤高貴）",
+        "url": "https://www.pref.kyoto.jp/kankyo/rdb/bio/db/sshel0022.html"
+      },
+      {
+        "title": "日本産カワニナ科図鑑：飼育（飼育者本人の記録）",
+        "url": "https://tansuigyo.net/a_biwae/k-03.html"
+      }
+    ]
+  },
+  "visual": {
+    "fallbackColor": "#5b4837"
+  },
+  "sourceBodyBounds": {
+    "x": 350,
+    "y": 83,
+    "width": 734,
+    "height": 773
+  }
+}

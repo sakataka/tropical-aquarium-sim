@@ -1,0 +1,128 @@
+{
+  "id": "aphyocypris-chinensis",
+  "displayName": "ヒナモロコ",
+  "realBodyLengthCm": 6,
+  "catalog": {
+    "scientificName": "Aphyocypris chinensis",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "中国大陸と朝鮮半島、日本の九州北西部に自然分布するとされる小魚です。日本在来集団は大陸の集団と遺伝的に大きく異なります。",
+    "temperament": "成魚は雑食性とされます。古い資料には植物の根元などへ集まって越冬する記述があります。日本ではキクチヒナモロコとの交雑が保全上の問題になっています。",
+    "movement": "本水槽では、開けた水の中ほどからやや上を、数匹でまとまって泳ぐ姿で描いています。",
+    "habitat": "低地の植物が豊かな水路や、それにつながる水田・池にすみます。繁殖期には浅い植生のある場所へ移動するとされます。本水槽では、昔ながらの農村の小川を思わせる、砂や細かな砂利、石積みの隙間、水草の根元がある水辺をイメージしています。",
+    "aliases": [
+      "Chinese bleak",
+      "green chub",
+      "Aphyocypris agilis",
+      "Fusania ensarca"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cypriniformes",
+      "orderJa": "コイ目",
+      "family": "Xenocyprididae",
+      "familyJa": "クセノキプリス科"
+    },
+    "adultSizeCm": 6,
+    "sizeNote": "環境省の解説では最大全長60〜70mm、国立科学博物館では全長4〜7cmとされます。FishBaseは最大6cmTLと表示します。図鑑と画面では全長約6cmの個体を想定しています。福岡県資料の「体長50mm」は測定基準が不明です。旧野外調査の最大標準体長62mm（SL）も全長へ換算していません。",
+    "distribution": "中国大陸と朝鮮半島、日本では九州北西部の博多湾・有明海側の低地水系が歴史的な自然分布とされます。日本在来系統の現存には不確実性があり、現在の純系集団の分布としては断定していません。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "LC",
+      "assessedYear": 2007,
+      "note": "IUCNのLCと評価年はFishBaseの二次表示で、原評価の本文は確認できていません。環境省レッドリスト2020では絶滅危惧IA類（CR）です。福岡県レッドデータブック2024は日本在来の純系個体の最終確認を2007年とし、既に絶滅した可能性にも触れています。未確認の状態を保ち、世界的な絶滅とはしていません。"
+    },
+    "highlights": [
+      "細い銀白色の体には、ごく弱い青紫色の光沢が出ることがあります。",
+      "小さな口は斜め上を向き、口ひげはありません。",
+      "側線は不完全で、体の前方に限られます。",
+      "水路と浅い水田・池のつながりが、暮らしを支えます。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.8,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.56
+    }
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.2,
+    "maxY": 0.62
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.6,
+      "burst": 2.8
+    },
+    "turnRateRadPerSec": 2.8,
+    "restFraction": 0.08,
+    "depthRange": [
+      0.15,
+      0.8
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.7,
+      "cohesion": 0.5,
+      "polarization": 0.5
+    },
+    "structureAffinity": 0.15,
+    "habits": [],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes: Aphyocypris chinensis",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=30651&tbl=species"
+      },
+      {
+        "title": "福岡県レッドデータブック2024：ヒナモロコ",
+        "url": "https://biodiversity.pref.fukuoka.lg.jp/rdb/rdbs/detail/202400985"
+      },
+      {
+        "title": "環境省レッドデータブック2014：ヒナモロコ、pp34–35",
+        "url": "https://ikilog.biodic.go.jp/rdbdata/files/envpdf/%E6%B1%BD%E6%B0%B4%E3%83%BB%E6%B7%A1%E6%B0%B4%E9%AD%9A%E9%A1%9E_017.pdf"
+      },
+      {
+        "title": "国立科学博物館：日本の淡水魚 ヒナモロコ",
+        "url": "https://www.kahaku.go.jp/research/db/zoology/uodas_freshdb/area/cyprinnidae/danioninae/097.html"
+      },
+      {
+        "title": "Watanabe et al. (2020): Large-scale hybridization of Japanese populations of Hinamoroko, Aphyocypris chinensis, with A. kikuchii introduced from Taiwan",
+        "url": "https://link.springer.com/article/10.1007/s10228-019-00730-9"
+      },
+      {
+        "title": "北原佳郎（2024）：ヒナモロコ属魚類Aphyocypris kikuchiiの標準和名、Ichthy48:28–32",
+        "url": "https://www.museum.kagoshima-u.ac.jp/ichthy/INHFJ_2024_048_028.pdf"
+      },
+      {
+        "title": "中島淳・鬼倉徳雄（2009）：野外におけるヒナモロコの成長と利用環境、魚類学雑誌56:135–143",
+        "url": "https://www.jstage.jst.go.jp/article/jji/56/2/56_135/_pdf/-char/ja"
+      },
+      {
+        "title": "環境省レッドリスト2020：汽水・淡水魚類",
+        "url": "https://www.env.go.jp/content/900515981.pdf"
+      },
+      {
+        "title": "FishBase: Aphyocypris chinensis",
+        "url": "https://www.fishbase.se/summary/Aphyocypris-chinensis.html"
+      }
+    ]
+  },
+  "visual": {
+    "fallbackColor": "#a29a8d"
+  },
+  "sourceBodyBounds": {
+    "x": 111,
+    "y": 260,
+    "width": 1341,
+    "height": 454
+  }
+}

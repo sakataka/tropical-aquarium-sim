@@ -1,0 +1,148 @@
+{
+  "id": "gymnogobius-isaza",
+  "displayName": "イサザ",
+  "realBodyLengthCm": 8,
+  "catalog": {
+    "scientificName": "Gymnogobius isaza",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "琵琶湖だけにすむ固有のハゼです。ウキゴリの仲間で、湖の沖の深いところを使います。北陸でイサザと呼ばれるシロウオは、別の魚です。",
+    "temperament": "動物プランクトンとヨコエビ類を主に食べます。冬の標本を調べた研究では、小さな個体は小さなプランクトンを、大きな個体は底の大きな餌を多く食べていました。春には岸の石の下に卵を産み、雄が卵を守ります。",
+    "movement": "昼は深い湖底にいて、日が沈むと浅い層へ移ります。夜にのぼる層は季節で変わり、冬は表層まで、暖かい時期は水温が急に変わる層（水温躍層）の上部から、その上の層の下のあたりまでです。本水槽では、泥と砂の底の少し上に浮かんで止まり、短く泳いでは、ときどき底に降りて休みます。照明を夕方にすると、昼よりよく動きます。夜に浅い層へのぼる動きは、本水槽では再現していません。",
+    "habitat": "昼にいるのは水深30mより深いところとされ、古い観察では水深約50mの湖底で、水温は一年を通してほぼ8℃でした。春は沖から岸へ移動し、岸の石の下の面を産卵の場所に使います。本水槽では、夏も冷たい湖の深みの、細かい泥と砂に小石が散らばる底をイメージしています。",
+    "aliases": [
+      "Biwa goby",
+      "Isaza",
+      "Chaenogobius isaza（記載されたときの学名）"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Gobiiformes",
+      "orderJa": "ハゼ目",
+      "family": "Oxudercidae",
+      "familyJa": "オクスデルクス科"
+    },
+    "adultSizeCm": 6.5,
+    "sizeNote": "国立科学博物館は全長5〜8cmとしています。図鑑の値は、この範囲の中ほどの約6.5cmにしています。1962〜2004年の冬に採られた保存標本800尾の全長は3.3〜9.1cmでしたが、これは成魚の大きさの範囲を示すものではありません。2024年の論文に載った雄の標本は、標準体長5.94cmでした。代表的な平均の大きさと、種としての最大の大きさは確かめられていません。180cm水槽で見えやすいよう、画面では全長約8cmの大きめの個体で描いています。科は Catalog of Fishes の体系に従ってオクスデルクス科としています（国内の資料ではスズキ目ハゼ科とされます）。",
+    "distribution": "琵琶湖の固有種です。相模湖と霞ヶ浦へ移された古い記録がありますが、いまも定着しているかは確かめられていません。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "EN",
+      "assessedYear": 2019,
+      "note": "IUCN の区分は、2024年の論文が引用している2019年の評価で、評価の本文は確認できていません。環境省レッドリスト2020では絶滅危惧IA類（CR）です。20世紀の後半に資源が大きく減り、食べる餌の内容も変わったことが報告されています。"
+    },
+    "highlights": [
+      "昼は深い湖底、夜は上の層と、湖の中を毎日上下に行き来する小さなハゼです。",
+      "水中のプランクトンと湖底のヨコエビの両方を食べ、湖の沖と底の食べ物のつながりを結んでいます。",
+      "体は淡い飴色で細長く、尾びれの手前の部分（尾柄）が長く細いのが特徴です。前の背びれの後ろの端に、小さな黒い斑があります。",
+      "ふつうは生まれた翌年の春に成熟し、産卵のあとに死ぬ個体が多い魚です。一部は2年目まで生きます。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.6,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.54
+    }
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.6,
+    "maxY": 0.8
+  },
+  "ecology": {
+    "activityPeriod": "crepuscular",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.22,
+      "burst": 2.4
+    },
+    "turnRateRadPerSec": 2.8,
+    "restFraction": 0.55,
+    "depthRange": [
+      0.1,
+      0.5
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.55,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.5,
+        "durationSec": [
+          5,
+          15
+        ]
+      },
+      {
+        "type": "follow",
+        "chancePerMin": 0.3,
+        "durationSec": [
+          1,
+          2.5
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Gymnogobius isaza",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=18675"
+      },
+      {
+        "title": "国立環境研究所 琵琶湖生物標本データベース: イサザ",
+        "url": "https://www.nies.go.jp/biwako_specimens/contents/species.php?spid=8"
+      },
+      {
+        "title": "国立科学博物館 日本の淡水魚類データベース: イサザ",
+        "url": "https://www.kahaku.go.jp/research/db/zoology/uodas_freshdb/area/gobiidae/gobiinae/011.html"
+      },
+      {
+        "title": "Nagao et al. (2024) The complete mitochondrial genome of a Biwa goby, Gymnogobius isaza",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11198123/"
+      },
+      {
+        "title": "滋賀県立琵琶湖博物館 琵琶湖の概要: イサザ",
+        "url": "https://www.biwahaku.jp/study/lake-biwa-overview.html"
+      },
+      {
+        "title": "滋賀県 琵琶湖の美味しい湖魚料理あれこれ: イサザ料理",
+        "url": "https://www.pref.shiga.lg.jp/gf00/7255.html"
+      },
+      {
+        "title": "Takahashi (1982) Vitellogenesis of the Isaza controlled by the subjective diel thermoperiod, Proc. Japan Acad.58B:13–16",
+        "url": "https://www.jstage.jst.go.jp/article/pjab1977/58/1/58_1_13/_pdf/-char/en"
+      },
+      {
+        "title": "Briones et al. (2012) Long-Term Changes in the Diet of Gymnogobius isaza from Lake Biwa, Japan",
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0053167"
+      },
+      {
+        "title": "Takahashi et al. (2004) Why egg-caring males of Isaza refuse additional females: preliminary field observations",
+        "url": "https://link.springer.com/article/10.1007/s10164-004-0116-4"
+      },
+      {
+        "title": "環境省 レッドリスト2020 新旧対照表",
+        "url": "https://www.env.go.jp/press/files/jp/114458.pdf"
+      }
+    ]
+  },
+  "visual": {
+    "fallbackColor": "#b9a686"
+  },
+  "sourceBodyBounds": {
+    "x": 98,
+    "y": 314,
+    "width": 1354,
+    "height": 383
+  }
+}

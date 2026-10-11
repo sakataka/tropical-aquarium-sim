@@ -1,0 +1,134 @@
+{
+  "id": "acheilognathus-typus",
+  "displayName": "ゼニタナゴ",
+  "realBodyLengthCm": 8,
+  "catalog": {
+    "scientificName": "Acheilognathus typus",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "日本固有のタナゴです。もとは東北・関東を中心に、平野の浅い湖沼や池、それらとつながる水路などに分布していました。",
+    "temperament": "付着藻類や柔らかい水草の葉を食べます。秋に二枚貝の中へ卵を産み、ふ化した仔魚は貝の中で冬を過ごして、翌春から初夏に泳ぎ出します。",
+    "movement": "貝から泳ぎ出た仔魚は、岸辺の水面近くで群れを作ります。本水槽では、成魚が開けた水の中ほどを数匹でまとまって泳ぎ、ときどき石や二枚貝の表面をついばむ姿で描いています。",
+    "habitat": "浅い湖沼や池、それにつながる水路、大きな川の下流の、流れの弱い水域で暮らします。泥を含む軟らかい底と、繁殖を支える二枚貝がある環境を利用します。本水槽では、土の岸と植物の根、半ば埋まった二枚貝のある水路をイメージしています。",
+    "aliases": [
+      "Pseudoperilampus typus",
+      "Rhodeus typus",
+      "Small scale bitterling",
+      "Zenitanago"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cypriniformes",
+      "orderJa": "コイ目",
+      "family": "Acheilognathidae",
+      "familyJa": "タナゴ科"
+    },
+    "adultSizeCm": 8,
+    "sizeNote": "国立科学博物館と国立環境研究所は全長7〜9cm、環境省の2024年度資料は全長8〜10cm程度としています。別々の概説値で、種の最大値ではありません。図鑑と画面では、両方の範囲に入る全長約8cmの成魚として描いています。",
+    "distribution": "日本固有です。歴史的な自然分布は、太平洋側では神奈川県以北、日本海側では新潟県以北の本州で、青森県を除く東北・関東を中心とします。環境省の2024年度資料では、残存自然分布は岩手・宮城・秋田・福島を中心とされています。新潟県の現存集団は国内移入に由来する可能性が高いとされます。琵琶湖に由来する種ではありません。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "環境省レッドリスト2020では絶滅危惧IA類（CR）です。水辺の改修や埋め立て、外来魚の影響、二枚貝の減少などが課題とされています。IUCNの評価本文を取得できていないため、世界の区分と評価年は記載していません。"
+    },
+    "highlights": [
+      "多くのタナゴよりも鱗が細かく、密に並んでいます。",
+      "口の両端にひげがありません。",
+      "繁殖期の雄には、紫紅色や朱紅色を伴う金属的な光沢が現れます。",
+      "秋に産まれた卵からふ化した仔魚は、二枚貝の中で冬を越し、翌春から初夏に泳ぎ出します。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.8,
+    "bodyWaveStart": 0.45,
+    "tailSweepRad": 0.35,
+    "verticalFlex": 0.012,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.58
+    }
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.32,
+    "maxY": 0.8
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.6,
+      "burst": 2.3
+    },
+    "turnRateRadPerSec": 2.5,
+    "restFraction": 0.14,
+    "depthRange": [
+      0.15,
+      0.8
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.8,
+      "cohesion": 0.4,
+      "polarization": 0.6
+    },
+    "structureAffinity": 0.25,
+    "habits": [
+      {
+        "type": "grazing",
+        "chancePerMin": 0.8,
+        "durationSec": [
+          2,
+          5
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Pseudoperilampus typus / current Acheilognathus typus",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?tbl=species&genus=Pseudoperilampus&species=typus"
+      },
+      {
+        "title": "国立科学博物館 日本産魚類検索: ゼニタナゴ",
+        "url": "https://www.kahaku.go.jp/research/db/zoology/uodas_freshdb/area/cyprinnidae/acheilognathinae/acheilognathus/069.html"
+      },
+      {
+        "title": "国立環境研究所 侵入生物データベース: ゼニタナゴ",
+        "url": "https://www.nies.go.jp/biodiversity/invasive/DB/detail/50500.html"
+      },
+      {
+        "title": "環境省 令和6年度国内希少野生動植物種新規指定候補種の概要: ゼニタナゴ p3",
+        "url": "https://www.env.go.jp/content/000270289.pdf"
+      },
+      {
+        "title": "藤本泰文・進東健太郎 (2012) ゼニタナゴ：ため池に生き残った平野の魚. 魚類学雑誌59(1):78–82",
+        "url": "https://www.jstage.jst.go.jp/article/jji/59/1/59_78/_pdf/-char/ja"
+      },
+      {
+        "title": "藤本泰文・進東健太郎・北島淳也 (2007) ゼニタナゴと移入種タイリクバラタナゴの二枚貝からの浮上時期. 伊豆沼・内沼研究報告1:11–19",
+        "url": "https://www.jstage.jst.go.jp/article/izu/1/0/1_11/_pdf/-char/ja"
+      },
+      {
+        "title": "環境省 令和6年度: 動物の特定第一種国内希少野生動植物種の指定について pp3–4",
+        "url": "https://www.env.go.jp/content/000269728.pdf"
+      },
+      {
+        "title": "環境省レッドリスト2020 汽水・淡水魚類 p12",
+        "url": "https://www.env.go.jp/content/900515981.pdf"
+      }
+    ]
+  },
+  "visual": {
+    "fallbackColor": "#9c806c"
+  },
+  "sourceBodyBounds": {
+    "x": 106,
+    "y": 161,
+    "width": 1354,
+    "height": 617
+  }
+}

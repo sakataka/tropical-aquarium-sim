@@ -14,11 +14,18 @@ Codex が、Claude Code の動いていない間も単独で進められる作�
 ## 決まり（どのレーンでも）
 
 1. 始める前に `git pull`（このリポジトリ）と、`cd ~/Documents/aquarium-assets && git pull`（保管庫。読むだけ）。
-2. `uv run scripts/agent-queue.py claim <レーン> <件数> --by codex` で印を置く。件数の指定がなければ10件。
-3. レーンの手順書どおりに、印を置いた作業の成果物だけを書く。**書いてよいのは、手順書の「書いてよい場所」だけ。** `src/`、`content-drafts/fish/`、`docs/`、`scripts/`、Drive のフォルダは書き換えない。保管庫（`~/Documents/aquarium-assets`）は、手順書が保管庫の中の場所を指定しているレーンで、その場所だけを書く。**このリポジトリは GitHub で公開されているので、ほかのサイトから集めた一覧や本文を置かない。**
-4. 手順書の「確かめる」を通す。通らない作業は成果物を消し、`uv run scripts/agent-queue.py release <レーン> <id>` で印を外して、理由を最後の報告に書く。材料や仕組みが足りなくて進められない作業は、`release` ではなく `block`（保留。手順書の「進められない種」）。
-5. commit は、自分の成果物のパスだけを指定して行う（`git add -A` を使わない。同じ checkout で Claude Code が別の作業をしていることがある）。メッセージの末尾に `Assisted-by: Codex` を付け、push する。commit・push ができない環境（サンドボックスなど）では、ファイルを残して、その旨を報告に書く。
-6. 最後に、進めた作業の id、保留にした作業と理由、通した確かめ、`notes.md` に書いた気になる点の要約、手順書や道具の問題を報告する。`bun run test`・`bun run build`・`bun run verify:webview`・開発サーバーは流さない（手順書にあるものだけ流す）。
+2. **dots の配送が Drive に届いていれば、先に受領する**（`species-prepare` の未着手は、受領した調査から増える。Claude Code が動いていなくても、Codex だけで「受領 → 下書き」まで進められる）。
+   1. 保管庫に commit していない変更（`cd ~/Documents/aquarium-assets && git status --short`）があれば、ほかのエージェントが作業中なので、受領は飛ばす。
+   2. `AQUARIUM_ASSET_VAULT=~/Documents/aquarium-assets uv run scripts/receive-vault-delivery.py` で、届いている配送の照合の結果を見る（何も書かない）。未受領がなければ次へ進む。
+   3. `--apply` を付けて置く（25件で約2分）。「停止」と出た配送は置かれない。直そうとせず、配送ID と理由を最後の報告に書く。
+   4. 保管庫で `git add consumer/deliveries drafts` のあと、置かれたファイルだけが入っていることを `git status --short` で確かめ、`Receive Drive deliveries <最初のID> to <最後のID>` の形のメッセージ（末尾に `Assisted-by: Codex`）で commit・push する。
+   5. `AQUARIUM_ASSET_VAULT=~/Documents/aquarium-assets uv run scripts/publish-vault-to-dots.py --apply` で、Drive の写しを置き直す（dots が保存完了を知る）。
+   6. Drive の `to-claude-code/` にある dots の連絡は、読まず、写さない（返事と判断は Claude Code）。採用の記録（`adoptions/`）、カタログ、展示計画も書かない。Drive のフォルダが「Operation timed out」で読めないときは、`open -a "Google Drive"` で起動して20秒待ち、それでも読めなければ受領を飛ばして報告に書く。
+3. `uv run scripts/agent-queue.py claim <レーン> <件数> --by codex` で印を置く。件数の指定がなければ10件。
+4. レーンの手順書どおりに、印を置いた作業の成果物だけを書く。**書いてよいのは、手順書の「書いてよい場所」だけ。** `src/`、`content-drafts/fish/`、`docs/`、`scripts/`、Drive のフォルダは書き換えない（上の2の `publish-vault-to-dots.py` が Drive の `from-claude-code/` に写しを置くのは別）。保管庫（`~/Documents/aquarium-assets`）は、上の2の受領で置かれるファイルと、手順書が保管庫の中の場所を指定しているレーンのその場所だけを書く。**このリポジトリは GitHub で公開されているので、ほかのサイトから集めた一覧や本文を置かない。**
+5. 手順書の「確かめる」を通す。通らない作業は成果物を消し、`uv run scripts/agent-queue.py release <レーン> <id>` で印を外して、理由を最後の報告に書く。材料や仕組みが足りなくて進められない作業は、`release` ではなく `block`（保留。手順書の「進められない種」）。
+6. commit は、自分の成果物のパスだけを指定して行う（`git add -A` を使わない。同じ checkout で Claude Code が別の作業をしていることがある）。メッセージの末尾に `Assisted-by: Codex` を付け、push する。commit・push ができない環境（サンドボックスなど）では、ファイルを残して、その旨を報告に書く。
+7. 最後に、受領した配送の範囲、進めた作業の id、保留にした作業と理由、通した確かめ、`notes.md` に書いた気になる点の要約、手順書や道具の問題を報告する。`bun run test`・`bun run build`・`bun run verify:webview`・開発サーバーは流さない（手順書にあるものだけ流す）。
 
 ## レーン
 
@@ -29,7 +36,7 @@ Codex が、Claude Code の動いていない間も単独で進められる作�
 
 指定がないときは、`species-prepare` を10件進める（未着手が10件より少なければ、あるだけ。0件ならその旨を報告して終わる）。`aquarium-census` は、名指しで頼まれたときだけ進める（2026年10月11日、ユーザーより。当面の目標は展示計画の約1,300種で、飼育種の調査はそのあとの広げ方を決めるための、急がない作業）。
 
-`species-prepare` の未着手は、Claude Code が dots の配送を受領して保管庫に置いたときに増える（`uv run scripts/agent-queue.py status` で数が分かる）。
+`species-prepare` の未着手は、dots の配送を受領して保管庫に置いたときに増える（受領は Codex も Claude Code も行う。`uv run scripts/agent-queue.py status` で数が分かる）。
 
 ## レーンを足すとき（Claude Code がやる）
 

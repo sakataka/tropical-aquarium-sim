@@ -1,0 +1,151 @@
+{
+  "id": "parabotia-curtus",
+  "displayName": "アユモドキ",
+  "realBodyLengthCm": 20,
+  "catalog": {
+    "scientificName": "Parabotia curtus",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "日本固有の淡水魚です。かつては琵琶湖・淀川水系や山陽地方の河川に分布していましたが、近年の資料では京都府と岡山県の一部の水系に残るとされます。",
+    "temperament": "成魚は水生昆虫の幼虫など、底にいる小さな動物を食べます。石や石積みの隙間を隠れ場所として利用します。",
+    "movement": "底や物陰を利用する魚です。本水槽では、底近くをゆっくり泳いで砂の上で休み、ときどき石積みのすき間に身を寄せる姿で描いています。繁殖期には水路を通り、増水で一時的に水没した場所へ移動します。",
+    "habitat": "成魚は川の中・下流や、それにつながる水路にすみます。仔魚は植物の多い一時的な水域で育ちます。本水槽では、昔ながらの農村の小川を思わせる、砂や細かな砂利、石積みの隙間、水草の根元がある水辺をイメージしています。",
+    "aliases": [
+      "Japanese kissing loach",
+      "Kissing loach",
+      "ウミドジョウ",
+      "Cobitis curta",
+      "Leptobotia curta",
+      "Parabotia curta"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Cypriniformes",
+      "orderJa": "コイ目",
+      "family": "Botiidae",
+      "familyJa": "ボティア科"
+    },
+    "adultSizeCm": 20,
+    "sizeNote": "環境省の概説では成魚の全長15〜20cmとされます。図鑑と画面では、その範囲の全長約20cmの成魚として表示しています。国立科学博物館は最大「体長」20cmと記しますが、測り方は示されていません。科の和名は館の既存種に合わせてボティア科としています（調査ではアユモドキ科とも表記されます）。",
+    "distribution": "日本固有種です。歴史的には琵琶湖・淀川水系と岡山県を中心とする山陽側の河川に分布していました。近年の公式資料では、京都府の桂川水系、岡山県の旭川・吉井川水系の一部に残るとされます。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "CR",
+      "note": "IUCNのCRは京都水族館の発表が引用する2024-2版による二次確認です。個別評価の本文と評価年は確認できていません。環境省レッドリスト2020では絶滅危惧IA類（CR）です。成魚のすみかと、増水時の繁殖場所、それらをつなぐ水路の保全が重要です。"
+    },
+    "highlights": [
+      "落ち着いた黄褐色の体と、切れ込みの深い尾びれが特徴です。",
+      "口のまわりに短いひげが3対あります。",
+      "幼魚の横帯は、成長すると目立ちにくくなります。",
+      "川にすむ成魚が、増水で水没した植物のある場所へ繁殖のために移動します。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 2.2,
+    "mouthAnchor": {
+      "x": 0.03,
+      "y": 0.59
+    }
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.62,
+    "maxY": 0.94
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.35,
+      "burst": 1.8
+    },
+    "turnRateRadPerSec": 2.3,
+    "restFraction": 0.3,
+    "depthRange": [
+      0.1,
+      0.75
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.7,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 2.5,
+        "durationSec": [
+          6,
+          20
+        ]
+      },
+      {
+        "type": "bottomForage"
+      },
+      {
+        "type": "homeShelter",
+        "kind": "crevice",
+        "rangeBodyLengths": 5,
+        "visitChancePerMin": 0.3,
+        "visitDurationSec": [
+          15,
+          40
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Cobitis curta / valid Parabotia curtus",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?tbl=species&genus=Cobitis&species=curta"
+      },
+      {
+        "title": "環境省：アユモドキ（保護増殖事業概要）",
+        "url": "https://www.env.go.jp/nature/kisho/hogozoushoku/ayumodoki.html"
+      },
+      {
+        "title": "環境省：詳細検討対象種ごとの生息環境保全等調査結果、アユモドキ pp24–25",
+        "url": "https://www.env.go.jp/content/000187000.pdf"
+      },
+      {
+        "title": "国立科学博物館：天然記念物の魚たち、アユモドキ",
+        "url": "https://www.kahaku.go.jp/research/db/zoology/uodas/fish_in_focus/tennen/ayumodoki.html"
+      },
+      {
+        "title": "京都水族館：アユモドキ、はじめました！ 2026-04-13",
+        "url": "https://www.kyoto-aquarium.com/news/k_20260413/"
+      },
+      {
+        "title": "阿部司 (2012)：アユモドキの氾濫原環境への適応と繁殖場所の保全・復元、応用生態工学15(2):243–248",
+        "url": "https://www.jstage.jst.go.jp/article/ece/15/2/15_243/_pdf/-char/ja"
+      },
+      {
+        "title": "中国四国地方環境事務所：アユモドキの保護対策、2020-06-25",
+        "url": "https://chushikoku.env.go.jp/content/000243144.pdf"
+      },
+      {
+        "title": "京都府：アユモドキ、2009-11-20更新",
+        "url": "https://www.pref.kyoto.jp/kisyosyu/1218610673777.html"
+      },
+      {
+        "title": "環境省レッドリスト2020：汽水・淡水魚類",
+        "url": "https://www.env.go.jp/content/900515981.pdf"
+      }
+    ]
+  },
+  "visual": {
+    "fallbackColor": "#a98f67"
+  },
+  "sourceBodyBounds": {
+    "x": 66,
+    "y": 266,
+    "width": 1407,
+    "height": 449
+  }
+}

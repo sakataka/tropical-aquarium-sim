@@ -1,0 +1,142 @@
+{
+  "id": "oncorhynchus-kawamurae",
+  "displayName": "クニマス",
+  "realBodyLengthCm": 33,
+  "catalog": {
+    "scientificName": "Oncorhynchus kawamurae",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "もとは秋田県の田沢湖だけにすんでいた、湖で一生を過ごすサケの仲間です。田沢湖では絶滅しましたが、1935年に卵が移された山梨県の西湖で子孫が生き残っていたことが、2010年に確かめられました。",
+    "temperament": "西湖の調査では、動物プランクトンを中心に、季節や体の大きさによって水生昆虫や小魚も食べていました。成熟して一生を終えるまでの年数は3〜6年とされ、産卵のあとに死にます。本水槽では、同じ種どうしでゆるくまとまって泳ぐ姿で描いています。",
+    "movement": "西湖の調査では、産卵していない個体は、昼に深い水域の上部から中ほどを使っていました。いつも湖底に接して暮らす魚ではありません。本水槽では、暗い青緑の水の中層を、仲間とゆるく向きをそろえてゆっくり行き来し、ときどき仲間の後を追います。",
+    "habitat": "冷たい淡水の湖にすみます。西湖の調査では、産卵していない個体が水深8〜40m、水温5〜13℃のところで採集されました。卵は湖底の砂礫に産み、産卵のために川や湖岸へ移動するサケの仲間とは違います。本水槽では、夏も冷たい深い湖の、細かい泥と砂の底が続く開けた水をイメージしています。琵琶湖の魚ではありませんが、日本の深い湖の魚として、ビワマスと並べています。",
+    "aliases": [
+      "Kunimasu",
+      "Black kokanee",
+      "Oncorhynchus nerka kawamurae（以前の亜種としての学名）"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Salmoniformes",
+      "orderJa": "サケ目",
+      "family": "Salmonidae",
+      "familyJa": "サケ科"
+    },
+    "adultSizeCm": 33,
+    "sizeNote": "成熟した魚の全長は20〜45cmと報告されています。図鑑の値と画面の大きさは、この範囲の中ほどの約33cmにしています。代表的な平均の大きさと、種としての最大の大きさは確かめられていません。西湖で調べられた成熟途中の標本は、標準体長で雄が約34.7cm、雌が約29.2cmでした（全長とは別の測り方です）。",
+    "distribution": "もとの分布は秋田県の田沢湖だけです。田沢湖では絶滅し、いまは山梨県の西湖に、移された卵に由来する集団が自然に繁殖して暮らしています。本栖湖で調べられた標本にはヒメマスとの交雑個体が多く、純粋なクニマスは見つかりませんでした。",
+    "water": {
+      "salinity": "freshwater",
+      "temperatureC": [
+        5,
+        13
+      ]
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "IUCN の評価は確かめられていません。環境省レッドリスト2020では野生絶滅（EW）です。もとの分布域では失われ、分布域の外で自然に繁殖する集団として残っている場合も、この区分に含まれます。田沢湖では、人の手による湖水の酸性化が、姿を消す原因になったとされます。生殖細胞の保存と、飼育下で殖やす研究が進められています。水温は、西湖の調査で産卵していない個体が採集されたところの範囲で、飼育の推奨値ではありません。"
+    },
+    "highlights": [
+      "絶滅したと思われていた魚が、もとの湖から離れた西湖で命をつないでいました。2010年に確かめられました。",
+      "ふだんは背が暗い灰緑色、体側と腹が銀白色です。成熟が始まると、体が暗い色に変わっていきます。",
+      "ふつうの銀色の姿はヒメマスによく似ていて、見た目だけで確かに見分けるのは難しいとされます。鰓耙（さいは）や幽門垂の数、胸びれと尻びれの条の数などを組み合わせて区別します。",
+      "卵は湖の底の砂礫に産みます。2025年12月2日に、自然の中での産卵と受精のようすが撮影されました。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 1.2,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.56
+    }
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.3,
+    "maxY": 0.62
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "steady",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.24,
+      "burst": 0.75
+    },
+    "turnRateRadPerSec": 1.4,
+    "restFraction": 0.32,
+    "depthRange": [
+      0.15,
+      0.8
+    ],
+    "social": {
+      "grouping": "shoal",
+      "spacingBodyLengths": 1.4,
+      "cohesion": 0.5,
+      "polarization": 0.55
+    },
+    "structureAffinity": 0.25,
+    "habits": [
+      {
+        "type": "follow",
+        "chancePerMin": 1.0,
+        "durationSec": [
+          4,
+          10
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "青柳敏裕 (2017) サケ科魚類のプロファイル15 クニマス, SALMON情報11:36–39",
+        "url": "https://www.fra.go.jp/home/kenkyushokai/book/salmon/files/srr011_p36-39.pdf"
+      },
+      {
+        "title": "Nakabo et al. (2014) Growth-related morphology of Kunimasu from Lake Saiko",
+        "url": "https://link.springer.com/article/10.1007/s10228-013-0382-7"
+      },
+      {
+        "title": "Nakabo et al. (2014), Fig.5: maturing and immature Kunimasu",
+        "url": "https://link.springer.com/article/10.1007/s10228-013-0382-7/figures/5"
+      },
+      {
+        "title": "仙北市 (2024-04-08) クニマスの成熟が始まってきました",
+        "url": "https://www.city.semboku.akita.jp/news_topics/whatsnew.php?id=4055"
+      },
+      {
+        "title": "山梨県レッドデータブック2018 p201「奇跡の魚 クニマス」",
+        "url": "https://www.pref.yamanashi.jp/documents/84781/9hacyuuruiryouseiruigyorui.pdf"
+      },
+      {
+        "title": "Nakayama et al. (2018) Detection and morphological characteristics of Kunimasu/Himemasu hybrids in Lake Motosu",
+        "url": "https://link.springer.com/article/10.1007/s10228-018-0613-z"
+      },
+      {
+        "title": "山梨県 (2025-12-18更新) クニマスについて",
+        "url": "https://www.pref.yamanashi.jp/shokusui/kunimasu.html"
+      },
+      {
+        "title": "山梨県 (2025-12-18) クニマスの自然環境での産卵行動の撮影に成功",
+        "url": "https://www.pref.yamanashi.jp/release/shokusui/0712/kunimasu2512.html"
+      },
+      {
+        "title": "環境省 (2013-02-01) 第4次レッドリストの公表について（汽水・淡水魚類）",
+        "url": "https://www.env.go.jp/press/16264.html"
+      },
+      {
+        "title": "環境省 レッドリスト2020 新旧対照表",
+        "url": "https://www.env.go.jp/press/files/jp/114458.pdf"
+      }
+    ]
+  },
+  "visual": {
+    "fallbackColor": "#a1a3a4"
+  },
+  "sourceBodyBounds": {
+    "x": 112,
+    "y": 257,
+    "width": 1344,
+    "height": 466
+  }
+}

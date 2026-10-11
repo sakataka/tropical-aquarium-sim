@@ -1,0 +1,150 @@
+{
+  "id": "tachysurus-ichikawai",
+  "displayName": "ネコギギ",
+  "realBodyLengthCm": 10,
+  "catalog": {
+    "scientificName": "Tachysurus ichikawai",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "日本固有の小型のナマズです。伊勢湾・三河湾に注ぐ、岐阜県・愛知県・三重県の河川に分布します。",
+    "temperament": "夜行性で、昼は石の下や岸の物陰に隠れます。主に底にいる水生昆虫を食べ、繁殖期の雄は隠れ場所を守ります。",
+    "movement": "夜になると底の石や水際をゆっくり探ります。本水槽では、明るい間は石積みのそばの底でじっとしていることが多く、ときどき石のすき間へ出入りする姿で描いています。",
+    "habitat": "川の中流から上流へ移るあたりの、流れの緩い淵や岸寄りにすみます。大石の下や岸の隙間を利用します。本水槽では、昔ながらの農村の小川を思わせる、砂や細かな砂利、石積みの隙間、水草の根元がある水辺をイメージしています。",
+    "aliases": [
+      "Nekogigi",
+      "ギギモドキ",
+      "Coreobagrus ichikawai",
+      "Pseudobagrus ichikawai",
+      "Coreobagrus okadai"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Siluriformes",
+      "orderJa": "ナマズ目",
+      "family": "Bagridae",
+      "familyJa": "ギギ科"
+    },
+    "adultSizeCm": 10,
+    "sizeNote": "文化庁の指定解説では成魚はふつう全長10cm前後とされ、図鑑と画面では約10cmとして表示しています。三重県資料には最大「体長」約150mmとありますが、全長か標準体長かは不明です。局所的な野外研究の最大標準体長は雄108.0mm、雌93.5mmでした。これらを種全体の最大値にはしていません。",
+    "distribution": "本州中部の伊勢湾・三河湾に注ぐ河川に分布する日本固有種です。岐阜県・愛知県・三重県で知られます。琵琶湖を自然分布に含む魚ではありません。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "VU",
+      "note": "IUCNのVUは2026年のゲノム研究が引用した2022-2版による二次確認です。個別評価の本文と評価年は確認できていません。環境省レッドリスト2020では絶滅危惧IB類（EN）です。河川改変による隙間の消失や、生息環境の分断などが課題です。"
+    },
+    "highlights": [
+      "短く太い体に、鱗のない滑らかな皮膚があります。",
+      "口のまわりのひげは4対あり、上顎のひげは長めです。",
+      "背びれの後方には、長く低い脂びれがあります。",
+      "昼は物陰に潜み、夜に底の餌を探します。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 1.8,
+    "mouthAnchor": {
+      "x": 0.02,
+      "y": 0.58
+    }
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.64,
+    "maxY": 0.94
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.25,
+      "burst": 1.2
+    },
+    "turnRateRadPerSec": 1.9,
+    "restFraction": 0.35,
+    "depthRange": [
+      0.1,
+      0.75
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.0,
+      "cohesion": 0,
+      "polarization": 0.03
+    },
+    "structureAffinity": 0.75,
+    "habits": [
+      {
+        "type": "homeShelter",
+        "kind": "crevice",
+        "rangeBodyLengths": 5,
+        "visitChancePerMin": 0.4,
+        "visitDurationSec": [
+          15,
+          40
+        ]
+      },
+      {
+        "type": "bottomForage"
+      },
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.5,
+        "durationSec": [
+          10,
+          30
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer's Catalog of Fishes: ichikawai, Coreobagrus (spid 25387)",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=25387"
+      },
+      {
+        "title": "Okada & Kubota (1957). Description of a New Fresh Water Cat-Fish, Coreobagrus ichikawai, with an Emendation of the Genus Coreobagrus Mori. Japanese Journal of Ichthyology 5:143–145.",
+        "url": "https://www.jstage.jst.go.jp/article/jji1950/5/3-6/5_3-6_143/_pdf"
+      },
+      {
+        "title": "Watanabe (1994). Growth, Maturity and Population Structure of the Bagrid Catfish, Pseudobagrus ichikawai. Japanese Journal of Ichthyology 41:15–22.",
+        "url": "https://www.jstage.jst.go.jp/article/jji1950/41/1/41_1_15/_pdf"
+      },
+      {
+        "title": "文化庁 文化遺産オンライン：ネコギギ（天然記念物）",
+        "url": "https://online.bunka.go.jp/heritages/detail/218139"
+      },
+      {
+        "title": "三重県：ネコギギ（種名・概要・指定要件等、p22）",
+        "url": "https://www.pref.mie.lg.jp/common/content/000967942.pdf"
+      },
+      {
+        "title": "国土交通省 中部地方整備局 設楽ダム工事事務所：ネコギギ調査ファイル No.1 (2009-03-23)",
+        "url": "https://www.cbr.mlit.go.jp/shitara/05kankyo_hozen/nekogigi/data/pisf1.pdf"
+      },
+      {
+        "title": "世界淡水魚園水族館 アクア・トト ぎふ：ネコギギのこどもたち（堀江真、2025-12-27）",
+        "url": "https://aquatotto.com/post-37083/"
+      },
+      {
+        "title": "Onuki et al. (2026). Genome-Wide Analysis Successfully Resolves Population Structure Shaped by Recent Divergence in the Endangered Bagrid Catfish Pseudobagrus ichikawai. Ecology and Evolution 16:e73263.",
+        "url": "https://onlinelibrary.wiley.com/doi/10.1002/ece3.73263"
+      },
+      {
+        "title": "環境省レッドリスト2020 別添資料3：汽水・淡水魚類",
+        "url": "https://www.env.go.jp/content/900515981.pdf"
+      }
+    ]
+  },
+  "visual": {
+    "fallbackColor": "#7c6748"
+  },
+  "sourceBodyBounds": {
+    "x": 68,
+    "y": 233,
+    "width": 1414,
+    "height": 514
+  }
+}

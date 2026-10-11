@@ -1,0 +1,11 @@
+{
+  "id": "biwa-rocky-shore-180",
+  "order": 174,
+  "displayName": "洞のある岩と砂礫の湖岸",
+  "description": "角ばった暗い岩が左右に積み重なり、右の大きな岩の下に暗い洞が口を開ける、湖の岸の岩場。手前には苔むした丸い石と、礫まじりの明るい砂の底が広がります。岩のあいだに細い葉の水草が立ち、澄んだ青緑の水に光の筋が差し込みます。",
+  "defaultLighting": "natural",
+  "waterColor": "#12708f",
+  "framing": {
+    "plateBottom": 0.924
+  }
+}

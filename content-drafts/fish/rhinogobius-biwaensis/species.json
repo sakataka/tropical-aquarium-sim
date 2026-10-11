@@ -1,0 +1,147 @@
+{
+  "id": "rhinogobius-biwaensis",
+  "displayName": "ビワヨシノボリ",
+  "realBodyLengthCm": 4.5,
+  "catalog": {
+    "scientificName": "Rhinogobius biwaensis",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "琵琶湖を中心とする湖の水域に固有のハゼです。湖の止まった水で暮らすヨシノボリで、Rhinogobius sp. BW という仮の名で呼ばれたのち、2017年に新種として名前が付きました。",
+    "temperament": "繁殖期の雄は岸近くに縄張りをつくり、石の下を巣にします。雌が巣の天井に卵を付けると、雄が卵の世話をし、ひれで水を送ります。",
+    "movement": "底で暮らす小さなハゼです。腹びれは、縦長の薄い膜の吸盤になっています。本水槽では、岩場のわきの礫や粗い砂の底に止まり、ときどき短く泳いで場所を移る姿で描いています。",
+    "habitat": "湖の中で暮らし、ふだんは沖合にいて、繁殖期に浅い岸へ移ってきます。繁殖期には、礫を多く含む砂底の岸で、半ば埋まった石の下を巣に使います。2019年の5〜8月の調査では、水深0.3〜2mの岸で採集されました。本水槽では、繁殖期に岸へ寄ってきた雄を、琵琶湖の北の岸の岩場の、礫と粗い砂の底で描いています。",
+    "aliases": [
+      "Biwayoshinobori",
+      "Rhinogobius sp. BW"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Gobiiformes",
+      "orderJa": "ハゼ目",
+      "family": "Oxudercidae",
+      "familyJa": "オクスデルクス科"
+    },
+    "adultSizeCm": 3.6,
+    "sizeNote": "標準体長（尾びれを含まない長さ）での値です。ふつうの成魚の全長は確認できていません。原記載の図に載っている標本は、雄が33.0mmと36.0mm、雌が25.6mmで、原記載で調べられた79個体は20.2〜43.1mmでした（成魚かどうかを確かめていない個体を含みます）。図鑑の値は、図に載った雄の36.0mmにしています。別の論文には45.0mmの雄の標本があり、180cm水槽で見つけやすいよう、画面ではこの大きめの雄に合わせて約4.5cmで描いています。科は Catalog of Fishes の体系に従ってオクスデルクス科としています（国内の資料ではハゼ科とされます）。",
+    "distribution": "日本の琵琶湖を中心とする湖の水域に固有です。湖につながる内湖や、流入河川の河口・最下流部の記録もあります。京都市の仙洞御所の池では、琵琶湖疏水を通って入ったとみられるビワヨシノボリと、シマヒレヨシノボリが交雑した集団が報告されています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "status": "EN",
+      "assessedYear": 2018,
+      "note": "IUCN の区分と評価年は FishBase の転載で確かめたもので、評価の本文は確認できていません（評価の公表は2019年です）。環境省レッドリスト2020では情報不足（DD）です。人の手で出会うようになった近い仲間のヨシノボリとの交雑が、見分けや地域の固有性を保つうえでの問題に挙げられています。"
+    },
+    "highlights": [
+      "第1背びれが低く、雄でもとげが糸のように長く伸びません。",
+      "頬に目立つ模様がなく、尾の付け根に橙色の斑もありません。胸びれの付け根の上の端に、青い金属光沢を帯びた小さな暗い点があります。",
+      "繁殖期の雄は、えらぶたの下と尻びれの付け根が黄色みを、下あごの下が青みを帯びます。",
+      "雄は石の下の巣で卵の世話をし、ひれで水を送ります。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 3,
+    "mouthAnchor": {
+      "x": 0.01,
+      "y": 0.56
+    }
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.75,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "diurnal",
+    "gait": "burstCoast",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.25,
+      "burst": 2.6
+    },
+    "turnRateRadPerSec": 3,
+    "restFraction": 0.55,
+    "depthRange": [
+      0.1,
+      0.75
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.7,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 2.5,
+        "durationSec": [
+          6,
+          20
+        ]
+      },
+      {
+        "type": "follow",
+        "chancePerMin": 0.3,
+        "durationSec": [
+          1,
+          2.5
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer’s Catalog of Fishes: Rhinogobius biwaensis",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=74785"
+      },
+      {
+        "title": "Takahashi & Okazaki (2017), Rhinogobius biwaensis, a new gobiid fish of the yoshinobori species complex",
+        "url": "https://link.springer.com/article/10.1007/s10228-017-0577-4"
+      },
+      {
+        "title": "環境省レッドリスト2020・別添資料3",
+        "url": "https://www.env.go.jp/press/files/jp/114457.pdf"
+      },
+      {
+        "title": "大阪府立環境農林水産総合研究所：ビワヨシノボリ",
+        "url": "https://www.knsk-osaka.jp/zukan/zukan_database/tansui/2750b34e3c47c34/1350b58fded47fc.html"
+      },
+      {
+        "title": "明仁ほか (2019), 京都御苑の仙洞御所の池に生息するビワヨシノボリとシマヒレヨシノボリの野外交雑個体",
+        "url": "https://www.jstage.jst.go.jp/article/jji/66/1/66_18-044/_pdf/-char/ja"
+      },
+      {
+        "title": "Suzuki, Kimura & Shibukawa (2019), Two New Lentic, Dwarf Species of Rhinogobius from Japan",
+        "url": "https://nh.kanagawa-museum.jp/files/data/pdf/bulletin/48/bull48_21_36_suzuki.pdf"
+      },
+      {
+        "title": "尾﨑・川瀬・中山 (2021), 滋賀県琵琶湖水系から初記録のシマヒレヨシノボリ",
+        "url": "https://www.museum.kagoshima-u.ac.jp/ichthy/INHFJ_2021_015_005.pdf"
+      },
+      {
+        "title": "Daisuke Takahashi, EAFES 2023 presentation: R. biwaensis mate choice, Materials and Methods",
+        "url": "https://www.rhinogoboius.com/the-10th-eafes-in-korea"
+      },
+      {
+        "title": "琵琶湖博物館年報第29号・2024年度",
+        "url": "https://www.biwahaku.jp/publication/0628439308f09065c3f75b0efbd970a4d7ad55f2.pdf"
+      },
+      {
+        "title": "FishBase: Rhinogobius biwaensis summary",
+        "url": "https://www.fishbase.se/summary/Rhinogobius-biwaensis.html"
+      }
+    ]
+  },
+  "visual": {
+    "fallbackColor": "#918771"
+  },
+  "sourceBodyBounds": {
+    "x": 167,
+    "y": 331,
+    "width": 1231,
+    "height": 361
+  }
+}
