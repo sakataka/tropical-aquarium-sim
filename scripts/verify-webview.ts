@@ -583,11 +583,14 @@ async function verifyHalls(consoleErrors: string[]) {
         assert(await view.evaluate(`document.documentElement.scrollWidth === document.documentElement.clientWidth`));
         await Bun.write(`${SCREENSHOT_DIR}/tank-${tankId}-${viewport}.png`, await view.screenshot({ format: "png" }));
         // 水槽に入ると、その水槽の今の種が既読として保存される。入った時点で未読だった種の行には、水槽を出るまで NEW が残る。
+        // 未読のなかった水槽では既読が変わらないので、保存もされない（まだどの水槽も見ていなければ、保存そのものがない）。
         const wasNew = unseenSpecies(tankId);
         visited.add(tankId);
-        assert(await view.evaluate(`${JSON.stringify(tank.species.map((slot) => slot.speciesId))}
-          .every((id) => JSON.parse(localStorage.getItem("${SEEN_KEY}"))["${tankId}"].includes(id))`));
         if (wasNew.length > 0) {
+          assert(await view.evaluate(`${JSON.stringify(tank.species.map((slot) => slot.speciesId))}
+            .every((id) => JSON.parse(localStorage.getItem("${SEEN_KEY}"))["${tankId}"].includes(id))`));
+          // 左下の展示ラベルにも、新しく見る生き物の数だけ印が付く。
+          assert(await view.evaluate(`document.querySelectorAll('.caption-species .new-mark').length`) === wasNew.filter((id) => tank.defaultStock.some((entry) => entry.speciesId === id)).length);
           assert(await panelNewSpecies(view) === wasNew.length);
           await view.evaluate(`document.querySelector('.fish-catalog-card .new-mark')?.scrollIntoView({ block: 'center' })`);
           await sleep(300);

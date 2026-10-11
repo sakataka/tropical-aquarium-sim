@@ -17,6 +17,7 @@ import type { ViewControl } from "../render/AquariumCanvas";
 import { getScenePlateUrl } from "../render/assetUrls";
 import { playSfx } from "../audio/sfx";
 import { AquariumControls, LIGHTING_OPTIONS } from "./AquariumControls";
+import { NewMark } from "./NewMark";
 import { SoundToggle } from "./SoundToggle";
 import {
   BackIcon,
@@ -282,6 +283,7 @@ export function TankScreen({
               {customization.stock.map((entry) => (
                 <span key={entry.speciesId}>
                   {fishCatalog[entry.speciesId]?.displayName}<small>{entry.count}</small>
+                  {newSpeciesIds?.includes(entry.speciesId) ? <NewMark label="まだ見ていない生き物" /> : null}
                 </span>
               ))}
             </p>
