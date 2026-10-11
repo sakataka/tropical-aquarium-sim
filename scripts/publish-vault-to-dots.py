@@ -7,7 +7,7 @@ dots の窓口は Drive だけにしている（2026年10月10日から）。dot
 保管庫 → dots がこのスクリプト。GitHub へ commit・push 済みの内容だけを、ZIP 1個と小さな JSON 1個にして置く。
 
   uv run scripts/publish-vault-to-dots.py            何を置くかを表示する（何も書かない）
-  uv run scripts/publish-vault-to-dots.py --apply    Drive の from-claude-code/ に置く
+  uv run scripts/publish-vault-to-dots.py --apply --by codex  実際の担当者で Drive の from-claude-code/ に置く
 
 置くもの（Drive の <配送フォルダ>/from-claude-code/）:
   aquarium-vault-snapshot-<日付>-<commit>.zip            下の PATHS の、その commit での内容
@@ -83,7 +83,10 @@ def build_inventory(vault: Path, head: str) -> dict:
         content = read_committed(path)
         return len(content), hashlib.sha256(content).hexdigest()
 
-    in_vault = lambda path, digest: path in tracked and committed_info(path)[1] == digest
+    def vault_status(path: str, digest: str) -> str:
+        if path not in tracked:
+            return "missing"
+        return "stored" if committed_info(path)[1] == digest else "changed"
     jobs: dict[tuple, dict] = {}
 
     def job_entry(job_id: str, request_revision) -> dict:
@@ -96,7 +99,9 @@ def build_inventory(vault: Path, head: str) -> dict:
     def add_file(job: dict, path: str, size, digest: str, **evidence) -> None:
         known = next((item for item in job["files"] if item["path"] == path and item["sha256"] == digest), None)
         if not known:
-            known = {"path": path, "size": size, "sha256": digest, "inVault": in_vault(path, digest), "evidence": []}
+            status = vault_status(path, digest)
+            known = {"path": path, "size": size, "sha256": digest, "inVault": status == "stored",
+                     "vaultStatus": status, "evidence": []}
             job["files"].append(known)
         known["evidence"].append(evidence)
 
@@ -113,7 +118,8 @@ def build_inventory(vault: Path, head: str) -> dict:
         job["isCurrent"] = job.get("isCurrent") or record.get("isCurrent")
         for artifact in record.get("artifacts", []):
             add_file(job, artifact["path"], artifact.get("bytes"), artifact.get("sha256"),
-                     source="queue-results", record=str(record_file.relative_to(vault)), outputRevision=record.get("outputRevision"))
+                     source="queue-results", record=str(record_file.relative_to(vault)), outputRevision=record.get("outputRevision"),
+                     isCurrent=record.get("isCurrent"))
 
     deliveries = []
     for relative in sorted(path for path in tracked if len(Path(path).parts) == 3
@@ -154,7 +160,10 @@ def build_inventory(vault: Path, head: str) -> dict:
         "entityCount": len({job["entityId"] for job in job_list}),
         "evidenceNoteJa": "files[].evidence の source が queue-results なら dots が GitHub に書いた成果の記録、drive-delivery なら Drive 経由の配送（deliveryId、受領の記録、"
                           "その記録が main に入った commit）。同じファイルが両方にあれば、1件の files に両方の evidence が付く。inVault は、vaultCommit の保管庫に同じ中身で入っているか。",
+        # 既存の一覧は残し、未配送の原本と保存後の内容差を区別する。
         "missingOrChanged": [file["path"] for job in job_list for file in job["files"] if not file["inVault"]],
+        "missingFiles": [file["path"] for job in job_list for file in job["files"] if file["vaultStatus"] == "missing"],
+        "changedFiles": [file["path"] for job in job_list for file in job["files"] if file["vaultStatus"] == "changed"],
         "jobs": job_list,
         "deliveries": deliveries,
         "styleAndReferenceFiles": references,
@@ -164,7 +173,10 @@ def build_inventory(vault: Path, head: str) -> dict:
 def main() -> int:
     parser = argparse.ArgumentParser(description="保管庫の、dots が読むものを Drive へ写す")
     parser.add_argument("--apply", action="store_true", help="Drive に置く（省くと表示だけ）")
+    parser.add_argument("--by", choices=("codex", "claude-code"), help="実際の公開担当者（--apply のとき必須）")
     args = parser.parse_args()
+    if args.apply and not args.by:
+        parser.error("--apply には --by codex または --by claude-code が必要です")
     vault_value = os.environ.get("AQUARIUM_ASSET_VAULT")
     if not vault_value:
         sys.exit("AQUARIUM_ASSET_VAULT に保管庫の clone のパスを入れてください")
@@ -208,7 +220,7 @@ def main() -> int:
         "purpose": "保管庫（GitHub の main）のうち、dots が読む文字のファイルの写し。正本は GitHub。",
         "vaultCommit": head,
         "createdAt": stamp.isoformat(timespec="seconds"),
-        "createdBy": "claude-code",
+        "createdBy": args.by,
         "zip": {"name": f"{base}.zip", "size": len(data), "sha256": hashlib.sha256(data).hexdigest()},
         "fileCount": len(files),
         "inventory": {"name": inventory_name, "size": len(inventory_text.encode()), "sha256": hashlib.sha256(inventory_text.encode()).hexdigest(),
@@ -218,7 +230,12 @@ def main() -> int:
         "changedSincePrevious": changed,
     }
     print(f"保管庫 {head[:8]}: {len(files)} ファイル、ZIP {len(data)} バイト。成果物の一覧 {inventory['jobCount']} job・{inventory['entityCount']} 素材"
-          f"（記録と保管庫が食い違うファイル {len(inventory['missingOrChanged'])}）")
+          f"（未保存 {len(inventory['missingFiles'])}・ハッシュ不一致 {len(inventory['changedFiles'])}）")
+    for label, key in (("未保存", "missingFiles"), ("ハッシュ不一致", "changedFiles")):
+        for path in inventory[key][:15]:
+            print(f"    [{label}] {path}")
+        if len(inventory[key]) > 15:
+            print(f"    [{label}] … ほか {len(inventory[key]) - 15} 件")
     if changed is not None:
         print(f"前回（{previous['vaultCommit'][:8]}）から変わったファイル: {len(changed)}")
         for path in changed[:15]:

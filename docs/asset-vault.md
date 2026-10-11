@@ -36,7 +36,7 @@ dots と Claude Code は直接やりとりできないので、保管庫で連�
 | 保管庫 → dots | `from-claude-code/` に、保管庫の文字のファイルの写し（ZIP と JSON）と、保存済みの成果物の一覧。原画や参照画像が要るときは `from-claude-code/originals/` に、保管庫と同じパスで個別に | `scripts/publish-vault-to-dots.py` |
 | dots からの連絡 | `to-claude-code/` に Markdown。保管庫の `notes/to-claude-code/` へ写して commit し、返事は今までどおり `consumer/replies/` に同じファイル名で書く（写しに入る） | 手で写す |
 
-保管庫を commit・push したら、`AQUARIUM_ASSET_VAULT=~/Documents/aquarium-assets uv run scripts/publish-vault-to-dots.py --apply` で写しを置き直す（依頼、採否、展示計画、要件、返事、受領の記録。画像は入れない。`latest-snapshot.json` に、写した commit と、前回から変わったファイルがある）。保管庫の HEAD が origin/main と同じで、対象に commit していない変更がないときだけ置ける。古い写しは消さない。
+保管庫を commit・push したら、`AQUARIUM_ASSET_VAULT=~/Documents/aquarium-assets uv run scripts/publish-vault-to-dots.py --apply --by claude-code` で写しを置き直す（依頼、採否、展示計画、要件、返事、受領の記録。画像は入れない。`latest-snapshot.json` に、写した commit と、前回から変わったファイルがある）。保管庫の HEAD が origin/main と同じで、対象に commit していない変更がないときだけ置ける。古い写しは消さない。
 
 dots に新しい種を頼むときは、(1) `catalog/species-backlog.json` に項目を足し、(2) `uv run --with jsonschema python catalog/build_request.py --ids <種> --request-id <id>` で依頼ファイルを作り、(3) `consumer/assignments/<番号>.json` に担当と付帯情報（依頼ファイルと job ごとの入力のハッシュ、納品先のパス、画風と参照のパス・ハッシュ、基点 commit、ほかの作業の担当）を書き、(4) 展示計画のその水槽の候補に `speciesId` と `requested` を付け、(5) commit・push して写しを置き直す。参照画像は `from-claude-code/originals/` に置く。Drive 経由の間は1種ずつ進め、ジョブの状態（`queue/state`・`queue/current`）は Claude Code は書かない。
 
@@ -50,10 +50,12 @@ dots からの配送の受領は次のとおり。保存完了は、commit の�
 手順:
 
 1. `AQUARIUM_ASSET_VAULT=~/Documents/aquarium-assets uv run scripts/receive-vault-delivery.py` で、届いている配送を照合し、置く内容を見る（何も書かない）。
-2. 問題がなければ `--apply` を付けて置く。保管庫の `drafts/` の下にファイルが置かれ、受領の記録 `consumer/deliveries/<配送ID>.json` が書かれる。ここまでが「受領」。
+2. 問題がなければ `--apply --by claude-code` を付けて置く。保管庫の `drafts/` の下にファイルが置かれ、受領の記録 `consumer/deliveries/<配送ID>.json` が書かれる。ここまでが「受領」。Codexが受領・公開する場合は `--by codex` を指定する。書き込み時は実際の担当者の指定が必須で、受領記録の `receivedBy` と写しの `createdBy` に残る。
 3. 保管庫で差分を確かめ、commit・push する。受領の記録が GitHub の main に入った時点が「保存完了」。その commit のハッシュを dots に返す。
 
 スクリプトは、次のときに何も置かずに止まる: ZIP やファイルのサイズ・SHA-256 が合わない、`drafts/` の外や保管庫の外へ出るパスがある、manifest に書かれていないファイルが ZIP にある、保管庫に同じパスで中身の違うファイルがある（上書きしない）、同じ配送IDで ZIP のハッシュが違う、依存する配送が未受領。同じパス・同じ中身のファイルと、受領済みの配送は飛ばすので、同じ配送を二度流しても何も起きない。
+
+成果物の一覧では、`missingFiles` が指定commitにファイルのない参照、`changedFiles` がファイルはあるものの記録のハッシュと違う参照を示す。各ファイルの `vaultStatus` は `stored`・`missing`・`changed` のいずれか。既存の `missingOrChanged` は両方を含む一覧として残す。途中の出力も除外せず、成果記録の `isCurrent` を各ファイルの根拠に残すので、未保存の原本を見落とさずに確認できる。
 
 ## 生き物を取り込む流れ
 

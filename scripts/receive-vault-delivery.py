@@ -7,7 +7,7 @@ GitHub 経由で dots から直接受け取れない間の受け渡し。Drive �
 ローカルのフォルダとして見えている前提（読むだけで、書き換えない）。
 
   uv run scripts/receive-vault-delivery.py                 届いている配送を照合し、置く内容を表示する（何も書かない）
-  uv run scripts/receive-vault-delivery.py --apply         照合に通った配送を保管庫へ置き、受領の記録を書く
+  uv run scripts/receive-vault-delivery.py --apply --by codex  照合に通った配送を置き、実際の担当者で受領を記録する
   uv run scripts/receive-vault-delivery.py <配送ID>...      配送を絞る
 
 配送の形（1回の配送 = ZIP 1個 + 外部の JSON 1個。項目は docs/asset-vault.md の「Drive 経由の受領」）:
@@ -181,7 +181,7 @@ def committed_sha256(vault: Path, commit: str, path: str) -> str | None:
     return sha256(blob.stdout) if blob.returncode == 0 else None
 
 
-def apply(result: dict, vault: Path) -> Path:
+def apply(result: dict, vault: Path, *, received_by: str) -> Path:
     """照合に通った配送を保管庫へ置き、受領の記録を書く。途中で失敗しても、置きかけのファイルを残さない。"""
     staging = Path(tempfile.mkdtemp(prefix="aquarium-delivery-"))
     written: list[Path] = []
@@ -215,7 +215,7 @@ def apply(result: dict, vault: Path) -> Path:
             "schemaVersion": "aquarium-delivery-receipt/1",
             "deliveryId": result["deliveryId"],
             "receivedAt": datetime.now(JST).isoformat(timespec="seconds"),
-            "receivedBy": "claude-code",
+            "receivedBy": received_by,
             "createdAt": note.get("createdAt"),
             "previousDeliveryId": note.get("previousDeliveryId"),
             "dependsOn": note.get("dependsOn") or [],
@@ -246,7 +246,10 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="Drive に届いた dots の配送を照合し、保管庫へ置く")
     parser.add_argument("deliveries", nargs="*", help="配送ID（省くと、届いている配送すべて）")
     parser.add_argument("--apply", action="store_true", help="照合に通った配送を保管庫へ置く（省くと表示だけ）")
+    parser.add_argument("--by", choices=("codex", "claude-code"), help="実際の受領担当者（--apply のとき必須）")
     args = parser.parse_args()
+    if args.apply and not args.by:
+        parser.error("--apply には --by codex または --by claude-code が必要です")
     vault_value = os.environ.get("AQUARIUM_ASSET_VAULT")
     if not vault_value:
         sys.exit("AQUARIUM_ASSET_VAULT に保管庫の clone のパスを入れてください")
@@ -283,7 +286,7 @@ def main() -> int:
             if len(result["new"]) > 20:
                 print(f"    … ほか {len(result['new']) - 20} 件")
             if args.apply:
-                file = apply(result, vault)
+                file = apply(result, vault, received_by=args.by)
                 print(f"    保管庫へ置き、受領の記録を書きました: {file.relative_to(vault)}（まだ commit していません）")
             else:
                 print("    表示だけです。置くには --apply を付けます")
