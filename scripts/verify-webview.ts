@@ -64,7 +64,7 @@ async function hallsFromChanges(base: string): Promise<string[] | undefined> {
     else if (content?.[1] === "fish") hallsOfTanks((tank) => tank.species.some((slot) => slot.speciesId === content[2])).forEach((id) => halls.add(id));
     else if (bodyPlan && bodyPlan !== "fish" && bodyPlan !== "index" && bodyPlan !== "types") {
       hallsOfTanks((tank) => tank.species.some((slot) => bodyPlanOf.get(slot.speciesId) === bodyPlan)).forEach((id) => halls.add(id));
-    } else if (/^(src|vite|public)\/|^(index\.html|vite\.config\.ts|package\.json|bun\.lock)$/.test(file)
+    } else if (/^(src|public)\/|^scripts\/(content-modules|css-assets|build-frontend|dev-frontend|dev)\.ts$|^(index\.html|bunfig\.toml|package\.json|bun\.lock)$/.test(file)
       && !/\.test\.tsx?$|^src\/core\/test(Setup|Content)\.ts$/.test(file)) broad.push(file);
   }
   if (broad.length > 0) {
@@ -236,7 +236,18 @@ async function main() {
     await sleep(1400);
     await clickTab(view, "照明と音");
     await clickButtonByText(view, "夜景");
-    await view.evaluate(`document.querySelector(".sound-toggle")?.click()`);
+    // 音のON/OFFと保存は検査し、実出力だけ無音にする。
+    await view.evaluate(`(() => {
+      const connect = AudioNode.prototype.connect;
+      AudioNode.prototype.connect = function(destination, ...ports) {
+        if (destination instanceof AudioDestinationNode) {
+          const mute = this.context.createGain(); mute.gain.value = 0;
+          connect.call(mute, destination); destination = mute;
+        }
+        return connect.call(this, destination, ...ports);
+      };
+      document.querySelector(".sound-toggle")?.click();
+    })()`);
     await sleep(350);
     await Bun.write(`${SCREENSHOT_DIR}/lighting-1440x960.png`, await view.screenshot({ format: "png" }));
     await clickByLabel(view, "閉じて眺める");
@@ -705,7 +716,7 @@ async function verifyExpandedScenes(consoleErrors: string[]) {
         assert(await view.evaluate(`Array.from(document.querySelectorAll('.theme-thumb img')).every(img => img.complete && img.naturalWidth > 0)`));
         await clickByLabel(view, "閉じて眺める");
         await sleep(700);
-        assert(await view.evaluate(`document.querySelectorAll('.aquarium-canvas canvas').length === 1 && !document.querySelector('.render-problem') && !document.querySelector('vite-error-overlay') && document.documentElement.scrollWidth === innerWidth`));
+        assert(await view.evaluate(`document.querySelectorAll('.aquarium-canvas canvas').length === 1 && !document.querySelector('.render-problem') && !document.querySelector('bun-hmr-error-overlay') && document.documentElement.scrollWidth === innerWidth`));
         assert(await view.evaluate(`JSON.parse(localStorage.getItem("${STATE_KEY}")).tanks[${JSON.stringify(tankId)}].layout.sceneId === ${JSON.stringify(sceneId)}`));
         assert(await view.evaluate(`JSON.parse(localStorage.getItem("${STATE_KEY}")).tanks[${JSON.stringify(tankId)}].layout.lighting === ${JSON.stringify(scene.defaultLighting)}`));
         await Bun.write(`${SCREENSHOT_DIR}/terrain-${sceneId}-${viewport}.png`, await view.screenshot({ format: "png" }));

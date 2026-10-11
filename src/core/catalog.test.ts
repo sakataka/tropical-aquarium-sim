@@ -1,10 +1,11 @@
-import { describe, expect, test } from "vitest";
+import { testFiles } from "./testFiles";
+import { describe, expect, test } from "bun:test";
 import { fishCatalog } from "./catalog";
 
 describe("fish catalog", () => {
   test("fish species are discovered from species folders", () => {
     const species = Object.values(fishCatalog);
-    const folders = Object.keys(import.meta.glob("../content/fish/*/species.json"));
+    const folders = Object.keys(testFiles("../content/fish/*/species.json", import.meta.url));
     expect(species).toHaveLength(folders.length);
     expect(species.map((item) => item.id)).toContain("neon-tetra");
     for (const item of species) {

@@ -1,5 +1,5 @@
 import { Texture } from "pixi.js";
-import { describe, expect, test } from "vitest";
+import { describe, expect, test } from "bun:test";
 import { VERTICES_X, type MotionState } from "../render/bodyPlans";
 import { deformFrogAt, frogRenderer } from "../render/bodyPlans/frog";
 import { FishBody, forgetMotionState } from "../render/fishBody";

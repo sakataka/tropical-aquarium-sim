@@ -1,4 +1,4 @@
-import { describe, expect, test } from "vitest";
+import { describe, expect, test } from "bun:test";
 import { fishCatalog, getSceneById, getTankById } from "../../core/catalog";
 import { createFishFromStock } from "../../core/fishPopulation";
 import { stepSurfaceWalker } from "../../core/surfaceMotion";

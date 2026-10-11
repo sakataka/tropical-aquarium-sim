@@ -1,4 +1,4 @@
-import { describe, expect, test } from "vitest";
+import { describe, expect, test } from "bun:test";
 import { fishCatalog, getSceneById, getTankById } from "./catalog";
 import { createFishFromStock, createFishPersonality } from "./fishPopulation";
 import { stepSimulation } from "./simulation";
@@ -60,12 +60,12 @@ describe("home shelters", () => {
       { speciesId: "mandarinfish", count: 1 },
     ], 240, "night");
     const shelterOf = (f: FishInstance) => scene.terrain!.shelters!.find((s) => s.id === f.terrainGoal?.shelterId)?.kind;
-    const expected: Record<string, string> = {
+    const expected = {
       "ocellaris-clownfish": "anemone", firefish: "burrow", mandarinfish: "crevice",
-    };
+    } as const;
     for (const f of fish) {
       expect(f.behaviorMode, f.speciesId).toBe("rest");
-      expect(shelterOf(f), f.speciesId).toBe(expected[f.speciesId]);
+      expect(shelterOf(f), f.speciesId).toBe(expected[f.speciesId as keyof typeof expected]);
     }
   });
 });

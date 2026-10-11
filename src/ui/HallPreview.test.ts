@@ -1,4 +1,4 @@
-import { describe, expect, test } from "vitest";
+import { describe, expect, test } from "bun:test";
 import { getHallLayout, halls } from "../core/museum";
 import { cropAroundTanks } from "./HallPreview";
 

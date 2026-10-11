@@ -1,9 +1,9 @@
 import { z } from "zod";
 import { SHELTER_KINDS, type AquariumScene } from "./types";
 
-// 館・展示室・水槽・水景の内容ファイルの形。ビルド時（vite/contentModules.ts）とテストで検証し、
+// 館・展示室・水槽・水景の内容ファイルの形。ビルド時（scripts/content-modules.ts）とテストで検証し、
 // アプリは検証済みの内容を読むだけにする（起動時に zod を読まない）。
-// ビルド設定からも読むので、import.meta.glob など Vite の機能に依存しない。
+// ビルド設定からも読むので、ブラウザ用のasset importに依存しない。
 
 const unit = z.number().finite().min(0).max(1);
 

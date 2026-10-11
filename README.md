@@ -8,12 +8,17 @@ Demo: https://sakataka.github.io/tropical-aquarium-sim/
 
 ```bash
 bun install
-bun run dev
-bun run test          # 全テスト（約30秒）。作業中は bun run test:fast（約6秒）
+bun run test          # 全テスト（約35秒）。作業中は bun run test:fast（約6秒）
 bun run typecheck     # Bun 1.4.3 の組み込みチェッカー
 bun run build
 bun run verify:webview
 ```
+
+開発サーバーはLocalWeb repoで `bun run src/localweb.ts dev tropical-aquarium-sim` を起動し、`http://tropical-aquarium-sim-dev.localhost/` を開きます。
+
+開発・ビルド・型チェック・テストは Bun 1.4.3 で実行します。内容の検証と遅延ロード用モジュールの生成は `scripts/content-modules.ts` に集約しています。内容JSON・画像・音声の編集・追加・削除時は開発サーバーを再起動し、画面を読み直します。React・CSSの変更はBunのHMRで更新します。生成器やその依存コードの変更はBunのwatchで読み直します。監視範囲は `src/content/` だけで、一時成果物や別worktreeの変更は対象外です。`bun run preview` で直前のビルドを確認できます。
+
+LocalWeb用のビルドは相対URLです。GitHub Pagesでは `ASSET_BASE_PATH=/tropical-aquarium-sim/ bun run build` を使います。失敗したビルドで既存の `dist/` は置き換えません。
 
 画面の準備と切り替えは `src/App.tsx`、URL・ブラウザ履歴・起動時の保存データの復元は `src/navigation.ts`、水槽画面と設定パネルの開閉は `src/ui/TankScreen.tsx`、環境音の再生は `src/audio/useAmbientSound.ts` にあります。水槽画面の全画面操作も `TankScreen.tsx` で扱います。
 
@@ -114,18 +119,20 @@ bun run verify:webview
 - 泳層・群泳・構造物への接近・方向転換・夜行性・空気呼吸・照明による活動量、住みか、夜の沈み込み、別種との間合い、ガラスを叩いたときの逃げ方と慣れ
 - 全水景・上限匹数での昼10分・夜10分の連続遊泳（ガラス内、岩との交差なし、詰まりなし）
 
-全水槽を回す最後の項目（`terrainEndurance.test.ts`）は水槽ごとのテストに分けてあり、8つのプロジェクト（`tanks-1`〜`tanks-8`）で並列に流れます。
+全水槽を回す最後の項目（`terrainEndurance.test.ts`）は水槽ごとのテストに分けてあり、`scripts/test.ts` が8分割し、最大4つのBunプロセスで並列に流します。
 
 | コマンド | 内容 |
 |---|---|
-| `bun run test` | 全テスト（約30秒）。commit の前に通す |
+| `bun run test` | 全テスト（約35秒）。commit の前に通す |
 | `bun run test:fast` | 全水槽を回すテストを除いた速いテスト（約6秒）。作業中に使う |
 | `bun run test:tanks -- -t <水槽id>` | 全水槽を回すテストのうち、その水槽だけ |
 | `bun run test:fuzz` | 乱数を毎回変えて全テスト。使った値を `TEST_SEED=<値>` と表示するので、落ちたら同じ値を付けて再現する |
 
-テストの間の `Math.random` は決まった乱数列です（`src/core/testSetup.ts`）。同じテストは毎回同じ結果になります。
+テストの画像寸法はWebPの先頭48バイトだけから読み、同じプロセス内では再利用します。画像全体をbase64へ展開しません。
 
-`bun run verify:webview` は WebKit backend の `Bun.WebView` で、館内図の2段（建物の切り替え、全階の展示室の一覧と縮小版）と展示室への出入り、URLとブラウザの戻る・進む、展示室から水槽への出入り、設定パネル、水槽ごとの生き物と上限、全水景の切替、照明、環境音、隣の水槽への移動、2部屋の行き来、再読込後の復元、展示室に入ったときの保存の補い、ガラスを叩く操作、1440×960・420×912・912×420の表示を確認します。スクリーンショットは `tmp/webview/` に保存します。`--halls=<展示室id>,...` で展示室を絞り、`--changed` でまだ commit していない差分から展示室を選びます（`--changed=<ref>` でその commit からの差分、`--dry-run` で選んだ範囲の表示だけ）。
+テストの間の `Math.random` は決まった乱数列です（`src/core/testSetup.ts`）。同じテストは毎回同じ結果になります。実行したseedと分割番号を表示し、失敗時にも両方を記録します。`TEST_SEED=<値> bun run test:tanks -- -t <水槽id>` で再現できます。
+
+`bun run verify:webview` は WebKit backend の `Bun.WebView` で、館内図の2段（建物の切り替え、全階の展示室の一覧と縮小版）と展示室への出入り、URLとブラウザの戻る・進む、展示室から水槽への出入り、設定パネル、水槽ごとの生き物と上限、全水景の切替、照明、環境音の切替（実出力は無音）、隣の水槽への移動、2部屋の行き来、再読込後の復元、展示室に入ったときの保存の補い、ガラスを叩く操作、1440×960・420×912・912×420の表示を確認します。スクリーンショットは `tmp/webview/` に保存します。`--halls=<展示室id>,...` で展示室を絞り、`--changed` でまだ commit していない差分から展示室を選びます（`--changed=<ref>` でその commit からの差分、`--dry-run` で選んだ範囲の表示だけ）。
 
 `bun run plan:check` は、保管庫の展示計画（`catalog/exhibit-plan.json`）とアプリの内容を突き合わせ、食い違いと器の数（建物ごとの展示室・水槽・種）を表示します（[設計](docs/museum-architecture.md#7-展示計画との突き合わせ実装済み)）。`uv run scripts/draft-terrain.py <水景id>` は、水景の絵から地形の下書きと確認画像を作ります（[地形の下書き](docs/terrain-drafting.md)）。
 

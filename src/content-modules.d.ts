@@ -1,11 +1,11 @@
-/// <reference types="vite/client" />
+declare module "*.css";
 
 declare module '*.png' {
   const src: string;
   export default src;
 }
 
-// ビルド時に内容ファイルから作るモジュール（vite/contentModules.ts）。
+// ビルド時に内容ファイルから作るモジュール（scripts/content-modules.ts）。
 
 /** 起動時に読む館の索引。 */
 declare module "virtual:museum" {
@@ -33,3 +33,5 @@ declare module "virtual:species-index" {
   export default entries;
   export const loaders: Record<string, () => Promise<import("./core/contentTypes").SpeciesModule>>;
 }
+
+declare module "*?url" { const url: string; export default url; }

@@ -1,4 +1,4 @@
-import { describe, expect, test } from "vitest";
+import { describe, expect, test } from "bun:test";
 import { getBodyPlan } from "./bodyPlans";
 import { fishCatalog, getSceneById, getTankById } from "./catalog";
 import { createFishFromStock, createFishPersonality } from "./fishPopulation";

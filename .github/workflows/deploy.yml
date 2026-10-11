@@ -13,7 +13,7 @@ permissions:
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-  VITE_BASE_PATH: /tropical-aquarium-sim/
+  ASSET_BASE_PATH: /tropical-aquarium-sim/
 
 concurrency:
   group: pages

@@ -8,13 +8,13 @@
   ],
   "packageManager": "bun@1.4.3",
   "scripts": {
-    "dev": "vite",
-    "build": "bun run typecheck && vite build",
-    "preview": "vite preview",
-    "test": "vitest run",
-    "test:fast": "vitest run --project unit",
-    "test:tanks": "vitest run --project 'tanks-*'",
-    "test:fuzz": "TEST_SEED=random vitest run",
+    "dev": "bun run scripts/dev.ts",
+    "build": "bun run typecheck && bun run scripts/build-frontend.ts",
+    "preview": "bun run scripts/dev-frontend.ts --preview",
+    "test": "bun run scripts/test.ts all",
+    "test:fast": "bun run scripts/test.ts fast",
+    "test:tanks": "bun run scripts/test.ts tanks",
+    "test:fuzz": "TEST_SEED=random bun run scripts/test.ts all",
     "verify:webview": "bun run scripts/verify-webview.ts",
     "measure:perf": "bun run scripts/measure-performance.ts",
     "compare:render": "bun run scripts/compare-render.ts",
@@ -23,7 +23,6 @@
   },
   "dependencies": {
     "@fontsource/cormorant-garamond": "^5.3.0",
-    "@vitejs/plugin-react": "^6.1.2",
     "pixi.js": "^8.22.0",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
@@ -33,7 +32,6 @@
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "typescript": "^7.0.2",
-    "vite": "^8.3.2",
-    "vitest": "^5.0.3"
+    "@types/bun": "^1.4.2"
   }
 }

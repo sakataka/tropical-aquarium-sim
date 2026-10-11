@@ -1,4 +1,4 @@
-import { beforeEach } from "vitest";
+import { beforeEach } from "bun:test";
 import { loaders } from "virtual:species-index";
 import { addSpecies, loadAllHalls } from "./catalog";
 
@@ -10,8 +10,8 @@ await Promise.all(Object.values(loaders).map((load) => load().then(addSpecies)))
 // テストの間は Math.random を決まった乱数列に置き換え、テストごとに初めから振り直す（実行の順番や絞り込みで
 // 結果が変わらないように）。魚を生む createFishFromStock などが個体差を Math.random で決めるので、置き換えないと
 // 実行ごとに少しずつ違う魚で走り、たまにだけ落ちる。乱数を揺さぶって探すときは `bun run test:fuzz`。
-const testSeed = Number(import.meta.env.TEST_SEED);
-if (!Number.isFinite(testSeed)) throw new Error(`TEST_SEED は数か "random" にする: ${import.meta.env.TEST_SEED}`);
+const testSeed = Number(process.env.TEST_SEED ?? "1");
+if (!Number.isFinite(testSeed)) throw new Error(`TEST_SEED は数か "random" にする: ${process.env.TEST_SEED ?? "1"}`);
 function seedRandom() {
   let state = testSeed >>> 0;
   Math.random = () => {
@@ -23,7 +23,5 @@ function seedRandom() {
   };
 }
 seedRandom();
-beforeEach(({ onTestFailed }) => {
-  seedRandom();
-  onTestFailed(() => console.error(`乱数の種: TEST_SEED=${testSeed}`));
-});
+console.log(`TEST_SEED=${testSeed} TANK_SHARD=${process.env.TANK_SHARD ?? "1/1"}`);
+beforeEach(seedRandom);

@@ -1,4 +1,5 @@
-import { describe, expect, test } from "vitest";
+import { testFiles } from "./testFiles";
+import { describe, expect, test } from "bun:test";
 import { getBodyPlan, getBodyPlanId, HEAD_START_PLANS } from "./bodyPlans";
 import { fishCatalog, getLoadedTanks, getSceneById } from "./catalog";
 import { buildings, floors, halls as fishRooms, getHallLayout, getSceneSummary, museum, tankSummaries } from "./museum";
@@ -9,15 +10,15 @@ import { insideTerrain } from "./terrainMotion";
 const aquariumTanks = getLoadedTanks();
 
 // 魚・水景・水槽・部屋を追加したときの取り違えを、画面を開く前に見つける。
-const fishImages = import.meta.glob("../content/fish/*/body.webp");
-const plateImages = import.meta.glob("../content/environment/scenes/*/plate.webp");
-const thumbImages = import.meta.glob("../content/environment/scenes/*/thumb.webp");
-const roomImages = import.meta.glob("../content/room/*.webp");
-const roomThumbs = import.meta.glob("../content/room/thumbs/*.webp");
-const museumImages = import.meta.glob("../content/museum/buildings/*/*.webp");
+const fishImages = testFiles("../content/fish/*/body.webp", import.meta.url);
+const plateImages = testFiles("../content/environment/scenes/*/plate.webp", import.meta.url);
+const thumbImages = testFiles("../content/environment/scenes/*/thumb.webp", import.meta.url);
+const roomImages = testFiles("../content/room/*.webp", import.meta.url);
+const roomThumbs = testFiles("../content/room/thumbs/*.webp", import.meta.url);
+const museumImages = testFiles("../content/museum/buildings/*/*.webp", import.meta.url);
 const folderIds = (files: Record<string, unknown>) => Object.keys(files).map((path) => path.split("/").slice(-2)[0]!).sort();
-const tankFolders = folderIds(import.meta.glob("../content/tanks/*/tank.json"));
-const sceneFolders = folderIds(import.meta.glob("../content/environment/scenes/*/scene.json"));
+const tankFolders = folderIds(testFiles("../content/tanks/*/tank.json", import.meta.url));
+const sceneFolders = folderIds(testFiles("../content/environment/scenes/*/scene.json", import.meta.url));
 
 describe("content wiring", () => {
   test("every tank is placed in exactly one room, and rooms only place known tanks", () => {
@@ -50,7 +51,7 @@ describe("content wiring", () => {
     const buildingIds = buildings.map((building) => building.id);
     expect(new Set(buildingIds).size).toBe(buildingIds.length);
     expect(new Set(buildings.map((building) => building.order)).size).toBe(buildingIds.length);
-    expect(museum.buildings.flatMap((building) => building.floors)).toEqual(floors);
+    expect(museum.buildings.flatMap((building) => building.floors)).toEqual([...floors]);
     const floorIds = floors.map((floor) => floor.id);
     expect(new Set(floorIds).size).toBe(floorIds.length);
     for (const building of buildings) {

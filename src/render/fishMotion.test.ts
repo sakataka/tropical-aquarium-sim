@@ -1,4 +1,4 @@
-import { describe, expect, test } from "vitest";
+import { describe, expect, test } from "bun:test";
 import { Texture } from "pixi.js";
 import { fishCatalog, getTankById } from "../core/catalog";
 import { createFishFromStock } from "../core/fishPopulation";

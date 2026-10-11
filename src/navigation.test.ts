@@ -1,12 +1,17 @@
-import { afterEach, describe, expect, test, vi } from "vitest";
+import { afterEach, describe, expect, test } from "bun:test";
 import { AQUARIUM_STATE_STORAGE_KEY, createDefaultState } from "./core/customization";
 import { buildings, defaultBuilding, getHallOfTank, getTankSummary } from "./core/museum";
 import { loadInitialState, searchForPhase, type Phase } from "./navigation";
 
-afterEach(() => vi.unstubAllGlobals());
+const originalWindow = Object.getOwnPropertyDescriptor(globalThis, "window");
+afterEach(() => {
+  if (originalWindow) Object.defineProperty(globalThis, "window", originalWindow);
+  else Reflect.deleteProperty(globalThis, "window");
+});
+function stubWindow(value: unknown) { Object.defineProperty(globalThis, "window", { configurable: true, writable: true, value }); }
 
 function openLocation(search: string, saved: string | null = null) {
-  vi.stubGlobal("window", {
+  stubWindow({
     location: { search },
     localStorage: { getItem: (key: string) => key === AQUARIUM_STATE_STORAGE_KEY ? saved : null },
   });
@@ -58,7 +63,7 @@ describe("initial navigation and saved state", () => {
   });
 
   test("continues to honor a direct tank link when storage is unavailable", () => {
-    vi.stubGlobal("window", {
+    stubWindow({
       location: { search: "?tank=reef-120" },
       localStorage: { getItem: () => { throw new Error("storage unavailable"); } },
     });

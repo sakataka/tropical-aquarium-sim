@@ -16,7 +16,7 @@ export type SfxKey =
 type ManifestSound = { key: string; files: string[]; playbackRandom: { pitch: number; volume: number } };
 type LoadedSound = { buffers: AudioBuffer[]; random: ManifestSound["playbackRandom"] };
 
-const BASE_URL = `${import.meta.env.BASE_URL}sfx/`;
+const BASE_URL = new URL("sfx/", document.baseURI).href;
 const MASTER_LEVEL = 0.55;
 // 開く音は閉じる音を少し高く鳴らして作る（同じ素材で開閉の対をそろえる）。
 const ALIASES: Partial<Record<SfxKey, { key: SfxKey; rate: number }>> = {

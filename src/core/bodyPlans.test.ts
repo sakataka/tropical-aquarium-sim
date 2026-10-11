@@ -1,4 +1,4 @@
-import { describe, expect, test } from "vitest";
+import { describe, expect, test } from "bun:test";
 import { BODY_PLAN_RENDERERS } from "../render/bodyPlans";
 import { BODY_PLAN_IDS, BODY_PLANS, getBodyPlan } from "./bodyPlans";
 import { fishCatalog } from "./catalog";

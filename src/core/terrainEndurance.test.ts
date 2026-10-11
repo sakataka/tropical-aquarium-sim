@@ -1,4 +1,4 @@
-import { describe, expect, test } from "vitest";
+import { describe, expect, test } from "bun:test";
 import { getBodyPlan } from "./bodyPlans";
 import { fishCatalog, getLoadedTanks, getSceneById } from "./catalog";
 import { createFishFromStock, createFishPersonality } from "./fishPopulation";
@@ -8,11 +8,11 @@ import { insideTerrain } from "./terrainMotion";
 import type { FishStockEntry, LightingId, TankDefinition } from "./types";
 
 // 全水槽を回す重いテスト。水槽ごとのテストに分けてあり、`-t <水槽id>` で担当の水槽だけに絞れる。
-// vite.config.ts がこのファイルを複数のプロジェクト（tanks-1 … tanks-N）で並列に流し、
-// TANK_SHARD（"1/8" など）で、そのプロジェクトが受け持つ水槽を決める。
-const [shard, shardCount] = String(import.meta.env.TANK_SHARD ?? "1/1").split("/").map(Number) as [number, number];
+// scripts/test.ts が8分割を最大4プロセスで流し、
+// TANK_SHARD（"1/8" など）で、そのプロセスが受け持つ水槽を決める。
+const [shard, shardCount] = String(process.env.TANK_SHARD ?? "1/1").split("/").map(Number) as [number, number];
 // かかる時間は、水景の数と匹数のおよそ1.5乗に比例する。重い水槽から順に、その時点でいちばん軽い
-// プロジェクトへ配り、プロジェクトごとの時間をそろえる。
+// プロセスへ配り、プロセスごとの時間をそろえる。
 const cost = (tank: TankDefinition) => tank.sceneIds.length * tank.maxTotalFish ** 1.5;
 const loads = Array.from({ length: shardCount }, () => 0);
 const aquariumTanks = [...getLoadedTanks()]
@@ -28,7 +28,7 @@ describe.each(aquariumTanks.flatMap((tank) => tank.sceneIds.map((sceneId) => ({ 
 
   // 上限匹数で昼・夜を続けて泳がせる。フレームごとの大量の expect は避け、
   // 実寸での移動量・衝突・個体数・通常の奥行き変化を検証する。
-  test.each([42, 137])("remains stable at capacity through ten minutes of day and night (seed %s)", (seed) => {
+  for (const seed of [42, 137]) test(`remains stable at capacity through ten minutes of day and night (seed ${seed})`, () => {
     // 画面と同じ切り取り方（水景ごとの framing と部屋のガラスの縦横比）で地形を置く。
     const frame = getRenderedSurfaceFrame(tank, scene);
     const stock: FishStockEntry[] = tank.species.map((slot) => ({ speciesId: slot.speciesId, count: 0 }));

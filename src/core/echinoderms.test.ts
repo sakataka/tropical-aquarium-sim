@@ -1,5 +1,5 @@
 import { Texture } from "pixi.js";
-import { describe, expect, test } from "vitest";
+import { describe, expect, test } from "bun:test";
 import { VERTICES_X, type BodyPlanRenderer, type MotionState, type SwimStyle } from "../render/bodyPlans";
 import { seaStarRenderer } from "../render/bodyPlans/seaStar";
 import { urchinRenderer } from "../render/bodyPlans/urchin";

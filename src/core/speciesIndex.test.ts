@@ -1,9 +1,10 @@
-import { describe, expect, test } from "vitest";
+import { testFiles } from "./testFiles";
+import { describe, expect, test } from "bun:test";
 import { getLoadedTanks } from "./catalog";
 import { getSpeciesExhibits, loadSpeciesIndex, searchSpeciesIndex } from "./speciesIndex";
 import { toSpeciesKey } from "./speciesIndexEntry";
 
-const speciesFolders = Object.keys(import.meta.glob("../content/fish/*/species.json"))
+const speciesFolders = Object.keys(testFiles("../content/fish/*/species.json", import.meta.url))
   .map((path) => path.split("/").slice(-2)[0]!).sort();
 
 describe("species index", () => {

@@ -52,7 +52,7 @@ MODELS = {
     # Base は CC-BY-NC-4.0。比べるためだけに置いてある。
     "base": "depth-anything/Depth-Anything-V2-Base-hf",
 }
-# vite/contentModules.ts の SAFE_MARGIN_CM と同じ。面や隠れ場所はこれよりガラスの内側に置く。
+# scripts/content-modules.ts の SAFE_MARGIN_CM と同じ。面や隠れ場所はこれよりガラスの内側に置く。
 SAFE_MARGIN_CM = 2
 # 作業用の画像の横幅 (px)。
 WORK_WIDTH = 960

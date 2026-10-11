@@ -1,5 +1,5 @@
 // 図鑑の一覧と検索に使う、魚種ごとの軽い見出し。ビルド時に species.json から作る
-// （vite/contentModules.ts の virtual:species-index）。ビルド設定からも読むので、ほかのモジュールに依存しない。
+// （scripts/content-modules.ts の virtual:species-index）。ビルド設定からも読むので、ほかのモジュールに依存しない。
 
 export type SpeciesIndexEntry = SpeciesHeading & {
   /** 一覧に出す体の画像（body.webp）。 */

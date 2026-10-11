@@ -1,4 +1,4 @@
-import { describe, expect, test } from "vitest";
+import { describe, expect, test } from "bun:test";
 import { fishCatalog, getSceneById, getTankById } from "./catalog";
 import { bellContraction } from "./driftMotion";
 import { createFishFromStock } from "./fishPopulation";

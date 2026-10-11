@@ -1,6 +1,7 @@
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import type { Plugin, ViteDevServer } from "vite";
+import type { BunPlugin } from "bun";
+import { resolve } from "node:path";
 import {
   buildingSchema,
   museumHeaderSchema,
@@ -182,7 +183,7 @@ export function readContent(contentDir: string): ContentModel {
   return { museum, floors, halls, tanks, tankHall, scenes, species, seenBaseline, files };
 }
 
-/** モジュールのコードを組み立てる。画像の URL は Vite に解決させるため import にする。 */
+/** モジュールのコードを組み立てる。画像の URL は Bun に解決させるため import にする。 */
 class ModuleWriter {
   private imports: string[] = [];
   private urls = new Map<string, string>();
@@ -353,80 +354,34 @@ function tankSpeciesModule(model: ContentModel): string {
   ].join("\n");
 }
 
-/**
- * モジュールが読む内容ファイル。変わったら作り直すように、そのモジュールが使うものだけを監視に登録する。
- * 全モジュールに全ファイルを登録すると、種の数×ファイルの数に比例して遅くなる
- * （373種のときに、全種を読むテストの準備が毎回11秒かかっていた）。
- */
-function sourceFiles(model: ContentModel, contentDir: string, name: string): string[] {
-  const room = (id: string) => join(contentDir, "room", `${id}.json`);
-  const tank = (id: string) => join(contentDir, "tanks", id, "tank.json");
-  const scene = (id: string) => ["scene.json", "terrain.json"].map((file) => join(contentDir, "environment/scenes", id, file));
-  const species = (id: string) => join(contentDir, "fish", id, "species.json");
-  const ofHalls = (rooms: FishRoomDefinition[], withSpecies: boolean) => {
-    const tanks = rooms.flatMap((item) => item.tanks.map((placement) => model.tanks.get(placement.tankId)!));
-    return [
-      ...rooms.map((item) => room(item.id)),
-      ...tanks.map((item) => tank(item.id)),
-      ...[...new Set(tanks.flatMap((item) => item.sceneIds))].flatMap(scene),
-      ...(withSpecies ? [...new Set(tanks.flatMap((item) => item.species.map((slot) => slot.speciesId)))].map(species) : []),
-    ];
-  };
-  if (name.startsWith("species/")) return [species(name.slice("species/".length))];
-  if (name.startsWith("hall/")) return ofHalls(model.halls.filter((item) => item.id === name.slice("hall/".length)), true);
-  if (name.startsWith("floor/")) {
-    const floorId = name.slice("floor/".length);
-    const building = model.floors.find((floor) => floor.id === floorId)?.buildingId;
-    return [
-      ...(building ? [join(contentDir, "museum/buildings", building, "building.json")] : []),
-      ...ofHalls(model.halls.filter((item) => floorOf(model, item.id) === floorId), false),
-    ];
-  }
-  // 館の索引と図鑑の見出し、水槽ごとの種の並びは、全体から作る。画像の URL の一覧は、ファイルの有無だけで決まる。
-  return name === "fish-images" ? [] : model.files;
-}
-
-export function contentModules(contentDir: string): Plugin {
+export function contentModules(contentDir: string, runtime = false): BunPlugin {
   let model: ContentModel | undefined;
-  const isContentFile = (file: string) => file.startsWith(contentDir) && file.endsWith(".json");
-  const invalidate = (server: ViteDevServer) => {
-    model = undefined;
-    for (const module of server.moduleGraph.idToModuleMap.values()) {
-      if (module.id?.startsWith(`\0${PREFIX}`)) server.moduleGraph.invalidateModule(module);
-    }
-    server.ws.send({ type: "full-reload" });
+  const root = resolve(contentDir, "../..");
+  const load = (name: string): string => {
+    model ??= readContent(contentDir);
+    if (name === "museum") return museumModule(model, contentDir);
+    if (name === "species-index") return speciesIndexModule(model);
+    if (name === "fish-images") return fishImagesModule(model, contentDir);
+    if (name === "tank-species") return tankSpeciesModule(model);
+    if (name.startsWith("floor/")) return floorModule(model, contentDir, name.slice(6));
+    if (name.startsWith("hall/")) return hallModule(model, name.slice(5));
+    if (name.startsWith("species/")) return speciesModule(model, name.slice(8));
+    throw new Error(`Unknown content module: ${name}`);
   };
   return {
-    name: "content-modules",
-    resolveId(source) {
-      if (source === `${PREFIX}museum` || source === `${PREFIX}species-index` || source === `${PREFIX}fish-images` ||
-        source === `${PREFIX}tank-species` ||
-        source.startsWith(`${PREFIX}floor/`) || source.startsWith(`${PREFIX}hall/`) ||
-        source.startsWith(`${PREFIX}species/`)) return `\0${source}`;
-      return undefined;
-    },
-    load(id) {
-      if (!id.startsWith(`\0${PREFIX}`)) return undefined;
-      model ??= readContent(contentDir);
-      const name = id.slice(1 + PREFIX.length);
-      for (const file of sourceFiles(model, contentDir, name)) this.addWatchFile(file);
-      if (name === "museum") return museumModule(model, contentDir);
-      if (name === "species-index") return speciesIndexModule(model);
-      if (name === "fish-images") return fishImagesModule(model, contentDir);
-      if (name === "tank-species") return tankSpeciesModule(model);
-      if (name.startsWith("floor/")) return floorModule(model, contentDir, name.slice("floor/".length));
-      if (name.startsWith("hall/")) return hallModule(model, name.slice("hall/".length));
-      if (name.startsWith("species/")) return speciesModule(model, name.slice("species/".length));
-      return undefined;
-    },
-    watchChange(file) {
-      if (isContentFile(file)) model = undefined;
-    },
-    // 展示室や生き物のフォルダを足したり消したりしたときも、作り直して読み直す。
-    configureServer(server) {
-      server.watcher.on("add", (file) => { if (isContentFile(file)) invalidate(server); });
-      server.watcher.on("unlink", (file) => { if (isContentFile(file)) invalidate(server); });
-      server.watcher.on("change", (file) => { if (isContentFile(file)) invalidate(server); });
+    name: "aquarium-content",
+    setup(build) {
+      // Bun's runtime parses virtual: as a namespace; the browser bundler sees the full specifier.
+      build.onResolve({ filter: /^virtual:/ }, args => ({ path: args.path.slice(PREFIX.length), namespace: "aquarium-content" }));
+      build.onResolve({ filter: /.*/, namespace: "virtual" }, args => ({ path: args.path, namespace: "aquarium-content" }));
+      build.onLoad({ filter: /.*/, namespace: "aquarium-content" }, args => ({ contents: load(args.path), loader: "ts", resolveDir: root }));
+      build.onResolve({ filter: /\?url$/ }, args => ({ path: args.path.startsWith("/src/")
+        ? resolve(root, args.path.slice(1, -4)) : resolve(args.resolveDir, args.path.slice(0, -4)), namespace: "aquarium-asset" }));
+      build.onLoad({ filter: /.*/, namespace: "aquarium-asset" }, async args => runtime
+        ? { contents: `export default ${JSON.stringify(args.path)};`, loader: "js" }
+        : { contents: await Bun.file(args.path).bytes(), loader: "file" });
     },
   };
 }
+
+export default contentModules(resolve(import.meta.dir, "../src/content"));

@@ -1,4 +1,5 @@
-import { describe, expect, test } from "vitest";
+import { testFiles } from "./testFiles";
+import { describe, expect, test } from "bun:test";
 import { fishCatalog, getLoadedTanks, getSceneById, getTankById } from "./catalog";
 import {
   AQUARIUM_STATE_STORAGE_KEY,
@@ -12,7 +13,7 @@ import { defaultTankId, getHallLayout, halls as fishRooms } from "./museum";
 import { getStructurePoints } from "./plateFraming";
 
 const aquariumTanks = getLoadedTanks();
-const sceneFolders = Object.keys(import.meta.glob("../content/environment/scenes/*/scene.json"))
+const sceneFolders = Object.keys(testFiles("../content/environment/scenes/*/scene.json", import.meta.url))
   .map((path) => path.split("/").slice(-2)[0]!);
 const asia = getTankById("asia-60")!;
 const cube = getTankById("cube-30")!;
@@ -89,7 +90,7 @@ describe("saved state", () => {
       version: 5,
       activeTankId: "reef-120",
       tanks: {
-        "cube-30": { stock: [{ speciesId: "guppy", count: 4 }], layout: { sceneId: "cube-stones", lighting: "evening" } },
+        "cube-30": { stock: [{ speciesId: "guppy", count: 4 }], layout: { sceneId: "cube-stones", lighting: "evening" as const } },
         "reef-120": { stock: [], layout: { sceneId: "missing", lighting: "night" } },
         "removed-tank": { stock: [], layout: { sceneId: "planted", lighting: "night" } },
       },

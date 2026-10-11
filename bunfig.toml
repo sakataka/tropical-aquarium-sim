@@ -1,0 +1,6 @@
+[serve.static]
+plugins = ["./scripts/content-modules.ts", "./scripts/css-assets.ts"]
+define = { "import.meta.env.BASE_URL" = "\"./\"" }
+
+[test]
+preload = ["./scripts/test-setup.ts"]

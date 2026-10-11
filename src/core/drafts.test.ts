@@ -1,10 +1,11 @@
-import { describe, expect, test } from "vitest";
+import { testFiles } from "./testFiles";
+import { describe, expect, test } from "bun:test";
 import { getBodyPlanId, HEAD_START_PLANS } from "./bodyPlans";
 import { parseFishSpeciesDefinition } from "./schema";
 
 // 展示室を開ける前の下書き（content-drafts/fish/）。アプリは読み込まないが、形はここで確かめる。
-const drafts = import.meta.glob<{ default: unknown }>("../../content-drafts/fish/*/species.json", { eager: true });
-const images = import.meta.glob("../../content-drafts/fish/*/body.webp");
+const drafts: Record<string, { default: unknown }> = Object.fromEntries(await Promise.all(Object.keys(testFiles("../../content-drafts/fish/*/species.json", import.meta.url)).map(async path => [path, { default: await Bun.file(new URL(path, import.meta.url)).json() }])));
+const images = testFiles("../../content-drafts/fish/*/body.webp", import.meta.url);
 
 const entries = Object.entries(drafts).map(([path, module]) => [path.split("/").slice(-2)[0]!, module.default] as const);
 

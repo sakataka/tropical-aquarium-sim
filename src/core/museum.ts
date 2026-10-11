@@ -18,7 +18,7 @@ import { glassAspect, windowOverscan } from "./room";
 // 部屋の絵のガラスの位置と水景の縮小版は階ごとのモジュールにあり、館内図で階を開くときか、
 // その階の展示室に入るときに loadFloor で読む。
 // 水槽の定義、水景の地形、生き物は展示室ごとのモジュールにあり、展示室に入るときに読む（catalog.ts）。
-// ビルド時に内容ファイルから作り、検証も済ませてある（vite/contentModules.ts）。
+// ビルド時に内容ファイルから作り、検証も済ませてある（scripts/content-modules.ts）。
 
 export type { MuseumBuilding, MuseumFloor, MuseumMapArea } from "./contentSchemas";
 export type { HallLayout, HallSummary, SceneSummary, TankSummary } from "./contentTypes";

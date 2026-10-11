@@ -1,4 +1,4 @@
-import { describe, expect, test } from "vitest";
+import { describe, expect, test } from "bun:test";
 import { fishCatalog } from "./catalog";
 import { getBaseSpriteScale, getFishSpriteScale, getTargetBodyLengthPx } from "./scale";
 

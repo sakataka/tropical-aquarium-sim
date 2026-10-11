@@ -1,4 +1,4 @@
-import { describe, expect, test } from "vitest";
+import { describe, expect, test } from "bun:test";
 import { VERTICES_X, type MotionState } from "../render/bodyPlans";
 import { gardenEelRenderer } from "../render/bodyPlans/gardenEel";
 import { burrowPosition } from "./burrowMotion";

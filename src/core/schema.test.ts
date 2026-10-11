@@ -1,4 +1,4 @@
-import { describe, expect, test } from "vitest";
+import { describe, expect, test } from "bun:test";
 import neon from "../content/fish/neon-tetra/species.json";
 import { parseFishSpeciesDefinition } from "./schema";
 
