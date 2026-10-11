@@ -1,0 +1,7 @@
+{
+  "lane": "species-prepare",
+  "id": "axolotl",
+  "by": "claude-code",
+  "at": "2026-10-11T09:43:40+09:00",
+  "reason": "成体の大きさが調査にない（すべて unknown）。dots に測り方の分かる成体の長さの補完を頼んだ（2026年10月11日）"
+}

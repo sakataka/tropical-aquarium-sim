@@ -12,9 +12,14 @@
   uv run scripts/agent-queue.py claim <レーン> <件数> --by <名前> [<id>...]
                                                              先頭から件数ぶん（id を並べればその作業）に印を置き、id を表示
   uv run scripts/agent-queue.py release <レーン> <id>         印を外す（成果物を書かずにやめるとき）
+  uv run scripts/agent-queue.py block <レーン> <id> --by <名前> --reason <理由>
+                                                             保留にする（材料や仕組みが足りず、いまは誰がやっても進められない作業）
+  uv run scripts/agent-queue.py unblock <レーン> <id>         保留を解く（足りなかったものがそろったとき）
 
 レーンと手順書は docs/codex-queue.md。印を置いてから STALE_HOURS 時間たっても成果物がない作業は、
 未着手として扱う（途中で止まったエージェントの作業を、ほかのエージェントが引き取れるようにする）。
+保留の印（blocked.json）のある作業は、未着手に数えず、claim でも取らない（release で未着手に戻すと、
+足りないものが残ったまま、また誰かが取ってしまうため）。
 """
 
 import argparse
@@ -96,6 +101,8 @@ def state(lane: str, task_id: str) -> tuple[str, dict | None]:
     claim = json.loads(claim_file.read_text()) if claim_file.exists() else None
     if done.exists():
         return "done", claim
+    if (folder / "blocked.json").exists():
+        return "blocked", json.loads((folder / "blocked.json").read_text())
     if claim:
         age = datetime.now(JST) - datetime.fromisoformat(claim["at"])
         return ("stale" if age > timedelta(hours=STALE_HOURS) else "claimed"), claim
@@ -117,18 +124,26 @@ def main() -> None:
     release = sub.add_parser("release")
     release.add_argument("lane", choices=LANES)
     release.add_argument("id")
+    block = sub.add_parser("block")
+    block.add_argument("lane", choices=LANES)
+    block.add_argument("id")
+    block.add_argument("--by", required=True)
+    block.add_argument("--reason", required=True)
+    unblock = sub.add_parser("unblock")
+    unblock.add_argument("lane", choices=LANES)
+    unblock.add_argument("id")
     args = parser.parse_args()
 
     if args.command == "status":
         for lane, spec in LANES.items():
-            counts = {"open": 0, "claimed": 0, "stale": 0, "done": 0}
+            counts = {"open": 0, "claimed": 0, "stale": 0, "blocked": 0, "done": 0}
             working = []
             for task_id, _ in spec["tasks"]():
                 kind, who = state(lane, task_id)
                 counts[kind] += 1
                 if kind == "claimed":
                     working.append(f"{task_id}（{who['by']}）")
-            print(f"{lane}: 未着手 {counts['open'] + counts['stale']}（うち印が古い {counts['stale']}）· 作業中 {counts['claimed']} · 済み {counts['done']} — 手順書 {spec['playbook']}")
+            print(f"{lane}: 未着手 {counts['open'] + counts['stale']}（うち印が古い {counts['stale']}）· 作業中 {counts['claimed']} · 保留 {counts['blocked']} · 済み {counts['done']} — 手順書 {spec['playbook']}")
             if working:
                 print(f"  作業中: {', '.join(working)}")
         return
@@ -138,7 +153,23 @@ def main() -> None:
         for task_id, label in spec["tasks"]():
             kind, who = state(args.lane, task_id)
             if args.all or kind in ("open", "stale"):
-                print(f"{task_id}\t{kind}{'（' + who['by'] + '）' if who and kind != 'open' else ''}\t{label}")
+                reason = f"\t保留の理由: {who['reason']}" if kind == "blocked" else ""
+                print(f"{task_id}\t{kind}{'（' + who['by'] + '）' if who and kind != 'open' else ''}\t{label}{reason}")
+        return
+
+    if args.command in ("block", "unblock"):
+        if args.id not in dict(spec["tasks"]()):
+            sys.exit(f"{args.lane} にない作業: {args.id}")
+        folder = spec["dir"](args.id)
+        blocked_file = folder / "blocked.json"
+        if args.command == "unblock":
+            blocked_file.unlink(missing_ok=True)
+            print(f"保留を解きました: {args.id}")
+            return
+        folder.mkdir(parents=True, exist_ok=True)
+        (folder / "claim.json").unlink(missing_ok=True)
+        blocked_file.write_text(json.dumps({"lane": args.lane, "id": args.id, "by": args.by, "at": datetime.now(JST).isoformat(timespec="seconds"), "reason": args.reason}, ensure_ascii=False, indent=2) + "\n")
+        print(f"保留にしました: {args.id}")
         return
 
     if args.command == "release":
@@ -157,9 +188,9 @@ def main() -> None:
         if task_id not in known:
             sys.exit(f"{args.lane} にない作業: {task_id}")
         kind, who = state(args.lane, task_id)
-        if kind in ("done", "claimed"):
+        if kind in ("done", "claimed", "blocked"):
             if args.ids:
-                print(f"飛ばします: {task_id} は {kind}{'（' + who['by'] + '）' if who else ''}", file=sys.stderr)
+                print(f"飛ばします: {task_id} は {kind}{'（' + who['by'] + '）' if who else ''}{'。理由: ' + who['reason'] if kind == 'blocked' else ''}", file=sys.stderr)
             continue
         folder = spec["dir"](task_id)
         folder.mkdir(parents=True, exist_ok=True)

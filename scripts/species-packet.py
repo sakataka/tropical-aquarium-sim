@@ -4,6 +4,7 @@
 """種の下書きを書くための材料を、1種ぶんまとめて表示する（保管庫を読むだけ）。
 
   uv run scripts/species-packet.py <species-id>
+  uv run scripts/species-packet.py --body-plans <species-id>...   各種の画風と、その画風で使える体のつくりを JSON で出す（check-prepared.ts が読む）
 
 出すもの: 名前、絵の説明（どの姿で描いたか）、置く水槽（展示計画の大きさ・ねらい・水景、同じ水槽の種）、
 調査（research.json）の各項目を1行ずつ（値・範囲・単位・成長段階・根拠の強さ・注記）、出典の一覧。
@@ -24,7 +25,76 @@ def short(value) -> str:
     return value if isinstance(value, str) else json.dumps(value, ensure_ascii=False)
 
 
+def generation_style(generation: dict) -> str | None:
+    """生成の記録の画風。配送の時期で形が違う（normalizedJob.image の中か、いちばん上）。"""
+    return generation.get("normalizedJob", {}).get("image", {}).get("styleId") or generation.get("styleId")
+
+
+def catalog_entry(species_id: str, variant_id: str | None) -> dict:
+    entries = []
+    for name in ("dots-additions.json", "species-backlog.json"):
+        entries += [entry for entry in json.loads((vault / "catalog" / name).read_text())["entries"] if entry.get("speciesId") == species_id]
+    return next((entry for entry in entries if entry.get("variantId") == variant_id), entries[0] if entries else {})
+
+
+def body_plans_by_style() -> dict[str, dict[str, str]]:
+    """館にいる種の、画風ごとの体のつくり（{画風: {体のつくり: 手本の種}}）。"""
+    plans: dict[str, dict[str, str]] = {}
+    for file in sorted((ROOT / "src" / "content" / "fish").glob("*/species.json")):
+        other = file.parent.name
+        adoption = vault / "adoptions" / f"{other}.json"
+        records = sorted((vault / "drafts" / other).glob("*/image/*/*/generation.json"))
+        if adoption.exists():
+            chosen = vault / Path(json.loads(adoption.read_text())["image"]["path"]).parent / "generation.json"
+            records = [chosen] if chosen.exists() else records
+        style = generation_style(json.loads(records[-1].read_text())) if records else None
+        if style:
+            plans.setdefault(style, {}).setdefault(json.loads(file.read_text()).get("swim", {}).get("bodyPlan", "fish"), other)
+    return plans
+
+
+def describe_image(species_id: str, variant_id: str | None, generation: dict, file: Path) -> None:
+    job = generation.get("normalizedJob", {}).get("image", {})
+    entry = catalog_entry(species_id, variant_id)
+    style = generation_style(generation)
+    print(f"画風: {style or '記録なし'}" + ("" if style else f"（カタログでは bodyPlan {entry.get('bodyPlan')}、view {entry.get('view')}）"))
+    if style:
+        known = body_plans_by_style().get(style)
+        if known:
+            print("体のつくり: この画風の館の種は " + "、".join(f"bodyPlan {plan}（手本 {example}）" for plan, example in known.items()))
+        else:
+            print("体のつくり: この画風を描ける体のつくりは、まだアプリにない。下書きは書かず、"
+                  f"`uv run scripts/agent-queue.py block species-prepare {species_id} --by <名前> --reason \"体のつくり待ち（{style}）\"` で保留にする")
+    if generation.get("operation") and "generat" not in str(generation.get("executionMode", "generat")):
+        source = generation.get("revisionTarget", {}).get("path", "")
+        print(f"この版は、生成ではなく前の版から作った派生の画像（{generation.get('operation')}{'。元 ' + source if source else ''}）")
+    subject = job.get("subjectEn") or entry.get("subjectEn")
+    if subject:
+        print(f"絵の説明{'' if job.get('subjectEn') else '（カタログの依頼文）'}: {subject}")
+    else:
+        prompt = file.parent / "prompt.txt"
+        print(f"絵の説明: 記録に依頼文がない。{prompt if prompt.exists() else '生成の記録 ' + str(file)} を読む")
+
+
+def expected_body_plans(species_ids: list[str]) -> dict[str, dict]:
+    known = body_plans_by_style()
+    result = {}
+    for species_id in species_ids:
+        folder = vault / "drafts" / species_id
+        records = sorted(folder.glob("*/image/*/*/generation.json"))
+        adoption = vault / "adoptions" / f"{species_id}.json"
+        if adoption.exists():
+            chosen = vault / Path(json.loads(adoption.read_text())["image"]["path"]).parent / "generation.json"
+            records = [chosen] if chosen.exists() else records
+        style = generation_style(json.loads(records[-1].read_text())) if records else None
+        result[species_id] = {"style": style, "plans": sorted(known.get(style, {})) if style else None}
+    return result
+
+
 def main() -> None:
+    if sys.argv[1] == "--body-plans":
+        print(json.dumps(expected_body_plans(sys.argv[2:]), ensure_ascii=False))
+        return
     species_id = sys.argv[1]
     folder = vault / "drafts" / species_id
     research_file = sorted(folder.glob("*/research/*/*/research.json"))[-1]
@@ -44,9 +114,7 @@ def main() -> None:
     if generations:
         generation = json.loads(generations[-1].read_text())
         order = generation.get("workQueueOrder")
-        image = generation["normalizedJob"]["image"]
-        print(f"画風: {image.get('styleId')}")
-        print(f"絵の説明: {image.get('subjectEn', '')}")
+        describe_image(species_id, research.get("variantId"), generation, generations[-1])
 
     print("\n## 置く水槽")
     plan = json.loads((vault / "catalog" / "exhibit-plan.json").read_text())

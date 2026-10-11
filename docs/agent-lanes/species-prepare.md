@@ -9,17 +9,20 @@ dots が保管庫（`~/Documents/aquarium-assets`。読むだけ）に届けた�
   - `species.json`: 下書き（下の「入れない項目」を除いた、種の定義）
   - `notes.md`: 仮にした値、気になる点、水槽の説明文に使えそうな見どころ1文
   - `claim.json`: 担当の印（スクリプトが置く。消さない）
+  - `blocked.json`: 保留の印（スクリプトが置く。下の「進められない種」）
 
 ## 材料
 
-- **`uv run scripts/species-packet.py <id>`** が、名前、絵の説明（どの姿・性別・成長段階で描いたか）、置く水槽（大きさ・ねらい・水景・同じ水槽の種）、調査の各項目（1行ずつ）、出典をまとめて出す。まずこれを読む。調査の全文（`research.json`）は、足りないときだけ開く。
+- **`uv run scripts/species-packet.py <id>`** が、名前、画風と体のつくり、絵の説明（どの姿・性別・成長段階で描いたか）、置く水槽（大きさ・ねらい・水景・同じ水槽の種）、調査の各項目（1行ずつ）、出典をまとめて出す。まずこれを読む。調査の全文（`research.json`）は、足りないときだけ開く。
+  - 「体のつくり」の行は、同じ画風で館にいる種の `swim.bodyPlan` と手本の種を出す。**「まだアプリにない」と出た種は下書きを書かず、表示されたコマンドで保留にする**（似た体のつくりで代用しない）。
+  - 絵の説明は、配送の時期で記録の形が違う。「カタログの依頼文」と出たときは依頼の文面で、実際の絵と細部が違うことがある。「派生の画像」と出た版は、前の版の色や透過を機械的に合わせ直したもので、新しく描いた絵ではない。
   - 行の頭が `?` の項目は、根拠の強さが `unverified`・`unknown`。**事実として書かない。**
   - 「展示計画に置き場所が見つからない」と出た種は、水槽に触れる文（「本水槽では…」）を書かず、`notes.md` にそう書く。
 - 手本（形と文体をこれに合わせる。読むだけ）:
   - 魚: `src/content/fish/kuhlia-marginata/species.json`、底のハゼ `rhinogobius-brunneus`、サケ `chum-salmon`、トゲウオ `threespine-stickleback`、ウナギ `japanese-eel`（`gait: undulate`）
   - エビ（面を歩く）: `macrobrachium-australe`、小さなヌマエビ `minami-numa-shrimp`。カニ: `japanese-mud-crab`。巻貝: `dusky-nerite`
   - 両生類: `japanese-fire-bellied-newt`（`walker`）、カエル `african-dwarf-frog`（`frog`）
-- 形の定義は `src/core/schema.ts`。体のつくりは `docs/museum-architecture.md` の「3. 体のつくり」。画風（`styleId`）と `swim.bodyPlan` の対応は、同じ画風の手本の種に合わせる（魚の横向きの絵は `bodyPlan` を書かない）。
+- 形の定義は `src/core/schema.ts`。体のつくりは `docs/museum-architecture.md` の「3. 体のつくり」。画風（`styleId`）と `swim.bodyPlan` の対応は、材料の「体のつくり」の行のとおりにする（魚の横向きの絵は `bodyPlan` を書かない）。
 
 ## 入れない項目（絵が決まってから入る）
 
@@ -29,9 +32,11 @@ dots が保管庫（`~/Documents/aquarium-assets`。読むだけ）に届けた�
 
 - 文章は日本語の「です・ます」。図鑑として読める平易な文にする。**事実は調査に出典のあることだけ。** 調査にないこと・確かめられていないことは書かない（推測で埋めない）。大きさなどが出典で食い違うときは、`sizeNote` に両方を書く。
 - `realBodyLengthCm` は画面での体の長さ。魚は全長。エビは体長（額角から尾の先。触角は含まない）。カニは脚を広げた幅。巻貝は触角を含む絵の横幅。体長が水槽の幅の約35%を超えるときは、調査の範囲で小さめの個体にして、`sizeNote` に「◯cm水槽に合わせ、画面では全長約◯cmの個体で描いています」と書く。逆に、水槽の幅の3%より小さくなる種は、調査の範囲で大きめの個体にし、それでも小さければ `notes.md` に「画面で見えにくいはず」と書く。`profile.adultSizeCm` は図鑑に出す成体の大きさ（調査の代表値。カニは甲幅）。
+  - **画面での長さが調査の測り方と違う体のつくり**（カニの脚を広げた幅、巻貝の触角を含む横幅、クラゲの傘と触手など）は、絵の中の体の比率で決まるので、下書きでは仮の値でよい。調査にある大きさ（甲幅、殻高、傘径）に、手本の種の `realBodyLengthCm ÷ profile.adultSizeCm` を掛けた値を書き、`notes.md` に「画面の幅は仮（◯◯の比率）」と書く。Claude Code が絵を見て直す。`sizeNote` には調査の値と測り方だけを書き、掛けた値を実測のように書かない。
+  - **成体の大きさそのものが調査にない種**（すべて `?` の行、幼体や甲長だけ）は、下書きを書かずに保留にする（下の「進められない種」）。
 - `catalog.movement` と `catalog.habitat` の後半に、「本水槽では…」と、置く水槽での見え方を1文添える（材料の「置く水槽」のねらいと水景から。絵に描かれていない種名や地名を言い切らない）。
 - `catalog.originRegionId`・`originRegionName` は既存の値から選ぶ（`grep -h originRegion src/content/fish/*/species.json | sort | uniq -c`）。
-- `profile.taxonomy` の目・科の和名は、館の既存の種にそろえる（`grep -h -A4 '"taxonomy"' src/content/fish/*/species.json` で探す）。館では、ハゼの仲間の科は「オクスデルクス科」か調査の科、スズキの仲間の目は「スズキ目」にそろえている。調査と違うときは `sizeNote` の末尾に一言書く。
+- `profile.taxonomy` の目・科の和名は、館の既存の種にそろえる（`grep -h -A4 '"taxonomy"' src/content/fish/*/species.json` で探す）。**同じ科の種が館にいれば、その種の目・科の書き方に合わせる**（館には古い分類のままの種と新しい分類の種が混ざっていて、「スズキ目」「ハゼ目」「ニザダイ目」「アジ目」のどれもある。同じ科の中で食い違わないことを優先する）。同じ科の種がいなければ、調査の目・科を書く。調査と違う書き方にしたときは `sizeNote` の末尾に一言書く。
 - `profile.water.salinity` は、置く水槽の水（淡水 `freshwater`・汽水 `brackish`・海水 `marine`）に合わせる。調査の生息域と食い違うときは `notes.md` に書く。
 - `profile.keeping` は、調査に水族館での展示の記録があれば `publicAquarium`、家庭で飼われる種は `home`。展示の記録が調査にないだけの種は `publicAquarium` にして、`notes.md` に「展示の根拠なし」と書く（`rarelyDisplayed` は、展示がまれだという根拠があるときだけ）。
 - `profile.conservation` は、調査に IUCN の区分があるときだけ `status` と `assessedYear` を書く。本文を確かめていない値は `note` にそう書く。国内のレッドリストは `note` に書く。
@@ -41,12 +46,27 @@ dots が保管庫（`~/Documents/aquarium-assets`。読むだけ）に届けた�
   - 群れる魚は `social.grouping` を `shoal` か `school`、`polarization` 0.5 以上で向きをそろえる。群れの根拠が調査にないときは、説明文で「群れで泳ぐ魚」と言い切らず、「本水槽では数匹でまとまって泳ぐ姿で描いています」と書く。
   - `homeShelter`・`hideByDay` は、その水槽の地形に隠れ場所が要るので、付けたら `notes.md` に書く。昼に姿が見えなくなるので、`hideByDay` は夜行性の根拠がはっきりした主役の種だけ。面を歩く生き物（エビ・カニ・巻貝）には `homeShelter` を付けない。エビに `burrow` は付けない。
 - 実際の飼育で同じ水槽にできるかどうか（食う・食われる）は、説明文で断定しない。調査に注意があれば `notes.md` に書く。
-- `ecology.sources` は、材料の出典から、実際に使った主なものを title と url で5〜10件。
+- `ecology.sources` は、材料の出典から、実際に使った主なものを title と url で5〜10件。調査の出典が5件より少ない種は、使ったものだけでよい（数を合わせるために、使っていない出典を足さない）。`notes.md` に「出典◯件」と書く。
+
+## 進められない種（保留にする）
+
+材料や仕組みが足りず、いまは誰がやっても下書きを書けない種は、`release` で未着手に戻さず、保留にする（未着手に戻すと、足りないものが残ったまま次のエージェントがまた取る）。
+
+```
+uv run scripts/agent-queue.py block species-prepare <id> --by <名前> --reason "<足りないもの>"
+```
+
+- 保留にするのは、(1) 画風を描ける体のつくりがまだない、(2) 成体の大きさが調査にない、(3) 調査が種を取り違えているなど、材料の側を直さないと書けない、のどれか。理由には、何がそろえば書けるかを1文で書く。
+- 保留の印は `content-drafts/prepared/fish/<id>/blocked.json` に置かれる。これは自分の成果物として commit する。
+- 保留の一覧は `uv run scripts/agent-queue.py list species-prepare --all`。足りないものをそろえるのは Claude Code で、そろえたら `unblock` で未着手に戻す。
+- 1種だけの細かい疑問（水槽に合うか、実際に一緒に飼えるか、絵と調査の食い違い）は保留にせず、下書きを書いて `notes.md` に残す。
+- **手順書や道具そのものの問題**（スクリプトが止まる、決まりどうしが食い違う）に気づいたら、種の `notes.md` ではなく、最後の報告に書く。道具が止まっても、正式のスクリプトは書き換えない。
 
 ## 確かめる
 
 - `bun run scripts/check-prepared.ts <id>...` が、進めた種すべてで `✓` になること（アプリと同じスキーマで読める、入れない項目が入っていない、`notes.md` がある）。
 - 書いた数字（大きさ、水温、年）が、材料の `?` でない行にあること。
+- `check-prepared.ts` が見るのは形だけ（スキーマ、入れない項目、文末、`notes.md` の有無、体のつくりが画風に合うか）。数字が調査のどの行にあるか、測り方が合っているかは見ないので、上の1行は自分で確かめる。
 
 ## Claude Code がこの下書きを使うとき
 
