@@ -1,0 +1,128 @@
+{
+  "id": "silurus-biwaensis",
+  "displayName": "ビワコオオナマズ",
+  "realBodyLengthCm": 110,
+  "catalog": {
+    "scientificName": "Silurus biwaensis",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "琵琶湖・淀川水系に固有の、大型のナマズです。琵琶湖の北湖や南湖、内湖に記録があります。",
+    "temperament": "魚を食べる捕食者です。フナ類、ビワマス、コアユなどを食べると研究施設が解説しています。これらを常に同じ割合で食べるという意味ではありません。",
+    "movement": "追跡研究では、夜に活動し、日中は動きの少ない個体が観察されました。本水槽では、底で休む姿と、斜面の上をゆっくり泳ぐ姿を組み合わせて描いています。",
+    "habitat": "追跡した成体には、産卵場に近い浅場や斜面に長くとどまる個体もあり、深い所だけで暮らす魚ではありません。本水槽では、丸い石と砂が深みへ下る斜面、大岩の下の暗い洞、沈んだ幹と疎らな水草を組み合わせています。",
+    "aliases": [
+      "Lake Biwa catfish",
+      "Parasilurus biwaensis"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Siluriformes",
+      "orderJa": "ナマズ目",
+      "family": "Siluridae",
+      "familyJa": "ナマズ科"
+    },
+    "adultSizeCm": 110,
+    "sizeNote": "研究施設の大型成体の概説では全長100〜120cmとされ、図鑑と画面では範囲の中ほどの全長110cmを目安にしています。博物館の解説には到達サイズ1.3m、収蔵標本の最大体長欄には1015mmとありますが、これらの測定端点は未指定です。異なる値を換算して一つの最大値にしていません。",
+    "distribution": "琵琶湖・淀川水系の固有種です。博物館の標本データベースには北湖、南湖、内湖の分布が記されています。瀬田川や淀川の記録は文献情報として区別されています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "IUCNの世界評価と現行の国の区分は確認できていません。博物館の標本データベースが示す滋賀県2020年の区分は希少種です。別の博物館解説のNT表記は評価主体と年が不明で、国やIUCNの区分へ転記していません。"
+    },
+    "highlights": [
+      "低く平たい頭を持ち、下顎が前へ突出します。",
+      "上顎と下顎に口ひげが各1対あり、上顎のひげは胸びれに届きません。",
+      "尾びれの中央がくぼみ、上側の葉が下側より長くなります。",
+      "超音波追跡では、一定の区域にとどまる傾向が報告されています。"
+    ]
+  },
+  "swim": {
+    "tailBeatHz": 1.0,
+    "bodyWaveStart": 0.3,
+    "waveCount": 1.0,
+    "tailSweepRad": 0.3,
+    "verticalFlex": 0.025
+  },
+  "preferredZone": {
+    "minX": 0.08,
+    "maxX": 0.92,
+    "minY": 0.66,
+    "maxY": 0.95
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "undulate",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.12,
+      "burst": 0.8
+    },
+    "turnRateRadPerSec": 1.3,
+    "restFraction": 0.55,
+    "depthRange": [
+      0.35,
+      0.95
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.0,
+      "cohesion": 0,
+      "polarization": 0.03
+    },
+    "structureAffinity": 0.7,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1,
+        "durationSec": [
+          15,
+          40
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Eschmeyer Catalog of Fishes: Silurus biwaensis",
+        "url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=24820"
+      },
+      {
+        "title": "国立科学博物館 日本の淡水魚 ビワコオオナマズ",
+        "url": "https://www.kahaku.go.jp/research/db/zoology/uodas_freshdb/area/siluridae/099.html"
+      },
+      {
+        "title": "琵琶湖環境科学研究センター ビワコオオナマズ",
+        "url": "https://www.lberi.jp/iframe_dir/data/silurus-biwaensis/index.html"
+      },
+      {
+        "title": "琵琶湖博物館収蔵資料DB ビワコオオナマズ",
+        "url": "https://jmapps.ne.jp/ikimono/det.html?data_id=7962"
+      },
+      {
+        "title": "Takai et al.1997 超音波追跡による定着性と生息場",
+        "url": "https://www.jstage.jst.go.jp/article/fishsci1994/63/2/63_2_181/_pdf"
+      },
+      {
+        "title": "Maehata2001 産卵を誘起する物理要因",
+        "url": "https://link.springer.com/article/10.1007/s10228-001-8128-3"
+      },
+      {
+        "title": "琵琶湖博物館2024-01-12 ナマズ3種の環境DNA検出",
+        "url": "https://www.biwahaku.jp/2024/01/3dna.html"
+      },
+      {
+        "title": "琵琶湖博物館 水族展示",
+        "url": "https://www.biwahaku.jp/exhibition/aqua.html"
+      },
+      {
+        "title": "滋賀県2026-04-16 新ビワコオオナマズ水槽",
+        "url": "https://www.pref.shiga.lg.jp/ab00/24209.html"
+      },
+      {
+        "title": "東海大学 ナマズについて",
+        "url": "https://www.sems-tokaiuniv.jp/namazu/namazu.html"
+      }
+    ]
+  }
+}

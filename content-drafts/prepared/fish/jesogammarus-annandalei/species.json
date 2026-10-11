@@ -1,0 +1,108 @@
+{
+  "id": "jesogammarus-annandalei",
+  "displayName": "アナンデールヨコエビ",
+  "realBodyLengthCm": 1.5,
+  "catalog": {
+    "scientificName": "Jesogammarus (Annanogammarus) annandalei",
+    "originRegionId": "japan",
+    "originRegionName": "日本",
+    "origin": "琵琶湖に固有のヨコエビです。主に北湖に分布し、成長段階や昼夜によって湖底と水中を使い分けます。",
+    "temperament": "夜の中層でプランクトンを食べ、イサザの餌にもなります。魚からの捕食を避けるために昼夜で場所を変える可能性が、研究で述べられています。",
+    "movement": "大きな個体は昼に底にいて、夜に中層へ上がります。本水槽では、底面をゆっくり移動して休む姿を仮に設定しており、夜の中層への移動は再現していません。",
+    "habitat": "湖底付近と中層を成長段階や昼夜に応じて利用します。本水槽では、細かい砂と泥、小石や大きな岩、沈んだ枝のある冷たい湖の深みを再現しています。",
+    "aliases": [
+      "Jesogammarus annandalei",
+      "Gammarus annandalei"
+    ]
+  },
+  "profile": {
+    "taxonomy": {
+      "order": "Amphipoda",
+      "orderJa": "端脚目",
+      "family": "Anisogammaridae",
+      "familyJa": "キタヨコエビ科"
+    },
+    "adultSizeCm": 1.5,
+    "sizeNote": "研究施設の概説では成体の体長15mmとされ、図鑑と画面では約1.5cmを目安にしています。測定端点や最大値か代表値かは未指定です。1993年夏の中層から採った成体標本の平均は8.3mmでした。両者は対象と定義が異なり、成体の大きさの範囲としてまとめていません。",
+    "distribution": "琵琶湖固有のヨコエビで、主に北湖に分布します。冬には北湖の沿岸にも現れると解説されています。",
+    "water": {
+      "salinity": "freshwater"
+    },
+    "keeping": "publicAquarium",
+    "conservation": {
+      "note": "IUCNの世界評価は確認できていません。研究施設の解説では国の準絶滅危惧（NT）と滋賀県2025年の希少種を示しますが、国の評価年は未確認です。水温上昇や深い湖底の酸素不足が生態に影響し得ると研究で指摘されています。"
+    },
+    "highlights": [
+      "琵琶湖に固有の、淡褐色で横に平たいヨコエビです。",
+      "第1触角は第2触角より長く、雄の第1顎脚には幅広い掌部があります。",
+      "大きな個体は昼に湖底、夜に中層へ移動します。",
+      "夜の中層でプランクトンを食べ、イサザの餌にもなります。"
+    ]
+  },
+  "swim": {
+    "bodyPlan": "crustacean",
+    "tailBeatHz": 0.6,
+    "bodyWaveStart": 0.85,
+    "tailSweepRad": 0,
+    "verticalFlex": 0
+  },
+  "preferredZone": {
+    "minX": 0.1,
+    "maxX": 0.9,
+    "minY": 0.82,
+    "maxY": 0.93
+  },
+  "ecology": {
+    "activityPeriod": "nocturnal",
+    "gait": "glide",
+    "speedBodyLengthsPerSec": {
+      "cruise": 0.06,
+      "burst": 0.4
+    },
+    "turnRateRadPerSec": 1.1,
+    "restFraction": 0.55,
+    "depthRange": [
+      0.3,
+      0.85
+    ],
+    "social": {
+      "grouping": "solitary",
+      "spacingBodyLengths": 2.5,
+      "cohesion": 0,
+      "polarization": 0
+    },
+    "structureAffinity": 0.3,
+    "habits": [
+      {
+        "type": "bottomRest",
+        "chancePerMin": 1.8,
+        "durationSec": [
+          10,
+          30
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "琵琶湖環境科学研究センター アナンデールヨコエビ",
+        "url": "https://www.lberi.jp/iframe_dir/data/jesogammarus-annandalei/index.html"
+      },
+      {
+        "title": "神戸・伴2007 水温が代謝・水平分布に与える影響",
+        "url": "https://www.jstage.jst.go.jp/article/rikusui/68/3/68_3_375/_pdf"
+      },
+      {
+        "title": "Ishikawa & Urabe2005 成長段階と鉛直分布",
+        "url": "https://www.schweizerbart.de/papers/fal/detail/164/56332/Ontogenetic_changes_in_vertical_distribution_of_an?af=crossref"
+      },
+      {
+        "title": "Trevorrow & Tanaka1997 音響と現場標本観測",
+        "url": "https://aslopubs.onlinelibrary.wiley.com/doi/10.4319/lo.1997.42.1.0121"
+      },
+      {
+        "title": "環境省D0804-4 底生動物と魚類への影響研究報告",
+        "url": "https://www.env.go.jp/policy/kenkyu/suishin/kadai/syuryo_report/pdf/D0804-4.pdf"
+      }
+    ]
+  }
+}
